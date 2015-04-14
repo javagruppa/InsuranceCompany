@@ -5,7 +5,7 @@
  */
 
 package insurancecompany.people;
-
+import insurancecompany.misc.Address;
 /**
  *
  * @author Carl
@@ -13,7 +13,7 @@ package insurancecompany.people;
 public class ServiceWorker extends Employee {
 
     public ServiceWorker(String firstname, String lastname, int personalNumber, String email, Address address, int employeeNumber) {
-        super(firstname, lastname, personalNumer, email, address, employeeNumber);
+        super(firstname, lastname, personalNumber, email, address, employeeNumber);
     }
 
     public String toString(){

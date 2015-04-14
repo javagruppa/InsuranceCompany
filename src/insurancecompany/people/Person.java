@@ -13,7 +13,7 @@ public class Person {
     protected int personalNumber;
     protected String firstname;
     protected String lastname;
-    protected address;
+    protected Address address;
     protected String email;
     
     

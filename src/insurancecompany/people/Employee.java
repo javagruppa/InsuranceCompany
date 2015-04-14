@@ -22,4 +22,9 @@ public class Employee extends Person {
         String s = "";
         return s;
     }
+    
+    public void setEmployeeNumber(int employeeNumber){
+        this.employeeNumber = employeeNumber;
+    }
+    
 }

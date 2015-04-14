@@ -7,8 +7,29 @@ package insurancecompany.people;
 
 /**
  *
- * @author André
+ * @author Carl
  */
 public class Person {
+    protected int personalNumber;
+    protected String firstname;
+    protected String lastname;
+    protected address;
+    protected String email;
     
+    
+    
+    public Person(String firstname, String lastname, int personalNumber, String email, Address address) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.personalNumber = personalNumber;
+        this.email = email;
+        this.address = address;
+        
+    }
+    
+    public String toString() {
+        String s = firstname + "\n" + lastname + "\n" + "Fødselsnr: " + personalNumber +
+                "/nEpost-adresse: " + email + "\n" + address.toString();
+        return s;
+    }
 }

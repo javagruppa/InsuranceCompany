@@ -27,6 +27,26 @@ public class Person {
         
     }
     
+    public String getFirstname(){
+        return firstname;
+    }
+    
+    public String getLastname(){
+        return lastname;
+    }
+    
+    public int getPersonalNumber(){
+        return personalNumber;
+    }
+    
+    public String getEmail(){
+        return email;
+    }
+    
+    public String getAddressString(){
+        return address.toString();
+    }
+    
     public String toString() {
         String s = firstname + "\n" + lastname + "\n" + "Fødselsnr: " + personalNumber +
                 "/nEpost-adresse: " + email + "\n" + address.toString();

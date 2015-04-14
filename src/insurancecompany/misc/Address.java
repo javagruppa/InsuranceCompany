@@ -21,7 +21,8 @@ public class Address {
         this.city = city;
     }
     
-    public toString(){
+    public String toString(){
             String s = "" + street + "\n" + zipcode + " " + city;
             return s;
+    }
 }

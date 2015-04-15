@@ -29,5 +29,6 @@ public class Insurance {
     
     public String toString() {
         // <Skriver ut informasjon om objektet>
+        return null;
     }
 }

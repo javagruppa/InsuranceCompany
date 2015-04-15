@@ -13,8 +13,8 @@ import insurancecompany.misc.Address;
 public class Employee extends Person {
     private int employeeNumber;
     
-    public Employee(String firstname, String lastname, int personalNumber, String email, Address address, int employeeNumber) {
-        super(firstname, lastname, personalNumber, email, address);
+    public Employee(String firstname, String lastname, int personalNumber, String email, Address address, int employeeNumber, int phone) {
+        super(firstname, lastname, personalNumber, email, address, phone);
         this.employeeNumber = employeeNumber;
     }
     

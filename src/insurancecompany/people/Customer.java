@@ -10,7 +10,7 @@ import insurancecompany.misc.Address;
  *
  * @author Carl
  */
-public class Customer {
+public class Customer extends Person {
     private int customerID;
     private Vehicle = null;
     public static int nextNumber = 100;

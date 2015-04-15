@@ -14,14 +14,13 @@ import insurancecompany.misc.Address;
 public class HolidayHomeInsurance extends PropertyInsurance {
     private boolean rental;
     
-    public HolidayHomeInsurance(int insurancePremium, String insuranceConditions,
-            Address address, int constructionYear, String propertyType,
-            String buildingMaterial, String standard, int floorArea,
-            int buildingInsuranceAmount, int contentInsuranceAmount,
-            boolean rental) {
-        super(insurancePremium, insuranceConditions, address, constructionYear,
-                propertyType, buildingMaterial, standard, floorArea,
-                buildingInsuranceAmount, contentInsuranceAmount);
+    public HolidayHomeInsurance(Address address, int constructionYear,
+            String propertyType, String buildingMaterial, String standard,
+            int floorArea, int buildingInsuranceAmount,
+            int contentInsuranceAmount, boolean rental) {
+        super(address, constructionYear, propertyType, buildingMaterial,
+                standard, floorArea, buildingInsuranceAmount,
+                contentInsuranceAmount);
         this.rental = rental;                
     }
 }

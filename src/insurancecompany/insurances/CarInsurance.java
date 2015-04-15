@@ -16,12 +16,10 @@ public class CarInsurance extends VehicleInsurance {
     private int pricePerKilometer;
     private int bonus;
     
-    public CarInsurance(int insurancePremium, int insuranceAmount,
-            String insuranceConditions, VehicleOwner owner,
-            String registrationNumber, String type, String model, int mileage,
-            int pricePerKilometer, int bonus) {
-        super(insurancePremium, insuranceAmount, insuranceConditions,
-                owner, registrationNumber, type, model);
+    public CarInsurance(VehicleOwner owner, String registrationNumber,
+            String type, String model, int mileage, int pricePerKilometer,
+            int bonus) {
+        super(owner, registrationNumber, type, model);
         this.mileage = mileage;
         this.pricePerKilometer = pricePerKilometer;
         this.bonus = bonus;

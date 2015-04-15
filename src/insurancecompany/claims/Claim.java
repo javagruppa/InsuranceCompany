@@ -52,7 +52,7 @@ public class Claim {
     }
     
     /**
-     * Sets a description to the claim.
+     * Sets a description to the damage.
      * @param description 
      */
     public void setDescription(String description) {
@@ -60,7 +60,7 @@ public class Claim {
     }
     
     /**
-     * Sets an image to the claim.
+     * Sets an image of the damage.
      * @param image 
      */
     public void setImage(Image image) {
@@ -83,28 +83,53 @@ public class Claim {
         this.disbursement = disbursement;
     }
     
+    /**
+     * 
+     * @return owner of the claim.
+     */
     public Customer getOwner() {
         return owner;
     }
     
+    /**
+     * 
+     * @return description of the damage.
+     */
     public String getDescription() {
         return description;
     }
     
+    /**
+     * 
+     * @return image of the damage.
+     */
     public Image getImage() {
         return image;
     }
     
+    /**
+     * 
+     * @return appraisal sum.
+     */
     public int getAppraisal() {
         return appraisal;
     }
     
-    public int getFisbursement() {
+    /**
+     * 
+     * @return disbursement sum.
+     */
+    public int getDisbursement() {
         return disbursement;
     }
     
     public void uploadImage() {
         
+    }
+    
+    public String toString() {
+        String text = "";
+        return text;
     }
     
     

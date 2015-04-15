@@ -6,13 +6,14 @@
 
 package insurancecompany.people;
 import insurancecompany.misc.Address;
+import insurancecompany.vehicles.Vehicle;
 /**
  *
  * @author Carl
  */
 public class Customer extends Person {
     private int customerID;
-    private Vehicle = null;
+    private Vehicle vehicle = null;
     public static int nextNumber = 100;
     
     public Customer(String firstname, String lastname, int personalNumber, String email, Address address, int phone) {

@@ -12,31 +12,15 @@ package insurancecompany.vehicles;
  */
 public class Car extends Vehicle {
     private int engineEffect;
-    private int regYear;
-    private String make;
-    private String model;
+  
 
     public Car(int regNumber, int effect, int year, String make, String model){
-        super(regNumber);
+        super(regNumber, make, model, year);
         this.engineEffect = effect;
-        this.regYear = year;
-        this.make = make;
-        this.model = model;
-    }
-    
-    public String getMake(){
-        return make;
-    }
-    
-    public String getModel(){
-        return model;
     }
     
     public int getEngineEffect(){
         return engineEffect;
     }
     
-    public int getRegYear(){
-        return regYear;
-    }
 }

@@ -5,26 +5,45 @@
  */
 package insurancecompany.insurances;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
  * @author Sindre
  */
-public class Insurance {
+public abstract class Insurance {
     private boolean active;
     private Date date;
-    private int insurancePremium;
     private int insuranceAmount;
-    private String insuranceConditions;
+    private int insurancePremium;
+    private List<String> insuranceConditions;
     
-    public Insurance(int insurancePremium, int insuranceAmount,
-            String insuranceConditions) {
-        this.active = true;
+    public Insurance() {
+        this.active = false;
         this.date = new Date();
-        this.insurancePremium = insurancePremium;
+        this.insuranceConditions = new ArrayList<>();
+    }
+    
+    public boolean addInsuranceCondition(String insuranceCondition) {
+        return insuranceConditions.add(insuranceCondition);
+    }
+    
+    public boolean deleteInsuranceCondition(String insuranceCondition) {
+        return insuranceConditions.removeIf(i -> i.equals(insuranceCondition));
+    }
+    
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+    
+    public void setInsuranceAmount(int insuranceAmount) {
         this.insuranceAmount = insuranceAmount;
-        this.insuranceConditions = insuranceConditions;
+    }
+    
+    public void setInsurancePremium(int insurancePremium) {
+        this.insurancePremium = insurancePremium;
     }
     
     public String toString() {

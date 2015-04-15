@@ -10,9 +10,9 @@ import insurancecompany.misc.Address;
  *
  * @author Carl
  */
-public class ServiceWorker extends Employee {
+public class Admin extends Employee {
 
-    public ServiceWorker(String firstname, String lastname, int personalNumber, String email, Address address, int employeeNumber, int phone) {
+    public Admin(String firstname, String lastname, int personalNumber, String email, Address address, int employeeNumber, int phone) {
         super(firstname, lastname, personalNumber, email, address, employeeNumber, phone);
     }
 

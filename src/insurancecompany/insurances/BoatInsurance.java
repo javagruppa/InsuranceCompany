@@ -17,12 +17,10 @@ public class BoatInsurance extends VehicleInsurance {
     private String engineType;
     private int horsepower;
     
-    public BoatInsurance(int insurancePremium, int insuranceAmount,
-            String insuranceConditions, VehicleOwner owner,
-            String registrationNumber, String type, String model, int length,
-            int modelYear, String engineType, int horsepower) {
-        super(insurancePremium, insuranceAmount, insuranceConditions,
-                owner, registrationNumber, type, model);
+    public BoatInsurance(VehicleOwner owner, String registrationNumber,
+            String type, String model, int length, int modelYear,
+            String engineType, int horsepower) {
+        super(owner, registrationNumber, type, model);
         this.length = length;
         this.modelYear = modelYear;
         this.engineType = engineType;

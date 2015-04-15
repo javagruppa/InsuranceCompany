@@ -5,7 +5,7 @@
  */
 package insurancecompany.claims;
 
-import people.Customer;
+import insurancecompany.people.Customer;
 
 import java.util.Date;
 import java.awt.Image;
@@ -31,8 +31,14 @@ public class Claim {
         
     }
     
+    /**
+     * Constructor initializing date and description of a claim.
+     * @param date
+     * @param description 
+     */
     public Claim(Date date, String description) {
-        
+        this.date = date;
+        this.description = description;
     }
     
     /**
@@ -130,9 +136,5 @@ public class Claim {
     public String toString() {
         String text = "";
         return text;
-    }
-    
-    
-    
-    
+    }    
 }

@@ -13,11 +13,11 @@ import java.util.ArrayList;
  *
  * @author André
  */
-public class CustomerRegister {
+public class EmployeeRegister {
     
-    private ArrayList<Customer> customers;
+    private ArrayList<Employee> employees;
     
-    public CustomerRegister() {
+    public EmployeeRegister() {
         
     }
 }

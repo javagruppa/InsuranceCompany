@@ -5,19 +5,18 @@
  */
 package insurancecompany.datastructures;
 
-import insurancecompany.people.*;
+import insurancecompany.claims.*;
 
 import java.util.ArrayList;
-
 /**
  *
  * @author André
  */
-public class CustomerRegister {
+public class ClaimRegister {
     
-    private ArrayList<Customer> customers;
+    private ArrayList<Claim> claims;
     
-    public CustomerRegister() {
+    public ClaimRegister() {
         
     }
 }

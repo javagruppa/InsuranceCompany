@@ -11,9 +11,15 @@ package insurancecompany.vehicles;
  */
 public class Vehicle {
     private int regNumber;
+    private String make;
+    private String model;
+    private int regYear;
     
-    public Vehicle(int regNumber){
+    public Vehicle(int regNumber, String make, String model, int regYear){
         this.regNumber = regNumber;
+        this.make = make;
+        this.model = model;
+        this.regYear = regYear;
     }
     
     public int getRegNumber(){

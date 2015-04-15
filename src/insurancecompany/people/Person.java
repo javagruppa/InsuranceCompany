@@ -16,15 +16,17 @@ public class Person {
     protected String lastname;
     protected Address address;
     protected String email;
+    protected int phone;
     
     
     
-    public Person(String firstname, String lastname, int personalNumber, String email, Address address) {
+    public Person(String firstname, String lastname, int personalNumber, String email, Address address, int phone) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.personalNumber = personalNumber;
         this.email = email;
         this.address = address;
+        this.phone = phone;
         
     }
     

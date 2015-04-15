@@ -5,10 +5,25 @@
  */
 package insurancecompany.insurances;
 
+import java.util.Date;
+
 /**
  *
- * @author André
+ * @author Sindre
  */
 public class Insurance {
+    private boolean active;
+    private Date date;
+    private int insurancePremium;
+    private int insuranceAmount;
+    private String insuranceConditions;
     
+    public Insurance(int insurancePremium, int insuranceAmount,
+            String insuranceConditions) {
+        this.active = true;
+        this.date = new Date();
+        this.insurancePremium = insurancePremium;
+        this.insuranceAmount = insuranceAmount;
+        this.insuranceConditions = insuranceConditions;
+    }
 }

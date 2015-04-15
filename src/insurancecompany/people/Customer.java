@@ -15,8 +15,8 @@ public class Customer {
     private Vehicle = null;
     public static int nextNumber = 100;
     
-    public Customer(String firstname, String lastname, int personalNumber, String email, Address address) {
-        super(firstname, lastname, personalNumber, email, address);
+    public Customer(String firstname, String lastname, int personalNumber, String email, Address address, int phone) {
+        super(firstname, lastname, personalNumber, email, address, phone);
         customerID = nextNumber++;
     }
     

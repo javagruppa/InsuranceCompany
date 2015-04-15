@@ -26,4 +26,8 @@ public class Insurance {
         this.insuranceAmount = insuranceAmount;
         this.insuranceConditions = insuranceConditions;
     }
+    
+    public String toString() {
+        // <Skriver ut informasjon om objektet>
+    }
 }

@@ -21,12 +21,11 @@ public class PropertyInsurance extends Insurance {
     private int buildingInsuranceAmount;
     private int contentInsuranceAmount;
     
-    public PropertyInsurance(int insurancePremium, String insuranceConditions,
-            Address address, int constructionYear, String propertyType,
-            String buildingMaterial, String standard, int floorArea,
-            int buildingInsuranceAmount, int contentInsuranceAmount) {
-        super(insurancePremium, buildingInsuranceAmount
-                + contentInsuranceAmount, insuranceConditions);
+    public PropertyInsurance(Address address, int constructionYear,
+            String propertyType, String buildingMaterial, String standard,
+            int floorArea, int buildingInsuranceAmount,
+            int contentInsuranceAmount) {
+        super();
         this.address = address;
         this.constructionYear = constructionYear;
         this.propertyType = propertyType;

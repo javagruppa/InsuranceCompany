@@ -17,10 +17,9 @@ public class VehicleInsurance extends Insurance {
     private String type;
     private String model;
     
-    public VehicleInsurance(int insurancePremium, int insuranceAmount,
-            String insuranceConditions, VehicleOwner owner,
-            String registrationNumber, String type, String model) {
-        super(insurancePremium,insuranceAmount,insuranceConditions);
+    public VehicleInsurance(VehicleOwner owner, String registrationNumber,
+            String type, String model) {
+        super();
         this.owner = owner;
         this.registrationNumber = registrationNumber;
         this.type = type;

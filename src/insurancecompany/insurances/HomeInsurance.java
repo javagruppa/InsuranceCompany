@@ -12,12 +12,12 @@ import insurancecompany.misc.Address;
  * @author Sindre
  */
 public class HomeInsurance extends PropertyInsurance {
-    public HomeInsurance(int insurancePremium, String insuranceConditions,
-            Address address, int constructionYear, String propertyType,
-            String buildingMaterial, String standard, int floorArea,
-            int buildingInsuranceAmount, int contentInsuranceAmount) {
-        super(insurancePremium, insuranceConditions, address, constructionYear,
-                propertyType, buildingMaterial, standard, floorArea,
-                buildingInsuranceAmount, contentInsuranceAmount);
+    public HomeInsurance(Address address, int constructionYear,
+            String propertyType, String buildingMaterial, String standard,
+            int floorArea, int buildingInsuranceAmount,
+            int contentInsuranceAmount) {
+        super(address, constructionYear, propertyType, buildingMaterial,
+                standard, floorArea, buildingInsuranceAmount,
+                contentInsuranceAmount);
     }
 }

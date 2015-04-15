@@ -13,10 +13,8 @@ public class TravelInsurance extends Insurance {
     private String insuranceArea;
     private int insuranceSum;
     
-    public TravelInsurance(int insurancePremium, int insuranceAmount,
-            String insuranceConditions, String insuranceArea,
-            int insuranceSum) {
-        super(insurancePremium, insuranceAmount, insuranceConditions);
+    public TravelInsurance(String insuranceArea, int insuranceSum) {
+        super();
         this.insuranceArea = insuranceArea;
         this.insuranceSum = insuranceSum;
     }

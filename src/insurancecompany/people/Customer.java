@@ -41,7 +41,7 @@ public class Customer extends Person {
         return address.toString();
     }
     
-    public void setAddress(Adress newAddress){
+    public void setAddress(Address newAddress){
         this.address = newAddress;
     }
     

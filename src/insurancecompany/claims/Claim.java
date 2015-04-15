@@ -14,7 +14,7 @@ import java.awt.Image;
  *
  * @author André
  */
-public class Claim {
+public abstract class Claim {
     
     private Customer owner;
     private Date date;

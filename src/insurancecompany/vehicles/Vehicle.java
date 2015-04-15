@@ -16,6 +16,14 @@ public class Vehicle {
         this.regNumber = regNumber;
     }
     
+    public int getRegNumber(){
+        return regNumber;
+    }
+    
+    public void setRegNumber(int newNumber){
+        this.regNumber = newNumber;
+    }
+    
     public String toString(){
         String s = "";
         return s;

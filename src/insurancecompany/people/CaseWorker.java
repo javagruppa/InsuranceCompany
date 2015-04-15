@@ -12,8 +12,8 @@ import insurancecompany.misc.Address;
  */
 public class CaseWorker extends Employee {
 
-    public CaseWorker(String firstname, String lastname, int personalNumber, String email, Address address, int employeeNumber) {
-        super(firstname, lastname, personalNumber, email, address, employeeNumber);
+    public CaseWorker(String firstname, String lastname, int personalNumber, String email, Address address, int employeeNumber, int phone) {
+        super(firstname, lastname, personalNumber, email, address, employeeNumber, phone);
     }
 
     public String toString(){

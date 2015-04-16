@@ -12,7 +12,8 @@ package insurancecompany.insurances;
 public abstract class VehicleInsurance extends Insurance {
     
     /**
-     * Empty constructor.
+     * Constructor initializing active, date and insuranceConditions of this
+     * insurance.
      */
     public VehicleInsurance() {
         super();

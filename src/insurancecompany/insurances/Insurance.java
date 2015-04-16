@@ -27,7 +27,8 @@ public abstract class Insurance {
     private List<String> insuranceConditions;
     
     /**
-     * Empty constructor.
+     * Constructor initializing active, date and insuranceConditions of this
+     * insurance.
      */
     public Insurance() {
         this.active = false;

@@ -16,8 +16,8 @@ public class TravelInsurance extends Insurance {
     private int insuranceSum;
     
     /**
-     * Constructor initializing insuranceArea and insuranceSum of this 
-     * insurance.
+     * Constructor initializing active, date, insuranceConditions, 
+     * insuranceArea and insuranceSum of this insurance.
      * @param insuranceArea the insurance area of this insurance
      * @param insuranceSum the insurance sum of this insurance
      */

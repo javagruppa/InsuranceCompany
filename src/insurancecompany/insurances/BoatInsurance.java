@@ -12,11 +12,12 @@ import insurancecompany.vehicles.Boat;
  * @author Sindre
  */
 public class BoatInsurance extends VehicleInsurance {
-    /** The car this insurance is for. */
+    /** The boat this insurance is for. */
     private Boat boat;
     
     /**
-     * Constructor initializing car of this insurance.
+     * Constructor initializing active, date and insuranceConditions and boat 
+     * of this insurance.
      * @param boat the boat this insurance is for
      */
     public BoatInsurance(Boat boat) {

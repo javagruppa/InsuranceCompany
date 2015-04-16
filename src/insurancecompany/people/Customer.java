@@ -12,17 +12,17 @@ import insurancecompany.vehicles.Vehicle;
  * @author Carl
  */
 public class Customer extends Person {
-    private int customerID;
+    private int customerId;
     private Vehicle vehicle = null;
     public static int nextNumber = 100;
     
     public Customer(String firstname, String lastname, int personalNumber, String email, Address address, int phone) {
         super(firstname, lastname, personalNumber, email, address, phone);
-        customerID = nextNumber++;
+        customerId = nextNumber++;
     }
     
-    public int getCustomerID(){
-        return customerID;
+    public int getCustomerId(){
+        return customerId;
     }
     
     public String getName(){

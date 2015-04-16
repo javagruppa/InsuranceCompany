@@ -19,7 +19,7 @@ public abstract class Insurance {
     private boolean active;
     /** The date this insurance was created. */
     private Date date;
-    /** The insurance amount of this insurance. */
+    /** The insurance amount of this insurance. The highest */
     private int insuranceAmount;
     /** The yearly insurance premium of this insurance. */
     private int insurancePremium;
@@ -100,7 +100,7 @@ public abstract class Insurance {
         out.append("\nDato: ").append(dateFormat.format(date));
         out.append("\nForsikringsbeløp: ").append(insuranceAmount);
         out.append("\nÅrlig forsikringspremie: ").append(insurancePremium);
-        out.append("Forsikringsbetingelser: ");
+        out.append("\nForsikringsbetingelser: ");
         insuranceConditions.forEach(i -> out.append("\n").append(i));
         // Returns the string.
         return out.toString();

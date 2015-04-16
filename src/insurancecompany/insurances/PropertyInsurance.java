@@ -12,6 +12,7 @@ import insurancecompany.misc.Address;
  * @author Sindre
  */
 public abstract class PropertyInsurance extends Insurance {
+    /** The address */
     private Address address;
     private int constructionYear;
     private String propertyType;

@@ -18,6 +18,21 @@ public class CustomerRegister {
     private ArrayList<Customer> customers;
     
     public CustomerRegister() {
-        
+        customers = new ArrayList<Customer>();
     }
+    
+    /**
+     * 
+     * @param customerId
+     * @return 
+     */
+    public Customer findCustomerById(int customerId) {
+        for (Customer customer : customers) {
+            if (customer.getCustomerId() == customerId) {
+                return customer;
+            }
+        }
+        return null;
+    }
+    
 }

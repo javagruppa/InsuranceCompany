@@ -37,8 +37,8 @@ public class BoatInsurance extends VehicleInsurance {
         StringBuilder out = new StringBuilder();
         // Appends the fields with appropriate sentences.
         out.append("BÅTFORSIKRING");
-        out.append(super.toString());
-        out.append(boat.toString());
+        out.append("\n").append(super.toString());
+        out.append("\n").append(boat.toString());
         // Returns the string.
         return out.toString();
     }

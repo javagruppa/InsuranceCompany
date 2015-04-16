@@ -52,10 +52,10 @@ public class CarInsurance extends VehicleInsurance {
         StringBuilder out = new StringBuilder();
         // Appends the fields with appropriate sentences.
         out.append("BILFORSIKRING");
-        out.append(super.toString());
-        out.append(car.toString());
-        out.append("Pris pr. kilometer: ").append(pricePerKilometer);
-        out.append("Bonus: ").append(bonus + "%");
+        out.append("\n").append(super.toString());
+        out.append("\n").append(car.toString());
+        out.append("\nPris pr. kilometer: ").append(pricePerKilometer);
+        out.append("\nBonus: ").append(bonus + "%");
         // Returns the string.
         return out.toString();
     }

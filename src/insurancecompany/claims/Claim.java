@@ -16,6 +16,9 @@ import java.awt.Image;
  */
 public abstract class Claim {
     
+    private static int nextClaimNumber;
+    private static int claimNumberFileName;
+    
     private Customer owner;
     private Date date;
     private int claimNumber;
@@ -28,7 +31,7 @@ public abstract class Claim {
      * Empty constructor.
      */
     public Claim() {
-        
+        claimNumber = nextClaimNumber++;
     }
     
     /**
@@ -127,6 +130,14 @@ public abstract class Claim {
      */
     public int getDisbursement() {
         return disbursement;
+    }
+    
+    public static void saveNextClaimNumber() {
+        
+    }
+    
+    public static void readNextClaimNumber() {
+        
     }
     
     public void uploadImage() {

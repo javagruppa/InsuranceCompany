@@ -55,7 +55,7 @@ public abstract class Insurance {
     }
     
     /**
-     * Sets an activity status to the insurance.
+     * Sets an activity status to this insurance.
      * @param active activity status to be set to this insurance
      */
     public void setActive(boolean active) {
@@ -63,7 +63,7 @@ public abstract class Insurance {
     }
     
     /**
-     * Sets an insurance amount to the insurance.
+     * Sets an insurance amount to this insurance.
      * @param insuranceAmount insurance amount to be set to this insurance
      */
     public void setInsuranceAmount(int insuranceAmount) {
@@ -71,7 +71,7 @@ public abstract class Insurance {
     }
     
     /**
-     * Sets an insurance premium to the insurance.
+     * Sets an insurance premium to this insurance.
      * @param insurancePremium insurance premium to be set to this insurance
      */
     public void setInsurancePremium(int insurancePremium) {

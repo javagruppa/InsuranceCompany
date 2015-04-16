@@ -5,10 +5,18 @@
  */
 package insurancecompany.properties;
 
+import insurancecompany.misc.Address;
+
 /**
  *
  * @author Sindre
  */
-public class Home {
-    
+public class Home extends Property {
+    /**
+     * Constructor initializing the address of this property.
+     * @param address the address of this property
+     */
+    public Home(Address address) {
+        super(address);
+    }
 }

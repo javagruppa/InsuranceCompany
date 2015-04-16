@@ -5,19 +5,18 @@
  */
 package insurancecompany.insurances;
 
-import insurancecompany.misc.Address;
+import insurancecompany.properties.Home;
 
 /**
  *
  * @author Sindre
  */
 public class HomeInsurance extends PropertyInsurance {
-    public HomeInsurance(Address address, int constructionYear,
-            String propertyType, String buildingMaterial, String standard,
-            int floorArea, int buildingInsuranceAmount,
+    private Home home;
+    
+    public HomeInsurance(Home home, int buildingInsuranceAmount,
             int contentInsuranceAmount) {
-        super(address, constructionYear, propertyType, buildingMaterial,
-                standard, floorArea, buildingInsuranceAmount,
-                contentInsuranceAmount);
+        super(buildingInsuranceAmount, contentInsuranceAmount);
+        this.home = home;
     }
 }

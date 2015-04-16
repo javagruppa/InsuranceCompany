@@ -5,22 +5,18 @@
  */
 package insurancecompany.insurances;
 
-import insurancecompany.misc.Address;
+import insurancecompany.properties.HolidayHome;
 
 /**
  *
  * @author Sindre
  */
 public class HolidayHomeInsurance extends PropertyInsurance {
-    private boolean rental;
+    private HolidayHome holidayHome;
     
-    public HolidayHomeInsurance(Address address, int constructionYear,
-            String propertyType, String buildingMaterial, String standard,
-            int floorArea, int buildingInsuranceAmount,
-            int contentInsuranceAmount, boolean rental) {
-        super(address, constructionYear, propertyType, buildingMaterial,
-                standard, floorArea, buildingInsuranceAmount,
-                contentInsuranceAmount);
-        this.rental = rental;                
+    public HolidayHomeInsurance(HolidayHome holidayHome, 
+            int buildingInsuranceAmount, int contentInsuranceAmount) {
+        super(buildingInsuranceAmount, contentInsuranceAmount);
+        this.holidayHome = holidayHome;                
     }
 }

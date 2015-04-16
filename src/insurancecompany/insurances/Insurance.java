@@ -19,7 +19,7 @@ public abstract class Insurance {
     private boolean active;
     /** The date this insurance was created. */
     private Date date;
-    /** The insurance amount of this insurance. The highest */
+    /** The insurance amount of this insurance. */
     private int insuranceAmount;
     /** The yearly insurance premium of this insurance. */
     private int insurancePremium;

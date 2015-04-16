@@ -12,14 +12,23 @@ import insurancecompany.vehicles.Car;
  * @author Sindre
  */
 public class CarInsurance extends VehicleInsurance {
+    /** Whether the car this insurance is for has an alarm or not. */
+    private boolean hasAlarm;
+    /** Whether the car this insurance is for has a garage or not. */
+    private boolean hasGarage;
+    /** Whether a person under 25 years is allowed to drive the car this 
+     * insurance is for. */
+    private boolean youngDriverPermission;
     /** The car this insurance is for. */
     private Car car;
-    /** The price per kilometer of this insurance. Used to calculate the yearly
-     * insurance premium. */
-    private int pricePerKilometer;
     /** The bonus of this insurance. Used to calculate the yearly insurance 
      * premium. */
     private int bonus;
+    /** The price per kilometer of this insurance. Used to calculate the yearly
+     * insurance premium. */
+    private int pricePerKilometer;
+    /** The maximum driving length for this insurance. */
+    private int maxDrivingLength;
     
     /**
      * Constructor initializing car of this insurance.
@@ -27,6 +36,9 @@ public class CarInsurance extends VehicleInsurance {
      */
     public CarInsurance(Car car) {
         super();
+        this.hasAlarm = false;
+        this.hasGarage = false;
+        this.youngDriverPermission = false;
         this.car = car;
         this.bonus = 0;
     }
@@ -53,9 +65,25 @@ public class CarInsurance extends VehicleInsurance {
         // Appends the fields with appropriate sentences.
         out.append("BILFORSIKRING");
         out.append("\n").append(super.toString());
-        out.append("\n").append(car.toString());
         out.append("\nPris pr. kilometer: ").append(pricePerKilometer);
-        out.append("\nBonus: ").append(bonus + "%");
+        out.append("\n").append(car.toString());
+        out.append("\nMaksimum kjørelengde: ").append(maxDrivingLength);
+        if(hasAlarm) {
+            out.append("\nBilen har alarm.");
+        } else {
+            out.append("\nBilen har ikke alarm.");
+        }
+        if(hasGarage) {
+            out.append("\nBilen har garasje.");
+        } else {
+            out.append("\nBilen har ikke garasje.");
+        }
+        if(youngDriverPermission) {
+            out.append("\nPersoner under 25 år kan kjøre bilen.");
+        } else {
+            out.append("\nPersoner under 25 år kan ikke kjøre bilen.");
+        }
+        out.append("\nBonus: ").append(bonus).append("%");
         // Returns the string.
         return out.toString();
     }

@@ -5,25 +5,41 @@
  */
 package insurancecompany.insurances;
 
-import insurancecompany.people.VehicleOwner;
+import insurancecompany.vehicles.Boat;
 
 /**
  *
  * @author Sindre
  */
 public class BoatInsurance extends VehicleInsurance {
-    private int length;
-    private int modelYear;
-    private String engineType;
-    private int horsepower;
+    /** The car this insurance is for. */
+    private Boat boat;
     
-    public BoatInsurance(VehicleOwner owner, String registrationNumber,
-            String type, String model, int length, int modelYear,
-            String engineType, int horsepower) {
-        super(owner, registrationNumber, type, model);
-        this.length = length;
-        this.modelYear = modelYear;
-        this.engineType = engineType;
-        this.horsepower = horsepower;
+    /**
+     * Constructor initializing car of this insurance.
+     * @param boat the boat this insurance is for
+     */
+    public BoatInsurance(Boat boat) {
+        super();
+        this.boat = boat;
+    }
+    
+    /**
+     * Returns a string representation of this insurance. The string
+     * representation consists of each field with a short description separated
+     * by a new line.
+     * @return a string representation of this insurance
+     */
+    @Override
+    public String toString() {
+        // Creates a StringBuilder which will be returned at the end of the 
+        // method.
+        StringBuilder out = new StringBuilder();
+        // Appends the fields with appropriate sentences.
+        out.append("BÅTFORSIKRING");
+        out.append("\n").append(super.toString());
+        out.append("\n").append(boat.toString());
+        // Returns the string.
+        return out.toString();
     }
 }

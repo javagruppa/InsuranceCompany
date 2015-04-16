@@ -5,24 +5,16 @@
  */
 package insurancecompany.insurances;
 
-import insurancecompany.people.VehicleOwner;
-
 /**
  *
  * @author Sindre
  */
-public class VehicleInsurance extends Insurance {
-    private VehicleOwner owner;
-    private String registrationNumber;
-    private String type;
-    private String model;
+public abstract class VehicleInsurance extends Insurance {
     
-    public VehicleInsurance(VehicleOwner owner, String registrationNumber,
-            String type, String model) {
+    /**
+     * Empty constructor.
+     */
+    public VehicleInsurance() {
         super();
-        this.owner = owner;
-        this.registrationNumber = registrationNumber;
-        this.type = type;
-        this.model = model;
     }
 }

@@ -12,11 +12,16 @@ import insurancecompany.properties.HolidayHome;
  * @author Sindre
  */
 public class HolidayHomeInsurance extends PropertyInsurance {
+    /** The holiday home this insurance is for. */
     private HolidayHome holidayHome;
     
-    public HolidayHomeInsurance(HolidayHome holidayHome, 
-            int buildingInsuranceAmount, int contentInsuranceAmount) {
-        super(buildingInsuranceAmount, contentInsuranceAmount);
+    /**
+     * Constructor initializing active, date, insuranceConditions and
+     * holidayHome of this insurance.
+     * @param holidayHome the holiday home this insurance is for
+     */
+    public HolidayHomeInsurance(HolidayHome holidayHome) {
+        super();
         this.holidayHome = holidayHome;                
     }
 }

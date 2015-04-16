@@ -10,13 +10,46 @@ package insurancecompany.insurances;
  * @author Sindre
  */
 public abstract class PropertyInsurance extends Insurance {
-    private int buildingInsuranceAmount;
-    private int contentInsuranceAmount;
+    /** The building insurance amount of this insurance. Part of the total 
+     * insurance amount. */
+    private int buildingAmount;
+    /** The content insurance amount of this insurance. Part of the total 
+     * insurance amount. */
+    private int contentAmount;
     
-    public PropertyInsurance(int buildingInsuranceAmount, 
-            int contentInsuranceAmount) {
+    /**
+     * Constructor initializing active, date and insuranceConditions of this
+     * insurance.
+     */
+    public PropertyInsurance() {
         super();
-        this.buildingInsuranceAmount = buildingInsuranceAmount;
-        this.contentInsuranceAmount = contentInsuranceAmount;
+    }
+    
+    /**
+     * Set a building insurance amount to this insurance. Updates the total 
+     * insurance amount.
+     * @param buildingAmount the building insurance amount of this insurance
+     */
+    public void setBuildingAmount(int buildingAmount) {
+        this.buildingAmount = buildingAmount;
+        updateInsuranceAmount();
+    }
+    
+    /**
+     * Set a content insurance amount to this insurance. Updates the total 
+     * insurance amount.
+     * @param contentAmount the content insurance amount of this insurance
+     */
+    public void setContentAmount(int contentAmount) {
+        this.contentAmount = contentAmount;
+        updateInsuranceAmount();
+    }
+    
+    /**
+     * Updates the insurance amount based on the sum of the building insurance 
+     * amount and the content insurance amount.
+     */
+    public void updateInsuranceAmount() {
+        setInsuranceAmount(buildingAmount + contentAmount);
     }
 }

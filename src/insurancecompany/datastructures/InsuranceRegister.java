@@ -6,6 +6,7 @@
 package insurancecompany.datastructures;
 
 import insurancecompany.insurances.Insurance;
+import insurancecompany.people.Customer;
 import java.util.ArrayList;
 
 /**
@@ -39,5 +40,44 @@ public class InsuranceRegister {
      */
     public boolean deleteInsurance(Insurance insurance) {
         return insurances.removeIf(i -> i.equals(insurance));
+    }
+    
+    public ArrayList<Customer> getCustomers(String type) {
+        // <Create return list>
+        // <Run through the whole insurances list>
+            // <Check if insurance is of the type>
+            // <If yes, add the customer of the insurance to the list>
+        // <Return the list>
+    }
+    
+    public int getNumberOfInsurance(String type) {
+        // <Create return int>
+        // <Run through the whole insurances list>
+            // <Check if the insurance is of type>
+            // <If yes, add 1 to the int>
+        // <Return the int>
+    }
+    
+    public int getPremium(Customer customer) {
+        // <Create return int>
+        // <Run through the whole insurances list>
+            // <Check if the insurance belongs to the customer>
+            // <If yes, add the yearly insurance premium to the int>
+        // <Return the int>
+    }
+    
+    public int getTotalPremium() {
+        // <Create return int>
+        // <Run through the whole insurances list>
+            // <Add the yearly insurance premium to the int>
+        // <Return the int>
+    }
+    
+    public int getTotalPremium(String type) {
+        // <Create return int>
+        // <Run through the whole insurances list>
+            // <Check if insurance is of the type>
+            // <If yes, add the yearly insurance premium to the int>
+        // <Return the int>
     }
 }

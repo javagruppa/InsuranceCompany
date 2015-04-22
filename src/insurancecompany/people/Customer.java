@@ -13,7 +13,6 @@ import insurancecompany.vehicles.Vehicle;
  */
 public class Customer extends Person {
     private int customerId;
-    private Vehicle vehicle = null;
     public static int nextNumber = 100;
     
     public Customer(String firstname, String lastname, int personalNumber, String email, Address address, int phone) {

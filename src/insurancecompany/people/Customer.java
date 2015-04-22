@@ -7,6 +7,7 @@
 package insurancecompany.people;
 import insurancecompany.misc.Address;
 import insurancecompany.vehicles.Vehicle;
+import java.util.ArrayList;
 /**
  *
  * @author Carl
@@ -14,6 +15,7 @@ import insurancecompany.vehicles.Vehicle;
 public class Customer extends Person {
     private int customerId;
     public static int nextNumber = 100;
+    private ArrayList<Vehicle> vehicles;
     
     public Customer(String firstname, String lastname, int personalNumber, String email, Address address, int phone) {
         super(firstname, lastname, personalNumber, email, address, phone);

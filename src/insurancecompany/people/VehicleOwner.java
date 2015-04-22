@@ -6,12 +6,13 @@
 package insurancecompany.people;
 import insurancecompany.misc.Address;
 import insurancecompany.vehicles.Vehicle;
+import insurancecompany.datastructures.*;
 /**
  *
  * @author Sindre
  */
 public class VehicleOwner extends Person {
-        private Vehiclelist vehiclelist;
+        private VehicleList vehiclelist;
         
         public VehicleOwner(String firstname, String lastname, int personalNumber, String email, Address address, int phone) {
         super(firstname, lastname, personalNumber, email, address, phone);

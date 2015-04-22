@@ -16,6 +16,7 @@ public class VehicleOwner extends Person {
         
         public VehicleOwner(String firstname, String lastname, int personalNumber, String email, Address address, int phone) {
         super(firstname, lastname, personalNumber, email, address, phone);
+        vehiclelist = new VehicleList();
         }
         
 }

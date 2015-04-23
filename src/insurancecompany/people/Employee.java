@@ -5,18 +5,26 @@
  */
 
 package insurancecompany.people;
+
 import insurancecompany.misc.Address;
+
+import java.io.*;
+
 /**
  *
  * @author Carl
  */
 public class Employee extends Person {
+    
+    private static int nextEmployeeId = 1000000;
+    private static String EmployeeIdFileName = "/nextIdNumbers/claimId.dta";
+    
     private int employeeId;
     
     public Employee(String firstname, String lastname, int personalNumber,
-            String email, Address address, int employeeId, int phone) {
+            String email, Address address, int phone) {
         super(firstname, lastname, personalNumber, email, address, phone);
-        this.employeeId = employeeId;
+        employeeId = nextEmployeeId++;
     }
     
     public String toString(){
@@ -24,8 +32,20 @@ public class Employee extends Person {
         return s;
     }
     
-    public void setEmployeeNumber(int employeeNumber){
-        this.employeeId = employeeId;
+    public static void saveNextIdToFile() throws IOException {
+        try (DataOutputStream dos = new DataOutputStream(
+                new BufferedOutputStream(
+                        new FileOutputStream(claimIdFileName)))) {
+            dos.writeInt(nextClaimId);
+        }
+    }
+    
+    public static void readNextIdFromFile() throws IOException {
+        try (DataInputStream dis = new DataInputStream(
+                new BufferedInputStream(
+                        new FileInputStream(claimIdFileName)))) {
+            nextClaimId = dis.readInt();
+        }
     }
     
     public int getEmployeeId() {

@@ -10,6 +10,8 @@ import insurancecompany.people.Customer;
 import java.util.Date;
 import java.awt.Image;
 
+import java.io.*;
+
 /**
  *
  * @author André
@@ -17,7 +19,7 @@ import java.awt.Image;
 public abstract class Claim {
     
     private static int nextClaimId;
-    private static int claimIdFileName;
+    private static String claimIdFileName;
     
     /** Customer id to the owner of this claim. */
     private int customerId;
@@ -53,7 +55,7 @@ public abstract class Claim {
     }
     
     /**
-     * Sets owner to the claim.
+     * Sets owner to this claim.
      * @param owner 
      */
     public void setOwner(int customerId) {
@@ -85,7 +87,7 @@ public abstract class Claim {
     }
     
     /**
-     * Sets an appraisal sum to the claim.
+     * Sets an appraisal sum to this claim.
      * @param appraisal 
      */
     public void setAppraisal(int appraisal) {
@@ -93,7 +95,7 @@ public abstract class Claim {
     }
     
     /**
-     * Sets a disbursement sum to the claim.
+     * Sets a disbursement sum to this claim.
      * @param disbursement 
      */
     public void setDisbursement(int disbursement) {
@@ -102,7 +104,7 @@ public abstract class Claim {
     
     /**
      * 
-     * @return owner of the claim.
+     * @return owner of this claim
      */
     public int getCustomerId() {
         return customerId;
@@ -144,12 +146,20 @@ public abstract class Claim {
         return disbursement;
     }
     
-    public static void saveNextClaimNumber() {
-        
+    public static void saveNextIdToFile() throws IOException {
+        try (DataOutputStream dos = new DataOutputStream(
+                new BufferedOutputStream(
+                        new FileOutputStream(claimIdFileName)))) {
+            dos.writeInt(nextClaimId);
+        }
     }
     
-    public static void readNextClaimNumber() {
-        
+    public static void readNextIdFromFile() throws IOException {
+        try (DataInputStream dis = new DataInputStream(
+                new BufferedInputStream(
+                        new FileInputStream(claimIdFileName)))) {
+            nextClaimId = dis.readInt();
+        }
     }
     
     public void uploadImage() {

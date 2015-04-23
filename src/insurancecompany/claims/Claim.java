@@ -11,6 +11,9 @@ import java.util.Date;
 import java.awt.Image;
 
 import java.io.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 /**
  *
@@ -18,8 +21,8 @@ import java.io.*;
  */
 public abstract class Claim {
     
-    private static int nextClaimId;
-    private static String claimIdFileName;
+    private static int nextClaimId = 1000000;
+    private static String claimIdFileName = "/nextIdNumbers/claimId.dta";
     
     /** Customer id to the owner of this claim. */
     private int customerId;
@@ -40,7 +43,9 @@ public abstract class Claim {
      * Empty constructor.
      */
     public Claim() {
-        date = new Date();
+        // Set the date to current date
+        date = Calendar.getInstance().getTime();
+        // Set unique claim id, aswell as uppdating next claim id:
         claimId = nextClaimId++;
     }
     
@@ -167,7 +172,13 @@ public abstract class Claim {
     }
     
     public String toString() {
-        String text = "";
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        String text = "Dato: " + df.format(date) + "\n";
+        text += "Skademeldingsnummer: " + claimId + "\n";
+        text += "Beskrivelse av skade:\n";
+        text += description + "\n";
+        text += "Takseringsbeløp: " + appraisal + "\n";
+        text += "Utbetalt erstatningsbeløp: " + disbursement;
         return text;
     }
 }

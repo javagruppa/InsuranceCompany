@@ -28,4 +28,11 @@ public class BoatClaim extends Claim {
     public BoatClaim(String description) {
         super(description);
     }
+    
+    @Override
+    public String toString() {
+        String text = "Båtskademelding\n";
+        text += super.toString();
+        return text;
+    }
 }

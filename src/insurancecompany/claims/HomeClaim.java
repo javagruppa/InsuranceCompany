@@ -28,4 +28,11 @@ public class HomeClaim extends Claim {
     public HomeClaim(String description) {
         super(description);
     }
+
+    @Override
+    public String toString() {
+        String text = "Hus- og innbokademelding\n";
+        text += super.toString();
+        return text;
+    }
 }

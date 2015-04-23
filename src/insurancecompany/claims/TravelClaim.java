@@ -28,4 +28,11 @@ public class TravelClaim extends Claim {
     public TravelClaim(String description) {
         super(description);
     }
+    
+    @Override
+    public String toString() {
+        String text = "Reiseskademelding\n";
+        text += super.toString();
+        return text;
+    }
 }

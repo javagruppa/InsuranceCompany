@@ -38,4 +38,11 @@ public class CarClaim extends Claim {
     public CarClaimForm getClaimForm() {
         return claimForm;
     }
+    
+    @Override
+    public String toString() {
+        String text = "Bilskademelding\n";
+        text += super.toString();
+        return text;
+    }
 }

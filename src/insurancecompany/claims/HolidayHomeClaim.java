@@ -28,4 +28,11 @@ public class HolidayHomeClaim extends Claim {
     public HolidayHomeClaim(String description) {
         super(description);
     }
+    
+    @Override
+    public String toString() {
+        String text = "Fritidsboligskademelding\n";
+        text += super.toString();
+        return text;
+    }    
 }

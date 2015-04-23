@@ -15,9 +15,43 @@ import java.util.ArrayList;
  */
 public class EmployeeRegister {
     
+    /** List of all the employees that works or has worked in this company. */
     private ArrayList<Employee> employees;
     
     public EmployeeRegister() {
-            
+        employees = new ArrayList<Employee>();
     }
+    
+    /**
+     * Adds a new employee to this register if it does not already exist.
+     * @param employee
+     * @return 
+     */
+    public boolean addEmployee(Employee employee) {
+        if (employees.contains(employee)) {
+            return false;
+        } else {
+            employees.add(employee);
+            return true;
+        }
+    }
+    
+    public Employee getEmployeeById(int employeeId) {
+        for (Employee employee : employees) {
+            if (employee.getEmployeeId() == employeeId) {
+                return employee;
+            }
+        }
+        return null;
+    }
+    
+    /**
+     * Returns the number of employees in this register.
+     * @return 
+     */
+    public int size() {
+        return employees.size();
+    }
+    
+    
 }

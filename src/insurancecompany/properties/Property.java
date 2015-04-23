@@ -24,8 +24,8 @@ public abstract class Property {
     private String type;
     
     /**
-     * Constructs a new property with the specified address. The area and the 
-     * year are set to 0. The material and the type are set to null.
+     * Constructs a new property with the specified address. Area and year are 
+     * set to 0. Material and type are set to null.
      * 
      * @param address the address of this property
      */

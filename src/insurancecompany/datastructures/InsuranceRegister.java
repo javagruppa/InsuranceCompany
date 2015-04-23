@@ -43,7 +43,16 @@ public class InsuranceRegister {
         return insurances.removeIf(i -> i.equals(insurance));
     }
     
-    public ArrayList<Customer> getCustomers(String type) {
+    public ArrayList<Customer> getCustomers(Class<?> type) {
+        ArrayList<Insurance> result = new ArrayList<>();
+        Iterator<Insurance> iterator = insurances.iterator();
+        while(iterator.hasNext()) {
+            Insurance insurance = iterator.next();
+            if(type.isInstance(insurance)) {
+                result.add(insurance);
+            }
+        }
+        
         // <Create return list>
         // <Run through the whole insurances list>
             // <Check if insurance is of the type>
@@ -60,15 +69,15 @@ public class InsuranceRegister {
     }
     
     public int getPremium(Customer customer) {
-        int premium = 0;
+        int result = 0;
         Iterator<Insurance> iterator = insurances.iterator();
         while(iterator.hasNext()) {
             Insurance insurance = iterator.next();
             if(insurance.getCustomer().equals(customer)) {
-                premium += insurance.getPremium();
+                result += insurance.getPremium();
             }
         }
-        return premium;
+        return result;
     }
     
     public int getTotalPremium() {

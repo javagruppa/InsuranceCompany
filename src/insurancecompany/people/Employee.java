@@ -28,4 +28,8 @@ public class Employee extends Person {
         this.employeeId = employeeId;
     }
     
+    public int getEmployeeId() {
+        return employeeId;
+    }
+    
 }

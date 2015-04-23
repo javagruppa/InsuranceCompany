@@ -38,7 +38,7 @@ public class ClaimRegister {
     }
     
     /**
-     * Finds and returns a list of claims matching the owner of the customer id.
+     * Finds and returns a list of claims matching the owner of given customer id.
      * @param customerId customer id of a claim owner
      * @return a list of claims matching the owner of the customer id
      */
@@ -49,7 +49,13 @@ public class ClaimRegister {
                 c.add(claims.get(i));
             }
         }
-        return c;
+        // Returns null if no matches are found:
+        if (c.isEmpty()) {
+            return null;
+        } else {
+            // Returns the newly created list otherwise:
+            return c;
+        }
     }
     
     /**

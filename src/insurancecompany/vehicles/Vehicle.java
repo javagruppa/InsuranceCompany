@@ -10,6 +10,7 @@ package insurancecompany.vehicles;
  * @author André
  */
 public class Vehicle {
+    private int personalNumber;
     private int regNumber;
     private String make;
     private String model;
@@ -28,6 +29,10 @@ public class Vehicle {
     
     public void setRegNumber(int newNumber){
         this.regNumber = newNumber;
+    }
+    
+    public void setPersonalNumber(int personalNumber) {
+        this.personalNumber = personalNumber;
     }
     
     public String toString(){

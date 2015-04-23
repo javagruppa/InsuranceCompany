@@ -5,21 +5,27 @@
  */
 
 package insurancecompany.people;
+
 import insurancecompany.misc.Address;
 import insurancecompany.vehicles.Vehicle;
+
 import java.util.ArrayList;
+import java.io.*;
 /**
  *
  * @author Carl
  */
 public class Customer extends Person {
+    
+    private static int nextCustomerId = 1000000;
+    private static String customerIdFileName = "/nextIdNumbers/customerId.dta";
+    
     private int customerId;
-    public static int nextNumber = 100;
     private ArrayList<Vehicle> vehicles;
     
     public Customer(String firstname, String lastname, int personalNumber, String email, Address address, int phone) {
         super(firstname, lastname, personalNumber, email, address, phone);
-        customerId = nextNumber++;
+        customerId = nextCustomerId++;
     }
     
     public int getCustomerId(){
@@ -55,5 +61,21 @@ public class Customer extends Person {
         String s = "";
         return s;
     }
+    
+    public static void saveNextIdToFile() throws IOException {
+        try (DataOutputStream dos = new DataOutputStream(
+                new BufferedOutputStream(
+                        new FileOutputStream(customerIdFileName)))) {
+            dos.writeInt(nextCustomerId);
+        }
+    }
+    
+    public static void readNextIdFromFile() throws IOException {
+        try (DataInputStream dis = new DataInputStream(
+                new BufferedInputStream(
+                        new FileInputStream(customerIdFileName)))) {
+            nextCustomerId = dis.readInt();
+        }
+    }    
     
 }

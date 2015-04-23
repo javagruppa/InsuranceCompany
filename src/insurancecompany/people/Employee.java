@@ -17,7 +17,7 @@ import java.io.*;
 public class Employee extends Person {
     
     private static int nextEmployeeId = 1000000;
-    private static String EmployeeIdFileName = "/nextIdNumbers/claimId.dta";
+    private static String employeeIdFileName = "/nextIdNumbers/employeeId.dta";
     
     private int employeeId;
     
@@ -35,16 +35,16 @@ public class Employee extends Person {
     public static void saveNextIdToFile() throws IOException {
         try (DataOutputStream dos = new DataOutputStream(
                 new BufferedOutputStream(
-                        new FileOutputStream(claimIdFileName)))) {
-            dos.writeInt(nextClaimId);
+                        new FileOutputStream(employeeIdFileName)))) {
+            dos.writeInt(nextEmployeeId);
         }
     }
     
     public static void readNextIdFromFile() throws IOException {
         try (DataInputStream dis = new DataInputStream(
                 new BufferedInputStream(
-                        new FileInputStream(claimIdFileName)))) {
-            nextClaimId = dis.readInt();
+                        new FileInputStream(employeeIdFileName)))) {
+            nextEmployeeId = dis.readInt();
         }
     }
     

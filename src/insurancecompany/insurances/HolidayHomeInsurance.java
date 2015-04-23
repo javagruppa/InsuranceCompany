@@ -5,6 +5,7 @@
  */
 package insurancecompany.insurances;
 
+import insurancecompany.people.Customer;
 import insurancecompany.properties.HolidayHome;
 
 /**
@@ -18,10 +19,11 @@ public class HolidayHomeInsurance extends PropertyInsurance {
     /**
      * Constructor initializing active, date, insuranceConditions and
      * holidayHome of this insurance.
-     * @param holidayHome the holiday home this insurance is for
+     * @param customer customer who owns this insurance
+     * @param holidayHome holiday home this insurance is for
      */
-    public HolidayHomeInsurance(HolidayHome holidayHome) {
-        super();
+    public HolidayHomeInsurance(Customer customer, HolidayHome holidayHome) {
+        super(customer);
         this.holidayHome = holidayHome;                
     }
 }

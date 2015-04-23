@@ -5,6 +5,8 @@
  */
 package insurancecompany.insurances;
 
+import insurancecompany.people.Customer;
+
 /**
  *
  * @author Sindre
@@ -18,11 +20,12 @@ public abstract class PropertyInsurance extends Insurance {
     private int contentAmount;
     
     /**
-     * Constructor initializing active, date and insuranceConditions of this
-     * insurance.
+     * Constructor initializing active, customer, date and insuranceConditions 
+     * of this insurance.
+     * @param customer customer who owns this insurance
      */
-    public PropertyInsurance() {
-        super();
+    public PropertyInsurance(Customer customer) {
+        super(customer);
     }
     
     /**
@@ -50,6 +53,6 @@ public abstract class PropertyInsurance extends Insurance {
      * amount and the content insurance amount.
      */
     public void updateInsuranceAmount() {
-        setInsuranceAmount(buildingAmount + contentAmount);
+        setAmount(buildingAmount + contentAmount);
     }
 }

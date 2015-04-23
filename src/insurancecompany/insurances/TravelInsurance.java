@@ -5,6 +5,8 @@
  */
 package insurancecompany.insurances;
 
+import insurancecompany.people.Customer;
+
 /**
  *
  * @author Sindre
@@ -16,13 +18,15 @@ public class TravelInsurance extends Insurance {
     private int insuranceSum;
     
     /**
-     * Constructor initializing active, date, insuranceConditions, 
+     * Constructor initializing active, customer, date, insuranceConditions, 
      * insuranceArea and insuranceSum of this insurance.
-     * @param insuranceArea the insurance area of this insurance
-     * @param insuranceSum the insurance sum of this insurance
+     * @param customer customer who owns this insurance
+     * @param insuranceArea insurance area of this insurance
+     * @param insuranceSum insurance sum of this insurance
      */
-    public TravelInsurance(String insuranceArea, int insuranceSum) {
-        super();
+    public TravelInsurance(Customer customer, String insuranceArea, 
+            int insuranceSum) {
+        super(customer);
         this.insuranceArea = insuranceArea;
         this.insuranceSum = insuranceSum;
     }

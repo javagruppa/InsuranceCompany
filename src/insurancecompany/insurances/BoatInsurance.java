@@ -5,6 +5,7 @@
  */
 package insurancecompany.insurances;
 
+import insurancecompany.people.Customer;
 import insurancecompany.vehicles.Boat;
 
 /**
@@ -16,12 +17,13 @@ public class BoatInsurance extends VehicleInsurance {
     private Boat boat;
     
     /**
-     * Constructor initializing active, date and insuranceConditions and boat 
-     * of this insurance.
+     * Constructor initializing active, customer, date and insuranceConditions 
+     * and boat of this insurance.
+     * @param customer customer who owns this insurance
      * @param boat the boat this insurance is for
      */
-    public BoatInsurance(Boat boat) {
-        super();
+    public BoatInsurance(Customer customer, Boat boat) {
+        super(customer);
         this.boat = boat;
     }
     

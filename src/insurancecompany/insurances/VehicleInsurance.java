@@ -5,6 +5,8 @@
  */
 package insurancecompany.insurances;
 
+import insurancecompany.people.Customer;
+
 /**
  *
  * @author Sindre
@@ -12,10 +14,11 @@ package insurancecompany.insurances;
 public abstract class VehicleInsurance extends Insurance {
     
     /**
-     * Constructor initializing active, date and insuranceConditions of this
-     * insurance.
+     * Constructor initializing active, customer, date and insuranceConditions 
+     * of this insurance.
+     * @param customer customer who owns this insurance
      */
-    public VehicleInsurance() {
-        super();
+    public VehicleInsurance(Customer customer) {
+        super(customer);
     }
 }

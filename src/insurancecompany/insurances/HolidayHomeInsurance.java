@@ -17,10 +17,9 @@ public class HolidayHomeInsurance extends PropertyInsurance {
     private HolidayHome holidayHome;
     
     /**
-     * Constructor initializing active, date, insuranceConditions and
-     * holidayHome of this insurance.
-     * @param customer customer who owns this insurance
-     * @param holidayHome holiday home this insurance is for
+     * Constructor.
+     * @param customer the customer who owns this insurance
+     * @param holidayHome the holiday home this insurance is for
      */
     public HolidayHomeInsurance(Customer customer, HolidayHome holidayHome) {
         super(customer);

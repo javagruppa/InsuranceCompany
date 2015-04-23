@@ -20,16 +20,15 @@ public abstract class PropertyInsurance extends Insurance {
     private int contentAmount;
     
     /**
-     * Constructor initializing active, customer, date and insuranceConditions 
-     * of this insurance.
-     * @param customer customer who owns this insurance
+     * Constructor.
+     * @param customer the customer who owns this insurance
      */
     public PropertyInsurance(Customer customer) {
         super(customer);
     }
     
     /**
-     * Set a building insurance amount to this insurance. Updates the total 
+     * Sets a building insurance amount to this insurance. Updates the total 
      * insurance amount.
      * @param buildingAmount the building insurance amount of this insurance
      */
@@ -39,7 +38,7 @@ public abstract class PropertyInsurance extends Insurance {
     }
     
     /**
-     * Set a content insurance amount to this insurance. Updates the total 
+     * Sets a content insurance amount to this insurance. Updates the total 
      * insurance amount.
      * @param contentAmount the content insurance amount of this insurance
      */

@@ -14,9 +14,8 @@ import insurancecompany.people.Customer;
 public abstract class VehicleInsurance extends Insurance {
     
     /**
-     * Constructor initializing active, customer, date and insuranceConditions 
-     * of this insurance.
-     * @param customer customer who owns this insurance
+     * Constructor.
+     * @param customer the customer who owns this insurance
      */
     public VehicleInsurance(Customer customer) {
         super(customer);

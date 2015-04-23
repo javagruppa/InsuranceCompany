@@ -18,11 +18,10 @@ public class TravelInsurance extends Insurance {
     private int insuranceSum;
     
     /**
-     * Constructor initializing active, customer, date, insuranceConditions, 
-     * insuranceArea and insuranceSum of this insurance.
-     * @param customer customer who owns this insurance
-     * @param insuranceArea insurance area of this insurance
-     * @param insuranceSum insurance sum of this insurance
+     * Constructor.
+     * @param customer the customer who owns this insurance
+     * @param insuranceArea the insurance area of this insurance
+     * @param insuranceSum the insurance sum of this insurance
      */
     public TravelInsurance(Customer customer, String insuranceArea, 
             int insuranceSum) {

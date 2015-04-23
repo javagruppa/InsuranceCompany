@@ -30,9 +30,8 @@ public abstract class Insurance {
     private List<String> conditions;
     
     /**
-     * Constructor initializing active, customer, date and conditions of this 
-     * insurance.
-     * @param customer customer who owns this insurance
+     * Constructor.
+     * @param customer the customer who owns this insurance
      */
     public Insurance(Customer customer) {
         this.active = false;
@@ -43,7 +42,7 @@ public abstract class Insurance {
     
     /**
      * Adds an insurance condition to the list conditions.
-     * @param condition insurance condition to be appended to this list
+     * @param condition the insurance condition to be appended to this list
      * @return true if this list changed as a result of the call
      */
     public boolean addCondition(String condition) {
@@ -52,7 +51,7 @@ public abstract class Insurance {
     
     /**
      * Deletes an insurance condition from the list conditions.
-     * @param condition insurance condition to be removed from this list
+     * @param condition the insurance condition to be removed from this list
      * @return true if this list changed as a result of the call
      */
     public boolean deleteCondition(String condition) {
@@ -61,15 +60,15 @@ public abstract class Insurance {
     
     /**
      * Returns the customer of this insurance.
-     * @return customer who owns this insurance
+     * @return the customer who owns this insurance
      */
     public Customer getCustomer() {
         return customer;
     }
     
     /**
-     * Returns the insurance premium of this insurance.
-     * @return insurance premium of this insurance
+     * Returns the yearly insurance premium of this insurance.
+     * @return the yearly insurance premium of this insurance
      */
     public int getPremium() {
         return premium;
@@ -77,7 +76,7 @@ public abstract class Insurance {
     
     /**
      * Sets an activity status to this insurance.
-     * @param active activity status to be set to this insurance
+     * @param active the activity status to be set to this insurance
      */
     public void setActive(boolean active) {
         this.active = active;
@@ -85,15 +84,15 @@ public abstract class Insurance {
     
     /**
      * Sets an insurance amount to this insurance.
-     * @param amount insurance amount to be set to this insurance
+     * @param amount the insurance amount to be set to this insurance
      */
     public void setAmount(int amount) {
         this.amount = amount;
     }
     
     /**
-     * Sets an insurance premium to this insurance.
-     * @param premium insurance premium to be set to this insurance
+     * Sets a yearly insurance premium to this insurance.
+     * @param premium the yearly insurance premium to be set to this insurance
      */
     public void setPremium(int premium) {
         this.premium = premium;

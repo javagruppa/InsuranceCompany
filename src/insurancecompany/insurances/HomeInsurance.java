@@ -17,10 +17,9 @@ public class HomeInsurance extends PropertyInsurance {
     private Home home;
     
     /**
-     * Constructor initializing active, customer, date, insuranceConditions and 
-     * home of this insurance.
-     * @param customer customer who owns this insurance
-     * @param home home this insurance is for
+     * Constructor.
+     * @param customer the customer who owns this insurance
+     * @param home the home this insurance is for
      */
     public HomeInsurance(Customer customer, Home home) {
         super(customer);

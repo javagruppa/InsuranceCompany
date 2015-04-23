@@ -32,9 +32,8 @@ public class CarInsurance extends VehicleInsurance {
     private int maxDrivingLength;
     
     /**
-     * Constructor initializing active, customer, date, insuranceConditions and 
-     * car of this insurance.
-     * @param customer customer who owns this insurance
+     * Constructor.
+     * @param customer the customer who owns this insurance
      * @param car the car this insurance is for
      */
     public CarInsurance(Customer customer, Car car) {
@@ -48,7 +47,8 @@ public class CarInsurance extends VehicleInsurance {
     
     /**
      * Sets a price per kilometer to this insurance.
-     * @param pricePerKilometer price per kilometer to be set to this insurance
+     * @param pricePerKilometer the price per kilometer to be set to this 
+     * insurance
      */
     public void setPricePerKilometer(int pricePerKilometer) {
         this.pricePerKilometer = pricePerKilometer;

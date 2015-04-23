@@ -25,7 +25,7 @@ public class BoatClaim extends Claim {
      * @param date
      * @param description 
      */
-    public BoatClaim(Date date, String description) {
-        super(date, description);
+    public BoatClaim(String description) {
+        super(description);
     }
 }

@@ -27,8 +27,8 @@ public class CarClaim extends Claim {
      * @param date
      * @param description 
      */
-    public CarClaim(Date date, String description) {
-        super(date, description);
+    public CarClaim(String description) {
+        super(description);
     }
     
     public void setClaimForm(CarClaimForm claimForm) {

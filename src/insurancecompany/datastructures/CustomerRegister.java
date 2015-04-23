@@ -22,7 +22,21 @@ public class CustomerRegister {
     }
     
     /**
-     * 
+     * Adds a new customer to this register if it does not already exist.
+     * @param customer
+     * @return 
+     */
+    public boolean addCustomer(Customer customer) {
+        if (customers.contains(customer)) {
+            return false;
+        } else {
+            customers.add(customer);
+            return true;
+        }
+    }
+    
+    /**
+     * Returns a customer matching the customer id.
      * @param customerId
      * @return 
      */

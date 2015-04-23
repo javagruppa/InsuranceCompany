@@ -25,7 +25,7 @@ public class HomeClaim extends Claim {
      * @param date
      * @param description 
      */
-    public HomeClaim(Date date, String description) {
-        super(date, description);
+    public HomeClaim(String description) {
+        super(description);
     }
 }

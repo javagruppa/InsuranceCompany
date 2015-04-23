@@ -16,22 +16,30 @@ import java.awt.Image;
  */
 public abstract class Claim {
     
-    private static int nextClaimNumber;
-    private static int claimNumberFileName;
+    private static int nextClaimId;
+    private static int claimIdFileName;
     
-    private Customer owner;
+    /** Customer id to the owner of this claim. */
+    private int customerId;
+    /** The date this claim was submitted. */
     private Date date;
-    private int claimNumber;
+    /** Unique claim id representing this claim. */
+    private int claimId;
+    /** Textual description of this claim. */
     private String description;
+    /** Image description of this claim. */
     private Image image;
+    /** Appraisal sum set to this claim. */
     private int appraisal;
+    /** Disbursement set to this claim. */
     private int disbursement;
     
     /**
      * Empty constructor.
      */
     public Claim() {
-        claimNumber = nextClaimNumber++;
+        date = new Date();
+        claimId = nextClaimId++;
     }
     
     /**
@@ -39,8 +47,8 @@ public abstract class Claim {
      * @param date
      * @param description 
      */
-    public Claim(Date date, String description) {
-        this.date = date;
+    public Claim(String description) {
+        date = new Date();
         this.description = description;
     }
     
@@ -48,8 +56,8 @@ public abstract class Claim {
      * Sets owner to the claim.
      * @param owner 
      */
-    public void setOwner(Customer owner) {
-        this.owner = owner;
+    public void setOwner(int customerId) {
+        this.customerId = customerId;
     }
     
     /**
@@ -96,8 +104,12 @@ public abstract class Claim {
      * 
      * @return owner of the claim.
      */
-    public Customer getOwner() {
-        return owner;
+    public int getCustomerId() {
+        return customerId;
+    }
+    
+    public int getClaimId() {
+        return claimId;
     }
     
     /**
@@ -147,5 +159,5 @@ public abstract class Claim {
     public String toString() {
         String text = "";
         return text;
-    }    
+    }
 }

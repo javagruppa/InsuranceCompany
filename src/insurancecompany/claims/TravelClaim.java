@@ -25,7 +25,7 @@ public class TravelClaim extends Claim {
      * @param date
      * @param description 
      */
-    public TravelClaim(Date date, String description) {
-        super(date, description);
+    public TravelClaim(String description) {
+        super(description);
     }
 }

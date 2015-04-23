@@ -25,7 +25,7 @@ public class HolidayHomeClaim extends Claim {
      * @param date
      * @param description 
      */
-    public HolidayHomeClaim(Date date, String description) {
-        super(date, description);
+    public HolidayHomeClaim(String description) {
+        super(description);
     }
 }

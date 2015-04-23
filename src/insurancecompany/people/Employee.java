@@ -11,12 +11,12 @@ import insurancecompany.misc.Address;
  * @author Carl
  */
 public class Employee extends Person {
-    private int employeeNumber;
+    private int employeeId;
     
     public Employee(String firstname, String lastname, int personalNumber,
-            String email, Address address, int employeeNumber, int phone) {
+            String email, Address address, int employeeId, int phone) {
         super(firstname, lastname, personalNumber, email, address, phone);
-        this.employeeNumber = employeeNumber;
+        this.employeeId = employeeId;
     }
     
     public String toString(){
@@ -25,7 +25,7 @@ public class Employee extends Person {
     }
     
     public void setEmployeeNumber(int employeeNumber){
-        this.employeeNumber = employeeNumber;
+        this.employeeId = employeeId;
     }
     
 }

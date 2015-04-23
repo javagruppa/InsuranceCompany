@@ -12,29 +12,34 @@ import insurancecompany.misc.Address;
  * @author Sindre
  */
 public abstract class Property {
-    /** The address of this property */
+    /** The address of this property. */
     private Address address;
     /** The floor area of this property. */
     private int area;
     /** The construction year of this property. */
-    private int constructionYear;
+    private int year;
     /** The building material of this property. */
     private String material;
-    /** The standard of this property. */
-    private String standard;
     /** The property type of this property. */
     private String type;
     
     /**
-     * Constructor.
+     * Constructs a new property with the specified address. The area and the 
+     * year are set to 0. The material and the type are set to null.
+     * 
      * @param address the address of this property
      */
     public Property(Address address) {
         this.address = address;
+        this.area = 0;
+        this.year = 0;
+        this.material = null;
+        this.type = null;
     }
     
     /**
      * Sets an area to this property.
+     * 
      * @param area the floor area of this property
      */
     public void setArea(int area) {
@@ -43,14 +48,16 @@ public abstract class Property {
     
     /**
      * Sets a construction year to this property.
-     * @param constructionYear the construction year of this property
+     * 
+     * @param year the construction year of this property
      */
-    public void setConstructionYear(int constructionYear) {
-        this.constructionYear = constructionYear;
+    public void setYear(int year) {
+        this.year = year;
     }
     
     /**
-     * Sets a material to this property.
+     * Sets a building material to this property.
+     * 
      * @param material the building material of this property
      */
     public void setMaterial(String material) {
@@ -58,15 +65,8 @@ public abstract class Property {
     }
     
     /**
-     * Sets a standard to this property.
-     * @param standard the standard of this property
-     */
-    public void setStandard(String standard) {
-        this.standard = standard;
-    }
-    
-    /**
      * Sets a property type to this property.
+     * 
      * @param type the property type of this property
      */
     public void setType(String type) {
@@ -77,21 +77,21 @@ public abstract class Property {
      * Returns a string representation of this property. The string
      * representation consists of each field with a short description separated
      * by a new line.
+     * 
      * @return a string representation of this property
      */
     @Override
     public String toString() {
         // Creates a StringBuilder which will be returned at the end of the 
         // method.
-        StringBuilder out = new StringBuilder();
+        StringBuilder result = new StringBuilder();
         // Appends the fields with appropriate sentences.
-        out.append("Adresse: ").append(address);
-        out.append("\nAntall kvadratmeter: ").append(area);
-        out.append("\nByggeår: ").append(constructionYear);
-        out.append("\nByggemateriale: ").append(material);
-        out.append("\nStandard: ").append(standard);
-        out.append("\nBoligtype: ").append(type);
+        result.append("Adresse: ").append(address.toString());
+        result.append("\nAntall kvadratmeter: ").append(area);
+        result.append("\nByggeår: ").append(year);
+        result.append("\nByggemateriale: ").append(material);
+        result.append("\nBoligtype: ").append(type);
         // Returns the string.
-        return out.toString();
+        return result.toString();
     }
 }

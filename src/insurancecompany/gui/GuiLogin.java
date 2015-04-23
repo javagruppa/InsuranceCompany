@@ -51,5 +51,6 @@ public class GuiLogin extends JFrame {
             typeOfPerson = SERVICE_WORKER;
             return true;
         }
+        return false;
     }
 }

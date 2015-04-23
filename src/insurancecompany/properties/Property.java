@@ -26,7 +26,7 @@ public abstract class Property {
     private String type;
     
     /**
-     * Constructor initializing the address of this property.
+     * Constructor.
      * @param address the address of this property
      */
     public Property(Address address) {

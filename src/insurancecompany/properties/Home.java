@@ -13,7 +13,7 @@ import insurancecompany.misc.Address;
  */
 public class Home extends Property {
     /**
-     * Constructor initializing the address of this property.
+     * Constructor.
      * @param address the address of this property
      */
     public Home(Address address) {

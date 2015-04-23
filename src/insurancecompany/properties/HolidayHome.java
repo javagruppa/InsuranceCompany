@@ -16,7 +16,7 @@ public class HolidayHome extends Property {
     private boolean rental;
     
     /**
-     * Constructor initializing the address and rental of this property.
+     * Constructor.
      * @param address the address of this property
      * @param rental whether the holiday home is a rental or not
      */

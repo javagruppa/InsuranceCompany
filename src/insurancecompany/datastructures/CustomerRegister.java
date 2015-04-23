@@ -6,6 +6,7 @@
 package insurancecompany.datastructures;
 
 import insurancecompany.people.*;
+import insurancecompany.misc.Address;
 
 import java.util.ArrayList;
 
@@ -61,6 +62,27 @@ public class CustomerRegister {
             }
         }
         return null;
+    }
+    
+    /**
+     * Returns an ArrayList containing customers living at given address.
+     * @param address
+     * @return 
+     */
+    public ArrayList<Customer> findCustomersByAdress(Address address) {
+        ArrayList<Customer> c = new ArrayList<Customer>();
+        for (Customer customer : customers) {
+            if (customer.getAddress().equals(address)) {
+                c.add(customer);
+            }
+        }
+        // Returns null if no matches are found:
+        if (c.isEmpty()) {
+            return null;
+        } else {
+            // Returns the newly created list otherwise:
+            return c;
+        }
     }
     
 }

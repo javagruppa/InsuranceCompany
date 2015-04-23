@@ -49,4 +49,18 @@ public class CustomerRegister {
         return null;
     }
     
+    /**
+     * Returns a customer matching the name.
+     * @param name
+     * @return 
+     */
+    public Customer findCustomerByName(String name) {
+        for (Customer customer : customers) {
+            if (customer.getName().equals(name)) {
+                return customer;
+            }
+        }
+        return null;
+    }
+    
 }

@@ -8,6 +8,7 @@ package insurancecompany.datastructures;
 import insurancecompany.insurances.Insurance;
 import insurancecompany.people.Customer;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  *
@@ -59,11 +60,15 @@ public class InsuranceRegister {
     }
     
     public int getPremium(Customer customer) {
-        // <Create return int>
-        // <Run through the whole insurances list>
-            // <Check if the insurance belongs to the customer>
-            // <If yes, add the yearly insurance premium to the int>
-        // <Return the int>
+        int premium = 0;
+        Iterator<Insurance> iterator = insurances.iterator();
+        while(iterator.hasNext()) {
+            Insurance insurance = iterator.next();
+            if(insurance.getCustomer().equals(customer)) {
+                premium += insurance.getPremium();
+            }
+        }
+        return premium;
     }
     
     public int getTotalPremium() {

@@ -5,6 +5,7 @@
  */
 package insurancecompany.insurances;
 
+import insurancecompany.people.Customer;
 import insurancecompany.vehicles.Car;
 
 /**
@@ -31,12 +32,13 @@ public class CarInsurance extends VehicleInsurance {
     private int maxDrivingLength;
     
     /**
-     * Constructor initializing active, date, insuranceConditions and car of 
-     * this insurance.
+     * Constructor initializing active, customer, date, insuranceConditions and 
+     * car of this insurance.
+     * @param customer customer who owns this insurance
      * @param car the car this insurance is for
      */
-    public CarInsurance(Car car) {
-        super();
+    public CarInsurance(Customer customer, Car car) {
+        super(customer);
         this.hasAlarm = false;
         this.hasGarage = false;
         this.youngDriverPermission = false;

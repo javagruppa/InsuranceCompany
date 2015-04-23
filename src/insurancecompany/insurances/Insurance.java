@@ -5,6 +5,7 @@
  */
 package insurancecompany.insurances;
 
+import insurancecompany.people.Customer;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,42 +18,61 @@ import java.util.List;
 public abstract class Insurance {
     /** Whether this insurance is active or not. */
     private boolean active;
+    /** The customer who owns this insurance. */
+    private Customer customer;
     /** The date this insurance was created. */
     private Date date;
     /** The insurance amount of this insurance. */
-    private int insuranceAmount;
+    private int amount;
     /** The yearly insurance premium of this insurance. */
-    private int insurancePremium;
+    private int premium;
     /** List containing all insurance conditions of this insurance. */
-    private List<String> insuranceConditions;
+    private List<String> conditions;
     
     /**
-     * Constructor initializing active, date and insuranceConditions of this
+     * Constructor initializing active, customer, date and conditions of this 
      * insurance.
+     * @param customer customer who owns this insurance
      */
-    public Insurance() {
+    public Insurance(Customer customer) {
         this.active = false;
+        this.customer = customer;
         this.date = new Date();
-        this.insuranceConditions = new ArrayList<>();
+        this.conditions = new ArrayList<>();
     }
     
     /**
-     * Adds an insurance condition to the list insuranceConditions.
-     * @param insuranceCondition insurance condition to be appended to this list
+     * Adds an insurance condition to the list conditions.
+     * @param condition insurance condition to be appended to this list
      * @return true if this list changed as a result of the call
      */
-    public boolean addInsuranceCondition(String insuranceCondition) {
-        return insuranceConditions.add(insuranceCondition);
+    public boolean addCondition(String condition) {
+        return conditions.add(condition);
     }
     
     /**
-     * Deletes an insurance condition from the list insuranceConditions.
-     * @param insuranceCondition insurance condition to be removed from this 
-     * list
+     * Deletes an insurance condition from the list conditions.
+     * @param condition insurance condition to be removed from this list
      * @return true if this list changed as a result of the call
      */
-    public boolean deleteInsuranceCondition(String insuranceCondition) {
-        return insuranceConditions.removeIf(i -> i.equals(insuranceCondition));
+    public boolean deleteCondition(String condition) {
+        return conditions.removeIf(i -> i.equals(condition));
+    }
+    
+    /**
+     * Returns the customer of this insurance.
+     * @return customer who owns this insurance
+     */
+    public Customer getCustomer() {
+        return customer;
+    }
+    
+    /**
+     * Returns the insurance premium of this insurance.
+     * @return insurance premium of this insurance
+     */
+    public int getPremium() {
+        return premium;
     }
     
     /**
@@ -65,18 +85,18 @@ public abstract class Insurance {
     
     /**
      * Sets an insurance amount to this insurance.
-     * @param insuranceAmount insurance amount to be set to this insurance
+     * @param amount insurance amount to be set to this insurance
      */
-    public void setInsuranceAmount(int insuranceAmount) {
-        this.insuranceAmount = insuranceAmount;
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
     
     /**
      * Sets an insurance premium to this insurance.
-     * @param insurancePremium insurance premium to be set to this insurance
+     * @param premium insurance premium to be set to this insurance
      */
-    public void setInsurancePremium(int insurancePremium) {
-        this.insurancePremium = insurancePremium;
+    public void setPremium(int premium) {
+        this.premium = premium;
     }
     
     /**
@@ -99,10 +119,10 @@ public abstract class Insurance {
             out.append("Forsikringen er inaktiv.");
         }
         out.append("\nDato: ").append(dateFormat.format(date));
-        out.append("\nForsikringsbeløp: ").append(insuranceAmount);
-        out.append("\nÅrlig forsikringspremie: ").append(insurancePremium);
+        out.append("\nForsikringsbeløp: ").append(amount);
+        out.append("\nÅrlig forsikringspremie: ").append(premium);
         out.append("\nForsikringsbetingelser: ");
-        insuranceConditions.forEach(i -> out.append("\n").append(i));
+        conditions.forEach(i -> out.append("\n").append(i));
         // Returns the string.
         return out.toString();
     }

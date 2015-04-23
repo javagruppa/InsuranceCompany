@@ -51,7 +51,7 @@ public class CustomerRegister {
     }
     
     /**
-     * Returns a customer matching the name.
+     * Returns the first customer matching the given name.
      * @param name
      * @return 
      */

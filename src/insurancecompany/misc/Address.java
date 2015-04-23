@@ -11,18 +11,42 @@ package insurancecompany.misc;
  * @author Carl
  */
 public class Address {
-    protected String street;
-    protected int zipcode;
-    protected String city;
+    private String street;
+    private int zipCode;
+    private String city;
     
-    public Address(String street, int zipcode, String city) {
+    public Address(String street, int zipCode, String city) {
         this.street = street;
-        this.zipcode = zipcode;
+        this.zipCode = zipCode;
         this.city = city;
     }
     
+    public void setStreet(String street) {
+        this.street = street;
+    }
+    
+    public void setZipCode(int zipCode) {
+        this.zipCode = zipCode;
+    }
+    
+    public void setCity(String city) {
+        this.city = city;
+    }
+    
+    public String getStreet() {
+        return street;
+    }
+    
+    public int getZipCode() {
+        return zipCode;
+    }
+    
+    public String getCity() {
+        return city;
+    }
+    
     public String toString(){
-            String s = "" + street + "\n" + zipcode + " " + city;
+            String s = "" + street + "\n" + zipCode + " " + city;
             return s;
     }
 }

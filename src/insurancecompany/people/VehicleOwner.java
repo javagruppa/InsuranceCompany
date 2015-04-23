@@ -4,17 +4,24 @@
  * and open the template in the editor.
  */
 package insurancecompany.people;
+
 import insurancecompany.misc.Address;
 import insurancecompany.vehicles.Vehicle;
 import insurancecompany.datastructures.*;
+
 /**
  *
  * @author Sindre
  */
 public class VehicleOwner extends Person {   
         
-        public VehicleOwner(String firstname, String lastname, int personalNumber, String email, Address address, int phone) {
-            super(firstname, lastname, personalNumber, email, address, phone);
-        }
+    public VehicleOwner(String firstname, String lastname, int personalNumber, String email, Address address, int phone) {
+        super(firstname, lastname, personalNumber, email, address, phone);
+    }
+    
+    public String toString() {
+        String text = "";
+        return text;
+    }
         
 }

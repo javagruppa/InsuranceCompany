@@ -35,6 +35,10 @@ public class Vehicle {
         this.personalNumber = personalNumber;
     }
     
+    public int getPersonalNumber() {
+        return personalNumber;
+    }
+    
     public String toString(){
         String s = "";
         return s;

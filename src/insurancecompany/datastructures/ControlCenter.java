@@ -24,6 +24,18 @@ public class ControlCenter {
         
     }
     
+    public CustomerRegister getCustomers() {
+        return customers;
+    }
+    
+    public EmployeeRegister getEmployeees() {
+        return employees;
+    }
+    
+    public ClaimRegister getClaims() {
+        return claims;
+    }
+    
     public Customer getCustomer(int insuranceNumber) {
         Customer customer = customers.findCustomerById(insuranceNumber);
         return customer;

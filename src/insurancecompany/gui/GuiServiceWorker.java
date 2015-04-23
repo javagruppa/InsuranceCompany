@@ -9,6 +9,6 @@ package insurancecompany.gui;
  *
  * @author André
  */
-public class GuiTest {
+public class GuiServiceWorker {
     
 }

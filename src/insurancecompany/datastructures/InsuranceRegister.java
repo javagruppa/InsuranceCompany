@@ -6,7 +6,6 @@
 package insurancecompany.datastructures;
 
 import insurancecompany.insurances.Insurance;
-import insurancecompany.people.Customer;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -19,7 +18,7 @@ public class InsuranceRegister {
     private ArrayList<Insurance> insurances;
     
     /**
-     * Constructor initializing the list of this insurance register.
+     * Constructs a new InsuranceRegister with an empty list.
      */
     public InsuranceRegister() {
         insurances = new ArrayList<>();
@@ -27,15 +26,18 @@ public class InsuranceRegister {
     
     /**
      * Adds an insurance to the list insurances.
+     * 
      * @param insurance insurance to be appended to this list
      * @return true if this list changed as a result of the call
      */
     public boolean addInsurance(Insurance insurance) {
-        return insurances.add(insurance);
+        return insurances.contains(insurance) ? false : 
+                insurances.add(insurance);
     }
     
     /**
      * Deletes an insurance from the list insurances.
+     * 
      * @param insurance insurance to be removed from this list
      * @return true if this list changed as a result of the call
      */
@@ -43,24 +45,29 @@ public class InsuranceRegister {
         return insurances.removeIf(i -> i.equals(insurance));
     }
     
-    public ArrayList<Customer> getCustomers(Class<?> type) {
-        ArrayList<Insurance> result = new ArrayList<>();
+    public ArrayList<Integer> getCustomerIds(Class<?> type) {
+        ArrayList<Integer> result = new ArrayList<>();
         Iterator<Insurance> iterator = insurances.iterator();
         while(iterator.hasNext()) {
             Insurance insurance = iterator.next();
             if(type.isInstance(insurance)) {
-                result.add(insurance);
+                result.add(insurance.getCustomerId());
             }
         }
-        
-        // <Create return list>
-        // <Run through the whole insurances list>
-            // <Check if insurance is of the type>
-            // <If yes, add the customer of the insurance to the list>
-        // <Return the list>
+        return result;
     }
     
-    public int getNumberOfInsurance(String type) {
+    public int getNumberOfInsurance(Class<?> type) {
+        int result = 0;
+        Iterator<Insurance> iterator = insurances.iterator();
+        while(iterator.hasNext()) {
+            Insurance insurance = iterator.next();
+            if(type.isInstance(insurance)) {
+                result++;
+            }
+        }
+        return result;
+        
         // <Create return int>
         // <Run through the whole insurances list>
             // <Check if the insurance is of type>
@@ -68,12 +75,12 @@ public class InsuranceRegister {
         // <Return the int>
     }
     
-    public int getPremium(Customer customer) {
+    public int getPremium(int customerId) {
         int result = 0;
         Iterator<Insurance> iterator = insurances.iterator();
         while(iterator.hasNext()) {
             Insurance insurance = iterator.next();
-            if(insurance.getCustomer().equals(customer)) {
+            if(insurance.getCustomerId() == customerId) {
                 result += insurance.getPremium();
             }
         }
@@ -81,13 +88,31 @@ public class InsuranceRegister {
     }
     
     public int getTotalPremium() {
+        int result = 0;
+        Iterator<Insurance> iterator = insurances.iterator();
+        while(iterator.hasNext()) {
+            Insurance insurance = iterator.next();
+            result += insurance.getPremium();
+        }
+        return result;
+        
         // <Create return int>
         // <Run through the whole insurances list>
             // <Add the yearly insurance premium to the int>
         // <Return the int>
     }
     
-    public int getTotalPremium(String type) {
+    public int getTotalPremium(Class<?> type) {
+        int result = 0;
+        Iterator<Insurance> iterator = insurances.iterator();
+        while(iterator.hasNext()) {
+            Insurance insurance = iterator.next();
+            if(type.isInstance(insurance)) {
+                result += insurance.getPremium();
+            }
+        }
+        return result;
+        
         // <Create return int>
         // <Run through the whole insurances list>
             // <Check if insurance is of the type>

@@ -16,12 +16,22 @@ public class HolidayHome extends Property {
     private boolean rental;
     
     /**
-     * Constructor.
+     * Constructs a new holiday home with the specified address. Area and year 
+     * are set to 0. Material and type are set to null.
+     * 
      * @param address the address of this property
+     */
+    public HolidayHome(Address address) {
+        super(address);
+        this.rental = false;
+    }
+    
+    /**
+     * Sets a rental status to this holidat home.
+     * 
      * @param rental whether the holiday home is a rental or not
      */
-    public HolidayHome(Address address, boolean rental) {
-        super(address);
+    public void setRental(boolean rental) {
         this.rental = rental;
     }
     
@@ -29,6 +39,7 @@ public class HolidayHome extends Property {
      * Returns a string representation of this property. The string
      * representation consists of each field with a short description separated
      * by a new line.
+     * 
      * @return a string representation of this property
      */
     @Override

@@ -40,11 +40,11 @@ public abstract class VehicleInsurance extends Insurance {
         // method.
         StringBuilder result = new StringBuilder();
         // Appends the fields with appropriate sentences.
-        result.append("\n").append(super.toString());
+        result.append(super.toString());
         if(hasAlarm) {
-            result.append("Alarm: Ja");
+            result.append("\nAlarm: Ja");
         } else {
-            result.append("Alarm: Nei");
+            result.append("\nAlarm: Nei");
         }
         // Returns the string.
         return result.toString();

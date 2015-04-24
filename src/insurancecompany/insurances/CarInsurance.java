@@ -65,8 +65,8 @@ public class CarInsurance extends VehicleInsurance {
         result.append("BILFORSIKRING");
         result.append("\n").append(super.toString());
         result.append("\nGarasje: ").append(hasGarage ? "Ja" : "Nei");
-        result.append("\nKan personer under 25 kjøre bilen: ").append(youngDriver 
-                ? "Ja" : "Nei");
+        result.append("\nKan personer under 25 kjøre bilen: ").
+                append(youngDriver ? "Ja" : "Nei");
         result.append("\nMaksimum kjørelengde: ").append(maxLength);
         result.append("\nBonus: ").append(bonus).append("%");
         // Returns the string.

@@ -46,15 +46,11 @@ public class HolidayHome extends Property {
     public String toString() {
         // Creates a StringBuilder which will be returned at the end of the 
         // method.
-        StringBuilder out = new StringBuilder();
+        StringBuilder result = new StringBuilder();
         // Appends the fields with appropriate sentences.
-        out.append(super.toString());
-        if(rental) {
-            out.append("\nUtleie: Ja");
-        } else {
-            out.append("\nUtleie: Nei");
-        }
+        result.append(super.toString());
+        result.append("\nUtleie: ").append(rental ? "Ja" : "Nei" );
         // Returns the string.
-        return out.toString();
+        return result.toString();
     }
 }

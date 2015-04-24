@@ -111,8 +111,7 @@ public abstract class Insurance {
         } else {
             result.append("Forsikringen er inaktiv.");
         }
-        result.append("\nKunde ID: ").append(customerId);
-        result.append("\nDato: ").append(dateFormat.format(date));
+        result.append("\n\nDato: ").append(dateFormat.format(date));
         result.append("\nÅrlig forsikringspremie: ").append(premium);
         result.append("\nEgenandel: ").append(excess);
         // Returns the string.

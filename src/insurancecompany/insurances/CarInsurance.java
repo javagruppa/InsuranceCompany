@@ -26,8 +26,9 @@ public class CarInsurance extends VehicleInsurance {
     private boolean youngDriver;
     
     /**
-     * Constructs a new vehicle insurance with the specified customerId and 
-     * excess. Active is set to true. Date is set to the current date.
+     * Constructs a new car insurance with the specified car, customerId, 
+     * excess, hasAlarm, hasGarage, maxLengh and youngDriver. Active is set to 
+     * true. Bonus is set to 0. Date is set to the current date.
      * 
      * @param car the car this insurance is for
      * @param customerId the id of the customer who owns this insurance

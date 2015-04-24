@@ -17,12 +17,19 @@ public class BoatInsurance extends VehicleInsurance {
     private Boat boat;
     
     /**
-     * Constructor.
-     * @param customer the customer who owns this insurance
+     * Constructs a new boat insurance with the specified boat, customerId, 
+     * excess and hasAlarm. Active is set to true. Date is set to the current 
+     * date.
+     * 
      * @param boat the boat this insurance is for
+     * @param customerId the id of the customer who owns this insurance
+     * @param excess the excess of this insurance
+     * @param hasAlarm whether the car this insurance is for has an alarm 
+     * or not
      */
-    public BoatInsurance(Customer customer, Boat boat) {
-        super(customer);
+    public BoatInsurance(Boat boat, int customerId, int excess, 
+            boolean hasAlarm) {
+        super(customerId, excess, hasAlarm);
         this.boat = boat;
     }
     
@@ -30,18 +37,18 @@ public class BoatInsurance extends VehicleInsurance {
      * Returns a string representation of this insurance. The string
      * representation consists of each field with a short description separated
      * by a new line.
+     * 
      * @return a string representation of this insurance
      */
     @Override
     public String toString() {
         // Creates a StringBuilder which will be returned at the end of the 
         // method.
-        StringBuilder out = new StringBuilder();
+        StringBuilder result = new StringBuilder();
         // Appends the fields with appropriate sentences.
-        out.append("BÅTFORSIKRING");
-        out.append("\n").append(super.toString());
-        out.append("\n").append(boat.toString());
+        result.append("BÅTFORSIKRING");
+        result.append("\n").append(super.toString());
         // Returns the string.
-        return out.toString();
+        return result.toString();
     }
 }

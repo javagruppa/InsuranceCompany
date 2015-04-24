@@ -5,19 +5,48 @@
  */
 package insurancecompany.insurances;
 
-import insurancecompany.people.Customer;
-
 /**
  *
  * @author Sindre
  */
 public abstract class VehicleInsurance extends Insurance {
+    /** Whether the vehicle this insurance is for has an alarm or not. */
+    private boolean hasAlarm;
     
     /**
-     * Constructor.
-     * @param customer the customer who owns this insurance
+     * Constructs a new vehicle insurance with the specified customerId and 
+     * excess. Active is set to true. Date is set to the current date.
+     * 
+     * @param customerId the id of the customer who owns this insurance
+     * @param excess the excess of this insurance
+     * @param hasAlarm whether the vehicle this insurance is for has an alarm 
+     * or not
      */
-    public VehicleInsurance(Customer customer) {
-        super(customer);
+    public VehicleInsurance(int customerId, int excess, boolean hasAlarm) {
+        super(customerId, excess);
+        this.hasAlarm = hasAlarm;
+    }
+    
+    /**
+     * Returns a string representation of this insurance. The string
+     * representation consists of each field with a short description separated
+     * by a new line.
+     * 
+     * @return a string representation of this insurance
+     */
+    @Override
+    public String toString() {
+        // Creates a StringBuilder which will be returned at the end of the 
+        // method.
+        StringBuilder result = new StringBuilder();
+        // Appends the fields with appropriate sentences.
+        result.append("\n").append(super.toString());
+        if(hasAlarm) {
+            result.append("Alarm: Ja");
+        } else {
+            result.append("Alarm: Nei");
+        }
+        // Returns the string.
+        return result.toString();
     }
 }

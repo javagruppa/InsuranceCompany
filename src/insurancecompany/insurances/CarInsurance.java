@@ -28,7 +28,8 @@ public class CarInsurance extends VehicleInsurance {
     /**
      * Constructs a new car insurance with the specified car, coverage, 
      * customerId, excess, hasAlarm, hasGarage, maxLengh and youngDriver. Active 
-     * is set to true. Bonus is set to 0. Date is set to the current date.
+     * is set to true. Bonus is set to 0. Date is set to the current date. 
+     * InsuranceId is automatically set to nextInsuranceId.
      * 
      * @param car the car this insurance is for
      * @param coverage the coverage of this insurance

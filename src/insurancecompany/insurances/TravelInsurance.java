@@ -18,7 +18,7 @@ public class TravelInsurance extends Insurance {
     /**
      * Constructs a new travel insurance with the specified customerId, 
      * coverage, excess and insuranceArea. Active is set to true. Date is set 
-     * to the current date.
+     * to the current date. InsuranceId is automatically set to nextInsuranceId.
      * 
      * @param customerId the id of the customer who owns this insurance
      * @param coverage the coverage of this insurance

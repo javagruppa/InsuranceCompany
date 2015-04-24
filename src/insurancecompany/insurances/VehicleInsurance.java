@@ -18,7 +18,7 @@ public abstract class VehicleInsurance extends Insurance {
     /**
      * Constructs a new vehicle insurance with the specified coverage, 
      * customerId and excess. Active is set to true. Date is set to the current 
-     * date.
+     * date. InsuranceId is automatically set to nextInsuranceId.
      * 
      * @param coverage the coverage of this insurance
      * @param customerId the id of the customer who owns this insurance

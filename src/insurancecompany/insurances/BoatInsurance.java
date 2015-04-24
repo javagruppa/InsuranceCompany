@@ -18,7 +18,7 @@ public class BoatInsurance extends VehicleInsurance {
     /**
      * Constructs a new boat insurance with the specified boat, coverage, 
      * customerId, excess and hasAlarm. Active is set to true. Date is set to 
-     * the current date.
+     * the current date. InsuranceId is automatically set to nextInsuranceId.
      * 
      * @param boat the boat this insurance is for
      * @param coverage the coverage of this insurance

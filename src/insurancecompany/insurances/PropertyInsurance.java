@@ -18,7 +18,7 @@ public abstract class PropertyInsurance extends Insurance {
     /**
      * Constructs a new property insurance with the specified buildingAmount, 
      * contentAmount, customerId and excess. Active is set to true. Date is set 
-     * to the current date.
+     * to the current date. InsuranceId is automatically set to nextInsuranceId.
      * 
      * @param buildingAmount the building insurance amount of this insurance
      * @param contentAmount the content insurance amount of this insurance

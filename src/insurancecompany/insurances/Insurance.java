@@ -13,6 +13,8 @@ import java.util.Date;
  * @author Sindre
  */
 public abstract class Insurance {
+    /** The insurance id of the insurance created next */
+    private static int nextInsuranceId = 1000000;
     /** Whether this insurance is active or not. */
     private boolean active;
     /** The id of the customer who owns this insurance. */
@@ -21,12 +23,15 @@ public abstract class Insurance {
     private Date date;
     /** The excess of this insurance. */
     private int excess;
+    /** Unique insurance id representing this insurance. */
+    private int insuranceId;
     /** The yearly insurance premium of this insurance. */
     private int premium;
     
     /**
      * Constructs a new insurance with the specified customerId and excess. 
-     * Active is set to true. Date is set to the current date.
+     * Active is set to true. Date is set to the current date. InsuranceId is 
+     * automatically set to nextInsuranceId.
      * 
      * @param customerId the id of the customer who owns this insurance
      * @param excess the excess of this insurance
@@ -35,6 +40,25 @@ public abstract class Insurance {
         this.active = true;
         this.customerId = customerId;
         this.date = new Date();
+        this.insuranceId = nextInsuranceId++;
+    }
+    
+    /**
+     * Indicates whether some other insurance is equal to this one. The result 
+     * is true if and only if the argument is not null and is an Insurance 
+     * object that contains the same insuranceId value as this object.
+     * 
+     * @param obj the object ot compare with
+     * @return true if the objects are the same; false otherwise
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if(obj != null && obj instanceof Insurance) {
+            Insurance other = (Insurance) obj;
+            return insuranceId == other.getInsuranceId();
+        } else {
+            return false;
+        }   
     }
     
     /**
@@ -62,6 +86,15 @@ public abstract class Insurance {
      */
     public int getExcess() {
         return excess;
+    }
+    
+    /**
+     * Returns the unique insurance id representing this insurance.
+     * 
+     * @return the unique insurance id representing this insurance
+     */
+    public int getInsuranceId() {
+        return insuranceId;
     }
     
     /**

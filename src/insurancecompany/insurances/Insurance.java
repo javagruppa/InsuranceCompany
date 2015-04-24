@@ -5,11 +5,8 @@
  */
 package insurancecompany.insurances;
 
-import insurancecompany.people.Customer;
 import java.text.DateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  *
@@ -18,56 +15,46 @@ import java.util.List;
 public abstract class Insurance {
     /** Whether this insurance is active or not. */
     private boolean active;
-    /** The customer who owns this insurance. */
-    private Customer customer;
+    /** The id of the customer who owns this insurance. */
+    private int customerId;
     /** The date this insurance was created. */
     private Date date;
-    /** The insurance amount of this insurance. */
-    private int amount;
     /** The yearly insurance premium of this insurance. */
     private int premium;
-    /** List containing all insurance conditions of this insurance. */
-    private List<String> conditions;
     
     /**
-     * Constructor.
-     * @param customer the customer who owns this insurance
+     * Constructs a new insurance with the specified customerId. Active is set 
+     * to false. Date is set to the current date.
+     * 
+     * @param customerId the id of the customer who owns this insurance
      */
-    public Insurance(Customer customer) {
+    public Insurance(int customerId) {
         this.active = false;
-        this.customer = customer;
+        this.customerId = customerId;
         this.date = new Date();
-        this.conditions = new ArrayList<>();
     }
     
     /**
-     * Adds an insurance condition to the list conditions.
-     * @param condition the insurance condition to be appended to this list
-     * @return true if this list changed as a result of the call
+     * Returns whether this insurance is active or not.
+     * 
+     * @return whether this insurance is active or not
      */
-    public boolean addCondition(String condition) {
-        return conditions.add(condition);
+    public boolean getActive() {
+        return active;
     }
     
     /**
-     * Deletes an insurance condition from the list conditions.
-     * @param condition the insurance condition to be removed from this list
-     * @return true if this list changed as a result of the call
+     * Returns the customer id of this insurance.
+     * 
+     * @return the id of the customer who owns this insurance
      */
-    public boolean deleteCondition(String condition) {
-        return conditions.removeIf(i -> i.equals(condition));
-    }
-    
-    /**
-     * Returns the customer of this insurance.
-     * @return the customer who owns this insurance
-     */
-    public Customer getCustomer() {
-        return customer;
+    public int getCustomerId() {
+        return customerId;
     }
     
     /**
      * Returns the yearly insurance premium of this insurance.
+     * 
      * @return the yearly insurance premium of this insurance
      */
     public int getPremium() {
@@ -76,6 +63,7 @@ public abstract class Insurance {
     
     /**
      * Sets an activity status to this insurance.
+     * 
      * @param active the activity status to be set to this insurance
      */
     public void setActive(boolean active) {
@@ -83,15 +71,8 @@ public abstract class Insurance {
     }
     
     /**
-     * Sets an insurance amount to this insurance.
-     * @param amount the insurance amount to be set to this insurance
-     */
-    public void setAmount(int amount) {
-        this.amount = amount;
-    }
-    
-    /**
      * Sets a yearly insurance premium to this insurance.
+     * 
      * @param premium the yearly insurance premium to be set to this insurance
      */
     public void setPremium(int premium) {
@@ -102,27 +83,25 @@ public abstract class Insurance {
      * Returns a string representation of this insurance. The string
      * representation consists of each field with a short description separated
      * by a new line.
+     * 
      * @return a string representation of this insurance
      */
     @Override
     public String toString() {
         // Creates a StringBuilder which will be returned at the end of the 
         // method.
-        StringBuilder out = new StringBuilder();
+        StringBuilder result = new StringBuilder();
         // Creates a DateFormat to format the field date.
         DateFormat dateFormat = DateFormat.getInstance();
         // Appends the fields with appropriate sentences.
         if(active) {
-            out.append("Forsikringen er aktiv.");
+            result.append("Forsikringen er aktiv.");
         } else {
-            out.append("Forsikringen er inaktiv.");
+            result.append("Forsikringen er inaktiv.");
         }
-        out.append("\nDato: ").append(dateFormat.format(date));
-        out.append("\nForsikringsbeløp: ").append(amount);
-        out.append("\nÅrlig forsikringspremie: ").append(premium);
-        out.append("\nForsikringsbetingelser: ");
-        conditions.forEach(i -> out.append("\n").append(i));
+        result.append("\nDato: ").append(dateFormat.format(date));
+        result.append("\nÅrlig forsikringspremie: ").append(premium);
         // Returns the string.
-        return out.toString();
+        return result.toString();
     }
 }

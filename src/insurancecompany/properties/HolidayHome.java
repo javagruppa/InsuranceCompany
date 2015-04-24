@@ -27,6 +27,15 @@ public class HolidayHome extends Property {
     }
     
     /**
+     * Returns whether the holiday home is a rental or not.
+     * 
+     * @return whether the holiday home is a rental or not
+     */
+    public boolean getRental() {
+        return rental;
+    }
+    
+    /**
      * Sets a rental status to this holidat home.
      * 
      * @param rental whether the holiday home is a rental or not

@@ -106,11 +106,7 @@ public abstract class Insurance {
         // Creates a DateFormat to format the field date.
         DateFormat dateFormat = DateFormat.getInstance();
         // Appends the fields with appropriate sentences.
-        if(active) {
-            result.append("Forsikringen er aktiv.");
-        } else {
-            result.append("Forsikringen er inaktiv.");
-        }
+        result.append("Forsikringen er ").append(active ? "aktiv" : "inaktiv");
         result.append("\n\nDato: ").append(dateFormat.format(date));
         result.append("\nÅrlig forsikringspremie: ").append(premium);
         result.append("\nEgenandel: ").append(excess);

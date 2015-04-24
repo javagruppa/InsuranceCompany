@@ -16,7 +16,7 @@ public abstract class PropertyInsurance extends Insurance {
     private int contentAmount;
     
     /**
-     * Constructs a new insurance with the specified buildingAmount, 
+     * Constructs a new property insurance with the specified buildingAmount, 
      * contentAmount, customerId and excess. Active is set to true. Date is set 
      * to the current date.
      * 

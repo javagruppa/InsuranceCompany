@@ -19,17 +19,20 @@ public abstract class Insurance {
     private int customerId;
     /** The date this insurance was created. */
     private Date date;
+    /** The excess of this insurance. */
+    private int excess;
     /** The yearly insurance premium of this insurance. */
     private int premium;
     
     /**
-     * Constructs a new insurance with the specified customerId. Active is set 
-     * to false. Date is set to the current date.
+     * Constructs a new insurance with the specified customerId and excess. 
+     * Active is set to true. Date is set to the current date.
      * 
      * @param customerId the id of the customer who owns this insurance
+     * @param excess the excess of this insurance
      */
-    public Insurance(int customerId) {
-        this.active = false;
+    public Insurance(int customerId, int excess) {
+        this.active = true;
         this.customerId = customerId;
         this.date = new Date();
     }
@@ -50,6 +53,15 @@ public abstract class Insurance {
      */
     public int getCustomerId() {
         return customerId;
+    }
+    
+    /**
+     * Returns the excess of this insurance.
+     * 
+     * @return the excess of this insurance
+     */
+    public int getExcess() {
+        return excess;
     }
     
     /**

@@ -45,45 +45,79 @@ public class InsuranceRegister {
         return insurances.removeIf(i -> i.equals(insurance));
     }
     
+    /**
+     * Returns an ArrayList of customer ids belonging to customers who has an 
+     * insurances of the specified type.
+     * 
+     * @param type the specified type of insurance
+     * @return an ArrayList of customer ids
+     */
     public ArrayList<Integer> getCustomerIds(Class<?> type) {
+        // Creates an ArrayList which will be returned at the end of the 
+        // method.
         ArrayList<Integer> result = new ArrayList<>();
+        // Creates an iterator for the list.
         Iterator<Insurance> iterator = insurances.iterator();
+        // Runs through the whole list.
         while(iterator.hasNext()) {
             Insurance insurance = iterator.next();
+            // Appends the customer id of the insurance to the list if the 
+            // insurance is of the specified type.
             if(type.isInstance(insurance)) {
                 result.add(insurance.getCustomerId());
             }
         }
+        // Returns the list.
         return result;
     }
     
+    /**
+     * Returns the number of insurances of the specified type.
+     * 
+     * @param type the specified type of insurance
+     * @return the number of insurances of the specified type
+     */
     public int getNumberOfInsurance(Class<?> type) {
+        // Creates an integer which will be returned at the end of the method.
         int result = 0;
+        // Creates an iterator for the list.
         Iterator<Insurance> iterator = insurances.iterator();
+        // Runs through the whole list.
         while(iterator.hasNext()) {
             Insurance insurance = iterator.next();
+            // Increases the result by one if the insurance is of the specified 
+            // type.
             if(type.isInstance(insurance)) {
                 result++;
             }
         }
+        // Returns the result.
         return result;
-        
-        // <Create return int>
-        // <Run through the whole insurances list>
-            // <Check if the insurance is of type>
-            // <If yes, add 1 to the int>
-        // <Return the int>
     }
     
+    /**
+     * Returns the yearly insurance premium of a customer with the specified 
+     * customeri id.
+     * 
+     * @param customerId the specified customer id
+     * @return the yearly insurance premium of a customer
+     */
     public int getPremium(int customerId) {
+        // Creates an integer which will be returned at the end of the method.
         int result = 0;
+        // Creates an iterator for the list.
         Iterator<Insurance> iterator = insurances.iterator();
+        // Runs through the whole list.
         while(iterator.hasNext()) {
             Insurance insurance = iterator.next();
+            // Appends the yearly insurance premium of the insurance to the 
+            // result if the insurance belongs to the customer with the 
+            // specified customer id.
             if(insurance.getCustomerId() == customerId) {
                 result += insurance.getPremium();
             }
         }
+        // Returns the result.
         return result;
     }
     

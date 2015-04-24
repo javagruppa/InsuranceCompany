@@ -5,7 +5,6 @@
  */
 package insurancecompany.insurances;
 
-import insurancecompany.people.Customer;
 import insurancecompany.vehicles.Boat;
 
 /**
@@ -17,19 +16,20 @@ public class BoatInsurance extends VehicleInsurance {
     private Boat boat;
     
     /**
-     * Constructs a new boat insurance with the specified boat, customerId, 
-     * excess and hasAlarm. Active is set to true. Date is set to the current 
-     * date.
+     * Constructs a new boat insurance with the specified boat, coverage, 
+     * customerId, excess and hasAlarm. Active is set to true. Date is set to 
+     * the current date.
      * 
      * @param boat the boat this insurance is for
+     * @param coverage the coverage of this insurance
      * @param customerId the id of the customer who owns this insurance
      * @param excess the excess of this insurance
      * @param hasAlarm whether the car this insurance is for has an alarm 
      * or not
      */
-    public BoatInsurance(Boat boat, int customerId, int excess, 
+    public BoatInsurance(Boat boat, int customerId, String coverage, int excess, 
             boolean hasAlarm) {
-        super(customerId, excess, hasAlarm);
+        super(coverage, customerId, excess, hasAlarm);
         this.boat = boat;
     }
     

@@ -26,11 +26,12 @@ public class CarInsurance extends VehicleInsurance {
     private boolean youngDriver;
     
     /**
-     * Constructs a new car insurance with the specified car, customerId, 
-     * excess, hasAlarm, hasGarage, maxLengh and youngDriver. Active is set to 
-     * true. Bonus is set to 0. Date is set to the current date.
+     * Constructs a new car insurance with the specified car, coverage, 
+     * customerId, excess, hasAlarm, hasGarage, maxLengh and youngDriver. Active 
+     * is set to true. Bonus is set to 0. Date is set to the current date.
      * 
      * @param car the car this insurance is for
+     * @param coverage the coverage of this insurance
      * @param customerId the id of the customer who owns this insurance
      * @param excess the excess of this insurance
      * @param hasAlarm whether the car this insurance is for has an alarm or not
@@ -40,9 +41,10 @@ public class CarInsurance extends VehicleInsurance {
      * @param youngDriver whether a person under 25 years is allowed to drive 
      * the car this insurance is for
      */
-    public CarInsurance(Car car, int customerId, int excess, boolean hasAlarm,
-            boolean hasGarage, int maxLength, boolean youngDriver) {
-        super(customerId, excess, hasAlarm);
+    public CarInsurance(Car car, String coverage, int customerId, int excess, 
+            boolean hasAlarm, boolean hasGarage, int maxLength, 
+            boolean youngDriver) {
+        super(coverage, customerId, excess, hasAlarm);
         this.bonus = 0;
         this.car = car;
         this.hasGarage = hasGarage;

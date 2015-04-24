@@ -10,20 +10,26 @@ package insurancecompany.insurances;
  * @author Sindre
  */
 public abstract class VehicleInsurance extends Insurance {
+    /** The coverage of this insurance. */
+    private String coverage;
     /** Whether the vehicle this insurance is for has an alarm or not. */
     private boolean hasAlarm;
     
     /**
-     * Constructs a new vehicle insurance with the specified customerId and 
-     * excess. Active is set to true. Date is set to the current date.
+     * Constructs a new vehicle insurance with the specified coverage, 
+     * customerId and excess. Active is set to true. Date is set to the current 
+     * date.
      * 
+     * @param coverage the coverage of this insurance
      * @param customerId the id of the customer who owns this insurance
      * @param excess the excess of this insurance
      * @param hasAlarm whether the vehicle this insurance is for has an alarm 
      * or not
      */
-    public VehicleInsurance(int customerId, int excess, boolean hasAlarm) {
+    public VehicleInsurance(String coverage, int customerId, int excess, 
+            boolean hasAlarm) {
         super(customerId, excess);
+        this.coverage = coverage;
         this.hasAlarm = hasAlarm;
     }
     
@@ -41,6 +47,7 @@ public abstract class VehicleInsurance extends Insurance {
         StringBuilder result = new StringBuilder();
         // Appends the fields with appropriate sentences.
         result.append(super.toString());
+        result.append("\nType: ").append(coverage);
         result.append("\nAlarm: ").append(hasAlarm ? "Ja" : "Nei");
         // Returns the string.
         return result.toString();

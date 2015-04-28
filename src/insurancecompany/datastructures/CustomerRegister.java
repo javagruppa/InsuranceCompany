@@ -9,6 +9,7 @@ import insurancecompany.people.*;
 import insurancecompany.misc.Address;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  *

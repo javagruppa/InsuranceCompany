@@ -6,6 +6,9 @@
 package insurancecompany.insurances;
 
 import insurancecompany.vehicles.Car;
+import insurancecompany.misc.DateCalculations;
+
+import java.util.Calendar;
 
 /**
  *
@@ -24,6 +27,10 @@ public class CarInsurance extends VehicleInsurance {
     /** Whether a person under 25 years is allowed to drive the car this 
      * insurance is for. */
     private boolean youngDriver;
+    
+    private Calendar lastBonusUpdate;
+    private int yearsOnSeventy;
+    private int yearsOnSeventyFive;
     
     /**
      * Constructs a new car insurance with the specified car, coverage, 
@@ -51,6 +58,7 @@ public class CarInsurance extends VehicleInsurance {
         this.hasGarage = hasGarage;
         this.maxLength = maxLength;
         this.youngDriver = youngDriver;
+        lastBonusUpdate = DateCalculations.dateToCalendar(getDate());
     }
     
     /**
@@ -82,5 +90,65 @@ public class CarInsurance extends VehicleInsurance {
      */
     public void updateBonus() {
         //
+    }
+    
+    /**
+     * Drops the bonus in case of an accident.
+     */
+    public void dropBonus() {       
+        if (bonus >= -180 || bonus <= 0) {
+            bonus -= 40;
+        } else if (bonus >= 10 || bonus <= 70) {
+            bonus -= 30;
+        } else if (bonus == 75 && yearsOnSeventyFive <= 5) {
+            bonus -= 15;
+        } else if (bonus == 75 && yearsOnSeventyFive >= 6) {
+            bonus -= 0;
+        }
+        lastBonusUpdate = Calendar.getInstance();
+    }
+    
+    /**
+     * Increases the bonus from one year to the next.
+     */
+    private void yearlyBonusIncrease() {
+        if (bonus <= 60 ) {
+            bonus += 10;
+            yearsOnSeventy = 0;
+            yearsOnSeventyFive = 0;
+        } else if (bonus == 70 && yearsOnSeventy < 5) {
+            yearsOnSeventy++;
+        } else if (bonus == 70 && yearsOnSeventy == 5) {
+            bonus = 75;
+            yearsOnSeventyFive++;
+        }
+        // Set the last bonus increase to 1 year later. If 1.5 years has passed the last update will correctly stay at 0.5 years ago.
+        lastBonusUpdate.add(Calendar.YEAR, 1);
+    }
+    
+    /**
+     * Increases the bonus depending on how many years has past since the last bonus increase.
+     */
+    public void increaseBonus() {
+        int years = DateCalculations.getDifferenceInYears(lastBonusUpdate, Calendar.getInstance());
+        for (int i = 0; i < years; i++) {
+            yearlyBonusIncrease();
+        }
+    }
+    
+    /**
+     * Returns the boolean representing whether the insurance covers young drivers.
+     * @return 
+     */
+    public boolean getYoungDriver() {
+        return youngDriver;
+    }
+    
+    /**
+     * Sets the boolean representing whether the insurance covers young drivers.
+     * @param youngDriver 
+     */
+    public void setYoungDriver(boolean youngDriver) {
+        this.youngDriver = youngDriver;
     }
 }

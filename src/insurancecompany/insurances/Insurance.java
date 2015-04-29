@@ -72,6 +72,14 @@ public abstract class Insurance {
     }
     
     /**
+     * Returns the date of when the insurance is signed.
+     * @return the date the insurance is signed
+     */
+    public Date getDate() {
+        return date;
+    }
+    
+    /**
      * Returns the customer id of this insurance.
      * 
      * @return the id of the customer who owns this insurance
@@ -123,6 +131,14 @@ public abstract class Insurance {
      */
     public void setPremium(int premium) {
         this.premium = premium;
+    }
+    
+    /**
+     * Sets the date to when the Insurance is signed.
+     * @param date of when the insurance is signed
+     */
+    public void setDate(Date date) {
+        this.date = date;
     }
     
     /**

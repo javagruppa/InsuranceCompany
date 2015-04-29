@@ -71,18 +71,18 @@ public class CustomerRegister {
      * @return 
      */
     public ArrayList<Customer> findCustomersByAdress(Address address) {
-        ArrayList<Customer> c = new ArrayList<Customer>();
+        ArrayList<Customer> result = new ArrayList<Customer>();
         for (Customer customer : customers) {
             if (customer.getAddress().equals(address)) {
-                c.add(customer);
+                result.add(customer);
             }
         }
         // Returns null if no matches are found:
-        if (c.isEmpty()) {
+        if (result.isEmpty()) {
             return null;
         } else {
             // Returns the newly created list otherwise:
-            return c;
+            return result;
         }
     }
     

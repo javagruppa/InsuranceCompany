@@ -6,6 +6,7 @@
 package insurancecompany.insurances;
 
 import java.text.DateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -39,7 +40,7 @@ public abstract class Insurance {
     public Insurance(int customerId, int excess) {
         this.active = true;
         this.customerId = customerId;
-        this.date = new Date();
+        this.date = Calendar.getInstance().getTime();
         this.insuranceId = nextInsuranceId++;
     }
     
@@ -140,6 +141,7 @@ public abstract class Insurance {
         DateFormat dateFormat = DateFormat.getInstance();
         // Appends the fields with appropriate sentences.
         result.append("Forsikringen er ").append(active ? "aktiv" : "inaktiv");
+        result.append("Forsikringsnummer: ").append(insuranceId);
         result.append("\n\nDato: ").append(dateFormat.format(date));
         result.append("\nÅrlig forsikringspremie: ").append(premium);
         result.append("\nEgenandel: ").append(excess);

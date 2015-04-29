@@ -34,6 +34,24 @@ public abstract class VehicleInsurance extends Insurance {
     }
     
     /**
+     * Returns the coverage of this insurance.
+     * 
+     * @return the coverage of this insurance
+     */
+    public String getCoverage() {
+        return coverage;
+    }
+    
+    /**
+     * Returns whether the vehicle this insurance is for has an alarm or not.
+     * 
+     * @return whether the vehicle this insurance is for has an alarm or not
+     */
+    public boolean getHasAlarm() {
+        return hasAlarm;
+    }
+    
+    /**
      * Returns a string representation of this insurance. The string
      * representation consists of each field with a short description separated
      * by a new line.

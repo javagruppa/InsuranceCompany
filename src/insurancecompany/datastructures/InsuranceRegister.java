@@ -121,36 +121,49 @@ public class InsuranceRegister {
         return result;
     }
     
+    /**
+     * Returns the total yearly insurance premium of all customers.
+     * 
+     * @return the total yearly insurance premium
+     */
     public int getTotalPremium() {
+        // Creates an integer which will be returned at the end of the method.
         int result = 0;
+        // Creates an iterator for the list.
         Iterator<Insurance> iterator = insurances.iterator();
+        // Runs through the whole list.
         while(iterator.hasNext()) {
+            // Appends the yearly insurance premium of the insurance to the 
+            // result.
             Insurance insurance = iterator.next();
             result += insurance.getPremium();
         }
+        // Returns the result.
         return result;
-        
-        // <Create return int>
-        // <Run through the whole insurances list>
-            // <Add the yearly insurance premium to the int>
-        // <Return the int>
     }
     
+    /**
+     * Returns the total yearly insurance premium of the specified type of 
+     * insurances.
+     * 
+     * @param type the specified type of insurances
+     * @return the total yearly insurance premium of the type
+     */
     public int getTotalPremium(Class<?> type) {
+        // Creates an integer which will be returned at the end of the method.
         int result = 0;
+        // Creates an iterator for the list.
         Iterator<Insurance> iterator = insurances.iterator();
+        // Runs through the whole list.
         while(iterator.hasNext()) {
+            // Appends the yearly insurance premium of the insurance to the 
+            // result if the insurance is of the specified type.
             Insurance insurance = iterator.next();
             if(type.isInstance(insurance)) {
                 result += insurance.getPremium();
             }
         }
+        // Returns the result.
         return result;
-        
-        // <Create return int>
-        // <Run through the whole insurances list>
-            // <Check if insurance is of the type>
-            // <If yes, add the yearly insurance premium to the int>
-        // <Return the int>
     }
 }

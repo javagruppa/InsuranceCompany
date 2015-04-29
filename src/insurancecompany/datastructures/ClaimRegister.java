@@ -8,6 +8,7 @@ package insurancecompany.datastructures;
 import insurancecompany.claims.*;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 /**
  *
  * @author André
@@ -43,18 +44,23 @@ public class ClaimRegister {
      * @return a list of claims matching the owner of the customer id
      */
     public ArrayList<Claim> findClaimsByCustomerId(int customerId) {
-        ArrayList<Claim> c = new ArrayList<Claim>();
-        for (int i = 0; i < claims.size(); i++) {
-            if (claims.get(i).getCustomerId() == customerId) {
-                c.add(claims.get(i));
+        // Creates an ArrayList which will be returned at the end of the method.
+        ArrayList<Claim> result = new ArrayList<Claim>();
+        // Creates an iterator for the list:
+        Iterator<Claim> iterator = claims.iterator();
+        // Runs through the whole list:
+        while(iterator.hasNext()) {
+            Claim claim = iterator.next();
+            if (claim.getCustomerId() == customerId) {
+                result.add(claim);
             }
         }
         // Returns null if no matches are found:
-        if (c.isEmpty()) {
+        if (result.isEmpty()) {
             return null;
         } else {
             // Returns the newly created list otherwise:
-            return c;
+            return result;
         }
     }
     
@@ -64,9 +70,13 @@ public class ClaimRegister {
      * @return 
      */
     public Claim getClaim(int claimId) {
-        for (int i = 0; i < claims.size(); i++) {
-            if (claims.get(i).getClaimId() == claimId) {
-                return claims.get(i);
+        // Creates an iterator for the list:
+        Iterator<Claim> iterator = claims.iterator();
+        // Runs through the whole list:
+        while(iterator.hasNext()) {
+            Claim claim = iterator.next();
+            if (claim.getClaimId() == claimId) {
+                return claim;
             }
         }
         return null;

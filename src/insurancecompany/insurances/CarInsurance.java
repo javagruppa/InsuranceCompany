@@ -28,8 +28,11 @@ public class CarInsurance extends VehicleInsurance {
      * insurance is for. */
     private boolean youngDriver;
     
+    /** The date of when the bonus of this insurance was last updated. */
     private Calendar lastBonusUpdate;
+    /** The number of consecutive years the bonus has stayed at 70 */
     private int yearsOnSeventy;
+    /** The number of consecutive years the bonus has stayed at 75 */
     private int yearsOnSeventyFive;
     
     /**
@@ -85,12 +88,6 @@ public class CarInsurance extends VehicleInsurance {
         return result.toString();
     }
     
-    /**
-     * Updates the bonus of this insurance.
-     */
-    public void updateBonus() {
-        //
-    }
     
     /**
      * Drops the bonus in case of an accident.
@@ -150,5 +147,69 @@ public class CarInsurance extends VehicleInsurance {
      */
     public void setYoungDriver(boolean youngDriver) {
         this.youngDriver = youngDriver;
+    }
+    
+    /**
+     * Returns the bonus of this car insurance.
+     * @return 
+     */
+    public int getBonus() {
+        return bonus;
+    }
+    
+    /**
+     * Sets the bonus of this car insurance.
+     * @param bonus 
+     */
+    public void setBonus(int bonus) {
+        this.bonus = bonus;
+    }
+    
+    /**
+     * Sets the max length for the car to this car insurance.
+     * @param maxLength 
+     */
+    public void setMaxLength(int maxLength) {
+        this.maxLength = maxLength;
+    }
+    
+    /**
+     * Returns the max length for the car to this car insurance.
+     * @return 
+     */
+    public int getMaxLength() {
+        return maxLength;
+    }
+    
+    /**
+     * Sets a true or false to the has garage option of this insurance.
+     * @param hasGarage 
+     */
+    public void setHasGarage(boolean hasGarage) {
+        this.hasGarage = hasGarage;
+    }
+    
+    /**
+     * Returns a true or false to the has garage option of this insurance.
+     * @return 
+     */
+    public boolean getHasGarage() {
+        return hasGarage;
+    }
+    
+    /**
+     * Sets the car of this car insurance.
+     * @param car 
+     */
+    public void setCar(Car car) {
+        this.car = car;
+    }
+    
+    /**
+     * Returns the car of this car insurance.
+     * @return 
+     */
+    public Car getCar() {
+        return car;
     }
 }

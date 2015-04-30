@@ -110,8 +110,8 @@ public class CarClaimForm {
         String s = "Kunde:\n" + owner.toString() + "\n\n"
                 + "Kundens kjøretøy:\n" + car.toString() + "\n\n"
                 + "Andre involverte part:\n" + otherPerson.toString()
-                + "\n\n" + "Andre involverte kjøretøy:\n" +
-                otherCar.toString() + "\n\nSted for hendelse:\n" + location
+                + "\n\n" + "Andre involverte kjøretøy:\n"
+                + otherCar.toString() + "\n\nSted for hendelse:\n" + location
                 + "\n\nHendelsesforløp:\n" + courseOfEvents;
         return s;
     }

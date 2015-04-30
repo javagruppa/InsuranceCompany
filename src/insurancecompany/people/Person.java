@@ -12,17 +12,17 @@ import insurancecompany.misc.Address;
  */
 public abstract class Person {
     /**the person number of the person*/
-    protected long personalNumber;
+    private long personalNumber;
     /**the first name of the person*/
-    protected String firstname;
+    private String firstname;
     /**the last name of the person*/
-    protected String lastname;
+    private String lastname;
     /**an object containing the persons address*/
-    protected Address address;
+    private Address address;
     /**the e-mail address for the person*/
-    protected String email;
+    private String email;
     /**the phone number of the person*/
-    protected int phone;
+    private int phone;
     
     
     /**

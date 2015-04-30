@@ -30,7 +30,7 @@ public class CarClaimForm {
      * @param otherCar the other car involved in the accident
      * @param insuranceComp the insurance company of the other part involved
      * @param location where the accident happened
-     * @param events the course of events
+     * @param events the courseOfEvents
      */
     public CarClaimForm(Car car, Customer owner, Person otherPerson,
             Car otherCar, String insuranceComp, String location, String events){

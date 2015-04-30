@@ -10,20 +10,19 @@ import insurancecompany.misc.Address;
  *
  * @author Carl
  */
-
 public abstract class Person {
     /**the person number of the person*/
-    private long personalNumber;
+    protected long personalNumber;
     /**the first name of the person*/
-    private String firstname;
+    protected String firstname;
     /**the last name of the person*/
-    private String lastname;
+    protected String lastname;
     /**an object containing the persons address*/
-    private Address address;
+    protected Address address;
     /**the e-mail address for the person*/
-    private String email;
+    protected String email;
     /**the phone number of the person*/
-    private int phone;
+    protected int phone;
     
     
     /**

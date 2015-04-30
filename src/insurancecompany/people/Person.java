@@ -34,7 +34,7 @@ public abstract class Person {
      * @param address the address of the person, as an object
      * @param phone the phone number of the person
      */
-    public Person(String firstname, String lastname, int personalNumber, String email, Address address, int phone) {
+    public Person(String firstname, String lastname, long personalNumber, String email, Address address, int phone) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.personalNumber = personalNumber;

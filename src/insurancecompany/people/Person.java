@@ -10,7 +10,7 @@ import insurancecompany.misc.Address;
  *
  * @author Carl
  */
-public class Person {
+public abstract class Person {
     protected int personalNumber;
     protected String firstname;
     protected String lastname;

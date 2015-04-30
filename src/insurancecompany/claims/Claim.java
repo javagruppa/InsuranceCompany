@@ -55,8 +55,9 @@ public abstract class Claim {
      * @param description 
      */
     public Claim(String description) {
-        date = new Date();
+        date = Calendar.getInstance().getTime();
         this.description = description;
+        claimId = nextClaimId++;
     }
     
     /**

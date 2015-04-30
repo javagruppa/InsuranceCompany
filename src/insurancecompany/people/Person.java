@@ -10,12 +10,19 @@ import insurancecompany.misc.Address;
  *
  * @author Carl
  */
-public class Person {
-    private int personalNumber;
+
+public abstract class Person {
+    /**the person number of the person*/
+    private long personalNumber;
+    /**the first name of the person*/
     private String firstname;
+    /**the last name of the person*/
     private String lastname;
+    /**an object containing the persons address*/
     private Address address;
+    /**the e-mail address for the person*/
     private String email;
+    /**the phone number of the person*/
     private int phone;
     
     
@@ -28,7 +35,7 @@ public class Person {
      * @param address the address of the person, as an object
      * @param phone the phone number of the person
      */
-    public Person(String firstname, String lastname, int personalNumber, String email, Address address, int phone) {
+    public Person(String firstname, String lastname, long personalNumber, String email, Address address, int phone) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.personalNumber = personalNumber;
@@ -57,7 +64,7 @@ public class Person {
      * Returns the personal number of the person.
      * @return the personal number as an integer
      */
-    public int getPersonalNumber(){
+    public long getPersonalNumber(){
         return personalNumber;
     }
     

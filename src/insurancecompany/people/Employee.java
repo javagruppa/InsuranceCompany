@@ -19,6 +19,9 @@ public class Employee extends Person {
     private static int nextEmployeeId = 1000000;
     private static String employeeIdFileName = "/nextIdNumbers/employeeId.dta";
     
+    private String passwordHash;
+    private String passwordSalt;
+    
     private int employeeId;
     
     public Employee(String firstname, String lastname, int personalNumber,

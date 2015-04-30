@@ -42,7 +42,7 @@ public class Controller {
         } else  if (employee instanceof CaseWorker) {
             System.out.println("case worker login");
         } else if (employee instanceof ServiceWorker) {
-            System.out.println("Service woerk login");
+            System.out.println("Service work login");
         }
     }
 }

@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 /**
@@ -47,6 +48,13 @@ public class Login {
         
         loginButton = new Button("Logg inn");
         grid.add(loginButton, 1, 3);
+        
+        GridPane pane = new GridPane();
+        Label label1 = new Label("Test");
+        pane.add(label1, 0, 0);
+        grid.add(pane, 1, 4);
+        
+        
         
         scene = new Scene(grid, 300, 275);
         

@@ -26,7 +26,7 @@ public class Customer extends Person {
     private int customerId;
     private ArrayList<Vehicle> vehicles;
     
-    public Customer(String firstname, String lastname, int personalNumber, String email, Address address, int phone) {
+    public Customer(String firstname, String lastname, long personalNumber, String email, Address address, int phone) {
         super(firstname, lastname, personalNumber, email, address, phone);
         customerId = nextCustomerId++;
     }
@@ -43,7 +43,7 @@ public class Customer extends Person {
         return email;
     }
     
-    public int getPersonalNumber(){
+    public long getPersonalNumber(){
         return personalNumber;
     }
     

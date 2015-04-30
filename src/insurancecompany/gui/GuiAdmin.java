@@ -11,4 +11,8 @@ package insurancecompany.gui;
  */
 public class GuiAdmin {
     
+    
+    public GuiAdmin() {
+        GridPane grid = new GridPane();
+    }
 }

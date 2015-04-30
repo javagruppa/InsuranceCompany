@@ -141,13 +141,6 @@ public class CarInsurance extends VehicleInsurance {
         return youngDriver;
     }
     
-    /**
-     * Sets the boolean representing whether the insurance covers young drivers.
-     * @param youngDriver 
-     */
-    public void setYoungDriver(boolean youngDriver) {
-        this.youngDriver = youngDriver;
-    }
     
     /**
      * Returns the bonus of this car insurance.

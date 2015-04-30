@@ -6,7 +6,7 @@
 package insurancecompany.gui;
 
 import insurancecompany.datastructures.EmployeeRegister;
-import insurancecompany.datastructures.ControlCenter;
+import insurancecompany.datastructures.Controller;
 import insurancecompany.people.*;
 
 import javax.swing.*;

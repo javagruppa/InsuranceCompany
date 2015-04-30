@@ -14,7 +14,7 @@ import java.io.*;
  *
  * @author Carl
  */
-public class Employee extends Person {
+public abstract class Employee extends Person {
     
     private static int nextEmployeeId = 1000000;
     private static String employeeIdFileName = "/nextIdNumbers/employeeId.dta";
@@ -24,7 +24,7 @@ public class Employee extends Person {
     
     private int employeeId;
     
-    public Employee(String firstname, String lastname, int personalNumber,
+    public Employee(String firstname, String lastname, long personalNumber,
             String email, Address address, int phone) {
         super(firstname, lastname, personalNumber, email, address, phone);
         employeeId = nextEmployeeId++;

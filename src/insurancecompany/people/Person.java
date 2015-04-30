@@ -11,12 +11,12 @@ import insurancecompany.misc.Address;
  * @author Carl
  */
 public class Person {
-    protected int personalNumber;
-    protected String firstname;
-    protected String lastname;
-    protected Address address;
-    protected String email;
-    protected int phone;
+    private int personalNumber;
+    private String firstname;
+    private String lastname;
+    private Address address;
+    private String email;
+    private int phone;
     
     
     /**

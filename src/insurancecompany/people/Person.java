@@ -63,7 +63,7 @@ public abstract class Person {
      * Returns the personal number of the person.
      * @return the personal number as an integer
      */
-    public int getPersonalNumber(){
+    public long getPersonalNumber(){
         return personalNumber;
     }
     

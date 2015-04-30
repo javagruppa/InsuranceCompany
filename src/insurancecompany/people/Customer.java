@@ -20,6 +20,9 @@ public class Customer extends Person {
     private static int nextCustomerId = 1000000;
     private static String customerIdFileName = "/nextIdNumbers/customerId.dta";
     
+    private String passwordSalt;
+    private String passwordHash;
+    
     private int customerId;
     private ArrayList<Vehicle> vehicles;
     

@@ -157,7 +157,7 @@ public abstract class Insurance {
         DateFormat dateFormat = DateFormat.getInstance();
         // Appends the fields with appropriate sentences.
         result.append("Forsikringen er ").append(active ? "aktiv" : "inaktiv");
-        result.append("Forsikringsnummer: ").append(insuranceId);
+        result.append("\nForsikringsnummer: ").append(insuranceId);
         result.append("\n\nDato: ").append(dateFormat.format(date));
         result.append("\nÅrlig forsikringspremie: ").append(premium);
         result.append("\nEgenandel: ").append(excess);

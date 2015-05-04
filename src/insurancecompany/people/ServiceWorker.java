@@ -12,7 +12,7 @@ import insurancecompany.misc.Address;
  */
 public class ServiceWorker extends Employee {
 
-    public ServiceWorker(String firstname, String lastname, long personalNumber, String email, Address address, int phone) {
+    public ServiceWorker(String firstname, String lastname, long personalNumber, String email, Address address, String phone) {
         super(firstname, lastname, personalNumber, email, address, phone);
     }
 

@@ -15,7 +15,7 @@ import insurancecompany.datastructures.*;
  */
 public class VehicleOwner extends Person {   
         
-    public VehicleOwner(String firstname, String lastname, long personalNumber, String email, Address address, int phone) {
+    public VehicleOwner(String firstname, String lastname, long personalNumber, String email, Address address, String phone) {
         super(firstname, lastname, personalNumber, email, address, phone);
     }
     

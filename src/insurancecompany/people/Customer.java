@@ -35,31 +35,7 @@ public class Customer extends Person {
         return customerId;
     }
     
-    public String getName(){
-        return firstname + " " + lastname;
-    }
-    
-    public String getEmail(){
-        return email;
-    }
-    
-    public long getPersonalNumber(){
-        return personalNumber;
-    }
-    
-    public String getAddress(){
-        return address.toString();
-    }
-    
-    public void setAddress(Address newAddress){
-        this.address = newAddress;
-    }
-    
-    public void setEmail(String newMail){
-        this.email = newMail;
-    }
-    
-    
+
     public String toString(){
         String s = "";
         return s;

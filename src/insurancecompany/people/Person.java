@@ -22,7 +22,7 @@ public abstract class Person {
     /**the e-mail address for the person*/
     private String email;
     /**the phone number of the person*/
-    private int phone;
+    private String phone;
     
     
     /**
@@ -34,7 +34,7 @@ public abstract class Person {
      * @param address the address of the person, as an object
      * @param phone the phone number of the person
      */
-    public Person(String firstName, String lastName, long personalNumber, String email, Address address, int phone) {
+    public Person(String firstName, String lastName, long personalNumber, String email, Address address, String phone) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.personalNumber = personalNumber;
@@ -109,7 +109,7 @@ public abstract class Person {
     /**
      * @return the phone
      */
-    public int getPhone() {
+    public String getPhone() {
         return phone;
     }
 }

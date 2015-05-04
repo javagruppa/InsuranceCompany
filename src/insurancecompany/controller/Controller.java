@@ -19,7 +19,9 @@ import java.io.ObjectOutputStream;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 /**
@@ -30,11 +32,13 @@ public class Controller {
     
     private static final String customerFileName = "src/customerRegister.dta";
     
+    // Views:
     private Login login;
     private RegisterGui registerGui;
     private CustomerRegistration cReg;
     private GuiAdmin guiAdmin;
     
+    // Models:
     private EmployeeRegister employees;
     private CustomerRegister customers;
     private InsuranceRegister insurances;
@@ -73,6 +77,9 @@ public class Controller {
    
     
     private void registerCustomerEventHandler(ActionEvent e) {
+        boolean ok = true;
+        String output = "";
+        
         String personalNumberS = cReg.getPersonalNumberField().getText();
         String firstName = cReg.getFirstNameField().getText();
         String lastName = cReg.getLastNameField().getText();
@@ -82,8 +89,25 @@ public class Controller {
         String email = cReg.getEmailField().getText();
         String phone = cReg.getPhoneField().getText();
         
-        long personalNumber = Long.parseLong(personalNumberS);
-        int zipCode = Integer.parseInt(zipCodeS);
+        if (personalNumberS.equals("")) {
+            Label message = new Label();
+            message.setText("*");
+            message.setTextFill(Color.rgb(210, 39, 30));
+            cReg.setPersonalNumberMessage(message);
+        }
+ 
+        long personalNumber = 0;
+        try {
+            personalNumber = Long.parseLong(personalNumberS);
+        } catch (NumberFormatException nfe) {
+
+        }
+        int zipCode = 0;
+        try {
+            zipCode = Integer.parseInt(zipCodeS);
+        } catch (NumberFormatException nfe) {
+            
+        }
         
         Address adress = new Address(street, zipCode, city);
         
@@ -92,14 +116,14 @@ public class Controller {
         int customerId = customer.getCustomerId();
         System.out.println(customerId);
         
-        customers.addCustomer(customer);
-        Customer test = customers.findCustomerById(customerId);
-        if (test == null) {
-            System.out.println("Fant ikke kunde");
-        } else {
-            System.out.println("Fant kunde");
+        boolean ok1 = customers.addCustomer(customer);
+        
+        //Customer test = customers.findCustomerById(customerId);
+        if (!ok) {
+            output += "Får ikke lagt til kunden. Kunde med personnummer: " + personalNumberS 
+                    + " eksisterer allerede i kunderegisteret.";
         }
-        System.out.println(test.toString());
+        
         
         
     }

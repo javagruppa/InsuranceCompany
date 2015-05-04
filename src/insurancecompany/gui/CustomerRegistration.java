@@ -11,6 +11,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -37,6 +38,7 @@ public class CustomerRegistration extends Application {
     private TextField emailField;
     private TextField phoneField;
     private Button registerButton;
+    private TextArea outputTextArea;
     
     public static void main(String[] args) {
         launch(args);
@@ -97,6 +99,10 @@ public class CustomerRegistration extends Application {
         hbBtn.setAlignment(Pos.BOTTOM_RIGHT);
         hbBtn.getChildren().add(registerButton);
         mainPane.add(hbBtn, 2, 12);
+        outputTextArea = new TextArea();
+        outputTextArea.setPrefColumnCount(30);
+        outputTextArea.setEditable(false);
+        mainPane.add(outputTextArea, 3, 1, 1, 12);
         
     }
     

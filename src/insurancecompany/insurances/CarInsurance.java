@@ -92,13 +92,20 @@ public class CarInsurance extends VehicleInsurance {
     /**
      * Drops the bonus in case of an accident.
      */
-    public void dropBonus() {       
-        if (bonus >= -180 || bonus <= 0) {
+    public void dropBonus() {
+        // Bonus drops to a minimum of -180 points.
+        if (bonus >= -180 || bonus <= -150) {
+            bonus = -180;
+        // When at 0 or below, bonus drops by 40 points.
+        } else if (bonus >= -140 || bonus <= 0) {
             bonus -= 40;
+        // When between 10 and 70, bonus drops by 30 points.
         } else if (bonus >= 10 || bonus <= 70) {
             bonus -= 30;
+        // When reaching 75, bonus only drops by 15 points the 5 first years.
         } else if (bonus == 75 && yearsOnSeventyFive <= 5) {
             bonus -= 15;
+        // With a bonus at 75 for 5 consecutive years bonus will remain constant with no drops.
         } else if (bonus == 75 && yearsOnSeventyFive >= 6) {
             bonus -= 0;
         }
@@ -109,12 +116,16 @@ public class CarInsurance extends VehicleInsurance {
      * Increases the bonus from one year to the next.
      */
     private void yearlyBonusIncrease() {
+        // Increases the bonus by 10 points a year up to a maximum of 70 points.
         if (bonus <= 60 ) {
             bonus += 10;
             yearsOnSeventy = 0;
             yearsOnSeventyFive = 0;
+        // Once bonus has reached 70 points, we start counting consecutive years on seventy. This affects the bonus drops
         } else if (bonus == 70 && yearsOnSeventy < 5) {
+            yearsOnSeventyFive = 0;
             yearsOnSeventy++;
+        // When 5 consecutive years with 70 as a bonus, bonus goes to 75, and we start counting consecutive years at this stage aswell.
         } else if (bonus == 70 && yearsOnSeventy == 5) {
             bonus = 75;
             yearsOnSeventyFive++;

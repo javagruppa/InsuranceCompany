@@ -192,5 +192,12 @@ public class CustomerRegistration extends Application {
     public Button getRegisterButton() {
         return registerButton;
     }
+
+    /**
+     * @return the outputTextArea
+     */
+    public TextArea getOutputTextArea() {
+        return outputTextArea;
+    }
     
 }

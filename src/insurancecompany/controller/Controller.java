@@ -8,6 +8,14 @@ package insurancecompany.controller;
 import insurancecompany.datastructures.*;
 import insurancecompany.gui.*;
 import insurancecompany.people.*;
+import insurancecompany.misc.*;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.NotSerializableException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -20,13 +28,27 @@ import javafx.stage.Stage;
  */
 public class Controller {
     
+    private static final String customerFileName = "src/customerRegister.dta";
+    
     private Login login;
     private RegisterGui registerGui;
     private CustomerRegistration cReg;
     private GuiAdmin guiAdmin;
+    
     private EmployeeRegister employees;
+    private CustomerRegister customers;
+    private InsuranceRegister insurances;
+    private VehicleRegister vehicles;
+    private ClaimRegister claims;
     
     public Controller()  {
+           
+        employees = new EmployeeRegister();
+        customers = new CustomerRegister();
+        insurances = new InsuranceRegister();
+        vehicles = new VehicleRegister();
+        claims = new ClaimRegister();
+        
         login = new Login();
         registerGui = new RegisterGui();
         cReg = new CustomerRegistration();
@@ -34,6 +56,7 @@ public class Controller {
         login.getLoginBtn().setOnAction(this::loginBtnEventHandler);
         guiAdmin.getRegisterButton().setOnAction(this::registerPaneEventHandler);
         registerGui.getCustomerButton().setOnAction(this::registerCustomerPaneEventHandler);
+        cReg.getRegisterButton().setOnAction(this::registerCustomerEventHandler);
     }
     
     public void initGui() {
@@ -46,6 +69,39 @@ public class Controller {
     public void show(Stage stage) {
         //login.show(stage);
         guiAdmin.show(stage);
+    }
+   
+    
+    private void registerCustomerEventHandler(ActionEvent e) {
+        String personalNumberS = cReg.getPersonalNumberField().getText();
+        String firstName = cReg.getFirstNameField().getText();
+        String lastName = cReg.getLastNameField().getText();
+        String street = cReg.getStreetField().getText();
+        String zipCodeS = cReg.getZipCodeField().getText();
+        String city = cReg.getCityField().getText();
+        String email = cReg.getEmailField().getText();
+        String phone = cReg.getPhoneField().getText();
+        
+        long personalNumber = Long.parseLong(personalNumberS);
+        int zipCode = Integer.parseInt(zipCodeS);
+        
+        Address adress = new Address(street, zipCode, city);
+        
+        Customer customer = new Customer(firstName, lastName, personalNumber, email, adress, phone);
+        
+        int customerId = customer.getCustomerId();
+        System.out.println(customerId);
+        
+        customers.addCustomer(customer);
+        Customer test = customers.findCustomerById(customerId);
+        if (test == null) {
+            System.out.println("Fant ikke kunde");
+        } else {
+            System.out.println("Fant kunde");
+        }
+        System.out.println(test.toString());
+        
+        
     }
     
     private void registerPaneEventHandler(ActionEvent e) {
@@ -70,6 +126,30 @@ public class Controller {
             System.out.println("case worker login");
         } else if (employee instanceof ServiceWorker) {
             System.out.println("Service work login");
+        }
+    }
+    
+    public void readCustomersFromFile() {
+        try (ObjectInputStream ois = new ObjectInputStream(
+                new FileInputStream(customerFileName))) {
+            customers = (CustomerRegister) ois.readObject();
+        } catch (ClassNotFoundException cnfe) {
+            
+        } catch (FileNotFoundException fnfe) {
+            
+        } catch (IOException ioe) {
+            
+        }
+    }
+    
+    public void writeCustomersToFile() {
+        try (ObjectOutputStream oos = new ObjectOutputStream(
+                new FileOutputStream(customerFileName))) {
+            oos.writeObject(customers);
+        } catch ( NotSerializableException nse ) {
+            
+        } catch (IOException ioe) {
+            
         }
     }
 }

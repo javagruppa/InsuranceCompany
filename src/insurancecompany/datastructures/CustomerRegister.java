@@ -7,6 +7,7 @@ package insurancecompany.datastructures;
 
 import insurancecompany.people.*;
 import insurancecompany.misc.Address;
+import java.io.Serializable;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -15,7 +16,7 @@ import java.util.Iterator;
  *
  * @author André
  */
-public class CustomerRegister {
+public class CustomerRegister implements Serializable {
     
     private ArrayList<Customer> customers;
     

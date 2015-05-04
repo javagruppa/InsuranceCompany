@@ -6,6 +6,8 @@
  */
 package insurancecompany.people;
 import insurancecompany.misc.Address;
+import java.util.Calendar;
+import java.util.Date;
 /**
  *
  * @author Carl
@@ -23,6 +25,8 @@ public abstract class Person {
     private String email;
     /**the phone number of the person*/
     private String phone;
+    /**The date this person is registered.*/
+    private Date registeredDate;
     
     
     /**
@@ -41,7 +45,7 @@ public abstract class Person {
         this.email = email;
         this.address = address;
         this.phone = phone;
-        
+        registeredDate = Calendar.getInstance().getTime();
     }
     
     public String getName(){
@@ -129,5 +133,12 @@ public abstract class Person {
         } else {
             return false;
         }   
+    }
+
+    /**
+     * @return the registeredDate
+     */
+    public Date getRegisteredDate() {
+        return registeredDate;
     }
 }

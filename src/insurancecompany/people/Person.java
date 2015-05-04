@@ -112,4 +112,22 @@ public abstract class Person {
     public String getPhone() {
         return phone;
     }
+    
+    /**
+     * Indicates whether an object is equal to this person. The result 
+     * is true if and only if the argument is not null and is a Person 
+     * object that contains the same personal number as this object.
+     * 
+     * @param obj the object to compare with
+     * @return true if the objects are the same; false otherwise
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if(obj != null && obj instanceof Person) {
+            Person other = (Person) obj;
+            return personalNumber == other.getPersonalNumber();
+        } else {
+            return false;
+        }   
+    }
 }

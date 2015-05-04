@@ -1,0 +1,39 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : May 4, 2015, 2:31:17 PM
+    Author     : André
+*/
+
+#mainToolbarButton  {
+    -fx-background-color: linear-gradient(#395cab, #223768);
+    -fx-border-color: #000000;
+    -fx-border-width: 1px;
+    -fx-border-style: solid;
+    -fx-background-insets: 0,1,2,3;
+    -fx-background-radius: 3,2,2,2;
+    -fx-padding: 12 30 12 30;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+}
+#mainToolbarButton Text {
+    
+}
+
+#subToolbarButton  {
+    -fx-background-color: linear-gradient(#395cab, #223768);
+    -fx-border-color: #000000;
+    -fx-border-width: 1px;
+    -fx-border-style: solid;
+    -fx-background-insets: 0,1,2,3;
+    -fx-background-radius: 3,2,2,2;
+    -fx-padding: 5 10 5 10;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+}
+#subToolbarButton Text {
+    
+}

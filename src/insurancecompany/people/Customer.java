@@ -37,7 +37,8 @@ public class Customer extends Person {
     
 
     public String toString(){
-        String s = "";
+        String s = "Kundenummer: " + customerId + "\n";
+        s = super.toString();
         return s;
     }
     

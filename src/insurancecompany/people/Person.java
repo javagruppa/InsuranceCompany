@@ -14,9 +14,9 @@ public abstract class Person {
     /**the person number of the person*/
     private long personalNumber;
     /**the first name of the person*/
-    private String firstname;
+    private String firstName;
     /**the last name of the person*/
-    private String lastname;
+    private String lastName;
     /**an object containing the persons address*/
     private Address address;
     /**the e-mail address for the person*/
@@ -34,9 +34,9 @@ public abstract class Person {
      * @param address the address of the person, as an object
      * @param phone the phone number of the person
      */
-    public Person(String firstname, String lastname, long personalNumber, String email, Address address, int phone) {
-        this.firstname = firstname;
-        this.lastname = lastname;
+    public Person(String firstName, String lastName, long personalNumber, String email, Address address, int phone) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.personalNumber = personalNumber;
         this.email = email;
         this.address = address;
@@ -44,19 +44,23 @@ public abstract class Person {
         
     }
     
+    public String getName(){
+        return firstName + " " + lastName;
+    }
+    
     /**
      * Returns the persons first name
      * @return the first name as a string
      */
-    public String getFirstname(){
-        return firstname;
+    public String getFirstName(){
+        return firstName;
     }
     /**
      * Returns the persons last name
      * @return the last name as a string
      */
-    public String getLastname(){
-        return lastname;
+    public String getLastName(){
+        return lastName;
     }
     
     /**
@@ -80,7 +84,7 @@ public abstract class Person {
      * @return the address-objects toString for the specific person
      */
     public String getAddressString(){
-        return address.toString();
+        return getAddress().toString();
     }
     
     /**
@@ -90,8 +94,22 @@ public abstract class Person {
      * @return a string representation of this person
      */
     public String toString() {
-        String s = firstname + "\n" + lastname + "\n" + "Fødselsnr: " + personalNumber +
-                "/nEpost-adresse: " + email + "\n" + address.toString();
+        String s = firstName + "\n" + lastName + "\n" + "Fødselsnr: " + personalNumber +
+                "/nEpost-adresse: " + email + "\n" + getAddress().toString();
         return s;
+    }
+
+    /**
+     * @return the address
+     */
+    public Address getAddress() {
+        return address;
+    }
+
+    /**
+     * @return the phone
+     */
+    public int getPhone() {
+        return phone;
     }
 }

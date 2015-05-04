@@ -34,7 +34,7 @@ public class Controller {
     
     // Views:
     private Login login;
-    private RegisterGui registerGui;
+    private RegisterPane registerGui;
     private CustomerRegistration cReg;
     private GuiAdmin guiAdmin;
     
@@ -54,7 +54,7 @@ public class Controller {
         claims = new ClaimRegister();
         
         login = new Login();
-        registerGui = new RegisterGui();
+        registerGui = new RegisterPane();
         cReg = new CustomerRegistration();
         guiAdmin = new GuiAdmin();
         login.getLoginBtn().setOnAction(this::loginBtnEventHandler);

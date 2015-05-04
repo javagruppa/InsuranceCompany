@@ -63,6 +63,7 @@ public class CustomerRegistration extends Application {
         mainPane.setAlignment(Pos.CENTER);
         mainPane.setHgap(10);
         mainPane.setVgap(10);
+        mainPane.setStyle("-fx-background-color: #E7E7FF;");
         
         scene = new Scene(getMainPane(), 300, 275);
         

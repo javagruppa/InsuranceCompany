@@ -8,6 +8,10 @@ and open the template in the editor.
     Author     : André
 */
 
+#centrePane {
+    -fx-background-color: #E7E7FF;
+}
+
 #mainToolbarButton  {
     -fx-background-color: linear-gradient(#395cab, #223768);
     -fx-border-color: #000000;

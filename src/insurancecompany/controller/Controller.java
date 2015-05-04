@@ -5,12 +5,13 @@
  */
 package insurancecompany.controller;
 
-import insurancecompany.datastructures.EmployeeRegister;
+import insurancecompany.datastructures.*;
 import insurancecompany.gui.*;
 import insurancecompany.people.*;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 /**
@@ -20,15 +21,41 @@ import javafx.stage.Stage;
 public class Controller {
     
     private Login login;
+    private RegisterGui registerGui;
+    private CustomerRegistration cReg;
+    private GuiAdmin guiAdmin;
     private EmployeeRegister employees;
     
     public Controller()  {
         login = new Login();
+        registerGui = new RegisterGui();
+        cReg = new CustomerRegistration();
+        guiAdmin = new GuiAdmin();
         login.getLoginBtn().setOnAction(this::loginBtnEventHandler);
+        guiAdmin.getRegisterButton().setOnAction(this::registerPaneEventHandler);
+        registerGui.getCustomerButton().setOnAction(this::registerCustomerPaneEventHandler);
+    }
+    
+    public void initGui() {
+        Pane pane = registerGui.getMainPane();
+        guiAdmin.getMainPane().setCenter(pane);
+        Pane pane2 = cReg.getMainPane();
+        registerGui.getMainPane().setCenter(pane2);
     }
     
     public void show(Stage stage) {
-        login.show(stage);
+        //login.show(stage);
+        guiAdmin.show(stage);
+    }
+    
+    private void registerPaneEventHandler(ActionEvent e) {
+        Pane pane = registerGui.getMainPane();
+        guiAdmin.getMainPane().setCenter(pane);
+    }
+    
+    private void registerCustomerPaneEventHandler(ActionEvent e) {
+        Pane pane = cReg.getMainPane();
+        registerGui.getMainPane().setCenter(pane);
     }
     
     

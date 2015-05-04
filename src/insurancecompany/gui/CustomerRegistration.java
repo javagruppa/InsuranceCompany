@@ -48,7 +48,7 @@ public class CustomerRegistration extends Application {
     
     public CustomerRegistration() {
         mainPane = new GridPane();
-        mainPane.setAlignment(Pos.TOP_LEFT);
+        mainPane.setAlignment(Pos.CENTER);
         mainPane.setHgap(10);
         mainPane.setVgap(10);
         

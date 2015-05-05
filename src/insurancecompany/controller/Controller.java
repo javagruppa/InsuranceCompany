@@ -36,6 +36,7 @@ public class Controller {
     private Login login;
     private RegisterPane registerGui;
     private CustomerRegistration cReg;
+    private BoatInsuranceRegistration biReg;
     private GuiAdmin guiAdmin;
     
     // Models:
@@ -126,6 +127,28 @@ public class Controller {
         
         
         
+    }
+    
+    private void registerBoatInsuranceEventHandler(ActionEvent e) {
+        // Collects information about the boat.
+        String regNumber = biReg.getRegNumberField().getText();
+        String effect = biReg.getEffectField().getText();
+        String length = biReg.getLengthField().getText();
+        String engineType = biReg.getEngineTypeField().getText();
+        String year = biReg.getYearField().getText();
+        String make = biReg.getMakeField().getText();
+        String model = biReg.getModelField().getText();
+        
+        // Collects information about the customer and the insurance.
+        String customerId = biReg.getCustomerIdField().getText();
+        String coverage = biReg.getCoverageField().getText();
+        String excess = biReg.getExcessField().getText();
+        boolean hasAlarm = biReg.getHasAlarmCheckBox().isSelected();
+        
+        // Converts strings to integers.
+        
+        
+        //new Boat(int regNumber, int effect, int length, String engineType, int year, String make, String model)
     }
     
     private void registerPaneEventHandler(ActionEvent e) {

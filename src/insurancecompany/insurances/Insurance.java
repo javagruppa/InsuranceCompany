@@ -49,7 +49,7 @@ public abstract class Insurance {
      * is true if and only if the argument is not null and is an Insurance 
      * object that contains the same insuranceId value as this object.
      * 
-     * @param obj the object ot compare with
+     * @param obj the object to compare with
      * @return true if the objects are the same; false otherwise
      */
     @Override

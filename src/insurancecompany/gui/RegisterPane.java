@@ -22,7 +22,7 @@ import javafx.stage.Stage;
  *
  * @author André
  */
-public class RegisterGui extends Application {
+public class RegisterPane extends Application {
     
     
     private Scene scene;
@@ -51,7 +51,7 @@ public class RegisterGui extends Application {
         stage.show();
     }
     
-    public RegisterGui() {
+    public RegisterPane() {
         mainPane = new BorderPane();
         
         mainPane.setTop(createToolBar());

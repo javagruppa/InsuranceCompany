@@ -73,6 +73,24 @@ public abstract class Property {
         this.type = type;
     }
     
+        /**
+     * Indicates whether some other property is equal to this one. The result 
+     * is true if and only if the argument is not null and is a Property 
+     * object that contains the same address value as this object.
+     * 
+     * @param obj the object to compare with
+     * @return true if the objects are the same; false otherwise
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if(obj != null && obj instanceof Property) {
+            Property other = (Property) obj;
+            return getAddress() == other.getAddress();
+        } else {
+            return false;
+        }   
+    }
+    
     /**
      * Returns a string representation of this property. The string
      * representation consists of each field with a short description separated
@@ -86,12 +104,47 @@ public abstract class Property {
         // method.
         StringBuilder result = new StringBuilder();
         // Appends the fields with appropriate sentences.
-        result.append("Adresse: ").append(address.toString());
-        result.append("\nAntall kvadratmeter: ").append(area);
-        result.append("\nByggeår: ").append(year);
-        result.append("\nByggemateriale: ").append(material);
-        result.append("\nBoligtype: ").append(type);
+        result.append("Adresse: ").append(getAddress().toString());
+        result.append("\nAntall kvadratmeter: ").append(getArea());
+        result.append("\nByggeår: ").append(getYear());
+        result.append("\nByggemateriale: ").append(getMaterial());
+        result.append("\nBoligtype: ").append(getType());
         // Returns the string.
         return result.toString();
+    }
+
+    /**
+     * @return the address
+     */
+    public Address getAddress() {
+        return address;
+    }
+
+    /**
+     * @return the area
+     */
+    public int getArea() {
+        return area;
+    }
+
+    /**
+     * @return the year
+     */
+    public int getYear() {
+        return year;
+    }
+
+    /**
+     * @return the material
+     */
+    public String getMaterial() {
+        return material;
+    }
+
+    /**
+     * @return the type
+     */
+    public String getType() {
+        return type;
     }
 }

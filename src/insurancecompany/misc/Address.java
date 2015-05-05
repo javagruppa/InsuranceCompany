@@ -11,7 +11,7 @@ package insurancecompany.misc;
  * @author Carl
  */
 public class Address {
-    private String street;
+    private String street; // Includes street name, number and letter.
     private int zipCode;
     private String city;
     

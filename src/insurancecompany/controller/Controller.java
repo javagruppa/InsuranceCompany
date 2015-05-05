@@ -35,7 +35,7 @@ public class Controller {
     
     // Views:
     private Login login;
-    private RegisterPane registerGui;
+    private RegisterPane registerPane;
     private CustomerRegistration cReg;
     private BoatInsuranceRegistration biReg;
     private GuiAdmin guiAdmin;
@@ -56,20 +56,20 @@ public class Controller {
         claims = new ClaimRegister();
         
         login = new Login();
-        registerGui = new RegisterPane();
+        registerPane = new RegisterPane();
         cReg = new CustomerRegistration();
         guiAdmin = new GuiAdmin();
         login.getLoginBtn().setOnAction(this::loginBtnEventHandler);
         guiAdmin.getRegisterButton().setOnAction(this::registerPaneEventHandler);
-        registerGui.getCustomerButton().setOnAction(this::registerCustomerPaneEventHandler);
+        registerPane.getCustomerButton().setOnAction(this::registerCustomerPaneEventHandler);
         cReg.getRegisterButton().setOnAction(this::registerCustomerEventHandler);
     }
     
     public void initGui() {
-        Pane pane = registerGui.getMainPane();
+        Pane pane = registerPane.getMainPane();
         guiAdmin.getMainPane().setCenter(pane);
         Pane pane2 = cReg.getMainPane();
-        registerGui.getMainPane().setCenter(pane2);
+        registerPane.getMainPane().setCenter(pane2);
     }
     
     public void show(Stage stage) {
@@ -153,14 +153,14 @@ public class Controller {
     }
     
     private void registerPaneEventHandler(ActionEvent e) {
-        Pane pane = registerGui.getMainPane();
+        Pane pane = registerPane.getMainPane();
         guiAdmin.getMainPane().setCenter(pane);       
     }
     
     private void registerCustomerPaneEventHandler(ActionEvent e) {
         Pane pane = cReg.getMainPane();
-        registerGui.getMainPane().setCenter(pane); 
-        selectedButtonStyleLower(registerGui.getCustomerButton());
+        registerPane.getMainPane().setCenter(pane); 
+        selectedButtonStyleLower(registerPane.getCustomerButton());
     }
     
     private void selectedButtonStyleUpper(Button button) {
@@ -171,13 +171,13 @@ public class Controller {
     }
     // TODO: Change to setId, and make a custom style for selected, will not have hover etc
     private void selectedButtonStyleLower(Button button) {
-        registerGui.getCustomerButton().setStyle("-fx-background-color: linear-gradient(#395cab, #223768);");
-        registerGui.getCarInsuranceButton().setStyle("-fx-background-color: linear-gradient(#395cab, #223768);");
-        registerGui.getBoatInsuranceButton().setStyle("-fx-background-color: linear-gradient(#395cab, #223768);");
-        registerGui.getHomeInsuranceButton().setStyle("-fx-background-color: linear-gradient(#395cab, #223768);");
-        registerGui.getHolidayHomeInsurance().setStyle("-fx-background-color: linear-gradient(#395cab, #223768);");
-        registerGui.getTravelInsuranceButton().setStyle("-fx-background-color: linear-gradient(#395cab, #223768);");
-        registerGui.getClaimButton().setStyle("-fx-background-color: linear-gradient(#395cab, #223768);");
+        registerPane.getCustomerButton().setStyle("-fx-background-color: linear-gradient(#395cab, #223768);");
+        registerPane.getCarInsuranceButton().setStyle("-fx-background-color: linear-gradient(#395cab, #223768);");
+        registerPane.getBoatInsuranceButton().setStyle("-fx-background-color: linear-gradient(#395cab, #223768);");
+        registerPane.getHomeInsuranceButton().setStyle("-fx-background-color: linear-gradient(#395cab, #223768);");
+        registerPane.getHolidayHomeInsurance().setStyle("-fx-background-color: linear-gradient(#395cab, #223768);");
+        registerPane.getTravelInsuranceButton().setStyle("-fx-background-color: linear-gradient(#395cab, #223768);");
+        registerPane.getClaimButton().setStyle("-fx-background-color: linear-gradient(#395cab, #223768);");
         button.setStyle("-fx-background-color: linear-gradient(#ffffff, #223768);");
     }
     

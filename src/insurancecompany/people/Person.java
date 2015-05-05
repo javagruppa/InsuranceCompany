@@ -13,7 +13,7 @@ import java.util.Date;
  * @author Carl
  */
 public abstract class Person {
-    /**the person number of the person*/
+    /**the personal number of the person*/
     private long personalNumber;
     /**the first name of the person*/
     private String firstName;

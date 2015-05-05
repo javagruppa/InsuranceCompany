@@ -49,4 +49,24 @@ public class Address {
             String s = "" + street + "\n" + zipCode + " " + city;
             return s;
     }
+    
+        /**
+     * Indicates whether some other address is equal to this one. The result 
+     * is true if and only if the argument is not null and is an Address 
+     * object that contains the same insuranceId value as this object.
+     * 
+     * @param obj the object to compare with
+     * @return true if the objects are the same; false otherwise
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if(obj != null && obj instanceof Address) {
+            Address other = (Address) obj;
+            return (getStreet() == other.getStreet()) 
+                    && (getZipCode() == other.getZipCode())
+                    && (getCity() == other.getCity());
+        } else {
+            return false;
+        }   
+    }
 }

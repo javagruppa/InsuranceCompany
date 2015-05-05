@@ -56,7 +56,7 @@ public abstract class Insurance {
     public boolean equals(Object obj) {
         if(obj != null && obj instanceof Insurance) {
             Insurance other = (Insurance) obj;
-            return insuranceId == other.getInsuranceId();
+            return getInsuranceId() == other.getInsuranceId();
         } else {
             return false;
         }   

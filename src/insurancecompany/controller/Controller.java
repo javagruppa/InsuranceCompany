@@ -39,6 +39,7 @@ public class Controller {
     private RegisterPane registerPane;
     private CustomerRegistration cReg;
     private BoatInsuranceRegistration biReg;
+    private TravelInsuranceRegistration tiReg;
     private GuiAdmin guiAdmin;
     
     // Models:
@@ -61,10 +62,12 @@ public class Controller {
         cReg = new CustomerRegistration();
         guiAdmin = new GuiAdmin();
         biReg = new BoatInsuranceRegistration();
+        tiReg = new TravelInsuranceRegistration();
         login.getLoginBtn().setOnAction(this::loginBtnEventHandler);
         guiAdmin.getRegisterButton().setOnAction(this::registerPaneEventHandler);
         registerPane.getCustomerButton().setOnAction(this::registerCustomerPaneEventHandler);
         registerPane.getBoatInsuranceButton().setOnAction(this::registerBoatInsurancePaneEventHandler);
+        registerPane.getTravelInsuranceButton().setOnAction(this::registerTravelInsurancePaneEventHandler);
         cReg.getRegisterButton().setOnAction(this::registerCustomerEventHandler);
     }
     
@@ -206,6 +209,12 @@ public class Controller {
         Pane pane = biReg.getMainPane();
         registerPane.getMainPane().setCenter(pane); 
         selectedButtonStyleLower(registerPane.getBoatInsuranceButton());
+    }
+    
+    private void registerTravelInsurancePaneEventHandler(ActionEvent e) {
+        Pane pane = tiReg.getMainPane();
+        registerPane.getMainPane().setCenter(pane); 
+        selectedButtonStyleLower(registerPane.getTravelInsuranceButton());
     }
     
     private void selectedButtonStyleUpper(Button button) {

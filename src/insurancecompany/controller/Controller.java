@@ -64,6 +64,7 @@ public class Controller {
         login.getLoginBtn().setOnAction(this::loginBtnEventHandler);
         guiAdmin.getRegisterButton().setOnAction(this::registerPaneEventHandler);
         registerPane.getCustomerButton().setOnAction(this::registerCustomerPaneEventHandler);
+        registerPane.getBoatInsuranceButton().setOnAction(this::registerBoatInsurancePaneEventHandler);
         cReg.getRegisterButton().setOnAction(this::registerCustomerEventHandler);
     }
     
@@ -132,7 +133,7 @@ public class Controller {
         
     }
     
-    private void registerBoatInsuranceEventHandler(ActionEvent e) {
+    /*private void registerBoatInsuranceEventHandler(ActionEvent e) {
         // Collects information about the boat.
         String regNumber = biReg.getRegNumberField().getText();
         String effectS = biReg.getEffectField().getText();
@@ -188,7 +189,7 @@ public class Controller {
         // Adds insurance to Register
         
         //new Boat(int regNumber, int effect, int length, String engineType, int year, String make, String model)
-    }
+    }*/
     
     private void registerPaneEventHandler(ActionEvent e) {
         Pane pane = registerPane.getMainPane();
@@ -199,6 +200,12 @@ public class Controller {
         Pane pane = cReg.getMainPane();
         registerPane.getMainPane().setCenter(pane); 
         selectedButtonStyleLower(registerPane.getCustomerButton());
+    }
+    
+    private void registerBoatInsurancePaneEventHandler(ActionEvent e) {
+        Pane pane = biReg.getMainPane();
+        registerPane.getMainPane().setCenter(pane); 
+        selectedButtonStyleLower(registerPane.getBoatInsuranceButton());
     }
     
     private void selectedButtonStyleUpper(Button button) {

@@ -73,23 +73,6 @@ public abstract class Property {
         this.type = type;
     }
     
-        /**
-     * Indicates whether some other property is equal to this one. The result 
-     * is true if and only if the argument is not null and is a Property 
-     * object that contains the same address value as this object.
-     * 
-     * @param obj the object to compare with
-     * @return true if the objects are the same; false otherwise
-     */
-    @Override
-    public boolean equals(Object obj) {
-        if(obj != null && obj instanceof Property) {
-            Property other = (Property) obj;
-            return getAddress() == other.getAddress();
-        } else {
-            return false;
-        }   
-    }
     
     /**
      * Returns a string representation of this property. The string

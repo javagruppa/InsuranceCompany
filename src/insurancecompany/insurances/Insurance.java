@@ -25,7 +25,7 @@ public abstract class Insurance {
     /** The excess of this insurance. */
     private int excess;
     /** Unique insurance id representing this insurance. */
-    private int insuranceId;
+    private final int insuranceId;
     /** The yearly insurance premium of this insurance. */
     private int premium;
     
@@ -49,17 +49,30 @@ public abstract class Insurance {
      * is true if and only if the argument is not null and is an Insurance 
      * object that contains the same insuranceId value as this object.
      * 
-     * @param obj the object ot compare with
+     * @param obj the object to compare with
      * @return true if the objects are the same; false otherwise
      */
     @Override
     public boolean equals(Object obj) {
         if(obj != null && obj instanceof Insurance) {
             Insurance other = (Insurance) obj;
-            return insuranceId == other.getInsuranceId();
+            return getInsuranceId() == other.getInsuranceId();
         } else {
             return false;
         }   
+    }
+    
+    /**
+     * Returns a hash code value for this insurance. This method is supported for 
+     * the benefit of hash tables such as those provided by HashMap.
+     * @return 
+     */
+    @Override 
+    public int hashCode() {
+        final int prime = 31;
+        int result = 31;
+        result = prime * result + getInsuranceId();
+        return result;
     }
     
     /**

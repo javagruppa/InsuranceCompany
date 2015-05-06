@@ -11,7 +11,7 @@ package insurancecompany.misc;
  * @author Carl
  */
 public class Address {
-    private String street;
+    private String street; // Includes street name, number and letter.
     private int zipCode;
     private String city;
     
@@ -21,17 +21,7 @@ public class Address {
         this.city = city;
     }
     
-    public void setStreet(String street) {
-        this.street = street;
-    }
-    
-    public void setZipCode(int zipCode) {
-        this.zipCode = zipCode;
-    }
-    
-    public void setCity(String city) {
-        this.city = city;
-    }
+
     
     public String getStreet() {
         return street;
@@ -49,4 +39,5 @@ public class Address {
             String s = "" + street + "\n" + zipCode + " " + city;
             return s;
     }
+    
 }

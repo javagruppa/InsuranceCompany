@@ -5,6 +5,7 @@
  */
 package insurancecompany.claims;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -13,6 +14,9 @@ import java.util.Date;
  */
 public class HomeClaim extends Claim {
      
+    
+    private ArrayList<ClaimItem> items;
+    
     /**
      * Empty constructor.
      */
@@ -28,6 +32,11 @@ public class HomeClaim extends Claim {
     public HomeClaim(String description) {
         super(description);
     }
+    
+    public void addItem(ClaimItem claimItem) {
+        items.add(claimItem);
+    }
+    
 
     @Override
     public String toString() {

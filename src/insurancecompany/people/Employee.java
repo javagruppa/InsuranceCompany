@@ -22,7 +22,7 @@ public abstract class Employee extends Person {
     private String passwordSalt;
     private String passwordHash;
     
-    private int employeeId;
+    private final int employeeId;
     
     public Employee(String firstname, String lastname, long personalNumber,
             String email, Address address, String phone) {

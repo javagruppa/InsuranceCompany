@@ -9,6 +9,7 @@ import insurancecompany.datastructures.*;
 import insurancecompany.gui.*;
 import insurancecompany.people.*;
 import insurancecompany.misc.*;
+import insurancecompany.vehicles.Boat;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -35,9 +36,10 @@ public class Controller {
     
     // Views:
     private Login login;
-    private RegisterPane registerGui;
+    private RegisterPane registerPane;
     private CustomerRegistration cReg;
     private BoatInsuranceRegistration biReg;
+    private TravelInsuranceRegistration tiReg;
     private GuiAdmin guiAdmin;
     
     // Models:
@@ -56,20 +58,24 @@ public class Controller {
         claims = new ClaimRegister();
         
         login = new Login();
-        registerGui = new RegisterPane();
+        registerPane = new RegisterPane();
         cReg = new CustomerRegistration();
         guiAdmin = new GuiAdmin();
+        biReg = new BoatInsuranceRegistration();
+        tiReg = new TravelInsuranceRegistration();
         login.getLoginBtn().setOnAction(this::loginBtnEventHandler);
         guiAdmin.getRegisterButton().setOnAction(this::registerPaneEventHandler);
-        registerGui.getCustomerButton().setOnAction(this::registerCustomerPaneEventHandler);
+        registerPane.getCustomerButton().setOnAction(this::registerCustomerPaneEventHandler);
+        registerPane.getBoatInsuranceButton().setOnAction(this::registerBoatInsurancePaneEventHandler);
+        registerPane.getTravelInsuranceButton().setOnAction(this::registerTravelInsurancePaneEventHandler);
         cReg.getRegisterButton().setOnAction(this::registerCustomerEventHandler);
     }
     
     public void initGui() {
-        Pane pane = registerGui.getMainPane();
+        Pane pane = registerPane.getMainPane();
         guiAdmin.getMainPane().setCenter(pane);
         Pane pane2 = cReg.getMainPane();
-        registerGui.getMainPane().setCenter(pane2);
+        registerPane.getMainPane().setCenter(pane2);
     }
     
     public void show(Stage stage) {
@@ -130,37 +136,85 @@ public class Controller {
         
     }
     
-    private void registerBoatInsuranceEventHandler(ActionEvent e) {
+    /*private void registerBoatInsuranceEventHandler(ActionEvent e) {
         // Collects information about the boat.
         String regNumber = biReg.getRegNumberField().getText();
-        String effect = biReg.getEffectField().getText();
-        String length = biReg.getLengthField().getText();
+        String effectS = biReg.getEffectField().getText();
+        String lengthS = biReg.getLengthField().getText();
         String engineType = biReg.getEngineTypeField().getText();
-        String year = biReg.getYearField().getText();
+        String yearS = biReg.getYearField().getText();
         String make = biReg.getMakeField().getText();
         String model = biReg.getModelField().getText();
         
         // Collects information about the customer and the insurance.
         String customerId = biReg.getCustomerIdField().getText();
-        String coverage = biReg.getCoverageField().getText();
-        String excess = biReg.getExcessField().getText();
+        String coverageS = biReg.getCoverageField().getText();
+        String excessS = biReg.getExcessField().getText();
         boolean hasAlarm = biReg.getHasAlarmCheckBox().isSelected();
         
         // Converts strings to integers.
+        int effect;
+        try {
+            effect = Integer.parseInt(effectS);
+        } catch(NumberFormatException nfe) {
+            
+        }
+        int length;
+        try {
+            length = Integer.parseInt(lengthS);
+        } catch(NumberFormatException nfe) {
+            
+        }
+        int year;
+        try {
+            year = Integer.parseInt(yearS);
+        } catch(NumberFormatException nfe) {
+            
+        }
+        int coverage;
+        try {
+            coverage = Integer.parseInt(coverageS);
+        } catch(NumberFormatException nfe) {
+            
+        }
+        int excess;
+        try {
+            excess = Integer.parseInt(excessS);
+        } catch(NumberFormatException nfe) {
+            
+        }
         
+        // Creates Boat
+        Boat boat = new Boat(regNumber, effect, length, engineType, year, make, model);
+        
+        // Creates BoatInsurance
+        
+        // Adds insurance to Register
         
         //new Boat(int regNumber, int effect, int length, String engineType, int year, String make, String model)
-    }
+    }*/
     
     private void registerPaneEventHandler(ActionEvent e) {
-        Pane pane = registerGui.getMainPane();
+        Pane pane = registerPane.getMainPane();
         guiAdmin.getMainPane().setCenter(pane);       
     }
     
     private void registerCustomerPaneEventHandler(ActionEvent e) {
         Pane pane = cReg.getMainPane();
-        registerGui.getMainPane().setCenter(pane); 
-        selectedButtonStyleLower(registerGui.getCustomerButton());
+        registerPane.getMainPane().setCenter(pane); 
+        selectedButtonStyleLower(registerPane.getCustomerButton());
+    }
+    
+    private void registerBoatInsurancePaneEventHandler(ActionEvent e) {
+        Pane pane = biReg.getMainPane();
+        registerPane.getMainPane().setCenter(pane); 
+        selectedButtonStyleLower(registerPane.getBoatInsuranceButton());
+    }
+    
+    private void registerTravelInsurancePaneEventHandler(ActionEvent e) {
+        Pane pane = tiReg.getMainPane();
+        registerPane.getMainPane().setCenter(pane); 
+        selectedButtonStyleLower(registerPane.getTravelInsuranceButton());
     }
     
     private void selectedButtonStyleUpper(Button button) {
@@ -171,13 +225,13 @@ public class Controller {
     }
     // TODO: Change to setId, and make a custom style for selected, will not have hover etc
     private void selectedButtonStyleLower(Button button) {
-        registerGui.getCustomerButton().setStyle("-fx-background-color: linear-gradient(#395cab, #223768);");
-        registerGui.getCarInsuranceButton().setStyle("-fx-background-color: linear-gradient(#395cab, #223768);");
-        registerGui.getBoatInsuranceButton().setStyle("-fx-background-color: linear-gradient(#395cab, #223768);");
-        registerGui.getHomeInsuranceButton().setStyle("-fx-background-color: linear-gradient(#395cab, #223768);");
-        registerGui.getHolidayHomeInsurance().setStyle("-fx-background-color: linear-gradient(#395cab, #223768);");
-        registerGui.getTravelInsuranceButton().setStyle("-fx-background-color: linear-gradient(#395cab, #223768);");
-        registerGui.getClaimButton().setStyle("-fx-background-color: linear-gradient(#395cab, #223768);");
+        registerPane.getCustomerButton().setStyle("-fx-background-color: linear-gradient(#395cab, #223768);");
+        registerPane.getCarInsuranceButton().setStyle("-fx-background-color: linear-gradient(#395cab, #223768);");
+        registerPane.getBoatInsuranceButton().setStyle("-fx-background-color: linear-gradient(#395cab, #223768);");
+        registerPane.getHomeInsuranceButton().setStyle("-fx-background-color: linear-gradient(#395cab, #223768);");
+        registerPane.getHolidayHomeInsurance().setStyle("-fx-background-color: linear-gradient(#395cab, #223768);");
+        registerPane.getTravelInsuranceButton().setStyle("-fx-background-color: linear-gradient(#395cab, #223768);");
+        registerPane.getClaimButton().setStyle("-fx-background-color: linear-gradient(#395cab, #223768);");
         button.setStyle("-fx-background-color: linear-gradient(#ffffff, #223768);");
     }
     

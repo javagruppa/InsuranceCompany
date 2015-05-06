@@ -23,7 +23,7 @@ public class Customer extends Person {
     private String passwordSalt;
     private String passwordHash;
     
-    private int customerId;
+    private final int customerId;
     private ArrayList<Vehicle> vehicles;
     
     public Customer(String firstname, String lastname, long personalNumber, String email, Address address, String phone) {

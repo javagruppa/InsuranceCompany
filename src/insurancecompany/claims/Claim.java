@@ -28,8 +28,10 @@ public abstract class Claim {
     private int customerId;
     /** The date this claim was submitted. */
     private Date date;
+    /** The date of when the damage happened */
+    private Date dateHappened;
     /** Unique claim id representing this claim. */
-    private int claimId;
+    private final int claimId;
     /** Textual description of this claim. */
     private String description;
     /** Image description of this claim. */
@@ -181,5 +183,19 @@ public abstract class Claim {
         text += "Takseringsbeløp: " + appraisal + "\n";
         text += "Utbetalt erstatningsbeløp: " + disbursement;
         return text;
+    }
+
+    /**
+     * @return the dateHappened
+     */
+    public Date getDateHappened() {
+        return dateHappened;
+    }
+
+    /**
+     * @param dateHappened the dateHappened to set
+     */
+    public void setDateHappened(Date dateHappened) {
+        this.dateHappened = dateHappened;
     }
 }

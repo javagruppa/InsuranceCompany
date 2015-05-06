@@ -31,7 +31,7 @@ public abstract class Claim {
     /** The date of when the damage happened */
     private Date dateHappened;
     /** Unique claim id representing this claim. */
-    private int claimId;
+    private final int claimId;
     /** Textual description of this claim. */
     private String description;
     /** Image description of this claim. */

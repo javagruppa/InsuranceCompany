@@ -16,7 +16,7 @@ import java.util.List;
 public enum BoatInsuranceCoverage {
     CASCO, PARTLY_CASCO;
     
-    public List<String> coverages() {
+    public List<String> damages() {
         switch(this) {
             case CASCO: return BoatInsuranceDamages.CASCO_COVERAGE;
             case PARTLY_CASCO: return BoatInsuranceDamages.PARTLY_CASCO_COVERAGE;

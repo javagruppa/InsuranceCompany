@@ -18,7 +18,7 @@ public enum TravelInsuranceCoverage {
     //FAMILY,
     //FAMILY_PLUS;
     
-        public List<String> coverages() {
+    public List<String> damages() {
         switch(this) {
             case STANDARD: return TravelInsuranceDamages.STANDARD_COVERAGE;
             default: throw new IllegalArgumentException();

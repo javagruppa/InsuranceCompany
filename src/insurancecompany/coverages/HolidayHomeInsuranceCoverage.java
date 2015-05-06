@@ -15,7 +15,7 @@ import java.util.List;
 public enum HolidayHomeInsuranceCoverage {
     HOME, CONTENTS, HOME_AND_CONTENTS;
     
-    public List<String> coverages() {
+    public List<String> damages() {
         switch(this) {
             case HOME: return HolidayHomeInsuranceDamages.HOLIDAY_HOME_COVERAGE;
             case CONTENTS: return HolidayHomeInsuranceDamages.HOLIDAY_HOME_CONTENTS_COVERAGE;

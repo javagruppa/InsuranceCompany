@@ -15,22 +15,22 @@ import java.util.List;
 public enum CarInsuranceCoverage {
     CASCO {
         @Override
-        public List<String> coverages() {
+        public List<String> damages() {
             return CarInsuranceDamages.CASCO_COVERAGE;
         }
     }, PARTLY_CASCO {
         @Override
-        public List<String> coverages() {
+        public List<String> damages() {
             return CarInsuranceDamages.PARTLY_CASCO_COVERAGE;
         }
     }, LIABILITY {
         @Override
-        public List<String> coverages() {
+        public List<String> damages() {
             return CarInsuranceDamages.LIABILITY_COVERAGE;
         }
     };
     
-    public abstract List<String> coverages();
+    public abstract List<String> damages();
     
     @Override
     public String toString() {

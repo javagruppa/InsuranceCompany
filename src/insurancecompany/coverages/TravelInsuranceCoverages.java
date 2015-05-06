@@ -6,6 +6,8 @@
 package insurancecompany.coverages;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  *
@@ -22,15 +24,17 @@ public final class TravelInsuranceCoverages {
     public static final String LIABILITY_AND_LEGAL_AID_OUTSIDE_NORDIC = "Ansvar og rettshjelp utenfor Norden";
     
     // TRAVEL INSURANCE COVERAGE
-    public static final ArrayList<String> TRAVEL_COVERAGE;        
+    public static final List<String> TRAVEL_COVERAGE;
+    
     static {
-        TRAVEL_COVERAGE = new ArrayList();
-        TRAVEL_COVERAGE.add(LUGGAGE);
-        TRAVEL_COVERAGE.add(DELAY_EVACUATION);
-        TRAVEL_COVERAGE.add(CANCELLATION);
-        TRAVEL_COVERAGE.add(SICKNESS_INJURY);
-        TRAVEL_COVERAGE.add(FULL_TIME_ACCIDENT_INSURANCE);
-        TRAVEL_COVERAGE.add(LIABILITY_AND_LEGAL_AID_OUTSIDE_NORDIC);       
+        List<String> travelCoverage = new ArrayList();
+        travelCoverage.add(LUGGAGE);
+        travelCoverage.add(DELAY_EVACUATION);
+        travelCoverage.add(CANCELLATION);
+        travelCoverage.add(SICKNESS_INJURY);
+        travelCoverage.add(FULL_TIME_ACCIDENT_INSURANCE);
+        travelCoverage.add(LIABILITY_AND_LEGAL_AID_OUTSIDE_NORDIC);
+        TRAVEL_COVERAGE = Collections.un
     }
     
     private TravelInsuranceCoverages() {

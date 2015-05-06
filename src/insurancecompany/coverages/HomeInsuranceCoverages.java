@@ -6,6 +6,8 @@
 package insurancecompany.coverages;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  *
@@ -48,31 +50,39 @@ public final class HomeInsuranceCoverages {
     
     
     // HOME_COVERAGE AND CONTENTS_COVERAGE INSURANCE COVERAGE
-    public static final ArrayList<String> HOME_COVERAGE;
-    public static final ArrayList<String> CONTENTS_COVERAGE;
+    public static final List<String> HOME_COVERAGE;
+    public static final List<String> CONTENTS_COVERAGE;
+    public static final List<String> HOME_AND_CONTENTS_COVERAGE;
             
     static {
-        HOME_COVERAGE = new ArrayList();
-        HOME_COVERAGE.add(FULL_VALUE_GUARANTEE);
-        HOME_COVERAGE.add(BUILDING_DAMAGE);
-        HOME_COVERAGE.add(TOTAL_REENTRY_OVER_SEVENTYFIVE);
-        HOME_COVERAGE.add(GARDEN_ARTICLES);
-        HOME_COVERAGE.add(REBUILDING_FOR_WHEELCHAIR_USER);
-        HOME_COVERAGE.add(LOSS_OF_RENT);
-        HOME_COVERAGE.add(LEGAL_LIABILITIES);
-        HOME_COVERAGE.add(LEGAL_AID);
-        HOME_COVERAGE.add(RODENT_DAMAGE);
+        List<String> homeCoverage = new ArrayList<String>();
+        homeCoverage.add(FULL_VALUE_GUARANTEE);
+        homeCoverage.add(BUILDING_DAMAGE);
+        homeCoverage.add(TOTAL_REENTRY_OVER_SEVENTYFIVE);
+        homeCoverage.add(GARDEN_ARTICLES);
+        homeCoverage.add(REBUILDING_FOR_WHEELCHAIR_USER);
+        homeCoverage.add(LOSS_OF_RENT);
+        homeCoverage.add(LEGAL_LIABILITIES);
+        homeCoverage.add(LEGAL_AID);
+        homeCoverage.add(RODENT_DAMAGE);
+        HOME_COVERAGE = Collections.unmodifiableList(homeCoverage);
         
-        CONTENTS_COVERAGE = new ArrayList();
-        CONTENTS_COVERAGE.add(FIRE_DAMAGE);
-        CONTENTS_COVERAGE.add(WATER_DAMAGE);
-        CONTENTS_COVERAGE.add(THEFT);
-        CONTENTS_COVERAGE.add(NATURAL_DISASTER);
-        CONTENTS_COVERAGE.add(BAG_SNATCHING);
-        CONTENTS_COVERAGE.add(ROBBERY_AND_ASSAULT);
-        CONTENTS_COVERAGE.add(SUBSISTENCE_EXPENSE);
-        CONTENTS_COVERAGE.add(LEGAL_LIABILITIES);
-        CONTENTS_COVERAGE.add(LEGAL_AID); 
+        List<String> contentsCoverage = new ArrayList<String>();
+        contentsCoverage.add(FIRE_DAMAGE);
+        contentsCoverage.add(WATER_DAMAGE);
+        contentsCoverage.add(THEFT);
+        contentsCoverage.add(NATURAL_DISASTER);
+        contentsCoverage.add(BAG_SNATCHING);
+        contentsCoverage.add(ROBBERY_AND_ASSAULT);
+        contentsCoverage.add(SUBSISTENCE_EXPENSE);
+        contentsCoverage.add(LEGAL_LIABILITIES);
+        contentsCoverage.add(LEGAL_AID);
+        CONTENTS_COVERAGE = Collections.unmodifiableList(contentsCoverage);
+        
+        List<String> homeAndContentsCoverage = new ArrayList<String>();
+        homeAndContentsCoverage.addAll(HOME_COVERAGE);
+        homeAndContentsCoverage.addAll(CONTENTS_COVERAGE);       
+        HOME_AND_CONTENTS_COVERAGE = Collections.unmodifiableList(homeAndContentsCoverage);
     }
     
     private HomeInsuranceCoverages() {

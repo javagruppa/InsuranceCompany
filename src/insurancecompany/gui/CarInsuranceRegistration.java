@@ -29,7 +29,7 @@ public class CarInsuranceRegistration {
     private Label modelLabel;
     private Label modelVariantLabel;
     private Label youngestDriverLabel;
-    private Label alarmLabel;
+    private Label alarmLabel; // FG-approved alarm
     private Label coverageLabel; // Nor: Dekning
     //private Label previousClaimsLabel; // Number of claims in the last 3 years.
     private Label parkingConditionLabel;
@@ -64,11 +64,17 @@ public class CarInsuranceRegistration {
         brandLabel = new Label("Merke:");
         brandCombo = new ComboBox();
         modelLabel = new Label("Modell:");
-        modelVariantLabel;
-        youngestDriverLabel;
-        alarmLabel;
-        coverageLabel; // Nor: Dekning
-        parkingConditionLabel;
+        modelField = new TextField();
+        modelVariantLabel = new Label("Modell variant:");
+        modelVariantField = new TextField();
+        youngestDriverLabel = new Label("Yngste fører:");
+        youngestDriverRadio = new RadioButton();
+        alarmLabel = new Label("FG-godkjent alarm:");
+        alarmRadio = new RadioButton();
+        coverageLabel = new Label("Dekning:");
+        coverageCombo = new ComboBox();
+        parkingConditionLabel = new Label("Parkeringsforhold:");
+        parkingConditionCombo = new ComboBox();
         
     }
 }

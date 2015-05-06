@@ -11,28 +11,17 @@ package insurancecompany.misc;
  * @author Carl
  */
 public class Address {
-    private String street; // Includes street name, number and letter.
-    private int zipCode;
-    private String city;
+    // Fields are final as they are used in the overriden equals method, and specifically to identify Property objects
+    private final String street; // Includes street name, number and letter.
+    private final int zipCode;
+    private final String city;
     
     public Address(String street, int zipCode, String city) {
         this.street = street;
         this.zipCode = zipCode;
         this.city = city;
     }
-    
-    public void setStreet(String street) {
-        this.street = street;
-    }
-    
-    public void setZipCode(int zipCode) {
-        this.zipCode = zipCode;
-    }
-    
-    public void setCity(String city) {
-        this.city = city;
-    }
-    
+     
     public String getStreet() {
         return street;
     }

@@ -25,7 +25,7 @@ public abstract class Insurance {
     /** The excess of this insurance. */
     private int excess;
     /** Unique insurance id representing this insurance. */
-    private int insuranceId;
+    private final int insuranceId;
     /** The yearly insurance premium of this insurance. */
     private int premium;
     
@@ -60,6 +60,19 @@ public abstract class Insurance {
         } else {
             return false;
         }   
+    }
+    
+    /**
+     * Returns a hash code value for this insurance. This method is supported for 
+     * the benefit of hash tables such as those provided by HashMap.
+     * @return 
+     */
+    @Override 
+    public int hashCode() {
+        final int prime = 31;
+        int result = 31;
+        result = prime * result + getInsuranceId();
+        return result;
     }
     
     /**

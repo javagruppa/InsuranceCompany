@@ -9,6 +9,7 @@ import insurancecompany.datastructures.*;
 import insurancecompany.gui.*;
 import insurancecompany.people.*;
 import insurancecompany.misc.*;
+import insurancecompany.vehicles.Boat;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -38,6 +39,7 @@ public class Controller {
     private RegisterPane registerPane;
     private CustomerRegistration cReg;
     private BoatInsuranceRegistration biReg;
+    private TravelInsuranceRegistration tiReg;
     private GuiAdmin guiAdmin;
     
     // Models:
@@ -60,9 +62,12 @@ public class Controller {
         cReg = new CustomerRegistration();
         guiAdmin = new GuiAdmin();
         biReg = new BoatInsuranceRegistration();
+        tiReg = new TravelInsuranceRegistration();
         login.getLoginBtn().setOnAction(this::loginBtnEventHandler);
         guiAdmin.getRegisterButton().setOnAction(this::registerPaneEventHandler);
         registerPane.getCustomerButton().setOnAction(this::registerCustomerPaneEventHandler);
+        registerPane.getBoatInsuranceButton().setOnAction(this::registerBoatInsurancePaneEventHandler);
+        registerPane.getTravelInsuranceButton().setOnAction(this::registerTravelInsurancePaneEventHandler);
         cReg.getRegisterButton().setOnAction(this::registerCustomerEventHandler);
     }
     
@@ -131,27 +136,63 @@ public class Controller {
         
     }
     
-    private void registerBoatInsuranceEventHandler(ActionEvent e) {
+    /*private void registerBoatInsuranceEventHandler(ActionEvent e) {
         // Collects information about the boat.
         String regNumber = biReg.getRegNumberField().getText();
-        String effect = biReg.getEffectField().getText();
-        String length = biReg.getLengthField().getText();
+        String effectS = biReg.getEffectField().getText();
+        String lengthS = biReg.getLengthField().getText();
         String engineType = biReg.getEngineTypeField().getText();
-        String year = biReg.getYearField().getText();
+        String yearS = biReg.getYearField().getText();
         String make = biReg.getMakeField().getText();
         String model = biReg.getModelField().getText();
         
         // Collects information about the customer and the insurance.
         String customerId = biReg.getCustomerIdField().getText();
-        String coverage = biReg.getCoverageField().getText();
-        String excess = biReg.getExcessField().getText();
+        String coverageS = biReg.getCoverageField().getText();
+        String excessS = biReg.getExcessField().getText();
         boolean hasAlarm = biReg.getHasAlarmCheckBox().isSelected();
         
         // Converts strings to integers.
+        int effect;
+        try {
+            effect = Integer.parseInt(effectS);
+        } catch(NumberFormatException nfe) {
+            
+        }
+        int length;
+        try {
+            length = Integer.parseInt(lengthS);
+        } catch(NumberFormatException nfe) {
+            
+        }
+        int year;
+        try {
+            year = Integer.parseInt(yearS);
+        } catch(NumberFormatException nfe) {
+            
+        }
+        int coverage;
+        try {
+            coverage = Integer.parseInt(coverageS);
+        } catch(NumberFormatException nfe) {
+            
+        }
+        int excess;
+        try {
+            excess = Integer.parseInt(excessS);
+        } catch(NumberFormatException nfe) {
+            
+        }
         
+        // Creates Boat
+        Boat boat = new Boat(regNumber, effect, length, engineType, year, make, model);
+        
+        // Creates BoatInsurance
+        
+        // Adds insurance to Register
         
         //new Boat(int regNumber, int effect, int length, String engineType, int year, String make, String model)
-    }
+    }*/
     
     private void registerPaneEventHandler(ActionEvent e) {
         Pane pane = registerPane.getMainPane();
@@ -162,6 +203,18 @@ public class Controller {
         Pane pane = cReg.getMainPane();
         registerPane.getMainPane().setCenter(pane); 
         selectedButtonStyleLower(registerPane.getCustomerButton());
+    }
+    
+    private void registerBoatInsurancePaneEventHandler(ActionEvent e) {
+        Pane pane = biReg.getMainPane();
+        registerPane.getMainPane().setCenter(pane); 
+        selectedButtonStyleLower(registerPane.getBoatInsuranceButton());
+    }
+    
+    private void registerTravelInsurancePaneEventHandler(ActionEvent e) {
+        Pane pane = tiReg.getMainPane();
+        registerPane.getMainPane().setCenter(pane); 
+        selectedButtonStyleLower(registerPane.getTravelInsuranceButton());
     }
     
     private void selectedButtonStyleUpper(Button button) {

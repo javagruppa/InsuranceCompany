@@ -52,6 +52,6 @@ public class CarInsurancePane {
     public CarInsurancePane() {
         
         Text customerIdTitle = new Text("Tegning av bilforsikring krever at kunden allerede er registrert i systemet");
-        customerIdLabel = new Label("Kundenummer:")
+        customerIdLabel = new Label("Kundenummer:");
     }
 }

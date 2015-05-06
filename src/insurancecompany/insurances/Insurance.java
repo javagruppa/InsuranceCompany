@@ -70,7 +70,7 @@ public abstract class Insurance {
     @Override 
     public int hashCode() {
         final int prime = 31;
-        int result = 31;
+        int result = 17;
         result = prime * result + getInsuranceId();
         return result;
     }

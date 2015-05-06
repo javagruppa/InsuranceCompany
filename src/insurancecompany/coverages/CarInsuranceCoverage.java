@@ -5,6 +5,7 @@
  */
 package insurancecompany.coverages;
 
+import insurancecompany.damages.CarInsuranceDamages;
 import java.util.List;
 
 /**
@@ -15,17 +16,17 @@ public enum CarInsuranceCoverage {
     CASCO {
         @Override
         public List<String> coverages() {
-            return CarInsuranceCoverages.CASCO_COVERAGE;
+            return CarInsuranceDamages.CASCO_COVERAGE;
         }
     }, PARTLY_CASCO {
         @Override
         public List<String> coverages() {
-            return CarInsuranceCoverages.PARTLY_CASCO_COVERAGE;
+            return CarInsuranceDamages.PARTLY_CASCO_COVERAGE;
         }
     }, LIABILITY {
         @Override
         public List<String> coverages() {
-            return CarInsuranceCoverages.LIABILITY_COVERAGE;
+            return CarInsuranceDamages.LIABILITY_COVERAGE;
         }
     };
     

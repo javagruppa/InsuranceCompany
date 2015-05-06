@@ -12,7 +12,8 @@ import java.util.Date;
  * @author André
  */
 public class TravelClaim extends Claim {
-     
+    
+    private String creditCard;
     /**
      * Empty constructor.
      */

@@ -8,39 +8,23 @@ package insurancecompany.vehicles;
 /**
  *
  * @author André
+ * @author Sindre
  */
-public class Vehicle {
-    private int personalNumber;
-    private int regNumber;
-    private String make;
+public abstract class Vehicle {
+    private String brand;
+    private int engineEffect;
     private String model;
+    private String personalNumber;
+    private String regNumber;
     private int regYear;
     
-    public Vehicle(int regNumber, String make, String model, int regYear){
-        this.regNumber = regNumber;
-        this.make = make;
+    public Vehicle(String brand, int engineEffect, String model, 
+            String personalNumber, String regNumber, int regYear){
+        this.brand = brand;
+        this.engineEffect = engineEffect;
         this.model = model;
-        this.regYear = regYear;
-    }
-    
-    public int getRegNumber(){
-        return regNumber;
-    }
-    
-    public void setRegNumber(int newNumber){
-        this.regNumber = newNumber;
-    }
-    
-    public void setPersonalNumber(int personalNumber) {
         this.personalNumber = personalNumber;
-    }
-    
-    public int getPersonalNumber() {
-        return personalNumber;
-    }
-    
-    public String toString(){
-        String s = "";
-        return s;
+        this.regNumber = regNumber;
+        this.regYear = regYear;
     }
 }

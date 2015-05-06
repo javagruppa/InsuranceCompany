@@ -59,6 +59,7 @@ public class Controller {
         registerPane = new RegisterPane();
         cReg = new CustomerRegistration();
         guiAdmin = new GuiAdmin();
+        biReg = new BoatInsuranceRegistration();
         login.getLoginBtn().setOnAction(this::loginBtnEventHandler);
         guiAdmin.getRegisterButton().setOnAction(this::registerPaneEventHandler);
         registerPane.getCustomerButton().setOnAction(this::registerCustomerPaneEventHandler);

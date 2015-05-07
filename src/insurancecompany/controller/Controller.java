@@ -83,10 +83,6 @@ public class Controller {
         homeInsuranceRegistration = new HomeInsuranceRegistration();
         holidayHomeInsuranceRegistration = new HolidayHomeInsuranceRegistration();
         travelInsuranceRegistration = new TravelInsuranceRegistration();
-        Pane pane = registerView.getMainPane();
-        adminView.getMainPane().setCenter(pane);
-        Pane pane2 = customerRegistration.getMainPane();
-        registerView.getMainPane().setCenter(pane2);
     }
     
     public void initializeEventHandlers() {
@@ -209,40 +205,7 @@ public class Controller {
         
         //new Boat(int regNumber, int effect, int length, String engineType, int year, String make, String model)
     }*/
-    
-    
-    private void registerCustomerPaneEventHandler(ActionEvent e) {
-        Pane pane = customerRegistration.getMainPane();
-        registerView.getMainPane().setCenter(pane); 
-    }
-    
-    private void registerBoatInsurancePaneEventHandler(ActionEvent e) {
-        Pane pane = boatInsuranceRegistration.getMainPane();
-        registerView.getMainPane().setCenter(pane); 
-
-    }
-    /*
-    private void registerHomeInsurancePaneEventHandler(ActionEvent e) {
-        Pane pane = homeInsuranceRegistration.getMainPane();
-        registerView.getMainPane().setCenter(pane); 
-        selectedButtonStyleLower(registerView.getHomeInsuranceButton());
-    }
-    
-    private void registerHolidayHomeInsurancePaneEventHandler(ActionEvent e) {
-        Pane pane = holidayHomeInsuranceRegistration.getMainPane();
-        registerView.getMainPane().setCenter(pane); 
-        selectedButtonStyleLower(registerView.getHolidayHomeInsuranceButton());
-    }
-    * */
-    
-    private void registerTravelInsurancePaneEventHandler(ActionEvent e) {
-        Pane pane = travelInsuranceRegistration.getMainPane();
-        registerView.getMainPane().setCenter(pane); 
-        //selectedButtonStyleLower(registerView.getTravelInsuranceButton());
-    }
-    
-
-    
+   
     
     private void loginBtnEventHandler(ActionEvent e) {
         

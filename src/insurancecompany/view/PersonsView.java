@@ -5,8 +5,7 @@
  */
 package insurancecompany.view;
 
-import insurancecompany.view.register.BoatInsuranceRegistration;
-import insurancecompany.view.register.TravelInsuranceRegistration;
+import insurancecompany.view.register.CustomerRegistration;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.collections.FXCollections;
@@ -29,23 +28,17 @@ import javafx.stage.Stage;
  */
 public class PersonsView {
     
-    private BoatInsuranceRegistration boatInsuranceRegistration;
-    private TravelInsuranceRegistration travelInsuranceRegistration;
+    private CustomerRegistration customerRegistration;
     
     private Pane customerRegistrationPane;
-    private Pane boatInsuranceRegistrationPane;
-    private Pane travelInsuranceRegistrationPane;
     
     private Scene scene;
     private BorderPane mainPane;
     
     private Pane sideToolBarPane;
     
-    private Button carInsuranceButton;
-    private Button boatInsuranceButton;
-    private Button homeInsuranceButton;
-    private Button holidayHomeInsuranceButton;
-    private Button travelInsuranceButton;
+    private Button customerButton;
+    private Button employeeButton;
             
     //public static void main(String[] args) {
     //    launch(args);
@@ -74,84 +67,49 @@ public class PersonsView {
         initializeEventHandlers();      
     }
     private void initializeViews() {
-        boatInsuranceRegistration = new BoatInsuranceRegistration();
-        boatInsuranceRegistrationPane = boatInsuranceRegistration.getMainPane();
-        travelInsuranceRegistration = new TravelInsuranceRegistration();
-        travelInsuranceRegistrationPane = travelInsuranceRegistration.getMainPane();
+        customerRegistration = new CustomerRegistration();
+        customerRegistrationPane = customerRegistration.getMainPane();
     }
     
     private void initializeEventHandlers() {
       
-        carInsuranceButton.setOnAction((event) -> {
-            //mainPane.setCenter();
-            //selectedButtonStyleLower(carInsuranceButton);
+        customerButton.setOnAction((event) -> {
+            mainPane.setCenter(customerRegistrationPane);
+            selectedButtonStyleLower(customerButton);
         });
         
-        boatInsuranceButton.setOnAction((event) -> {
-            mainPane.setCenter(boatInsuranceRegistrationPane);
-            selectedButtonStyleLower(boatInsuranceButton);
-        });
-        
-        homeInsuranceButton.setOnAction((event) -> {
-            //mainPane.setCenter();
-            //selectedButtonStyleLower(homeInsuranceButton);
-        });
-        
-        holidayHomeInsuranceButton.setOnAction((event) -> {
-            //mainPane.setCenter();
-            //selectedButtonStyleLower(holidayHomeInsuranceButton);
-        });
-        
-        travelInsuranceButton.setOnAction((event) -> {
-            mainPane.setCenter(travelInsuranceRegistrationPane);
-            selectedButtonStyleLower(travelInsuranceButton);
+        employeeButton.setOnAction((event) -> {
+            //mainPane.setCenter(boatInsuranceRegistrationPane);
+            //selectedButtonStyleLower(employeeButton);
         });
     }
     
     // TODO: Change to setId, and make a custom style for selected, will not have hover etc
     private void selectedButtonStyleLower(Button button) {
-        carInsuranceButton.setId("sideToolbarButton");
-        boatInsuranceButton.setId("sideToolbarButton");
-        homeInsuranceButton.setId("sideToolbarButton");
-        holidayHomeInsuranceButton.setId("sideToolbarButton");
-        travelInsuranceButton.setId("sideToolbarButton");
+        customerButton.setId("sideToolbarButton");
+        employeeButton.setId("sideToolbarButton");
         button.setId("sideToolbarButtonSelected");
     }
     
     private VBox createSideToolBar() {
         VBox vbox = new VBox();
+        vbox.setPrefWidth(160);
         vbox.getStyleClass().add("insurancecompany/resources/stylesheet.css");
         vbox.setStyle("-fx-background-color: #6577A1;");
     
-        carInsuranceButton = new Button("Bilforsikring");       
-        carInsuranceButton.setId("sideToolbarButton");
-        Image carImage = new Image("insurancecompany/resources/images/car.png");
-        carInsuranceButton.setGraphic(new ImageView(carImage));
+        customerButton = new Button("Ny kunde");       
+        customerButton.setId("sideToolbarButton");
+        Image customerImage = new Image("insurancecompany/resources/images/customer.png");
+        customerButton.setGraphic(new ImageView(customerImage));
         //carInsuranceButton.setContentDisplay(ContentDisplay.LEFT);
         
-        boatInsuranceButton = new Button("Båtforsikring");
-        boatInsuranceButton.setId("sideToolbarButton");
-        Image boatImage = new Image("insurancecompany/resources/images/boat.png");
-        boatInsuranceButton.setGraphic(new ImageView(boatImage));
-        
-        homeInsuranceButton = new Button("Husforsikring");
-        homeInsuranceButton.setId("sideToolbarButton");
-        Image houseImage = new Image("insurancecompany/resources/images/house.png");
-        homeInsuranceButton.setGraphic(new ImageView(houseImage));
-        
-        holidayHomeInsuranceButton = new Button("Fritidsbolig-\nforsikring");
-        holidayHomeInsuranceButton.setId("sideToolbarButton");
-        Image cabinImage = new Image("insurancecompany/resources/images/cabin.png");
-        holidayHomeInsuranceButton.setGraphic(new ImageView(cabinImage));
-        
-        travelInsuranceButton = new Button("Reiseforsikring");
-        travelInsuranceButton.setId("sideToolbarButton");
-        Image airplaneImage = new Image("insurancecompany/resources/images/airplane.png");
-        travelInsuranceButton.setGraphic(new ImageView(airplaneImage));
+        employeeButton = new Button("Ny ansatt");
+        employeeButton.setId("sideToolbarButton");
+        Image employeeImage = new Image("insurancecompany/resources/images/employee.png");
+        employeeButton.setGraphic(new ImageView(employeeImage));
         
         ObservableList<Button> buttons = FXCollections.observableArrayList ();
-        buttons.addAll(carInsuranceButton, boatInsuranceButton, homeInsuranceButton, 
-                holidayHomeInsuranceButton, travelInsuranceButton);
+        buttons.addAll(customerButton, employeeButton);
         buttons.forEach(b -> {
             b.setMinWidth(Button.USE_PREF_SIZE);
             b.setMaxWidth(Double.MAX_VALUE);

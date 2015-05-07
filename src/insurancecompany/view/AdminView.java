@@ -78,7 +78,7 @@ public class AdminView extends Application {
     
     public void show(Stage stage) {
         primaryStage = stage;
-        primaryStage.setFullScreen(true);
+        //primaryStage.setFullScreen(true);
         primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.setTitle("Kunderegistrering");
         primaryStage.setScene(getScene());

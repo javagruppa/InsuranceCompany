@@ -8,10 +8,8 @@ package insurancecompany.gui;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
@@ -64,8 +62,8 @@ public class BoatInsuranceRegistration {
         mainPane.setHgap(10);
         mainPane.setVgap(10);
         mainPane.setStyle("-fx-background-color: #E7E7FF;");
-        //mainPane.setGridLinesVisible(true);
-        mainPane.getColumnConstraints().addAll(new ColumnConstraints(200), new ColumnConstraints(200), new ColumnConstraints(200));
+        mainPane.getColumnConstraints().addAll(new ColumnConstraints(200), 
+                new ColumnConstraints(200), new ColumnConstraints(200));
         
         scene = new Scene(mainPane, 300, 275);
         

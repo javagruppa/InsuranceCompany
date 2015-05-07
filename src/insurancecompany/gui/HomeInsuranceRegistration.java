@@ -153,4 +153,179 @@ public class HomeInsuranceRegistration {
         stage.setScene(scene);
         stage.show();
     }
+
+    /**
+     * @return the customerIdField
+     */
+    public TextField getCustomerIdField() {
+        return customerIdField;
+    }
+
+    /**
+     * @return the excessField
+     */
+    public TextField getExcessField() {
+        return excessField;
+    }
+
+    /**
+     * @return the buildingAmountField
+     */
+    public TextField getBuildingAmountField() {
+        return buildingAmountField;
+    }
+
+    /**
+     * @return the contentAmountField
+     */
+    public TextField getContentAmountField() {
+        return contentAmountField;
+    }
+
+    /**
+     * @return the areaField
+     */
+    public TextField getAreaField() {
+        return areaField;
+    }
+
+    /**
+     * @return the yearField
+     */
+    public TextField getYearField() {
+        return yearField;
+    }
+
+    /**
+     * @return the materialField
+     */
+    public TextField getMaterialField() {
+        return materialField;
+    }
+
+    /**
+     * @return the typeField
+     */
+    public TextField getTypeField() {
+        return typeField;
+    }
+
+    /**
+     * @return the streetField
+     */
+    public TextField getStreetField() {
+        return streetField;
+    }
+
+    /**
+     * @return the zipCodeField
+     */
+    public TextField getZipCodeField() {
+        return zipCodeField;
+    }
+
+    /**
+     * @return the cityField
+     */
+    public TextField getCityField() {
+        return cityField;
+    }
+
+    /**
+     * @return the premiumField
+     */
+    public TextField getPremiumField() {
+        return premiumField;
+    }
+
+    /**
+     * @param customerIdMessage the customerIdMessage to set
+     */
+    public void setCustomerIdMessage(Label customerIdMessage) {
+        this.customerIdMessage = customerIdMessage;
+    }
+
+    /**
+     * @param excessMessage the excessMessage to set
+     */
+    public void setExcessMessage(Label excessMessage) {
+        this.excessMessage = excessMessage;
+    }
+
+    /**
+     * @param buildingAmountMessage the buildingAmountMessage to set
+     */
+    public void setBuildingAmountMessage(Label buildingAmountMessage) {
+        this.buildingAmountMessage = buildingAmountMessage;
+    }
+
+    /**
+     * @param contentAmountMessage the contentAmountMessage to set
+     */
+    public void setContentAmountMessage(Label contentAmountMessage) {
+        this.contentAmountMessage = contentAmountMessage;
+    }
+
+    /**
+     * @param areaMessage the areaMessage to set
+     */
+    public void setAreaMessage(Label areaMessage) {
+        this.areaMessage = areaMessage;
+    }
+
+    /**
+     * @param yearMessage the yearMessage to set
+     */
+    public void setYearMessage(Label yearMessage) {
+        this.yearMessage = yearMessage;
+    }
+
+    /**
+     * @param materialMessage the materialMessage to set
+     */
+    public void setMaterialMessage(Label materialMessage) {
+        this.materialMessage = materialMessage;
+    }
+
+    /**
+     * @param typeMessage the typeMessage to set
+     */
+    public void setTypeMessage(Label typeMessage) {
+        this.typeMessage = typeMessage;
+    }
+
+    /**
+     * @param streetMessage the streetMessage to set
+     */
+    public void setStreetMessage(Label streetMessage) {
+        this.streetMessage = streetMessage;
+    }
+
+    /**
+     * @param zipCodeMessage the zipCodeMessage to set
+     */
+    public void setZipCodeMessage(Label zipCodeMessage) {
+        this.zipCodeMessage = zipCodeMessage;
+    }
+
+    /**
+     * @param cityMessage the cityMessage to set
+     */
+    public void setCityMessage(Label cityMessage) {
+        this.cityMessage = cityMessage;
+    }
+
+    /**
+     * @return the calculateButton
+     */
+    public Button getCalculateButton() {
+        return calculateButton;
+    }
+
+    /**
+     * @return the registerButton
+     */
+    public Button getRegisterButton() {
+        return registerButton;
+    }
 }

@@ -36,6 +36,20 @@ public class EmployeeRegister {
         }
     }
     
+        /**
+     * Deletes an employee from the register.
+     * @param employee employee to be removed from register
+     * @return true if this list has changed as a result of the call
+     */
+    public boolean deleteEmployee(Employee employee) {
+        return employees.removeIf(i -> i.equals(employee));
+    }
+    
+    /**
+     * Returns an employee that has a given employeeId
+     * @param employeeId the employeeId of the emplyee to be returned
+     * @return employee-object
+     */
     public Employee getEmployeeById(int employeeId) {
         for (Employee employee : employees) {
             if (employee.getEmployeeId() == employeeId) {

@@ -37,8 +37,8 @@ public class BoatInsuranceRegistration {
     private TextField regYearField;
     private TextField premiumField;
     
-    private ComboBox alarmComboBox;
-    private ComboBox coverageComboBox;
+    private ComboBox<String> alarmComboBox;
+    private ComboBox<String> coverageComboBox;
     
     private Label customerIdMessage;
     private Label excessMessage;
@@ -80,10 +80,10 @@ public class BoatInsuranceRegistration {
         premiumField = new TextField();
         premiumField.setEditable(false);
         
-        alarmComboBox = new ComboBox();
+        alarmComboBox = new ComboBox<>();
         alarmComboBox.getItems().addAll("Ja", "Nei");
         
-        coverageComboBox = new ComboBox();
+        coverageComboBox = new ComboBox<>();
         coverageComboBox.getItems().addAll("Kasko", "Delkasko", "Ansvar");
     
         customerIdMessage = new Label("* Dette feltet må fylles ut!");
@@ -174,92 +174,92 @@ public class BoatInsuranceRegistration {
     /**
      * @return the customerIdField
      */
-    public TextField getCustomerIdField() {
-        return customerIdField;
+    public String getCustomerId() {
+        return customerIdField.getText();
     }
 
     /**
      * @return the excessField
      */
-    public TextField getExcessField() {
-        return excessField;
+    public String getExcess() {
+        return excessField.getText();
     }
 
     /**
      * @return the brandField
      */
-    public TextField getBrandField() {
-        return brandField;
+    public String getBrand() {
+        return brandField.getText();
     }
 
     /**
      * @return the engineEffectField
      */
-    public TextField getEngineEffectField() {
-        return engineEffectField;
+    public String getEngineEffect() {
+        return engineEffectField.getText();
     }
 
     /**
      * @return the engineTypeField
      */
-    public TextField getEngineTypeField() {
-        return engineTypeField;
+    public String getEngineType() {
+        return engineTypeField.getText();
     }
 
     /**
      * @return the lengthField
      */
-    public TextField getLengthField() {
-        return lengthField;
+    public String getLength() {
+        return lengthField.getText();
     }
 
     /**
      * @return the modelField
      */
-    public TextField getModelField() {
-        return modelField;
+    public String getModel() {
+        return modelField.getText();
     }
 
     /**
      * @return the personalNumberField
      */
-    public TextField getPersonalNumberField() {
-        return personalNumberField;
+    public String getPersonalNumber() {
+        return personalNumberField.getText();
     }
 
     /**
      * @return the regNumberField
      */
-    public TextField getRegNumberField() {
-        return regNumberField;
+    public String getRegNumber() {
+        return regNumberField.getText();
     }
 
     /**
      * @return the regYearField
      */
-    public TextField getRegYearField() {
-        return regYearField;
+    public String getRegYear() {
+        return regYearField.getText();
     }
 
     /**
      * @return the premiumField
      */
-    public TextField getPremiumField() {
-        return premiumField;
+    public String getPremium() {
+        return premiumField.getText();
     }
 
     /**
      * @return the alarmComboBox
      */
-    public ComboBox getAlarmComboBox() {
-        return alarmComboBox;
+    public boolean getAlarm() {
+        return alarmComboBox.getValue().equals("Ja");
     }
 
     /**
      * @return the coverageComboBox
      */
-    public ComboBox getCoverageComboBox() {
-        return coverageComboBox;
+    public String getCoverage() {
+        return coverageComboBox.getValue();
     }
 
     /**

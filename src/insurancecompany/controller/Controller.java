@@ -202,38 +202,21 @@ public class Controller {
     private void registerCustomerPaneEventHandler(ActionEvent e) {
         Pane pane = cReg.getMainPane();
         registerPane.getMainPane().setCenter(pane); 
-        selectedButtonStyleLower(registerPane.getCustomerButton());
     }
     
     private void registerBoatInsurancePaneEventHandler(ActionEvent e) {
         Pane pane = biReg.getMainPane();
         registerPane.getMainPane().setCenter(pane); 
-        selectedButtonStyleLower(registerPane.getBoatInsuranceButton());
+
     }
     
     private void registerTravelInsurancePaneEventHandler(ActionEvent e) {
         Pane pane = tiReg.getMainPane();
         registerPane.getMainPane().setCenter(pane); 
-        selectedButtonStyleLower(registerPane.getTravelInsuranceButton());
+        //selectedButtonStyleLower(registerPane.getTravelInsuranceButton());
     }
     
-    private void selectedButtonStyleUpper(Button button) {
-        guiAdmin.getRegisterButton().setStyle("-fx-background-color: linear-gradient(#395cab, #223768);");
-        guiAdmin.getSearchButton().setStyle("-fx-background-color: linear-gradient(#395cab, #223768);");
-        guiAdmin.getStatisticsButton().setStyle("-fx-background-color: linear-gradient(#395cab, #223768);");
-        button.setStyle("-fx-background-color: linear-gradient(#ffffff, #223768);");
-    }
-    // TODO: Change to setId, and make a custom style for selected, will not have hover etc
-    private void selectedButtonStyleLower(Button button) {
-        registerPane.getCustomerButton().setStyle("-fx-background-color: linear-gradient(#395cab, #223768);");
-        registerPane.getCarInsuranceButton().setStyle("-fx-background-color: linear-gradient(#395cab, #223768);");
-        registerPane.getBoatInsuranceButton().setStyle("-fx-background-color: linear-gradient(#395cab, #223768);");
-        registerPane.getHomeInsuranceButton().setStyle("-fx-background-color: linear-gradient(#395cab, #223768);");
-        registerPane.getHolidayHomeInsurance().setStyle("-fx-background-color: linear-gradient(#395cab, #223768);");
-        registerPane.getTravelInsuranceButton().setStyle("-fx-background-color: linear-gradient(#395cab, #223768);");
-        registerPane.getClaimButton().setStyle("-fx-background-color: linear-gradient(#395cab, #223768);");
-        button.setStyle("-fx-background-color: linear-gradient(#ffffff, #223768);");
-    }
+
     
     
     private void loginBtnEventHandler(ActionEvent e) {

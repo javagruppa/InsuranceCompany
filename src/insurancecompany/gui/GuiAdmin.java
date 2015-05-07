@@ -25,21 +25,32 @@ import javafx.stage.Stage;
 public class GuiAdmin extends Application {
     
     
+    private RegisterPane registerPaneO;
+    private CustomerRegistration customerRegistration;
+    private BoatInsuranceRegistration boatInsuranceRegistration;
+    private TravelInsuranceRegistration travelInsuranceRegistration;
+    
     private Scene scene;
     private BorderPane mainPane;
-    private Button registerButton;
-    private Button searchButton;
-    private Button statisticsButton;
+    private Button registerTabButton;
+    private Button searchTabButton;
+    private Button statisticsTabButton;
     private Button logOutButton;
     private Button exitButton;
     private Text userStatusText;
-            
-    public static void main(String[] args) {
-        launch(args);
-    }
     
-
-    @Override
+    private BorderPane registerPane;
+    private GridPane customerRegistrationPane;
+    private GridPane travelInsurancePane;     
+    
+    public GuiAdmin() {
+        mainPane = new BorderPane();
+        VBox vbox = new VBox();
+        vbox.getChildren().addAll(createToolBar(), createStatusBar());
+        mainPane.setTop(vbox);
+        scene = new Scene(getMainPane(), 900, 600);
+        scene.getStylesheets().add("stylesheet.css");
+    }
     public void start(Stage stage) throws Exception {
         show(stage);
     }
@@ -50,23 +61,21 @@ public class GuiAdmin extends Application {
         stage.show();
     }
     
-    public GuiAdmin() {
-        mainPane = new BorderPane();
-        VBox vbox = new VBox();
-        vbox.getChildren().addAll(createToolBar(), createStatusBar());
-        mainPane.setTop(vbox);
-        scene = new Scene(getMainPane(), 900, 600);
-        scene.getStylesheets().add("stylesheet.css");
+    public void initialize() {
+        registerTabButton.setOnAction((event) -> {
+            mainPane.setCenter(registerPane);
+        });
     }
+    
     
     public HBox createToolBar() {
         HBox hbox = new HBox();
         hbox.setStyle("-fx-background-color: #336699;");
-        registerButton = new Button("Registrer");
+        registerTabButton = new Button("Registrer");
         getRegisterButton().setId("mainToolbarButton");
-        searchButton = new Button("Søk");
+        searchTabButton = new Button("Søk");
         getSearchButton().setId("mainToolbarButton");
-        statisticsButton = new Button("Statistikk");
+        statisticsTabButton = new Button("Statistikk");
         getStatisticsButton().setId("mainToolbarButton");
         
         logOutButton = new Button("Logg ut");
@@ -85,7 +94,7 @@ public class GuiAdmin extends Application {
         return hbox;
     }
     
-    public HBox createStatusBar() {
+    private HBox createStatusBar() {
         HBox hbox = new HBox();
         hbox.setPadding(new Insets(5, 0, 5, 0));
         hbox.setStyle("-fx-background-color: #FFFFFF;");
@@ -94,7 +103,24 @@ public class GuiAdmin extends Application {
         hbox.getChildren().add(getUserStatusText());
         return hbox;
     }
-
+    
+    private void selectedButtonStyleUpper(Button button) {
+        registerTabButton.setId("mainToolbarButton");
+        searchTabButton.setId("mainToolbarButton");
+        statisticsTabButton.setId("mainToolbarButton");
+        button.setStyle("mainToolbarButtonSelected");
+    }
+    // TODO: Change to setId, and make a custom style for selected, will not have hover etc
+    private void selectedButtonStyleLower(Button button) {
+        registerPane.getCustomerButton().setStyle("-fx-background-color: linear-gradient(#395cab, #223768);");
+        registerPane.getCarInsuranceButton().setStyle("-fx-background-color: linear-gradient(#395cab, #223768);");
+        registerPane.getBoatInsuranceButton().setStyle("-fx-background-color: linear-gradient(#395cab, #223768);");
+        registerPane.getHomeInsuranceButton().setStyle("-fx-background-color: linear-gradient(#395cab, #223768);");
+        registerPane.getHolidayHomeInsurance().setStyle("-fx-background-color: linear-gradient(#395cab, #223768);");
+        registerPane.getTravelInsuranceButton().setStyle("-fx-background-color: linear-gradient(#395cab, #223768);");
+        registerPane.getClaimButton().setStyle("-fx-background-color: linear-gradient(#395cab, #223768);");
+        button.setStyle("-fx-background-color: linear-gradient(#ffffff, #223768);");
+    }
     /**
      * @return the scene
      */
@@ -110,24 +136,24 @@ public class GuiAdmin extends Application {
     }
 
     /**
-     * @return the registerButton
+     * @return the registerTabButton
      */
     public Button getRegisterButton() {
-        return registerButton;
+        return registerTabButton;
     }
 
     /**
-     * @return the searchButton
+     * @return the searchTabButton
      */
     public Button getSearchButton() {
-        return searchButton;
+        return searchTabButton;
     }
 
     /**
-     * @return the statisticsButton
+     * @return the statisticsTabButton
      */
     public Button getStatisticsButton() {
-        return statisticsButton;
+        return statisticsTabButton;
     }
 
     /**

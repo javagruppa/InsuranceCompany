@@ -40,6 +40,7 @@ public class Controller {
     private CustomerRegistration cReg;
     private BoatInsuranceRegistration biReg;
     private HomeInsuranceRegistration hiReg;
+    private HolidayHomeInsuranceRegistration hhiReg;
     private TravelInsuranceRegistration tiReg;
     private GuiAdmin guiAdmin;
     
@@ -63,6 +64,7 @@ public class Controller {
         cReg = new CustomerRegistration();
         biReg = new BoatInsuranceRegistration();
         hiReg = new HomeInsuranceRegistration();
+        hhiReg = new HolidayHomeInsuranceRegistration();
         tiReg = new TravelInsuranceRegistration();
         guiAdmin = new GuiAdmin();
         login.getLoginBtn().setOnAction(this::loginBtnEventHandler);
@@ -70,6 +72,7 @@ public class Controller {
         registerPane.getCustomerButton().setOnAction(this::registerCustomerPaneEventHandler);
         registerPane.getBoatInsuranceButton().setOnAction(this::registerBoatInsurancePaneEventHandler);
         registerPane.getHomeInsuranceButton().setOnAction(this::registerHomeInsurancePaneEventHandler);
+        registerPane.getHolidayHomeInsuranceButton().setOnAction(this::registerHolidayHomeInsurancePaneEventHandler);
         registerPane.getTravelInsuranceButton().setOnAction(this::registerTravelInsurancePaneEventHandler);
         cReg.getRegisterButton().setOnAction(this::registerCustomerEventHandler);
     }
@@ -220,6 +223,12 @@ public class Controller {
         selectedButtonStyleLower(registerPane.getHomeInsuranceButton());
     }
     
+    private void registerHolidayHomeInsurancePaneEventHandler(ActionEvent e) {
+        Pane pane = hhiReg.getMainPane();
+        registerPane.getMainPane().setCenter(pane); 
+        selectedButtonStyleLower(registerPane.getHolidayHomeInsuranceButton());
+    }
+    
     private void registerTravelInsurancePaneEventHandler(ActionEvent e) {
         Pane pane = tiReg.getMainPane();
         registerPane.getMainPane().setCenter(pane); 
@@ -238,7 +247,7 @@ public class Controller {
         registerPane.getCarInsuranceButton().setStyle("-fx-background-color: linear-gradient(#395cab, #223768);");
         registerPane.getBoatInsuranceButton().setStyle("-fx-background-color: linear-gradient(#395cab, #223768);");
         registerPane.getHomeInsuranceButton().setStyle("-fx-background-color: linear-gradient(#395cab, #223768);");
-        registerPane.getHolidayHomeInsurance().setStyle("-fx-background-color: linear-gradient(#395cab, #223768);");
+        registerPane.getHolidayHomeInsuranceButton().setStyle("-fx-background-color: linear-gradient(#395cab, #223768);");
         registerPane.getTravelInsuranceButton().setStyle("-fx-background-color: linear-gradient(#395cab, #223768);");
         registerPane.getClaimButton().setStyle("-fx-background-color: linear-gradient(#395cab, #223768);");
         button.setStyle("-fx-background-color: linear-gradient(#ffffff, #223768);");

@@ -5,11 +5,27 @@
  */
 package insurancecompany.controller;
 
-import insurancecompany.datastructures.*;
-import insurancecompany.gui.*;
-import insurancecompany.people.*;
+import insurancecompany.model.datastructures.ClaimRegister;
+import insurancecompany.model.people.ServiceWorker;
+import insurancecompany.model.people.Admin;
+import insurancecompany.model.people.CaseWorker;
+import insurancecompany.model.datastructures.InsuranceRegister;
+import insurancecompany.model.people.Customer;
+import insurancecompany.model.datastructures.VehicleRegister;
+import insurancecompany.model.datastructures.EmployeeRegister;
+import insurancecompany.model.people.Employee;
+import insurancecompany.model.datastructures.CustomerRegister;
+import insurancecompany.model.properties.Address;
+import insurancecompany.view.GuiAdmin;
+import insurancecompany.view.BoatInsuranceRegistration;
+import insurancecompany.view.HolidayHomeInsuranceRegistration;
+import insurancecompany.view.RegisterPane;
+import insurancecompany.view.HomeInsuranceRegistration;
+import insurancecompany.view.TravelInsuranceRegistration;
+import insurancecompany.view.CustomerRegistration;
+import insurancecompany.view.Login;
 import insurancecompany.misc.*;
-import insurancecompany.vehicles.Boat;
+import insurancecompany.model.vehicles.Boat;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;

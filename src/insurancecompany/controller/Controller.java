@@ -16,14 +16,14 @@ import insurancecompany.model.datastructures.EmployeeRegister;
 import insurancecompany.model.people.Employee;
 import insurancecompany.model.datastructures.CustomerRegister;
 import insurancecompany.model.properties.Address;
-import insurancecompany.view.GuiAdmin;
-import insurancecompany.view.BoatInsuranceRegistration;
-import insurancecompany.view.HolidayHomeInsuranceRegistration;
+import insurancecompany.view.AdminView;
+import insurancecompany.view.register.BoatInsuranceRegistration;
+import insurancecompany.view.register.HolidayHomeInsuranceRegistration;
 import insurancecompany.view.RegisterPane;
-import insurancecompany.view.HomeInsuranceRegistration;
-import insurancecompany.view.TravelInsuranceRegistration;
-import insurancecompany.view.CustomerRegistration;
-import insurancecompany.view.Login;
+import insurancecompany.view.register.HomeInsuranceRegistration;
+import insurancecompany.view.register.TravelInsuranceRegistration;
+import insurancecompany.view.register.CustomerRegistration;
+import insurancecompany.view.LoginView;
 import insurancecompany.misc.*;
 import insurancecompany.model.vehicles.Boat;
 import java.io.FileInputStream;
@@ -51,14 +51,14 @@ public class Controller {
     private static final String customerFileName = "src/customerRegister.dta";
     
     // Views:
-    private Login login;
+    private LoginView login;
     private RegisterPane registerPane;
     private CustomerRegistration cReg;
     private BoatInsuranceRegistration biReg;
     private HomeInsuranceRegistration hiReg;
     private HolidayHomeInsuranceRegistration hhiReg;
     private TravelInsuranceRegistration tiReg;
-    private GuiAdmin guiAdmin;
+    private AdminView guiAdmin;
     
     // Models:
     private EmployeeRegister employees;
@@ -75,14 +75,14 @@ public class Controller {
         vehicles = new VehicleRegister();
         claims = new ClaimRegister();
         
-        login = new Login();
+        login = new LoginView();
         registerPane = new RegisterPane();
         cReg = new CustomerRegistration();
         biReg = new BoatInsuranceRegistration();
         hiReg = new HomeInsuranceRegistration();
         hhiReg = new HolidayHomeInsuranceRegistration();
         tiReg = new TravelInsuranceRegistration();
-        guiAdmin = new GuiAdmin();
+        guiAdmin = new AdminView();
         login.getLoginBtn().setOnAction(this::loginBtnEventHandler);
         guiAdmin.getRegisterButton().setOnAction(this::registerPaneEventHandler);
         registerPane.getCustomerButton().setOnAction(this::registerCustomerPaneEventHandler);

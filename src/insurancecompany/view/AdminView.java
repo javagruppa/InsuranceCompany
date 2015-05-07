@@ -5,6 +5,9 @@
  */
 package insurancecompany.view;
 
+import insurancecompany.view.register.TravelInsuranceRegistration;
+import insurancecompany.view.register.CustomerRegistration;
+import insurancecompany.view.register.BoatInsuranceRegistration;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -22,7 +25,7 @@ import javafx.stage.Stage;
  *
  * @author André
  */
-public class GuiAdmin extends Application {
+public class AdminView extends Application {
     
     
     private RegisterPane registerPaneO;
@@ -43,7 +46,7 @@ public class GuiAdmin extends Application {
     private GridPane customerRegistrationPane;
     private GridPane travelInsurancePane;     
     
-    public GuiAdmin() {
+    public AdminView() {
         mainPane = new BorderPane();
         VBox vbox = new VBox();
         vbox.getChildren().addAll(createToolBar(), createStatusBar());

@@ -20,14 +20,14 @@ import javafx.stage.Stage;
  *
  * @author André
  */
-public class Login {
+public class LoginView {
 
     private Scene scene;
     private TextField userTextField;
     private PasswordField pwField;
     private Button loginButton;
     
-    public Login() {
+    public LoginView() {
         
         GridPane grid = new GridPane();
         grid.setAlignment(Pos.CENTER);

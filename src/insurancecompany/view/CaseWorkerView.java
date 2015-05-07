@@ -9,6 +9,6 @@ package insurancecompany.view;
  *
  * @author André
  */
-public class GuiCustomer {
+public class CaseWorkerView {
     
 }

@@ -170,4 +170,193 @@ public class BoatInsuranceRegistration {
         stage.setScene(scene);
         stage.show();
     }
+
+    /**
+     * @return the customerIdField
+     */
+    public TextField getCustomerIdField() {
+        return customerIdField;
+    }
+
+    /**
+     * @return the excessField
+     */
+    public TextField getExcessField() {
+        return excessField;
+    }
+
+    /**
+     * @return the brandField
+     */
+    public TextField getBrandField() {
+        return brandField;
+    }
+
+    /**
+     * @return the engineEffectField
+     */
+    public TextField getEngineEffectField() {
+        return engineEffectField;
+    }
+
+    /**
+     * @return the engineTypeField
+     */
+    public TextField getEngineTypeField() {
+        return engineTypeField;
+    }
+
+    /**
+     * @return the lengthField
+     */
+    public TextField getLengthField() {
+        return lengthField;
+    }
+
+    /**
+     * @return the modelField
+     */
+    public TextField getModelField() {
+        return modelField;
+    }
+
+    /**
+     * @return the personalNumberField
+     */
+    public TextField getPersonalNumberField() {
+        return personalNumberField;
+    }
+
+    /**
+     * @return the regNumberField
+     */
+    public TextField getRegNumberField() {
+        return regNumberField;
+    }
+
+    /**
+     * @return the regYearField
+     */
+    public TextField getRegYearField() {
+        return regYearField;
+    }
+
+    /**
+     * @return the premiumField
+     */
+    public TextField getPremiumField() {
+        return premiumField;
+    }
+
+    /**
+     * @return the alarmComboBox
+     */
+    public ComboBox getAlarmComboBox() {
+        return alarmComboBox;
+    }
+
+    /**
+     * @return the coverageComboBox
+     */
+    public ComboBox getCoverageComboBox() {
+        return coverageComboBox;
+    }
+
+    /**
+     * @param customerIdMessage the customerIdMessage to set
+     */
+    public void setCustomerIdMessage(Label customerIdMessage) {
+        this.customerIdMessage = customerIdMessage;
+    }
+
+    /**
+     * @param excessMessage the excessMessage to set
+     */
+    public void setExcessMessage(Label excessMessage) {
+        this.excessMessage = excessMessage;
+    }
+
+    /**
+     * @param brandMessage the brandMessage to set
+     */
+    public void setBrandMessage(Label brandMessage) {
+        this.brandMessage = brandMessage;
+    }
+
+    /**
+     * @param engineEffectMessage the engineEffectMessage to set
+     */
+    public void setEngineEffectMessage(Label engineEffectMessage) {
+        this.engineEffectMessage = engineEffectMessage;
+    }
+
+    /**
+     * @param engineTypeMessage the engineTypeMessage to set
+     */
+    public void setEngineTypeMessage(Label engineTypeMessage) {
+        this.engineTypeMessage = engineTypeMessage;
+    }
+
+    /**
+     * @param lengthMessage the lengthMessage to set
+     */
+    public void setLengthMessage(Label lengthMessage) {
+        this.lengthMessage = lengthMessage;
+    }
+
+    /**
+     * @param modelMessage the modelMessage to set
+     */
+    public void setModelMessage(Label modelMessage) {
+        this.modelMessage = modelMessage;
+    }
+
+    /**
+     * @param personalNumberMessage the personalNumberMessage to set
+     */
+    public void setPersonalNumberMessage(Label personalNumberMessage) {
+        this.personalNumberMessage = personalNumberMessage;
+    }
+
+    /**
+     * @param regNumberMessage the regNumberMessage to set
+     */
+    public void setRegNumberMessage(Label regNumberMessage) {
+        this.regNumberMessage = regNumberMessage;
+    }
+
+    /**
+     * @param regYearMessage the regYearMessage to set
+     */
+    public void setRegYearMessage(Label regYearMessage) {
+        this.regYearMessage = regYearMessage;
+    }
+
+    /**
+     * @param alarmMessage the alarmMessage to set
+     */
+    public void setAlarmMessage(Label alarmMessage) {
+        this.alarmMessage = alarmMessage;
+    }
+
+    /**
+     * @param coverageMessage the coverageMessage to set
+     */
+    public void setCoverageMessage(Label coverageMessage) {
+        this.coverageMessage = coverageMessage;
+    }
+
+    /**
+     * @return the calculateButton
+     */
+    public Button getCalculateButton() {
+        return calculateButton;
+    }
+
+    /**
+     * @return the registerButton
+     */
+    public Button getRegisterButton() {
+        return registerButton;
+    }
 }

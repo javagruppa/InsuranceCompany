@@ -39,6 +39,7 @@ public class Controller {
     private RegisterPane registerPane;
     private CustomerRegistration cReg;
     private BoatInsuranceRegistration biReg;
+    private HomeInsuranceRegistration hiReg;
     private TravelInsuranceRegistration tiReg;
     private GuiAdmin guiAdmin;
     
@@ -60,13 +61,15 @@ public class Controller {
         login = new Login();
         registerPane = new RegisterPane();
         cReg = new CustomerRegistration();
-        guiAdmin = new GuiAdmin();
         biReg = new BoatInsuranceRegistration();
+        hiReg = new HomeInsuranceRegistration();
         tiReg = new TravelInsuranceRegistration();
+        guiAdmin = new GuiAdmin();
         login.getLoginBtn().setOnAction(this::loginBtnEventHandler);
         guiAdmin.getRegisterButton().setOnAction(this::registerPaneEventHandler);
         registerPane.getCustomerButton().setOnAction(this::registerCustomerPaneEventHandler);
         registerPane.getBoatInsuranceButton().setOnAction(this::registerBoatInsurancePaneEventHandler);
+        registerPane.getHomeInsuranceButton().setOnAction(this::registerHomeInsurancePaneEventHandler);
         registerPane.getTravelInsuranceButton().setOnAction(this::registerTravelInsurancePaneEventHandler);
         cReg.getRegisterButton().setOnAction(this::registerCustomerEventHandler);
     }
@@ -209,6 +212,12 @@ public class Controller {
         Pane pane = biReg.getMainPane();
         registerPane.getMainPane().setCenter(pane); 
         selectedButtonStyleLower(registerPane.getBoatInsuranceButton());
+    }
+    
+    private void registerHomeInsurancePaneEventHandler(ActionEvent e) {
+        Pane pane = hiReg.getMainPane();
+        registerPane.getMainPane().setCenter(pane); 
+        selectedButtonStyleLower(registerPane.getHomeInsuranceButton());
     }
     
     private void registerTravelInsurancePaneEventHandler(ActionEvent e) {

@@ -9,6 +9,7 @@ import insurancecompany.view.register.TravelInsuranceRegistration;
 import insurancecompany.view.register.CustomerRegistration;
 import insurancecompany.view.register.BoatInsuranceRegistration;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -20,6 +21,7 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  *
@@ -28,7 +30,7 @@ import javafx.stage.Stage;
 public class AdminView extends Application {
     
     
-    private RegisterPane registerPaneO;
+    private RegisterView registerView;
     private CustomerRegistration customerRegistration;
     private BoatInsuranceRegistration boatInsuranceRegistration;
     private TravelInsuranceRegistration travelInsuranceRegistration;
@@ -52,26 +54,39 @@ public class AdminView extends Application {
         vbox.getChildren().addAll(createToolBar(), createStatusBar());
         mainPane.setTop(vbox);
         scene = new Scene(getMainPane(), 900, 600);
-        scene.getStylesheets().add("stylesheet.css");
+        scene.getStylesheets().add("insurancecompany/resources/stylesheet.css");
+        initializeViews();
+        initializeEventHandlers();
     }
     public void start(Stage stage) throws Exception {
         show(stage);
     }
     
     public void show(Stage stage) {
+        //stage.initStyle(StageStyle.UNDECORATED);
         stage.setTitle("Kunderegistrering");
         stage.setScene(getScene());
         stage.show();
     }
     
-    public void initialize() {
+    private void initializeViews() {
+        registerView = new RegisterView();
+        registerPane = registerView.getMainPane();
+    }
+    
+    private void initializeEventHandlers() {
         registerTabButton.setOnAction((event) -> {
             mainPane.setCenter(registerPane);
+            selectedButtonStyleUpper(registerTabButton);
+        });
+        
+        exitButton.setOnAction((event) -> {
+            Platform.exit();     
         });
     }
     
     
-    public HBox createToolBar() {
+    private HBox createToolBar() {
         HBox hbox = new HBox();
         hbox.setStyle("-fx-background-color: #336699;");
         registerTabButton = new Button("Registrer");
@@ -111,19 +126,9 @@ public class AdminView extends Application {
         registerTabButton.setId("mainToolbarButton");
         searchTabButton.setId("mainToolbarButton");
         statisticsTabButton.setId("mainToolbarButton");
-        button.setStyle("mainToolbarButtonSelected");
+        button.setId("mainToolbarButtonSelected");
     }
-    // TODO: Change to setId, and make a custom style for selected, will not have hover etc
-    private void selectedButtonStyleLower(Button button) {
-        registerPane.getCustomerButton().setStyle("-fx-background-color: linear-gradient(#395cab, #223768);");
-        registerPane.getCarInsuranceButton().setStyle("-fx-background-color: linear-gradient(#395cab, #223768);");
-        registerPane.getBoatInsuranceButton().setStyle("-fx-background-color: linear-gradient(#395cab, #223768);");
-        registerPane.getHomeInsuranceButton().setStyle("-fx-background-color: linear-gradient(#395cab, #223768);");
-        registerPane.getHolidayHomeInsurance().setStyle("-fx-background-color: linear-gradient(#395cab, #223768);");
-        registerPane.getTravelInsuranceButton().setStyle("-fx-background-color: linear-gradient(#395cab, #223768);");
-        registerPane.getClaimButton().setStyle("-fx-background-color: linear-gradient(#395cab, #223768);");
-        button.setStyle("-fx-background-color: linear-gradient(#ffffff, #223768);");
-    }
+    
     /**
      * @return the scene
      */

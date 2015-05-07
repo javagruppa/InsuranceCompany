@@ -98,4 +98,81 @@ public class TravelInsuranceRegistration {
         stage.setScene(scene);
         stage.show();
     }
+
+    /**
+     * @return the areaField
+     */
+    public TextField getAreaField() {
+        return areaField;
+    }
+
+    /**
+     * @return the coverageField
+     */
+    public TextField getCoverageField() {
+        return coverageField;
+    }
+
+    /**
+     * @return the customerIdField
+     */
+    public TextField getCustomerIdField() {
+        return customerIdField;
+    }
+
+    /**
+     * @return the excessField
+     */
+    public TextField getExcessField() {
+        return excessField;
+    }
+
+    /**
+     * @return the premiumField
+     */
+    public TextField getPremiumField() {
+        return premiumField;
+    }
+
+    /**
+     * @param areaMessage the areaMessage to set
+     */
+    public void setAreaMessage(Label areaMessage) {
+        this.areaMessage = areaMessage;
+    }
+
+    /**
+     * @param coverageMessage the coverageMessage to set
+     */
+    public void setCoverageMessage(Label coverageMessage) {
+        this.coverageMessage = coverageMessage;
+    }
+
+    /**
+     * @param customerIdMessage the customerIdMessage to set
+     */
+    public void setCustomerIdMessage(Label customerIdMessage) {
+        this.customerIdMessage = customerIdMessage;
+    }
+
+    /**
+     * @param excessMessage the excessMessage to set
+     */
+    public void setExcessMessage(Label excessMessage) {
+        this.excessMessage = excessMessage;
+    }
+
+    /**
+     * @return the calculateButton
+     */
+    public Button getCalculateButton() {
+        return calculateButton;
+    }
+
+    /**
+     * @return the registerButton
+     */
+    public Button getRegisterButton() {
+        return registerButton;
+    }
 }

@@ -5,6 +5,11 @@
  */
 
 package insurancecompany.model.claims;
+
+import insurancecompany.model.people.Customer;
+import insurancecompany.model.people.Person;
+import insurancecompany.model.vehicles.Car;
+
 /**
  *
  * @author Carl

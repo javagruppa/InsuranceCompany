@@ -5,6 +5,7 @@
  */
 package insurancecompany.model.datastructures;
 
+import insurancecompany.model.people.Customer;
 import insurancecompany.model.properties.Address;
 import java.io.Serializable;
 

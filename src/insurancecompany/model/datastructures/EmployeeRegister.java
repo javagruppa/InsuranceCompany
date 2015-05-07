@@ -6,6 +6,7 @@
 package insurancecompany.model.datastructures;
 
 
+import insurancecompany.model.people.Employee;
 import java.util.ArrayList;
 
 /**

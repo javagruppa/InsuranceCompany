@@ -6,6 +6,7 @@
 package insurancecompany.model.datastructures;
 
 
+import insurancecompany.model.claims.Claim;
 import java.util.ArrayList;
 import java.util.Iterator;
 /**

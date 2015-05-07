@@ -72,7 +72,7 @@ public abstract class Employee extends Person {
     /**
      * Returns a hash code value for this employee. This method is supported for 
      * the benefit of hash tables such as those provided by HashMap.
-     * @return 
+     * @return the hash code
      */
     @Override 
     public int hashCode() {

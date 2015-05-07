@@ -143,7 +143,7 @@ public class AdminView extends Application {
     
     private HBox createToolBar() {
         HBox hbox = new HBox();
-        hbox.setStyle("-fx-background-color: #336699;");
+        hbox.setStyle("-fx-background-color: #008ED5;");
         registerTabButton = new Button("Registrer");
         getRegisterButton().setId("mainToolbarButton");
         searchTabButton = new Button("Søk");
@@ -170,7 +170,7 @@ public class AdminView extends Application {
     private HBox createStatusBar() {
         HBox hbox = new HBox();
         hbox.setPadding(new Insets(5, 0, 5, 0));
-        hbox.setStyle("-fx-background-color: #FFFFFF;");
+        hbox.setStyle("-fx-background-color: #6FA9A0;");
         
         userStatusText = new Text("Logget inn som Admin. Ansattnr: 10000000");
         hbox.getChildren().add(getUserStatusText());

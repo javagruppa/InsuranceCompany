@@ -11,6 +11,8 @@ import insurancecompany.view.register.CustomerRegistration;
 import insurancecompany.view.register.TravelInsuranceRegistration;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -27,25 +29,21 @@ import javafx.stage.Stage;
  *
  * @author André
  */
-public class RegisterView extends Application {
+public class RegisterView {
     
     private CustomerRegistration customerRegistration;
     private BoatInsuranceRegistration boatInsuranceRegistration;
     private TravelInsuranceRegistration travelInsuranceRegistration;
+    private InsurancesView insurancesView;
     
     private Pane customerRegistrationPane;
-    private Pane boatInsuranceRegistrationPane;
-    private Pane travelInsuranceRegistrationPane;
+    private Pane insurancesPane;
     
     private Scene scene;
     private BorderPane mainPane;
-    private Button customerButton;
-    private Button carInsuranceButton;
-    private Button boatInsuranceButton;
-    private Button homeInsuranceButton;
-    private Button holidayHomeInsuranceButton;
-    private Button travelInsuranceButton;
-    private Button claimButton;
+    private Button personsButton;
+    private Button insurancesButton;
+    private Button claimsButton;
             
     //public static void main(String[] args) {
     //    launch(args);
@@ -57,96 +55,70 @@ public class RegisterView extends Application {
     
     public void show(Stage stage) {
         stage.setTitle("Kunderegistrering");
-        stage.setScene(getScene());
+        stage.setScene(scene);
         stage.show();
     }
     
     public RegisterView() {
-        mainPane = new BorderPane();        
-        mainPane.setTop(createToolBar());
-        scene = new Scene(getMainPane(), 800, 600);
+        mainPane = new BorderPane();
         initializeViews();
-        initializeEventHandlers();      
+        //initializeEventHandlers(); 
+        mainPane.setTop(createToolBar());
+        mainPane.setCenter(insurancesPane);
+        scene = new Scene(mainPane, 800, 600);
+             
     }
     private void initializeViews() {
+        insurancesView = new InsurancesView();
+        insurancesPane = insurancesView.getMainPane();
+        
         customerRegistration = new CustomerRegistration();
         customerRegistrationPane = customerRegistration.getMainPane();
         boatInsuranceRegistration = new BoatInsuranceRegistration();
-        boatInsuranceRegistrationPane = boatInsuranceRegistration.getMainPane();
+        //boatInsuranceRegistrationPane = boatInsuranceRegistration.getMainPane();
         travelInsuranceRegistration = new TravelInsuranceRegistration();
-        travelInsuranceRegistrationPane = travelInsuranceRegistration.getMainPane();
+        //travelInsuranceRegistrationPane = travelInsuranceRegistration.getMainPane();
     }
     
     private void initializeEventHandlers() {
-        customerButton.setOnAction((event) -> {
+        personsButton.setOnAction((event) -> {
             mainPane.setCenter(customerRegistrationPane);
-            selectedButtonStyleLower(customerButton);
+            selectedButtonStyleLower(personsButton);
         });
         
-        carInsuranceButton.setOnAction((event) -> {
-            //mainPane.setCenter();
-            //selectedButtonStyleLower(carInsuranceButton);
+        insurancesButton.setOnAction((event) -> {
+            mainPane.setCenter(insurancesPane);
+            selectedButtonStyleLower(insurancesButton);
         });
         
-        boatInsuranceButton.setOnAction((event) -> {
-            mainPane.setCenter(boatInsuranceRegistrationPane);
-            selectedButtonStyleLower(boatInsuranceButton);
-        });
-        
-        homeInsuranceButton.setOnAction((event) -> {
-            //mainPane.setCenter();
-            //selectedButtonStyleLower(homeInsuranceButton);
-        });
-        
-        holidayHomeInsuranceButton.setOnAction((event) -> {
-            //mainPane.setCenter();
-            //selectedButtonStyleLower(holidayHomeInsuranceButton);
-        });
-        
-        travelInsuranceButton.setOnAction((event) -> {
-            mainPane.setCenter(travelInsuranceRegistrationPane);
-            selectedButtonStyleLower(travelInsuranceButton);
-        });
-        
-        claimButton.setOnAction((event) -> {
-            //mainPane.setCenter();
-            //selectedButtonStyleLower(claimButton);
-        });       
+        claimsButton.setOnAction((event) -> {
+            //mainPane.setCenter(boatInsuranceRegistrationPane);
+            selectedButtonStyleLower(claimsButton);
+        });      
     }
     
     // TODO: Change to setId, and make a custom style for selected, will not have hover etc
     private void selectedButtonStyleLower(Button button) {
-        customerButton.setId("subToolbarButton");
-        carInsuranceButton.setId("subToolbarButton");
-        boatInsuranceButton.setId("subToolbarButton");
-        homeInsuranceButton.setId("subToolbarButton");
-        holidayHomeInsuranceButton.setId("subToolbarButton");
-        travelInsuranceButton.setId("subToolbarButton");
-        claimButton.setId("subToolbarButton");
+        personsButton.setId("subToolbarButton");
+        insurancesButton.setId("subToolbarButton");
+        claimsButton.setId("subToolbarButton");
         button.setId("subToolbarButtonSelected");
     }
     
     private HBox createToolBar() {
         HBox hbox = new HBox();
         hbox.getStyleClass().add("insurancecompany/resources/stylesheet.css");
-        hbox.setStyle("-fx-background-color: #336699;");
+        hbox.setStyle("-fx-background-color: #008ED5;");
         hbox.setPrefSize(640, 20);
-        customerButton = new Button("Ny kunde");
-        getCustomerButton().setId("subToolbarButton");
-        carInsuranceButton = new Button("Bilforsikring");
-        getCarInsuranceButton().setId("subToolbarButton");
-        boatInsuranceButton = new Button("Båtforsikring");
-        getBoatInsuranceButton().setId("subToolbarButton");
-        homeInsuranceButton = new Button("Hus- og innboforsikring");
-        getHomeInsuranceButton().setId("subToolbarButton");
-        holidayHomeInsuranceButton = new Button("Fritidsboligforsikring");
-        getHolidayHomeInsuranceButton().setId("subToolbarButton");
-        travelInsuranceButton = new Button("Reiseforsikring");
-        getTravelInsuranceButton().setId("subToolbarButton");
-        claimButton = new Button("Skademelding");
-        getClaimButton().setId("subToolbarButton");
-                
-        hbox.getChildren().addAll(getCustomerButton(), getCarInsuranceButton(), getBoatInsuranceButton(), getHomeInsuranceButton(), getHolidayHomeInsuranceButton(), getTravelInsuranceButton(), getClaimButton());
+        personsButton = new Button("Personer");
+        personsButton.setId("subToolbarButton");
+        insurancesButton = new Button("Forsikringer");
+        insurancesButton.setId("subToolbarButton");
+        claimsButton = new Button("Skademeldinger");
+        claimsButton.setId("subToolbarButton");
+        ObservableList<Button> buttons = FXCollections.observableArrayList ();
+        buttons.addAll(personsButton, insurancesButton, claimsButton);        
+        hbox.getChildren().addAll(buttons);
        
         return hbox;
     }
@@ -163,54 +135,5 @@ public class RegisterView extends Application {
      */
     public BorderPane getMainPane() {
         return mainPane;
-    }
-
-    /**
-     * @return the customerButton
-     */
-    public Button getCustomerButton() {
-        return customerButton;
-    }
-
-    /**
-     * @return the carInsuranceButton
-     */
-    public Button getCarInsuranceButton() {
-        return carInsuranceButton;
-    }
-
-    /**
-     * @return the boatInsuranceButton
-     */
-    public Button getBoatInsuranceButton() {
-        return boatInsuranceButton;
-    }
-
-    /**
-     * @return the homeInsuranceButton
-     */
-    public Button getHomeInsuranceButton() {
-        return homeInsuranceButton;
-    }
-
-    /**
-     * @return the holidayHomeInsuranceButton
-     */
-    public Button getHolidayHomeInsuranceButton() {
-        return holidayHomeInsuranceButton;
-    }
-
-    /**
-     * @return the travelInsuranceButton
-     */
-    public Button getTravelInsuranceButton() {
-        return travelInsuranceButton;
-    }
-
-    /**
-     * @return the claimButton
-     */
-    public Button getClaimButton() {
-        return claimButton;
     }
 }

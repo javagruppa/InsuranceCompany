@@ -1,0 +1,9 @@
+{
+"insurances":[
+    {"name":"Bilforsikring"}, 
+    {"name":"Båtforsikring"}, 
+    {"name":"Husforsikring"},
+    {"name":"Fritidsboligforsikring"},
+    {"name":"Reiseforsikring"}
+]
+}

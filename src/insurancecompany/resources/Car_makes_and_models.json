@@ -1,0 +1,1884 @@
+[ {
+	"name" : "Alfa Romeo",
+	"models" : [ {
+		"name" : "145\/146",
+		"since" : "1994",
+		"to" : "2001"
+	}, {
+		"name" : "147",
+		"since" : "2001"
+	}, {
+		"name" : "155",
+		"since" : "1992",
+		"to" : "1997"
+	}, {
+		"name" : "156",
+		"since" : "1997"
+	}, {
+		"name" : "159",
+		"since" : "2007"
+	}, {
+		"name" : "164",
+		"since" : "1990",
+		"to" : "1998"
+	}, {
+		"name" : "166",
+		"since" : "1999"
+	}, {
+		"name" : "GT",
+		"since" : "2004"
+	}, {
+		"name" : "GTV",
+		"since" : "1996"
+	}, {
+		"name" : "Spider",
+		"since" : "1996",
+		"to" : "2007"
+	}, {
+		"name" : "Spider",
+		"since" : "2007"
+	} ]
+}, {
+	"name" : "Fiat",
+	"models" : [ {
+		"name" : "Barchetta",
+		"since" : "1995"
+	}, {
+		"name" : "Bravo",
+		"since" : "2007"
+	}, {
+		"name" : "Bravo and Brava",
+		"since" : "1995"
+	}, {
+		"name" : "Cinquecento",
+		"since" : "1993",
+		"to" : "1998"
+	}, {
+		"name" : "Coupe",
+		"since" : "1995",
+		"to" : "2000"
+	}, {
+		"name" : "Doblo",
+		"since" : "2001"
+	}, {
+		"name" : "Grande Punto",
+		"since" : "2007"
+	}, {
+		"name" : "Idea",
+		"since" : "2004",
+		"to" : "2007"
+	}, {
+		"name" : "Marea",
+		"since" : "1997",
+		"to" : "2001"
+	}, {
+		"name" : "Multipla",
+		"since" : "1999"
+	}, {
+		"name" : "Panda",
+		"since" : "2004"
+	}, {
+		"name" : "Punto",
+		"since" : "1994",
+		"to" : "2003"
+	}, {
+		"name" : "Punto",
+		"since" : "2003"
+	}, {
+		"name" : "Seicento",
+		"since" : "1998",
+		"to" : "2004"
+	}, {
+		"name" : "Stilo",
+		"since" : "2002"
+	}, {
+		"name" : "Tempra",
+		"since" : "1991",
+		"to" : "1996"
+	}, {
+		"name" : "Tipo",
+		"since" : "1989",
+		"to" : "1996"
+	}, {
+		"name" : "Ulysse",
+		"since" : "1995",
+		"to" : "2003"
+	} ]
+}, {
+	"name" : "Mazda",
+	"models" : [ {
+		"name" : "121",
+		"since" : "1996",
+		"to" : "1999"
+	}, {
+		"name" : "2",
+		"since" : "2007"
+	}, {
+		"name" : "3",
+		"since" : "2004"
+	}, {
+		"name" : "323",
+		"since" : "1994",
+		"to" : "1998"
+	}, {
+		"name" : "323",
+		"since" : "1998",
+		"to" : "2004"
+	}, {
+		"name" : "6",
+		"since" : "2002"
+	}, {
+		"name" : "626",
+		"since" : "1997",
+		"to" : "2002"
+	}, {
+		"name" : "CX-7",
+		"since" : "2007"
+	}, {
+		"name" : "MPV",
+		"since" : "1999",
+		"to" : "2004"
+	}, {
+		"name" : "MX3",
+		"since" : "1992",
+		"to" : "1997"
+	}, {
+		"name" : "MX5",
+		"since" : "1990",
+		"to" : "2005"
+	}, {
+		"name" : "MX6",
+		"since" : "1992",
+		"to" : "1998"
+	}, {
+		"name" : "Premacy",
+		"since" : "1999",
+		"to" : "2004"
+	}, {
+		"name" : "RX-8",
+		"since" : "2003"
+	}, {
+		"name" : "RX7",
+		"since" : "1992",
+		"to" : "1999"
+	}, {
+		"name" : "Tribute",
+		"since" : "2001"
+	}, {
+		"name" : "Xedos 6",
+		"since" : "1992",
+		"to" : "2000"
+	}, {
+		"name" : "Xedos 9",
+		"since" : "1994",
+		"to" : "2000"
+	} ]
+}, {
+	"name" : "Rolls Royce",
+	"models" : [ {
+		"name" : "Silver Shadow",
+		"since" : "1967",
+		"to" : "1980"
+	}, {
+		"name" : "Silver Spirit",
+		"since" : "1985",
+		"to" : "1997"
+	} ]
+}, {
+	"name" : "Aston Martin",
+	"models" : [ {
+		"name" : "DB7",
+		"since" : "1994",
+		"to" : "1999"
+	} ]
+}, {
+	"name" : "Ford",
+	"models" : [ {
+		"name" : "C-Max",
+		"since" : "2003"
+	}, {
+		"name" : "Cougar",
+		"since" : "1998",
+		"to" : "2001"
+	}, {
+		"name" : "Escort",
+		"since" : "1990",
+		"to" : "2001"
+	}, {
+		"name" : "Explorer",
+		"since" : "1997",
+		"to" : "2001"
+	}, {
+		"name" : "Fiesta",
+		"since" : "1995",
+		"to" : "2002"
+	}, {
+		"name" : "Fiesta",
+		"since" : "2002"
+	}, {
+		"name" : "Focus",
+		"since" : "1998",
+		"to" : "2005"
+	}, {
+		"name" : "Focus",
+		"since" : "2005",
+		"to" : "2009"
+	}, {
+		"name" : "Galaxy",
+		"since" : "1995",
+		"to" : "2007"
+	}, {
+		"name" : "Galaxy",
+		"since" : "2007"
+	}, {
+		"name" : "Granada\/Scorpio",
+		"since" : "1985",
+		"to" : "1998"
+	}, {
+		"name" : "KA\/StreetKa",
+		"since" : "1996"
+	}, {
+		"name" : "Maverick",
+		"since" : "1993",
+		"to" : "1999"
+	}, {
+		"name" : "Mondeo",
+		"since" : "1993",
+		"to" : "2000"
+	}, {
+		"name" : "Mondeo",
+		"since" : "2000",
+		"to" : "2007"
+	}, {
+		"name" : "Mondeo",
+		"since" : "2007"
+	}, {
+		"name" : "Probe",
+		"since" : "1994",
+		"to" : "1998"
+	}, {
+		"name" : "Puma",
+		"since" : "1997",
+		"to" : "2002"
+	}, {
+		"name" : "S-Max",
+		"since" : "2007"
+	} ]
+}, {
+	"name" : "Jeep",
+	"models" : [ {
+		"name" : "CJ-2A",
+		"since" : "1945",
+		"to" : "1949"
+	}, {
+		"name" : "Willys Wagon",
+		"since" : "1946",
+		"to" : "1965"
+	}, {
+		"name" : "Willys Pickup",
+		"since" : "1947",
+		"to" : "1965"
+	}, {
+		"name" : "Jeepster",
+		"since" : "1948",
+		"to" : "1950"
+	}, {
+		"name" : "CJ-3A",
+		"since" : "1948",
+		"to" : "1953"
+	}, {
+		"name" : "CJ-3B",
+		"since" : "1952",
+		"to" : "1968"
+	}, {
+		"name" : "CJ-5",
+		"since" : "1955",
+		"to" : "1983"
+	}, {
+		"name" : "CJ-6",
+		"since" : "1958",
+		"to" : "1975"
+	}, {
+		"name" : "FC 150\/170",
+		"since" : "1957",
+		"to" : "1965"
+	}, {
+		"name" : "Commando",
+		"since" : "101",
+		"to" : "1962"
+	}, {
+		"name" : "Wagoneer",
+		"since" : "1962",
+		"to" : "1983"
+	}, {
+		"name" : "Gladiator",
+		"since" : "1963",
+		"to" : "1970"
+	}, {
+		"name" : "Commando",
+		"since" : "104",
+		"to" : "1972"
+	}, {
+		"name" : "Cherokee",
+		"since" : "1974",
+		"to" : "1983"
+	}, {
+		"name" : "CJ-7",
+		"since" : "1976",
+		"to" : "1986"
+	}, {
+		"name" : "Cherokee Chief",
+		"since" : "1976",
+		"to" : "1982"
+	}, {
+		"name" : "Honcho",
+		"since" : "1977",
+		"to" : "1988"
+	}, {
+		"name" : "CJ-8",
+		"since" : "1981",
+		"to" : "1985"
+	}, {
+		"name" : "CJ-10",
+		"since" : "1981",
+		"to" : "1985"
+	}, {
+		"name" : "Wagoneer",
+		"since" : "1983",
+		"to" : "1990"
+	}, {
+		"name" : "Cherokee",
+		"since" : "1984",
+		"to" : "1996"
+	}, {
+		"name" : "Grand Wagoneer",
+		"since" : "1984",
+		"to" : "1991"
+	}, {
+		"name" : "Comanche",
+		"since" : "1986",
+		"to" : "1992"
+	}, {
+		"name" : "Wrangler",
+		"since" : "1986",
+		"to" : "1996"
+	}, {
+		"name" : "Grand Cherokee",
+		"since" : "1993",
+		"to" : "1999"
+	}, {
+		"name" : "Cherokee",
+		"since" : "1997",
+		"to" : "2001"
+	}, {
+		"name" : "Wrangler",
+		"since" : "1997",
+		"to" : "2007"
+	}, {
+		"name" : "Grand Cherokee",
+		"since" : "1998",
+		"to" : "2004"
+	}, {
+		"name" : "Cherokee",
+		"since" : "2002"
+	}, {
+		"name" : "Grand Cherokee",
+		"since" : "2005",
+		"to" : "2010"
+	}, {
+		"name" : "Grand Cherokee",
+		"since" : "2",
+		"to" : "2011"
+	}, {
+		"name" : "Compass",
+		"since" : "2007"
+	}, {
+		"name" : "Patriot",
+		"since" : "2007"
+	}, {
+		"name" : "Commander",
+		"since" : "2006"
+	}, {
+		"name" : "Cherokee",
+		"since" : "2008"
+	}, {
+		"name" : "Wrangler",
+		"since" : "2007"
+	} ]
+}, {
+	"name" : "Mercedes",
+	"models" : [ {
+		"name" : "A-Class",
+		"since" : "1998",
+		"to" : "2004"
+	}, {
+		"name" : "C-Class",
+		"since" : "1993",
+		"to" : "2007"
+	}, {
+		"name" : "C-Class",
+		"since" : "2007"
+	}, {
+		"name" : "CL",
+		"since" : "2007"
+	}, {
+		"name" : "CLK",
+		"since" : "1997"
+	}, {
+		"name" : "E-Class",
+		"since" : "1992",
+		"to" : "2002"
+	}, {
+		"name" : "E-Class",
+		"since" : "2002"
+	}, {
+		"name" : "G-Wagen",
+		"since" : "1988",
+		"to" : "1997"
+	}, {
+		"name" : "M-Class",
+		"since" : "1998"
+	}, {
+		"name" : "S-Class",
+		"since" : "1991"
+	}, {
+		"name" : "SL 500",
+		"since" : "2002"
+	}, {
+		"name" : "SL",
+		"since" : "1992",
+		"to" : "2002"
+	}, {
+		"name" : "SLK",
+		"since" : "1996",
+		"to" : "2004"
+	}, {
+		"name" : "SLK",
+		"since" : "2004"
+	}, {
+		"name" : "V-Class",
+		"since" : "1996",
+		"to" : "2001"
+	}, {
+		"name" : "Viano",
+		"since" : "2004"
+	} ]
+}, {
+	"name" : "Rover",
+	"models" : [ {
+		"name" : "100",
+		"since" : "1990",
+		"to" : "2000"
+	}, {
+		"name" : "200",
+		"since" : "1995",
+		"to" : "2000"
+	}, {
+		"name" : "25",
+		"since" : "1999"
+	}, {
+		"name" : "400",
+		"since" : "1995",
+		"to" : "2000"
+	}, {
+		"name" : "45",
+		"since" : "2000"
+	}, {
+		"name" : "600",
+		"since" : "1993",
+		"to" : "2000"
+	}, {
+		"name" : "75",
+		"since" : "1999"
+	}, {
+		"name" : "800",
+		"since" : "1991",
+		"to" : "2000"
+	}, {
+		"name" : "Streetwise",
+		"since" : "2003"
+	} ]
+}, {
+	"name" : "Audi",
+	"models" : [ {
+		"name" : "A2",
+		"since" : "2000"
+	}, {
+		"name" : "A3",
+		"since" : "1996",
+		"to" : "2003"
+	}, {
+		"name" : "A3",
+		"since" : "2003"
+	}, {
+		"name" : "A4",
+		"since" : "1995",
+		"to" : "2004"
+	}, {
+		"name" : "A4",
+		"since" : "2005"
+	}, {
+		"name" : "A5",
+		"since" : "2007"
+	}, {
+		"name" : "A6",
+		"since" : "1997",
+		"to" : "2004"
+	}, {
+		"name" : "A6",
+		"since" : "2004"
+	}, {
+		"name" : "A8",
+		"since" : "1994",
+		"to" : "2002"
+	}, {
+		"name" : "A8",
+		"since" : "2003",
+		"to" : "2007"
+	}, {
+		"name" : "A8",
+		"since" : "2007"
+	}, {
+		"name" : "Q7",
+		"since" : "2007"
+	}, {
+		"name" : "TT",
+		"since" : "1999"
+	} ]
+}, {
+	"name" : "Honda",
+	"models" : [ {
+		"name" : "Accord",
+		"since" : "1993",
+		"to" : "2003"
+	}, {
+		"name" : "Accord",
+		"since" : "2003"
+	}, {
+		"name" : "Civic",
+		"since" : "1991",
+		"to" : "2001"
+	}, {
+		"name" : "Civic",
+		"since" : "2001",
+		"to" : "2006"
+	}, {
+		"name" : "CRV",
+		"since" : "1997",
+		"to" : "2007"
+	}, {
+		"name" : "CRV",
+		"since" : "2007"
+	}, {
+		"name" : "CRX",
+		"since" : "1992",
+		"to" : "1997"
+	}, {
+		"name" : "FR-V",
+		"since" : "2004"
+	}, {
+		"name" : "HR-V",
+		"since" : "1999"
+	}, {
+		"name" : "Jazz",
+		"since" : "2002"
+	}, {
+		"name" : "NSX",
+		"since" : "1990"
+	}, {
+		"name" : "Prelude",
+		"since" : "1992",
+		"to" : "2001"
+	}, {
+		"name" : "S2000",
+		"since" : "2000",
+		"to" : "1999"
+	}, {
+		"name" : "Shuttle",
+		"since" : "1995",
+		"to" : "2000"
+	} ]
+}, {
+	"name" : "MG",
+	"models" : [ {
+		"name" : "Classic Roadster\/GT",
+		"since" : "1962",
+		"to" : "1980"
+	}, {
+		"name" : "F \/ TF",
+		"since" : "1995"
+	}, {
+		"name" : "ZR",
+		"since" : "2001"
+	}, {
+		"name" : "ZS",
+		"since" : "2001"
+	}, {
+		"name" : "ZT",
+		"since" : "2001"
+	} ]
+}, {
+	"name" : "Saab",
+	"models" : [ {
+		"name" : "9-3",
+		"since" : "1998",
+		"to" : "2002"
+	}, {
+		"name" : "9-3",
+		"since" : "2003"
+	}, {
+		"name" : "9-5",
+		"since" : "1997"
+	}, {
+		"name" : "900",
+		"since" : "1989",
+		"to" : "1998"
+	}, {
+		"name" : "9000",
+		"since" : "9000",
+		"to" : "1988"
+	} ]
+}, {
+	"name" : "Bentley",
+	"models" : [ {
+		"name" : "Arnage",
+		"since" : "1998"
+	}, {
+		"name" : "Turbo R",
+		"since" : "1985",
+		"to" : "1997"
+	} ]
+}, {
+	"name" : "Hyundai",
+	"models" : [ {
+		"name" : "Accent",
+		"since" : "1994",
+		"to" : "2003"
+	}, {
+		"name" : "Accent",
+		"since" : "2003"
+	}, {
+		"name" : "Amica",
+		"since" : "2000",
+		"to" : "2001"
+	}, {
+		"name" : "Amica",
+		"since" : "2007"
+	}, {
+		"name" : "Atoz",
+		"since" : "1998",
+		"to" : "2001"
+	}, {
+		"name" : "Coupe",
+		"since" : "1996",
+		"to" : "2002"
+	}, {
+		"name" : "Coupe",
+		"since" : "2003"
+	}, {
+		"name" : "Elantra",
+		"since" : "2001",
+		"to" : "2004"
+	}, {
+		"name" : "Getz",
+		"since" : "2002"
+	}, {
+		"name" : "i30",
+		"since" : "2007"
+	}, {
+		"name" : "Lantra",
+		"since" : "1991",
+		"to" : "2001"
+	}, {
+		"name" : "Matrix",
+		"since" : "2001"
+	}, {
+		"name" : "Santa Fe",
+		"since" : "2001",
+		"to" : "2006"
+	}, {
+		"name" : "Santa Fe",
+		"since" : "2006"
+	}, {
+		"name" : "Sonata",
+		"since" : "1994",
+		"to" : "2001"
+	}, {
+		"name" : "Terracan",
+		"since" : "2003"
+	}, {
+		"name" : "Trajet",
+		"since" : "2000"
+	}, {
+		"name" : "XG30",
+		"since" : "2000",
+		"to" : "2001"
+	} ]
+}, {
+	"name" : "Mini",
+	"models" : [ {
+		"name" : "Classic",
+		"since" : "1989",
+		"to" : "2001"
+	}, {
+		"name" : "One\/S\/Cooper",
+		"since" : "2001"
+	} ]
+}, {
+	"name" : "Seat",
+	"models" : [ {
+		"name" : "Alhambra",
+		"since" : "1996"
+	}, {
+		"name" : "Altea",
+		"since" : "2004",
+		"to" : "2007"
+	}, {
+		"name" : "Altea",
+		"since" : "2007"
+	}, {
+		"name" : "Arosa",
+		"since" : "1997",
+		"to" : "2004"
+	}, {
+		"name" : "Cordoba",
+		"since" : "1994",
+		"to" : "2001"
+	}, {
+		"name" : "Ibiza",
+		"since" : "1993",
+		"to" : "2002"
+	}, {
+		"name" : "Ibiza",
+		"since" : "2002"
+	}, {
+		"name" : "Leon",
+		"since" : "2000",
+		"to" : "2005"
+	}, {
+		"name" : "Leon",
+		"since" : "2005"
+	}, {
+		"name" : "Toledo",
+		"since" : "1991",
+		"to" : "2005"
+	}, {
+		"name" : "Toledo",
+		"since" : "2005"
+	} ]
+}, {
+	"name" : "BMW",
+	"models" : [ {
+		"name" : "1-Series",
+		"since" : "2004"
+	}, {
+		"name" : "3-Series",
+		"since" : "1990",
+		"to" : "1998"
+	}, {
+		"name" : "3-Series",
+		"since" : "1998",
+		"to" : "2005"
+	}, {
+		"name" : "3-Series",
+		"since" : "2005"
+	}, {
+		"name" : "3-Series Compact",
+		"since" : "1994",
+		"to" : "2001"
+	}, {
+		"name" : "5-Series",
+		"since" : "1988",
+		"to" : "1995"
+	}, {
+		"name" : "5-Series",
+		"since" : "1996",
+		"to" : "2004"
+	}, {
+		"name" : "5-Series",
+		"since" : "2003"
+	}, {
+		"name" : "6-Series",
+		"since" : "2004"
+	}, {
+		"name" : "7 - Series",
+		"since" : "2002"
+	}, {
+		"name" : "7-Series",
+		"since" : "1994",
+		"to" : "1998"
+	}, {
+		"name" : "850 and 840",
+		"since" : "1991",
+		"to" : "1999"
+	}, {
+		"name" : "X5",
+		"since" : "2000",
+		"to" : "2007"
+	}, {
+		"name" : "X5",
+		"since" : "2007"
+	}, {
+		"name" : "Z3",
+		"since" : "1996",
+		"to" : "2002"
+	}, {
+		"name" : "Z4",
+		"since" : "2003"
+	} ]
+}, {
+	"name" : "Isuzu",
+	"models" : [ {
+		"name" : "Rodeo",
+		"since" : "2003"
+	}, {
+		"name" : "Trooper",
+		"since" : "1992"
+	} ]
+}, {
+	"name" : "Mitsubishi",
+	"models" : [ {
+		"name" : "Carisma",
+		"since" : "1995",
+		"to" : "2001"
+	}, {
+		"name" : "Colt",
+		"since" : "1996",
+		"to" : "2004"
+	}, {
+		"name" : "Colt",
+		"since" : "2004"
+	}, {
+		"name" : "FTO",
+		"since" : "1995"
+	}, {
+		"name" : "Galant",
+		"since" : "1997"
+	}, {
+		"name" : "Grandis",
+		"since" : "2004"
+	}, {
+		"name" : "Lancer Evo",
+		"since" : "2000"
+	}, {
+		"name" : "Outlander",
+		"since" : "2004",
+		"to" : "2007"
+	}, {
+		"name" : "Outlander",
+		"since" : "2007"
+	}, {
+		"name" : "Shogun",
+		"since" : "1991",
+		"to" : "2000"
+	}, {
+		"name" : "Shogun",
+		"since" : "2000",
+		"to" : "2007"
+	}, {
+		"name" : "Space Star",
+		"since" : "1999"
+	}, {
+		"name" : "Space Wagon",
+		"since" : "1992"
+	} ]
+}, {
+	"name" : "Skoda",
+	"models" : [ {
+		"name" : "Fabia",
+		"since" : "2000",
+		"to" : "2007"
+	}, {
+		"name" : "Fabia",
+		"since" : "2007"
+	}, {
+		"name" : "Felicia",
+		"since" : "1995",
+		"to" : "2000"
+	}, {
+		"name" : "Octavia",
+		"since" : "1998",
+		"to" : "2004"
+	}, {
+		"name" : "Octavia",
+		"since" : "2004"
+	}, {
+		"name" : "Superb",
+		"since" : "2002"
+	} ]
+}, {
+	"name" : "Caterham",
+	"models" : [ {
+		"name" : "7",
+		"since" : "1957"
+	} ]
+}, {
+	"name" : "Jaguar",
+	"models" : [ {
+		"name" : "S-Type",
+		"since" : "1999"
+	}, {
+		"name" : "X-Type",
+		"since" : "2001"
+	}, {
+		"name" : "XJ",
+		"since" : "2007"
+	}, {
+		"name" : "XJ Series",
+		"since" : "1986",
+		"to" : "1994"
+	}, {
+		"name" : "XJ Series",
+		"since" : "1994",
+		"to" : "2003"
+	}, {
+		"name" : "XJ Series",
+		"since" : "2003",
+		"to" : "2007"
+	}, {
+		"name" : "XJS",
+		"since" : "1988",
+		"to" : "1996"
+	}, {
+		"name" : "XK8",
+		"since" : "1996",
+		"to" : "2006"
+	} ]
+}, {
+	"name" : "Morgan",
+	"models" : [ {
+		"name" : "4\/4 \/ Roadster",
+		"since" : "1980"
+	} ]
+}, {
+	"name" : "Smart",
+	"models" : [ {
+		"name" : "Smart",
+		"since" : "2000"
+	}, {
+		"name" : "Smart For2",
+		"since" : "2004"
+	}, {
+		"name" : "Smart Forfour",
+		"since" : "2004"
+	} ]
+}, {
+	"name" : "Chevrolet",
+	"models" : [ {
+		"name" : "Captiva",
+		"since" : "2007"
+	}, {
+		"name" : "Kalos",
+		"since" : "2005"
+	}, {
+		"name" : "Matiz",
+		"since" : "2005"
+	} ]
+}, {
+	"name" : "Kia",
+	"models" : [ {
+		"name" : "Carens",
+		"since" : "2000",
+		"to" : "2002"
+	}, {
+		"name" : "Cee'd",
+		"since" : "2007"
+	}, {
+		"name" : "Cerato",
+		"since" : "2006"
+	}, {
+		"name" : "Clarus",
+		"since" : "1999",
+		"to" : "2001"
+	}, {
+		"name" : "Magentis",
+		"since" : "2001"
+	}, {
+		"name" : "Mentor",
+		"since" : "2001",
+		"to" : "2003"
+	}, {
+		"name" : "Picanto",
+		"since" : "2004"
+	}, {
+		"name" : "Pride",
+		"since" : "1991",
+		"to" : "2002"
+	}, {
+		"name" : "Rio",
+		"since" : "2001",
+		"to" : "2005"
+	}, {
+		"name" : "Sedona",
+		"since" : "1999",
+		"to" : "2003"
+	}, {
+		"name" : "Shuma I&II",
+		"since" : "1999",
+		"to" : "2004"
+	}, {
+		"name" : "Sorento",
+		"since" : "2003"
+	}, {
+		"name" : "Sportage",
+		"since" : "1995"
+	} ]
+}, {
+	"name" : "Nissan",
+	"models" : [ {
+		"name" : "200SX",
+		"since" : "1994",
+		"to" : "2001"
+	}, {
+		"name" : "350Z",
+		"since" : "2003"
+	}, {
+		"name" : "Almera",
+		"since" : "1995",
+		"to" : "2000"
+	}, {
+		"name" : "Almera",
+		"since" : "2000",
+		"to" : "2005"
+	}, {
+		"name" : "Figaro",
+		"since" : "1991"
+	}, {
+		"name" : "Micra",
+		"since" : "1993",
+		"to" : "2002"
+	}, {
+		"name" : "Micra",
+		"since" : "2002"
+	}, {
+		"name" : "Patrol",
+		"since" : "1998",
+		"to" : "2004"
+	}, {
+		"name" : "Primera",
+		"since" : "1990",
+		"to" : "1996"
+	}, {
+		"name" : "Primera",
+		"since" : "1996",
+		"to" : "2002"
+	}, {
+		"name" : "Primera",
+		"since" : "2002"
+	}, {
+		"name" : "Qash Qai +2",
+		"since" : "2007"
+	}, {
+		"name" : "QashQai",
+		"since" : "2007"
+	}, {
+		"name" : "Terrano",
+		"since" : "1993"
+	}, {
+		"name" : "X-Trail",
+		"since" : "2001",
+		"to" : "2007"
+	}, {
+		"name" : "X-Trail",
+		"since" : "2007"
+	} ]
+}, {
+	"name" : "Subaru",
+	"models" : [ {
+		"name" : "Forester",
+		"since" : "1997",
+		"to" : "2003"
+	}, {
+		"name" : "Impreza",
+		"since" : "1993",
+		"to" : "2000"
+	}, {
+		"name" : "Impreza",
+		"since" : "2000",
+		"to" : "2005"
+	}, {
+		"name" : "Impreza",
+		"since" : "2007"
+	}, {
+		"name" : "Justy",
+		"since" : "1996"
+	}, {
+		"name" : "Legacy",
+		"since" : "1991",
+		"to" : "2003"
+	}, {
+		"name" : "Legacy",
+		"since" : "2003"
+	} ]
+}, {
+	"name" : "Chrysler",
+	"models" : [ {
+		"name" : "300C",
+		"since" : "2007"
+	}, {
+		"name" : "Crossfire",
+		"since" : "2003"
+	}, {
+		"name" : "Grand Voyager",
+		"since" : "1997"
+	}, {
+		"name" : "Neon",
+		"since" : "1996"
+	}, {
+		"name" : "PT Cruiser",
+		"since" : "2000"
+	}, {
+		"name" : "Voyager",
+		"since" : "1997"
+	} ]
+}, {
+	"name" : "Lancia",
+	"models" : [ {
+		"name" : "Integrale",
+		"since" : "1986",
+		"to" : "1994"
+	} ]
+}, {
+	"name" : "Opel",
+	"models" : [ {
+		"name" : "Antara",
+		"since" : "2007"
+	}, {
+		"name" : "Astra",
+		"since" : "1991",
+		"to" : "2004"
+	}, {
+		"name" : "Astra",
+		"since" : "2004"
+	}, {
+		"name" : "Calibra",
+		"since" : "1990",
+		"to" : "1998"
+	}, {
+		"name" : "Corsa",
+		"since" : "1993",
+		"to" : "2003"
+	}, {
+		"name" : "Corsa",
+		"since" : "2003"
+	}, {
+		"name" : "Frontera",
+		"since" : "1991",
+		"to" : "2003"
+	}, {
+		"name" : "Meriva",
+		"since" : "2003"
+	}, {
+		"name" : "Monterey",
+		"since" : "1994",
+		"to" : "1999"
+	}, {
+		"name" : "Omega",
+		"since" : "1994",
+		"to" : "2003"
+	}, {
+		"name" : "Signum",
+		"since" : "2003"
+	}, {
+		"name" : "Sintra",
+		"since" : "1997",
+		"to" : "1999"
+	}, {
+		"name" : "Tigra",
+		"since" : "1994",
+		"to" : "2001"
+	}, {
+		"name" : "Vectra I",
+		"since" : "1995",
+		"to" : "2002"
+	}, {
+		"name" : "Vectra II",
+		"since" : "2002"
+	}, {
+		"name" : "VX220",
+		"since" : "2000"
+	}, {
+		"name" : "Zafira",
+		"since" : "1999"
+	} ]
+}, {
+	"name" : "Suzuki",
+	"models" : [ {
+		"name" : "Alto",
+		"since" : "1997"
+	}, {
+		"name" : "Alto",
+		"since" : "2004",
+		"to" : "2009"
+	}, {
+		"name" : "Grand Vitara",
+		"since" : "2001"
+	}, {
+		"name" : "Ignis",
+		"since" : "2000"
+	}, {
+		"name" : "Jimny",
+		"since" : "1998"
+	}, {
+		"name" : "Swift",
+		"since" : "1992",
+		"to" : "2000"
+	}, {
+		"name" : "Swift",
+		"since" : "2005"
+	}, {
+		"name" : "Wagon R+",
+		"since" : "1997"
+	} ]
+}, {
+	"name" : "Citroen",
+	"models" : [ {
+		"name" : "AX",
+		"since" : "1988",
+		"to" : "1997"
+	}, {
+		"name" : "Berlingo",
+		"since" : "1998"
+	}, {
+		"name" : "BX",
+		"since" : "1983",
+		"to" : "1995"
+	}, {
+		"name" : "C-Crosser",
+		"since" : "2007"
+	}, {
+		"name" : "C1",
+		"since" : "2006"
+	}, {
+		"name" : "C2",
+		"since" : "2003"
+	}, {
+		"name" : "C3 \/ Plurial",
+		"since" : "2003"
+	}, {
+		"name" : "C4",
+		"since" : "2004"
+	}, {
+		"name" : "C4 Grand Picasso",
+		"since" : "2007"
+	}, {
+		"name" : "C4 Picasso",
+		"since" : "2007"
+	}, {
+		"name" : "C5",
+		"since" : "2004"
+	}, {
+		"name" : "C8",
+		"since" : "2003"
+	}, {
+		"name" : "Saxo",
+		"since" : "1996",
+		"to" : "2003"
+	}, {
+		"name" : "Synergie",
+		"since" : "1995",
+		"to" : "2001"
+	}, {
+		"name" : "Xantia",
+		"since" : "1993",
+		"to" : "2001"
+	}, {
+		"name" : "XM",
+		"since" : "1989",
+		"to" : "2000"
+	}, {
+		"name" : "Xsara",
+		"since" : "2000"
+	}, {
+		"name" : "Xsara Picasso",
+		"since" : "2000"
+	} ]
+}, {
+	"name" : "Land Rover",
+	"models" : [ {
+		"name" : "Defender",
+		"since" : "1948"
+	}, {
+		"name" : "Discovery",
+		"since" : "1989",
+		"to" : "1998"
+	}, {
+		"name" : "Discovery II",
+		"since" : "1998",
+		"to" : "2004"
+	}, {
+		"name" : "Discovery III",
+		"since" : "2004"
+	}, {
+		"name" : "Freelander",
+		"since" : "1997",
+		"to" : "2003"
+	}, {
+		"name" : "Freelander",
+		"since" : "2003",
+		"to" : "2006"
+	}, {
+		"name" : "Freelander",
+		"since" : "2006"
+	}, {
+		"name" : "Range Rover",
+		"since" : "1970",
+		"to" : "1996"
+	}, {
+		"name" : "Range Rover",
+		"since" : "1994",
+		"to" : "2002"
+	}, {
+		"name" : "Range Rover",
+		"since" : "2002",
+		"to" : "2005"
+	}, {
+		"name" : "Range Rover",
+		"since" : "2007"
+	} ]
+}, {
+	"name" : "Peugeot",
+	"models" : [ {
+		"name" : "106",
+		"since" : "1991",
+		"to" : "2003"
+	}, {
+		"name" : "107",
+		"since" : "2006"
+	}, {
+		"name" : "205",
+		"since" : "1983",
+		"to" : "1997"
+	}, {
+		"name" : "206",
+		"since" : "1998"
+	}, {
+		"name" : "207",
+		"since" : "2006"
+	}, {
+		"name" : "306",
+		"since" : "1993",
+		"to" : "2001"
+	}, {
+		"name" : "307",
+		"since" : "2001"
+	}, {
+		"name" : "308",
+		"since" : "2008"
+	}, {
+		"name" : "4007",
+		"since" : "4007",
+		"to" : "2007"
+	}, {
+		"name" : "405",
+		"since" : "1988",
+		"to" : "1997"
+	}, {
+		"name" : "406",
+		"since" : "1996",
+		"to" : "2004"
+	}, {
+		"name" : "407",
+		"since" : "2004"
+	}, {
+		"name" : "605",
+		"since" : "1991",
+		"to" : "1999"
+	}, {
+		"name" : "607",
+		"since" : "2000"
+	}, {
+		"name" : "806",
+		"since" : "1995",
+		"to" : "2002"
+	}, {
+		"name" : "807",
+		"since" : "2002"
+	} ]
+}, {
+	"name" : "Toyota",
+	"models" : [ {
+		"name" : "Auris",
+		"since" : "2007"
+	}, {
+		"name" : "Avensis",
+		"since" : "1997",
+		"to" : "2003"
+	}, {
+		"name" : "Avensis",
+		"since" : "2003"
+	}, {
+		"name" : "Aygo",
+		"since" : "2006"
+	}, {
+		"name" : "Carina E",
+		"since" : "1992",
+		"to" : "1997"
+	}, {
+		"name" : "Celica",
+		"since" : "1994",
+		"to" : "1999"
+	}, {
+		"name" : "Celica",
+		"since" : "1999"
+	}, {
+		"name" : "Corolla",
+		"since" : "1992",
+		"to" : "2002"
+	}, {
+		"name" : "Corolla",
+		"since" : "2002"
+	}, {
+		"name" : "Hilux",
+		"since" : "2005"
+	}, {
+		"name" : "Land Cruiser",
+		"since" : "1996",
+		"to" : "2003"
+	}, {
+		"name" : "Land Cruiser",
+		"since" : "2003"
+	}, {
+		"name" : "Land Cruiser Invincible",
+		"since" : "2007"
+	}, {
+		"name" : "MR2",
+		"since" : "1990",
+		"to" : "2000"
+	}, {
+		"name" : "MR2",
+		"since" : "2000"
+	}, {
+		"name" : "Paseo",
+		"since" : "1996",
+		"to" : "1999"
+	}, {
+		"name" : "Picnic",
+		"since" : "1997",
+		"to" : "2001"
+	}, {
+		"name" : "Previa",
+		"since" : "1990"
+	}, {
+		"name" : "Prius",
+		"since" : "2003"
+	}, {
+		"name" : "RAV 4",
+		"since" : "1994",
+		"to" : "2000"
+	}, {
+		"name" : "RAV 4",
+		"since" : "2000"
+	}, {
+		"name" : "Starlet",
+		"since" : "1996",
+		"to" : "1999"
+	}, {
+		"name" : "Supra",
+		"since" : "1993",
+		"to" : "1998"
+	}, {
+		"name" : "Yaris",
+		"since" : "1999"
+	} ]
+}, {
+	"name" : "Daewoo",
+	"models" : [ {
+		"name" : "Espero",
+		"since" : "1995",
+		"to" : "1998"
+	}, {
+		"name" : "Kalos",
+		"since" : "2003",
+		"to" : "2005"
+	}, {
+		"name" : "Lanos",
+		"since" : "1997",
+		"to" : "2001"
+	}, {
+		"name" : "Leganza",
+		"since" : "1997",
+		"to" : "2001"
+	}, {
+		"name" : "Matiz",
+		"since" : "1998",
+		"to" : "2005"
+	}, {
+		"name" : "Nexia",
+		"since" : "1995",
+		"to" : "1998"
+	}, {
+		"name" : "Nubira",
+		"since" : "1997",
+		"to" : "2003"
+	}, {
+		"name" : "Tacuma",
+		"since" : "2000",
+		"to" : "2005"
+	} ]
+}, {
+	"name" : "Lexus",
+	"models" : [ {
+		"name" : "GS",
+		"since" : "1993"
+	}, {
+		"name" : "IS",
+		"since" : "1999",
+		"to" : "2005"
+	}, {
+		"name" : "LS",
+		"since" : "1990",
+		"to" : "2000"
+	}, {
+		"name" : "LS",
+		"since" : "2000",
+		"to" : "2007"
+	}, {
+		"name" : "LS",
+		"since" : "2007"
+	}, {
+		"name" : "RX",
+		"since" : "2003",
+		"to" : "2007"
+	}, {
+		"name" : "RX",
+		"since" : "2007"
+	}, {
+		"name" : "SC",
+		"since" : "2001"
+	} ]
+}, {
+	"name" : "Porsche",
+	"models" : [ {
+		"name" : "911",
+		"since" : "1993",
+		"to" : "1996"
+	}, {
+		"name" : "911",
+		"since" : "1997",
+		"to" : "2005"
+	}, {
+		"name" : "911",
+		"since" : "2004"
+	}, {
+		"name" : "944",
+		"since" : "1988",
+		"to" : "1992"
+	}, {
+		"name" : "968",
+		"since" : "1992",
+		"to" : "1995"
+	}, {
+		"name" : "Boxster",
+		"since" : "1996",
+		"to" : "2004"
+	}, {
+		"name" : "Boxster",
+		"since" : "2004"
+	}, {
+		"name" : "Cayenne",
+		"since" : "2003"
+	} ]
+}, {
+	"name" : "TVR",
+	"models" : [ {
+		"name" : "Cerbera",
+		"since" : "1996"
+	}, {
+		"name" : "Chimaera",
+		"since" : "1993"
+	}, {
+		"name" : "Griffith",
+		"since" : "1992"
+	}, {
+		"name" : "Tuscan",
+		"since" : "2000"
+	} ]
+}, {
+	"name" : "Daihatsu",
+	"models" : [ {
+		"name" : "Charade",
+		"since" : "1993",
+		"to" : "2000"
+	}, {
+		"name" : "Fourtrak",
+		"since" : "1988",
+		"to" : "2001"
+	}, {
+		"name" : "Grand Move",
+		"since" : "1997",
+		"to" : "2000"
+	}, {
+		"name" : "Materia",
+		"since" : "2007"
+	}, {
+		"name" : "Move",
+		"since" : "1997",
+		"to" : "2000"
+	}, {
+		"name" : "Sirion",
+		"since" : "1998"
+	} ]
+}, {
+	"name" : "Lotus",
+	"models" : [ {
+		"name" : "Elise",
+		"since" : "1996"
+	}, {
+		"name" : "Esprit",
+		"since" : "1975",
+		"to" : "2004"
+	}, {
+		"name" : "Exige",
+		"since" : "2004"
+	} ]
+}, {
+	"name" : "Proton",
+	"models" : [ {
+		"name" : "Compact",
+		"since" : "1994",
+		"to" : "2001"
+	}, {
+		"name" : "Impian",
+		"since" : "2001"
+	}, {
+		"name" : "MPI",
+		"since" : "1989",
+		"to" : "1997"
+	}, {
+		"name" : "Persona",
+		"since" : "1993",
+		"to" : "2001"
+	}, {
+		"name" : "Satria",
+		"since" : "2000",
+		"to" : "2003"
+	}, {
+		"name" : "Wira",
+		"since" : "2000",
+		"to" : "2004"
+	} ]
+}, {
+	"name" : "Volkswagen",
+	"models" : [ {
+		"name" : "Beetle",
+		"since" : "1970"
+	}, {
+		"name" : "Beetle",
+		"since" : "1999"
+	}, {
+		"name" : "Corrado",
+		"since" : "1990",
+		"to" : "1996"
+	}, {
+		"name" : "Eos",
+		"since" : "2007"
+	}, {
+		"name" : "Golf",
+		"since" : "1984",
+		"to" : "1992"
+	}, {
+		"name" : "Golf",
+		"since" : "1992",
+		"to" : "1998"
+	}, {
+		"name" : "Golf",
+		"since" : "1998",
+		"to" : "2004"
+	}, {
+		"name" : "Golf",
+		"since" : "2004"
+	}, {
+		"name" : "Golf Cabriolet",
+		"since" : "1979",
+		"to" : "1993"
+	}, {
+		"name" : "Lupo",
+		"since" : "1999"
+	}, {
+		"name" : "Passat",
+		"since" : "1996",
+		"to" : "2004"
+	}, {
+		"name" : "Passat",
+		"since" : "2005",
+		"to" : "2009"
+	}, {
+		"name" : "Phaeton",
+		"since" : "2007"
+	}, {
+		"name" : "Polo",
+		"since" : "1994",
+		"to" : "2002"
+	}, {
+		"name" : "Polo",
+		"since" : "2002"
+	}, {
+		"name" : "Sharan",
+		"since" : "1995"
+	}, {
+		"name" : "Touareg",
+		"since" : "2003"
+	}, {
+		"name" : "Touran",
+		"since" : "2006"
+	} ]
+}, {
+	"name" : "Ferrari",
+	"models" : [ {
+		"name" : "308\/328",
+		"since" : "1975",
+		"to" : "1995"
+	}, {
+		"name" : "456 GT\/GTA",
+		"since" : "1992",
+		"to" : "2004"
+	}, {
+		"name" : "550 \/ 575M Maranello",
+		"since" : "1996"
+	}, {
+		"name" : "F355",
+		"since" : "1994",
+		"to" : "1998"
+	}, {
+		"name" : "F360",
+		"since" : "1999"
+	} ]
+}, {
+	"name" : "Maserati",
+	"models" : [ {
+		"name" : "3200GT",
+		"since" : "3200",
+		"to" : "1999"
+	}, {
+		"name" : "4200 GT",
+		"since" : "4200",
+		"to" : "2001"
+	} ]
+}, {
+	"name" : "Renault",
+	"models" : [ {
+		"name" : "19",
+		"since" : "1989",
+		"to" : "1996"
+	}, {
+		"name" : "5",
+		"since" : "1985",
+		"to" : "1996"
+	}, {
+		"name" : "Clio",
+		"since" : "1991",
+		"to" : "1998"
+	}, {
+		"name" : "Clio",
+		"since" : "1998",
+		"to" : "2005"
+	}, {
+		"name" : "Clio",
+		"since" : "2005",
+		"to" : "2009"
+	}, {
+		"name" : "Espace",
+		"since" : "1997",
+		"to" : "2003"
+	}, {
+		"name" : "Espace",
+		"since" : "2003"
+	}, {
+		"name" : "Kangoo",
+		"since" : "1999"
+	}, {
+		"name" : "Laguna",
+		"since" : "1994",
+		"to" : "2001"
+	}, {
+		"name" : "Laguna",
+		"since" : "2007"
+	}, {
+		"name" : "Laguna II",
+		"since" : "2001"
+	}, {
+		"name" : "Megane",
+		"since" : "1996",
+		"to" : "2002"
+	}, {
+		"name" : "Megane",
+		"since" : "2002"
+	}, {
+		"name" : "Megane CC",
+		"since" : "2003"
+	}, {
+		"name" : "Modus",
+		"since" : "2007"
+	}, {
+		"name" : "Safrane",
+		"since" : "1993",
+		"to" : "2000"
+	}, {
+		"name" : "Scenic",
+		"since" : "1997",
+		"to" : "2003"
+	}, {
+		"name" : "Scenic",
+		"since" : "2003"
+	}, {
+		"name" : "Vel Satis",
+		"since" : "2002"
+	} ]
+}, {
+	"name" : "Volvo",
+	"models" : [ {
+		"name" : "440\/460",
+		"since" : "1989",
+		"to" : "1997"
+	}, {
+		"name" : "850",
+		"since" : "1992",
+		"to" : "1996"
+	}, {
+		"name" : "940",
+		"since" : "1991",
+		"to" : "1998"
+	}, {
+		"name" : "960 \/ V90 \/ S90",
+		"since" : "1991",
+		"to" : "1998"
+	}, {
+		"name" : "C70",
+		"since" : "1997",
+		"to" : "2002"
+	}, {
+		"name" : "S40 \/ V40",
+		"since" : "1996",
+		"to" : "2004"
+	}, {
+		"name" : "S40",
+		"since" : "2004"
+	}, {
+		"name" : "S60",
+		"since" : "2000"
+	}, {
+		"name" : "S70 \/ V70",
+		"since" : "1996",
+		"to" : "2000"
+	}, {
+		"name" : "S80",
+		"since" : "1998",
+		"to" : "2007"
+	}, {
+		"name" : "S80",
+		"since" : "2007"
+	}, {
+		"name" : "V50",
+		"since" : "2004"
+	}, {
+		"name" : "V70",
+		"since" : "2000"
+	}, {
+		"name" : "V70",
+		"since" : "2007"
+	}, {
+		"name" : "XC90",
+		"since" : "2003"
+	} ]
+} ]

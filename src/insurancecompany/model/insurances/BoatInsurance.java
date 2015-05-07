@@ -5,15 +5,18 @@
  */
 package insurancecompany.model.insurances;
 
+import insurancecompany.model.coverages.BoatInsuranceCoverage;
 import insurancecompany.model.vehicles.Boat;
 
 /**
  *
  * @author Sindre
  */
-public class BoatInsurance extends VehicleInsurance {
+public class BoatInsurance extends Insurance {
     /** The boat this insurance is for. */
     private Boat boat;
+    /** The coverage of this insurance. */
+    private BoatInsuranceCoverage coverage;
     
     /**
      * Constructs a new boat insurance with the specified boat, coverage, 
@@ -27,10 +30,11 @@ public class BoatInsurance extends VehicleInsurance {
      * @param hasAlarm whether the car this insurance is for has an alarm 
      * or not
      */
-    public BoatInsurance(Boat boat, int customerId, String coverage, int excess, 
-            boolean hasAlarm) {
-        super(coverage, customerId, excess, hasAlarm);
+    public BoatInsurance(Boat boat, int customerId, 
+            BoatInsuranceCoverage coverage, int excess, boolean hasAlarm) {
+        super(customerId, excess);
         this.boat = boat;
+        this.coverage = coverage;
     }
     
     /**
@@ -48,6 +52,7 @@ public class BoatInsurance extends VehicleInsurance {
         // Appends the fields with appropriate sentences.
         result.append("BÅTFORSIKRING");
         result.append("\n").append(super.toString());
+        result.append("\nType: ").append(coverage.toString());
         // Returns the string.
         return result.toString();
     }

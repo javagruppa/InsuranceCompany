@@ -16,6 +16,7 @@ public class Car extends Vehicle {
      * specified engine effect, registration number and registration year. The
      * owner of this car has the specified personal number.
      * 
+     * @param alarm whether this vehicle has an alarm or not
      * @param brand the brand of this car
      * @param engineEffect the effect of the engine of this car
      * @param model the model of this car
@@ -23,8 +24,9 @@ public class Car extends Vehicle {
      * @param regNumber the registration number of this car
      * @param regYear the registration year of this car
      */
-    public Car(String brand, int engineEffect, String model, 
+    public Car(boolean alarm, String brand, int engineEffect, String model, 
             String personalNumber, String regNumber, int regYear){
-        super(brand, engineEffect, model, personalNumber, regNumber, regYear);
+        super(alarm, brand, engineEffect, model, personalNumber, regNumber, 
+                regYear);
     }
 }

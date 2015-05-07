@@ -7,6 +7,7 @@ package insurancecompany.model.insurances;
 
 import insurancecompany.model.vehicles.Car;
 import insurancecompany.misc.DateCalculations;
+import insurancecompany.model.coverages.CarInsuranceCoverage;
 
 import java.util.Calendar;
 
@@ -14,12 +15,14 @@ import java.util.Calendar;
  *
  * @author Sindre
  */
-public class CarInsurance extends VehicleInsurance {
+public class CarInsurance extends Insurance {
     /** The bonus of this insurance. Used to calculate the yearly insurance 
      * premium. */
     private int bonus;
     /** The car this insurance is for. */
     private Car car;
+    /** The coverage of this insurance. */
+    private CarInsuranceCoverage coverage;
     /** Whether the car this insurance is for has a garage or not. */
     private boolean hasGarage;
     /** The maximum driving length for this insurance. */
@@ -52,12 +55,13 @@ public class CarInsurance extends VehicleInsurance {
      * @param youngDriver whether a person under 25 years is allowed to drive 
      * the car this insurance is for
      */
-    public CarInsurance(Car car, String coverage, int customerId, int excess, 
-            boolean hasAlarm, boolean hasGarage, int maxLength, 
+    public CarInsurance(Car car, CarInsuranceCoverage coverage, int customerId, 
+            int excess, boolean hasAlarm, boolean hasGarage, int maxLength, 
             boolean youngDriver) {
-        super(coverage, customerId, excess, hasAlarm);
+        super(customerId, excess);
         this.bonus = 0;
         this.car = car;
+        this.coverage = coverage;
         this.hasGarage = hasGarage;
         this.maxLength = maxLength;
         this.youngDriver = youngDriver;
@@ -79,6 +83,7 @@ public class CarInsurance extends VehicleInsurance {
         // Appends the fields with appropriate sentences.
         result.append("BILFORSIKRING");
         result.append("\n").append(super.toString());
+        result.append("\nType: ").append(coverage.toString());
         result.append("\nGarasje: ").append(hasGarage ? "Ja" : "Nei");
         result.append("\nKan personer under 25 kjøre bilen: ").
                 append(youngDriver ? "Ja" : "Nei");

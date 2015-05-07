@@ -7,7 +7,9 @@ package insurancecompany.model.datastructures;
 
 import insurancecompany.model.insurances.Insurance;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
 
 /**
  *
@@ -15,13 +17,13 @@ import java.util.Iterator;
  */
 public class InsuranceRegister {
     /** The list of this insurance register. */
-    private ArrayList<Insurance> insurances;
+    private Set<Insurance> insurances;
     
     /**
      * Constructs a new InsuranceRegister with an empty list.
      */
     public InsuranceRegister() {
-        insurances = new ArrayList<>();
+        insurances = new HashSet<>();
     }
     
     /**
@@ -30,9 +32,8 @@ public class InsuranceRegister {
      * @param insurance insurance to be appended to this list
      * @return true if this list changed as a result of the call
      */
-    public boolean addInsurance(Insurance insurance) {
-        return insurances.contains(insurance) ? false : 
-                insurances.add(insurance);
+    public void addInsurance(Insurance insurance) {
+        insurances.add(insurance);
     }
     
     /**
@@ -97,7 +98,7 @@ public class InsuranceRegister {
     
     /**
      * Returns the yearly insurance premium of a customer with the specified 
-     * customeri id.
+     * customer id.
      * 
      * @param customerId the specified customer id
      * @return the yearly insurance premium of a customer

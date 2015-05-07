@@ -8,20 +8,23 @@ package insurancecompany.model.datastructures;
 
 import insurancecompany.model.claims.Claim;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
 /**
  *
  * @author André
  */
 public class ClaimRegister {
     
-    private ArrayList<Claim> claims;
+    private Set<Claim> claims;
     
     /**
      * Constructor:
      */
     public ClaimRegister() {
-        claims = new ArrayList<Claim>();
+        claims = new HashSet<Claim>();
     }
     
     /**
@@ -29,13 +32,8 @@ public class ClaimRegister {
      * @param claim claim to be added to the register
      * @return 
      */
-    public boolean addClaim(Claim claim) {
-        if (claims.contains(claim)) {
-            return false;
-        } else {
-            claims.add(claim);
-            return true;
-        }
+    public void addClaim(Claim claim) {
+        claims.add(claim);
     }
     
     /**
@@ -43,9 +41,9 @@ public class ClaimRegister {
      * @param customerId customer id of a claim owner
      * @return a list of claims matching the owner of the customer id
      */
-    public ArrayList<Claim> findClaimsByCustomerId(int customerId) {
+    public List<Claim> findClaimsByCustomerId(int customerId) {
         // Creates an ArrayList which will be returned at the end of the method.
-        ArrayList<Claim> result = new ArrayList<Claim>();
+        List<Claim> result = new ArrayList<Claim>();
         // Creates an iterator for the list:
         Iterator<Claim> iterator = claims.iterator();
         // Runs through the whole list:

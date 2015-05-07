@@ -10,7 +10,9 @@ import insurancecompany.model.properties.Address;
 import java.io.Serializable;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
 
 /**
  *
@@ -18,10 +20,10 @@ import java.util.Iterator;
  */
 public class CustomerRegister implements Serializable {
     
-    private ArrayList<Customer> customers;
+    private Set<Customer> customers;
     
     public CustomerRegister() {
-        customers = new ArrayList<Customer>();
+        customers = new HashSet<Customer>();
     }
     
     /**
@@ -29,13 +31,8 @@ public class CustomerRegister implements Serializable {
      * @param customer
      * @return 
      */
-    public boolean addCustomer(Customer customer) {
-        if (customers.contains(customer)) {
-            return false;
-        } else {
-            customers.add(customer);
-            return true;
-        }
+    public void addCustomer(Customer customer) {
+        customers.add(customer);
     }
     
     /**

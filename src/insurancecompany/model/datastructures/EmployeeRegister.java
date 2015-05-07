@@ -8,6 +8,8 @@ package insurancecompany.model.datastructures;
 
 import insurancecompany.model.people.Employee;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  *
@@ -16,10 +18,10 @@ import java.util.ArrayList;
 public class EmployeeRegister {
     
     /** List of all the employees that works or has worked in this company. */
-    private ArrayList<Employee> employees;
+    private Set<Employee> employees;
     
     public EmployeeRegister() {
-        employees = new ArrayList<Employee>();
+        employees = new HashSet<Employee>();
     }
     
     /**
@@ -27,13 +29,8 @@ public class EmployeeRegister {
      * @param employee
      * @return 
      */
-    public boolean addEmployee(Employee employee) {
-        if (employees.contains(employee)) {
-            return false;
-        } else {
-            employees.add(employee);
-            return true;
-        }
+    public void addEmployee(Employee employee) {
+        employees.add(employee);
     }
     
         /**

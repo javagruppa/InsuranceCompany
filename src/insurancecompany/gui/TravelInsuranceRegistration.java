@@ -8,10 +8,9 @@ package insurancecompany.gui;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -29,14 +28,15 @@ public class TravelInsuranceRegistration {
     private TextField coverageField;
     private TextField customerIdField;
     private TextField excessField;
+    private TextField premiumField;
     
     private Label areaMessage;
     private Label coverageMessage;
     private Label customerIdMessage;
     private Label excessMessage;
     
+    private Button calculateButton;
     private Button registerButton;
-    private TextArea outputTextArea;
     
     public TravelInsuranceRegistration() {
         mainPane = new GridPane();
@@ -44,6 +44,8 @@ public class TravelInsuranceRegistration {
         mainPane.setHgap(10);
         mainPane.setVgap(10);
         mainPane.setStyle("-fx-background-color: #E7E7FF;");
+        mainPane.getColumnConstraints().addAll(new ColumnConstraints(200), 
+                new ColumnConstraints(200), new ColumnConstraints(200));
         
         scene = new Scene(mainPane, 300, 275);
         
@@ -51,37 +53,40 @@ public class TravelInsuranceRegistration {
         coverageField = new TextField();
         customerIdField = new TextField();
         excessField = new TextField();
+        premiumField = new TextField();
+        premiumField.setEditable(false);
         
         areaMessage = new Label();
         coverageMessage = new Label();
         customerIdMessage = new Label();
         excessMessage = new Label();
         
+        calculateButton = new Button("Regn ut");
         registerButton = new Button("Registrer");
-        outputTextArea = new TextArea();
-        outputTextArea.setPrefColumnCount(30);
-        outputTextArea.setEditable(false);
         
-        mainPane.add(new Text("Registrer reiseforsikring"), 1, 1);
+        mainPane.add(new Text("Registrer reiseforsikring"), 0, 0);
         
-        mainPane.add(new Label("Kundenummer:"), 1, 2);
-        mainPane.add(customerIdField, 2, 2);
-        mainPane.add(customerIdMessage, 3, 2);
+        mainPane.add(new Label("Kundenummer:"), 0, 1);
+        mainPane.add(customerIdField, 1, 1);
+        mainPane.add(customerIdMessage, 2, 1);
         
-        mainPane.add(new Label("Type:"), 1, 3);
-        mainPane.add(coverageField, 2, 3);
-        mainPane.add(coverageMessage, 3, 3);
+        mainPane.add(new Label("Type:"), 0, 2);
+        mainPane.add(coverageField, 1, 2);
+        mainPane.add(coverageMessage, 2, 2);
         
-        mainPane.add(new Label("Egenandel:"), 1, 4);
-        mainPane.add(excessField, 2, 4);
-        mainPane.add(excessMessage, 3, 4);
+        mainPane.add(new Label("Egenandel:"), 0, 3);
+        mainPane.add(excessField, 1, 3);
+        mainPane.add(excessMessage, 2, 3);
         
-        mainPane.add(new Label("Forsikringsområde:"), 1, 5);
-        mainPane.add(areaField, 2, 5);
-        mainPane.add(areaMessage, 3, 5);
+        mainPane.add(new Label("Forsikringsområde:"), 0, 4);
+        mainPane.add(areaField, 1, 4);
+        mainPane.add(areaMessage, 2, 4);
         
-        mainPane.add(registerButton, 2, 6);
-        mainPane.add(outputTextArea, 4, 1, 1, 6);
+        mainPane.add(new Label("Forsikringspremie:"), 0, 5);
+        mainPane.add(premiumField, 1, 5);
+        mainPane.add(calculateButton, 2, 5);
+        
+        mainPane.add(registerButton, 1, 6);
     }
     
     public GridPane getMainPane() {

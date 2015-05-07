@@ -14,6 +14,8 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -143,7 +145,7 @@ public class AdminView extends Application {
     
     private HBox createToolBar() {
         HBox hbox = new HBox();
-        hbox.setStyle("-fx-background-color: #008ED5;");
+        hbox.setStyle("-fx-background-color: #6577A1;");
         registerTabButton = new Button("Registrer");
         getRegisterButton().setId("mainToolbarButton");
         searchTabButton = new Button("Søk");
@@ -161,7 +163,8 @@ public class AdminView extends Application {
         hbox1.setAlignment(Pos.CENTER_RIGHT);
         HBox.setHgrow(hbox1, Priority.ALWAYS);
         
-        hbox.getChildren().addAll(getRegisterButton(), getSearchButton(), getStatisticsButton());
+        Image ifLogo = new Image("insurancecompany/resources/images/if.png");
+        hbox.getChildren().addAll(new ImageView(ifLogo), getRegisterButton(), getSearchButton(), getStatisticsButton());
         hbox.getChildren().add(hbox1);
         
         return hbox;
@@ -170,7 +173,7 @@ public class AdminView extends Application {
     private HBox createStatusBar() {
         HBox hbox = new HBox();
         hbox.setPadding(new Insets(5, 0, 5, 0));
-        hbox.setStyle("-fx-background-color: #6FA9A0;");
+        hbox.setStyle("-fx-background-color: #E7E7FF;");
         
         userStatusText = new Text("Logget inn som Admin. Ansattnr: 10000000");
         hbox.getChildren().add(getUserStatusText());

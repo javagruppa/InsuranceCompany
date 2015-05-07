@@ -31,13 +31,15 @@ import javafx.stage.Stage;
  */
 public class RegisterView {
     
-    private CustomerRegistration customerRegistration;
-    private BoatInsuranceRegistration boatInsuranceRegistration;
-    private TravelInsuranceRegistration travelInsuranceRegistration;
+    //private CustomerRegistration customerRegistration;
+    //private BoatInsuranceRegistration boatInsuranceRegistration;
+    //private TravelInsuranceRegistration travelInsuranceRegistration;
     private InsurancesView insurancesView;
+    private PersonsView personsView;
     
-    private Pane customerRegistrationPane;
+    private Pane personsPane;
     private Pane insurancesPane;
+    private Pane claimsPane;
     
     private Scene scene;
     private BorderPane mainPane;
@@ -61,9 +63,9 @@ public class RegisterView {
     
     public RegisterView() {
         mainPane = new BorderPane();
-        initializeViews();
-        //initializeEventHandlers(); 
         mainPane.setTop(createToolBar());
+        initializeViews();
+        initializeEventHandlers(); 
         mainPane.setCenter(insurancesPane);
         scene = new Scene(mainPane, 800, 600);
              
@@ -72,17 +74,22 @@ public class RegisterView {
         insurancesView = new InsurancesView();
         insurancesPane = insurancesView.getMainPane();
         
+        personsView = new PersonsView();
+        personsPane = personsView.getMainPane();
+        
+        /*
         customerRegistration = new CustomerRegistration();
         customerRegistrationPane = customerRegistration.getMainPane();
         boatInsuranceRegistration = new BoatInsuranceRegistration();
         //boatInsuranceRegistrationPane = boatInsuranceRegistration.getMainPane();
         travelInsuranceRegistration = new TravelInsuranceRegistration();
         //travelInsuranceRegistrationPane = travelInsuranceRegistration.getMainPane();
+        */
     }
     
     private void initializeEventHandlers() {
         personsButton.setOnAction((event) -> {
-            mainPane.setCenter(customerRegistrationPane);
+            mainPane.setCenter(personsPane);
             selectedButtonStyleLower(personsButton);
         });
         
@@ -92,7 +99,7 @@ public class RegisterView {
         });
         
         claimsButton.setOnAction((event) -> {
-            //mainPane.setCenter(boatInsuranceRegistrationPane);
+            //mainPane.setCenter(claimsPane);
             selectedButtonStyleLower(claimsButton);
         });      
     }
@@ -108,7 +115,7 @@ public class RegisterView {
     private HBox createToolBar() {
         HBox hbox = new HBox();
         hbox.getStyleClass().add("insurancecompany/resources/stylesheet.css");
-        hbox.setStyle("-fx-background-color: #008ED5;");
+        hbox.setStyle("-fx-background-color: #6577A1;");
         hbox.setPrefSize(640, 20);
         personsButton = new Button("Personer");
         personsButton.setId("subToolbarButton");

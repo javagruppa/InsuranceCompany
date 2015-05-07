@@ -27,7 +27,7 @@ import javafx.stage.Stage;
  *
  * @author André
  */
-public class InsurancesView {
+public class PersonsView {
     
     private BoatInsuranceRegistration boatInsuranceRegistration;
     private TravelInsuranceRegistration travelInsuranceRegistration;
@@ -61,7 +61,7 @@ public class InsurancesView {
         stage.show();
     }
     
-    public InsurancesView() {
+    public PersonsView() {
         mainPane = new BorderPane();
         sideToolBarPane = createSideToolBar();
         ScrollPane sp = new ScrollPane();

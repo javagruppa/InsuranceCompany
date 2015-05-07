@@ -5,13 +5,13 @@
  */
 package insurancecompany.gui;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
@@ -39,8 +39,8 @@ public class BoatInsuranceRegistration {
     private TextField regYearField;
     private TextField premiumField;
     
-    private ComboBox alarmComboBox;
-    private ComboBox coverageComboBox;
+    private ComboBox<String> alarmComboBox;
+    private ComboBox<String> coverageComboBox;
     
     private Label customerIdMessage;
     private Label excessMessage;
@@ -64,8 +64,8 @@ public class BoatInsuranceRegistration {
         mainPane.setHgap(10);
         mainPane.setVgap(10);
         mainPane.setStyle("-fx-background-color: #E7E7FF;");
-        //mainPane.setGridLinesVisible(true);
-        mainPane.getColumnConstraints().addAll(new ColumnConstraints(200), new ColumnConstraints(200), new ColumnConstraints(200));
+        mainPane.getColumnConstraints().addAll(new ColumnConstraints(200), 
+                new ColumnConstraints(200), new ColumnConstraints(200));
         
         scene = new Scene(mainPane, 300, 275);
         
@@ -82,10 +82,10 @@ public class BoatInsuranceRegistration {
         premiumField = new TextField();
         premiumField.setEditable(false);
         
-        alarmComboBox = new ComboBox();
+        alarmComboBox = new ComboBox<>();
         alarmComboBox.getItems().addAll("Ja", "Nei");
         
-        coverageComboBox = new ComboBox();
+        coverageComboBox = new ComboBox<>();
         coverageComboBox.getItems().addAll("Kasko", "Delkasko", "Ansvar");
     
         customerIdMessage = new Label("* Dette feltet må fylles ut!");
@@ -171,5 +171,188 @@ public class BoatInsuranceRegistration {
         stage.setTitle("Registrering av båtforsikring.");
         stage.setScene(scene);
         stage.show();
+    }
+
+    /**
+     * @return the customerIdField
+     */
+    public String getCustomerId() {
+        return customerIdField.getText();
+    }
+
+    /**
+     * @return the excessField
+     */
+    public String getExcess() {
+        return excessField.getText();
+    }
+
+    /**
+     * @return the brandField
+     */
+    public String getBrand() {
+        return brandField.getText();
+    }
+
+    /**
+     * @return the engineEffectField
+     */
+    public String getEngineEffect() {
+        return engineEffectField.getText();
+    }
+
+    /**
+     * @return the engineTypeField
+     */
+    public String getEngineType() {
+        return engineTypeField.getText();
+    }
+
+    /**
+     * @return the lengthField
+     */
+    public String getLength() {
+        return lengthField.getText();
+    }
+
+    /**
+     * @return the modelField
+     */
+    public String getModel() {
+        return modelField.getText();
+    }
+
+    /**
+     * @return the personalNumberField
+     */
+    public String getPersonalNumber() {
+        return personalNumberField.getText();
+    }
+
+    /**
+     * @return the regNumberField
+     */
+    public String getRegNumber() {
+        return regNumberField.getText();
+    }
+
+    /**
+     * @return the regYearField
+     */
+    public String getRegYear() {
+        return regYearField.getText();
+    }
+
+    /**
+     * @return the premiumField
+     */
+    public String getPremium() {
+        return premiumField.getText();
+    }
+
+    /**
+     * @return the alarmComboBox
+     */
+    public boolean getAlarm() {
+        return alarmComboBox.getValue().equals("Ja");
+    }
+
+    /**
+     * @return the coverageComboBox
+     */
+    public String getCoverage() {
+        return coverageComboBox.getValue();
+    }
+
+    /**
+     * @param customerIdMessage the customerIdMessage to set
+     */
+    public void setCustomerIdMessage(String customerIdMessage) {
+        this.customerIdMessage.setText(customerIdMessage);
+    }
+
+    /**
+     * @param excessMessage the excessMessage to set
+     */
+    public void setExcessMessage(String excessMessage) {
+        this.excessMessage.setText(excessMessage);
+    }
+
+    /**
+     * @param brandMessage the brandMessage to set
+     */
+    public void setBrandMessage(String brandMessage) {
+        this.brandMessage.setText(brandMessage);
+    }
+
+    /**
+     * @param engineEffectMessage the engineEffectMessage to set
+     */
+    public void setEngineEffectMessage(String engineEffectMessage) {
+        this.engineEffectMessage.setText(engineEffectMessage);
+    }
+
+    /**
+     * @param engineTypeMessage the engineTypeMessage to set
+     */
+    public void setEngineTypeMessage(String engineTypeMessage) {
+        this.engineTypeMessage.setText(engineTypeMessage);
+    }
+
+    /**
+     * @param lengthMessage the lengthMessage to set
+     */
+    public void setLengthMessage(String lengthMessage) {
+        this.lengthMessage.setText(lengthMessage);
+    }
+
+    /**
+     * @param modelMessage the modelMessage to set
+     */
+    public void setModelMessage(String modelMessage) {
+        this.modelMessage.setText(modelMessage);
+    }
+
+    /**
+     * @param personalNumberMessage the personalNumberMessage to set
+     */
+    public void setPersonalNumberMessage(String personalNumberMessage) {
+        this.personalNumberMessage.setText(personalNumberMessage);
+    }
+
+    /**
+     * @param regNumberMessage the regNumberMessage to set
+     */
+    public void setRegNumberMessage(String regNumberMessage) {
+        this.regNumberMessage.setText(regNumberMessage);
+    }
+
+    /**
+     * @param regYearMessage the regYearMessage to set
+     */
+    public void setRegYearMessage(String regYearMessage) {
+        this.regYearMessage.setText(regYearMessage);
+    }
+
+    /**
+     * @param alarmMessage the alarmMessage to set
+     */
+    public void setAlarmMessage(String alarmMessage) {
+        this.alarmMessage.setText(alarmMessage);
+    }
+
+    /**
+     * @param coverageMessage the coverageMessage to set
+     */
+    public void setCoverageMessage(String coverageMessage) {
+        this.coverageMessage.setText(coverageMessage);
+    }
+
+    public void setCalculateButtonEventHandler(EventHandler<ActionEvent> value) {
+        calculateButton.setOnAction(value);
+    }
+
+    public void setRegisterButtonEventHandler(EventHandler<ActionEvent> value) {
+        registerButton.setOnAction(value);
     }
 }

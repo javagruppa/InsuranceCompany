@@ -31,7 +31,7 @@ public class RegisterPane extends Application {
     private Button carInsuranceButton;
     private Button boatInsuranceButton;
     private Button homeInsuranceButton;
-    private Button holidayHomeInsurance;
+    private Button holidayHomeInsuranceButton;
     private Button travelInsuranceButton;
     private Button claimButton;
             
@@ -71,14 +71,14 @@ public class RegisterPane extends Application {
         getBoatInsuranceButton().setId("subToolbarButton");
         homeInsuranceButton = new Button("Hus- og innboforsikring");
         getHomeInsuranceButton().setId("subToolbarButton");
-        holidayHomeInsurance = new Button("Fritidsboligforsikring");
-        getHolidayHomeInsurance().setId("subToolbarButton");
+        holidayHomeInsuranceButton = new Button("Fritidsboligforsikring");
+        getHolidayHomeInsuranceButton().setId("subToolbarButton");
         travelInsuranceButton = new Button("Reiseforsikring");
         getTravelInsuranceButton().setId("subToolbarButton");
         claimButton = new Button("Skademelding");
         getClaimButton().setId("subToolbarButton");
                 
-        hbox.getChildren().addAll(getCustomerButton(), getCarInsuranceButton(), getBoatInsuranceButton(), getHomeInsuranceButton(), getHolidayHomeInsurance(), getTravelInsuranceButton(), getClaimButton());
+        hbox.getChildren().addAll(getCustomerButton(), getCarInsuranceButton(), getBoatInsuranceButton(), getHomeInsuranceButton(), getHolidayHomeInsuranceButton(), getTravelInsuranceButton(), getClaimButton());
        
         return hbox;
     }
@@ -130,10 +130,10 @@ public class RegisterPane extends Application {
     }
 
     /**
-     * @return the holidayHomeInsurance
+     * @return the holidayHomeInsuranceButton
      */
-    public Button getHolidayHomeInsurance() {
-        return holidayHomeInsurance;
+    public Button getHolidayHomeInsuranceButton() {
+        return holidayHomeInsuranceButton;
     }
 
     /**

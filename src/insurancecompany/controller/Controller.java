@@ -39,6 +39,8 @@ public class Controller {
     private RegisterPane registerPane;
     private CustomerRegistration cReg;
     private BoatInsuranceRegistration biReg;
+    private HomeInsuranceRegistration hiReg;
+    private HolidayHomeInsuranceRegistration hhiReg;
     private TravelInsuranceRegistration tiReg;
     private GuiAdmin guiAdmin;
     
@@ -60,13 +62,17 @@ public class Controller {
         login = new Login();
         registerPane = new RegisterPane();
         cReg = new CustomerRegistration();
-        guiAdmin = new GuiAdmin();
         biReg = new BoatInsuranceRegistration();
+        hiReg = new HomeInsuranceRegistration();
+        hhiReg = new HolidayHomeInsuranceRegistration();
         tiReg = new TravelInsuranceRegistration();
+        guiAdmin = new GuiAdmin();
         login.getLoginBtn().setOnAction(this::loginBtnEventHandler);
         guiAdmin.getRegisterButton().setOnAction(this::registerPaneEventHandler);
         registerPane.getCustomerButton().setOnAction(this::registerCustomerPaneEventHandler);
         registerPane.getBoatInsuranceButton().setOnAction(this::registerBoatInsurancePaneEventHandler);
+        registerPane.getHomeInsuranceButton().setOnAction(this::registerHomeInsurancePaneEventHandler);
+        registerPane.getHolidayHomeInsuranceButton().setOnAction(this::registerHolidayHomeInsurancePaneEventHandler);
         registerPane.getTravelInsuranceButton().setOnAction(this::registerTravelInsurancePaneEventHandler);
         cReg.getRegisterButton().setOnAction(this::registerCustomerEventHandler);
     }
@@ -208,6 +214,18 @@ public class Controller {
         Pane pane = biReg.getMainPane();
         registerPane.getMainPane().setCenter(pane); 
 
+    }
+    
+    private void registerHomeInsurancePaneEventHandler(ActionEvent e) {
+        Pane pane = hiReg.getMainPane();
+        registerPane.getMainPane().setCenter(pane); 
+        selectedButtonStyleLower(registerPane.getHomeInsuranceButton());
+    }
+    
+    private void registerHolidayHomeInsurancePaneEventHandler(ActionEvent e) {
+        Pane pane = hhiReg.getMainPane();
+        registerPane.getMainPane().setCenter(pane); 
+        selectedButtonStyleLower(registerPane.getHolidayHomeInsuranceButton());
     }
     
     private void registerTravelInsurancePaneEventHandler(ActionEvent e) {

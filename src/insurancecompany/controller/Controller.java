@@ -54,10 +54,10 @@ public class Controller {
     private RegisterView registerView;
     private CustomerRegistration customerRegistration;
     private BoatInsuranceRegistration boatInsuranceRegistration;
-    private HomeInsuranceRegistration hiReg;
-    private HolidayHomeInsuranceRegistration hhiReg;
-    private TravelInsuranceRegistration tiReg;
-    private AdminView guiAdmin;
+    private HomeInsuranceRegistration homeInsuranceRegistration;
+    private HolidayHomeInsuranceRegistration holidayHomeInsuranceRegistration;
+    private TravelInsuranceRegistration travelInsuranceRegistration;
+    private AdminView adminView;
     
     // Models:
     private EmployeeRegister employees;
@@ -65,40 +65,38 @@ public class Controller {
     private InsuranceRegister insurances;
     private ClaimRegister claims;
     
-    public Controller()  {
-           
+    public Controller()  {          
         employees = new EmployeeRegister();
         customers = new CustomerRegister();
         insurances = new InsuranceRegister();
         claims = new ClaimRegister();
-        
+        initializeView();
+        initializeEventHandlers();
+    }
+    
+    public void initializeView() {        
         loginView = new LoginView();
+        adminView = new AdminView();
         registerView = new RegisterView();
         customerRegistration = new CustomerRegistration();
         boatInsuranceRegistration = new BoatInsuranceRegistration();
-        hiReg = new HomeInsuranceRegistration();
-        hhiReg = new HolidayHomeInsuranceRegistration();
-        tiReg = new TravelInsuranceRegistration();
-        guiAdmin = new AdminView();
-        loginView.getLoginBtn().setOnAction(this::loginBtnEventHandler);
-        registerView.getCustomerButton().setOnAction(this::registerCustomerPaneEventHandler);
-        registerView.getBoatInsuranceButton().setOnAction(this::registerBoatInsurancePaneEventHandler);
-        //registerPane.getHomeInsuranceButton().setOnAction(this::registerHomeInsurancePaneEventHandler);
-        //registerPane.getHolidayHomeInsuranceButton().setOnAction(this::registerHolidayHomeInsurancePaneEventHandler);
-        registerView.getTravelInsuranceButton().setOnAction(this::registerTravelInsurancePaneEventHandler);
-        customerRegistration.getRegisterButton().setOnAction(this::registerCustomerEventHandler);
-    }
-    
-    public void initGui() {
+        homeInsuranceRegistration = new HomeInsuranceRegistration();
+        holidayHomeInsuranceRegistration = new HolidayHomeInsuranceRegistration();
+        travelInsuranceRegistration = new TravelInsuranceRegistration();
         Pane pane = registerView.getMainPane();
-        guiAdmin.getMainPane().setCenter(pane);
+        adminView.getMainPane().setCenter(pane);
         Pane pane2 = customerRegistration.getMainPane();
         registerView.getMainPane().setCenter(pane2);
     }
     
+    public void initializeEventHandlers() {
+        loginView.getLoginBtn().setOnAction(this::loginBtnEventHandler);
+        customerRegistration.getRegisterButton().setOnAction(this::registerCustomerEventHandler);
+    }
+    
     public void show(Stage stage) {
         //login.show(stage);
-        guiAdmin.show(stage);
+        adminView.show(stage);
     }
    
     
@@ -225,20 +223,20 @@ public class Controller {
     }
     /*
     private void registerHomeInsurancePaneEventHandler(ActionEvent e) {
-        Pane pane = hiReg.getMainPane();
+        Pane pane = homeInsuranceRegistration.getMainPane();
         registerView.getMainPane().setCenter(pane); 
         selectedButtonStyleLower(registerView.getHomeInsuranceButton());
     }
     
     private void registerHolidayHomeInsurancePaneEventHandler(ActionEvent e) {
-        Pane pane = hhiReg.getMainPane();
+        Pane pane = holidayHomeInsuranceRegistration.getMainPane();
         registerView.getMainPane().setCenter(pane); 
         selectedButtonStyleLower(registerView.getHolidayHomeInsuranceButton());
     }
     * */
     
     private void registerTravelInsurancePaneEventHandler(ActionEvent e) {
-        Pane pane = tiReg.getMainPane();
+        Pane pane = travelInsuranceRegistration.getMainPane();
         registerView.getMainPane().setCenter(pane); 
         //selectedButtonStyleLower(registerView.getTravelInsuranceButton());
     }

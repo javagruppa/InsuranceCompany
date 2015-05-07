@@ -5,6 +5,8 @@
  */
 package insurancecompany.gui;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -265,98 +267,92 @@ public class BoatInsuranceRegistration {
     /**
      * @param customerIdMessage the customerIdMessage to set
      */
-    public void setCustomerIdMessage(Label customerIdMessage) {
-        this.customerIdMessage = customerIdMessage;
+    public void setCustomerIdMessage(String customerIdMessage) {
+        this.customerIdMessage.setText(customerIdMessage);
     }
 
     /**
      * @param excessMessage the excessMessage to set
      */
-    public void setExcessMessage(Label excessMessage) {
-        this.excessMessage = excessMessage;
+    public void setExcessMessage(String excessMessage) {
+        this.excessMessage.setText(excessMessage);
     }
 
     /**
      * @param brandMessage the brandMessage to set
      */
-    public void setBrandMessage(Label brandMessage) {
-        this.brandMessage = brandMessage;
+    public void setBrandMessage(String brandMessage) {
+        this.brandMessage.setText(brandMessage);
     }
 
     /**
      * @param engineEffectMessage the engineEffectMessage to set
      */
-    public void setEngineEffectMessage(Label engineEffectMessage) {
-        this.engineEffectMessage = engineEffectMessage;
+    public void setEngineEffectMessage(String engineEffectMessage) {
+        this.engineEffectMessage.setText(engineEffectMessage);
     }
 
     /**
      * @param engineTypeMessage the engineTypeMessage to set
      */
-    public void setEngineTypeMessage(Label engineTypeMessage) {
-        this.engineTypeMessage = engineTypeMessage;
+    public void setEngineTypeMessage(String engineTypeMessage) {
+        this.engineTypeMessage.setText(engineTypeMessage);
     }
 
     /**
      * @param lengthMessage the lengthMessage to set
      */
-    public void setLengthMessage(Label lengthMessage) {
-        this.lengthMessage = lengthMessage;
+    public void setLengthMessage(String lengthMessage) {
+        this.lengthMessage.setText(lengthMessage);
     }
 
     /**
      * @param modelMessage the modelMessage to set
      */
-    public void setModelMessage(Label modelMessage) {
-        this.modelMessage = modelMessage;
+    public void setModelMessage(String modelMessage) {
+        this.modelMessage.setText(modelMessage);
     }
 
     /**
      * @param personalNumberMessage the personalNumberMessage to set
      */
-    public void setPersonalNumberMessage(Label personalNumberMessage) {
-        this.personalNumberMessage = personalNumberMessage;
+    public void setPersonalNumberMessage(String personalNumberMessage) {
+        this.personalNumberMessage.setText(personalNumberMessage);
     }
 
     /**
      * @param regNumberMessage the regNumberMessage to set
      */
-    public void setRegNumberMessage(Label regNumberMessage) {
-        this.regNumberMessage = regNumberMessage;
+    public void setRegNumberMessage(String regNumberMessage) {
+        this.regNumberMessage.setText(regNumberMessage);
     }
 
     /**
      * @param regYearMessage the regYearMessage to set
      */
-    public void setRegYearMessage(Label regYearMessage) {
-        this.regYearMessage = regYearMessage;
+    public void setRegYearMessage(String regYearMessage) {
+        this.regYearMessage.setText(regYearMessage);
     }
 
     /**
      * @param alarmMessage the alarmMessage to set
      */
-    public void setAlarmMessage(Label alarmMessage) {
-        this.alarmMessage = alarmMessage;
+    public void setAlarmMessage(String alarmMessage) {
+        this.alarmMessage.setText(alarmMessage);
     }
 
     /**
      * @param coverageMessage the coverageMessage to set
      */
-    public void setCoverageMessage(Label coverageMessage) {
-        this.coverageMessage = coverageMessage;
+    public void setCoverageMessage(String coverageMessage) {
+        this.coverageMessage.setText(coverageMessage);
     }
 
-    /**
-     * @return the calculateButton
-     */
-    public Button getCalculateButton() {
-        return calculateButton;
+    public void setCalculateButtonEventHandler(EventHandler<ActionEvent> value) {
+        calculateButton.setOnAction(value);
     }
 
-    /**
-     * @return the registerButton
-     */
-    public Button getRegisterButton() {
-        return registerButton;
+    public void setRegisterButtonEventHandler(EventHandler<ActionEvent> value) {
+        registerButton.setOnAction(value);
     }
 }

@@ -11,6 +11,8 @@ package insurancecompany.model.vehicles;
  * @author Sindre
  */
 public abstract class Vehicle {
+    /** Whether this vehicle has an alarm or not. */
+    private boolean alarm;
     /** The brand of this vehicle. */
     private String brand;
     /** The effect of the engine of this vehicle. */
@@ -29,6 +31,7 @@ public abstract class Vehicle {
      * specified engine effect, registration number and registration year. The
      * owner of this vehicle has the specified personal number.
      * 
+     * @param alarm whether this vehicle has an alarm or not
      * @param brand the brand of this vehicle
      * @param engineEffect the effect of the engine of this vehicle
      * @param model the model of this vehicle
@@ -36,8 +39,9 @@ public abstract class Vehicle {
      * @param regNumber the registration number of this vehicle
      * @param regYear the registration year of this vehicle
      */
-    public Vehicle(String brand, int engineEffect, String model, 
+    public Vehicle(boolean alarm, String brand, int engineEffect, String model, 
             String personalNumber, String regNumber, int regYear){
+        this.alarm = alarm;
         this.brand = brand;
         this.engineEffect = engineEffect;
         this.model = model;

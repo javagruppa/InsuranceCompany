@@ -5,6 +5,8 @@
  */
 package insurancecompany.gui;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -157,175 +159,169 @@ public class HomeInsuranceRegistration {
     /**
      * @return the customerIdField
      */
-    public TextField getCustomerIdField() {
-        return customerIdField;
+    public String getCustomerId() {
+        return customerIdField.getText();
     }
 
     /**
      * @return the excessField
      */
-    public TextField getExcessField() {
-        return excessField;
+    public String getExcess() {
+        return excessField.getText();
     }
 
     /**
      * @return the buildingAmountField
      */
-    public TextField getBuildingAmountField() {
-        return buildingAmountField;
+    public String getBuildingAmount() {
+        return buildingAmountField.getText();
     }
 
     /**
      * @return the contentAmountField
      */
-    public TextField getContentAmountField() {
-        return contentAmountField;
+    public String getContentAmount() {
+        return contentAmountField.getText();
     }
 
     /**
      * @return the areaField
      */
-    public TextField getAreaField() {
-        return areaField;
+    public String getArea() {
+        return areaField.getText();
     }
 
     /**
      * @return the yearField
      */
-    public TextField getYearField() {
-        return yearField;
+    public String getYear() {
+        return yearField.getText();
     }
 
     /**
      * @return the materialField
      */
-    public TextField getMaterialField() {
-        return materialField;
+    public String getMaterial() {
+        return materialField.getText();
     }
 
     /**
      * @return the typeField
      */
-    public TextField getTypeField() {
-        return typeField;
+    public String getType() {
+        return typeField.getText();
     }
 
     /**
      * @return the streetField
      */
-    public TextField getStreetField() {
-        return streetField;
+    public String getStreet() {
+        return streetField.getText();
     }
 
     /**
      * @return the zipCodeField
      */
-    public TextField getZipCodeField() {
-        return zipCodeField;
+    public String getZipCode() {
+        return zipCodeField.getText();
     }
 
     /**
      * @return the cityField
      */
-    public TextField getCityField() {
-        return cityField;
+    public String getCity() {
+        return cityField.getText();
     }
 
     /**
      * @return the premiumField
      */
-    public TextField getPremiumField() {
-        return premiumField;
+    public String getPremium() {
+        return premiumField.getText();
     }
 
     /**
      * @param customerIdMessage the customerIdMessage to set
      */
-    public void setCustomerIdMessage(Label customerIdMessage) {
-        this.customerIdMessage = customerIdMessage;
+    public void setCustomerIdMessage(String customerIdMessage) {
+        this.customerIdMessage.setText(customerIdMessage);
     }
 
     /**
      * @param excessMessage the excessMessage to set
      */
-    public void setExcessMessage(Label excessMessage) {
-        this.excessMessage = excessMessage;
+    public void setExcessMessage(String excessMessage) {
+        this.excessMessage.setText(excessMessage);
     }
 
     /**
      * @param buildingAmountMessage the buildingAmountMessage to set
      */
-    public void setBuildingAmountMessage(Label buildingAmountMessage) {
-        this.buildingAmountMessage = buildingAmountMessage;
+    public void setBuildingAmountMessage(String buildingAmountMessage) {
+        this.buildingAmountMessage.setText(buildingAmountMessage);
     }
 
     /**
      * @param contentAmountMessage the contentAmountMessage to set
      */
-    public void setContentAmountMessage(Label contentAmountMessage) {
-        this.contentAmountMessage = contentAmountMessage;
+    public void setContentAmountMessage(String contentAmountMessage) {
+        this.contentAmountMessage.setText(contentAmountMessage);
     }
 
     /**
      * @param areaMessage the areaMessage to set
      */
-    public void setAreaMessage(Label areaMessage) {
-        this.areaMessage = areaMessage;
+    public void setAreaMessage(String areaMessage) {
+        this.areaMessage.setText(areaMessage);
     }
 
     /**
      * @param yearMessage the yearMessage to set
      */
-    public void setYearMessage(Label yearMessage) {
-        this.yearMessage = yearMessage;
+    public void setYearMessage(String yearMessage) {
+        this.yearMessage.setText(yearMessage);
     }
 
     /**
      * @param materialMessage the materialMessage to set
      */
-    public void setMaterialMessage(Label materialMessage) {
-        this.materialMessage = materialMessage;
+    public void setMaterialMessage(String materialMessage) {
+        this.materialMessage.setText(materialMessage);
     }
 
     /**
      * @param typeMessage the typeMessage to set
      */
-    public void setTypeMessage(Label typeMessage) {
-        this.typeMessage = typeMessage;
+    public void setTypeMessage(String typeMessage) {
+        this.typeMessage.setText(typeMessage);
     }
 
     /**
      * @param streetMessage the streetMessage to set
      */
-    public void setStreetMessage(Label streetMessage) {
-        this.streetMessage = streetMessage;
+    public void setStreetMessage(String streetMessage) {
+        this.streetMessage.setText(streetMessage);
     }
 
     /**
      * @param zipCodeMessage the zipCodeMessage to set
      */
-    public void setZipCodeMessage(Label zipCodeMessage) {
-        this.zipCodeMessage = zipCodeMessage;
+    public void setZipCodeMessage(String zipCodeMessage) {
+        this.zipCodeMessage.setText(zipCodeMessage);
     }
 
     /**
      * @param cityMessage the cityMessage to set
      */
-    public void setCityMessage(Label cityMessage) {
-        this.cityMessage = cityMessage;
+    public void setCityMessage(String cityMessage) {
+        this.cityMessage.setText(cityMessage);
     }
 
-    /**
-     * @return the calculateButton
-     */
-    public Button getCalculateButton() {
-        return calculateButton;
+    public void setCalculateButtonEventHandler(EventHandler<ActionEvent> value) {
+        calculateButton.setOnAction(value);
     }
 
-    /**
-     * @return the registerButton
-     */
-    public Button getRegisterButton() {
-        return registerButton;
+    public void setRegisterButtonEventHandler(EventHandler<ActionEvent> value) {
+        registerButton.setOnAction(value);
     }
 }

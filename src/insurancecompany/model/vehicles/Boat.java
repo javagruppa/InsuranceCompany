@@ -29,14 +29,14 @@ public class Boat extends Vehicle{
      * @param length the length of this boat in feet
      * @param model the model of this boat
      * @param personalNumber the personal number of the owner of this boat
-     * @param regNumber the registration number of this boat
-     * @param regYear the registration year of this boat
+     * @param registrationNumber the registration number of this boat
+     * @param registrationYear the registration year of this boat
      */
     public Boat(boolean alarm, String brand, int engineEffect, 
             String engineType, int length, String model, String personalNumber, 
-            String regNumber, int regYear){
-        super(alarm, brand, engineEffect, model, personalNumber, regNumber, 
-                regYear);
+            String registrationNumber, int registrationYear){
+        super(alarm, brand, engineEffect, model, personalNumber, 
+                registrationNumber, registrationYear);
         this.length = length;
         this.engineType = engineType;
     }   

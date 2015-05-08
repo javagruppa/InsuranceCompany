@@ -22,9 +22,9 @@ public abstract class Vehicle {
     /** The personal number of the owner of this vehicle. */
     private String personalNumber;
     /** The registration number of this vehicle. */
-    private String regNumber;
+    private String registrationNumber;
     /** The registration year of this vehicle. */
-    private int regYear;
+    private int registrationYear;
     
     /**
      * Constructs a new vehicle of the specified brand and model, and with the
@@ -36,17 +36,18 @@ public abstract class Vehicle {
      * @param engineEffect the effect of the engine of this vehicle
      * @param model the model of this vehicle
      * @param personalNumber the personal number of the owner of this vehicle
-     * @param regNumber the registration number of this vehicle
-     * @param regYear the registration year of this vehicle
+     * @param registrationNumber the registration number of this vehicle
+     * @param registrationYear the registration year of this vehicle
      */
     public Vehicle(boolean alarm, String brand, int engineEffect, String model, 
-            String personalNumber, String regNumber, int regYear){
+            String personalNumber, String registrationNumber, 
+            int registrationYear){
         this.alarm = alarm;
         this.brand = brand;
         this.engineEffect = engineEffect;
         this.model = model;
         this.personalNumber = personalNumber;
-        this.regNumber = regNumber;
-        this.regYear = regYear;
+        this.registrationNumber = registrationNumber;
+        this.registrationYear = registrationYear;
     }
 }

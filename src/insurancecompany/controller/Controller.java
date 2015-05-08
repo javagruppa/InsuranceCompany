@@ -88,6 +88,7 @@ public class Controller {
     public void initializeEventHandlers() {
         loginView.getLoginBtn().setOnAction(this::loginBtnEventHandler);
         customerRegistration.getRegisterButton().setOnAction(this::registerCustomerEventHandler);
+        boatInsuranceRegistration.getRegisterButton().setOnAction(this::registerBoatInsuranceEventHandler);
     }
     
     public void show(Stage stage) {
@@ -136,7 +137,7 @@ public class Controller {
         
         int customerId = customer.getCustomerId();
         System.out.println(customerId);
-        boolean ok1 = customers.addCustomer(customer);
+        //boolean ok1 = customers.addCustomer(customer);
         
         //Customer test = customers.findCustomerById(customerId);
         if (!ok) {
@@ -148,63 +149,80 @@ public class Controller {
         
     }
     
-    /*private void registerBoatInsuranceEventHandler(ActionEvent e) {
-        // Collects information about the boat.
-        String regNumber = boatInsuranceRegistration.getRegNumberField().getText();
-        String effectS = boatInsuranceRegistration.getEffectField().getText();
-        String lengthS = boatInsuranceRegistration.getLengthField().getText();
-        String engineType = boatInsuranceRegistration.getEngineTypeField().getText();
-        String yearS = boatInsuranceRegistration.getYearField().getText();
-        String make = boatInsuranceRegistration.getMakeField().getText();
-        String model = boatInsuranceRegistration.getModelField().getText();
-        
+    private void registerBoatInsuranceEventHandler(ActionEvent e) {
         // Collects information about the customer and the insurance.
-        String customerId = boatInsuranceRegistration.getCustomerIdField().getText();
-        String coverageS = boatInsuranceRegistration.getCoverageField().getText();
-        String excessS = boatInsuranceRegistration.getExcessField().getText();
-        boolean hasAlarm = boatInsuranceRegistration.getHasAlarmCheckBox().isSelected();
+        String coverage = boatInsuranceRegistration.getCoverage();
+        String customerId = boatInsuranceRegistration.getCustomerId();
+        String customerPersonalNumber = boatInsuranceRegistration.
+                getCustomerPersonalNumber();
+        String excessString = boatInsuranceRegistration.getExcess();
+        
+        // Collects information about the boat.
+        boolean alarm = boatInsuranceRegistration.getAlarm();
+        String brand = boatInsuranceRegistration.getBrand();
+        String engineEffectString = boatInsuranceRegistration.
+                getEngineEffect();
+        String engineType = boatInsuranceRegistration.getEngineType();
+        String lengthString = boatInsuranceRegistration.getLength();
+        String model = boatInsuranceRegistration.getModel();
+        String ownerPersonalNumber = boatInsuranceRegistration.
+                getOwnerPersonalNumber();
+        String registrationNumber = boatInsuranceRegistration.
+                getRegistrationNumber();
+        String registrationYearString = boatInsuranceRegistration.
+                getRegistrationYear();
+        
+        // Creates a boolean which is to set true if the user has made a 
+        // mistake and the method has to abort.
+        boolean abort = false;
         
         // Converts strings to integers.
-        int effect;
+        int engineEffect;
         try {
-            effect = Integer.parseInt(effectS);
+            engineEffect = Integer.parseInt(engineEffectString);
         } catch(NumberFormatException nfe) {
-            
+            boatInsuranceRegistration.
+                    setEngineEffectMessage("* Kan kun bestå av tall.");
+            abort = true;
         }
-        int length;
-        try {
-            length = Integer.parseInt(lengthS);
-        } catch(NumberFormatException nfe) {
-            
-        }
-        int year;
-        try {
-            year = Integer.parseInt(yearS);
-        } catch(NumberFormatException nfe) {
-            
-        }
-        int coverage;
-        try {
-            coverage = Integer.parseInt(coverageS);
-        } catch(NumberFormatException nfe) {
-            
-        }
+        
         int excess;
         try {
-            excess = Integer.parseInt(excessS);
+            excess = Integer.parseInt(excessString);
         } catch(NumberFormatException nfe) {
-            
+            boatInsuranceRegistration.
+                    setExcessMessage("* Kan kun bestå av tall.");
+            abort = true;
+        }
+        
+        int length;
+        try {
+            length = Integer.parseInt(lengthString);
+        } catch(NumberFormatException nfe) {
+            boatInsuranceRegistration.
+                    setLengthMessage("* Kan kun bestå av tall.");
+            abort = true;
+        }
+        
+        int registrationYear;
+        try {
+            registrationYear = Integer.parseInt(registrationYearString);
+        } catch(NumberFormatException nfe) {
+            boatInsuranceRegistration.
+                    setRegistrationYearMessage("* Kan kun bestå av tall.");
+            abort = true;
+        }
+        
+        if(abort) {
+            return;
         }
         
         // Creates Boat
-        Boat boat = new Boat(regNumber, effect, length, engineType, year, make, model);
         
         // Creates BoatInsurance
         
         // Adds insurance to Register
-        
-        //new Boat(int regNumber, int effect, int length, String engineType, int year, String make, String model)
-    }*/
+    }
    
     
     private void loginBtnEventHandler(ActionEvent e) {

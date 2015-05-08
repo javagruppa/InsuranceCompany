@@ -98,6 +98,7 @@ public class AdminView extends Application {
         mainPane.setTop(vbox);
         centerPane = registerPane;
         mainPane.setCenter(centerPane);
+        selectedButtonStyleUpper(registerTabButton);
         
         
         

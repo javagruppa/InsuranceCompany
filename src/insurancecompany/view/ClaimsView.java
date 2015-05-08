@@ -5,20 +5,14 @@
  */
 package insurancecompany.view;
 
-import insurancecompany.view.register.BoatInsuranceRegistration;
-import insurancecompany.view.register.TravelInsuranceRegistration;
-import java.util.ArrayList;
-import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -27,10 +21,10 @@ import javafx.stage.Stage;
  *
  * @author André
  */
-public class InsurancesView {
-    
-    private BoatInsuranceRegistration boatInsuranceRegistration;
-    private TravelInsuranceRegistration travelInsuranceRegistration;
+public class ClaimsView {
+   
+    //private BoatInsuranceRegistration boatInsuranceRegistration;
+    //private TravelInsuranceRegistration travelInsuranceRegistration;
     
     private Pane customerRegistrationPane;
     private Pane boatInsuranceRegistrationPane;
@@ -41,11 +35,11 @@ public class InsurancesView {
     
     private Pane sideToolBarPane;
     
-    private Button carInsuranceButton;
-    private Button boatInsuranceButton;
-    private Button homeInsuranceButton;
-    private Button holidayHomeInsuranceButton;
-    private Button travelInsuranceButton;
+    private Button carInsuranceClaimButton;
+    private Button boatInsuranceClaimButton;
+    private Button homeInsuranceClaimButton;
+    private Button holidayHomeInsuranceClaimButton;
+    private Button travelInsuranceClaimButton;
             
     //public static void main(String[] args) {
     //    launch(args);
@@ -61,7 +55,7 @@ public class InsurancesView {
         stage.show();
     }
     
-    public InsurancesView() {
+    public ClaimsView() {
         mainPane = new BorderPane();
         sideToolBarPane = createSideToolBar();
         //ScrollPane sp = new ScrollPane();
@@ -74,47 +68,47 @@ public class InsurancesView {
         initializeEventHandlers();      
     }
     private void initializeViews() {
-        boatInsuranceRegistration = new BoatInsuranceRegistration();
-        boatInsuranceRegistrationPane = boatInsuranceRegistration.getMainPane();
-        travelInsuranceRegistration = new TravelInsuranceRegistration();
-        travelInsuranceRegistrationPane = travelInsuranceRegistration.getMainPane();
+        //boatInsuranceRegistration = new BoatInsuranceRegistration();
+        //boatInsuranceRegistrationPane = boatInsuranceRegistration.getMainPane();
+        //travelInsuranceRegistration = new TravelInsuranceRegistration();
+        //travelInsuranceRegistrationPane = travelInsuranceRegistration.getMainPane();
     }
     
     private void initializeEventHandlers() {
       
-        carInsuranceButton.setOnAction((event) -> {
+        carInsuranceClaimButton.setOnAction((event) -> {
             //mainPane.setCenter();
-            //selectedButtonStyleLower(carInsuranceButton);
+            //selectedButtonStyleLower(carInsuranceClaimButton);
         });
         
-        boatInsuranceButton.setOnAction((event) -> {
-            mainPane.setCenter(boatInsuranceRegistrationPane);
-            selectedButtonStyleLower(boatInsuranceButton);
+        boatInsuranceClaimButton.setOnAction((event) -> {
+            //mainPane.setCenter(boatInsuranceRegistrationPane);
+            //selectedButtonStyleLower(boatInsuranceClaimButton);
         });
         
-        homeInsuranceButton.setOnAction((event) -> {
+        homeInsuranceClaimButton.setOnAction((event) -> {
             //mainPane.setCenter();
-            //selectedButtonStyleLower(homeInsuranceButton);
+            //selectedButtonStyleLower(homeInsuranceClaimButton);
         });
         
-        holidayHomeInsuranceButton.setOnAction((event) -> {
+        holidayHomeInsuranceClaimButton.setOnAction((event) -> {
             //mainPane.setCenter();
-            //selectedButtonStyleLower(holidayHomeInsuranceButton);
+            //selectedButtonStyleLower(holidayHomeInsuranceClaimButton);
         });
         
-        travelInsuranceButton.setOnAction((event) -> {
+        travelInsuranceClaimButton.setOnAction((event) -> {
             mainPane.setCenter(travelInsuranceRegistrationPane);
-            selectedButtonStyleLower(travelInsuranceButton);
+            selectedButtonStyleLower(travelInsuranceClaimButton);
         });
     }
     
     // TODO: Change to setId, and make a custom style for selected, will not have hover etc
     private void selectedButtonStyleLower(Button button) {
-        carInsuranceButton.setId("sideToolbarButton");
-        boatInsuranceButton.setId("sideToolbarButton");
-        homeInsuranceButton.setId("sideToolbarButton");
-        holidayHomeInsuranceButton.setId("sideToolbarButton");
-        travelInsuranceButton.setId("sideToolbarButton");
+        carInsuranceClaimButton.setId("sideToolbarButton");
+        boatInsuranceClaimButton.setId("sideToolbarButton");
+        homeInsuranceClaimButton.setId("sideToolbarButton");
+        holidayHomeInsuranceClaimButton.setId("sideToolbarButton");
+        travelInsuranceClaimButton.setId("sideToolbarButton");
         button.setId("sideToolbarButtonSelected");
     }
     
@@ -124,35 +118,35 @@ public class InsurancesView {
         vbox.getStyleClass().add("insurancecompany/resources/css/stylesheet.css");
         vbox.setStyle("-fx-background-color: #6577A1;");
     
-        carInsuranceButton = new Button("Bilforsikring");       
-        carInsuranceButton.setId("sideToolbarButton");
+        carInsuranceClaimButton = new Button("Bilskade");       
+        carInsuranceClaimButton.setId("sideToolbarButton");
         Image carImage = new Image("insurancecompany/resources/images/car.png");
-        carInsuranceButton.setGraphic(new ImageView(carImage));
+        carInsuranceClaimButton.setGraphic(new ImageView(carImage));
         //carInsuranceButton.setContentDisplay(ContentDisplay.LEFT);
         
-        boatInsuranceButton = new Button("Båtforsikring");
-        boatInsuranceButton.setId("sideToolbarButton");
+        boatInsuranceClaimButton = new Button("Båtskade");
+        boatInsuranceClaimButton.setId("sideToolbarButton");
         Image boatImage = new Image("insurancecompany/resources/images/boat.png");
-        boatInsuranceButton.setGraphic(new ImageView(boatImage));
+        boatInsuranceClaimButton.setGraphic(new ImageView(boatImage));
         
-        homeInsuranceButton = new Button("Husforsikring");
-        homeInsuranceButton.setId("sideToolbarButton");
+        homeInsuranceClaimButton = new Button("Husskade");
+        homeInsuranceClaimButton.setId("sideToolbarButton");
         Image houseImage = new Image("insurancecompany/resources/images/house.png");
-        homeInsuranceButton.setGraphic(new ImageView(houseImage));
+        homeInsuranceClaimButton.setGraphic(new ImageView(houseImage));
         
-        holidayHomeInsuranceButton = new Button("Fritidsbolig-\nforsikring");
-        holidayHomeInsuranceButton.setId("sideToolbarButton");
+        holidayHomeInsuranceClaimButton = new Button("Fritidsbolig-\nskade");
+        holidayHomeInsuranceClaimButton.setId("sideToolbarButton");
         Image cabinImage = new Image("insurancecompany/resources/images/cabin.png");
-        holidayHomeInsuranceButton.setGraphic(new ImageView(cabinImage));
+        holidayHomeInsuranceClaimButton.setGraphic(new ImageView(cabinImage));
         
-        travelInsuranceButton = new Button("Reiseforsikring");
-        travelInsuranceButton.setId("sideToolbarButton");
+        travelInsuranceClaimButton = new Button("Reiseskade");
+        travelInsuranceClaimButton.setId("sideToolbarButton");
         Image airplaneImage = new Image("insurancecompany/resources/images/airplane.png");
-        travelInsuranceButton.setGraphic(new ImageView(airplaneImage));
+        travelInsuranceClaimButton.setGraphic(new ImageView(airplaneImage));
         
         ObservableList<Button> buttons = FXCollections.observableArrayList ();
-        buttons.addAll(carInsuranceButton, boatInsuranceButton, homeInsuranceButton, 
-                holidayHomeInsuranceButton, travelInsuranceButton);
+        buttons.addAll(carInsuranceClaimButton, boatInsuranceClaimButton, homeInsuranceClaimButton, 
+                holidayHomeInsuranceClaimButton, travelInsuranceClaimButton);
         buttons.forEach(b -> {
             b.setMinWidth(Button.USE_PREF_SIZE);
             b.setMaxWidth(Double.MAX_VALUE);

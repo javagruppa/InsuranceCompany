@@ -57,11 +57,11 @@ public class PersonsView {
     public PersonsView() {
         mainPane = new BorderPane();
         sideToolBarPane = createSideToolBar();
-        ScrollPane sp = new ScrollPane();
-        sp.setContent(sideToolBarPane);
-        sp.setFitToHeight(true);
-        sp.setFitToWidth(true);
-        mainPane.setLeft(sp);
+        //ScrollPane sp = new ScrollPane();
+        //sp.setContent(sideToolBarPane);
+        //sp.setFitToHeight(true);
+        //sp.setFitToWidth(true);
+        mainPane.setLeft(sideToolBarPane);
         scene = new Scene(mainPane, 800, 600);
         initializeViews();
         initializeEventHandlers();      

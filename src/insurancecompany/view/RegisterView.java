@@ -36,6 +36,7 @@ public class RegisterView {
     //private TravelInsuranceRegistration travelInsuranceRegistration;
     private InsurancesView insurancesView;
     private PersonsView personsView;
+    private ClaimsView claimsView;
     
     private Pane personsPane;
     private Pane insurancesPane;
@@ -67,6 +68,7 @@ public class RegisterView {
         initializeViews();
         initializeEventHandlers(); 
         mainPane.setCenter(insurancesPane);
+        selectedButtonStyleLower(insurancesButton);
         scene = new Scene(mainPane, 800, 600);
              
     }
@@ -76,6 +78,9 @@ public class RegisterView {
         
         personsView = new PersonsView();
         personsPane = personsView.getMainPane();
+        
+        claimsView = new ClaimsView();
+        claimsPane = claimsView.getMainPane();
         
         /*
         customerRegistration = new CustomerRegistration();
@@ -99,7 +104,7 @@ public class RegisterView {
         });
         
         claimsButton.setOnAction((event) -> {
-            //mainPane.setCenter(claimsPane);
+            mainPane.setCenter(claimsPane);
             selectedButtonStyleLower(claimsButton);
         });      
     }

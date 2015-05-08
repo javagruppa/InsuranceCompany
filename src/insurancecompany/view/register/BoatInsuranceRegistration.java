@@ -33,12 +33,13 @@ public class BoatInsuranceRegistration {
     private TextField brandField;
     private ComboBox<String> coverageComboBox;
     private TextField customerIdField;
+    private TextField customerPersonalNumberField;
     private TextField engineEffectField;
     private TextField engineTypeField;
     private TextField excessField;
     private TextField lengthField;
     private TextField modelField;
-    private TextField personalNumberField;
+    private TextField ownerPersonalNumberField;
     private TextField premiumField;
     private TextField registrationNumberField;
     private TextField registrationYearField;
@@ -48,12 +49,13 @@ public class BoatInsuranceRegistration {
     private Label brandMessage;
     private Label coverageMessage;
     private Label customerIdMessage;
+    private Label customerPersonalNumberMessage;
     private Label engineEffectMessage;
     private Label engineTypeMessage;
     private Label excessMessage;
     private Label lengthMessage;
     private Label modelMessage;
-    private Label personalNumberMessage;
+    private Label ownerPersonalNumberMessage;
     private Label registrationNumberMessage;
     private Label registrationYearMessage;
     
@@ -81,12 +83,13 @@ public class BoatInsuranceRegistration {
         coverageComboBox = new ComboBox<>();
         coverageComboBox.getItems().addAll("Kasko", "Delkasko", "Ansvar");
         customerIdField = new TextField();
+        customerPersonalNumberField = new TextField();
         engineEffectField = new TextField();
         engineTypeField = new TextField();
         excessField = new TextField();
         lengthField = new TextField();
         modelField = new TextField();
-        personalNumberField = new TextField();
+        ownerPersonalNumberField = new TextField();
         premiumField = new TextField();
         premiumField.setEditable(false);
         registrationNumberField = new TextField();
@@ -97,12 +100,13 @@ public class BoatInsuranceRegistration {
         brandMessage = new Label();
         coverageMessage = new Label();
         customerIdMessage = new Label();
+        customerPersonalNumberMessage = new Label();
         engineEffectMessage = new Label();
         engineTypeMessage = new Label();
         excessMessage = new Label();
         lengthMessage = new Label();
         modelMessage = new Label();
-        personalNumberMessage = new Label();
+        ownerPersonalNumberMessage = new Label();
         registrationNumberMessage = new Label();
         registrationYearMessage = new Label();
         
@@ -113,61 +117,65 @@ public class BoatInsuranceRegistration {
         // Adds all elements to the mainPane.
         mainPane.add(new Text("Registrer bilforsikring"), 0, 0);
         
-        mainPane.add(new Label("Personnummer:"), 0, 1);
+        mainPane.add(new Label("Kundenummer:"), 0, 1);
         mainPane.add(customerIdField, 1, 1);
         mainPane.add(customerIdMessage, 2, 1);
         
-        mainPane.add(new Label("Velg forsikring:"), 0, 2);
-        mainPane.add(coverageComboBox, 1, 2);
-        mainPane.add(coverageMessage, 2, 2);
+        mainPane.add(new Label("Kundens personnummer:"), 0, 2);
+        mainPane.add(customerPersonalNumberField, 1, 2);
+        mainPane.add(customerPersonalNumberMessage, 2, 2);
         
-        mainPane.add(new Label("Egenandel:"), 0, 3);
-        mainPane.add(excessField, 1, 3);
-        mainPane.add(excessMessage, 2, 3);
+        mainPane.add(new Label("Velg forsikring:"), 0, 3);
+        mainPane.add(coverageComboBox, 1, 3);
+        mainPane.add(coverageMessage, 2, 3);
         
-        mainPane.add(new Text("Båt"), 0, 4);
+        mainPane.add(new Label("Egenandel:"), 0, 4);
+        mainPane.add(excessField, 1, 4);
+        mainPane.add(excessMessage, 2, 4);
         
-        mainPane.add(new Label("Personnummer til eier:"), 0, 5);
-        mainPane.add(personalNumberField, 1, 5);
-        mainPane.add(personalNumberMessage, 2, 5);
+        mainPane.add(new Text("Båt"), 0, 5);
         
-        mainPane.add(new Label("Registreringsnummer:"), 0, 6);
-        mainPane.add(registrationNumberField, 1, 6);
-        mainPane.add(registrationNumberMessage, 2, 6);
+        mainPane.add(new Label("Eierens personnummer:"), 0, 6);
+        mainPane.add(ownerPersonalNumberField, 1, 6);
+        mainPane.add(ownerPersonalNumberMessage, 2, 6);
         
-        mainPane.add(new Label("Merke:"), 0, 7);
-        mainPane.add(brandField, 1, 7);
-        mainPane.add(brandMessage, 2, 7);
+        mainPane.add(new Label("Registreringsnummer:"), 0, 7);
+        mainPane.add(registrationNumberField, 1, 7);
+        mainPane.add(registrationNumberMessage, 2, 7);
         
-        mainPane.add(new Label("Model:"), 0, 8);
-        mainPane.add(modelField, 1, 8);
-        mainPane.add(modelMessage, 2, 8);
+        mainPane.add(new Label("Merke:"), 0, 8);
+        mainPane.add(brandField, 1, 8);
+        mainPane.add(brandMessage, 2, 8);
         
-        mainPane.add(new Label("Registreringsår:"), 0, 9);
-        mainPane.add(registrationYearField, 1, 9);
-        mainPane.add(registrationYearMessage, 2, 9);
+        mainPane.add(new Label("Model:"), 0, 9);
+        mainPane.add(modelField, 1, 9);
+        mainPane.add(modelMessage, 2, 9);
         
-        mainPane.add(new Label("Hestekrefter:"), 0, 10);
-        mainPane.add(engineEffectField, 1, 10);
-        mainPane.add(engineEffectMessage, 2, 10);
+        mainPane.add(new Label("Registreringsår:"), 0, 10);
+        mainPane.add(registrationYearField, 1, 10);
+        mainPane.add(registrationYearMessage, 2, 10);
         
-        mainPane.add(new Label("Motortype:"), 0, 11);
-        mainPane.add(engineTypeField, 1, 11);
-        mainPane.add(engineTypeMessage, 2, 11);
+        mainPane.add(new Label("Hestekrefter:"), 0, 11);
+        mainPane.add(engineEffectField, 1, 11);
+        mainPane.add(engineEffectMessage, 2, 11);
         
-        mainPane.add(new Label("Lengde (i fot):"), 0, 12);
-        mainPane.add(lengthField, 1, 12);
-        mainPane.add(lengthMessage, 2, 12);
+        mainPane.add(new Label("Motortype:"), 0, 12);
+        mainPane.add(engineTypeField, 1, 12);
+        mainPane.add(engineTypeMessage, 2, 12);
         
-        mainPane.add(new Label("Har alarm:"), 0, 13);
-        mainPane.add(alarmComboBox, 1, 13);
-        mainPane.add(alarmMessage, 2, 13);
+        mainPane.add(new Label("Lengde (i fot):"), 0, 13);
+        mainPane.add(lengthField, 1, 13);
+        mainPane.add(lengthMessage, 2, 13);
         
-        mainPane.add(new Label("Forsikringspremie:"), 0, 14);
-        mainPane.add(premiumField, 1, 14);
-        mainPane.add(calculateButton, 2, 14);
+        mainPane.add(new Label("Har alarm:"), 0, 14);
+        mainPane.add(alarmComboBox, 1, 14);
+        mainPane.add(alarmMessage, 2, 14);
         
-        mainPane.add(registerButton, 1, 15);
+        mainPane.add(new Label("Forsikringspremie:"), 0, 15);
+        mainPane.add(premiumField, 1, 15);
+        mainPane.add(calculateButton, 2, 15);
+        
+        mainPane.add(registerButton, 1, 16);
     }
     
     public GridPane getMainPane() {
@@ -230,10 +238,10 @@ public class BoatInsuranceRegistration {
     }
 
     /**
-     * @return the personalNumberField
+     * @return the ownerPersonalNumberField
      */
     public String getPersonalNumber() {
-        return personalNumberField.getText();
+        return ownerPersonalNumberField.getText();
     }
 
     /**
@@ -321,10 +329,10 @@ public class BoatInsuranceRegistration {
     }
 
     /**
-     * @param personalNumberMessage the personalNumberMessage to set
+     * @param personalNumberMessage the ownerPersonalNumberMessage to set
      */
     public void setPersonalNumberMessage(String personalNumberMessage) {
-        this.personalNumberMessage.setText(personalNumberMessage);
+        this.ownerPersonalNumberMessage.setText(personalNumberMessage);
     }
 
     /**

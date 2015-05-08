@@ -24,41 +24,47 @@ import javafx.stage.Stage;
  */
 public class BoatInsuranceRegistration {
     
-    private Scene scene;
+    // Initializes the Gridpane and Scene.
     private GridPane mainPane;
+    private Scene scene;
     
-    private TextField customerIdField;
-    private TextField excessField;
+    // Initializes all ComboBoxes and TextFields.
+    private ComboBox<String> alarmComboBox;
     private TextField brandField;
+    private ComboBox<String> coverageComboBox;
+    private TextField customerIdField;
     private TextField engineEffectField;
     private TextField engineTypeField;
+    private TextField excessField;
     private TextField lengthField;
     private TextField modelField;
     private TextField personalNumberField;
-    private TextField regNumberField;
-    private TextField regYearField;
     private TextField premiumField;
+    private TextField registrationNumberField;
+    private TextField registrationYearField;
     
-    private ComboBox<String> alarmComboBox;
-    private ComboBox<String> coverageComboBox;
-    
-    private Label customerIdMessage;
-    private Label excessMessage;
+    // Initializes all Label messages.
+    private Label alarmMessage;
     private Label brandMessage;
+    private Label coverageMessage;
+    private Label customerIdMessage;
     private Label engineEffectMessage;
     private Label engineTypeMessage;
+    private Label excessMessage;
     private Label lengthMessage;
     private Label modelMessage;
     private Label personalNumberMessage;
-    private Label regNumberMessage;
-    private Label regYearMessage;
-    private Label alarmMessage;
-    private Label coverageMessage;
+    private Label registrationNumberMessage;
+    private Label registrationYearMessage;
     
+    // Initializes all Buttons.
     private Button calculateButton;
     private Button registerButton;
     
+    // Constrcutor
     public BoatInsuranceRegistration() {
+        
+        // Sets up the mainPane and scene.
         mainPane = new GridPane();
         mainPane.setAlignment(Pos.CENTER);
         mainPane.setHgap(10);
@@ -66,44 +72,45 @@ public class BoatInsuranceRegistration {
         mainPane.setStyle("-fx-background-color: #E7E7FF;");
         mainPane.getColumnConstraints().addAll(new ColumnConstraints(200), 
                 new ColumnConstraints(200), new ColumnConstraints(200));
-        
         scene = new Scene(mainPane, 300, 275);
         
-        customerIdField = new TextField();
-        excessField = new TextField();
+        // Declares all ComboBoxes and TextFields.
+        alarmComboBox = new ComboBox<>();
+        alarmComboBox.getItems().addAll("Ja", "Nei");
         brandField = new TextField();
+        coverageComboBox = new ComboBox<>();
+        coverageComboBox.getItems().addAll("Kasko", "Delkasko", "Ansvar");
+        customerIdField = new TextField();
         engineEffectField = new TextField();
         engineTypeField = new TextField();
+        excessField = new TextField();
         lengthField = new TextField();
         modelField = new TextField();
         personalNumberField = new TextField();
-        regNumberField = new TextField();
-        regYearField = new TextField();
         premiumField = new TextField();
         premiumField.setEditable(false);
+        registrationNumberField = new TextField();
+        registrationYearField = new TextField();
         
-        alarmComboBox = new ComboBox<>();
-        alarmComboBox.getItems().addAll("Ja", "Nei");
-        
-        coverageComboBox = new ComboBox<>();
-        coverageComboBox.getItems().addAll("Kasko", "Delkasko", "Ansvar");
-    
-        customerIdMessage = new Label("* Dette feltet må fylles ut!");
-        coverageMessage = new Label();
-        excessMessage = new Label();
+        // Declares all Label messages.
+        alarmMessage = new Label();
         brandMessage = new Label();
+        coverageMessage = new Label();
+        customerIdMessage = new Label();
         engineEffectMessage = new Label();
         engineTypeMessage = new Label();
+        excessMessage = new Label();
         lengthMessage = new Label();
         modelMessage = new Label();
         personalNumberMessage = new Label();
-        regNumberMessage = new Label();
-        regYearMessage = new Label();
-        alarmMessage = new Label();
+        registrationNumberMessage = new Label();
+        registrationYearMessage = new Label();
         
+        // Declares all Buttons.
         calculateButton = new Button("Regn ut");
         registerButton = new Button("Registrer");
         
+        // Adds all elements to the mainPane.
         mainPane.add(new Text("Registrer bilforsikring"), 0, 0);
         
         mainPane.add(new Label("Personnummer:"), 0, 1);
@@ -125,8 +132,8 @@ public class BoatInsuranceRegistration {
         mainPane.add(personalNumberMessage, 2, 5);
         
         mainPane.add(new Label("Registreringsnummer:"), 0, 6);
-        mainPane.add(regNumberField, 1, 6);
-        mainPane.add(regNumberMessage, 2, 6);
+        mainPane.add(registrationNumberField, 1, 6);
+        mainPane.add(registrationNumberMessage, 2, 6);
         
         mainPane.add(new Label("Merke:"), 0, 7);
         mainPane.add(brandField, 1, 7);
@@ -137,8 +144,8 @@ public class BoatInsuranceRegistration {
         mainPane.add(modelMessage, 2, 8);
         
         mainPane.add(new Label("Registreringsår:"), 0, 9);
-        mainPane.add(regYearField, 1, 9);
-        mainPane.add(regYearMessage, 2, 9);
+        mainPane.add(registrationYearField, 1, 9);
+        mainPane.add(registrationYearMessage, 2, 9);
         
         mainPane.add(new Label("Hestekrefter:"), 0, 10);
         mainPane.add(engineEffectField, 1, 10);
@@ -230,17 +237,17 @@ public class BoatInsuranceRegistration {
     }
 
     /**
-     * @return the regNumberField
+     * @return the registrationNumberField
      */
-    public String getRegNumber() {
-        return regNumberField.getText();
+    public String getRegistrationNumber() {
+        return registrationNumberField.getText();
     }
 
     /**
-     * @return the regYearField
+     * @return the registrationYearField
      */
-    public String getRegYear() {
-        return regYearField.getText();
+    public String getRegistrationYear() {
+        return registrationYearField.getText();
     }
 
     /**
@@ -321,17 +328,17 @@ public class BoatInsuranceRegistration {
     }
 
     /**
-     * @param regNumberMessage the regNumberMessage to set
+     * @param regNumberMessage the registrationNumberMessage to set
      */
-    public void setRegNumberMessage(String regNumberMessage) {
-        this.regNumberMessage.setText(regNumberMessage);
+    public void setRegistrationNumberMessage(String regNumberMessage) {
+        this.registrationNumberMessage.setText(regNumberMessage);
     }
 
     /**
-     * @param regYearMessage the regYearMessage to set
+     * @param regYearMessage the registrationYearMessage to set
      */
-    public void setRegYearMessage(String regYearMessage) {
-        this.regYearMessage.setText(regYearMessage);
+    public void setRegistrationYearMessage(String regYearMessage) {
+        this.registrationYearMessage.setText(regYearMessage);
     }
 
     /**

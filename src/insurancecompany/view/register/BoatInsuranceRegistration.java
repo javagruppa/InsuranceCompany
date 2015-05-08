@@ -189,17 +189,10 @@ public class BoatInsuranceRegistration {
     }
 
     /**
-     * @return the customerIdField
+     * @return the alarmComboBox
      */
-    public String getCustomerId() {
-        return customerIdField.getText();
-    }
-
-    /**
-     * @return the excessField
-     */
-    public String getExcess() {
-        return excessField.getText();
+    public boolean getAlarm() {
+        return alarmComboBox.getValue().equals("Ja");
     }
 
     /**
@@ -207,6 +200,27 @@ public class BoatInsuranceRegistration {
      */
     public String getBrand() {
         return brandField.getText();
+    }
+
+    /**
+     * @return the coverageComboBox
+     */
+    public String getCoverage() {
+        return coverageComboBox.getValue();
+    }
+
+    /**
+     * @return the customerIdField
+     */
+    public String getCustomerId() {
+        return customerIdField.getText();
+    }
+
+    /**
+     * @return the customerPersonalNumberField
+     */
+    public String getCustomerPersonalNumber() {
+        return customerPersonalNumberField.getText();
     }
 
     /**
@@ -221,6 +235,13 @@ public class BoatInsuranceRegistration {
      */
     public String getEngineType() {
         return engineTypeField.getText();
+    }
+
+    /**
+     * @return the excessField
+     */
+    public String getExcess() {
+        return excessField.getText();
     }
 
     /**
@@ -240,8 +261,15 @@ public class BoatInsuranceRegistration {
     /**
      * @return the ownerPersonalNumberField
      */
-    public String getPersonalNumber() {
+    public String getOwnerPersonalNumber() {
         return ownerPersonalNumberField.getText();
+    }
+
+    /**
+     * @return the premiumField
+     */
+    public String getPremium() {
+        return premiumField.getText();
     }
 
     /**
@@ -259,24 +287,17 @@ public class BoatInsuranceRegistration {
     }
 
     /**
-     * @return the premiumField
+     * @param alarmMessage the alarmMessage to set
      */
-    public String getPremium() {
-        return premiumField.getText();
+    public void setAlarmMessage(String alarmMessage) {
+        this.alarmMessage.setText(alarmMessage);
     }
 
     /**
-     * @return the alarmComboBox
+     * @param brandMessage the brandMessage to set
      */
-    public boolean getAlarm() {
-        return alarmComboBox.getValue().equals("Ja");
-    }
-
-    /**
-     * @return the coverageComboBox
-     */
-    public String getCoverage() {
-        return coverageComboBox.getValue();
+    public void setBrandMessage(String brandMessage) {
+        this.brandMessage.setText(brandMessage);
     }
 
     /**
@@ -287,17 +308,20 @@ public class BoatInsuranceRegistration {
     }
 
     /**
-     * @param excessMessage the excessMessage to set
+     * @param customerPersonalNumberMessage the customerPersonalNumberMessage 
+     * to set
      */
-    public void setExcessMessage(String excessMessage) {
-        this.excessMessage.setText(excessMessage);
+    public void setCustomerPersonalNumberMessage(
+            String customerPersonalNumberMessage) {
+        this.customerPersonalNumberMessage.
+                setText(customerPersonalNumberMessage);
     }
 
     /**
-     * @param brandMessage the brandMessage to set
+     * @param coverageMessage the coverageMessage to set
      */
-    public void setBrandMessage(String brandMessage) {
-        this.brandMessage.setText(brandMessage);
+    public void setCoverageMessage(String coverageMessage) {
+        this.coverageMessage.setText(coverageMessage);
     }
 
     /**
@@ -315,6 +339,13 @@ public class BoatInsuranceRegistration {
     }
 
     /**
+     * @param excessMessage the excessMessage to set
+     */
+    public void setExcessMessage(String excessMessage) {
+        this.excessMessage.setText(excessMessage);
+    }
+
+    /**
      * @param lengthMessage the lengthMessage to set
      */
     public void setLengthMessage(String lengthMessage) {
@@ -329,38 +360,25 @@ public class BoatInsuranceRegistration {
     }
 
     /**
-     * @param personalNumberMessage the ownerPersonalNumberMessage to set
+     * @param ownerPersonalNumberMessage the ownerPersonalNumberMessage to set
      */
-    public void setPersonalNumberMessage(String personalNumberMessage) {
-        this.ownerPersonalNumberMessage.setText(personalNumberMessage);
+    public void setOwnerPersonalNumberMessage(
+            String ownerPersonalNumberMessage) {
+        this.ownerPersonalNumberMessage.setText(ownerPersonalNumberMessage);
     }
 
     /**
-     * @param regNumberMessage the registrationNumberMessage to set
+     * @param registrationNumberMessage the registrationNumberMessage to set
      */
-    public void setRegistrationNumberMessage(String regNumberMessage) {
-        this.registrationNumberMessage.setText(regNumberMessage);
+    public void setRegistrationNumberMessage(String registrationNumberMessage) {
+        this.registrationNumberMessage.setText(registrationNumberMessage);
     }
 
     /**
-     * @param regYearMessage the registrationYearMessage to set
+     * @param registrationYearMessage the registrationYearMessage to set
      */
-    public void setRegistrationYearMessage(String regYearMessage) {
-        this.registrationYearMessage.setText(regYearMessage);
-    }
-
-    /**
-     * @param alarmMessage the alarmMessage to set
-     */
-    public void setAlarmMessage(String alarmMessage) {
-        this.alarmMessage.setText(alarmMessage);
-    }
-
-    /**
-     * @param coverageMessage the coverageMessage to set
-     */
-    public void setCoverageMessage(String coverageMessage) {
-        this.coverageMessage.setText(coverageMessage);
+    public void setRegistrationYearMessage(String registrationYearMessage) {
+        this.registrationYearMessage.setText(registrationYearMessage);
     }
 
     public void setCalculateButtonEventHandler(EventHandler<ActionEvent> value) {

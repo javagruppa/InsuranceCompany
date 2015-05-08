@@ -94,7 +94,7 @@ public class PersonsView {
     private VBox createSideToolBar() {
         VBox vbox = new VBox();
         vbox.setPrefWidth(160);
-        vbox.getStyleClass().add("insurancecompany/resources/stylesheet.css");
+        vbox.getStyleClass().add("insurancecompany/resources/css/stylesheet.css");
         vbox.setStyle("-fx-background-color: #6577A1;");
     
         customerButton = new Button("Ny kunde");       

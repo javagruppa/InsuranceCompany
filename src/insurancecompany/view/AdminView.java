@@ -68,8 +68,8 @@ public class AdminView extends Application {
     public AdminView() {
         initializeViews();
         initializeEventHandlers();
-        scene = new Scene(mainPane, 900, 600);
-        scene.getStylesheets().add("insurancecompany/resources/stylesheet.css");
+        scene = new Scene(mainPane, 1200, 700);
+        scene.getStylesheets().add("insurancecompany/resources/css/stylesheet.css");
         
     }
     public void start(Stage stage) throws Exception {

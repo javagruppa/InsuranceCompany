@@ -114,7 +114,7 @@ public class RegisterView {
     
     private HBox createToolBar() {
         HBox hbox = new HBox();
-        hbox.getStyleClass().add("insurancecompany/resources/stylesheet.css");
+        hbox.getStyleClass().add("insurancecompany/resources/css/stylesheet.css");
         hbox.setStyle("-fx-background-color: #6577A1;");
         hbox.setPrefSize(640, 20);
         personsButton = new Button("Personer");

@@ -1,0 +1,691 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<items>
+    <item name="Alfa Romeo">
+        <models>
+            <model to="2001" since="1994" name="145/146" />
+            <model since="2001" name="147" />
+            <model to="1997" since="1992" name="155" />
+            <model since="1997" name="156" />
+            <model since="2007" name="159" />
+            <model to="1998" since="1990" name="164" />
+            <model since="1999" name="166" />
+            <model since="2004" name="GT" />
+            <model since="1996" name="GTV" />
+            <model to="2007" since="1996" name="Spider" />
+            <model since="2007" name="Spider" />
+        </models>
+    </item>
+    <item name="Fiat">
+        <models>
+            <model since="1995" name="Barchetta" />
+            <model since="2007" name="Bravo" />
+            <model since="1995" name="Bravo and Brava" />
+            <model to="1998" since="1993" name="Cinquecento" />
+            <model to="2000" since="1995" name="Coupe" />
+            <model since="2001" name="Doblo" />
+            <model since="2007" name="Grande Punto" />
+            <model to="2007" since="2004" name="Idea" />
+            <model to="2001" since="1997" name="Marea" />
+            <model since="1999" name="Multipla" />
+            <model since="2004" name="Panda" />
+            <model to="2003" since="1994" name="Punto" />
+            <model since="2003" name="Punto" />
+            <model to="2004" since="1998" name="Seicento" />
+            <model since="2002" name="Stilo" />
+            <model to="1996" since="1991" name="Tempra" />
+            <model to="1996" since="1989" name="Tipo" />
+            <model to="2003" since="1995" name="Ulysse" />
+        </models>
+    </item>
+    <item name="Mazda">
+        <models>
+            <model to="1999" since="1996" name="121" />
+            <model since="2007" name="2" />
+            <model since="2004" name="3" />
+            <model to="1998" since="1994" name="323" />
+            <model to="2004" since="1998" name="323" />
+            <model since="2002" name="6" />
+            <model to="2002" since="1997" name="626" />
+            <model since="2007" name="CX-7" />
+            <model to="2004" since="1999" name="MPV" />
+            <model to="1997" since="1992" name="MX3" />
+            <model to="2005" since="1990" name="MX5" />
+            <model to="1998" since="1992" name="MX6" />
+            <model to="2004" since="1999" name="Premacy" />
+            <model since="2003" name="RX-8" />
+            <model to="1999" since="1992" name="RX7" />
+            <model since="2001" name="Tribute" />
+            <model to="2000" since="1992" name="Xedos 6" />
+            <model to="2000" since="1994" name="Xedos 9" />
+        </models>
+    </item>
+    <item name="Rolls Royce">
+        <models>
+            <model to="1980" since="1967" name="Silver Shadow" />
+            <model to="1997" since="1985" name="Silver Spirit" />
+        </models>
+    </item>
+    <item name="Aston Martin">
+        <models>
+            <model to="1999" since="1994" name="DB7" />
+        </models>
+    </item>
+    <item name="Ford">
+        <models>
+            <model since="2003" name="C-Max" />
+            <model to="2001" since="1998" name="Cougar" />
+            <model to="2001" since="1990" name="Escort" />
+            <model to="2001" since="1997" name="Explorer" />
+            <model to="2002" since="1995" name="Fiesta" />
+            <model since="2002" name="Fiesta" />
+            <model to="2005" since="1998" name="Focus" />
+            <model to="2009" since="2005" name="Focus" />
+            <model to="2007" since="1995" name="Galaxy" />
+            <model since="2007" name="Galaxy" />
+            <model to="1998" since="1985" name="Granada/Scorpio" />
+            <model since="1996" name="KA/StreetKa" />
+            <model to="1999" since="1993" name="Maverick" />
+            <model to="2000" since="1993" name="Mondeo" />
+            <model to="2007" since="2000" name="Mondeo" />
+            <model since="2007" name="Mondeo" />
+            <model to="1998" since="1994" name="Probe" />
+            <model to="2002" since="1997" name="Puma" />
+            <model since="2007" name="S-Max" />
+        </models>
+    </item>
+    <item name="Jeep">
+        <models>
+            <model to="1949" since="1945" name="CJ-2A" />
+            <model to="1965" since="1946" name="Willys Wagon" />
+            <model to="1965" since="1947" name="Willys Pickup" />
+            <model to="1950" since="1948" name="Jeepster" />
+            <model to="1953" since="1948" name="CJ-3A" />
+            <model to="1968" since="1952" name="CJ-3B" />
+            <model to="1983" since="1955" name="CJ-5" />
+            <model to="1975" since="1958" name="CJ-6" />
+            <model to="1965" since="1957" name="FC 150/170" />
+            <model to="1962" since="101" name="Commando" />
+            <model to="1983" since="1962" name="Wagoneer" />
+            <model to="1970" since="1963" name="Gladiator" />
+            <model to="1972" since="104" name="Commando" />
+            <model to="1983" since="1974" name="Cherokee" />
+            <model to="1986" since="1976" name="CJ-7" />
+            <model to="1982" since="1976" name="Cherokee Chief" />
+            <model to="1988" since="1977" name="Honcho" />
+            <model to="1985" since="1981" name="CJ-8" />
+            <model to="1985" since="1981" name="CJ-10" />
+            <model to="1990" since="1983" name="Wagoneer" />
+            <model to="1996" since="1984" name="Cherokee" />
+            <model to="1991" since="1984" name="Grand Wagoneer" />
+            <model to="1992" since="1986" name="Comanche" />
+            <model to="1996" since="1986" name="Wrangler" />
+            <model to="1999" since="1993" name="Grand Cherokee" />
+            <model to="2001" since="1997" name="Cherokee" />
+            <model to="2007" since="1997" name="Wrangler" />
+            <model to="2004" since="1998" name="Grand Cherokee" />
+            <model since="2002" name="Cherokee" />
+            <model to="2010" since="2005" name="Grand Cherokee" />
+            <model to="2011" since="2" name="Grand Cherokee" />
+            <model since="2007" name="Compass" />
+            <model since="2007" name="Patriot" />
+            <model since="2006" name="Commander" />
+            <model since="2008" name="Cherokee" />
+            <model since="2007" name="Wrangler" />
+        </models>
+    </item>
+    <item name="Mercedes">
+        <models>
+            <model to="2004" since="1998" name="A-Class" />
+            <model to="2007" since="1993" name="C-Class" />
+            <model since="2007" name="C-Class" />
+            <model since="2007" name="CL" />
+            <model since="1997" name="CLK" />
+            <model to="2002" since="1992" name="E-Class" />
+            <model since="2002" name="E-Class" />
+            <model to="1997" since="1988" name="G-Wagen" />
+            <model since="1998" name="M-Class" />
+            <model since="1991" name="S-Class" />
+            <model since="2002" name="SL 500" />
+            <model to="2002" since="1992" name="SL" />
+            <model to="2004" since="1996" name="SLK" />
+            <model since="2004" name="SLK" />
+            <model to="2001" since="1996" name="V-Class" />
+            <model since="2004" name="Viano" />
+        </models>
+    </item>
+    <item name="Rover">
+        <models>
+            <model to="2000" since="1990" name="100" />
+            <model to="2000" since="1995" name="200" />
+            <model since="1999" name="25" />
+            <model to="2000" since="1995" name="400" />
+            <model since="2000" name="45" />
+            <model to="2000" since="1993" name="600" />
+            <model since="1999" name="75" />
+            <model to="2000" since="1991" name="800" />
+            <model since="2003" name="Streetwise" />
+        </models>
+    </item>
+    <item name="Audi">
+        <models>
+            <model since="2000" name="A2" />
+            <model to="2003" since="1996" name="A3" />
+            <model since="2003" name="A3" />
+            <model to="2004" since="1995" name="A4" />
+            <model since="2005" name="A4" />
+            <model since="2007" name="A5" />
+            <model to="2004" since="1997" name="A6" />
+            <model since="2004" name="A6" />
+            <model to="2002" since="1994" name="A8" />
+            <model to="2007" since="2003" name="A8" />
+            <model since="2007" name="A8" />
+            <model since="2007" name="Q7" />
+            <model since="1999" name="TT" />
+        </models>
+    </item>
+    <item name="Honda">
+        <models>
+            <model to="2003" since="1993" name="Accord" />
+            <model since="2003" name="Accord" />
+            <model to="2001" since="1991" name="Civic" />
+            <model to="2006" since="2001" name="Civic" />
+            <model to="2007" since="1997" name="CRV" />
+            <model since="2007" name="CRV" />
+            <model to="1997" since="1992" name="CRX" />
+            <model since="2004" name="FR-V" />
+            <model since="1999" name="HR-V" />
+            <model since="2002" name="Jazz" />
+            <model since="1990" name="NSX" />
+            <model to="2001" since="1992" name="Prelude" />
+            <model to="1999" since="2000" name="S2000" />
+            <model to="2000" since="1995" name="Shuttle" />
+        </models>
+    </item>
+    <item name="MG">
+        <models>
+            <model to="1980" since="1962" name="Classic Roadster/GT" />
+            <model since="1995" name="F / TF" />
+            <model since="2001" name="ZR" />
+            <model since="2001" name="ZS" />
+            <model since="2001" name="ZT" />
+        </models>
+    </item>
+    <item name="Saab">
+        <models>
+            <model to="2002" since="1998" name="9-3" />
+            <model since="2003" name="9-3" />
+            <model since="1997" name="9-5" />
+            <model to="1998" since="1989" name="900" />
+            <model to="1988" since="9000" name="9000" />
+        </models>
+    </item>
+    <item name="Bentley">
+        <models>
+            <model since="1998" name="Arnage" />
+            <model to="1997" since="1985" name="Turbo R" />
+        </models>
+    </item>
+    <item name="Hyundai">
+        <models>
+            <model to="2003" since="1994" name="Accent" />
+            <model since="2003" name="Accent" />
+            <model to="2001" since="2000" name="Amica" />
+            <model since="2007" name="Amica" />
+            <model to="2001" since="1998" name="Atoz" />
+            <model to="2002" since="1996" name="Coupe" />
+            <model since="2003" name="Coupe" />
+            <model to="2004" since="2001" name="Elantra" />
+            <model since="2002" name="Getz" />
+            <model since="2007" name="i30" />
+            <model to="2001" since="1991" name="Lantra" />
+            <model since="2001" name="Matrix" />
+            <model to="2006" since="2001" name="Santa Fe" />
+            <model since="2006" name="Santa Fe" />
+            <model to="2001" since="1994" name="Sonata" />
+            <model since="2003" name="Terracan" />
+            <model since="2000" name="Trajet" />
+            <model to="2001" since="2000" name="XG30" />
+        </models>
+    </item>
+    <item name="Mini">
+        <models>
+            <model to="2001" since="1989" name="Classic" />
+            <model since="2001" name="One/S/Cooper" />
+        </models>
+    </item>
+    <item name="Seat">
+        <models>
+            <model since="1996" name="Alhambra" />
+            <model to="2007" since="2004" name="Altea" />
+            <model since="2007" name="Altea" />
+            <model to="2004" since="1997" name="Arosa" />
+            <model to="2001" since="1994" name="Cordoba" />
+            <model to="2002" since="1993" name="Ibiza" />
+            <model since="2002" name="Ibiza" />
+            <model to="2005" since="2000" name="Leon" />
+            <model since="2005" name="Leon" />
+            <model to="2005" since="1991" name="Toledo" />
+            <model since="2005" name="Toledo" />
+        </models>
+    </item>
+    <item name="BMW">
+        <models>
+            <model since="2004" name="1-Series" />
+            <model to="1998" since="1990" name="3-Series" />
+            <model to="2005" since="1998" name="3-Series" />
+            <model since="2005" name="3-Series" />
+            <model to="2001" since="1994" name="3-Series Compact" />
+            <model to="1995" since="1988" name="5-Series" />
+            <model to="2004" since="1996" name="5-Series" />
+            <model since="2003" name="5-Series" />
+            <model since="2004" name="6-Series" />
+            <model since="2002" name="7 - Series" />
+            <model to="1998" since="1994" name="7-Series" />
+            <model to="1999" since="1991" name="850 and 840" />
+            <model to="2007" since="2000" name="X5" />
+            <model since="2007" name="X5" />
+            <model to="2002" since="1996" name="Z3" />
+            <model since="2003" name="Z4" />
+        </models>
+    </item>
+    <item name="Isuzu">
+        <models>
+            <model since="2003" name="Rodeo" />
+            <model since="1992" name="Trooper" />
+        </models>
+    </item>
+    <item name="Mitsubishi">
+        <models>
+            <model to="2001" since="1995" name="Carisma" />
+            <model to="2004" since="1996" name="Colt" />
+            <model since="2004" name="Colt" />
+            <model since="1995" name="FTO" />
+            <model since="1997" name="Galant" />
+            <model since="2004" name="Grandis" />
+            <model since="2000" name="Lancer Evo" />
+            <model to="2007" since="2004" name="Outlander" />
+            <model since="2007" name="Outlander" />
+            <model to="2000" since="1991" name="Shogun" />
+            <model to="2007" since="2000" name="Shogun" />
+            <model since="1999" name="Space Star" />
+            <model since="1992" name="Space Wagon" />
+        </models>
+    </item>
+    <item name="Skoda">
+        <models>
+            <model to="2007" since="2000" name="Fabia" />
+            <model since="2007" name="Fabia" />
+            <model to="2000" since="1995" name="Felicia" />
+            <model to="2004" since="1998" name="Octavia" />
+            <model since="2004" name="Octavia" />
+            <model since="2002" name="Superb" />
+        </models>
+    </item>
+    <item name="Caterham">
+        <models>
+            <model since="1957" name="7" />
+        </models>
+    </item>
+    <item name="Jaguar">
+        <models>
+            <model since="1999" name="S-Type" />
+            <model since="2001" name="X-Type" />
+            <model since="2007" name="XJ" />
+            <model to="1994" since="1986" name="XJ Series" />
+            <model to="2003" since="1994" name="XJ Series" />
+            <model to="2007" since="2003" name="XJ Series" />
+            <model to="1996" since="1988" name="XJS" />
+            <model to="2006" since="1996" name="XK8" />
+        </models>
+    </item>
+    <item name="Morgan">
+        <models>
+            <model since="1980" name="4/4 / Roadster" />
+        </models>
+    </item>
+    <item name="Smart">
+        <models>
+            <model since="2000" name="Smart" />
+            <model since="2004" name="Smart For2" />
+            <model since="2004" name="Smart Forfour" />
+        </models>
+    </item>
+    <item name="Chevrolet">
+        <models>
+            <model since="2007" name="Captiva" />
+            <model since="2005" name="Kalos" />
+            <model since="2005" name="Matiz" />
+        </models>
+    </item>
+    <item name="Kia">
+        <models>
+            <model to="2002" since="2000" name="Carens" />
+            <model since="2007" name="Cee'd" />
+            <model since="2006" name="Cerato" />
+            <model to="2001" since="1999" name="Clarus" />
+            <model since="2001" name="Magentis" />
+            <model to="2003" since="2001" name="Mentor" />
+            <model since="2004" name="Picanto" />
+            <model to="2002" since="1991" name="Pride" />
+            <model to="2005" since="2001" name="Rio" />
+            <model to="2003" since="1999" name="Sedona" />
+            <model to="2004" since="1999" name="Shuma I&amp;II" />
+            <model since="2003" name="Sorento" />
+            <model since="1995" name="Sportage" />
+        </models>
+    </item>
+    <item name="Nissan">
+        <models>
+            <model to="2001" since="1994" name="200SX" />
+            <model since="2003" name="350Z" />
+            <model to="2000" since="1995" name="Almera" />
+            <model to="2005" since="2000" name="Almera" />
+            <model since="1991" name="Figaro" />
+            <model to="2002" since="1993" name="Micra" />
+            <model since="2002" name="Micra" />
+            <model to="2004" since="1998" name="Patrol" />
+            <model to="1996" since="1990" name="Primera" />
+            <model to="2002" since="1996" name="Primera" />
+            <model since="2002" name="Primera" />
+            <model since="2007" name="Qash Qai +2" />
+            <model since="2007" name="QashQai" />
+            <model since="1993" name="Terrano" />
+            <model to="2007" since="2001" name="X-Trail" />
+            <model since="2007" name="X-Trail" />
+        </models>
+    </item>
+    <item name="Subaru">
+        <models>
+            <model to="2003" since="1997" name="Forester" />
+            <model to="2000" since="1993" name="Impreza" />
+            <model to="2005" since="2000" name="Impreza" />
+            <model since="2007" name="Impreza" />
+            <model since="1996" name="Justy" />
+            <model to="2003" since="1991" name="Legacy" />
+            <model since="2003" name="Legacy" />
+        </models>
+    </item>
+    <item name="Chrysler">
+        <models>
+            <model since="2007" name="300C" />
+            <model since="2003" name="Crossfire" />
+            <model since="1997" name="Grand Voyager" />
+            <model since="1996" name="Neon" />
+            <model since="2000" name="PT Cruiser" />
+            <model since="1997" name="Voyager" />
+        </models>
+    </item>
+    <item name="Lancia">
+        <models>
+            <model to="1994" since="1986" name="Integrale" />
+        </models>
+    </item>
+    <item name="Opel">
+        <models>
+            <model since="2007" name="Antara" />
+            <model to="2004" since="1991" name="Astra" />
+            <model since="2004" name="Astra" />
+            <model to="1998" since="1990" name="Calibra" />
+            <model to="2003" since="1993" name="Corsa" />
+            <model since="2003" name="Corsa" />
+            <model to="2003" since="1991" name="Frontera" />
+            <model since="2003" name="Meriva" />
+            <model to="1999" since="1994" name="Monterey" />
+            <model to="2003" since="1994" name="Omega" />
+            <model since="2003" name="Signum" />
+            <model to="1999" since="1997" name="Sintra" />
+            <model to="2001" since="1994" name="Tigra" />
+            <model to="2002" since="1995" name="Vectra I" />
+            <model since="2002" name="Vectra II" />
+            <model since="2000" name="VX220" />
+            <model since="1999" name="Zafira" />
+        </models>
+    </item>
+    <item name="Suzuki">
+        <models>
+            <model since="1997" name="Alto" />
+            <model to="2009" since="2004" name="Alto" />
+            <model since="2001" name="Grand Vitara" />
+            <model since="2000" name="Ignis" />
+            <model since="1998" name="Jimny" />
+            <model to="2000" since="1992" name="Swift" />
+            <model since="2005" name="Swift" />
+            <model since="1997" name="Wagon R+" />
+        </models>
+    </item>
+    <item name="Citroen">
+        <models>
+            <model to="1997" since="1988" name="AX" />
+            <model since="1998" name="Berlingo" />
+            <model to="1995" since="1983" name="BX" />
+            <model since="2007" name="C-Crosser" />
+            <model since="2006" name="C1" />
+            <model since="2003" name="C2" />
+            <model since="2003" name="C3 / Plurial" />
+            <model since="2004" name="C4" />
+            <model since="2007" name="C4 Grand Picasso" />
+            <model since="2007" name="C4 Picasso" />
+            <model since="2004" name="C5" />
+            <model since="2003" name="C8" />
+            <model to="2003" since="1996" name="Saxo" />
+            <model to="2001" since="1995" name="Synergie" />
+            <model to="2001" since="1993" name="Xantia" />
+            <model to="2000" since="1989" name="XM" />
+            <model since="2000" name="Xsara" />
+            <model since="2000" name="Xsara Picasso" />
+        </models>
+    </item>
+    <item name="Land Rover">
+        <models>
+            <model since="1948" name="Defender" />
+            <model to="1998" since="1989" name="Discovery" />
+            <model to="2004" since="1998" name="Discovery II" />
+            <model since="2004" name="Discovery III" />
+            <model to="2003" since="1997" name="Freelander" />
+            <model to="2006" since="2003" name="Freelander" />
+            <model since="2006" name="Freelander" />
+            <model to="1996" since="1970" name="Range Rover" />
+            <model to="2002" since="1994" name="Range Rover" />
+            <model to="2005" since="2002" name="Range Rover" />
+            <model since="2007" name="Range Rover" />
+        </models>
+    </item>
+    <item name="Peugeot">
+        <models>
+            <model to="2003" since="1991" name="106" />
+            <model since="2006" name="107" />
+            <model to="1997" since="1983" name="205" />
+            <model since="1998" name="206" />
+            <model since="2006" name="207" />
+            <model to="2001" since="1993" name="306" />
+            <model since="2001" name="307" />
+            <model since="2008" name="308" />
+            <model to="2007" since="4007" name="4007" />
+            <model to="1997" since="1988" name="405" />
+            <model to="2004" since="1996" name="406" />
+            <model since="2004" name="407" />
+            <model to="1999" since="1991" name="605" />
+            <model since="2000" name="607" />
+            <model to="2002" since="1995" name="806" />
+            <model since="2002" name="807" />
+        </models>
+    </item>
+    <item name="Toyota">
+        <models>
+            <model since="2007" name="Auris" />
+            <model to="2003" since="1997" name="Avensis" />
+            <model since="2003" name="Avensis" />
+            <model since="2006" name="Aygo" />
+            <model to="1997" since="1992" name="Carina E" />
+            <model to="1999" since="1994" name="Celica" />
+            <model since="1999" name="Celica" />
+            <model to="2002" since="1992" name="Corolla" />
+            <model since="2002" name="Corolla" />
+            <model since="2005" name="Hilux" />
+            <model to="2003" since="1996" name="Land Cruiser" />
+            <model since="2003" name="Land Cruiser" />
+            <model since="2007" name="Land Cruiser Invincible" />
+            <model to="2000" since="1990" name="MR2" />
+            <model since="2000" name="MR2" />
+            <model to="1999" since="1996" name="Paseo" />
+            <model to="2001" since="1997" name="Picnic" />
+            <model since="1990" name="Previa" />
+            <model since="2003" name="Prius" />
+            <model to="2000" since="1994" name="RAV 4" />
+            <model since="2000" name="RAV 4" />
+            <model to="1999" since="1996" name="Starlet" />
+            <model to="1998" since="1993" name="Supra" />
+            <model since="1999" name="Yaris" />
+        </models>
+    </item>
+    <item name="Daewoo">
+        <models>
+            <model to="1998" since="1995" name="Espero" />
+            <model to="2005" since="2003" name="Kalos" />
+            <model to="2001" since="1997" name="Lanos" />
+            <model to="2001" since="1997" name="Leganza" />
+            <model to="2005" since="1998" name="Matiz" />
+            <model to="1998" since="1995" name="Nexia" />
+            <model to="2003" since="1997" name="Nubira" />
+            <model to="2005" since="2000" name="Tacuma" />
+        </models>
+    </item>
+    <item name="Lexus">
+        <models>
+            <model since="1993" name="GS" />
+            <model to="2005" since="1999" name="IS" />
+            <model to="2000" since="1990" name="LS" />
+            <model to="2007" since="2000" name="LS" />
+            <model since="2007" name="LS" />
+            <model to="2007" since="2003" name="RX" />
+            <model since="2007" name="RX" />
+            <model since="2001" name="SC" />
+        </models>
+    </item>
+    <item name="Porsche">
+        <models>
+            <model to="1996" since="1993" name="911" />
+            <model to="2005" since="1997" name="911" />
+            <model since="2004" name="911" />
+            <model to="1992" since="1988" name="944" />
+            <model to="1995" since="1992" name="968" />
+            <model to="2004" since="1996" name="Boxster" />
+            <model since="2004" name="Boxster" />
+            <model since="2003" name="Cayenne" />
+        </models>
+    </item>
+    <item name="TVR">
+        <models>
+            <model since="1996" name="Cerbera" />
+            <model since="1993" name="Chimaera" />
+            <model since="1992" name="Griffith" />
+            <model since="2000" name="Tuscan" />
+        </models>
+    </item>
+    <item name="Daihatsu">
+        <models>
+            <model to="2000" since="1993" name="Charade" />
+            <model to="2001" since="1988" name="Fourtrak" />
+            <model to="2000" since="1997" name="Grand Move" />
+            <model since="2007" name="Materia" />
+            <model to="2000" since="1997" name="Move" />
+            <model since="1998" name="Sirion" />
+        </models>
+    </item>
+    <item name="Lotus">
+        <models>
+            <model since="1996" name="Elise" />
+            <model to="2004" since="1975" name="Esprit" />
+            <model since="2004" name="Exige" />
+        </models>
+    </item>
+    <item name="Proton">
+        <models>
+            <model to="2001" since="1994" name="Compact" />
+            <model since="2001" name="Impian" />
+            <model to="1997" since="1989" name="MPI" />
+            <model to="2001" since="1993" name="Persona" />
+            <model to="2003" since="2000" name="Satria" />
+            <model to="2004" since="2000" name="Wira" />
+        </models>
+    </item>
+    <item name="Volkswagen">
+        <models>
+            <model since="1970" name="Beetle" />
+            <model since="1999" name="Beetle" />
+            <model to="1996" since="1990" name="Corrado" />
+            <model since="2007" name="Eos" />
+            <model to="1992" since="1984" name="Golf" />
+            <model to="1998" since="1992" name="Golf" />
+            <model to="2004" since="1998" name="Golf" />
+            <model since="2004" name="Golf" />
+            <model to="1993" since="1979" name="Golf Cabriolet" />
+            <model since="1999" name="Lupo" />
+            <model to="2004" since="1996" name="Passat" />
+            <model to="2009" since="2005" name="Passat" />
+            <model since="2007" name="Phaeton" />
+            <model to="2002" since="1994" name="Polo" />
+            <model since="2002" name="Polo" />
+            <model since="1995" name="Sharan" />
+            <model since="2003" name="Touareg" />
+            <model since="2006" name="Touran" />
+        </models>
+    </item>
+    <item name="Ferrari">
+        <models>
+            <model to="1995" since="1975" name="308/328" />
+            <model to="2004" since="1992" name="456 GT/GTA" />
+            <model since="1996" name="550 / 575M Maranello" />
+            <model to="1998" since="1994" name="F355" />
+            <model since="1999" name="F360" />
+        </models>
+    </item>
+    <item name="Maserati">
+        <models>
+            <model to="1999" since="3200" name="3200GT" />
+            <model to="2001" since="4200" name="4200 GT" />
+        </models>
+    </item>
+    <item name="Renault">
+        <models>
+            <model to="1996" since="1989" name="19" />
+            <model to="1996" since="1985" name="5" />
+            <model to="1998" since="1991" name="Clio" />
+            <model to="2005" since="1998" name="Clio" />
+            <model to="2009" since="2005" name="Clio" />
+            <model to="2003" since="1997" name="Espace" />
+            <model since="2003" name="Espace" />
+            <model since="1999" name="Kangoo" />
+            <model to="2001" since="1994" name="Laguna" />
+            <model since="2007" name="Laguna" />
+            <model since="2001" name="Laguna II" />
+            <model to="2002" since="1996" name="Megane" />
+            <model since="2002" name="Megane" />
+            <model since="2003" name="Megane CC" />
+            <model since="2007" name="Modus" />
+            <model to="2000" since="1993" name="Safrane" />
+            <model to="2003" since="1997" name="Scenic" />
+            <model since="2003" name="Scenic" />
+            <model since="2002" name="Vel Satis" />
+        </models>
+    </item>
+    <item name="Volvo">
+        <models>
+            <model to="1997" since="1989" name="440/460" />
+            <model to="1996" since="1992" name="850" />
+            <model to="1998" since="1991" name="940" />
+            <model to="1998" since="1991" name="960 / V90 / S90" />
+            <model to="2002" since="1997" name="C70" />
+            <model to="2004" since="1996" name="S40 / V40" />
+            <model since="2004" name="S40" />
+            <model since="2000" name="S60" />
+            <model to="2000" since="1996" name="S70 / V70" />
+            <model to="2007" since="1998" name="S80" />
+            <model since="2007" name="S80" />
+            <model since="2004" name="V50" />
+            <model since="2000" name="V70" />
+            <model since="2007" name="V70" />
+            <model since="2003" name="XC90" />
+        </models>
+    </item>
+</items>

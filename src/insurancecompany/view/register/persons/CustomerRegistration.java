@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package insurancecompany.view.register;
+package insurancecompany.view.register.persons;
 
 import javafx.application.Application;
 import static javafx.application.Application.launch;
@@ -27,7 +27,6 @@ public class CustomerRegistration extends Application {
     
     private Scene scene;
     private GridPane mainPane;
-    
     
     private TextField personalNumberField;
     private TextField firstNameField;

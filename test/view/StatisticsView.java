@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package insurancecompany.view;
+package view;
 
 /**
  *
  * @author André
  */
-public class SearchView {
+public class StatisticsView {
     
 }

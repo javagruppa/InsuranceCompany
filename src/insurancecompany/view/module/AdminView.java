@@ -3,13 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package insurancecompany.view;
+package insurancecompany.view.module;
 
-import insurancecompany.view.register.TravelInsuranceRegistration;
-import insurancecompany.view.register.CustomerRegistration;
-import insurancecompany.view.register.BoatInsuranceRegistration;
 import javafx.application.Application;
-import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -17,9 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
@@ -31,15 +27,11 @@ import javafx.stage.StageStyle;
 /**
  *
  * @author André
+ * @author Sindre
  */
 public class AdminView extends Application {
     
     private Stage primaryStage;
-    
-    private RegisterView registerView;
-    private CustomerRegistration customerRegistration;
-    private BoatInsuranceRegistration boatInsuranceRegistration;
-    private TravelInsuranceRegistration travelInsuranceRegistration;
     
     private double xOffset = 0;
     private double yOffset = 0;
@@ -52,7 +44,6 @@ public class AdminView extends Application {
     
     private Pane toolBarPane;
     private Pane statusBarPane;
-    private Pane centerPane;
     
     private Button registerTabButton;
     private Button searchTabButton;
@@ -61,10 +52,6 @@ public class AdminView extends Application {
     private Button exitButton;
     private Text userStatusText;
     
-    private BorderPane registerPane;
-    private GridPane customerRegistrationPane;
-    private GridPane travelInsurancePane;     
-    
     public AdminView() {
         initializeViews();
         initializeEventHandlers();
@@ -72,6 +59,7 @@ public class AdminView extends Application {
         scene.getStylesheets().add("insurancecompany/resources/css/stylesheet.css");
         
     }
+    
     public void start(Stage stage) throws Exception {
         show(stage);
     }
@@ -81,7 +69,7 @@ public class AdminView extends Application {
         //primaryStage.setFullScreen(true);
         primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.setTitle("Kunderegistrering");
-        primaryStage.setScene(getScene());
+        primaryStage.setScene(scene);
         primaryStage.show();
     }
     
@@ -91,40 +79,22 @@ public class AdminView extends Application {
         toolBarPane = createToolBar();
         statusBarPane = createStatusBar();
         vbox.getChildren().addAll(toolBarPane, statusBarPane);
-        
-        registerView = new RegisterView();
-        registerPane = registerView.getMainPane();
-        
         mainPane.setTop(vbox);
-        centerPane = registerPane;
-        mainPane.setCenter(centerPane);
-        selectedButtonStyleUpper(registerTabButton);
-        
-        
-        
     }
     
     private void initializeEventHandlers() {
-        registerTabButton.setOnAction((event) -> {
-            mainPane.setCenter(registerPane);
-            selectedButtonStyleUpper(registerTabButton);
-        });
-        
-        exitButton.setOnAction((event) -> {
-            Platform.exit();     
-        });
+        registerTabButton.setOnAction(event -> selectedButtonStyleUpper(registerTabButton));
         
         toolBarPane.setOnMouseClicked((event) -> {
             if(event.getButton().equals(MouseButton.PRIMARY)){
-            if(event.getClickCount() == 2){
-                if (primaryStage.isFullScreen())
-                    primaryStage.setFullScreen(false);
-                else if (!primaryStage.isFullScreen()) {
+                if(event.getClickCount() == 2){
+                    if (primaryStage.isFullScreen()) {
+                        primaryStage.setFullScreen(false);
+                    } else if (!primaryStage.isFullScreen()) {
                     primaryStage.setFullScreen(true);
+                    }
                 }
-            }
-        }
-            
+            }  
         });
         
         toolBarPane.setOnMousePressed((event) -> {
@@ -140,32 +110,30 @@ public class AdminView extends Application {
                 primaryStage.setY(event.getScreenY() - yOffset);
             }
         });        
-        
     }
-    
     
     private HBox createToolBar() {
         HBox hbox = new HBox();
         hbox.setStyle("-fx-background-color: #6577A1;");
         registerTabButton = new Button("Registrer");
-        getRegisterButton().setId("mainToolbarButton");
+        registerTabButton.setId("mainToolbarButton");
         searchTabButton = new Button("Søk");
-        getSearchButton().setId("mainToolbarButton");
+        searchTabButton.setId("mainToolbarButton");
         statisticsTabButton = new Button("Statistikk");
-        getStatisticsButton().setId("mainToolbarButton");
+        statisticsTabButton.setId("mainToolbarButton");
         
         logOutButton = new Button("Logg ut");
-        getLogOutButton().setId("mainToolbarButton");
+        logOutButton.setId("mainToolbarButton");
         exitButton = new Button("Avslutt");
-        getExitButton().setId("mainToolbarButton");
+        exitButton.setId("mainToolbarButton");
         
         HBox hbox1 = new HBox();
-        hbox1.getChildren().addAll(getLogOutButton(), getExitButton());
+        hbox1.getChildren().addAll(logOutButton, exitButton);
         hbox1.setAlignment(Pos.CENTER_RIGHT);
         HBox.setHgrow(hbox1, Priority.ALWAYS);
         
         Image ifLogo = new Image("insurancecompany/resources/images/if.png");
-        hbox.getChildren().addAll(new ImageView(ifLogo), getRegisterButton(), getSearchButton(), getStatisticsButton());
+        hbox.getChildren().addAll(new ImageView(ifLogo), registerTabButton, searchTabButton, statisticsTabButton);
         hbox.getChildren().add(hbox1);
         
         return hbox;
@@ -177,7 +145,7 @@ public class AdminView extends Application {
         hbox.setStyle("-fx-background-color: #E7E7FF;");
         
         userStatusText = new Text("Logget inn som Admin. Ansattnr: 10000000");
-        hbox.getChildren().add(getUserStatusText());
+        hbox.getChildren().add(userStatusText);
         return hbox;
     }
     
@@ -188,60 +156,31 @@ public class AdminView extends Application {
         button.setId("mainToolbarButtonSelected");
     }
     
-    /**
-     * @return the scene
-     */
-    public Scene getScene() {
-        return scene;
-    }
-
-    /**
-     * @return the mainPane
-     */
+    // GET MAIN PANE
+    
     public BorderPane getMainPane() {
         return mainPane;
     }
-
-    /**
-     * @return the registerTabButton
-     */
-    public Button getRegisterButton() {
-        return registerTabButton;
-    }
-
-    /**
-     * @return the searchTabButton
-     */
-    public Button getSearchButton() {
-        return searchTabButton;
-    }
-
-    /**
-     * @return the statisticsTabButton
-     */
-    public Button getStatisticsButton() {
-        return statisticsTabButton;
-    }
-
-    /**
-     * @return the logOutButton
-     */
-    public Button getLogOutButton() {
-        return logOutButton;
-    }
-
-    /**
-     * @return the exitButton
-     */
-    public Button getExitButton() {
-        return exitButton;
-    }
-
-    /**
-     * @return the userStatusText
-     */
-    public Text getUserStatusText() {
-        return userStatusText;
-    }
     
+    // SET EVENT HANDLERS
+
+    public void setRegisterButtonEventHandler(EventHandler<ActionEvent> value) {
+        registerTabButton.setOnAction(value);
+    }
+
+    public void setSearchButtonEventHandler(EventHandler<ActionEvent> value) {
+        searchTabButton.setOnAction(value);
+    }
+
+    public void setStatisticsButtonEventHandler(EventHandler<ActionEvent> value) {
+        statisticsTabButton.setOnAction(value);
+    }
+
+    public void setLogOutButtonEventHandler(EventHandler<ActionEvent> value) {
+        logOutButton.setOnAction(value);
+    }
+
+    public void setExitButtonEventHandler(EventHandler<ActionEvent> value) {
+        exitButton.setOnAction(value);
+    }
 }

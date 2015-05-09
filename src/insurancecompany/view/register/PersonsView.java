@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package insurancecompany.view;
+package insurancecompany.view.register;
 
-import insurancecompany.view.register.CustomerRegistration;
+import insurancecompany.view.register.persons.CustomerRegistration;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.collections.FXCollections;

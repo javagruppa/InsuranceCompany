@@ -3,22 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package insurancecompany.view;
+package insurancecompany.view.register;
 
-import insurancecompany.view.register.BoatInsuranceRegistration;
-import insurancecompany.view.register.TravelInsuranceRegistration;
-import java.util.ArrayList;
-import java.util.List;
+import insurancecompany.view.register.insurances.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ContentDisplay;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -26,37 +22,22 @@ import javafx.stage.Stage;
 /**
  *
  * @author André
+ * @author Sindre
  */
 public class InsurancesView {
     
-    private BoatInsuranceRegistration boatInsuranceRegistration;
-    private TravelInsuranceRegistration travelInsuranceRegistration;
-    
-    private Pane customerRegistrationPane;
-    private Pane boatInsuranceRegistrationPane;
-    private Pane travelInsuranceRegistrationPane;
-    
     private Scene scene;
     private BorderPane mainPane;
-    
     private Pane sideToolBarPane;
     
-    private Button carInsuranceButton;
     private Button boatInsuranceButton;
+    private Button carInsuranceButton;
     private Button homeInsuranceButton;
     private Button holidayHomeInsuranceButton;
     private Button travelInsuranceButton;
             
-    //public static void main(String[] args) {
-    //    launch(args);
-    //}
-    
-    public void start(Stage stage) throws Exception {
-        show(stage);
-    }
-    
     public void show(Stage stage) {
-        stage.setTitle("Kunderegistrering");
+        stage.setTitle("Forsikringsregistrering");
         stage.setScene(scene);
         stage.show();
     }
@@ -70,42 +51,25 @@ public class InsurancesView {
         //sp.setFitToWidth(true);
         mainPane.setLeft(sideToolBarPane);
         scene = new Scene(mainPane, 800, 600);
-        initializeViews();
+        
         initializeEventHandlers();      
-    }
-    private void initializeViews() {
-        boatInsuranceRegistration = new BoatInsuranceRegistration();
-        boatInsuranceRegistrationPane = boatInsuranceRegistration.getMainPane();
-        travelInsuranceRegistration = new TravelInsuranceRegistration();
-        travelInsuranceRegistrationPane = travelInsuranceRegistration.getMainPane();
     }
     
     private void initializeEventHandlers() {
-      
-        carInsuranceButton.setOnAction((event) -> {
-            //mainPane.setCenter();
-            //selectedButtonStyleLower(carInsuranceButton);
-        });
+        carInsuranceButton.setOnAction(event -> 
+            selectedButtonStyleLower(carInsuranceButton));
         
-        boatInsuranceButton.setOnAction((event) -> {
-            mainPane.setCenter(boatInsuranceRegistrationPane);
-            selectedButtonStyleLower(boatInsuranceButton);
-        });
+        boatInsuranceButton.setOnAction(event -> 
+            selectedButtonStyleLower(boatInsuranceButton));
         
-        homeInsuranceButton.setOnAction((event) -> {
-            //mainPane.setCenter();
-            //selectedButtonStyleLower(homeInsuranceButton);
-        });
+        homeInsuranceButton.setOnAction(event -> 
+            selectedButtonStyleLower(homeInsuranceButton));
         
-        holidayHomeInsuranceButton.setOnAction((event) -> {
-            //mainPane.setCenter();
-            //selectedButtonStyleLower(holidayHomeInsuranceButton);
-        });
+        holidayHomeInsuranceButton.setOnAction(event -> 
+            selectedButtonStyleLower(holidayHomeInsuranceButton));
         
-        travelInsuranceButton.setOnAction((event) -> {
-            mainPane.setCenter(travelInsuranceRegistrationPane);
-            selectedButtonStyleLower(travelInsuranceButton);
-        });
+        travelInsuranceButton.setOnAction(event -> 
+            selectedButtonStyleLower(travelInsuranceButton));
     }
     
     // TODO: Change to setId, and make a custom style for selected, will not have hover etc
@@ -157,7 +121,6 @@ public class InsurancesView {
             b.setMinWidth(Button.USE_PREF_SIZE);
             b.setMaxWidth(Double.MAX_VALUE);
         });
-        
                 
         vbox.getChildren().addAll(buttons);
        
@@ -166,5 +129,27 @@ public class InsurancesView {
     
     public BorderPane getMainPane() {
         return mainPane;
+    }
+    
+    // SET EVENT HANDLERS
+
+    public void setBoatInsuranceButtonEventHandler(EventHandler<ActionEvent> value) {
+        boatInsuranceButton.setOnAction(value);
+    }
+
+    public void setCarInsuranceButtonEventHandler(EventHandler<ActionEvent> value) {
+        carInsuranceButton.setOnAction(value);
+    }
+
+    public void setHomeInsuranceButtonEventHandler(EventHandler<ActionEvent> value) {
+        homeInsuranceButton.setOnAction(value);
+    }
+
+    public void setHolidayHomeInsuranceButtonEventHandler(EventHandler<ActionEvent> value) {
+        holidayHomeInsuranceButton.setOnAction(value);
+    }
+
+    public void setTravelInsuranceButtonEventHandler(EventHandler<ActionEvent> value) {
+        travelInsuranceButton.setOnAction(value);
     }
 }

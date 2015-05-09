@@ -9,6 +9,8 @@
  * @author Sindre
  */
 public class MainControllerTestMethods {
+    private static final String customerFileName = "src/customerRegister.dta";
+    
     private void loginBtnEventHandler(ActionEvent e) {
         
         String userName = loginView.getUserTextField().getText();

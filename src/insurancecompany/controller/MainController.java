@@ -5,40 +5,14 @@
  */
 package insurancecompany.controller;
 
-import insurancecompany.model.datastructures.ClaimRegister;
-import insurancecompany.model.people.ServiceWorker;
-import insurancecompany.model.people.Admin;
-import insurancecompany.model.people.CaseWorker;
-import insurancecompany.model.datastructures.InsuranceRegister;
-import insurancecompany.model.people.Customer;
-import insurancecompany.model.datastructures.EmployeeRegister;
-import insurancecompany.model.people.Employee;
-import insurancecompany.model.datastructures.CustomerRegister;
-import insurancecompany.model.properties.Address;
-import insurancecompany.view.AdminView;
-import insurancecompany.view.register.BoatInsuranceRegistration;
-import insurancecompany.view.register.HolidayHomeInsuranceRegistration;
-import insurancecompany.view.RegisterView;
-import insurancecompany.view.register.HomeInsuranceRegistration;
-import insurancecompany.view.register.TravelInsuranceRegistration;
-import insurancecompany.view.register.CustomerRegistration;
-import insurancecompany.view.LoginView;
-import insurancecompany.misc.*;
-import insurancecompany.model.vehicles.Boat;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.NotSerializableException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
+import insurancecompany.view.register.persons.CustomerRegistration;
+import insurancecompany.view.register.insurances.TravelInsuranceRegistration;
+import insurancecompany.view.register.insurances.CarInsuranceRegistration;
+import insurancecompany.view.register.insurances.HomeInsuranceRegistration;
+import insurancecompany.view.register.insurances.HolidayHomeInsuranceRegistration;
+import insurancecompany.view.register.insurances.BoatInsuranceRegistration;
+import insurancecompany.model.datastructures.*;
+import insurancecompany.view.*;
 import javafx.stage.Stage;
 
 /**
@@ -47,23 +21,41 @@ import javafx.stage.Stage;
  */
 public class MainController {
     
-    private static final String customerFileName = "src/customerRegister.dta";
-    
     // Models:
     private EmployeeRegister employees;
     private CustomerRegister customers;
     private InsuranceRegister insurances;
     private ClaimRegister claims;
     
-    // Sub Controllers:
+    // Insurance Registration Views:
+    private BoatInsuranceRegistration boatInsuranceRegistration;
+    private CarInsuranceRegistration carInsuranceRegistration;
+    private CustomerRegistration customerRegistration;
+    private HolidayHomeInsuranceRegistration holidayHomeInsuranceRegistration;
+    private HomeInsuranceRegistration homeInsuranceRegistration;
+    private TravelInsuranceRegistration travelInsuranceRegistration;
+    
+    // Controllers:
+    private ModelController modelController;
     private ViewController viewController;
     
-    public MainController()  {          
-        employees = new EmployeeRegister();
-        customers = new CustomerRegister();
-        insurances = new InsuranceRegister();
-        claims = new ClaimRegister();
-        viewController = new ViewController();
+    public MainController()  {
+        
+        this.employees = new EmployeeRegister();
+        this.customers = new CustomerRegister();
+        this.insurances = new InsuranceRegister();
+        this.claims = new ClaimRegister();
+        
+        this.boatInsuranceRegistration = new BoatInsuranceRegistration();
+        this.carInsuranceRegistration = new CarInsuranceRegistration();
+        this.holidayHomeInsuranceRegistration = new HolidayHomeInsuranceRegistration();
+        this.homeInsuranceRegistration = new HomeInsuranceRegistration();
+        this.travelInsuranceRegistration = new TravelInsuranceRegistration();
+        
+        this.modelController = new ModelController();
+        this.viewController = new ViewController(boatInsuranceRegistration, 
+            carInsuranceRegistration, holidayHomeInsuranceRegistration,
+            homeInsuranceRegistration, travelInsuranceRegistration);
     }
     
     public void show(Stage stage) {;

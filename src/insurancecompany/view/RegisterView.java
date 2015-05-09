@@ -5,57 +5,31 @@
  */
 package insurancecompany.view;
 
-
-import insurancecompany.view.register.BoatInsuranceRegistration;
-import insurancecompany.view.register.CustomerRegistration;
-import insurancecompany.view.register.TravelInsuranceRegistration;
-import javafx.application.Application;
-import static javafx.application.Application.launch;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.Priority;
 import javafx.stage.Stage;
 
 
 /**
  *
  * @author André
+ * @author Sindre
  */
 public class RegisterView {
     
-    //private CustomerRegistration customerRegistration;
-    //private BoatInsuranceRegistration boatInsuranceRegistration;
-    //private TravelInsuranceRegistration travelInsuranceRegistration;
-    private InsurancesView insurancesView;
-    private PersonsView personsView;
-    private ClaimsView claimsView;
-    
-    private Pane personsPane;
-    private Pane insurancesPane;
-    private Pane claimsPane;
-    
     private Scene scene;
     private BorderPane mainPane;
+    
     private Button personsButton;
     private Button insurancesButton;
     private Button claimsButton;
             
-    //public static void main(String[] args) {
-    //    launch(args);
-    //}
-    
-    public void start(Stage stage) throws Exception {
-        show(stage);
-    }
-    
     public void show(Stage stage) {
         stage.setTitle("Kunderegistrering");
         stage.setScene(scene);
@@ -65,48 +39,20 @@ public class RegisterView {
     public RegisterView() {
         mainPane = new BorderPane();
         mainPane.setTop(createToolBar());
-        initializeViews();
         initializeEventHandlers(); 
-        mainPane.setCenter(insurancesPane);
-        selectedButtonStyleLower(insurancesButton);
         scene = new Scene(mainPane, 800, 600);
              
     }
-    private void initializeViews() {
-        insurancesView = new InsurancesView();
-        insurancesPane = insurancesView.getMainPane();
-        
-        personsView = new PersonsView();
-        personsPane = personsView.getMainPane();
-        
-        claimsView = new ClaimsView();
-        claimsPane = claimsView.getMainPane();
-        
-        /*
-        customerRegistration = new CustomerRegistration();
-        customerRegistrationPane = customerRegistration.getMainPane();
-        boatInsuranceRegistration = new BoatInsuranceRegistration();
-        //boatInsuranceRegistrationPane = boatInsuranceRegistration.getMainPane();
-        travelInsuranceRegistration = new TravelInsuranceRegistration();
-        //travelInsuranceRegistrationPane = travelInsuranceRegistration.getMainPane();
-        */
-    }
     
     private void initializeEventHandlers() {
-        personsButton.setOnAction((event) -> {
-            mainPane.setCenter(personsPane);
-            selectedButtonStyleLower(personsButton);
-        });
+        personsButton.setOnAction(event -> 
+                selectedButtonStyleLower(personsButton));
         
-        insurancesButton.setOnAction((event) -> {
-            mainPane.setCenter(insurancesPane);
-            selectedButtonStyleLower(insurancesButton);
-        });
+        insurancesButton.setOnAction(event -> 
+            selectedButtonStyleLower(insurancesButton));
         
-        claimsButton.setOnAction((event) -> {
-            mainPane.setCenter(claimsPane);
-            selectedButtonStyleLower(claimsButton);
-        });      
+        claimsButton.setOnAction(event -> 
+            selectedButtonStyleLower(claimsButton));      
     }
     
     // TODO: Change to setId, and make a custom style for selected, will not have hover etc
@@ -134,18 +80,20 @@ public class RegisterView {
        
         return hbox;
     }
-
-    /**
-     * @return the scene
-     */
-    public Scene getScene() {
-        return scene;
-    }
-
-    /**
-     * @return the mainPane
-     */
+    
+    // GET MAIN PANE
+    
     public BorderPane getMainPane() {
         return mainPane;
+    }
+    
+    // SET EVENT HANDLERS
+    
+    public void setPersonsButtonEventHandler(EventHandler<ActionEvent> value) {
+        personsButton.setOnAction(value);
+    }
+
+    public void setInsurancesButtonEventHandler(EventHandler<ActionEvent> value) {
+        insurancesButton.setOnAction(value);
     }
 }

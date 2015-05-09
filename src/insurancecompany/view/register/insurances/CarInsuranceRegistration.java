@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package insurancecompany.view.register;
+package insurancecompany.view.register.insurances;
 
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;

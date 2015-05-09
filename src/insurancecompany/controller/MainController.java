@@ -12,7 +12,6 @@ import insurancecompany.view.register.insurances.HomeInsuranceRegistration;
 import insurancecompany.view.register.insurances.HolidayHomeInsuranceRegistration;
 import insurancecompany.view.register.insurances.BoatInsuranceRegistration;
 import insurancecompany.model.datastructures.*;
-import insurancecompany.view.*;
 import javafx.stage.Stage;
 
 /**

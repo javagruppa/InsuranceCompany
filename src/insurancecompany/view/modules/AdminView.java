@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package insurancecompany.view.module;
+package insurancecompany.view.modules;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -83,8 +83,6 @@ public class AdminView extends Application {
     }
     
     private void initializeEventHandlers() {
-        registerTabButton.setOnAction(event -> selectedButtonStyleUpper(registerTabButton));
-        
         toolBarPane.setOnMouseClicked((event) -> {
             if(event.getButton().equals(MouseButton.PRIMARY)){
                 if(event.getClickCount() == 2){
@@ -149,7 +147,7 @@ public class AdminView extends Application {
         return hbox;
     }
     
-    private void selectedButtonStyleUpper(Button button) {
+    public void selectedButtonStyleUpper(Button button) {
         registerTabButton.setId("mainToolbarButton");
         searchTabButton.setId("mainToolbarButton");
         statisticsTabButton.setId("mainToolbarButton");

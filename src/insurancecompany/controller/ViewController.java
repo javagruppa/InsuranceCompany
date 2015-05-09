@@ -5,14 +5,14 @@
  */
 package insurancecompany.controller;
 
-import insurancecompany.view.RegisterView;
-import insurancecompany.view.module.AdminView;
-import insurancecompany.view.register.InsurancesView;
-import insurancecompany.view.register.PersonsView;
+import insurancecompany.view.*;
+import insurancecompany.view.modules.*;
+import insurancecompany.view.register.*;
 import insurancecompany.view.register.insurances.*;
 import insurancecompany.view.register.persons.*;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 /**
@@ -87,6 +87,7 @@ public class ViewController {
     
     private void adminViewRegisterTabButtonEventHandler(ActionEvent event) {
         adminView.getMainPane().setCenter(registerView.getMainPane());
+        adminView.selectedButtonStyleUpper((Button) event.getSource());
     }
     
     private void adminViewExitButtonEventHandler(ActionEvent event) {
@@ -97,31 +98,38 @@ public class ViewController {
     
     private void registerViewPersonsButtonEventHandler(ActionEvent event) {
         registerView.getMainPane().setCenter(personsView.getMainPane());
+        registerView.selectedButtonStyleLower((Button) event.getSource());
     }
     
     private void registerViewInsurancesButtonEventHandler(ActionEvent event) {
         registerView.getMainPane().setCenter(insurancesView.getMainPane());
+        registerView.selectedButtonStyleLower((Button) event.getSource());
     }
     
     // INSURANCES VIEW EVENT HANDLERS
     
     private void insurancesViewBoatInsuranceButtonEventHandler(ActionEvent event) {
         insurancesView.getMainPane().setCenter(boatInsuranceRegistration.getMainPane());
+        insurancesView.selectedButtonStyleLower((Button) event.getSource());
     }
     
     private void insurancesViewCarInsuranceButtonEventHandler(ActionEvent event) {
         //insurancesView.getMainPane().setCenter(carInsuranceRegistration.getMainPane());
+        insurancesView.selectedButtonStyleLower((Button) event.getSource());
     }
     
     private void insurancesViewHomeInsuranceButtonEventHandler(ActionEvent event) {
         insurancesView.getMainPane().setCenter(homeInsuranceRegistration.getMainPane());
+        insurancesView.selectedButtonStyleLower((Button) event.getSource());
     }
     
     private void insurancesViewHolidayHomeInsuranceButtonEventHandler(ActionEvent event) {
         insurancesView.getMainPane().setCenter(holidayHomeInsuranceRegistration.getMainPane());
+        insurancesView.selectedButtonStyleLower((Button) event.getSource());
     }
     
     private void insurancesViewTravelInsuranceButtonEventHandler(ActionEvent event) {
         insurancesView.getMainPane().setCenter(travelInsuranceRegistration.getMainPane());
+        insurancesView.selectedButtonStyleLower((Button) event.getSource());
     }
 }

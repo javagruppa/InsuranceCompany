@@ -39,24 +39,12 @@ public class RegisterView {
     public RegisterView() {
         mainPane = new BorderPane();
         mainPane.setTop(createToolBar());
-        initializeEventHandlers(); 
         scene = new Scene(mainPane, 800, 600);
              
     }
     
-    private void initializeEventHandlers() {
-        personsButton.setOnAction(event -> 
-                selectedButtonStyleLower(personsButton));
-        
-        insurancesButton.setOnAction(event -> 
-            selectedButtonStyleLower(insurancesButton));
-        
-        claimsButton.setOnAction(event -> 
-            selectedButtonStyleLower(claimsButton));      
-    }
-    
     // TODO: Change to setId, and make a custom style for selected, will not have hover etc
-    private void selectedButtonStyleLower(Button button) {
+    public void selectedButtonStyleLower(Button button) {
         personsButton.setId("subToolbarButton");
         insurancesButton.setId("subToolbarButton");
         claimsButton.setId("subToolbarButton");

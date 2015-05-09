@@ -5,7 +5,6 @@
  */
 package insurancecompany.view.register;
 
-import insurancecompany.view.register.insurances.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -50,30 +49,11 @@ public class InsurancesView {
         //sp.setFitToHeight(true);
         //sp.setFitToWidth(true);
         mainPane.setLeft(sideToolBarPane);
-        scene = new Scene(mainPane, 800, 600);
-        
-        initializeEventHandlers();      
-    }
-    
-    private void initializeEventHandlers() {
-        carInsuranceButton.setOnAction(event -> 
-            selectedButtonStyleLower(carInsuranceButton));
-        
-        boatInsuranceButton.setOnAction(event -> 
-            selectedButtonStyleLower(boatInsuranceButton));
-        
-        homeInsuranceButton.setOnAction(event -> 
-            selectedButtonStyleLower(homeInsuranceButton));
-        
-        holidayHomeInsuranceButton.setOnAction(event -> 
-            selectedButtonStyleLower(holidayHomeInsuranceButton));
-        
-        travelInsuranceButton.setOnAction(event -> 
-            selectedButtonStyleLower(travelInsuranceButton));
+        scene = new Scene(mainPane, 800, 600);   
     }
     
     // TODO: Change to setId, and make a custom style for selected, will not have hover etc
-    private void selectedButtonStyleLower(Button button) {
+    public void selectedButtonStyleLower(Button button) {
         carInsuranceButton.setId("sideToolbarButton");
         boatInsuranceButton.setId("sideToolbarButton");
         homeInsuranceButton.setId("sideToolbarButton");

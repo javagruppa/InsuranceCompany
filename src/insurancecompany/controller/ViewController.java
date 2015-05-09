@@ -5,9 +5,10 @@
  */
 package insurancecompany.controller;
 
-import insurancecompany.view.*;
-import insurancecompany.view.module.*;
-import insurancecompany.view.register.*;
+import insurancecompany.view.RegisterView;
+import insurancecompany.view.module.AdminView;
+import insurancecompany.view.register.InsurancesView;
+import insurancecompany.view.register.PersonsView;
 import insurancecompany.view.register.insurances.*;
 import insurancecompany.view.register.persons.*;
 import javafx.application.Platform;

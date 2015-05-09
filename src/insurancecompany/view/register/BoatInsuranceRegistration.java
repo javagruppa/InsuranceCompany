@@ -191,8 +191,8 @@ public class BoatInsuranceRegistration {
     /**
      * @return the alarmComboBox
      */
-    public boolean getAlarm() {
-        return alarmComboBox.getValue().equals("Ja");
+     public String getAlarm() {
+        return alarmComboBox.getValue();
     }
 
     /**

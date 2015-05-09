@@ -5,97 +5,73 @@
  */
 package insurancecompany.controller;
 
-import insurancecompany.model.datastructures.ClaimRegister;
-import insurancecompany.model.people.ServiceWorker;
 import insurancecompany.model.people.Admin;
 import insurancecompany.model.people.CaseWorker;
-import insurancecompany.model.datastructures.InsuranceRegister;
 import insurancecompany.model.people.Customer;
-import insurancecompany.model.datastructures.EmployeeRegister;
 import insurancecompany.model.people.Employee;
-import insurancecompany.model.datastructures.CustomerRegister;
+import insurancecompany.model.people.ServiceWorker;
 import insurancecompany.model.properties.Address;
 import insurancecompany.view.AdminView;
-import insurancecompany.view.register.BoatInsuranceRegistration;
-import insurancecompany.view.register.HolidayHomeInsuranceRegistration;
+import insurancecompany.view.LoginView;
 import insurancecompany.view.RegisterView;
+import insurancecompany.view.register.BoatInsuranceRegistration;
+import insurancecompany.view.register.CarInsuranceRegistration;
+import insurancecompany.view.register.CustomerRegistration;
+import insurancecompany.view.register.HolidayHomeInsuranceRegistration;
 import insurancecompany.view.register.HomeInsuranceRegistration;
 import insurancecompany.view.register.TravelInsuranceRegistration;
-import insurancecompany.view.register.CustomerRegistration;
-import insurancecompany.view.LoginView;
-import insurancecompany.misc.*;
-import insurancecompany.model.vehicles.Boat;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.NotSerializableException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 /**
  *
- * @author André
+ * @author Sindre
  */
-public class Controller {
-    
-    private static final String customerFileName = "src/customerRegister.dta";
-    
-    // Views:
+public class ViewController {
+    // General Views:
+    private AdminView adminView;
     private LoginView loginView;
     private RegisterView registerView;
-    private CustomerRegistration customerRegistration;
+    
+    // Registration Views:
     private BoatInsuranceRegistration boatInsuranceRegistration;
-    private HomeInsuranceRegistration homeInsuranceRegistration;
+    private CarInsuranceRegistration carInsuranceRegistration;
+    private CustomerRegistration customerRegistration;
     private HolidayHomeInsuranceRegistration holidayHomeInsuranceRegistration;
+    private HomeInsuranceRegistration homeInsuranceRegistration;
     private TravelInsuranceRegistration travelInsuranceRegistration;
-    private AdminView adminView;
     
-    // Models:
-    private EmployeeRegister employees;
-    private CustomerRegister customers;
-    private InsuranceRegister insurances;
-    private ClaimRegister claims;
-    
-    public Controller()  {          
-        employees = new EmployeeRegister();
-        customers = new CustomerRegister();
-        insurances = new InsuranceRegister();
-        claims = new ClaimRegister();
-        initializeView();
+    // Constructor
+    public ViewController() {
+        initializeViews();
         initializeEventHandlers();
     }
     
-    public void initializeView() {        
-        loginView = new LoginView();
+    public void initializeViews() {
+        // General Views:
         adminView = new AdminView();
+        loginView = new LoginView();
         registerView = new RegisterView();
-        customerRegistration = new CustomerRegistration();
+        
+        // Registration Views:
         boatInsuranceRegistration = new BoatInsuranceRegistration();
-        homeInsuranceRegistration = new HomeInsuranceRegistration();
+        carInsuranceRegistration = new CarInsuranceRegistration();
+        customerRegistration = new CustomerRegistration();
         holidayHomeInsuranceRegistration = new HolidayHomeInsuranceRegistration();
+        homeInsuranceRegistration = new HomeInsuranceRegistration();
         travelInsuranceRegistration = new TravelInsuranceRegistration();
     }
     
     public void initializeEventHandlers() {
-        loginView.getLoginBtn().setOnAction(this::loginBtnEventHandler);
-        customerRegistration.getRegisterButton().setOnAction(this::registerCustomerEventHandler);
-        boatInsuranceRegistration.getRegisterButton().setOnAction(this::registerBoatInsuranceEventHandler);
+        boatInsuranceRegistration.setRegisterButtonEventHandler(this::registerBoatInsuranceEventHandler);
     }
     
     public void show(Stage stage) {
         //login.show(stage);
         adminView.show(stage);
     }
-   
     
     private void registerCustomerEventHandler(ActionEvent e) {
         boolean ok = true;
@@ -134,7 +110,6 @@ public class Controller {
         
         Customer customer = new Customer(firstName, lastName, personalNumber, email, adress, phone);
         
-        
         int customerId = customer.getCustomerId();
         System.out.println(customerId);
         //boolean ok1 = customers.addCustomer(customer);
@@ -144,9 +119,6 @@ public class Controller {
             output += "Får ikke lagt til kunden. Kunde med personnummer: " + personalNumberS 
                     + " eksisterer allerede i kunderegisteret.";
         }
-        
-        
-        
     }
     
     private void registerBoatInsuranceEventHandler(ActionEvent e) {
@@ -158,7 +130,7 @@ public class Controller {
         String excessString = boatInsuranceRegistration.getExcess();
         
         // Collects information about the boat.
-        boolean alarm = boatInsuranceRegistration.getAlarm();
+        String alarmString = boatInsuranceRegistration.getAlarm();
         String brand = boatInsuranceRegistration.getBrand();
         String engineEffectString = boatInsuranceRegistration.
                 getEngineEffect();
@@ -222,44 +194,5 @@ public class Controller {
         // Creates BoatInsurance
         
         // Adds insurance to Register
-    }
-   
-    
-    private void loginBtnEventHandler(ActionEvent e) {
-        
-        String userName = loginView.getUserTextField().getText();
-        int employeeId = Integer.parseInt(userName);
-        Employee employee = employees.getEmployeeById(employeeId);
-        if (employee instanceof Admin) {
-            System.out.println("Admin login");
-        } else  if (employee instanceof CaseWorker) {
-            System.out.println("case worker login");
-        } else if (employee instanceof ServiceWorker) {
-            System.out.println("Service work login");
-        }
-    }
-    
-    public void readCustomersFromFile() {
-        try (ObjectInputStream ois = new ObjectInputStream(
-                new FileInputStream(customerFileName))) {
-            customers = (CustomerRegister) ois.readObject();
-        } catch (ClassNotFoundException cnfe) {
-            
-        } catch (FileNotFoundException fnfe) {
-            
-        } catch (IOException ioe) {
-            
-        }
-    }
-    
-    public void writeCustomersToFile() {
-        try (ObjectOutputStream oos = new ObjectOutputStream(
-                new FileOutputStream(customerFileName))) {
-            oos.writeObject(customers);
-        } catch ( NotSerializableException nse ) {
-            
-        } catch (IOException ioe) {
-            
-        }
     }
 }

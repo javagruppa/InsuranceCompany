@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
  */
 public class Main extends Application {
     
-    private Controller controller;
+    private MainController controller;
     
     public static void main(String[] args) {
         launch(args);
@@ -25,7 +25,7 @@ public class Main extends Application {
     
     @Override
     public void start(Stage stage) {
-        controller = new Controller();
+        controller = new MainController();
         controller.show(stage);
     }
     

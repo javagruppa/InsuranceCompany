@@ -14,7 +14,7 @@ import java.io.Serializable;
  * @author Sindre
  */
 public class BoatInsurance extends Insurance implements Serializable {
-    private static final long serialVersionUID = 42L;
+    private static final long serialVersionUID = 1L;
     
     /** The boat this insurance is for. */
     private Boat boat;

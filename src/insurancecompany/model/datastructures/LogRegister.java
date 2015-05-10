@@ -5,6 +5,7 @@
  */
 package insurancecompany.model.datastructures;
 
+import insurancecompany.misc.User;
 import insurancecompany.misc.logs.Log;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,13 +27,13 @@ public class LogRegister {
         logs.add(log);
     }
     
-    public void add(String stackTrace) {
-        Log log = new Log(stackTrace);
+    public void add(String stackTrace, User user) {
+        Log log = new Log(stackTrace, user);
         add(log);
     }
     
-    public void add(String stackTrace, String customDescription) {
-        Log log = new Log(stackTrace, customDescription);
+    public void add(String stackTrace, String customDescription, User user) {
+        Log log = new Log(stackTrace, customDescription, user);
         add(log);
     }
     

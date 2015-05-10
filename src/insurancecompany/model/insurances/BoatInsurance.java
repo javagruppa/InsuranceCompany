@@ -5,7 +5,7 @@
  */
 package insurancecompany.model.insurances;
 
-import insurancecompany.model.coverages.BoatInsuranceCoverage;
+import insurancecompany.misc.coverages.BoatInsuranceCoverage;
 import insurancecompany.model.vehicles.Boat;
 
 /**

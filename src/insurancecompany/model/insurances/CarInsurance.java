@@ -7,7 +7,7 @@ package insurancecompany.model.insurances;
 
 import insurancecompany.model.vehicles.Car;
 import insurancecompany.misc.DateCalculations;
-import insurancecompany.model.coverages.CarInsuranceCoverage;
+import insurancecompany.misc.coverages.CarInsuranceCoverage;
 
 import java.util.Calendar;
 

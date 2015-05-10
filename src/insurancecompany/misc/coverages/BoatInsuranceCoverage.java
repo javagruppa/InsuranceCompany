@@ -3,24 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package insurancecompany.model.coverages;
+package insurancecompany.misc.coverages;
 
-import insurancecompany.model.damages.TravelInsuranceDamages;
+import insurancecompany.misc.damages.BoatInsuranceDamages;
+
 import java.util.List;
 
 /**
  *
  * @author André
  */
-public enum TravelInsuranceCoverage {
-    STANDARD;
-    //PLUS,
-    //FAMILY,
-    //FAMILY_PLUS;
+public enum BoatInsuranceCoverage {
+    CASCO, PARTLY_CASCO;
     
     public List<String> damages() {
         switch(this) {
-            case STANDARD: return TravelInsuranceDamages.STANDARD_COVERAGE;
+            case CASCO: return BoatInsuranceDamages.CASCO_COVERAGE;
+            case PARTLY_CASCO: return BoatInsuranceDamages.PARTLY_CASCO_COVERAGE;
             default: throw new IllegalArgumentException();
         }
     }
@@ -28,7 +27,8 @@ public enum TravelInsuranceCoverage {
     @Override
     public String toString() {
         switch(this) {
-            case STANDARD: return "Standard";
+            case CASCO: return "Kasko";
+            case PARTLY_CASCO: return "Delkasko";
             default: throw new IllegalArgumentException();
         }
     }

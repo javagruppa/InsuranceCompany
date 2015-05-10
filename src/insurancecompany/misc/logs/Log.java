@@ -41,5 +41,5 @@ public class Log {
         return sb.toString();
     }
     
-    // read and write from textfile
+    // TODO: read and write from textfile
 }

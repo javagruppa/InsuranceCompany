@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package insurancecompany.model.coverages;
+package insurancecompany.misc.coverages;
 
-import insurancecompany.model.damages.HomeInsuranceDamages;
+import insurancecompany.misc.damages.HomeInsuranceDamages;
 import java.util.List;
 
 /**

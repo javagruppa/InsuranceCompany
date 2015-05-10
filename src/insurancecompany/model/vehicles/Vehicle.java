@@ -50,4 +50,32 @@ public abstract class Vehicle {
         this.registrationNumber = registrationNumber;
         this.registrationYear = registrationYear;
     }
+
+    /**
+     * @return the engineEffect
+     */
+    public int getEngineEffect() {
+        return engineEffect;
+    }
+
+    /**
+     * @return the personalNumber
+     */
+    public String getPersonalNumber() {
+        return personalNumber;
+    }
+
+    /**
+     * @return the registrationNumber
+     */
+    public String getRegistrationNumber() {
+        return registrationNumber;
+    }
+    
+    /**
+     * @return the alarm
+     */
+    public boolean getAlarm() {
+        return alarm;
+    }
 }

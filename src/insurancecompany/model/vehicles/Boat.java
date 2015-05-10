@@ -15,6 +15,8 @@ public class Boat extends Vehicle{
     private String engineType;
     /** The length of this boat in feet. */
     private int length;
+    /** The value of this boat */
+    private int value;
     
     /**
      * Constructs a new boat of the specified brand and model, and with the
@@ -34,10 +36,16 @@ public class Boat extends Vehicle{
      */
     public Boat(boolean alarm, String brand, int engineEffect, 
             String engineType, int length, String model, String personalNumber, 
-            String registrationNumber, int registrationYear){
+            String registrationNumber, int registrationYear, int value){
         super(alarm, brand, engineEffect, model, personalNumber, 
                 registrationNumber, registrationYear);
         this.length = length;
         this.engineType = engineType;
-    }   
+        this.value = value;
+    }
+    
+    public int getValue(){
+        return value;
+    }
+            
 }

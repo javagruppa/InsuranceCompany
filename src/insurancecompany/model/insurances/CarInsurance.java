@@ -37,6 +37,10 @@ public class CarInsurance extends Insurance {
     private int yearsOnSeventy;
     /** The number of consecutive years the bonus has stayed at 75 */
     private int yearsOnSeventyFive;
+    /** The calculated cost for the maximum length on this insurance */
+    private int maxlengthCost;
+    /** The calculated saving due to the excess on this insurance */
+    private int excessSaving;
     
     /**
      * Constructs a new car insurance with the specified car, coverage, 
@@ -92,6 +96,69 @@ public class CarInsurance extends Insurance {
         // Returns the string.
         return result.toString();
     }
+    
+    /**
+     * Calculates the price for the maximum number of kilometers included in
+     * this insurance.
+     */
+    public void maxlengthCost(){
+	maxlengthCost = maxlength / 10;
+    }
+
+    /**
+     * Calculates the price drop of this insurance due the chosen excess.
+     */
+    public void excessCalculator(){
+	int excess = getExcess();
+
+	if(excess == 0){
+	excessSaving = -2000;
+        }
+
+	else if(excess > 0 && excess <= 5000){
+	excessSaving = excess / 5;
+        }
+
+	else if(excess > 5000 && excess <= 10000){
+	excessSaving = excess / 4;
+        }
+
+	else if(excess > 10000){
+	excessSaving = excess / 3;
+        }
+    }
+
+    /**
+     * Calculates the total premium to this insurance, using different
+     * parameters including whether the customer fullfills certain aspects:
+     * youngdriver, garage, alarm.
+     */
+    public void premiumMultiplicators(){
+	double youngDriverMultiplicator = 1.0;
+	double garageMultiplicator = 1.0;
+	double alarmMultiplicator = 1.0;
+
+	if (youngDriver){
+	youngDriverMultiplicator = 1.2;
+        }
+
+	if (hasAlarm){
+	alarmMultiplicator = 0.8;
+        }
+
+	if (hasGarage){
+	garageMultiplicator = 0.8;
+        }
+
+	double allMultiplicators = garageMultiplicator + alarmMultiplicator +
+                youngDriverMultiplicator;
+	double totalMultiplicator = allMultiplicators / 3;
+
+	int typeCost = coverage.getPricing();	
+	double basicPremium = maxlengthCost + typeCost - excessSaving; 
+	premium = basicPremium * totalMultiplicator;
+
+}
     
     
     /**

@@ -24,11 +24,11 @@ import javafx.stage.Stage;
  */
 public class BoatInsuranceRegistration {
     
-    // Initializes the Gridpane and Scene.
+    // Declare the Gridpane and Scene.
     private GridPane mainPane;
     private Scene scene;
     
-    // Initializes all ComboBoxes and TextFields.
+    // Declare all ComboBoxes and TextFields.
     private ComboBox<String> alarmComboBox;
     private TextField brandField;
     private ComboBox<String> coverageComboBox;
@@ -44,7 +44,7 @@ public class BoatInsuranceRegistration {
     private TextField registrationNumberField;
     private TextField registrationYearField;
     
-    // Initializes all Label messages.
+    // Declare all Label messages.
     private Label alarmMessage;
     private Label brandMessage;
     private Label coverageMessage;
@@ -59,7 +59,7 @@ public class BoatInsuranceRegistration {
     private Label registrationNumberMessage;
     private Label registrationYearMessage;
     
-    // Initializes all Buttons.
+    // Declare all Buttons.
     private Button calculateButton;
     private Button registerButton;
     

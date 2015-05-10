@@ -16,8 +16,8 @@ public class HolidayHomeClaim extends Claim {
      /**
      * Empty constructor.
      */
-    public HolidayHomeClaim() {
-        
+    public HolidayHomeClaim(int customerId, int insuranceId) {
+        super(customerId, insuranceId);
     }
     
     /**

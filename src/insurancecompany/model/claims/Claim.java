@@ -26,10 +26,12 @@ public abstract class Claim {
     
     /** Customer id to the owner of this claim. */
     private int customerId;
+    /** Insurance id that belongs to this claim. */
+    private int insuranceId;
     /** The date this claim was submitted. */
-    private Date date;
+    private Calendar date;
     /** The date of when the damage happened */
-    private Date dateHappened;
+    private Calendar dateHappened;
     /** Unique claim id representing this claim. */
     private final int claimId;
     /** Textual description of this claim. */
@@ -44,9 +46,11 @@ public abstract class Claim {
     /**
      * Empty constructor.
      */
-    public Claim() {
+    public Claim(int customerId, int insuranceId) {
+        this.customerId = customerId;
+        this.insuranceId = insuranceId;
         // Set the date to current date
-        date = Calendar.getInstance().getTime();
+        date = Calendar.getInstance();
         // Set unique claim id, aswell as uppdating next claim id:
         claimId = nextClaimId++;
     }
@@ -57,7 +61,7 @@ public abstract class Claim {
      * @param description 
      */
     public Claim(String description) {
-        date = Calendar.getInstance().getTime();
+        date = Calendar.getInstance();
         this.description = description;
         claimId = nextClaimId++;
     }
@@ -74,7 +78,7 @@ public abstract class Claim {
      * Sets a date to the claim.
      * @param date 
      */
-    public void setDate(Date date) {
+    public void setDate(Calendar date) {
         this.date = date;
     }
     
@@ -220,14 +224,21 @@ public abstract class Claim {
     /**
      * @return the dateHappened
      */
-    public Date getDateHappened() {
+    public Calendar getDateHappened() {
         return dateHappened;
     }
 
     /**
      * @param dateHappened the dateHappened to set
      */
-    public void setDateHappened(Date dateHappened) {
+    public void setDateHappened(Calendar dateHappened) {
         this.dateHappened = dateHappened;
+    }
+
+    /**
+     * @return the insuranceId
+     */
+    public int getInsuranceId() {
+        return insuranceId;
     }
 }

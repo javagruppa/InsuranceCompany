@@ -16,8 +16,8 @@ public class BoatClaim extends Claim {
     /**
      * Empty constructor.
      */
-    public BoatClaim() {
-        
+    public BoatClaim(int customerId, int insuranceId) {
+        super(customerId, insuranceId);
     }
     
     /**

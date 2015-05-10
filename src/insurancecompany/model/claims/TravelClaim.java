@@ -17,8 +17,8 @@ public class TravelClaim extends Claim {
     /**
      * Empty constructor.
      */
-    public TravelClaim() {
-        
+    public TravelClaim(int customerId, int insuranceId) {
+        super(customerId, insuranceId);
     }
     
     /**

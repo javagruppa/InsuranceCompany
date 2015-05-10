@@ -18,8 +18,8 @@ public class CarClaim extends Claim {
     /**
      * Empty constructor.
      */
-    public CarClaim() {
-        
+    public CarClaim(int customerId, int insuranceId) {
+        super(customerId, insuranceId);
     }
     
     /**

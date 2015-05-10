@@ -20,8 +20,8 @@ public class HomeClaim extends Claim {
     /**
      * Empty constructor.
      */
-    public HomeClaim() {
-        
+    public HomeClaim(int customerId, int insuranceId) {
+        super(customerId, insuranceId);
     }
     
     /**

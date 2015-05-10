@@ -114,19 +114,23 @@ public class CarInsurance extends Insurance {
      */
     public void excessCalculator(){
 	int excess = getExcess();
-
+        // If excess is set to 0, the excess saving will be set to -2000, and
+        // there will be 2000 added to the price
 	if(excess == 0){
 	excessSaving = -2000;
         }
-
+        // With excess set between 0 and 5000, the excess saving will be
+        // calulated to 20& of the excess
 	else if(excess > 0 && excess <= 5000){
 	excessSaving = excess / 5;
         }
-
+        // With excess set between 5000 and 10000, the excess saving will be
+        // calulated to 25& of the excess
 	else if(excess > 5000 && excess <= 10000){
 	excessSaving = excess / 4;
         }
-
+        // With excess set above 10000, the excess saving will be
+        // calulated to 33& of the excess
 	else if(excess > 10000){
 	excessSaving = excess / 3;
         }
@@ -141,27 +145,42 @@ public class CarInsurance extends Insurance {
 	double youngDriverMultiplicator = 1.0;
 	double garageMultiplicator = 1.0;
 	double alarmMultiplicator = 1.0;
-
+        // If there will be a young driver of this insured car, the
+        // multiplicator is set to 1.2
 	if (youngDriver){
 	youngDriverMultiplicator = 1.2;
         }
-
+        // If the car of this insurance has an alam, the alarm multiplicator
+        // is set to 0.8
 	if (hasAlarm){
 	alarmMultiplicator = 0.8;
         }
-
+        // If the car of this insurance has a garage, the garage multiplicator
+        // is set to 0.8
 	if (hasGarage){
 	garageMultiplicator = 0.8;
         }
 
-	double allMultiplicators = garageMultiplicator + alarmMultiplicator +
+	// Adds up the total of the multiplicators above
+        double allMultiplicators = garageMultiplicator + alarmMultiplicator +
                 youngDriverMultiplicator;
-	double totalMultiplicator = allMultiplicators / 3;
+	// Divides the sum of the multiplicators by 3, getting an average
+        // multiplicator that is used to calculate the total premium.
+        double totalMultiplicator = allMultiplicators / 3;
 
-	int typeCost = coverage.getPricing();	
-	double basicPremium = maxlengthCost + typeCost - excessSaving; 
-	double newPremium = basicPremium * totalMultiplicator;
+	// Gets the cost of this type of insurance (Casco, partly casco or
+        // Liability)
+        int typeCost = coverage.getPricing();	
+	// Adds up the type cost and the maxlengthCost, and removes the
+        // excess saving to get a basic premium
+        double basicPremium = maxlengthCost + typeCost - excessSaving; 
+	// Multiplicates the basic premium by the total multiplicator to get
+        // the final premium for this insurance.
+        double newPremium = basicPremium * totalMultiplicator;
+        // rounds the final premium to a whole number, converting it to an
+        // int value
         int setPremium = (int)newPremium;
+        // Changes the premium of this insurance.
         setPremium(setPremium);
 
 }

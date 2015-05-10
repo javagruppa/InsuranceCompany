@@ -9,20 +9,25 @@ import insurancecompany.model.datastructures.ClaimRegister;
 import insurancecompany.model.datastructures.CustomerRegister;
 import insurancecompany.model.datastructures.EmployeeRegister;
 import insurancecompany.model.datastructures.InsuranceRegister;
+import insurancecompany.model.datastructures.carinfo.*;
 import insurancecompany.model.people.Customer;
 import insurancecompany.model.properties.Address;
 import insurancecompany.view.register.insurances.*;
 import insurancecompany.view.register.persons.CustomerRegistration;
+import java.io.File;
+import java.util.List;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
 
 /**
  *
  * @author Sindre
  */
 public class ModelController {
-    
     // Insurance Registration Views
     private BoatInsuranceRegistration boatInsuranceRegistration;
     private CarInsuranceRegistration carInsuranceRegistration;
@@ -30,6 +35,8 @@ public class ModelController {
     private HolidayHomeInsuranceRegistration holidayHomeInsuranceRegistration;
     private HomeInsuranceRegistration homeInsuranceRegistration;
     private TravelInsuranceRegistration travelInsuranceRegistration;
+    
+    private CarInfoRegister carInfoRegister;
     
     public ModelController(BoatInsuranceRegistration boatInsuranceRegistration, 
             CarInsuranceRegistration carInsuranceRegistration, 
@@ -45,6 +52,7 @@ public class ModelController {
         this.travelInsuranceRegistration = travelInsuranceRegistration;
         
         initializeEventHandlers();
+        unmarshalCarInfoRegister();
     }
     
     public void initializeEventHandlers() {
@@ -213,5 +221,31 @@ public class ModelController {
         // Creates BoatInsurance
         
         // Adds insurance to Register
+    }
+    
+    public final void unmarshalCarInfoRegister() {        
+        try {
+		File file = new File("src/insurancecompany/resources/xml/Car_makes_and_models.xml");
+                JAXBContext jaxbContext = JAXBContext.newInstance(CarInfoRegister.class);
+		Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();               
+		CarInfoRegister carInfoRegister = (CarInfoRegister) jaxbUnmarshaller.unmarshal(file);
+                this.carInfoRegister = carInfoRegister;
+                
+                // test:
+                String name = carInfoRegister.getCars().get(1).getName();
+                int to = carInfoRegister.getCars().get(0).getModelRegister().getModels().get(2).getTo();
+		System.out.println(name + to);
+ 
+	  } catch (JAXBException e) {
+		e.printStackTrace();
+	  }
+    }
+    
+    public List<CarInfo> getCarInfos() {
+        return carInfoRegister.getCars();
+    }
+    
+    public CarInfo findCarInfo(String name) {
+        return carInfoRegister.findCarByName(name);
     }
 }

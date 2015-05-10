@@ -126,7 +126,7 @@ public class ViewController {
     }
     
     private void insurancesViewCarInsuranceButtonEventHandler(ActionEvent event) {
-        //insurancesView.getMainPane().setCenter(carInsuranceRegistration.getMainPane());
+        insurancesView.getMainPane().setCenter(carInsuranceRegistration.getMainPane());
         insurancesView.selectedButtonStyleLower((Button) event.getSource());
     }
     

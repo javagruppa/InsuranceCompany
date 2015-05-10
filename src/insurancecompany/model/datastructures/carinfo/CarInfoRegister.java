@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package insurancecompany.model.vehicles;
+package insurancecompany.model.datastructures.carinfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +30,21 @@ public class CarInfoRegister {
     @XmlElement(name="item")
     public void setCars(List<CarInfo> cars) {
         this.cars = cars;
+    }
+    
+    /**
+     * Finds and returns the first instance of a CarInfo object with a name
+     * that equals the parameter name.
+     * @param name
+     * @return 
+     */
+    public CarInfo findCarByName(String name) {
+        for (CarInfo car : cars) {
+            if (car.getName().equals(name)) {
+                return car;
+            }
+        }
+        return null;
     }
     
     public void add(CarInfo carInfo) {

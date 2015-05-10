@@ -3,20 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package insurancecompany.model.vehicles;
+package insurancecompany.model.datastructures.carinfo;
 
 import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author André
  */
-@XmlRootElement(name="item")
-public class CarInfo {
+
+@XmlRootElement(name="model")
+public class ModelInfo {
+    
     private String name;
-    private ModelInfoRegister models;
+    private int to;   
+    private int since;
 
     /**
      * @return the name
@@ -34,26 +36,32 @@ public class CarInfo {
     }
 
     /**
-     * @return the models
+     * @return the to
      */
-    public ModelInfoRegister getModels() {
-        return models;
+    public int getTo() {
+        return to;
     }
 
     /**
-     * @param models the models to set
+     * @param to the to to set
      */
-    @XmlElement(name="models")
-    public void setModels(ModelInfoRegister models) {
-        this.models = models;
+    @XmlAttribute(name="to")
+    public void setTo(int to) {
+        this.to = to;
     }
-   /* 
-    public void add(ModelInfo modelInfo) {
-         if( this.models == null )
-        {
-            this.models = new ArrayList<ModelInfo>();
-        }
-        this.models.add(modelInfo);
+
+    /**
+     * @return the since
+     */
+    @XmlAttribute(name="since")
+    public int getSince() {
+        return since;
     }
-   */ 
+
+    /**
+     * @param since the since to set
+     */
+    public void setSince(int since) {
+        this.since = since;
+    }
 }

@@ -33,4 +33,16 @@ public enum HolidayHomeInsuranceCoverage {
             default: throw new IllegalArgumentException();
         }
     }
+    
+    /* HER KOMMER TALL TILKNYTTET UTREGNING AV PRIS
+    @Override
+    public int pricing() {
+        switch(this) {
+            case HOME: return "Fritidsbolig hus";
+            case CONTENTS: return "Fritidsbolig innbo";
+            case HOME_AND_CONTENTS: return "Fritidsbolig hus og innbo";
+            default: throw new IllegalArgumentException();
+        }
+    }
+    */
 }

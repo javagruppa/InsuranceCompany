@@ -21,7 +21,7 @@ public class Bill {
     
     
     /** Unique billing id used to identify a specific bill.*/
-    private int billingId;
+    private int billId;
     /** Customer id used to identify the customer this bill belongs to.*/
     private int customerId;
     /** Insurance id used to identify the insurance that payed out this bill.*/
@@ -42,7 +42,7 @@ public class Bill {
     private boolean payed;
     
     public Bill(int fee, int customerId, int insuranceId) {
-        billingId = nextBillingId++;
+        billId = nextBillingId++;
         this.fee = fee;
         this.customerId = customerId;
         this.insuranceId = insuranceId;
@@ -163,10 +163,10 @@ public class Bill {
     }
 
     /**
-     * @return the billingId
+     * @return the billId
      */
-    public int getBillingId() {
-        return billingId;
+    public int getBillId() {
+        return billId;
     }
 
     /**

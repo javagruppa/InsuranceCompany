@@ -28,6 +28,40 @@ import javax.xml.bind.Unmarshaller;
  * @author Sindre
  */
 public class ModelController {
+    
+    private CarInfoRegister carInfoRegister;
+    
+    public ModelController() {
+        unmarshalCarInfoRegister();
+    }
+    
+    public final void unmarshalCarInfoRegister() {        
+        try {
+		File file = new File("src/insurancecompany/resources/xml/Car_makes_and_models.xml");
+                JAXBContext jaxbContext = JAXBContext.newInstance(CarInfoRegister.class);
+		Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();               
+		CarInfoRegister carInfoRegister = (CarInfoRegister) jaxbUnmarshaller.unmarshal(file);
+                this.carInfoRegister = carInfoRegister;
+                
+                // test:
+                String name = carInfoRegister.getCars().get(1).getName();
+                int to = carInfoRegister.getCars().get(0).getModelRegister().getModels().get(2).getTo();
+		System.out.println(name + to);
+ 
+	  } catch (JAXBException e) {
+		e.printStackTrace();
+	  }
+    }
+    
+    public List<CarInfo> getCarInfos() {
+        return carInfoRegister.getCars();
+    }
+    
+    public CarInfo findCarInfo(String name) {
+        return carInfoRegister.findCarByName(name);
+    }
+    
+    /*
     // Insurance Registration Views
     private BoatInsuranceRegistration boatInsuranceRegistration;
     private CarInsuranceRegistration carInsuranceRegistration;

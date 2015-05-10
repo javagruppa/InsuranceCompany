@@ -8,12 +8,15 @@ package insurancecompany.model.insurances;
 import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.io.Serializable;
 
 /**
  *
  * @author Sindre
  */
-public abstract class Insurance {
+public abstract class Insurance implements Serializable {
+    private static final long serialVersionUID = 1L;
+    
     /** The insurance id of the insurance created next */
     private static int nextInsuranceId = 1000000;
     /** Whether this insurance is active or not. */

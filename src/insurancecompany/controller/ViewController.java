@@ -21,23 +21,23 @@ import javafx.stage.Stage;
  */
 public class ViewController {
     
-    // Module Views:
+    // Module Views
     private AdminView adminView;
-    //private CaseWorkerView caseWorkerView;
-    //private CustomerView customerView;
-    //private LoginView loginView;
+    private CaseWorkerView caseWorkerView;
+    private CustomerView customerView;
+    private LoginView loginView;
     
-    // Tab Views:
+    // Tab Views
     private RegisterView registerView;
-    //private SearchView searchView;
-    //private StatisticsView statisticsView;
+    private SearchView searchView;
+    private StatisticsView statisticsView;
     
-    // Sub-Tab Views:
-    //private ClaimsView claimsView;
+    // Sub-Tab Views
+    private ClaimsView claimsView;
     private InsurancesView insurancesView;
     private PersonsView personsView;
     
-    // Insurance Registration Views:
+    // Insurance Registration Views
     private BoatInsuranceRegistration boatInsuranceRegistration;
     private CarInsuranceRegistration carInsuranceRegistration;
     private CustomerRegistration customerRegistration;
@@ -52,11 +52,23 @@ public class ViewController {
             HomeInsuranceRegistration homeInsuranceRegistration,
             TravelInsuranceRegistration travelInsuranceRegistration) {
         
+        // Initializes Module Views
         this.adminView = new AdminView();
+        this.caseWorkerView = new CaseWorkerView();
+        this.customerView = new CustomerView();
+        this.loginView = new LoginView();
+        
+        // Initializes Tab Views
         this.registerView = new RegisterView();
+        this.searchView = new SearchView();
+        this.statisticsView = new StatisticsView();
+        
+        // Initializes Sub-Tab Views
+        this.claimsView = new ClaimsView();
         this.insurancesView = new InsurancesView();
         this.personsView = new PersonsView();
         
+        // Initializes Registration Views
         this.boatInsuranceRegistration = boatInsuranceRegistration;
         this.carInsuranceRegistration = carInsuranceRegistration;
         this.holidayHomeInsuranceRegistration = holidayHomeInsuranceRegistration;

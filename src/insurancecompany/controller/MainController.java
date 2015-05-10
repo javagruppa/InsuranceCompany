@@ -51,7 +51,9 @@ public class MainController {
         this.homeInsuranceRegistration = new HomeInsuranceRegistration();
         this.travelInsuranceRegistration = new TravelInsuranceRegistration();
         
-        this.modelController = new ModelController();
+        this.modelController = new ModelController(boatInsuranceRegistration, 
+            carInsuranceRegistration, holidayHomeInsuranceRegistration,
+            homeInsuranceRegistration, travelInsuranceRegistration);
         this.viewController = new ViewController(boatInsuranceRegistration, 
             carInsuranceRegistration, holidayHomeInsuranceRegistration,
             homeInsuranceRegistration, travelInsuranceRegistration);

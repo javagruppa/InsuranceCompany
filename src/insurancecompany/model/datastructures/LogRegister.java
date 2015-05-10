@@ -27,12 +27,27 @@ public class LogRegister {
         logs.add(log);
     }
     
-    public void add(String stackTrace, User user) {
+    public void add(String customDescription) {
+        Log log = new Log(customDescription);
+        add(log);
+    }
+    
+    public void add(StackTraceElement[] stackTrace) {
+        Log log = new Log(stackTrace);
+        add(log);
+    }
+    
+    public void add(StackTraceElement[] stackTrace, User user) {
         Log log = new Log(stackTrace, user);
         add(log);
     }
     
-    public void add(String stackTrace, String customDescription, User user) {
+    public void add(StackTraceElement[] stackTrace, String customDescription) {
+        Log log = new Log(stackTrace, customDescription);
+        add(log);
+    }
+    
+    public void add(StackTraceElement[] stackTrace, String customDescription, User user) {
         Log log = new Log(stackTrace, customDescription, user);
         add(log);
     }

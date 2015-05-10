@@ -9,17 +9,56 @@ import insurancecompany.model.datastructures.ClaimRegister;
 import insurancecompany.model.datastructures.CustomerRegister;
 import insurancecompany.model.datastructures.EmployeeRegister;
 import insurancecompany.model.datastructures.InsuranceRegister;
+import insurancecompany.model.datastructures.carinfo.*;
 import insurancecompany.model.people.Customer;
 import insurancecompany.model.properties.Address;
+import java.io.File;
+import java.util.List;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
 
 /**
  *
  * @author Sindre
  */
 public class ModelController {
+    
+    private CarInfoRegister carInfoRegister;
+    
+    public ModelController() {
+        unmarshalCarInfoRegister();
+    }
+    
+    public final void unmarshalCarInfoRegister() {        
+        try {
+		File file = new File("src/insurancecompany/resources/xml/Car_makes_and_models.xml");
+                JAXBContext jaxbContext = JAXBContext.newInstance(CarInfoRegister.class);
+		Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();               
+		CarInfoRegister carInfoRegister = (CarInfoRegister) jaxbUnmarshaller.unmarshal(file);
+                this.carInfoRegister = carInfoRegister;
+                
+                // test:
+                String name = carInfoRegister.getCars().get(1).getName();
+                int to = carInfoRegister.getCars().get(0).getModelRegister().getModels().get(2).getTo();
+		System.out.println(name + to);
+ 
+	  } catch (JAXBException e) {
+		e.printStackTrace();
+	  }
+    }
+    
+    public List<CarInfo> getCarInfos() {
+        return carInfoRegister.getCars();
+    }
+    
+    public CarInfo findCarInfo(String name) {
+        return carInfoRegister.findCarByName(name);
+    }
+    
     /*
     
     

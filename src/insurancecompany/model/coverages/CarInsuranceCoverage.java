@@ -44,9 +44,9 @@ public enum CarInsuranceCoverage {
     
         public int getPricing() {
         switch(this) {
-            case CASCO: return 4000;
-            case PARTLY_CASCO: return 2500;
-            case LIABILITY: return 1500;
+            case CASCO: return 3000;
+            case PARTLY_CASCO: return 2000;
+            case LIABILITY: return 1000;
             default: throw new IllegalArgumentException();
         }
     }

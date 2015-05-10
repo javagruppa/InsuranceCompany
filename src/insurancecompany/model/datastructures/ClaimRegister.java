@@ -9,6 +9,7 @@ package insurancecompany.model.datastructures;
 import insurancecompany.model.claims.Claim;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -89,47 +90,78 @@ public class ClaimRegister {
         return claims.size();
     }
     
+    /**
+     * Returns all the claims between the two dates in the parameter.
+     * @param from
+     * @param to
+     * @return 
+     */
+    public Set<Claim> claimsBetweenDates(Calendar from, Calendar to) {
+        Set<Claim> result = new HashSet<Claim>();
+        // Checks for every claim in this register:
+        for (Claim claim : claims) {
+            // The date of when the damage happened.
+            Calendar date = claim.getDateHappened();
+            // Checks if the claims date is inbetween the 2 dates specified in the parameter.
+            if (date.after(from) && date.before(to)) {
+                // Adds this claim to the return set:
+                result.add(claim);
+            }
+        }
+        // Returns a set containing all claims between correct dates:
+        return result;
+    }
+    
+    public Set<Claim> claimTypesBetweenDate(Class<?> type, Calendar from, Calendar to) {
+        Set<Claim> result = new HashSet<Claim>();
+        // Checks for every claim in this register:
+        for (Claim claim : claims) {
+            // The date of when the damage happened:
+            Calendar date = claim.getDateHappened();
+            // Checks if the claims date is inbetween the 2 dates specified in the parameter:
+            if (date.after(from) && date.before(to)) {
+                // Checks if the claim is of the class type specified in the parameter:
+                if (type.isInstance(claim)) {
+                    // Adds this claim to the return set:
+                    result.add(claim);
+                }
+            }
+        }
+        // Returns a set containing all claims of specified type and between correct dates:
+        return result;
+    }
+    
+    public Set<Claim> claimTypes(Class<?> type) {
+        Set<Claim> result = new HashSet<Claim>();
+        // Checks for every claim in this register:
+        for (Claim claim : claims) {
+            // Checks if the claim is of the class type specified in the parameter:
+            if (type.isInstance(claim)) {
+                // Adds this claim to the return set:
+                result.add(claim);
+            }
+        }
+        // Returns a set containing all claims of specified type:
+        return result;
+    }
+    
     public void saveClaimSetToFile() throws IOException{
         
     }
     
     public Set<Claim> readClaimSetFromFile() throws IOException {
-        
+        Set<Claim> result = new HashSet<Claim>();
         try (ObjectInputStream ois = new ObjectInputStream(
                 new FileInputStream("insurancecompany/resources/datastructures/claimSet.dta"))) {
-            Set<Claim> c = (HashSet<Claim>) ois.readObject();
+            result = (HashSet<Claim>) ois.readObject();
             
         } catch (ClassNotFoundException cnfe) {
             // write to log
-        }
+        }     
+        return result;
     }
         
         
-        
-        
-        
-        try (ObjectInputStream innfil = new ObjectInputStream(
- 83             new FileInputStream( "insurancecompany/resources/datastructures/claimSet.dta")))
- 84     {
- 85       heltallsliste = (Heltallsliste) innfil.readObject();
- 86     }
- 87     catch(ClassNotFoundException cnfe)
- 88     {
- 89       lista.setText(cnfe.getMessage());
- 90       lista.append("\nOppretter tom liste.\n");
- 91       heltallsliste = new Heltallsliste();
- 92     }
- 93     catch(FileNotFoundException fne)
- 94     {
- 95       lista.setText("Finner ikke datafil. Oppretter tom liste.\n");
- 96       heltallsliste = new Heltallsliste();
- 97     }
- 98     catch(IOException ioe)
- 99     {
-100       lista.setText("Innlesingsfeil. Oppretter tom liste.\n");
-101       heltallsliste = new Heltallsliste();
-102     }
-    }
     
     
     

@@ -13,11 +13,11 @@ import java.util.Calendar;
  */
 public class ClaimItem {
     
-    private String description; // Type/modell/fabrikk/år
-    private String aqquiredArea; // Hvor kjøpt/Av hvem fått
+    private String description; // NOR: Type/modell/fabrikk/år
+    private String aqquiredArea; // NOR: Hvor kjøpt/Av hvem fått
     private Calendar aqquiredDate;
     private int value;
-    private String descriptionOfDocumentation; //Beskriv hvordan anskaffelsen kan dokumenteres
+    private String descriptionOfDocumentation; // NOR: Beskriv hvordan anskaffelsen kan dokumenteres
     
     
     public ClaimItem(String description) {

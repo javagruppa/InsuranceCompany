@@ -12,15 +12,8 @@ import insurancecompany.model.datastructures.InsuranceRegister;
 import insurancecompany.model.datastructures.carinfo.*;
 import insurancecompany.model.insurances.Insurance;
 import insurancecompany.model.people.Customer;
-import insurancecompany.model.properties.Address;
-import insurancecompany.view.register.insurances.*;
-import insurancecompany.view.register.persons.CustomerRegistration;
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
-import javafx.event.ActionEvent;
-import javafx.scene.control.Label;
-import javafx.scene.paint.Color;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
@@ -96,6 +89,7 @@ public class ModelController {
             return false;
         }
     }
+}
     
     
     /*

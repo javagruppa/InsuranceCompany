@@ -105,6 +105,10 @@ public class ViewController {
         insurancesView.setHolidayHomeInsuranceButtonEventHandler(this::insurancesViewHolidayHomeInsuranceButtonEventHandler);
         insurancesView.setHomeInsuranceButtonEventHandler(this::insurancesViewHomeInsuranceButtonEventHandler);
         insurancesView.setTravelInsuranceButtonEventHandler(this::insurancesViewTravelInsuranceButtonEventHandler);
+        searchView.setClaimsButtonEventHandler(this::searchViewClaimsButtonEventHandler);
+        //searchView.setCustomersButtonEventHandler(null);
+        //searchView.setEmployeesButtonEventHandler(null);
+        //searchView.setInsurancesButtonEventHandler(null);
         
     }
     
@@ -175,4 +179,9 @@ public class ViewController {
     }
     
     // SEARCH CLAIMS VIEW EVENT HANDLERS
+    
+    private void searchViewClaimsButtonEventHandler(ActionEvent event) {
+        searchView.getMainPane().setCenter(claimsSearchView.getMainPane());
+        searchView.selectedButtonStyleLower((Button) event.getSource());
+    }
 }

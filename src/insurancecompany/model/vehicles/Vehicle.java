@@ -71,4 +71,11 @@ public abstract class Vehicle {
     public String getRegistrationNumber() {
         return registrationNumber;
     }
+    
+    /**
+     * @return the alarm
+     */
+    public boolean getAlarm() {
+        return alarm;
+    }
 }

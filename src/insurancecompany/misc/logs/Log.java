@@ -5,6 +5,7 @@
  */
 package insurancecompany.misc.logs;
 
+import insurancecompany.misc.User;
 import java.util.Calendar;
 
 /**
@@ -13,6 +14,32 @@ import java.util.Calendar;
  */
 public class Log {
     private Calendar date;
+    private String stackTrace;
     private String customDescription;
-    private String stacktrace;
+    private User user;
+    
+    public Log(String stackTrace, User user) {
+        date = Calendar.getInstance();
+        this.stackTrace = stackTrace;
+    }
+    
+    public Log(String stackTrace, String customDescription, User user) {
+        date = Calendar.getInstance();
+        this.stackTrace = stackTrace;
+        this.customDescription = customDescription;
+    }
+    
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Time: " + date.getTime() + "\n");
+        sb.append("Logged in user: " + user.toString() + "\n");
+        sb.append("Stack Trace: "+ stackTrace + "\n");
+        if (customDescription != null) {
+            sb.append("Description: " + customDescription);
+        }        
+        return sb.toString();
+    }
+    
+    // read and write from textfile
 }

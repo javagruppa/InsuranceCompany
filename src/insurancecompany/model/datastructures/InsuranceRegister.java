@@ -9,6 +9,7 @@ import insurancecompany.model.insurances.Insurance;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -53,10 +54,10 @@ public class InsuranceRegister {
      * @param type the specified type of insurance
      * @return an ArrayList of customer ids
      */
-    public ArrayList<Integer> getCustomerIds(Class<?> type) {
+    public List<Integer> getCustomerIds(Class<?> type) {
         // Creates an ArrayList which will be returned at the end of the 
         // method.
-        ArrayList<Integer> result = new ArrayList<>();
+        List<Integer> result = new ArrayList<>();
         // Creates an iterator for the list.
         Iterator<Insurance> iterator = insurances.iterator();
         // Runs through the whole list.
@@ -69,6 +70,16 @@ public class InsuranceRegister {
             }
         }
         // Returns the list.
+        return result;
+    }
+    
+    public List<Insurance> getAllInsurancesByCustomerId(int customerId) {
+        List<Insurance> result = new ArrayList<Insurance>();
+        for (Insurance insurance : insurances) {
+            if (insurance.getCustomerId() == customerId) {
+                result.add(insurance);
+            }
+        }
         return result;
     }
     

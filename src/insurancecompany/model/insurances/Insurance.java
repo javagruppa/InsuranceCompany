@@ -80,7 +80,7 @@ public abstract class Insurance {
      * 
      * @return whether this insurance is active or not
      */
-    public boolean getActive() {
+    public boolean isActive() {
         return active;
     }
     

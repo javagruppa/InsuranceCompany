@@ -20,6 +20,9 @@ public class Customer extends Person {
     private static int nextCustomerId = 1000000;
     private static String customerIdFileName = "/nextIdNumbers/customerId.dta";
     
+    public static final double totalCustomerDiscount = 0.1; // 10% rabbat for totalkunde
+    private boolean totalCustomer;
+    
     private String passwordSalt;
     private String passwordHash;
     
@@ -86,5 +89,19 @@ public class Customer extends Person {
             nextCustomerId = dis.readInt();
         }
     }    
+
+    /**
+     * @return the totalCustomer
+     */
+    public boolean isTotalCustomer() {
+        return totalCustomer;
+    }
+
+    /**
+     * @param totalCustomer the totalCustomer to set
+     */
+    public void setTotalCustomer(boolean totalCustomer) {
+        this.totalCustomer = totalCustomer;
+    }
     
 }

@@ -13,21 +13,12 @@ import insurancecompany.view.register.insurances.HolidayHomeInsuranceRegistratio
 import insurancecompany.view.register.insurances.BoatInsuranceRegistration;
 import insurancecompany.model.datastructures.*;
 import insurancecompany.model.datastructures.carinfo.*;
-import java.util.ArrayList;
+import insurancecompany.model.people.*;
 import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
-import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 
 /**
  *
@@ -66,7 +57,7 @@ public class MainController {
         this.homeInsuranceRegistration = new HomeInsuranceRegistration();
         this.travelInsuranceRegistration = new TravelInsuranceRegistration();
         
-        this.modelController = new ModelController();
+        this.modelController = new ModelController(claims, employees, insurances, customers);
         this.viewController = new ViewController(boatInsuranceRegistration, 
             carInsuranceRegistration, holidayHomeInsuranceRegistration,
             homeInsuranceRegistration, travelInsuranceRegistration);

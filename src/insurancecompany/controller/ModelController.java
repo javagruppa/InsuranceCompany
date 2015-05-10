@@ -10,9 +10,11 @@ import insurancecompany.model.datastructures.CustomerRegister;
 import insurancecompany.model.datastructures.EmployeeRegister;
 import insurancecompany.model.datastructures.InsuranceRegister;
 import insurancecompany.model.datastructures.carinfo.*;
+import insurancecompany.model.insurances.Insurance;
 import insurancecompany.model.people.Customer;
 import insurancecompany.model.properties.Address;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
@@ -29,7 +31,17 @@ public class ModelController {
     
     private CarInfoRegister carInfoRegister;
     
-    public ModelController() {
+    private ClaimRegister claims;
+    private EmployeeRegister employees;
+    private InsuranceRegister insurances;
+    private CustomerRegister customers;
+    
+    public ModelController(ClaimRegister claims, EmployeeRegister employees, InsuranceRegister insurances,
+            CustomerRegister customers) {
+        this.claims = claims;
+        this.employees = employees;
+        this.insurances = insurances;
+        this.customers = customers;
         unmarshalCarInfoRegister();
     }
     
@@ -58,6 +70,31 @@ public class ModelController {
     public CarInfo findCarInfo(String name) {
         return carInfoRegister.findCarByName(name);
     }
+    
+    /**
+     * Calculates whether a customer gets total customer discount or not
+     * based on the number of active insurances of this customer.
+     * @param customerId
+     * @return 
+     */
+    public boolean calculateTotalCustomer(int customerId) {
+        Customer c = customers.findCustomerById(customerId);
+        int count = 0; // Counts the number of active insurances on this customer.
+        List<Insurance> insuranceList = insurances.getAllInsurancesByCustomerId(customerId);
+        for (Insurance a : insuranceList) {
+            if (a.isActive()) {
+                count++;
+            }
+        }
+        if (count >= 3) {
+            c.setTotalCustomer(true);
+            return true;
+        } else {
+            c.setTotalCustomer(false);
+            return false;
+        }
+    }
+    
     
     /*
     

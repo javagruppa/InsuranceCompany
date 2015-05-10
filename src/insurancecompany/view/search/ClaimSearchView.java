@@ -54,8 +54,7 @@ public class ClaimSearchView {
     public ClaimSearchView() {
         
         // Sets up the mainPane and scene.
-        
-        scene = new Scene(mainPane, 300, 275);
+
     }
     
     public void buildMainPane() {

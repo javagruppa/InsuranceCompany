@@ -88,7 +88,41 @@ public class ClaimRegister {
         return claims.size();
     }
     
+    public void saveClaimSetToFile() {
+        
+    }
     
+    public void readClaimSetFromFile() {
+        
+        try (ObjectInputStream ois = new ObjectInputStream(
+                new FileInputStream("resou")))
+        
+        
+        
+        
+        
+        try (ObjectInputStream innfil = new ObjectInputStream(
+ 83             new FileInputStream( "src/liste.data" )))
+ 84     {
+ 85       heltallsliste = (Heltallsliste) innfil.readObject();
+ 86     }
+ 87     catch(ClassNotFoundException cnfe)
+ 88     {
+ 89       lista.setText(cnfe.getMessage());
+ 90       lista.append("\nOppretter tom liste.\n");
+ 91       heltallsliste = new Heltallsliste();
+ 92     }
+ 93     catch(FileNotFoundException fne)
+ 94     {
+ 95       lista.setText("Finner ikke datafil. Oppretter tom liste.\n");
+ 96       heltallsliste = new Heltallsliste();
+ 97     }
+ 98     catch(IOException ioe)
+ 99     {
+100       lista.setText("Innlesingsfeil. Oppretter tom liste.\n");
+101       heltallsliste = new Heltallsliste();
+102     }
+    }
     
     
     

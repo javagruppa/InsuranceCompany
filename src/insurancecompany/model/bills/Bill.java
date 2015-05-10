@@ -13,14 +13,21 @@ import java.util.Calendar;
  */
 public class Bill {
     
+    /** Constant representing the number of days until each due date from issue, as well as days to dunningDate */
     public static final int FIXED_DUE_DAYS = 14;
-    
+    /** Date of when the bill is issued. */
     private Calendar isuedDate;
+    /** Date of when the bill is due to be payed.*/
     private Calendar dueDate;
+    /** Date of when the dunning is due to payed.*/
     private Calendar dunningDate;
+    /** Date of when the payment was recieved.*/
     private Calendar payedDate;
+    /** Sum of the fee for this bill.*/
     private int fee; // NOR: Gebyr
+    /** Total sum of the dunning fee for this bill.*/
     private int dunningFee; // NOR: Purregebyr
+    /** Boolean representing whether the bill is payed or not.*/
     private boolean payed;
     
     public Bill(int fee) {

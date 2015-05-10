@@ -44,7 +44,7 @@ public class EmployeeRegister {
     
     /**
      * Returns an employee that has a given employeeId
-     * @param employeeId the employeeId of the emplyee to be returned
+     * @param employeeId the employeeId of the employee to be returned
      * @return employee-object
      */
     public Employee getEmployeeById(int employeeId) {

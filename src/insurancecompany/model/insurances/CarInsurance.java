@@ -31,6 +31,7 @@ public class CarInsurance extends Insurance {
      * insurance is for. */
     private boolean youngDriver;
     
+    
     /** The date of when the bonus of this insurance was last updated. */
     private Calendar lastBonusUpdate;
     /** The number of consecutive years the bonus has stayed at 70 */

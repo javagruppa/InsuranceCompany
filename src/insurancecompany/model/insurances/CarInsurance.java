@@ -40,10 +40,8 @@ public class CarInsurance extends Insurance {
     private int yearsOnSeventy;
     /** The number of consecutive years the bonus has stayed at 75 */
     private int yearsOnSeventyFive;
-    /** The calculated cost for the maximum length on this insurance */
-    private int maxlengthCost;
-    /** The calculated saving due to the excess on this insurance */
-    private int excessSaving;
+    
+    
     
     /**
      * Constructs a new car insurance with the specified car, coverage, 
@@ -104,17 +102,21 @@ public class CarInsurance extends Insurance {
     /**
      * Calculates the price for the maximum number of kilometers included in
      * this insurance.
+     * @return the maxLengthCost of this insurance.
      */
-    public void maxlengthCost(){
-	maxlengthCost = maxLength / 10;
+    public int maxlengthCost(){
+	return maxLength / 10;
     }
 
     /**
      * Calculates the price drop of this insurance due the chosen excess.
+     * @return the price drop of this insurance based on the excess
      */
-    public void excessCalculator(){
+    public int excessCalculator(){
 	// Finds the excess set for this insurance
         int excess = getExcess();
+        // The price drop based on the set excess of this insurance
+        int excessSaving = 0;
         // If excess is set to 0, the excess saving will be set to -2000, and
         // there will be 2000 added to the price
 	if(excess == 0){
@@ -135,6 +137,8 @@ public class CarInsurance extends Insurance {
 	else if(excess > 10000){
 	excessSaving = excess / 3;
         }
+        // returns the price drop
+        return excessSaving;
     }
 
     /**
@@ -142,7 +146,7 @@ public class CarInsurance extends Insurance {
      * parameters including whether the customer fullfills certain aspects:
      * youngdriver, garage, alarm.
      */
-    public void premiumMultiplicators(){
+    public void premiumCalculator(){
 	double youngDriverMultiplicator = 1.0;
 	double garageMultiplicator = 1.0;
 	double alarmMultiplicator = 1.0;
@@ -174,7 +178,7 @@ public class CarInsurance extends Insurance {
         int typeCost = coverage.getPricing();	
 	// Adds up the type cost and the maxlengthCost, and removes the
         // excess saving to get a basic premium
-        double basicPremium = maxlengthCost + typeCost - excessSaving; 
+        double basicPremium = maxlengthCost() + typeCost - excessCalculator(); 
 	// Multiplicates the basic premium by the total multiplicator to get
         // the final premium for this insurance.
         double newPremium = basicPremium * totalMultiplicator;

@@ -102,7 +102,7 @@ public class CarInsurance extends Insurance {
      * this insurance.
      */
     public void maxlengthCost(){
-	maxlengthCost = maxlength / 10;
+	maxlengthCost = maxLength / 10;
     }
 
     /**

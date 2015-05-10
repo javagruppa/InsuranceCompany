@@ -113,7 +113,8 @@ public class CarInsurance extends Insurance {
      * Calculates the price drop of this insurance due the chosen excess.
      */
     public void excessCalculator(){
-	int excess = getExcess();
+	// Finds the excess set for this insurance
+        int excess = getExcess();
         // If excess is set to 0, the excess saving will be set to -2000, and
         // there will be 2000 added to the price
 	if(excess == 0){

@@ -10,6 +10,7 @@ import insurancecompany.view.modules.*;
 import insurancecompany.view.register.*;
 import insurancecompany.view.register.insurances.*;
 import insurancecompany.view.register.persons.*;
+import insurancecompany.view.search.*;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
@@ -32,10 +33,18 @@ public class ViewController {
     private SearchView searchView;
     private StatisticsView statisticsView;
     
-    // Sub-Tab Views
+    // Sub-Tab Views for RegisterView
     private ClaimsView claimsView;
     private InsurancesView insurancesView;
     private PersonsView personsView;
+    
+    // Sub-Tab Views for SearchView
+    private CustomerSearchView customerSearchView;
+    private EmployeeSearchView employeeSearchView;
+    private InsuranceSearchView insuranceSearchView;
+    private ClaimSearchView claimsSearchView;
+    
+    // Sub-Tab Views for PersonsView
     
     // Insurance Registration Views
     private BoatInsuranceRegistration boatInsuranceRegistration;
@@ -63,10 +72,16 @@ public class ViewController {
         this.searchView = new SearchView();
         this.statisticsView = new StatisticsView();
         
-        // Initializes Sub-Tab Views
+        // Initializes Sub-Tab Views for RegisterView
         this.claimsView = new ClaimsView();
         this.insurancesView = new InsurancesView();
         this.personsView = new PersonsView();
+        
+        // Initializes Sub-Tab Views for SearchView
+        this.customerSearchView = new CustomerSearchView();
+        this.employeeSearchView = new EmployeeSearchView();
+        this.insuranceSearchView = new InsuranceSearchView();
+        this.claimsSearchView = new ClaimSearchView();
         
         // Initializes Registration Views
         this.boatInsuranceRegistration = boatInsuranceRegistration;
@@ -80,14 +95,17 @@ public class ViewController {
     
     public void initializeEventHandlers() {
         adminView.setRegisterButtonEventHandler(this::adminViewRegisterTabButtonEventHandler);
+        adminView.setSearchButtonEventHandler(this::adminViewSearchTabButtonEventHandler);
         adminView.setExitButtonEventHandler(this::adminViewExitButtonEventHandler);
         registerView.setInsurancesButtonEventHandler(this::registerViewInsurancesButtonEventHandler);
         registerView.setPersonsButtonEventHandler(this::registerViewPersonsButtonEventHandler);
+        registerView.setClaimsButtonEventHandler(this::registerViewClaimsButtonEventHandler);
         insurancesView.setBoatInsuranceButtonEventHandler(this::insurancesViewBoatInsuranceButtonEventHandler);
         insurancesView.setCarInsuranceButtonEventHandler(this::insurancesViewCarInsuranceButtonEventHandler);
         insurancesView.setHolidayHomeInsuranceButtonEventHandler(this::insurancesViewHolidayHomeInsuranceButtonEventHandler);
         insurancesView.setHomeInsuranceButtonEventHandler(this::insurancesViewHomeInsuranceButtonEventHandler);
         insurancesView.setTravelInsuranceButtonEventHandler(this::insurancesViewTravelInsuranceButtonEventHandler);
+        
     }
     
     public void show(Stage stage) {
@@ -102,9 +120,15 @@ public class ViewController {
         adminView.selectedButtonStyleUpper((Button) event.getSource());
     }
     
+    private void adminViewSearchTabButtonEventHandler(ActionEvent event) {
+        adminView.getMainPane().setCenter(searchView.getMainPane());
+        adminView.selectedButtonStyleUpper((Button) event.getSource());
+    }
+    
     private void adminViewExitButtonEventHandler(ActionEvent event) {
         Platform.exit();
     }
+    
     
     // REGISTER VIEW EVENT HANDLERS
     
@@ -118,7 +142,12 @@ public class ViewController {
         registerView.selectedButtonStyleLower((Button) event.getSource());
     }
     
-    // INSURANCES VIEW EVENT HANDLERS
+    private void registerViewClaimsButtonEventHandler(ActionEvent event) {
+        registerView.getMainPane().setCenter(claimsView.getMainPane());
+        registerView.selectedButtonStyleLower((Button) event.getSource());
+    }
+    
+    // REGISTER INSURANCES VIEW EVENT HANDLERS
     
     private void insurancesViewBoatInsuranceButtonEventHandler(ActionEvent event) {
         insurancesView.getMainPane().setCenter(boatInsuranceRegistration.getMainPane());
@@ -144,4 +173,6 @@ public class ViewController {
         insurancesView.getMainPane().setCenter(travelInsuranceRegistration.getMainPane());
         insurancesView.selectedButtonStyleLower((Button) event.getSource());
     }
+    
+    // SEARCH CLAIMS VIEW EVENT HANDLERS
 }

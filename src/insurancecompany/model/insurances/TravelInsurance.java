@@ -5,11 +5,15 @@
  */
 package insurancecompany.model.insurances;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Sindre
  */
-public class TravelInsurance extends Insurance {
+public class TravelInsurance extends Insurance implements Serializable {
+    private static final long serialVersionUID = 1L;
+    
     /** The coverage of this insurance. */
     private String coverage;
     /** The insurance area of this insurance. */

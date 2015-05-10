@@ -5,6 +5,7 @@
  */
 package insurancecompany.controller;
 
+import insurancecompany.misc.User;
 import insurancecompany.view.register.persons.CustomerRegistration;
 import insurancecompany.view.register.insurances.TravelInsuranceRegistration;
 import insurancecompany.view.register.insurances.CarInsuranceRegistration;
@@ -25,6 +26,9 @@ import javafx.stage.Stage;
  * @author André
  */
 public class MainController {
+    
+    /** Enum holding the value of the type of user that is currently logged in*/
+    private User user; // Used to identify user in LogRegister.
     
     // Models:
     private EmployeeRegister employees;
@@ -124,7 +128,9 @@ public class MainController {
             since = 1930;
         }        
         List<String> years = new LinkedList();
-        for (int i = since; i <= to; i++) {
+        // Populates the list with the years ranging between oldest and newest models in reverse order.
+        // Newer years come first, older years come last.
+        for (int i = to; i >= since; i--) {
                 years.add(i + "");
         }
         

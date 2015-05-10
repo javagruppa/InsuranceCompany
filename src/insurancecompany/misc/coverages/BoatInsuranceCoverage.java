@@ -32,4 +32,12 @@ public enum BoatInsuranceCoverage {
             default: throw new IllegalArgumentException();
         }
     }
+    
+    public int getPricing() {
+        switch(this) {
+            case CASCO: return 3000;
+            case PARTLY_CASCO: return 1500;
+            default: throw new IllegalArgumentException();
+        }
+    }
 }

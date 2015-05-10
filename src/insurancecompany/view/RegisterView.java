@@ -39,11 +39,10 @@ public class RegisterView {
     public RegisterView() {
         mainPane = new BorderPane();
         mainPane.setTop(createToolBar());
-        scene = new Scene(mainPane, 800, 600);
+        scene = new Scene(mainPane);
              
     }
     
-    // TODO: Change to setId, and make a custom style for selected, will not have hover etc
     public void selectedButtonStyleLower(Button button) {
         personsButton.setId("subToolbarButton");
         insurancesButton.setId("subToolbarButton");
@@ -83,5 +82,9 @@ public class RegisterView {
 
     public void setInsurancesButtonEventHandler(EventHandler<ActionEvent> value) {
         insurancesButton.setOnAction(value);
+    }
+    
+    public void setClaimsButtonEventHandler(EventHandler<ActionEvent> value) {
+        claimsButton.setOnAction(value);
     }
 }

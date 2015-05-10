@@ -7,12 +7,15 @@ package insurancecompany.model.insurances;
 
 import insurancecompany.misc.coverages.BoatInsuranceCoverage;
 import insurancecompany.model.vehicles.Boat;
+import java.io.Serializable;
 
 /**
  *
  * @author Sindre
  */
-public class BoatInsurance extends Insurance {
+public class BoatInsurance extends Insurance implements Serializable {
+    private static final long serialVersionUID = 42L;
+    
     /** The boat this insurance is for. */
     private Boat boat;
     /** The coverage of this insurance. */

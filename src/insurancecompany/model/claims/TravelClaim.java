@@ -17,8 +17,8 @@ public class TravelClaim extends Claim {
     /**
      * Empty constructor.
      */
-    public TravelClaim(int customerId, int insuranceId) {
-        super(customerId, insuranceId);
+    public TravelClaim(int customerId, int insuranceId, String description) {
+        super(customerId, insuranceId, description);
     }
     
     /**
@@ -26,8 +26,8 @@ public class TravelClaim extends Claim {
      * @param date
      * @param description 
      */
-    public TravelClaim(String description) {
-        super(description);
+    public TravelClaim(int customerId, String description) {
+        super(customerId, description);
     }
     
     @Override

@@ -44,11 +44,15 @@ public abstract class Claim {
     private int disbursement;
     
     /**
-     * Empty constructor.
+     * 
+     * @param customerId
+     * @param insuranceId
+     * @param description 
      */
-    public Claim(int customerId, int insuranceId) {
+    public Claim(int customerId, int insuranceId, String description) {
         this.customerId = customerId;
         this.insuranceId = insuranceId;
+        this.description = description;
         // Set the date to current date
         date = Calendar.getInstance();
         // Set unique claim id, aswell as uppdating next claim id:
@@ -56,13 +60,16 @@ public abstract class Claim {
     }
     
     /**
-     * Constructor initializing date and description of a claim.
-     * @param date
+     * 
+     * @param customerId
      * @param description 
      */
-    public Claim(String description) {
-        date = Calendar.getInstance();
+    public Claim(int customerId, String description) {
+        this.customerId = customerId;
         this.description = description;
+        // Set the date to current date
+        date = Calendar.getInstance();
+        // Set unique claim id, aswell as uppdating next claim id:
         claimId = nextClaimId++;
     }
     

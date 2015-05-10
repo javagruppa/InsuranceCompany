@@ -16,8 +16,8 @@ public class HolidayHomeClaim extends Claim {
      /**
      * Empty constructor.
      */
-    public HolidayHomeClaim(int customerId, int insuranceId) {
-        super(customerId, insuranceId);
+    public HolidayHomeClaim(int customerId, int insuranceId, String description) {
+        super(customerId, insuranceId, description);
     }
     
     /**
@@ -25,8 +25,8 @@ public class HolidayHomeClaim extends Claim {
      * @param date
      * @param description 
      */
-    public HolidayHomeClaim(String description) {
-        super(description);
+    public HolidayHomeClaim(int customerId, String description) {
+        super(customerId, description);
     }
     
     @Override

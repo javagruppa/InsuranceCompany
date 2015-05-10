@@ -16,17 +16,17 @@ public class BoatClaim extends Claim {
     /**
      * Empty constructor.
      */
-    public BoatClaim(int customerId, int insuranceId) {
-        super(customerId, insuranceId);
+    public BoatClaim(int customerId, int insuranceId, String description) {
+        super(customerId, insuranceId, description);
     }
     
     /**
-     * Constructor initializing date and description of a boat claim.
-     * @param date
+     * 
+     * @param customerId
      * @param description 
      */
-    public BoatClaim(String description) {
-        super(description);
+    public BoatClaim(int customerId, String description) {
+        super(customerId, description);
     }
     
     @Override

@@ -20,8 +20,8 @@ public class HomeClaim extends Claim {
     /**
      * Empty constructor.
      */
-    public HomeClaim(int customerId, int insuranceId) {
-        super(customerId, insuranceId);
+    public HomeClaim(int customerId, int insuranceId, String description) {
+        super(customerId, insuranceId, description);
     }
     
     /**
@@ -29,8 +29,8 @@ public class HomeClaim extends Claim {
      * @param date
      * @param description 
      */
-    public HomeClaim(String description) {
-        super(description);
+    public HomeClaim(int customerId, String description) {
+        super(customerId, description);
     }
     
     public void addItem(ClaimItem claimItem) {

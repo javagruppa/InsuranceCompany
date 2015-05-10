@@ -18,8 +18,8 @@ public class CarClaim extends Claim {
     /**
      * Empty constructor.
      */
-    public CarClaim(int customerId, int insuranceId) {
-        super(customerId, insuranceId);
+    public CarClaim(int customerId, int insuranceId, String description) {
+        super(customerId, insuranceId, description);
     }
     
     /**
@@ -27,8 +27,8 @@ public class CarClaim extends Claim {
      * @param date
      * @param description 
      */
-    public CarClaim(String description) {
-        super(description);
+    public CarClaim(int customerId, String description) {
+        super(customerId, description);
     }
     
     public void setClaimForm(CarClaimForm claimForm) {

@@ -25,6 +25,8 @@ public class CarInsurance extends Insurance {
     private CarInsuranceCoverage coverage;
     /** Whether the car this insurance is for has a garage or not. */
     private boolean hasGarage;
+    /** Whether the car this insurance is for has an alarm or not. */
+    private boolean hasAlarm;
     /** The maximum driving length for this insurance. */
     private int maxLength;
     /** Whether a person under 25 years is allowed to drive the car this 
@@ -66,6 +68,7 @@ public class CarInsurance extends Insurance {
         this.bonus = 0;
         this.car = car;
         this.coverage = coverage;
+        this.hasAlarm = hasAlarm;
         this.hasGarage = hasGarage;
         this.maxLength = maxLength;
         this.youngDriver = youngDriver;
@@ -156,7 +159,9 @@ public class CarInsurance extends Insurance {
 
 	int typeCost = coverage.getPricing();	
 	double basicPremium = maxlengthCost + typeCost - excessSaving; 
-	premium = basicPremium * totalMultiplicator;
+	double newPremium = basicPremium * totalMultiplicator;
+        int setPremium = (int)newPremium;
+        setPremium(setPremium);
 
 }
     

@@ -5,6 +5,7 @@
  */
 package insurancecompany.model.bills;
 
+import java.io.*;
 import java.util.Calendar;
 
 /**
@@ -13,6 +14,13 @@ import java.util.Calendar;
  */
 public class Bill {
     
+    private static int nextBillingId = 1000000;
+    private static String billingIdFileName = "insurancecompany/resources/nextidnumbers/billingId.dta";
+    
+    /** Unique billing id used to identify a specific bill.*/
+    private int billingId;
+    /** Customer id used to identify the customer this bill belongs to.*/
+    private int customerId;
     /** Constant representing the number of days until each due date from issue, as well as days to dunningDate */
     public static final int FIXED_DUE_DAYS = 14;
     /** Date of when the bill is issued. */
@@ -25,27 +33,45 @@ public class Bill {
     private Calendar payedDate;
     /** Sum of the fee for this bill.*/
     private int fee; // NOR: Gebyr
-    /** Total sum of the dunning fee for this bill.*/
-    private int dunningFee; // NOR: Purregebyr
+    /** Total sum of the dunning charge for this bill.*/
+    private int dunningCharge; // NOR: Purregebyr
     /** Boolean representing whether the bill is payed or not.*/
     private boolean payed;
     
-    public Bill(int fee) {
+    public Bill(int fee, int customerId) {
+        billingId = nextBillingId++;
         this.fee = fee;
+        this.customerId = customerId;
         isuedDate = Calendar.getInstance();
         dueDate = Calendar.getInstance();
         dueDate.add(Calendar.DAY_OF_YEAR, FIXED_DUE_DAYS);
-        dunningFee = 0;
+        dunningCharge = 0;
         payed = false;
     }
     
     public void increaseDunningFee(int sum) {
-        setDunningFee(getDunningFee() + sum);
+        setDunningCharge(getDunningCharge() + sum);
     }
     
     public void payBill() {
         setPayedDate(Calendar.getInstance());
         setPayed(true);
+    }
+    
+    public static void saveNextIdToFile() throws IOException {
+        try (DataOutputStream dos = new DataOutputStream(
+                new BufferedOutputStream(
+                        new FileOutputStream(billingIdFileName)))) {
+            dos.writeInt(nextBillingId);
+        }
+    }
+    
+    public static void readNextIdFromFile() throws IOException {
+        try (DataInputStream dis = new DataInputStream(
+                new BufferedInputStream(
+                        new FileInputStream(billingIdFileName)))) {
+                nextBillingId = dis.readInt();
+        }
     }
 
     /**
@@ -105,17 +131,17 @@ public class Bill {
     }
 
     /**
-     * @return the dunningFee
+     * @return the dunningCharge
      */
-    public int getDunningFee() {
-        return dunningFee;
+    public int getDunningCharge() {
+        return dunningCharge;
     }
 
     /**
-     * @param dunningFee the dunningFee to set
+     * @param dunningCharge the dunningCharge to set
      */
-    public void setDunningFee(int dunningFee) {
-        this.dunningFee = dunningFee;
+    public void setDunningCharge(int dunningCharge) {
+        this.dunningCharge = dunningCharge;
     }
 
     /**
@@ -130,6 +156,20 @@ public class Bill {
      */
     public void setPayed(boolean payed) {
         this.payed = payed;
+    }
+
+    /**
+     * @return the billingId
+     */
+    public int getBillingId() {
+        return billingId;
+    }
+
+    /**
+     * @return the customerId
+     */
+    public int getCustomerId() {
+        return customerId;
     }
     
 }

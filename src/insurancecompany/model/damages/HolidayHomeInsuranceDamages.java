@@ -24,7 +24,7 @@ public final class HolidayHomeInsuranceDamages {
     public static final String LOSS_OF_RENT = "Husleietap";
     public static final String LEGAL_LIABILITIES = "Rettslige erstatningsansvar";
     public static final String LEGAL_AID = "Rettshjelp";
-    public static final String RODENT_DAMAGE = "Skader etter gangere";
+    public static final String RODENT_DAMAGE = "Skader etter gnagere";
     
     // NOT IN USE, HOLIDAY_HOME_COVERAGE INSURANCE PLUS DAMAGES
     //public static final String FUNGUS_AND_ROT_DAMAGE = "Skader etter sopp og råte";

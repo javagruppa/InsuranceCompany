@@ -18,12 +18,12 @@ public abstract class Property {
     private int year;
     /** The building material of this property. */
     private String material;
-    /** The property type of this property. */
-    private String type;
+    /** Whether this property is to be rented out. */
+    private boolean rental;
     
     /**
      * Constructs a new property with the specified address. Area and year are 
-     * set to 0. Material and type are set to null.
+     * set to 0. Material is set to null, rental is set to false.
      * 
      * @param address the address of this property
      */
@@ -32,7 +32,8 @@ public abstract class Property {
         this.area = 0;
         this.year = 0;
         this.material = null;
-        this.type = null;
+        this.rental = false;
+        
     }
     
     /**
@@ -63,13 +64,14 @@ public abstract class Property {
     }
     
     /**
-     * Sets a property type to this property.
-     * 
-     * @param type the property type of this property
+     * Sets the rental status of this property
+     * @param rental whether this property is a rental
      */
-    public void setType(String type) {
-        this.type = type;
+    public void setRental(boolean rental){
+        this.rental = rental;
     }
+    
+    
     
     
     /**
@@ -89,7 +91,6 @@ public abstract class Property {
         result.append("\nAntall kvadratmeter: ").append(getArea());
         result.append("\nByggeår: ").append(getYear());
         result.append("\nByggemateriale: ").append(getMaterial());
-        result.append("\nBoligtype: ").append(getType());
         // Returns the string.
         return result.toString();
     }
@@ -123,9 +124,9 @@ public abstract class Property {
     }
 
     /**
-     * @return the type
+     * @return the rental status
      */
-    public String getType() {
-        return type;
+    public boolean getRental() {
+        return rental;
     }
 }

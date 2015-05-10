@@ -6,9 +6,7 @@
 package insurancecompany.model.datastructures;
 
 import insurancecompany.model.bills.Bill;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashSet;
@@ -21,6 +19,9 @@ import java.util.Set;
  * @author André
  */
 public class BillRegister {
+    
+    private static String billsFilePath = "insurancecompany/resources/datastructures/billSet.dta";
+    
     private Set<Bill> bills;
     
     /**
@@ -146,19 +147,25 @@ public class BillRegister {
     }
     
     
-    public void saveBillSetToFile() throws IOException{
-        
+    /**
+     * Writes this registers set of claims to file.
+     * @throws IOException 
+     */
+    public void writeClaimSetToFile() throws IOException{
+        try (ObjectOutputStream oos = new ObjectOutputStream(
+                new FileOutputStream(billsFilePath))) {
+            oos.writeObject(bills);
+        }
     }
-    
-    public Set<Bill> readBillSetFromFile() throws IOException {
-        Set<Bill> result = new HashSet<Bill>();
+    /**
+     * Reads a set of claims from file and stores them in the set in this register.
+     * @throws IOException
+     * @throws ClassNotFoundException 
+     */
+    public void readClaimSetFromFile() throws IOException, ClassNotFoundException {
         try (ObjectInputStream ois = new ObjectInputStream(
-                new FileInputStream("insurancecompany/resources/datastructures/billSet.dta"))) {
-            result = (HashSet<Bill>) ois.readObject();
-            
-        } catch (ClassNotFoundException cnfe) {
-            // write to log
-        }     
-        return result;
+                new FileInputStream(billsFilePath))) {
+            bills = (HashSet<Bill>) ois.readObject();        
+        }
     }
 }

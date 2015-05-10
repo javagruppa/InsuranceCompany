@@ -20,6 +20,8 @@ import java.util.Set;
  */
 public class ClaimRegister {
     
+    private static String claimsFilePath = "insurancecompany/resources/datastructures/claimSet.dta";
+    
     private Set<Claim> claims;
     
     /**
@@ -145,24 +147,25 @@ public class ClaimRegister {
         return result;
     }
     
-    public void saveClaimSetToFile() throws IOException{
-        
+    /**
+     * Writes this registers set of claims to file.
+     * @throws IOException 
+     */
+    public void writeClaimSetToFile() throws IOException{
+        try (ObjectOutputStream oos = new ObjectOutputStream(
+                new FileOutputStream(claimsFilePath))) {
+            oos.writeObject(claims);
+        }
     }
-    
-    public Set<Claim> readClaimSetFromFile() throws IOException {
-        Set<Claim> result = new HashSet<Claim>();
+    /**
+     * Reads a set of claims from file and stores them in the set in this register.
+     * @throws IOException
+     * @throws ClassNotFoundException 
+     */
+    public void readClaimSetFromFile() throws IOException, ClassNotFoundException {
         try (ObjectInputStream ois = new ObjectInputStream(
-                new FileInputStream("insurancecompany/resources/datastructures/claimSet.dta"))) {
-            result = (HashSet<Claim>) ois.readObject();
-            
-        } catch (ClassNotFoundException cnfe) {
-            // write to log
-        }     
-        return result;
+                new FileInputStream(claimsFilePath))) {
+            claims = (HashSet<Claim>) ois.readObject();        
+        }
     }
-        
-        
-    
-    
-    
 }

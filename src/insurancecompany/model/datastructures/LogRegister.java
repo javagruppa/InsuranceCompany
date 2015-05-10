@@ -16,6 +16,8 @@ import java.util.List;
  */
 public class LogRegister {
     
+    private static String logsFilePath = "insurancecompany/resources/datastructures/log.txt";
+    
     /** List of logs from Exceptions etc. */
     private List<Log> logs;
     

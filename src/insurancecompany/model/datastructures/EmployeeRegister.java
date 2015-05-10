@@ -7,6 +7,7 @@ package insurancecompany.model.datastructures;
 
 
 import insurancecompany.model.people.Employee;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
@@ -16,6 +17,8 @@ import java.util.Set;
  * @author André
  */
 public class EmployeeRegister {
+    
+    private static String employeesFilePath = "insurancecompany/resources/datastructures/employeeSet.dta";
     
     /** List of all the employees that works or has worked in this company. */
     private Set<Employee> employees;
@@ -63,6 +66,26 @@ public class EmployeeRegister {
     public int size() {
         return employees.size();
     }
-    
+    /**
+     * Writes this registers set of employees to file.
+     * @throws IOException 
+     */
+    public void writeClaimSetToFile() throws IOException{
+        try (ObjectOutputStream oos = new ObjectOutputStream(
+                new FileOutputStream(employeesFilePath))) {
+            oos.writeObject(employees);
+        }
+    }
+    /**
+     * Reads a set of employees from file and stores them in the set in this register.
+     * @throws IOException
+     * @throws ClassNotFoundException 
+     */
+    public void readClaimSetFromFile() throws IOException, ClassNotFoundException {
+        try (ObjectInputStream ois = new ObjectInputStream(
+                new FileInputStream(employeesFilePath))) {
+            employees = (HashSet<Employee>) ois.readObject();        
+        }
+    }    
     
 }

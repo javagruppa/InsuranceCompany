@@ -7,7 +7,7 @@ package insurancecompany.model.datastructures;
 
 import insurancecompany.model.people.Customer;
 import insurancecompany.model.properties.Address;
-import java.io.Serializable;
+import java.io.*;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -18,7 +18,9 @@ import java.util.Set;
  *
  * @author André
  */
-public class CustomerRegister implements Serializable {
+public class CustomerRegister {
+    
+    private static String customersFilePath = "insurancecompany/resources/datastructures/customerSet.dta";
     
     private Set<Customer> customers;
     
@@ -83,5 +85,25 @@ public class CustomerRegister implements Serializable {
             return result;
         }
     }
-    
+    /**
+     * Writes this registers set of customers to file.
+     * @throws IOException 
+     */
+    public void writeClaimSetToFile() throws IOException{
+        try (ObjectOutputStream oos = new ObjectOutputStream(
+                new FileOutputStream(customersFilePath))) {
+            oos.writeObject(customers);
+        }
+    }
+    /**
+     * Reads a set of customers from file and stores them in the set in this register.
+     * @throws IOException
+     * @throws ClassNotFoundException 
+     */
+    public void readClaimSetFromFile() throws IOException, ClassNotFoundException {
+        try (ObjectInputStream ois = new ObjectInputStream(
+                new FileInputStream(customersFilePath))) {
+            customers = (HashSet<Customer>) ois.readObject();        
+        }
+    }    
 }

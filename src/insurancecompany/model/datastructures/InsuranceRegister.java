@@ -6,6 +6,7 @@
 package insurancecompany.model.datastructures;
 
 import insurancecompany.model.insurances.Insurance;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -17,6 +18,9 @@ import java.util.Set;
  * @author Sindre
  */
 public class InsuranceRegister {
+    
+    private static String insurancesFilePath = "insurancecompany/resources/datastructures/insuranceSet.dta";
+    
     /** The list of this insurance register. */
     private Set<Insurance> insurances;
     
@@ -178,4 +182,25 @@ public class InsuranceRegister {
         // Returns the result.
         return result;
     }
+    /**
+     * Writes this registers set of insurances to file.
+     * @throws IOException 
+     */
+    public void writeClaimSetToFile() throws IOException{
+        try (ObjectOutputStream oos = new ObjectOutputStream(
+                new FileOutputStream(insurancesFilePath))) {
+            oos.writeObject(insurances);
+        }
+    }
+    /**
+     * Reads a set of insurances from file and stores them in the set in this register.
+     * @throws IOException
+     * @throws ClassNotFoundException 
+     */
+    public void readClaimSetFromFile() throws IOException, ClassNotFoundException {
+        try (ObjectInputStream ois = new ObjectInputStream(
+                new FileInputStream(insurancesFilePath))) {
+            insurances = (HashSet<Insurance>) ois.readObject();        
+        }
+    }    
 }

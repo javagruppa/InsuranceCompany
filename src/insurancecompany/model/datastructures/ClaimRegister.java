@@ -7,6 +7,7 @@ package insurancecompany.model.datastructures;
 
 
 import insurancecompany.model.claims.Claim;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -88,21 +89,27 @@ public class ClaimRegister {
         return claims.size();
     }
     
-    public void saveClaimSetToFile() {
+    public void saveClaimSetToFile() throws IOException{
         
     }
     
-    public void readClaimSetFromFile() {
+    public Set<Claim> readClaimSetFromFile() throws IOException {
         
         try (ObjectInputStream ois = new ObjectInputStream(
-                new FileInputStream("resou")))
+                new FileInputStream("insurancecompany/resources/datastructures/claimSet.dta"))) {
+            Set<Claim> c = (HashSet<Claim>) ois.readObject();
+            
+        } catch (ClassNotFoundException cnfe) {
+            // write to log
+        }
+    }
         
         
         
         
         
         try (ObjectInputStream innfil = new ObjectInputStream(
- 83             new FileInputStream( "src/liste.data" )))
+ 83             new FileInputStream( "insurancecompany/resources/datastructures/claimSet.dta")))
  84     {
  85       heltallsliste = (Heltallsliste) innfil.readObject();
  86     }

@@ -174,6 +174,38 @@ public abstract class Claim {
         
     }
     
+    /**
+     * Indicates whether some other claim is equal to this one. The result 
+     * is true if and only if the argument is not null and is a Claim 
+     * object that contains the same claimId value as this object.
+     * 
+     * @param obj the object to compare with
+     * @return true if the objects are the same; false otherwise
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if(obj != null && obj instanceof Claim) {
+            Claim other = (Claim) obj;
+            return getClaimId()== other.getClaimId();
+        } else {
+            return false;
+        }   
+    }
+    
+    /**
+     * Returns a hash code value for this claim. This method is supported for 
+     * the benefit of hash tables such as those provided by HashMap.
+     * @return the hash code
+     */
+    @Override 
+    public int hashCode() {
+        final int prime = 31;
+        int result = 17;
+        result = prime * result + getClaimId();
+        return result;
+    }
+    
+    @Override
     public String toString() {
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         String text = "Dato: " + df.format(date) + "\n";

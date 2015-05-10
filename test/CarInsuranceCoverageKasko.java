@@ -111,3 +111,22 @@ public class CarInsuranceCoverageKasko {
     
     
 }
+        /*
+        brandCombo.setCellFactory(new Callback<ListView<CarInfo>,ListCell<CarInfo>>(){
+            @Override
+            public ListCell<CarInfo> call(ListView<CarInfo> p) {             
+                final ListCell<CarInfo> cell = new ListCell<CarInfo>(){
+                    @Override
+                    protected void updateItem(CarInfo t, boolean bln) {
+                        super.updateItem(t, bln);                       
+                        if(t != null){
+                            setText(t.getName());
+                        }else{
+                            setText(null);
+                        }
+                    }
+                };             
+                return cell;
+            }
+        });
+        */

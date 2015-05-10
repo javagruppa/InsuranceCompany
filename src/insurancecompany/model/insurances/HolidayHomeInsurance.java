@@ -6,6 +6,7 @@
 package insurancecompany.model.insurances;
 
 import insurancecompany.model.properties.HolidayHome;
+import insurancecompany.misc.hometypes.HomeType;
 import java.io.Serializable;
 /**
  *
@@ -16,6 +17,8 @@ public class HolidayHomeInsurance extends PropertyInsurance implements Serializa
     
     /** The holiday home this insurance is for. */
     private HolidayHome holidayHome;
+    /** The type of house this insurance is for. */
+    private HomeType hometype;
     
     /**
      * Constructs a new holiday home insurance with the specified 

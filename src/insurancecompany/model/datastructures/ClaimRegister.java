@@ -96,8 +96,8 @@ public class ClaimRegister {
      * @param to
      * @return 
      */
-    public Set<Claim> claimsBetweenDates(Calendar from, Calendar to) {
-        Set<Claim> result = new HashSet<Claim>();
+    public List<Claim> claimsBetweenDates(Calendar from, Calendar to) {
+        List<Claim> result = new ArrayList<Claim>();
         // Checks for every claim in this register:
         for (Claim claim : claims) {
             // The date of when the damage happened.
@@ -108,12 +108,12 @@ public class ClaimRegister {
                 result.add(claim);
             }
         }
-        // Returns a set containing all claims between correct dates:
+        // Returns a list containing all claims between correct dates:
         return result;
     }
     
-    public Set<Claim> claimTypesBetweenDate(Class<?> type, Calendar from, Calendar to) {
-        Set<Claim> result = new HashSet<Claim>();
+    public List<Claim> claimTypesBetweenDate(Class<?> type, Calendar from, Calendar to) {
+        List<Claim> result = new ArrayList<Claim>();
         // Checks for every claim in this register:
         for (Claim claim : claims) {
             // The date of when the damage happened:
@@ -127,12 +127,12 @@ public class ClaimRegister {
                 }
             }
         }
-        // Returns a set containing all claims of specified type and between correct dates:
+        // Returns a list containing all claims of specified type and between correct dates:
         return result;
     }
     
-    public Set<Claim> claimTypes(Class<?> type) {
-        Set<Claim> result = new HashSet<Claim>();
+    public List<Claim> claimTypes(Class<?> type) {
+        List<Claim> result = new ArrayList<Claim>();
         // Checks for every claim in this register:
         for (Claim claim : claims) {
             // Checks if the claim is of the class type specified in the parameter:
@@ -141,7 +141,7 @@ public class ClaimRegister {
                 result.add(claim);
             }
         }
-        // Returns a set containing all claims of specified type:
+        // Returns a list containing all claims of specified type:
         return result;
     }
     

@@ -14,15 +14,18 @@ import java.util.Calendar;
  */
 public class Bill {
     
+    /** Constant representing the number of days until each due date from issue, as well as days to dunningDate */
+    public static final int FIXED_DUE_DAYS = 14;
     private static int nextBillingId = 1000000;
     private static String billingIdFileName = "insurancecompany/resources/nextidnumbers/billingId.dta";
+    
     
     /** Unique billing id used to identify a specific bill.*/
     private int billingId;
     /** Customer id used to identify the customer this bill belongs to.*/
     private int customerId;
-    /** Constant representing the number of days until each due date from issue, as well as days to dunningDate */
-    public static final int FIXED_DUE_DAYS = 14;
+    /** Insurance id used to identify the insurance that payed out this bill.*/
+    private int insuranceId;
     /** Date of when the bill is issued. */
     private Calendar isuedDate;
     /** Date of when the bill is due to be payed.*/
@@ -38,10 +41,11 @@ public class Bill {
     /** Boolean representing whether the bill is payed or not.*/
     private boolean payed;
     
-    public Bill(int fee, int customerId) {
+    public Bill(int fee, int customerId, int insuranceId) {
         billingId = nextBillingId++;
         this.fee = fee;
         this.customerId = customerId;
+        this.insuranceId = insuranceId;
         isuedDate = Calendar.getInstance();
         dueDate = Calendar.getInstance();
         dueDate.add(Calendar.DAY_OF_YEAR, FIXED_DUE_DAYS);

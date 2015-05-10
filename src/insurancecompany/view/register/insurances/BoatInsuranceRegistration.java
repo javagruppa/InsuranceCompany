@@ -192,7 +192,7 @@ public class BoatInsuranceRegistration {
      * @return the alarmComboBox
      */
      public String getAlarm() {
-        return alarmComboBox.getValue();
+        return alarmComboBox.getValue() == null ? "" : alarmComboBox.getValue();
     }
 
     /**
@@ -206,7 +206,7 @@ public class BoatInsuranceRegistration {
      * @return the coverageComboBox
      */
     public String getCoverage() {
-        return coverageComboBox.getValue();
+        return coverageComboBox.getValue() == null ? "" : coverageComboBox.getValue();
     }
 
     /**

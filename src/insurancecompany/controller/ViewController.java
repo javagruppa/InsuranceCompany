@@ -17,7 +17,8 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 /**
- *
+ * View Controller. This class connects all the views together.
+ * @author André
  * @author Sindre
  */
 public class ViewController {

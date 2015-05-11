@@ -21,7 +21,12 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 
 /**
- *
+ * Model controller. This class uses the model and its data structures to 
+ * update other parts of the model as well as finding information by combining
+ * methods and data from different parts of the model and its different 
+ * data structures.
+ * 
+ * @author André
  * @author Sindre
  */
 public class ModelController {

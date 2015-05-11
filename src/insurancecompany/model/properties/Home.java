@@ -16,7 +16,8 @@ public class Home extends Property {
      * 
      * @param address the address of this property
      */
-    public Home(Address address) {
-        super(address);
+    public Home(Address address, PropertyMaterial material, int area,
+            int year, boolean rental) {
+        super(address, material, area, year, rental);
     }
 }

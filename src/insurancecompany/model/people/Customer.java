@@ -46,36 +46,7 @@ public class Customer extends Person {
         s = super.toString();
         return s;
     }
-     /**
-     * Indicates whether some other customer is equal to this one. The result 
-     * is true if and only if the argument is not null and is a Customer 
-     * object that contains the same employeeId value as this object.
-     * 
-     * @param obj the object to compare with
-     * @return true if the objects are the same; false otherwise
-     */
-    @Override
-    public boolean equals(Object obj) {
-        if(obj != null && obj instanceof Customer) {
-            Customer other = (Customer) obj;
-            return getId()== other.getId();
-        } else {
-            return false;
-        }   
-    }
     
-    /**
-     * Returns a hash code value for this customer. This method is supported for 
-     * the benefit of hash tables such as those provided by HashMap.
-     * @return the hash code
-     */
-    @Override 
-    public int hashCode() {
-        final int prime = 31;
-        int result = 17;
-        result = prime * result + getId();
-        return result;
-    }    
     public static void saveNextIdToFile() throws IOException {
         try (DataOutputStream dos = new DataOutputStream(
                 new BufferedOutputStream(

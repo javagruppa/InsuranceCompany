@@ -5,6 +5,7 @@
  */
 package insurancecompany.misc.coverages;
 
+import insurancecompany.misc.damages.Damage;
 import insurancecompany.misc.damages.HolidayHomeInsuranceDamages;
 import java.util.List;
 
@@ -13,15 +14,46 @@ import java.util.List;
  * @author André
  */
 public enum HolidayHomeInsuranceCoverage {
-    PLUS, BASIC;
-    
-    public List<String> damages() {
-        switch(this) {
-            case PLUS: return HolidayHomeInsuranceDamages.HOLIDAY_HOME_COVERAGE;
-            case BASIC: return HolidayHomeInsuranceDamages.HOLIDAY_HOME_CONTENTS_COVERAGE;
-            default: throw new IllegalArgumentException();
+    BASIC {
+        @Override
+        public Damage[] damages() {
+            Damage[] damages = {
+                Damage.FULL_VALUE_GUARANTEE,
+                Damage.BUILDING_DAMAGE,
+                Damage.TOTAL_REENTRY_OVER_SEVENTYFIVE,
+                Damage.GARDEN_ARTICLES,
+                Damage.REBUILDING_FOR_WHEELCHAIR_USER,
+                Damage.LOSS_OF_RENT,
+                Damage.LEGAL_LIABILITIES,
+                Damage.LEGAL_AID,
+                Damage.RODENT_DAMAGE
+            };
+            return damages;
         }
-    }
+    }, PLUS {
+        @Override
+        public Damage[] damages() {
+            Damage[] damages = {
+                Damage.FULL_VALUE_GUARANTEE,
+                Damage.BUILDING_DAMAGE,
+                Damage.TOTAL_REENTRY_OVER_SEVENTYFIVE,
+                Damage.GARDEN_ARTICLES,
+                Damage.REBUILDING_FOR_WHEELCHAIR_USER,
+                Damage.LOSS_OF_RENT,
+                Damage.LEGAL_LIABILITIES,
+                Damage.LEGAL_AID,
+                Damage.RODENT_DAMAGE,
+                Damage.FUNGUS_AND_ROT_DAMAGE,
+                Damage.PEST_CONTROL,
+                Damage.CONSEQUENTIAL_DAMAGE_AFTER_LEAK,
+                Damage.CONSEQUENTIAL_DAMAGE_AFTER_CRAFTS_ERROR,
+                Damage.HOLIDAY_WARRANTY
+            };
+            return damages;
+        }
+    };
+    
+    public abstract Damage[] damages();
     
     @Override
     public String toString() {

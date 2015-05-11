@@ -52,7 +52,7 @@ public class ModelController {
                 this.carInfoRegister = carInfoRegister;
  
 	  } catch (JAXBException e) {
-              logRegister.add(e.getStackTrace());
+              logRegister.add(e.getStackTrace(), e.getMessage());
 	  }
     }
     

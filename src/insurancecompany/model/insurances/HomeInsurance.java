@@ -23,10 +23,9 @@ public class HomeInsurance extends PropertyInsurance implements Serializable {
     
     
     /**
-     * Constructs a new home insurance with the specified buildingAmount, 
-     * contentAmount, customerId, excess and home. Active is set to true. Date 
-     * is set to the current date. InsuranceId is automatically set to 
-     * nextInsuranceId.
+     * Constructs a new home insurance with the specified customerId, excess
+     * and home. Active is set to true. Date is set to the current date.
+     * InsuranceId is automatically set to nextInsuranceId.
      * 
      * @param customerId the id of the customer who owns this insurance
      * @param excess the excess of this insurance

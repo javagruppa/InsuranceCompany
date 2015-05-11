@@ -137,6 +137,7 @@ public class ViewController {
         adminView.selectedButtonStyleUpper((Button) event.getSource());
     }
     
+    // TODO: Plasseres i MainController slik at datastruktur kan lagres når avslutt knappen trykkes:
     private void adminViewExitButtonEventHandler(ActionEvent event) {
         Platform.exit();
     }

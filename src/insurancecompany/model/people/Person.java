@@ -131,10 +131,23 @@ public abstract class Person {
     public boolean equals(Object obj) {
         if(obj != null && obj instanceof Person) {
             Person other = (Person) obj;
-            return personalNumber == other.getPersonalNumber();
+            return getPersonalNumber().equals(other.getPersonalNumber());
         } else {
             return false;
         }   
+    }
+    
+    /**
+     * Returns a hash code value for this customer. This method is supported for 
+     * the benefit of hash tables such as those provided by HashMap.
+     * @return the hash code
+     */
+    @Override 
+    public int hashCode() {
+        final int prime = 31;
+        int result = 17;
+        result = prime * result + getPersonalNumber().hashCode();
+        return result;
     }
 
     /**

@@ -51,36 +51,6 @@ public abstract class Employee extends Person {
         }
     }
     
-     /**
-     * Indicates whether some other employee is equal to this one. The result 
-     * is true if and only if the argument is not null and is a Employee 
-     * object that contains the same employeeId value as this object.
-     * 
-     * @param obj the object to compare with
-     * @return true if the objects are the same; false otherwise
-     */
-    @Override
-    public boolean equals(Object obj) {
-        if(obj != null && obj instanceof Employee) {
-            Employee other = (Employee) obj;
-            return getId()== other.getId();
-        } else {
-            return false;
-        }   
-    }
-    
-    /**
-     * Returns a hash code value for this employee. This method is supported for 
-     * the benefit of hash tables such as those provided by HashMap.
-     * @return the hash code
-     */
-    @Override 
-    public int hashCode() {
-        final int prime = 31;
-        int result = 17;
-        result = prime * result + getId();
-        return result;
-    }
     
     @Override
     public int getId() {

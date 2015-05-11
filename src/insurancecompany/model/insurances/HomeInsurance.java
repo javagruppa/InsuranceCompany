@@ -92,22 +92,22 @@ public class HomeInsurance extends PropertyInsurance implements Serializable {
             multiplicator = 0.85;
         }
         else if (currentYear - year > 10 && currentYear - year <= 20){
-            multiplicator = 1;
+            multiplicator = 0.95;
         }
         else if (currentYear - year > 20 && currentYear - year <= 30){
-            multiplicator = 1.1;
+            multiplicator = 1.05;
         }
         else if (currentYear - year > 30 && currentYear - year <= 45){
-            multiplicator = 1.15;
+            multiplicator = 1.1;
         }
         else if (currentYear - year > 45 && currentYear - year <= 55){
-            multiplicator = 1.25;
+            multiplicator = 1.19;
         }
         else if (currentYear - year > 55 && currentYear - year <= 80){
-            multiplicator = 1.35;
+            multiplicator = 1.25;
         }
         else if (currentYear - year > 80 && currentYear - year <= 100){
-            multiplicator = 1.55;
+            multiplicator = 1.5;
         }
         else if (currentYear - year > 100){
             multiplicator = 1.9;

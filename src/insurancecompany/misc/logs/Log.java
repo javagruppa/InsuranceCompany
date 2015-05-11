@@ -17,12 +17,12 @@ import java.util.Calendar;
 public class Log {
     private Calendar date;
     private StackTraceElement[] stackTrace;
-    private String customDescription;
+    private String message;
     private User user;
     
-    public Log(String customDescription) {
+    public Log(String message) {
         date = Calendar.getInstance();
-        this.customDescription = customDescription;
+        this.message = message;
     }
     
     public Log(StackTraceElement[] stackTrace) {
@@ -36,16 +36,16 @@ public class Log {
         this.user = user;
     }
     
-    public Log(StackTraceElement[] stackTrace, String customDescription) {
+    public Log(StackTraceElement[] stackTrace, String message) {
         date = Calendar.getInstance();
         this.stackTrace = stackTrace;
-        this.customDescription = customDescription;
+        this.message = message;
     }
     
-    public Log(StackTraceElement[] stackTrace, String customDescription, User user) {
+    public Log(StackTraceElement[] stackTrace, String message, User user) {
         date = Calendar.getInstance();
         this.stackTrace = stackTrace;
-        this.customDescription = customDescription;
+        this.message = message;
         this.user = user;
     }
     
@@ -62,8 +62,8 @@ public class Log {
             sb.append("Stack Trace: "+ stackTraceToString(stackTrace));
             sb.append("\n");
         }
-        if (customDescription != null) {
-            sb.append("Description: " + customDescription);
+        if (message != null) {
+            sb.append("Description: " + message);
         }        
         return sb.toString();
     }

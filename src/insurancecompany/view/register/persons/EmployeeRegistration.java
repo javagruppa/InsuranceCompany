@@ -36,6 +36,7 @@ public class EmployeeRegistration {
     private TextField emailField;
     private TextField phoneField;
     
+    private Text positionMessage;
     private Text personalNumberMessage;
     private Text firstNameMessage;
     private Text lastNameMessage;    
@@ -67,6 +68,7 @@ public class EmployeeRegistration {
         Label position = new Label("Posisjon");
         positionCombo = new ComboBox();
         positionCombo.getItems().addAll("Kundebehandler", "Saksbehandler", "Administrator");
+        positionMessage = new Text();
         
         Label personalNumber = new Label("Personnummer:");
         personalNumberField = new TextField();
@@ -104,6 +106,7 @@ public class EmployeeRegistration {
         
         mainPane.add(position, 1, 2);
         mainPane.add(positionCombo, 2, 2);
+        mainPane.add(positionMessage, 3, 2);
         
         mainPane.add(personalNumber, 1, 3);
         mainPane.add(personalNumberField, 2, 3);
@@ -231,6 +234,10 @@ public class EmployeeRegistration {
         return phoneField.getText();
     }
 
+    public void setPositionMessage(String positionMessage) {
+        this.positionMessage.setText(positionMessage);
+    }
+    
     /**
      * @param personalNumberMessage the personalNumberMessage to set
      */

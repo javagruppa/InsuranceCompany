@@ -5,6 +5,7 @@
  */
 package insurancecompany.model.insurances;
 
+import insurancecompany.misc.coverages.TravelInsuranceCoverage;
 import java.io.Serializable;
 
 /**
@@ -15,7 +16,7 @@ public class TravelInsurance extends Insurance implements Serializable {
     private static final long serialVersionUID = 1L;
     
     /** The coverage of this insurance. */
-    private String coverage;
+    private TravelInsuranceCoverage coverage;
     /** The insurance area of this insurance. */
     private String insuranceArea;
     
@@ -29,8 +30,8 @@ public class TravelInsurance extends Insurance implements Serializable {
      * @param excess the excess of this insurance
      * @param insuranceArea the insurance area of this insurance
      */
-    public TravelInsurance(int customerId, String coverage, int excess, String 
-            insuranceArea) {
+    public TravelInsurance(int customerId, TravelInsuranceCoverage coverage,
+            int excess, String insuranceArea) {
         super(customerId, excess);
         this.coverage = coverage;
         this.insuranceArea = insuranceArea;

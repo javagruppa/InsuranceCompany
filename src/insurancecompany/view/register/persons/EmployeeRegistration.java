@@ -5,6 +5,9 @@
  */
 package insurancecompany.view.register.persons;
 
+import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -50,6 +53,8 @@ public class EmployeeRegistration {
     
     private Text resultText;
     
+    private ObservableList<String> positions;
+    
     public void start(Stage stage) {
         show(stage);
     }
@@ -67,7 +72,9 @@ public class EmployeeRegistration {
         Text registerT = new Text("Registrer ansatt");
         Label position = new Label("Posisjon");
         positionCombo = new ComboBox();
-        positionCombo.getItems().addAll("Kundebehandler", "Saksbehandler", "Administrator");
+        positions = FXCollections.observableArrayList ();
+        positions.addAll("Kundebehandler", "Saksbehandler", "Administrator");
+        positionCombo.getItems().addAll(positions);
         positionMessage = new Text();
         
         Label personalNumber = new Label("Personnummer:");

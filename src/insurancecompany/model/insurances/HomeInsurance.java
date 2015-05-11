@@ -6,6 +6,7 @@
 package insurancecompany.model.insurances;
 
 import insurancecompany.model.properties.Home;
+import insurancecompany.misc.hometypes.HomeType;
 import java.io.Serializable;       
 
 /**
@@ -20,22 +21,22 @@ public class HomeInsurance extends PropertyInsurance implements Serializable {
     /** The type of home this insurance is for */
     private HomeType hometype;
     
+    
     /**
      * Constructs a new home insurance with the specified buildingAmount, 
      * contentAmount, customerId, excess and home. Active is set to true. Date 
      * is set to the current date. InsuranceId is automatically set to 
      * nextInsuranceId.
      * 
-     * @param buildingAmount the building insurance amount of this insurance
      * @param contentAmount the content insurance amount of this insurance
      * @param customerId the id of the customer who owns this insurance
      * @param excess the excess of this insurance
      * @param home the holiday home this insurance is for
      */
-    public HomeInsurance(int buildingAmount, int contentAmount, 
+    public HomeInsurance(int contentAmount, 
             int customerId, int excess, Home home) {
-        super(buildingAmount, contentAmount, customerId, excess);
-        this.home = home;  
+        super(contentAmount, customerId, excess);
+        this.home = home;
     }
     
     /**

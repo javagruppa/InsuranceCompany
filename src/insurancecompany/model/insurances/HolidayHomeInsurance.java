@@ -7,6 +7,7 @@ package insurancecompany.model.insurances;
 
 import insurancecompany.model.properties.HolidayHome;
 import insurancecompany.misc.hometypes.HolidayHomeType;
+import insurancecompany.misc.coverages.HolidayHomeInsuranceCoverage;
 import java.io.Serializable;
 /**
  *
@@ -19,6 +20,8 @@ public class HolidayHomeInsurance extends PropertyInsurance implements Serializa
     private HolidayHome holidayHome;
     /** The type of house this insurance is for. */
     private HolidayHomeType holidayhometype;
+    /** the coverage of this insurance */
+    private HolidayHomeInsuranceCoverage coverage;
     
     /**
      *  * Constructs a new holiday home insurance with the specified contentAmount, 
@@ -30,11 +33,15 @@ public class HolidayHomeInsurance extends PropertyInsurance implements Serializa
      * @param customerId the customer that has this insurance
      * @param excess the excess of this insurance
      * @param holidayHome  the holidayhome that is insured
+     * @param coverage the coverage of this insurance
      */
-    public HolidayHomeInsurance(HolidayHomeType type, int customerId, int excess, HolidayHome holidayHome) {
+    public HolidayHomeInsurance(HolidayHomeType type, int customerId,
+            int excess, HolidayHome holidayHome,
+            HolidayHomeInsuranceCoverage coverage) {
         super(customerId, excess);
         this.holidayHome = holidayHome;
         this.holidayhometype = type;
+        this.coverage = coverage;
     }
     
     /**

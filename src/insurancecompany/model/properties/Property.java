@@ -37,6 +37,10 @@ public abstract class Property {
         
     }
     
+    public double getMaterialMultiplicator(){
+        return material.getMultiplicator();
+    }
+    
     /**
      * Sets an area to this property.
      * 

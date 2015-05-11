@@ -28,15 +28,15 @@ public class HomeInsurance extends PropertyInsurance implements Serializable {
      * is set to the current date. InsuranceId is automatically set to 
      * nextInsuranceId.
      * 
-     * @param contentAmount the content insurance amount of this insurance
      * @param customerId the id of the customer who owns this insurance
      * @param excess the excess of this insurance
      * @param home the holiday home this insurance is for
+     * @param hometype the type of home this insurance is for
      */
-    public HomeInsurance(int contentAmount, 
-            int customerId, int excess, Home home) {
-        super(contentAmount, customerId, excess);
+    public HomeInsurance(int customerId, int excess, Home home, HomeType hometype) {
+        super(customerId, excess);
         this.home = home;
+        this.hometype = hometype;
     }
     
     /**

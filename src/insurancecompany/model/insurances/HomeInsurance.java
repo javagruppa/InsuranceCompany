@@ -7,6 +7,7 @@ package insurancecompany.model.insurances;
 
 import insurancecompany.model.properties.Home;
 import insurancecompany.misc.hometypes.HomeType;
+import insurancecompany.misc.coverages.HomeInsuranceCoverage;
 import java.io.Serializable;       
 
 /**
@@ -20,6 +21,8 @@ public class HomeInsurance extends PropertyInsurance implements Serializable {
     private Home home;
     /** The type of home this insurance is for */
     private HomeType hometype;
+    /** The coverage of this insurance */
+    private HomeInsuranceCoverage coverage;
     
     
     /**
@@ -31,11 +34,14 @@ public class HomeInsurance extends PropertyInsurance implements Serializable {
      * @param excess the excess of this insurance
      * @param home the holiday home this insurance is for
      * @param hometype the type of home this insurance is for
+     * @param coverage the coverage of this insurance
      */
-    public HomeInsurance(int customerId, int excess, Home home, HomeType hometype) {
+    public HomeInsurance(int customerId, int excess, Home home, 
+            HomeType hometype, HomeInsuranceCoverage coverage) {
         super(customerId, excess);
         this.home = home;
         this.hometype = hometype;
+        this.coverage = coverage;
     }
     
     /**

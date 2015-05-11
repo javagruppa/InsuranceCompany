@@ -131,8 +131,8 @@ public class HomeInsurance extends PropertyInsurance implements Serializable {
         double yearMultiplicator = buildingYearMultiplicator();
         // Price for what type of home is insured
 	int typePrice = hometype.getPricing();
-        // Base price. Price after excess drop
-	int baseprice = typePrice - excessDrop();
+        // Base price. Price after excess drop (incl price for plus or basic)
+	int baseprice = typePrice + coverage.getPricing() - excessDrop();
         // Total price. Base price including extra if the home is a rental
 	double totalPrice = baseprice * rentalExtra();
         // Material price. Total price multiplied by material multiplicator

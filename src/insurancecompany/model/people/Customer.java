@@ -11,6 +11,7 @@ import insurancecompany.model.vehicles.Vehicle;
 
 import java.util.ArrayList;
 import java.io.*;
+import java.util.List;
 /**
  *
  * @author Carl
@@ -27,7 +28,7 @@ public class Customer extends Person {
     private String passwordHash;
     
     private final int customerId;
-    private ArrayList<Vehicle> vehicles;
+    private List<Vehicle> vehicles;
     
     public Customer(String firstname, String lastname, long personalNumber, String email, Address address, String phone) {
         super(firstname, lastname, personalNumber, email, address, phone);

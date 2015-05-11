@@ -50,6 +50,7 @@ public class ViewController {
     private BoatInsuranceRegistration boatInsuranceRegistration;
     private CarInsuranceRegistration carInsuranceRegistration;
     private CustomerRegistration customerRegistration;
+    private EmployeeRegistration employeeRegistration;
     private HolidayHomeInsuranceRegistration holidayHomeInsuranceRegistration;
     private HomeInsuranceRegistration homeInsuranceRegistration;
     private TravelInsuranceRegistration travelInsuranceRegistration;
@@ -60,7 +61,8 @@ public class ViewController {
             HolidayHomeInsuranceRegistration holidayHomeInsuranceRegistration,
             HomeInsuranceRegistration homeInsuranceRegistration,
             TravelInsuranceRegistration travelInsuranceRegistration,
-            CustomerRegistration customerRegistration) {
+            CustomerRegistration customerRegistration,
+            EmployeeRegistration employeeRegistration) {
         
         // Initializes Module Views
         this.adminView = new AdminView();
@@ -92,7 +94,7 @@ public class ViewController {
         this.travelInsuranceRegistration = travelInsuranceRegistration;
         
         this.customerRegistration = customerRegistration;
-        //this.employeeRegistration =        
+        this.employeeRegistration = employeeRegistration; 
         
         initializeEventHandlers();
     }
@@ -110,7 +112,7 @@ public class ViewController {
         insurancesView.setHomeInsuranceButtonEventHandler(this::insurancesViewHomeInsuranceButtonEventHandler);
         insurancesView.setTravelInsuranceButtonEventHandler(this::insurancesViewTravelInsuranceButtonEventHandler);
         personsView.setCustomerButtonEventHandler(this::personsViewCustomerRegistrationButtonEventHandler);
-        //personsView.setEmployeeButtonEventHandler(this::personsViewEmployeeRegistrationButtonEventHandler);
+        personsView.setEmployeeButtonEventHandler(this::personsViewEmployeeRegistrationButtonEventHandler);
         searchView.setClaimsButtonEventHandler(this::searchViewClaimsButtonEventHandler);
         //searchView.setCustomersButtonEventHandler(null);
         //searchView.setEmployeesButtonEventHandler(null);
@@ -190,12 +192,12 @@ public class ViewController {
         personsView.getMainPane().setCenter(customerRegistration.getMainPane());
         personsView.selectedButtonStyleLower((Button) event.getSource());
     }
-    /*
+    
     private void personsViewEmployeeRegistrationButtonEventHandler(ActionEvent event) {
         personsView.getMainPane().setCenter(employeeRegistration.getMainPane());
         personsView.selectedButtonStyleLower((Button) event.getSource());
     }
-    */
+    
     
     // SEARCH CLAIMS VIEW EVENT HANDLERS
     

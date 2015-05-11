@@ -5,12 +5,8 @@
  */
 package insurancecompany.controller;
 
-import insurancecompany.view.register.persons.CustomerRegistration;
-import insurancecompany.view.register.insurances.TravelInsuranceRegistration;
-import insurancecompany.view.register.insurances.CarInsuranceRegistration;
-import insurancecompany.view.register.insurances.HomeInsuranceRegistration;
-import insurancecompany.view.register.insurances.HolidayHomeInsuranceRegistration;
-import insurancecompany.view.register.insurances.BoatInsuranceRegistration;
+import insurancecompany.view.register.persons.*;
+import insurancecompany.view.register.insurances.*;
 import insurancecompany.model.datastructures.*;
 import insurancecompany.model.datastructures.carinfo.*;
 import insurancecompany.model.people.*;
@@ -41,10 +37,12 @@ public class MainController {
     // Insurance Registration Views:
     private BoatInsuranceRegistration boatInsuranceRegistration;
     private CarInsuranceRegistration carInsuranceRegistration;
-    private CustomerRegistration customerRegistration;
     private HolidayHomeInsuranceRegistration holidayHomeInsuranceRegistration;
     private HomeInsuranceRegistration homeInsuranceRegistration;
     private TravelInsuranceRegistration travelInsuranceRegistration;
+    // Person Registration Views:
+    private CustomerRegistration customerRegistration;
+    private EmployeeRegistration employeeRegistration;
     
     // Controllers:
     private ModelController modelController;
@@ -65,12 +63,14 @@ public class MainController {
         this.homeInsuranceRegistration = new HomeInsuranceRegistration();
         this.travelInsuranceRegistration = new TravelInsuranceRegistration();
         this.customerRegistration = new CustomerRegistration();
+        this.employeeRegistration = new EmployeeRegistration();
         
         
         this.modelController = new ModelController(claims, employees, insurances, customers);
         this.viewController = new ViewController(boatInsuranceRegistration, 
             carInsuranceRegistration, holidayHomeInsuranceRegistration,
-            homeInsuranceRegistration, travelInsuranceRegistration, customerRegistration);
+            homeInsuranceRegistration, travelInsuranceRegistration, 
+            customerRegistration, employeeRegistration);
         
         setBrandComboBox();
         initializeEventHandlers();

@@ -5,8 +5,7 @@
  */
 package insurancecompany.misc.coverages;
 
-import insurancecompany.misc.damages.BoatInsuranceDamages;
-import insurancecompany.misc.damages.Damage;
+
 
 import java.util.List;
 

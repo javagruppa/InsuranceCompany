@@ -5,6 +5,7 @@
  */
 package insurancecompany.misc.coverages;
 
+import insurancecompany.misc.damages.Damage;
 import insurancecompany.misc.damages.TravelInsuranceDamages;
 import java.util.List;
 
@@ -13,17 +14,22 @@ import java.util.List;
  * @author André
  */
 public enum TravelInsuranceCoverage {
-    STANDARD;
-    //PLUS,
-    //FAMILY,
-    //FAMILY_PLUS;
-    
-    public List<String> damages() {
-        switch(this) {
-            case STANDARD: return TravelInsuranceDamages.STANDARD_COVERAGE;
-            default: throw new IllegalArgumentException();
+    STANDARD {
+        @Override
+        public Damage[] damages() {
+            Damage[] damages = {
+                Damage.LUGGAGE,
+                Damage.DELAY_EVACUATION,
+                Damage.CANCELLATION,
+                Damage.SICKNESS_INJURY,
+                Damage.FULL_TIME_ACCIDENT_INSURANCE,
+                Damage.LIABILITY_AND_LEGAL_AID_OUTSIDE_NORDIC
+            };
+            return damages;
         }
-    }
+    };
+    
+    public abstract Damage[] damages();
     
     @Override
     public String toString() {

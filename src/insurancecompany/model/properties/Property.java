@@ -17,7 +17,7 @@ public abstract class Property {
     /** The construction year of this property. */
     private int year;
     /** The building material of this property. */
-    private String material;
+    private PropertyMaterial material;
     /** Whether this property is to be rented out. */
     private boolean rental;
     
@@ -27,13 +27,18 @@ public abstract class Property {
      * 
      * @param address the address of this property
      */
-    public Property(Address address) {
+    public Property(Address address, PropertyMaterial material, int area,
+            int year, boolean rental) {
         this.address = address;
-        this.area = 0;
-        this.year = 0;
-        this.material = null;
-        this.rental = false;
+        this.area = area;
+        this.year = year;
+        this.material = material;
+        this.rental = rental;
         
+    }
+    
+    public double getMaterialMultiplicator(){
+        return material.getMultiplicator();
     }
     
     /**
@@ -54,14 +59,7 @@ public abstract class Property {
         this.year = year;
     }
     
-    /**
-     * Sets a building material to this property.
-     * 
-     * @param material the building material of this property
-     */
-    public void setMaterial(String material) {
-        this.material = material;
-    }
+    
     
     /**
      * Sets the rental status of this property
@@ -90,7 +88,7 @@ public abstract class Property {
         result.append("Adresse: ").append(getAddress().toString());
         result.append("\nAntall kvadratmeter: ").append(getArea());
         result.append("\nByggeår: ").append(getYear());
-        result.append("\nByggemateriale: ").append(getMaterial());
+        result.append("\nByggemateriale: ").append(material.toString());
         // Returns the string.
         return result.toString();
     }
@@ -116,13 +114,7 @@ public abstract class Property {
         return year;
     }
 
-    /**
-     * @return the material
-     */
-    public String getMaterial() {
-        return material;
-    }
-
+    
     /**
      * @return the rental status
      */

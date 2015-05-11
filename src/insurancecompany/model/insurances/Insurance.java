@@ -45,6 +45,7 @@ public abstract class Insurance implements Serializable {
         this.customerId = customerId;
         this.date = Calendar.getInstance().getTime();
         this.insuranceId = nextInsuranceId++;
+        this.excess = excess;
     }
     
     /**

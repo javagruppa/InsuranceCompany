@@ -33,4 +33,23 @@ public enum HomeInsuranceCoverage {
             default: throw new IllegalArgumentException();
         }
     }
+    
+    public int getPricing() {
+        switch(this) {
+            case HOME: return 1000;
+            case CONTENTS: return 1000;
+            case HOME_AND_CONTENTS: return 1800;
+            default: throw new IllegalArgumentException();
+        }
+    }
+    
+    public int getCoverageInt() {
+        switch(this) {
+            case HOME: return 1;
+            case CONTENTS: return 2;
+            case HOME_AND_CONTENTS: return 3;
+            default: throw new IllegalArgumentException();
+        }
+    }
+        
 }

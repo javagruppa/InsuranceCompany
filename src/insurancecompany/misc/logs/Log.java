@@ -5,7 +5,7 @@
  */
 package insurancecompany.misc.logs;
 
-import insurancecompany.misc.User;
+import insurancecompany.model.people.*;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Calendar;
@@ -18,7 +18,8 @@ public class Log {
     private Calendar date;
     private StackTraceElement[] stackTrace;
     private String message;
-    private User user;
+    private String userType;
+    private int userId;
     
     public Log(String message) {
         date = Calendar.getInstance();
@@ -30,10 +31,10 @@ public class Log {
         this.stackTrace = stackTrace;
     }
     
-    public Log(StackTraceElement[] stackTrace, User user) {
+    public Log(StackTraceElement[] stackTrace, Person user) {
         date = Calendar.getInstance();
         this.stackTrace = stackTrace;
-        this.user = user;
+        populateUserInfo(user);
     }
     
     public Log(StackTraceElement[] stackTrace, String message) {
@@ -42,11 +43,11 @@ public class Log {
         this.message = message;
     }
     
-    public Log(StackTraceElement[] stackTrace, String message, User user) {
+    public Log(StackTraceElement[] stackTrace, String message, Person user) {
         date = Calendar.getInstance();
         this.stackTrace = stackTrace;
         this.message = message;
-        this.user = user;
+        populateUserInfo(user);
     }
     
     @Override
@@ -54,8 +55,12 @@ public class Log {
         StringBuilder sb = new StringBuilder();
         sb.append("Time: " + date.getTime());
         sb.append("\n");
-        if (user != null) {
-            sb.append("Logged in user: " + user.toString());
+        if (userType != null) {
+            sb.append("Logged in user: " + userType);
+            sb.append("\n");
+        }
+        if (userId != 0) {
+            sb.append("User id: " + userId);
             sb.append("\n");
         }
         if (stackTrace != null) {
@@ -68,13 +73,26 @@ public class Log {
         return sb.toString();
     }
     
-    public String stackTraceToString(StackTraceElement[] stack) {
+    private String stackTraceToString(StackTraceElement[] stack) {
         StringBuilder sb = new StringBuilder();
         for (StackTraceElement element : stack) {
             sb.append(element.toString());
             sb.append("\n");
         }
         return sb.toString();
+    }
+    
+    private void populateUserInfo(Person user) {
+        userId = user.getId();
+        if (user instanceof ServiceWorker) {
+            userType = "Service worker";
+        } else if (user instanceof CaseWorker) {
+            userType = "Case worker";
+        } else if (user instanceof Admin) {
+            userType = "Admin";
+        } else if (user instanceof Customer) {
+            userType = "Customer";
+        }
     }
     
     // TODO: read and write from textfile

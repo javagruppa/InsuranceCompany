@@ -10,11 +10,13 @@ import insurancecompany.view.register.insurances.*;
 import insurancecompany.model.datastructures.*;
 import insurancecompany.model.datastructures.carinfo.*;
 import insurancecompany.model.people.*;
+import insurancecompany.model.properties.Address;
 import java.io.*;
 import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
 import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
 import javafx.stage.Stage;
 
 /**
@@ -79,7 +81,103 @@ public class MainController {
     private void initializeEventHandlers() {
         carInsuranceRegistration.setBrandComboListener(this::brandComboListener);
         carInsuranceRegistration.setYearComboListener(this::yearComboListener);
+        
+        customerRegistration.setRegisterButtonEventHandler(this::registerCustomerButtonEventHandler);
     }
+    
+    
+    // TODO: Trenger regex og validering
+    private void registerCustomerButtonEventHandler(ActionEvent event) {
+        boolean ok = true;
+        
+        String personalNumber = customerRegistration.getPersonalNumberField();
+        String firstName = customerRegistration.getFirstNameField();
+        String lastName = customerRegistration.getLastNameField();
+        String street = customerRegistration.getStreetField();
+        String zipCodeS = customerRegistration.getZipCodeField();
+        String city = customerRegistration.getCityField();
+        String email = customerRegistration.getEmailField();
+        String phone = customerRegistration.getPhoneField();
+        
+        if (personalNumber.equals("")) {
+            String message = "Fyll inn dette feltet.";
+            customerRegistration.setPersonalNumberMessage(message);
+            ok = false;
+        }
+ 
+        int zipCode = 0;
+        try {
+            zipCode = Integer.parseInt(zipCodeS);
+        } catch (NumberFormatException nfe) {
+            ok = false;
+        }
+        
+        // If all fields are filled in correctly proceed to creating and adding customer:
+        if (ok) {
+            // Creates an adress object for the customer:
+            Address adress = new Address(street, zipCode, city);
+            // Creates a new customer:
+            Customer customer = new Customer(firstName, lastName, personalNumber, email, adress, phone);
+            // Adds the new customer to the datastructure:
+            boolean addOk = customers.addCustomer(customer);
+            String result;
+            if (addOk) {
+                result = "Kunde registrert. Kundenummer: " + customer.getId();
+            } else {
+                result = "Kunden kunne ikke registreres. Kunde med likt personnummer eksisterer allerede.";
+            }
+            customerRegistration.setResultText(result);
+        }
+    }
+    
+    // TODO: Trenger regex og validering
+    private void registerEmployeeButtonEventHandler(ActionEvent event) {
+        
+        String position = employeeRegistration.getPositionComboValue();
+        String personalNumber = employeeRegistration.getPersonalNumberField();
+        String firstName = employeeRegistration.getFirstNameField();
+        String lastName = employeeRegistration.getLastNameField();
+        String street = employeeRegistration.getStreetField();
+        String zipCodeS = employeeRegistration.getZipCodeField();
+        String city = employeeRegistration.getCityField();
+        String email = employeeRegistration.getEmailField();
+        String phone = employeeRegistration.getPhoneField();
+
+        
+        if (personalNumber.equals("")) {
+            String message = "Fyll inn dette feltet.";
+            employeeRegistration.setPersonalNumberMessage(message);
+        }
+ 
+        int zipCode = 0;
+        try {
+            zipCode = Integer.parseInt(zipCodeS);
+        } catch (NumberFormatException nfe) {
+            
+        }
+        // Creates an adress object for the customer:
+        Address adress = new Address(street, zipCode, city);
+        // Creates a new customer:
+        Employee employee;
+        boolean ok = false;
+        switch (position) {
+            case "Kundebehandler" : employee = new ServiceWorker(firstName, lastName, personalNumber, email, adress, phone);
+            case "Saksbehandler" : employee = new CaseWorker(firstName, lastName, personalNumber, email, adress, phone);
+            case "Administrator" : employee = new Admin(firstName, lastName, personalNumber, email, adress, phone);
+            default: employee = new ServiceWorker(firstName, lastName, personalNumber, email, adress, phone);
+        }
+        // Adds the new customer to the datastructure:
+        ok = employees.addEmployee(employee);
+        String result;
+        if (ok) {
+            result = "Ansatt registrert. Ansattnuummer: " + employee.getId();
+        } else {
+            result = "Ansatt kunne ikke registreres. Ansatt med likt personnummer eksisterer allerede.";
+        }
+        
+        employeeRegistration.setResultText(result);
+    }
+    
     
     private void setBrandComboBox() {
         List cars = modelController.getCarInfos();

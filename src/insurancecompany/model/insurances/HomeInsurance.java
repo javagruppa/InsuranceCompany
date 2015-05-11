@@ -17,6 +17,8 @@ public class HomeInsurance extends PropertyInsurance implements Serializable {
     
     /** The home this insurance is for. */
     private Home home;
+    /** The type of home this insurance is for */
+    private HomeType hometype;
     
     /**
      * Constructs a new home insurance with the specified buildingAmount, 

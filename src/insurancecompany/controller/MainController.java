@@ -36,6 +36,7 @@ public class MainController {
     private InsuranceRegister insurances;
     private ClaimRegister claims;
     private LogRegister logs;
+    private BillRegister bills;
     
     // Insurance Registration Views:
     private BoatInsuranceRegistration boatInsuranceRegistration;
@@ -56,6 +57,7 @@ public class MainController {
         this.insurances = new InsuranceRegister();
         this.claims = new ClaimRegister();
         this.logs = new LogRegister();
+        this.bills = new BillRegister();
         
         this.boatInsuranceRegistration = new BoatInsuranceRegistration();
         this.carInsuranceRegistration = new CarInsuranceRegistration();
@@ -196,7 +198,10 @@ public class MainController {
         
     }
     
-    public void writeClaimsFromFile() {
+    
+    // READ AND WRITE FROM/TO FILE:
+    
+    public void writeClaimsToFile() {
         try {
             claims.writeClaimsToFile();
         } catch (NotSerializableException nse) {
@@ -209,6 +214,94 @@ public class MainController {
     public void readClaimsFromFile() {
         try {
             claims.readClaimsFromFile();
+        } catch (ClassNotFoundException cnfe) {
+            logs.add(cnfe.getStackTrace(), cnfe.getMessage(), user);
+        } catch (FileNotFoundException fnfe) {
+            logs.add(fnfe.getStackTrace(), fnfe.getMessage(), user);
+        } catch (IOException ioe) {
+            logs.add(ioe.getStackTrace(), ioe.getMessage(), user);
+        }
+    }
+    
+    public void writeCustomersToFile() {
+        try {
+            customers.writeCustomersToFile();
+        } catch (NotSerializableException nse) {
+            logs.add(nse.getStackTrace(), nse.getMessage(), user);
+        } catch (IOException ioe) {
+            logs.add(ioe.getStackTrace(), ioe.getMessage(), user);
+        }
+    }
+    
+    public void readCustomersFromFile() {
+        try {
+            customers.readCustomersFromFile();
+        } catch (ClassNotFoundException cnfe) {
+            logs.add(cnfe.getStackTrace(), cnfe.getMessage(), user);
+        } catch (FileNotFoundException fnfe) {
+            logs.add(fnfe.getStackTrace(), fnfe.getMessage(), user);
+        } catch (IOException ioe) {
+            logs.add(ioe.getStackTrace(), ioe.getMessage(), user);
+        }
+    }
+    
+    public void writeEmployeesToFile() {
+        try {
+            employees.writeEmployeesToFile();
+        } catch (NotSerializableException nse) {
+            logs.add(nse.getStackTrace(), nse.getMessage(), user);
+        } catch (IOException ioe) {
+            logs.add(ioe.getStackTrace(), ioe.getMessage(), user);
+        }
+    }
+    
+    public void readEmployeesFromFile() {
+        try {
+            employees.readEmployeesFromFile();
+        } catch (ClassNotFoundException cnfe) {
+            logs.add(cnfe.getStackTrace(), cnfe.getMessage(), user);
+        } catch (FileNotFoundException fnfe) {
+            logs.add(fnfe.getStackTrace(), fnfe.getMessage(), user);
+        } catch (IOException ioe) {
+            logs.add(ioe.getStackTrace(), ioe.getMessage(), user);
+        }
+    }
+    
+    public void writeInsurancesToFile() {
+        try {
+            insurances.writeInsurancesToFile();
+        } catch (NotSerializableException nse) {
+            logs.add(nse.getStackTrace(), nse.getMessage(), user);
+        } catch (IOException ioe) {
+            logs.add(ioe.getStackTrace(), ioe.getMessage(), user);
+        }
+    }
+    
+    public void readInsurancesFromFile() {
+        try {
+            insurances.readInsurancesFromFile();
+        } catch (ClassNotFoundException cnfe) {
+            logs.add(cnfe.getStackTrace(), cnfe.getMessage(), user);
+        } catch (FileNotFoundException fnfe) {
+            logs.add(fnfe.getStackTrace(), fnfe.getMessage(), user);
+        } catch (IOException ioe) {
+            logs.add(ioe.getStackTrace(), ioe.getMessage(), user);
+        }
+    }
+    
+    public void writeBillsToFile() {
+        try {
+            bills.writeBillsToFile();
+        } catch (NotSerializableException nse) {
+            logs.add(nse.getStackTrace(), nse.getMessage(), user);
+        } catch (IOException ioe) {
+            logs.add(ioe.getStackTrace(), ioe.getMessage(), user);
+        }
+    }
+    
+    public void readBillsFromFile() {
+        try {
+            bills.readBillsFromFile();
         } catch (ClassNotFoundException cnfe) {
             logs.add(cnfe.getStackTrace(), cnfe.getMessage(), user);
         } catch (FileNotFoundException fnfe) {

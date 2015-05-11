@@ -6,11 +6,13 @@
 
 package insurancecompany.model.people;
 import insurancecompany.model.properties.Address;
+import java.io.Serializable;
 /**
  *
  * @author Carl
  */
-public class Admin extends Employee {
+public class Admin extends Employee implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     /**
      * Constructs an Admin-object with the specified parameters

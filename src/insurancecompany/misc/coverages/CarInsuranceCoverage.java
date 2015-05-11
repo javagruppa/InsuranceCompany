@@ -42,7 +42,7 @@ public enum CarInsuranceCoverage {
         }
     }
     
-        public int getPricing() {
+    public int getPricing() {
         switch(this) {
             case CASCO: return 4000;
             case PARTLY_CASCO: return 2500;

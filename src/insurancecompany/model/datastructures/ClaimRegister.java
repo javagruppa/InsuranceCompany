@@ -36,8 +36,8 @@ public class ClaimRegister {
      * @param claim claim to be added to the register
      * @return 
      */
-    public void addClaim(Claim claim) {
-        claims.add(claim);
+    public boolean addClaim(Claim claim) {
+        return claims.add(claim);
     }
     
     /**

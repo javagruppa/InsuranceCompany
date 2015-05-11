@@ -37,8 +37,8 @@ public class InsuranceRegister {
      * @param insurance insurance to be appended to this list
      * @return true if this list changed as a result of the call
      */
-    public void addInsurance(Insurance insurance) {
-        insurances.add(insurance);
+    public boolean addInsurance(Insurance insurance) {
+        return insurances.add(insurance);
     }
     
     /**

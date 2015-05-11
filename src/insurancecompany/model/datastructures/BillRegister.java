@@ -36,8 +36,8 @@ public class BillRegister {
      * @param bill bill to be added to the register
      * @return 
      */
-    public void addBill(Bill bill) {
-        bills.add(bill);
+    public boolean addBill(Bill bill) {
+        return bills.add(bill);
     }
     
     /**

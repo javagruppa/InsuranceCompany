@@ -32,8 +32,8 @@ public class EmployeeRegister {
      * @param employee
      * @return 
      */
-    public void addEmployee(Employee employee) {
-        employees.add(employee);
+    public boolean addEmployee(Employee employee) {
+        return employees.add(employee);
     }
     
         /**

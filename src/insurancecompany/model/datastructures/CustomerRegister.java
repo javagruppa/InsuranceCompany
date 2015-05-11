@@ -33,8 +33,8 @@ public class CustomerRegister {
      * @param customer
      * @return 
      */
-    public void addCustomer(Customer customer) {
-        customers.add(customer);
+    public boolean addCustomer(Customer customer) {
+        return customers.add(customer);
     }
     
     /**

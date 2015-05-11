@@ -46,8 +46,10 @@ public class AdminView extends Application {
     private Pane statusBarPane;
     
     private Button registerTabButton;
+    //private Button processButton; // Til å behandle skademeldinger og evt regninger
     private Button searchTabButton;
     private Button statisticsTabButton;
+    private Button saveDataButton;
     private Button logOutButton;
     private Button exitButton;
     private Text userStatusText;
@@ -120,13 +122,15 @@ public class AdminView extends Application {
         statisticsTabButton = new Button("Statistikk");
         statisticsTabButton.setId("mainToolbarButton");
         
+        saveDataButton = new Button("Lagre datastrukturer");
+        saveDataButton.setId("mainToolbarButton");
         logOutButton = new Button("Logg ut");
         logOutButton.setId("mainToolbarButton");
         exitButton = new Button("Avslutt");
         exitButton.setId("mainToolbarButton");
         
         HBox hbox1 = new HBox();
-        hbox1.getChildren().addAll(logOutButton, exitButton);
+        hbox1.getChildren().addAll(saveDataButton, logOutButton, exitButton);
         hbox1.setAlignment(Pos.CENTER_RIGHT);
         HBox.setHgrow(hbox1, Priority.ALWAYS);
         
@@ -172,6 +176,10 @@ public class AdminView extends Application {
 
     public void setStatisticsButtonEventHandler(EventHandler<ActionEvent> value) {
         statisticsTabButton.setOnAction(value);
+    }
+    
+    public void setSaveDataButtonEventHandler(EventHandler<ActionEvent> value) {
+        saveDataButton.setOnAction(value);
     }
 
     public void setLogOutButtonEventHandler(EventHandler<ActionEvent> value) {

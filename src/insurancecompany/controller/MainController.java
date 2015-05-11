@@ -10,11 +10,13 @@ import insurancecompany.view.register.insurances.*;
 import insurancecompany.model.datastructures.*;
 import insurancecompany.model.datastructures.carinfo.*;
 import insurancecompany.model.people.*;
-import insurancecompany.model.properties.Address;
+import insurancecompany.model.properties.*;
+import insurancecompany.view.modules.*;
 import java.io.*;
 import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
+import javafx.application.Platform;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.stage.Stage;
@@ -35,6 +37,9 @@ public class MainController {
     private ClaimRegister claims;
     private LogRegister logs;
     private BillRegister bills;
+    
+    // Modules:
+    private AdminView adminView;
     
     // Insurance Registration Views:
     private BoatInsuranceRegistration boatInsuranceRegistration;
@@ -59,6 +64,9 @@ public class MainController {
         this.logs = new LogRegister();
         this.bills = new BillRegister();
         
+        
+        this.adminView = new AdminView();
+        
         this.boatInsuranceRegistration = new BoatInsuranceRegistration();
         this.carInsuranceRegistration = new CarInsuranceRegistration();
         this.holidayHomeInsuranceRegistration = new HolidayHomeInsuranceRegistration();
@@ -69,7 +77,7 @@ public class MainController {
         
         
         this.modelController = new ModelController(claims, employees, insurances, customers);
-        this.viewController = new ViewController(boatInsuranceRegistration, 
+        this.viewController = new ViewController(adminView, boatInsuranceRegistration, 
             carInsuranceRegistration, holidayHomeInsuranceRegistration,
             homeInsuranceRegistration, travelInsuranceRegistration, 
             customerRegistration, employeeRegistration);
@@ -79,12 +87,18 @@ public class MainController {
     }
     
     private void initializeEventHandlers() {
+        adminView.setExitButtonEventHandler(this::adminViewExitButtonEventHandler);
+        
         carInsuranceRegistration.setBrandComboListener(this::brandComboListener);
         carInsuranceRegistration.setYearComboListener(this::yearComboListener);
         
         customerRegistration.setRegisterButtonEventHandler(this::registerCustomerButtonEventHandler);
     }
+ 
     
+    private void adminViewExitButtonEventHandler(ActionEvent event) {
+        Platform.exit();
+    }    
     
     // TODO: Trenger regex og validering
     private void registerCustomerButtonEventHandler(ActionEvent event) {

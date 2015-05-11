@@ -56,7 +56,7 @@ public class ViewController {
     private TravelInsuranceRegistration travelInsuranceRegistration;
     
     // Constructor
-    public ViewController(BoatInsuranceRegistration boatInsuranceRegistration, 
+    public ViewController(AdminView adminView, BoatInsuranceRegistration boatInsuranceRegistration, 
             CarInsuranceRegistration carInsuranceRegistration, 
             HolidayHomeInsuranceRegistration holidayHomeInsuranceRegistration,
             HomeInsuranceRegistration homeInsuranceRegistration,
@@ -65,7 +65,7 @@ public class ViewController {
             EmployeeRegistration employeeRegistration) {
         
         // Initializes Module Views
-        this.adminView = new AdminView();
+        this.adminView = adminView;
         this.caseWorkerView = new CaseWorkerView();
         this.customerView = new CustomerView();
         this.loginView = new LoginView();
@@ -102,7 +102,6 @@ public class ViewController {
     public void initializeEventHandlers() {
         adminView.setRegisterButtonEventHandler(this::adminViewRegisterTabButtonEventHandler);
         adminView.setSearchButtonEventHandler(this::adminViewSearchTabButtonEventHandler);
-        adminView.setExitButtonEventHandler(this::adminViewExitButtonEventHandler);
         registerView.setInsurancesButtonEventHandler(this::registerViewInsurancesButtonEventHandler);
         registerView.setPersonsButtonEventHandler(this::registerViewPersonsButtonEventHandler);
         registerView.setClaimsButtonEventHandler(this::registerViewClaimsButtonEventHandler);
@@ -136,12 +135,6 @@ public class ViewController {
         adminView.getMainPane().setCenter(searchView.getMainPane());
         adminView.selectedButtonStyleUpper((Button) event.getSource());
     }
-    
-    // TODO: Plasseres i MainController slik at datastruktur kan lagres når avslutt knappen trykkes:
-    private void adminViewExitButtonEventHandler(ActionEvent event) {
-        Platform.exit();
-    }
-    
     
     // REGISTER VIEW EVENT HANDLERS
     

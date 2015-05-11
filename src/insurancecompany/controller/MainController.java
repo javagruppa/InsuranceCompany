@@ -5,7 +5,6 @@
  */
 package insurancecompany.controller;
 
-import insurancecompany.misc.User;
 import insurancecompany.view.register.persons.CustomerRegistration;
 import insurancecompany.view.register.insurances.TravelInsuranceRegistration;
 import insurancecompany.view.register.insurances.CarInsuranceRegistration;
@@ -28,14 +27,15 @@ import javafx.stage.Stage;
  */
 public class MainController {
     
-    /** Enum holding the value of the type of user that is currently logged in*/
-    private User user; // Used to identify user in LogRegister.
+    /** Reference to the logged in user.*/
+    private Person user;
     
     // Models:
     private EmployeeRegister employees;
     private CustomerRegister customers;
     private InsuranceRegister insurances;
     private ClaimRegister claims;
+    private LogRegister logs;
     
     // Insurance Registration Views:
     private BoatInsuranceRegistration boatInsuranceRegistration;
@@ -55,6 +55,7 @@ public class MainController {
         this.customers = new CustomerRegister();
         this.insurances = new InsuranceRegister();
         this.claims = new ClaimRegister();
+        this.logs = new LogRegister();
         
         this.boatInsuranceRegistration = new BoatInsuranceRegistration();
         this.carInsuranceRegistration = new CarInsuranceRegistration();
@@ -199,9 +200,9 @@ public class MainController {
         try {
             claims.writeClaimsToFile();
         } catch (NotSerializableException nse) {
-            
+            logs.add(nse.getStackTrace(), nse.getMessage(), user);
         } catch (IOException ioe) {
-            
+            logs.add(ioe.getStackTrace(), ioe.getMessage(), user);
         }
     }
     
@@ -209,15 +210,15 @@ public class MainController {
         try {
             claims.readClaimsFromFile();
         } catch (ClassNotFoundException cnfe) {
-            
+            logs.add(cnfe.getStackTrace(), cnfe.getMessage(), user);
         } catch (FileNotFoundException fnfe) {
-            
+            logs.add(fnfe.getStackTrace(), fnfe.getMessage(), user);
         } catch (IOException ioe) {
-            
+            logs.add(ioe.getStackTrace(), ioe.getMessage(), user);
         }
     }
     
-    public void show(Stage stage) {;
+    public void show(Stage stage) {
         viewController.show(stage);
     }
 }

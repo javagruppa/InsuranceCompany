@@ -19,9 +19,10 @@ public class HolidayHome extends Property {
      * 
      * @param address the address of this property
      */
-    public HolidayHome(Address address) {
-        super(address);
-        this.rental = false;
+    public HolidayHome(Address address, PropertyMaterial material, int area,
+            int year, boolean rental) {
+        super(address, material, area, year, rental);
+        
     }
     
     /**

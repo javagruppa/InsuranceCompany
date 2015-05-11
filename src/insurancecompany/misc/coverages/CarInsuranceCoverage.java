@@ -6,6 +6,7 @@
 package insurancecompany.misc.coverages;
 
 import insurancecompany.misc.damages.CarInsuranceDamages;
+import insurancecompany.misc.damages.Damage;
 import java.util.List;
 
 /**
@@ -15,22 +16,51 @@ import java.util.List;
 public enum CarInsuranceCoverage {
     CASCO {
         @Override
-        public List<String> damages() {
-            return CarInsuranceDamages.CASCO_COVERAGE;
+        public Damage[] damages() {
+            Damage[] damages = {
+                Damage.LIABILITY_DAMAGE,
+                Damage.LEGAL_AID,
+                Damage.DRIVER_AND_PASSANGER_ACCIDENT,
+                Damage.FIRE,
+                Damage.THEFT,
+                Damage.GLASS,
+                Damage.ROADSIDE_ASSISTANCE_NORDIC,
+                Damage.ROADSIDE_ASSISTANCE_EUROPE,
+                Damage.CAR_ASSISTANCE_NORWAY,
+                Damage.LUGGAGE,
+                Damage.MISFUELING,
+                Damage.WAGON_DAMAGE,
+                Damage.RENTAL_CASCO
+            };
+            return damages;
         }
     }, PARTLY_CASCO {
         @Override
-        public List<String> damages() {
-            return CarInsuranceDamages.PARTLY_CASCO_COVERAGE;
+        public Damage[] damages() {
+            Damage[] damages = {
+                Damage.LIABILITY_DAMAGE,
+                Damage.LEGAL_AID,
+                Damage.DRIVER_AND_PASSANGER_ACCIDENT,
+                Damage.FIRE,
+                Damage.THEFT,
+                Damage.GLASS,
+                Damage.ROADSIDE_ASSISTANCE_NORDIC
+            };
+            return damages;
         }
     }, LIABILITY {
         @Override
-        public List<String> damages() {
-            return CarInsuranceDamages.LIABILITY_COVERAGE;
+        public Damage[] damages() {
+            Damage[] damages = {
+                Damage.LIABILITY_DAMAGE,
+                Damage.LEGAL_AID,
+                Damage.DRIVER_AND_PASSANGER_ACCIDENT
+            };
+            return damages;
         }
     };
     
-    public abstract List<String> damages();
+    public abstract Damage[] damages();
     
     @Override
     public String toString() {

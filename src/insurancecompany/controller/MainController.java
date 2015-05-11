@@ -22,7 +22,7 @@ import javafx.event.ActionEvent;
 import javafx.stage.Stage;
 
 /**
- *
+ * Main controller. This class acts as a communication between the model and the view.
  * @author André
  */
 public class MainController {
@@ -87,6 +87,7 @@ public class MainController {
     }
     
     private void initializeEventHandlers() {
+        adminView.setSaveDataButtonEventHandler(this::adminViewSaveDataButtonEventHandler);
         adminView.setExitButtonEventHandler(this::adminViewExitButtonEventHandler);
         
         carInsuranceRegistration.setBrandComboListener(this::brandComboListener);
@@ -95,6 +96,14 @@ public class MainController {
         customerRegistration.setRegisterButtonEventHandler(this::registerCustomerButtonEventHandler);
     }
  
+    private void adminViewSaveDataButtonEventHandler(ActionEvent event) {
+        writeBillsToFile();
+        writeClaimsToFile();
+        writeCustomersToFile();
+        writeEmployeesToFile();
+        writeInsurancesToFile();
+    }
+    
     
     private void adminViewExitButtonEventHandler(ActionEvent event) {
         Platform.exit();

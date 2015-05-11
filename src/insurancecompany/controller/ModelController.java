@@ -5,7 +5,7 @@
  */
 package insurancecompany.controller;
 
-import insurancecompany.misc.User;
+
 import insurancecompany.model.datastructures.ClaimRegister;
 import insurancecompany.model.datastructures.CustomerRegister;
 import insurancecompany.model.datastructures.EmployeeRegister;
@@ -161,7 +161,7 @@ public class ModelController {
         
         Customer customer = new Customer(firstName, lastName, personalNumber, email, adress, phone);
         
-        int customerId = customer.getCustomerId();
+        int customerId = customer.getId();
         System.out.println(customerId);
         //boolean ok1 = customers.addCustomer(customer);
         
@@ -175,7 +175,7 @@ public class ModelController {
     private void registerBoatInsuranceEventHandler(ActionEvent e) {
         // Collects information about the customer and the insurance.
         String coverage = boatInsuranceRegistration.getCoverage();
-        String customerId = boatInsuranceRegistration.getCustomerId();
+        String customerId = boatInsuranceRegistration.getId();
         String customerPersonalNumber = boatInsuranceRegistration.getCustomerPersonalNumber();
         String excessString = boatInsuranceRegistration.getExcess();
         

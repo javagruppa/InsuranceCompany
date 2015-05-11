@@ -143,7 +143,6 @@ public class MainController {
     }
     
     private void yearComboListener(ObservableValue observable, Object oldValue, Object newValue) {
-        System.out.println("1111");
         Object value = newValue;
         String yearString;
         int year;

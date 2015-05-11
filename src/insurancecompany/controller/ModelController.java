@@ -5,10 +5,12 @@
  */
 package insurancecompany.controller;
 
+import insurancecompany.misc.User;
 import insurancecompany.model.datastructures.ClaimRegister;
 import insurancecompany.model.datastructures.CustomerRegister;
 import insurancecompany.model.datastructures.EmployeeRegister;
 import insurancecompany.model.datastructures.InsuranceRegister;
+import insurancecompany.model.datastructures.LogRegister;
 import insurancecompany.model.datastructures.carinfo.*;
 import insurancecompany.model.insurances.Insurance;
 import insurancecompany.model.people.Customer;
@@ -25,6 +27,7 @@ import javax.xml.bind.Unmarshaller;
 public class ModelController {
     
     private CarInfoRegister carInfoRegister;
+    private LogRegister logRegister;
     
     private ClaimRegister claims;
     private EmployeeRegister employees;
@@ -47,14 +50,9 @@ public class ModelController {
 		Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();               
 		CarInfoRegister carInfoRegister = (CarInfoRegister) jaxbUnmarshaller.unmarshal(file);
                 this.carInfoRegister = carInfoRegister;
-                
-                // test:
-                String name = carInfoRegister.getCars().get(1).getName();
-                int to = carInfoRegister.getCars().get(0).getModelRegister().getModels().get(2).getTo();
-		System.out.println(name + to);
  
 	  } catch (JAXBException e) {
-		e.printStackTrace();
+              logRegister.add(e.getStackTrace());
 	  }
     }
     

@@ -14,7 +14,7 @@ import java.util.Date;
  */
 public abstract class Person {
     /**the personal number of the person*/
-    private long personalNumber;
+    private String personalNumber;
     /**the first name of the person*/
     private String firstName;
     /**the last name of the person*/
@@ -38,7 +38,7 @@ public abstract class Person {
      * @param address the address of the person, as an object
      * @param phone the phone number of the person
      */
-    public Person(String firstName, String lastName, long personalNumber, String email, Address address, String phone) {
+    public Person(String firstName, String lastName, String personalNumber, String email, Address address, String phone) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.personalNumber = personalNumber;
@@ -73,7 +73,7 @@ public abstract class Person {
      * Returns the personal number of the person.
      * @return the personal number as an integer
      */
-    public long getPersonalNumber(){
+    public String getPersonalNumber(){
         return personalNumber;
     }
     

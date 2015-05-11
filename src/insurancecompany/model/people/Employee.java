@@ -24,7 +24,7 @@ public abstract class Employee extends Person {
     
     private final int employeeId;
     
-    public Employee(String firstname, String lastname, long personalNumber,
+    public Employee(String firstname, String lastname, String personalNumber,
             String email, Address address, String phone) {
         super(firstname, lastname, personalNumber, email, address, phone);
         employeeId = nextEmployeeId++;

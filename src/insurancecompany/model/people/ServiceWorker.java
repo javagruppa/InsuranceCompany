@@ -12,7 +12,7 @@ import insurancecompany.model.properties.Address;
  */
 public class ServiceWorker extends Employee {
 
-    public ServiceWorker(String firstname, String lastname, long personalNumber, String email, Address address, String phone) {
+    public ServiceWorker(String firstname, String lastname, String personalNumber, String email, Address address, String phone) {
         super(firstname, lastname, personalNumber, email, address, phone);
     }
 

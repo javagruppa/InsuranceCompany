@@ -30,7 +30,7 @@ public class Customer extends Person {
     private final int customerId;
     private List<Vehicle> vehicles;
     
-    public Customer(String firstname, String lastname, long personalNumber, String email, Address address, String phone) {
+    public Customer(String firstname, String lastname, String personalNumber, String email, Address address, String phone) {
         super(firstname, lastname, personalNumber, email, address, phone);
         customerId = nextCustomerId++;
     }

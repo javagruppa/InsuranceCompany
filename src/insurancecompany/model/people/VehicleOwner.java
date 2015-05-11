@@ -14,7 +14,7 @@ import insurancecompany.model.vehicles.Vehicle;
  */
 public class VehicleOwner extends Person {   
         
-    public VehicleOwner(String firstname, String lastname, long personalNumber, String email, Address address, String phone) {
+    public VehicleOwner(String firstname, String lastname, String personalNumber, String email, Address address, String phone) {
         super(firstname, lastname, personalNumber, email, address, phone);
     }
     

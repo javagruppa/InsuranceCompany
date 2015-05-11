@@ -10,12 +10,15 @@ import insurancecompany.misc.DateCalculations;
 import insurancecompany.misc.coverages.CarInsuranceCoverage;
 
 import java.util.Calendar;
+import java.io.Serializable;
 
 /**
  *
  * @author Sindre
  */
-public class CarInsurance extends Insurance {
+public class CarInsurance extends Insurance implements Serializable {
+    private static final long serialVersionUID = 1L;
+    
     /** The bonus of this insurance. Used to calculate the yearly insurance 
      * premium. */
     private int bonus;

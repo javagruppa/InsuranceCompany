@@ -5,11 +5,14 @@
  */
 package insurancecompany.model.insurances;
 
+import java.io.Serializable;
 /**
  *
  * @author Sindre
  */
-public abstract class PropertyInsurance extends Insurance {
+public abstract class PropertyInsurance extends Insurance implements Serializable {
+    private static final long serialVersionUID = 1L;
+    
     /** The building insurance amount of this insurance. */
     private int buildingAmount;
     /** The content insurance amount of this insurance. */

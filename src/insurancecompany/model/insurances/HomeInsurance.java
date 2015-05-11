@@ -6,12 +6,15 @@
 package insurancecompany.model.insurances;
 
 import insurancecompany.model.properties.Home;
+import java.io.Serializable;       
 
 /**
  *
  * @author Sindre
  */
-public class HomeInsurance extends PropertyInsurance {
+public class HomeInsurance extends PropertyInsurance implements Serializable {
+    private static final long serialVersionUID = 1L;
+    
     /** The home this insurance is for. */
     private Home home;
     

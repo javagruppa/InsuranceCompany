@@ -89,7 +89,7 @@ public class CustomerRegister {
      * Writes this registers set of customers to file.
      * @throws IOException 
      */
-    public void writeClaimSetToFile() throws IOException{
+    public void writeCustomersToFile() throws IOException{
         try (ObjectOutputStream oos = new ObjectOutputStream(
                 new FileOutputStream(customersFilePath))) {
             oos.writeObject(customers);
@@ -100,7 +100,7 @@ public class CustomerRegister {
      * @throws IOException
      * @throws ClassNotFoundException 
      */
-    public void readClaimSetFromFile() throws IOException, ClassNotFoundException {
+    public void readCustomersFromFile() throws IOException, ClassNotFoundException {
         try (ObjectInputStream ois = new ObjectInputStream(
                 new FileInputStream(customersFilePath))) {
             customers = (HashSet<Customer>) ois.readObject();        

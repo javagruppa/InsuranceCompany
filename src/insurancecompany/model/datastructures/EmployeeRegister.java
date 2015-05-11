@@ -70,7 +70,7 @@ public class EmployeeRegister {
      * Writes this registers set of employees to file.
      * @throws IOException 
      */
-    public void writeClaimSetToFile() throws IOException{
+    public void writeEmployeesToFile() throws IOException{
         try (ObjectOutputStream oos = new ObjectOutputStream(
                 new FileOutputStream(employeesFilePath))) {
             oos.writeObject(employees);
@@ -81,7 +81,7 @@ public class EmployeeRegister {
      * @throws IOException
      * @throws ClassNotFoundException 
      */
-    public void readClaimSetFromFile() throws IOException, ClassNotFoundException {
+    public void readEmployeesFromFile() throws IOException, ClassNotFoundException {
         try (ObjectInputStream ois = new ObjectInputStream(
                 new FileInputStream(employeesFilePath))) {
             employees = (HashSet<Employee>) ois.readObject();        

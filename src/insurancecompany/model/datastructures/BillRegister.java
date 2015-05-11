@@ -151,7 +151,7 @@ public class BillRegister {
      * Writes this registers set of claims to file.
      * @throws IOException 
      */
-    public void writeClaimSetToFile() throws IOException{
+    public void writeBillsToFile() throws IOException{
         try (ObjectOutputStream oos = new ObjectOutputStream(
                 new FileOutputStream(billsFilePath))) {
             oos.writeObject(bills);
@@ -162,7 +162,7 @@ public class BillRegister {
      * @throws IOException
      * @throws ClassNotFoundException 
      */
-    public void readClaimSetFromFile() throws IOException, ClassNotFoundException {
+    public void readBillsFromFile() throws IOException, ClassNotFoundException {
         try (ObjectInputStream ois = new ObjectInputStream(
                 new FileInputStream(billsFilePath))) {
             bills = (HashSet<Bill>) ois.readObject();        

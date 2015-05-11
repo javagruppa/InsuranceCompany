@@ -151,7 +151,7 @@ public class ClaimRegister {
      * Writes this registers set of claims to file.
      * @throws IOException 
      */
-    public void writeClaimSetToFile() throws IOException{
+    public void writeClaimsToFile() throws IOException{
         try (ObjectOutputStream oos = new ObjectOutputStream(
                 new FileOutputStream(claimsFilePath))) {
             oos.writeObject(claims);
@@ -162,7 +162,7 @@ public class ClaimRegister {
      * @throws IOException
      * @throws ClassNotFoundException 
      */
-    public void readClaimSetFromFile() throws IOException, ClassNotFoundException {
+    public void readClaimsFromFile() throws IOException, ClassNotFoundException {
         try (ObjectInputStream ois = new ObjectInputStream(
                 new FileInputStream(claimsFilePath))) {
             claims = (HashSet<Claim>) ois.readObject();        

@@ -186,7 +186,7 @@ public class InsuranceRegister {
      * Writes this registers set of insurances to file.
      * @throws IOException 
      */
-    public void writeClaimSetToFile() throws IOException{
+    public void writeInsurancesToFile() throws IOException{
         try (ObjectOutputStream oos = new ObjectOutputStream(
                 new FileOutputStream(insurancesFilePath))) {
             oos.writeObject(insurances);
@@ -197,7 +197,7 @@ public class InsuranceRegister {
      * @throws IOException
      * @throws ClassNotFoundException 
      */
-    public void readClaimSetFromFile() throws IOException, ClassNotFoundException {
+    public void readInsurancesFromFile() throws IOException, ClassNotFoundException {
         try (ObjectInputStream ois = new ObjectInputStream(
                 new FileInputStream(insurancesFilePath))) {
             insurances = (HashSet<Insurance>) ois.readObject();        

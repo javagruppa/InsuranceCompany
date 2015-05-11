@@ -15,6 +15,7 @@ import insurancecompany.view.register.insurances.BoatInsuranceRegistration;
 import insurancecompany.model.datastructures.*;
 import insurancecompany.model.datastructures.carinfo.*;
 import insurancecompany.model.people.*;
+import java.io.*;
 import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
@@ -60,11 +61,13 @@ public class MainController {
         this.holidayHomeInsuranceRegistration = new HolidayHomeInsuranceRegistration();
         this.homeInsuranceRegistration = new HomeInsuranceRegistration();
         this.travelInsuranceRegistration = new TravelInsuranceRegistration();
+        this.customerRegistration = new CustomerRegistration();
+        
         
         this.modelController = new ModelController(claims, employees, insurances, customers);
         this.viewController = new ViewController(boatInsuranceRegistration, 
             carInsuranceRegistration, holidayHomeInsuranceRegistration,
-            homeInsuranceRegistration, travelInsuranceRegistration);
+            homeInsuranceRegistration, travelInsuranceRegistration, customerRegistration);
         
         setBrandComboBox();
         initializeEventHandlers();
@@ -190,6 +193,28 @@ public class MainController {
         }
         
         
+    }
+    
+    public void writeClaimsFromFile() {
+        try {
+            claims.writeClaimsToFile();
+        } catch (NotSerializableException nse) {
+            
+        } catch (IOException ioe) {
+            
+        }
+    }
+    
+    public void readClaimsFromFile() {
+        try {
+            claims.readClaimsFromFile();
+        } catch (ClassNotFoundException cnfe) {
+            
+        } catch (FileNotFoundException fnfe) {
+            
+        } catch (IOException ioe) {
+            
+        }
     }
     
     public void show(Stage stage) {;

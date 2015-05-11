@@ -21,14 +21,12 @@ public abstract class PropertyInsurance extends Insurance implements Serializabl
      * contentAmount, customerId and excess. Active is set to true. Date is set 
      * to the current date. InsuranceId is automatically set to nextInsuranceId.
      * 
-     * @param contentAmount the content insurance amount of this insurance
      * @param customerId the id of the customer who owns this insurance
      * @param excess the excess of this insurance
      */
-    public PropertyInsurance(int contentAmount, 
-            int customerId, int excess) {
+    public PropertyInsurance(int customerId, int excess) {
         super(customerId, excess);
-        this.contentAmount = contentAmount;
+        
     }
     
    

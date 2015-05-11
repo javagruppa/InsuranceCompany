@@ -29,8 +29,8 @@ public class LogRegister {
         logs.add(log);
     }
     
-    public void add(String customDescription) {
-        Log log = new Log(customDescription);
+    public void add(String message) {
+        Log log = new Log(message);
         add(log);
     }
     
@@ -44,13 +44,13 @@ public class LogRegister {
         add(log);
     }
     
-    public void add(StackTraceElement[] stackTrace, String customDescription) {
-        Log log = new Log(stackTrace, customDescription);
+    public void add(StackTraceElement[] stackTrace, String message) {
+        Log log = new Log(stackTrace, message);
         add(log);
     }
     
-    public void add(StackTraceElement[] stackTrace, String customDescription, User user) {
-        Log log = new Log(stackTrace, customDescription, user);
+    public void add(StackTraceElement[] stackTrace, String message, User user) {
+        Log log = new Log(stackTrace, message, user);
         add(log);
     }
     

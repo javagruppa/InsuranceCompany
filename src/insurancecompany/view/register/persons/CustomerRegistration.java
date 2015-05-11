@@ -5,6 +5,8 @@
  */
 package insurancecompany.view.register.persons;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -277,5 +279,8 @@ public class CustomerRegistration {
     public void setResultText(String resultText) {
         this.resultText.setText(resultText);
     }
-    
+       
+    public void setRegisterButtonEventHandler(EventHandler<ActionEvent> value) {
+        registerButton.setOnAction(value);
+    }
 }

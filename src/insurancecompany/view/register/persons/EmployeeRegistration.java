@@ -8,6 +8,8 @@ package insurancecompany.view.register.persons;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -305,4 +307,7 @@ public class EmployeeRegistration {
         this.resultText.setText(resultText);
     }
     
+    public void setRegisterButtonEventHandler(EventHandler<ActionEvent> value) {
+        registerButton.setOnAction(value);
+    }
 }

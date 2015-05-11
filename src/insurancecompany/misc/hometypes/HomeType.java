@@ -26,11 +26,11 @@ public enum HomeType {
     
     public int getPricing() {
         switch(this) {
-            case APARTMENT: return 2000;
+            case APARTMENT: return 4000;
             case VILLA: return 8000;
-            case LINKED_HOUSE: return 3500;
-            case DETACHED_HOUSE: return 5000;
-            case SEMI_DETACHED_HOUSE: return 3500;
+            case LINKED_HOUSE: return 5000;
+            case DETACHED_HOUSE: return 6500;
+            case SEMI_DETACHED_HOUSE: return 5000;
             default: throw new IllegalArgumentException();
         }
     }

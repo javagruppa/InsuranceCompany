@@ -45,6 +45,8 @@ public class HomeContentInsurance extends PropertyInsurance implements Serializa
         this.coverage = coverage;
     }
     
+    
+    
     public Home getHome(){
         return home;
     }

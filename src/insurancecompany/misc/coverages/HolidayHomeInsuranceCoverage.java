@@ -13,13 +13,12 @@ import java.util.List;
  * @author André
  */
 public enum HolidayHomeInsuranceCoverage {
-    HOME, CONTENTS, HOME_AND_CONTENTS;
+    PLUS, BASIC;
     
     public List<String> damages() {
         switch(this) {
-            case HOME: return HolidayHomeInsuranceDamages.HOLIDAY_HOME_COVERAGE;
-            case CONTENTS: return HolidayHomeInsuranceDamages.HOLIDAY_HOME_CONTENTS_COVERAGE;
-            case HOME_AND_CONTENTS: return HolidayHomeInsuranceDamages.HOLIDAY_HOME_FULL_COVERAGE;
+            case PLUS: return HolidayHomeInsuranceDamages.HOLIDAY_HOME_COVERAGE;
+            case BASIC: return HolidayHomeInsuranceDamages.HOLIDAY_HOME_CONTENTS_COVERAGE;
             default: throw new IllegalArgumentException();
         }
     }
@@ -27,9 +26,16 @@ public enum HolidayHomeInsuranceCoverage {
     @Override
     public String toString() {
         switch(this) {
-            case HOME: return "Fritidsbolig hus";
-            case CONTENTS: return "Fritidsbolig innbo";
-            case HOME_AND_CONTENTS: return "Fritidsbolig hus og innbo";
+            case PLUS: return "Pluss";
+            case BASIC: return "Basis";
+            default: throw new IllegalArgumentException();
+        }
+    }
+    
+    public int getPricing() {
+        switch(this) {
+            case PLUS: return 1000;
+            case BASIC: return 0;
             default: throw new IllegalArgumentException();
         }
     }

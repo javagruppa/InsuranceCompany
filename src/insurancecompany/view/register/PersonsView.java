@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
@@ -63,12 +65,13 @@ public class PersonsView {
         //sp.setFitToWidth(true);
         mainPane.setLeft(sideToolBarPane);
         scene = new Scene(mainPane, 800, 600);
-        initializeViews();
-        initializeEventHandlers();      
+        //initializeViews();
+        //initializeEventHandlers();      
     }
+    /*
     private void initializeViews() {
-        customerRegistration = new CustomerRegistration();
-        customerRegistrationPane = customerRegistration.getMainPane();
+        //customerRegistration = new CustomerRegistration();
+        //customerRegistrationPane = customerRegistration.getMainPane();
     }
     
     private void initializeEventHandlers() {
@@ -83,9 +86,9 @@ public class PersonsView {
             //selectedButtonStyleLower(employeeButton);
         });
     }
+    */
     
-    // TODO: Change to setId, and make a custom style for selected, will not have hover etc
-    private void selectedButtonStyleLower(Button button) {
+    public void selectedButtonStyleLower(Button button) {
         customerButton.setId("sideToolbarButton");
         employeeButton.setId("sideToolbarButton");
         button.setId("sideToolbarButtonSelected");
@@ -123,5 +126,14 @@ public class PersonsView {
     
     public BorderPane getMainPane() {
         return mainPane;
+    }
+
+    
+    public void setCustomerButtonEventHandler(EventHandler<ActionEvent> value) {
+        customerButton.setOnAction(value);
+    }
+    
+    public void setEmployeeButtonEventHandler(EventHandler<ActionEvent> value) {
+        employeeButton.setOnAction(value);
     }
 }

@@ -48,6 +48,8 @@ public abstract class Person {
         registeredDate = Calendar.getInstance().getTime();
     }
     
+    public abstract int getId();
+    
     public String getName(){
         return firstName + " " + lastName;
     }

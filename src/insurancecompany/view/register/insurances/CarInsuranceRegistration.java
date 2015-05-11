@@ -77,8 +77,8 @@ public class CarInsuranceRegistration {
         mainPane.setHgap(10);
         mainPane.setVgap(10);
         mainPane.setStyle("-fx-background-color: #E7E7FF;");
-        mainPane.getColumnConstraints().addAll(new ColumnConstraints(200), 
-                new ColumnConstraints(200), new ColumnConstraints(200));
+        mainPane.getColumnConstraints().addAll(new ColumnConstraints(150), 
+                new ColumnConstraints(150), new ColumnConstraints(150));
         
         Text customerIdTitle = new Text("Tegning av bilforsikring krever at kunden allerede er registrert i systemet.");
         customerIdLabel = new Label("Kundenummer:");

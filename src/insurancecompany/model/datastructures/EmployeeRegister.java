@@ -52,7 +52,7 @@ public class EmployeeRegister {
      */
     public Employee getEmployeeById(int employeeId) {
         for (Employee employee : employees) {
-            if (employee.getEmployeeId() == employeeId) {
+            if (employee.getId() == employeeId) {
                 return employee;
             }
         }

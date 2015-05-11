@@ -34,7 +34,8 @@ public class Customer extends Person {
         customerId = nextCustomerId++;
     }
     
-    public int getCustomerId(){
+    @Override
+    public int getId(){
         return customerId;
     }
     
@@ -56,7 +57,7 @@ public class Customer extends Person {
     public boolean equals(Object obj) {
         if(obj != null && obj instanceof Customer) {
             Customer other = (Customer) obj;
-            return getCustomerId()== other.getCustomerId();
+            return getId()== other.getId();
         } else {
             return false;
         }   
@@ -71,7 +72,7 @@ public class Customer extends Person {
     public int hashCode() {
         final int prime = 31;
         int result = 17;
-        result = prime * result + getCustomerId();
+        result = prime * result + getId();
         return result;
     }    
     public static void saveNextIdToFile() throws IOException {

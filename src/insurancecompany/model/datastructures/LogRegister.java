@@ -5,8 +5,8 @@
  */
 package insurancecompany.model.datastructures;
 
-import insurancecompany.misc.User;
 import insurancecompany.misc.logs.Log;
+import insurancecompany.model.people.Person;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,7 +39,7 @@ public class LogRegister {
         add(log);
     }
     
-    public void add(StackTraceElement[] stackTrace, User user) {
+    public void add(StackTraceElement[] stackTrace, Person user) {
         Log log = new Log(stackTrace, user);
         add(log);
     }
@@ -49,7 +49,7 @@ public class LogRegister {
         add(log);
     }
     
-    public void add(StackTraceElement[] stackTrace, String message, User user) {
+    public void add(StackTraceElement[] stackTrace, String message, Person user) {
         Log log = new Log(stackTrace, message, user);
         add(log);
     }

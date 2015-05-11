@@ -47,7 +47,8 @@ public class CustomerRegistration extends Application {
     private Label phoneMessage;
     
     private Button registerButton;
-    private TextArea outputTextArea;
+    
+    private Text resultText;
     
     public static void main(String[] args) {
         launch(args);
@@ -125,10 +126,7 @@ public class CustomerRegistration extends Application {
         hbBtn.setAlignment(Pos.BOTTOM_RIGHT);
         hbBtn.getChildren().add(registerButton);
         mainPane.add(hbBtn, 2, 12);
-        outputTextArea = new TextArea();
-        outputTextArea.setPrefColumnCount(30);
-        outputTextArea.setEditable(false);
-        mainPane.add(outputTextArea, 4, 1, 1, 12);
+        resultText = new Text();
         
     }
     
@@ -159,128 +157,113 @@ public class CustomerRegistration extends Application {
     /**
      * @return the personalNumberField
      */
-    public TextField getPersonalNumberField() {
-        return personalNumberField;
+    public String getPersonalNumberField() {
+        return personalNumberField.getText();
     }
 
     /**
      * @return the firstNameField
      */
-    public TextField getFirstNameField() {
-        return firstNameField;
+    public String getFirstNameField() {
+        return firstNameField.getText();
     }
 
     /**
      * @return the lastNameField
      */
-    public TextField getLastNameField() {
-        return lastNameField;
+    public String getLastNameField() {
+        return lastNameField.getText();
     }
 
     /**
      * @return the streetField
      */
-    public TextField getStreetField() {
-        return streetField;
+    public String getStreetField() {
+        return streetField.getText();
     }
 
     /**
      * @return the zipCodeField
      */
-    public TextField getZipCodeField() {
-        return zipCodeField;
+    public String getZipCodeField() {
+        return zipCodeField.getText();
     }
 
     /**
      * @return the cityField
      */
-    public TextField getCityField() {
-        return cityField;
+    public String getCityField() {
+        return cityField.getText();
     }
 
     /**
      * @return the emailField
      */
-    public TextField getEmailField() {
-        return emailField;
+    public String getEmailField() {
+        return emailField.getText();
     }
 
     /**
      * @return the phoneField
      */
-    public TextField getPhoneField() {
-        return phoneField;
-    }
-
-    /**
-     * @return the registerButton
-     */
-    public Button getRegisterButton() {
-        return registerButton;
-    }
-
-    /**
-     * 
-     * @param text 
-     */
-    public void setOutputTextArea(String text) {
-        outputTextArea.setText(text);
+    public String getPhoneField() {
+        return phoneField.getText();
     }
 
     /**
      * @param personalNumberMessage the personalNumberMessage to set
      */
-    public void setPersonalNumberMessage(Label personalNumberMessage) {
-        this.personalNumberMessage = personalNumberMessage;
+    public void setPersonalNumberMessage(String personalNumberMessage) {
+        this.personalNumberMessage.setText(personalNumberMessage);
     }
 
     /**
      * @param firstNameMessage the firstNameMessage to set
      */
-    public void setFirstNameMessage(Label firstNameMessage) {
-        this.firstNameMessage = firstNameMessage;
+    public void setFirstNameMessage(String firstNameMessage) {
+        this.firstNameMessage.setText(firstNameMessage);
     }
 
     /**
      * @param lastNameMessage the lastNameMessage to set
      */
-    public void setLastNameMessage(Label lastNameMessage) {
-        this.lastNameMessage = lastNameMessage;
+    public void setLastNameMessage(String lastNameMessage) {
+        this.lastNameMessage.setText(lastNameMessage);
     }
 
     /**
      * @param streetMessage the streetMessage to set
      */
-    public void setStreetMessage(Label streetMessage) {
-        this.streetMessage = streetMessage;
+    public void setStreetMessage(String streetMessage) {
+        this.streetMessage.setText(streetMessage);
     }
 
     /**
      * @param zipCodeMessage the zipCodeMessage to set
      */
-    public void setZipCodeMessage(Label zipCodeMessage) {
-        this.zipCodeMessage = zipCodeMessage;
+    public void setZipCodeMessage(String zipCodeMessage) {
+        this.zipCodeMessage.setText(zipCodeMessage);
     }
 
     /**
      * @param cityMessage the cityMessage to set
      */
-    public void setCityMessage(Label cityMessage) {
-        this.cityMessage = cityMessage;
+    public void setCityMessage(String cityMessage) {
+        this.cityMessage.setText(cityMessage);
     }
 
     /**
      * @param emailMessage the emailMessage to set
      */
-    public void setEmailMessage(Label emailMessage) {
-        this.emailMessage = emailMessage;
+    public void setEmailMessage(String emailMessage) {
+        this.emailMessage.setText(emailMessage);
     }
 
     /**
      * @param phoneMessage the phoneMessage to set
      */
-    public void setPhoneMessage(Label phoneMessage) {
-        this.phoneMessage = phoneMessage;
+    public void setPhoneMessage(String phoneMessage) {
+        this.phoneMessage.setText(phoneMessage);
     }
     
 }

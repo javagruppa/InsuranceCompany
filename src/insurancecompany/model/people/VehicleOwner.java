@@ -22,5 +22,10 @@ public class VehicleOwner extends Person {
         String text = "";
         return text;
     }
+
+    @Override
+    public int getId() {
+        return 0;
+    }
         
 }

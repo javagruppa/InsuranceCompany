@@ -63,7 +63,7 @@ public abstract class Employee extends Person {
     public boolean equals(Object obj) {
         if(obj != null && obj instanceof Employee) {
             Employee other = (Employee) obj;
-            return getEmployeeId()== other.getEmployeeId();
+            return getId()== other.getId();
         } else {
             return false;
         }   
@@ -78,11 +78,12 @@ public abstract class Employee extends Person {
     public int hashCode() {
         final int prime = 31;
         int result = 17;
-        result = prime * result + getEmployeeId();
+        result = prime * result + getId();
         return result;
     }
     
-    public int getEmployeeId() {
+    @Override
+    public int getId() {
         return employeeId;
     }
     

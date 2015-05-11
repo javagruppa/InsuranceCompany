@@ -44,7 +44,7 @@ public class CustomerRegister {
      */
     public Customer findCustomerById(int customerId) {
         for (Customer customer : customers) {
-            if (customer.getCustomerId() == customerId) {
+            if (customer.getId() == customerId) {
                 return customer;
             }
         }

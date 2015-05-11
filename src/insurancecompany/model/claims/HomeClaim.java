@@ -7,6 +7,7 @@ package insurancecompany.model.claims;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -15,13 +16,17 @@ import java.util.Date;
 public class HomeClaim extends Claim {
      
     
-    private ArrayList<ClaimItem> items;
+    private List<ClaimItem> items;
     
     /**
-     * Empty constructor.
+     * 
+     * @param customerId
+     * @param insuranceId
+     * @param description
      */
     public HomeClaim(int customerId, int insuranceId, String description) {
         super(customerId, insuranceId, description);
+        items = new ArrayList<ClaimItem>();
     }
     
     /**

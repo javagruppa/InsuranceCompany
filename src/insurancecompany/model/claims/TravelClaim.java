@@ -13,7 +13,7 @@ import java.util.Date;
  */
 public class TravelClaim extends Claim {
     
-    private String creditCard;
+    private String creditCardBrand;
     /**
      * Empty constructor.
      */
@@ -35,5 +35,19 @@ public class TravelClaim extends Claim {
         String text = "Reiseskademelding\n";
         text += super.toString();
         return text;
+    }
+
+    /**
+     * @return the creditCardBrand
+     */
+    public String getCreditCardBrand() {
+        return creditCardBrand;
+    }
+
+    /**
+     * @param creditCardBrand the creditCardBrand to set
+     */
+    public void setCreditCardBrand(String creditCardBrand) {
+        this.creditCardBrand = creditCardBrand;
     }
 }

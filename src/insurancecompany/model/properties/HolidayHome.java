@@ -35,7 +35,7 @@ public class HolidayHome extends Property {
     }
     
     /**
-     * Sets a rental status to this holidat home.
+     * Sets a rental status to this holiday home.
      * 
      * @param rental whether the holiday home is a rental or not
      */

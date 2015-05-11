@@ -26,11 +26,11 @@ public enum HolidayHomeType {
     
     public int getPricing() {
         switch(this) {
-            case APARTMENT: return 1500;
-            case VILLA: return 6000;
-            case LINKED_HOUSE: return 2500;
-            case DETACHED_HOUSE: return 3500;
-            case SEMI_DETACHED_HOUSE: return 2500;
+            case APARTMENT: return 4000;
+            case VILLA: return 8000;
+            case LINKED_HOUSE: return 500;
+            case DETACHED_HOUSE: return 6500;
+            case SEMI_DETACHED_HOUSE: return 5000;
             default: throw new IllegalArgumentException();
         }
     }

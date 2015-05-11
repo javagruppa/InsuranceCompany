@@ -5,6 +5,7 @@
  */
 package insurancecompany.model.claims;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -13,7 +14,8 @@ import java.util.List;
  *
  * @author André
  */
-public class HomeClaim extends Claim {
+public class HomeClaim extends Claim implements Serializable {
+    private static final long serialVersionUID = 1L;
      
     
     private List<ClaimItem> items;

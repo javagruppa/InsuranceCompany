@@ -6,13 +6,16 @@
  */
 package insurancecompany.model.people;
 import insurancecompany.model.properties.Address;
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 /**
  *
  * @author Carl
  */
-public abstract class Person {
+public abstract class Person implements Serializable {
+    private static final long serialVersionUID = 1L;
+    
     /**the personal number of the person*/
     private String personalNumber;
     /**the first name of the person*/

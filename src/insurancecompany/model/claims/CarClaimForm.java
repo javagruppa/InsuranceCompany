@@ -9,12 +9,15 @@ package insurancecompany.model.claims;
 import insurancecompany.model.people.Customer;
 import insurancecompany.model.people.Person;
 import insurancecompany.model.vehicles.Car;
+import java.io.Serializable;
 
 /**
  *
  * @author Carl
  */
-public class CarClaimForm {
+public class CarClaimForm implements Serializable {
+    private static final long serialVersionUID = 1L;
+    
     private Car car;
     private Customer owner;
     private Person otherPerson;

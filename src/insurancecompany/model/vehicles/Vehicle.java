@@ -5,12 +5,16 @@
  */
 package insurancecompany.model.vehicles;
 
+import java.io.Serializable;
+
 /**
  *
  * @author André
  * @author Sindre
  */
-public abstract class Vehicle {
+public abstract class Vehicle implements Serializable {
+    private static final long serialVersionUID = 1L;
+    
     /** Whether this vehicle has an alarm or not. */
     private boolean alarm;
     /** The brand of this vehicle. */

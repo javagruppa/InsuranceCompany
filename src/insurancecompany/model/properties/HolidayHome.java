@@ -5,11 +5,15 @@
  */
 package insurancecompany.model.properties;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Sindre
  */
-public class HolidayHome extends Property {
+public class HolidayHome extends Property implements Serializable {
+    private static final long serialVersionUID = 1L;
+    
     /** Whether the holiday home is a rental or not. */
     private boolean rental;
     

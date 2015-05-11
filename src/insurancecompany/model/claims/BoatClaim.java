@@ -5,13 +5,15 @@
  */
 package insurancecompany.model.claims;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
  * @author André
  */
-public class BoatClaim extends Claim {
+public class BoatClaim extends Claim implements Serializable {
+    private static final long serialVersionUID = 1L;
     
     /**
      * Empty constructor.

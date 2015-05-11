@@ -5,13 +5,15 @@
  */
 package insurancecompany.model.claims;
 
+import java.io.Serializable;
 import java.util.Calendar;
 
 /**
  *
  * @author André
  */
-public class ClaimItem {
+public class ClaimItem implements Serializable {
+    private static final long serialVersionUID = 1L;
     
     private String description; // NOR: Type/modell/fabrikk/år
     private String aqquiredArea; // NOR: Hvor kjøpt/Av hvem fått

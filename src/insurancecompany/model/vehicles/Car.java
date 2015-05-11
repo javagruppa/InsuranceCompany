@@ -5,12 +5,16 @@
  */
 package insurancecompany.model.vehicles;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Carl
  * @author Sindre
  */
-public class Car extends Vehicle {
+public class Car extends Vehicle implements Serializable {
+    private static final long serialVersionUID = 1L;
+    
     /**
      * Constructs a new car of the specified brand and model, and with the
      * specified engine effect, registration number and registration year. The

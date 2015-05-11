@@ -5,11 +5,15 @@
  */
 package insurancecompany.model.properties;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Sindre
  */
-public abstract class Property {
+public abstract class Property implements Serializable {
+    private static final long serialVersionUID = 1L;
+    
     /** The address of this property. */
     private Address address;
     /** The floor area of this property. */

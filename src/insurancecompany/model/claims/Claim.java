@@ -19,7 +19,8 @@ import java.util.Calendar;
  *
  * @author André
  */
-public abstract class Claim {
+public abstract class Claim implements Serializable {
+    private static final long serialVersionUID = 1L;
     
     private static int nextClaimId = 1000000;
     private static String claimIdFileName = "/nextIdNumbers/claimId.dta";

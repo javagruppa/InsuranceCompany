@@ -16,7 +16,8 @@ import java.util.List;
  *
  * @author Carl
  */
-public class Customer extends Person {
+public class Customer extends Person implements Serializable {
+    private static final long serialVersionUID = 1L;
     
     private static int nextCustomerId = 1000000;
     private static String customerIdFileName = "/nextIdNumbers/customerId.dta";

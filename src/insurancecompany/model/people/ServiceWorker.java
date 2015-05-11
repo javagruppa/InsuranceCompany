@@ -6,11 +6,13 @@
 
 package insurancecompany.model.people;
 import insurancecompany.model.properties.Address;
+import java.io.Serializable;
 /**
  *
  * @author Carl
  */
-public class ServiceWorker extends Employee {
+public class ServiceWorker extends Employee implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     public ServiceWorker(String firstname, String lastname, String personalNumber, String email, Address address, String phone) {
         super(firstname, lastname, personalNumber, email, address, phone);

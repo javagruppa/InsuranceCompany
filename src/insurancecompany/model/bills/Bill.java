@@ -12,7 +12,8 @@ import java.util.Calendar;
  *
  * @author André
  */
-public class Bill {
+public class Bill implements Serializable {
+    private static final long serialVersionUID = 1L;
     
     /** Constant representing the number of days until each due date from issue, as well as days to dunningDate */
     public static final int FIXED_DUE_DAYS = 14;

@@ -5,11 +5,15 @@
  */
 package insurancecompany.model.properties;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Sindre
  */
-public class Home extends Property {
+public class Home extends Property implements Serializable {
+    private static final long serialVersionUID = 1L;
+    
     /**
      * Constructs a new home with the specified address. Area and year are 
      * set to 0. Material and type are set to null.

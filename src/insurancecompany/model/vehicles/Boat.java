@@ -5,12 +5,15 @@
  */
 package insurancecompany.model.vehicles;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Carl
  * @author Sindre
  */
-public class Boat extends Vehicle{
+public class Boat extends Vehicle implements Serializable {
+    private static final long serialVersionUID = 1L;
     /** The type of the engine of this boat. */
     private String engineType;
     /** The length of this boat in feet. */

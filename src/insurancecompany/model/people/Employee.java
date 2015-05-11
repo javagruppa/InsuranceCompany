@@ -14,7 +14,8 @@ import java.io.*;
  *
  * @author Carl
  */
-public abstract class Employee extends Person {
+public abstract class Employee extends Person implements Serializable {
+    private static final long serialVersionUID = 1L;
     
     private static int nextEmployeeId = 1000000;
     private static String employeeIdFileName = "/nextIdNumbers/employeeId.dta";

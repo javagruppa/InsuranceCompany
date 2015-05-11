@@ -155,7 +155,7 @@ public class EmployeeRegistration {
         
         mainPane.add(hbBtn, 2, 13);
         // column span of 3, row span of 2:
-        mainPane.add(resultText, 1, 14, 3, 2);
+        mainPane.add(resultText, 1, 14, 4, 2);
         
     }
     

@@ -6,11 +6,15 @@
 
 package insurancecompany.model.properties;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Carl
  */
-public class Address {
+public class Address implements Serializable {
+    private static final long serialVersionUID = 1L;
+    
     private String street; // Includes street name, number and letter.
     private int zipCode;
     private String city;

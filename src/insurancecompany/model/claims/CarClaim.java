@@ -5,13 +5,15 @@
  */
 package insurancecompany.model.claims;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
  * @author André
  */
-public class CarClaim extends Claim {
+public class CarClaim extends Claim implements Serializable {
+    private static final long serialVersionUID = 1L;
     
     CarClaimForm claimForm;
     

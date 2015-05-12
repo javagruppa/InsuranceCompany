@@ -241,10 +241,10 @@ public class TravelInsuranceRegistration {
     /** @return The value of coverageCombo. */
     public TravelInsuranceCoverage getCoverage() {
         if (coverageCombo.getValue() instanceof TravelInsuranceCoverage) {
-            // Casts the ComboBox value to CarInsuranceCoverage and returns this value.
+            // Casts the ComboBox value to TravelInsuranceCoverage and returns this value.
             TravelInsuranceCoverage coverage = (TravelInsuranceCoverage) coverageCombo.getValue();
             return coverage;
-            // If for instance no value is selected, the value will not equal a CarInsuranceCoverage, in this case return null.
+            // If for instance no value is selected, the value will not equal a TravelInsuranceCoverage, in this case return null.
         } else return null; 
     }
 

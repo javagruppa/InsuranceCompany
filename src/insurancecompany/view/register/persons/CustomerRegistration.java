@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -58,12 +59,18 @@ public class CustomerRegistration {
         mainPane = new GridPane();
         mainPane.setAlignment(Pos.CENTER);
         mainPane.setHgap(10);
-        mainPane.setVgap(10);
+        mainPane.setVgap(6);
+        // Set background color:
         mainPane.setStyle("-fx-background-color: #E7E7FF;");
-        
-        scene = new Scene(getMainPane(), 300, 275);
+        // Set up column constraints. Width in pixels:
+        ColumnConstraints col1 = new ColumnConstraints(150);
+        ColumnConstraints col2 = new ColumnConstraints(150);
+        ColumnConstraints col3 = new ColumnConstraints(150);
+        // Add these constraints:
+        mainPane.getColumnConstraints().addAll(col1, col2, col3);
         
         Text registerT = new Text("Registrer kunde");
+        registerT.setId("textTitle");
         Label personalNumber = new Label("Personnummer:");
         personalNumberField = new TextField();
         personalNumberMessage = new Text();
@@ -74,6 +81,7 @@ public class CustomerRegistration {
         lastNameField = new TextField();
         lastNameMessage = new Text();
         Text adress = new Text("Adresse");
+        adress.setId("textTitle");
         Label street = new Label("Gate:");
         streetField = new TextField();
         streetMessage = new Text();
@@ -84,6 +92,7 @@ public class CustomerRegistration {
         cityField = new TextField();
         cityMessage = new Text();
         Text contact = new Text("Kontakt");
+        contact.setId("textTitle");
         Label email = new Label("E-post:");
         emailField = new TextField();
         emailMessage = new Text();
@@ -96,47 +105,47 @@ public class CustomerRegistration {
         hbBtn.getChildren().add(registerButton);
         resultText = new Text();
         
-        mainPane.add(registerT, 1, 1);
+        mainPane.add(registerT, 0, 1);
         
-        mainPane.add(personalNumber, 1, 2);
-        mainPane.add(personalNumberField, 2, 2);
-        mainPane.add(personalNumberMessage, 3, 2);
+        mainPane.add(personalNumber, 0, 2);
+        mainPane.add(personalNumberField, 1, 2);
+        mainPane.add(personalNumberMessage, 2, 2);
         
-        mainPane.add(firstName, 1, 3);
-        mainPane.add(firstNameField, 2, 3);
-        mainPane.add(firstNameMessage, 3, 3);
+        mainPane.add(firstName, 0, 3);
+        mainPane.add(firstNameField, 1, 3);
+        mainPane.add(firstNameMessage, 2, 3);
         
-        mainPane.add(lastName, 1, 4);
-        mainPane.add(lastNameField, 2, 4);
-        mainPane.add(lastNameMessage, 3, 4);
+        mainPane.add(lastName, 0, 4);
+        mainPane.add(lastNameField, 1, 4);
+        mainPane.add(lastNameMessage, 2, 4);
         
-        mainPane.add(adress, 1, 5);
+        mainPane.add(adress, 0, 5);
         
-        mainPane.add(street, 1, 6);
-        mainPane.add(streetField, 2, 6);
-        mainPane.add(streetMessage, 3, 6);
+        mainPane.add(street, 0, 6);
+        mainPane.add(streetField, 1, 6);
+        mainPane.add(streetMessage, 2, 6);
         
-        mainPane.add(zipCode, 1, 7);
-        mainPane.add(zipCodeField, 2, 7);
-        mainPane.add(zipCodeMessage, 3, 7);
+        mainPane.add(zipCode, 0, 7);
+        mainPane.add(zipCodeField, 1, 7);
+        mainPane.add(zipCodeMessage, 2, 7);
         
-        mainPane.add(city, 1, 8);
-        mainPane.add(cityField, 2, 8);
-        mainPane.add(cityMessage, 3, 8);
+        mainPane.add(city, 0, 8);
+        mainPane.add(cityField, 1, 8);
+        mainPane.add(cityMessage, 2, 8);
         
-        mainPane.add(contact, 1, 9);
+        mainPane.add(contact, 0, 9);
         
-        mainPane.add(email, 1, 10);
-        mainPane.add(emailField, 2, 10);
-        mainPane.add(emailMessage, 3, 10);
+        mainPane.add(email, 0, 10);
+        mainPane.add(emailField, 1, 10);
+        mainPane.add(emailMessage, 2, 10);
         
-        mainPane.add(phone, 1, 11);
-        mainPane.add(phoneField, 2, 11);
-        mainPane.add(phoneMessage, 3, 11);
+        mainPane.add(phone, 0, 11);
+        mainPane.add(phoneField, 1, 11);
+        mainPane.add(phoneMessage, 2, 11);
         
-        mainPane.add(hbBtn, 2, 12);
+        mainPane.add(hbBtn, 1, 12);
         // column span of 3, row span of 2:
-        mainPane.add(resultText, 1, 13, 4, 2);
+        mainPane.add(resultText, 0, 13, 4, 2);
         
     }
     

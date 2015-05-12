@@ -18,22 +18,31 @@ import java.util.Set;
  *
  * @author André
  */
-public class HomeClaim extends Claim implements Serializable {
+public class HolidayHomeContentClaim extends Claim implements Serializable {
     private static final long serialVersionUID = 1L;
         
-    public HomeClaim(int customerId, int insuranceId, String description, 
-            Calendar dateHappened, Set<Damage> damages, int appraisal) {
+    private List<ClaimItem> items;
+
+    public HolidayHomeContentClaim(int customerId, int insuranceId, String description, 
+            Calendar dateHappened, Set<Damage> damages, int appraisal, 
+            List<ClaimItem> items) {
         super(customerId, insuranceId, description, dateHappened, damages, 
                 appraisal);
+        this.items = items;
     }    
     
-    public HomeClaim(int customerId, int insuranceId, String description, 
+    public HolidayHomeContentClaim(int customerId, int insuranceId, String description, 
             Calendar dateHappened, Set<Damage> damages, int appraisal, 
-            Image image) {
+            Image image, List<ClaimItem> items) {
         super(customerId, insuranceId, description, dateHappened, damages, 
                 appraisal, image);
+        this.items = items;
     }
     
+    
+    public void addItem(ClaimItem claimItem) {
+        items.add(claimItem);
+    }
     
 
     @Override

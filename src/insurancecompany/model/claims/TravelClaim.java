@@ -20,21 +20,24 @@ public class TravelClaim extends Claim implements Serializable {
     private static final long serialVersionUID = 1L;
     
     private String creditCardBrand;
-
+    private String country;
+    
     public TravelClaim(int customerId, int insuranceId, String description, 
             Calendar dateHappened, Set<Damage> damages, int appraisal, 
-            String creditCardBrand) {
+            String creditCardBrand, String country) {
         super(customerId, insuranceId, description, dateHappened, damages, 
                 appraisal);
         this.creditCardBrand = creditCardBrand;
+        this.country = country;
     }    
     
     public TravelClaim(int customerId, int insuranceId, String description, 
             Calendar dateHappened, Set<Damage> damages, int appraisal, 
-            Image image, String creditCardBrand) {
+            Image image, String creditCardBrand, String country) {
         super(customerId, insuranceId, description, dateHappened, damages, 
                 appraisal, image);
         this.creditCardBrand = creditCardBrand;
+        this.country = country;
     }
 
     

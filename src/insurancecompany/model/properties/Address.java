@@ -40,7 +40,7 @@ public class Address implements Serializable {
     }
     
     public String toString(){
-            String s = "" + street + "\n" + zipCode + " " + city;
+            String s = "\n" + street + "\n" + zipCode + " " + city;
             return s;
     }
     

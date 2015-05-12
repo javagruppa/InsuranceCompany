@@ -137,6 +137,28 @@ public class HomeContentInsurance extends PropertyInsurance implements Serializa
         return "Innboforsikring";
     }
     
+    /**
+     * Returns a string representation of this insurance. The string
+     * representation consists of each field with a short description separated
+     * by a new line.
+     * 
+     * @return a string representation of this insurance
+     */
+    @Override
+    public String toString() {
+        // Creates a StringBuilder which will be returned at the end of the 
+        // method.
+        StringBuilder result = new StringBuilder();
+        // Appends the fields with appropriate sentences.
+        result.append("INNBOFORSIKRING HJEM");
+        result.append("\n").append(super.toString());
+        result.append("\nDekning: ").append(coverage.toString());
+        result.append("\nForsikringssum: ").append(amount);
+        
+        // Returns the string.
+        return result.toString();
+    }
+    
      /**
      * Returns the coverage of this insurance.
      * @return 

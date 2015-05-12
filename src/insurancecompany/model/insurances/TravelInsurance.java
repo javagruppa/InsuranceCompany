@@ -108,7 +108,7 @@ public class TravelInsurance extends Insurance implements Serializable {
         // Appends the fields with appropriate sentences.
         result.append("REISEFORSIKRING");
         result.append("\n").append(super.toString());
-        result.append("\nType: ").append(coverage);
+        result.append("\nDekning: ").append(coverage);
         result.append("\nForsikringsområde: ").append(insuranceArea);
         // Returns the string.
         return result.toString();

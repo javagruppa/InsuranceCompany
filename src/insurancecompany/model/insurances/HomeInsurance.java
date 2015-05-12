@@ -55,6 +55,28 @@ public class HomeInsurance extends PropertyInsurance implements Serializable {
     }
     
     /**
+     * Returns a string representation of this insurance. The string
+     * representation consists of each field with a short description separated
+     * by a new line.
+     * 
+     * @return a string representation of this insurance
+     */
+    @Override
+    public String toString() {
+        // Creates a StringBuilder which will be returned at the end of the 
+        // method.
+        StringBuilder result = new StringBuilder();
+        // Appends the fields with appropriate sentences.
+        result.append("HUSFORSIKRING");
+        result.append("\n").append(super.toString());
+        result.append("\nDekning: ").append(coverage.toString());
+        result.append("\nUtleiedekning: ").
+                append(home.getRental() ? "Ja" : "Nei");
+        // Returns the string.
+        return result.toString();
+    }
+    
+    /**
      * Calculates the drop in price for this insurance based on the
      * applied excess
      * @return the drop value as an integer

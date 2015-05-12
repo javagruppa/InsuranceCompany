@@ -11,6 +11,8 @@ import insurancecompany.misc.coverages.CarInsuranceCoverage;
 
 import java.util.Calendar;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+
 
 /**
  *
@@ -35,14 +37,16 @@ public class CarInsurance extends Insurance implements Serializable {
     /** Whether a person under 25 years is allowed to drive the car this 
      * insurance is for. */
     private boolean youngDriver;
-    
-    
     /** The date of when the bonus of this insurance was last updated. */
     private Calendar lastBonusUpdate;
     /** The number of consecutive years the bonus has stayed at 70 */
     private int yearsOnSeventy;
     /** The number of consecutive years the bonus has stayed at 75 */
     private int yearsOnSeventyFive;
+    /** The norwegian standard for showing dates */
+    java.util.Locale norway = new java.util.Locale("no");
+    /** The date format to be shown in toString */
+    SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy", norway );
     
     
     
@@ -108,6 +112,7 @@ public class CarInsurance extends Insurance implements Serializable {
                 append(youngDriver ? "Ja" : "Nei");
         result.append("\nMaksimum kjørelengde: ").append(maxLength);
         result.append("\nBonus: ").append(bonus).append("%");
+        result.append("\nBonus sist endret: ").append(sdf.format(lastBonusUpdate));
         // Returns the string.
         return result.toString();
     }

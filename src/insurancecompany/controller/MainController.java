@@ -114,6 +114,14 @@ public class MainController {
         writeCustomersToFile();
         writeEmployeesToFile();
         writeInsurancesToFile();
+        
+        writeBillIdToFile();
+        writeClaimIdToFile();
+        writeCustomerIdToFile();
+        writeEmployeeIdToFile();
+        writeInsuranceIdToFile();
+        
+        writeLogsToFile();
     }
     
     

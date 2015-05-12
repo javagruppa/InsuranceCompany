@@ -20,7 +20,7 @@ public class Customer extends Person implements Serializable {
     private static final long serialVersionUID = 1L;
     
     private static int nextCustomerId = 1000000;
-    private static String customerIdFileName = "/nextIdNumbers/customerId.dta";
+    private static String customerIdFileName = "src/insurancecompany/resources/nextidnumbers/customerId.dta";
     
     public static final double totalCustomerDiscount = 0.1; // 10% rabbat for totalkunde
     private boolean totalCustomer;

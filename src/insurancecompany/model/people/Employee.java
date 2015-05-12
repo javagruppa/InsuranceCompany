@@ -18,7 +18,7 @@ public abstract class Employee extends Person implements Serializable {
     private static final long serialVersionUID = 1L;
     
     private static int nextEmployeeId = 1000000;
-    private static String employeeIdFileName = "/nextIdNumbers/employeeId.dta";
+    private static String employeeIdFileName = "src/insurancecompany/resources/nextidnumbers/employeeId.dta";
     
     private String passwordSalt;
     private String passwordHash;

@@ -8,6 +8,43 @@ and open the template in the editor.
     Author     : André
 */
 
+.button {
+    -fx-background-color: #6577A1;
+    -fx-text-fill: white;
+}
+
+.combo-box {
+    -fx-background-color: white;
+    -fx-border-style: solid;
+    -fx-border-color: #395cab;    
+}
+
+.text-field {
+    -fx-background-color: white;
+    -fx-border-style: solid;
+    -fx-border-color: #395cab;
+}
+
+.text-area {
+    -fx-background-color: white;
+    -fx-border-style: solid;
+    -fx-border-color: #395cab;
+}
+
+.table-view {
+    -fx-background-color: white;
+    -fx-border-style: solid;
+    -fx-border-color: #395cab;    
+}
+
+.label {
+    
+}
+
+#textTitle {
+    -fx-font-size: 14px;    
+}
+
 #centrePane {
     
 }

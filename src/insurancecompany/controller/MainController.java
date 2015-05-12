@@ -57,6 +57,8 @@ public class MainController {
     
     public MainController()  {
         
+        user = new Admin("asd", "asd", "asd", "asd", null, "asd");
+        
         this.employees = new EmployeeRegister();
         this.customers = new CustomerRegister();
         this.insurances = new InsuranceRegister();
@@ -327,8 +329,10 @@ public class MainController {
             claims.writeClaimsToFile();
         } catch (NotSerializableException nse) {
             logs.add(nse.getStackTrace(), nse.getMessage(), user);
+            System.err.println(nse.getMessage());
         } catch (IOException ioe) {
             logs.add(ioe.getStackTrace(), ioe.getMessage(), user);
+            System.err.println(ioe.getMessage());
         }
     }
     
@@ -337,10 +341,13 @@ public class MainController {
             claims.readClaimsFromFile();
         } catch (ClassNotFoundException cnfe) {
             logs.add(cnfe.getStackTrace(), cnfe.getMessage(), user);
+            System.err.println(cnfe.getMessage());
         } catch (FileNotFoundException fnfe) {
             logs.add(fnfe.getStackTrace(), fnfe.getMessage(), user);
+            System.err.println(fnfe.getMessage());
         } catch (IOException ioe) {
             logs.add(ioe.getStackTrace(), ioe.getMessage(), user);
+            System.err.println(ioe.getMessage());
         }
     }
     
@@ -349,8 +356,10 @@ public class MainController {
             customers.writeCustomersToFile();
         } catch (NotSerializableException nse) {
             logs.add(nse.getStackTrace(), nse.getMessage(), user);
+            System.err.println(nse.getMessage());
         } catch (IOException ioe) {
             logs.add(ioe.getStackTrace(), ioe.getMessage(), user);
+            System.err.println(ioe.getMessage());
         }
     }
     
@@ -359,10 +368,13 @@ public class MainController {
             customers.readCustomersFromFile();
         } catch (ClassNotFoundException cnfe) {
             logs.add(cnfe.getStackTrace(), cnfe.getMessage(), user);
+            System.err.println(cnfe.getMessage());
         } catch (FileNotFoundException fnfe) {
             logs.add(fnfe.getStackTrace(), fnfe.getMessage(), user);
+            System.err.println(fnfe.getMessage());
         } catch (IOException ioe) {
             logs.add(ioe.getStackTrace(), ioe.getMessage(), user);
+            System.err.println(ioe.getMessage());
         }
     }
     
@@ -371,8 +383,10 @@ public class MainController {
             employees.writeEmployeesToFile();
         } catch (NotSerializableException nse) {
             logs.add(nse.getStackTrace(), nse.getMessage(), user);
+            System.err.println(nse.getMessage());
         } catch (IOException ioe) {
             logs.add(ioe.getStackTrace(), ioe.getMessage(), user);
+            System.err.println(ioe.getMessage());
         }
     }
     
@@ -381,10 +395,13 @@ public class MainController {
             employees.readEmployeesFromFile();
         } catch (ClassNotFoundException cnfe) {
             logs.add(cnfe.getStackTrace(), cnfe.getMessage(), user);
+            System.err.println(cnfe.getMessage());
         } catch (FileNotFoundException fnfe) {
             logs.add(fnfe.getStackTrace(), fnfe.getMessage(), user);
+            System.err.println(fnfe.getMessage());
         } catch (IOException ioe) {
             logs.add(ioe.getStackTrace(), ioe.getMessage(), user);
+            System.err.println(ioe.getMessage());
         }
     }
     
@@ -393,8 +410,10 @@ public class MainController {
             insurances.writeInsurancesToFile();
         } catch (NotSerializableException nse) {
             logs.add(nse.getStackTrace(), nse.getMessage(), user);
+            System.err.println(nse.getMessage());
         } catch (IOException ioe) {
             logs.add(ioe.getStackTrace(), ioe.getMessage(), user);
+            System.err.println(ioe.getMessage());
         }
     }
     
@@ -403,10 +422,13 @@ public class MainController {
             insurances.readInsurancesFromFile();
         } catch (ClassNotFoundException cnfe) {
             logs.add(cnfe.getStackTrace(), cnfe.getMessage(), user);
+            System.err.println(cnfe.getMessage());
         } catch (FileNotFoundException fnfe) {
             logs.add(fnfe.getStackTrace(), fnfe.getMessage(), user);
+            System.err.println(fnfe.getMessage());
         } catch (IOException ioe) {
             logs.add(ioe.getStackTrace(), ioe.getMessage(), user);
+            System.err.println(ioe.getMessage());
         }
     }
     
@@ -415,8 +437,10 @@ public class MainController {
             bills.writeBillsToFile();
         } catch (NotSerializableException nse) {
             logs.add(nse.getStackTrace(), nse.getMessage(), user);
+            System.err.println(nse.getMessage());
         } catch (IOException ioe) {
             logs.add(ioe.getStackTrace(), ioe.getMessage(), user);
+            System.err.println(ioe.getMessage());
         }
     }
     
@@ -425,10 +449,21 @@ public class MainController {
             bills.readBillsFromFile();
         } catch (ClassNotFoundException cnfe) {
             logs.add(cnfe.getStackTrace(), cnfe.getMessage(), user);
+            System.err.println(cnfe.getMessage());
         } catch (FileNotFoundException fnfe) {
             logs.add(fnfe.getStackTrace(), fnfe.getMessage(), user);
+            System.err.println(fnfe.getMessage());
         } catch (IOException ioe) {
             logs.add(ioe.getStackTrace(), ioe.getMessage(), user);
+            System.err.println(ioe.getMessage());
+        }
+    }
+    
+    public void writeLogsToFile() {
+        try {
+            logs.writeToFile();
+        } catch (IOException ioe) {
+            System.err.println(ioe.getMessage());
         }
     }
     

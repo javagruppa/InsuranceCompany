@@ -96,7 +96,7 @@ public class BoatInsuranceRegistration {
         mainPane.setVgap(6);
         // Sets background color:
         mainPane.setStyle("-fx-background-color: #E7E7FF;");
-        // Set up column constraints. Width in pixels:
+        // Sets up column constraints. Width in pixels:
         ColumnConstraints col1 = new ColumnConstraints(120);
         ColumnConstraints col2 = new ColumnConstraints(100);
         ColumnConstraints col3 = new ColumnConstraints(40);

@@ -10,6 +10,8 @@ import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -35,11 +37,12 @@ public class ClaimsView {
     
     private Pane sideToolBarPane;
     
-    private Button carInsuranceClaimButton;
-    private Button boatInsuranceClaimButton;
-    private Button homeInsuranceClaimButton;
-    private Button holidayHomeInsuranceClaimButton;
-    private Button travelInsuranceClaimButton;
+    private ToggleButton carInsuranceClaimButton;
+    private ToggleButton boatInsuranceClaimButton;
+    private ToggleButton homeInsuranceClaimButton;
+    private ToggleButton holidayHomeInsuranceClaimButton;
+    private ToggleButton travelInsuranceClaimButton;
+    private ToggleGroup toggleGroup;
             
     //public static void main(String[] args) {
     //    launch(args);
@@ -64,8 +67,7 @@ public class ClaimsView {
         //sp.setFitToWidth(true);
         mainPane.setLeft(sideToolBarPane);
         scene = new Scene(mainPane, 800, 600);
-        initializeViews();
-        initializeEventHandlers();      
+        initializeViews();    
     }
     private void initializeViews() {
         //boatInsuranceRegistration = new BoatInsuranceRegistration();
@@ -74,43 +76,6 @@ public class ClaimsView {
         //travelInsuranceRegistrationPane = travelInsuranceRegistration.getMainPane();
     }
     
-    private void initializeEventHandlers() {
-      
-        carInsuranceClaimButton.setOnAction((event) -> {
-            //mainPane.setCenter();
-            //selectedButtonStyleLower(carInsuranceClaimButton);
-        });
-        
-        boatInsuranceClaimButton.setOnAction((event) -> {
-            //mainPane.setCenter(boatInsuranceRegistrationPane);
-            //selectedButtonStyleLower(boatInsuranceClaimButton);
-        });
-        
-        homeInsuranceClaimButton.setOnAction((event) -> {
-            //mainPane.setCenter();
-            //selectedButtonStyleLower(homeInsuranceClaimButton);
-        });
-        
-        holidayHomeInsuranceClaimButton.setOnAction((event) -> {
-            //mainPane.setCenter();
-            //selectedButtonStyleLower(holidayHomeInsuranceClaimButton);
-        });
-        
-        travelInsuranceClaimButton.setOnAction((event) -> {
-            mainPane.setCenter(travelInsuranceRegistrationPane);
-            selectedButtonStyleLower(travelInsuranceClaimButton);
-        });
-    }
-    
-    // TODO: Change to setId, and make a custom style for selected, will not have hover etc
-    private void selectedButtonStyleLower(Button button) {
-        carInsuranceClaimButton.setId("sideToolbarButton");
-        boatInsuranceClaimButton.setId("sideToolbarButton");
-        homeInsuranceClaimButton.setId("sideToolbarButton");
-        holidayHomeInsuranceClaimButton.setId("sideToolbarButton");
-        travelInsuranceClaimButton.setId("sideToolbarButton");
-        button.setId("sideToolbarButtonSelected");
-    }
     
     private VBox createSideToolBar() {
         VBox vbox = new VBox();
@@ -118,33 +83,39 @@ public class ClaimsView {
         vbox.getStyleClass().add("insurancecompany/resources/css/stylesheet.css");
         vbox.setStyle("-fx-background-color: #6577A1;");
     
-        carInsuranceClaimButton = new Button("Bilskade");       
+        carInsuranceClaimButton = new ToggleButton("Bilskade");       
         carInsuranceClaimButton.setId("sideToolbarButton");
         Image carImage = new Image("insurancecompany/resources/images/car.png");
         carInsuranceClaimButton.setGraphic(new ImageView(carImage));
         //carInsuranceButton.setContentDisplay(ContentDisplay.LEFT);
         
-        boatInsuranceClaimButton = new Button("Båtskade");
+        boatInsuranceClaimButton = new ToggleButton("Båtskade");
         boatInsuranceClaimButton.setId("sideToolbarButton");
         Image boatImage = new Image("insurancecompany/resources/images/boat.png");
         boatInsuranceClaimButton.setGraphic(new ImageView(boatImage));
         
-        homeInsuranceClaimButton = new Button("Husskade");
+        homeInsuranceClaimButton = new ToggleButton("Husskade");
         homeInsuranceClaimButton.setId("sideToolbarButton");
         Image houseImage = new Image("insurancecompany/resources/images/house.png");
         homeInsuranceClaimButton.setGraphic(new ImageView(houseImage));
         
-        holidayHomeInsuranceClaimButton = new Button("Fritidsbolig-\nskade");
+        holidayHomeInsuranceClaimButton = new ToggleButton("Fritidsbolig-\nskade");
         holidayHomeInsuranceClaimButton.setId("sideToolbarButton");
         Image cabinImage = new Image("insurancecompany/resources/images/cabin.png");
         holidayHomeInsuranceClaimButton.setGraphic(new ImageView(cabinImage));
         
-        travelInsuranceClaimButton = new Button("Reiseskade");
+        travelInsuranceClaimButton = new ToggleButton("Reiseskade");
         travelInsuranceClaimButton.setId("sideToolbarButton");
         Image airplaneImage = new Image("insurancecompany/resources/images/airplane.png");
         travelInsuranceClaimButton.setGraphic(new ImageView(airplaneImage));
-        
-        ObservableList<Button> buttons = FXCollections.observableArrayList ();
+        // Set up togglegroup and connect it to all togglebuttons:
+        toggleGroup = new ToggleGroup();
+        carInsuranceClaimButton.setToggleGroup(toggleGroup);
+        boatInsuranceClaimButton.setToggleGroup(toggleGroup);
+        homeInsuranceClaimButton.setToggleGroup(toggleGroup);
+        holidayHomeInsuranceClaimButton.setToggleGroup(toggleGroup);
+        travelInsuranceClaimButton.setToggleGroup(toggleGroup);
+        ObservableList<ToggleButton> buttons = FXCollections.observableArrayList ();
         buttons.addAll(carInsuranceClaimButton, boatInsuranceClaimButton, homeInsuranceClaimButton, 
                 holidayHomeInsuranceClaimButton, travelInsuranceClaimButton);
         buttons.forEach(b -> {

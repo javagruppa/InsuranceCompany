@@ -11,6 +11,8 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -29,11 +31,12 @@ public class InsurancesView {
     private BorderPane mainPane;
     private Pane sideToolBarPane;
     
-    private Button boatInsuranceButton;
-    private Button carInsuranceButton;
-    private Button homeInsuranceButton;
-    private Button holidayHomeInsuranceButton;
-    private Button travelInsuranceButton;
+    private ToggleButton boatInsuranceButton;
+    private ToggleButton carInsuranceButton;
+    private ToggleButton homeInsuranceButton;
+    private ToggleButton holidayHomeInsuranceButton;
+    private ToggleButton travelInsuranceButton;
+    private ToggleGroup toggleGroup;
             
     public void show(Stage stage) {
         stage.setTitle("Forsikringsregistrering");
@@ -52,15 +55,6 @@ public class InsurancesView {
         scene = new Scene(mainPane, 800, 600);   
     }
     
-    // TODO: Change to setId, and make a custom style for selected, will not have hover etc
-    public void selectedButtonStyleLower(Button button) {
-        carInsuranceButton.setId("sideToolbarButton");
-        boatInsuranceButton.setId("sideToolbarButton");
-        homeInsuranceButton.setId("sideToolbarButton");
-        holidayHomeInsuranceButton.setId("sideToolbarButton");
-        travelInsuranceButton.setId("sideToolbarButton");
-        button.setId("sideToolbarButtonSelected");
-    }
     
     private VBox createSideToolBar() {
         VBox vbox = new VBox();
@@ -68,33 +62,40 @@ public class InsurancesView {
         vbox.getStyleClass().add("insurancecompany/resources/css/stylesheet.css");
         vbox.setStyle("-fx-background-color: #6577A1;");
     
-        carInsuranceButton = new Button("Bilforsikring");       
+        carInsuranceButton = new ToggleButton("Bilforsikring");       
         carInsuranceButton.setId("sideToolbarButton");
         Image carImage = new Image("insurancecompany/resources/images/car.png");
         carInsuranceButton.setGraphic(new ImageView(carImage));
         //carInsuranceButton.setContentDisplay(ContentDisplay.LEFT);
         
-        boatInsuranceButton = new Button("Båtforsikring");
+        boatInsuranceButton = new ToggleButton("Båtforsikring");
         boatInsuranceButton.setId("sideToolbarButton");
         Image boatImage = new Image("insurancecompany/resources/images/boat.png");
         boatInsuranceButton.setGraphic(new ImageView(boatImage));
         
-        homeInsuranceButton = new Button("Husforsikring");
+        homeInsuranceButton = new ToggleButton("Husforsikring");
         homeInsuranceButton.setId("sideToolbarButton");
         Image houseImage = new Image("insurancecompany/resources/images/house.png");
         homeInsuranceButton.setGraphic(new ImageView(houseImage));
         
-        holidayHomeInsuranceButton = new Button("Fritidsbolig-\nforsikring");
+        holidayHomeInsuranceButton = new ToggleButton("Fritidsbolig-\nforsikring");
         holidayHomeInsuranceButton.setId("sideToolbarButton");
         Image cabinImage = new Image("insurancecompany/resources/images/cabin.png");
         holidayHomeInsuranceButton.setGraphic(new ImageView(cabinImage));
         
-        travelInsuranceButton = new Button("Reiseforsikring");
+        travelInsuranceButton = new ToggleButton("Reiseforsikring");
         travelInsuranceButton.setId("sideToolbarButton");
         Image airplaneImage = new Image("insurancecompany/resources/images/airplane.png");
         travelInsuranceButton.setGraphic(new ImageView(airplaneImage));
         
-        ObservableList<Button> buttons = FXCollections.observableArrayList ();
+        // Set up togglegroup and connect it to all togglebuttons:
+        toggleGroup = new ToggleGroup();
+        carInsuranceButton.setToggleGroup(toggleGroup);
+        boatInsuranceButton.setToggleGroup(toggleGroup);
+        homeInsuranceButton.setToggleGroup(toggleGroup);
+        holidayHomeInsuranceButton.setToggleGroup(toggleGroup);
+        travelInsuranceButton.setToggleGroup(toggleGroup);
+        ObservableList<ToggleButton> buttons = FXCollections.observableArrayList ();
         buttons.addAll(carInsuranceButton, boatInsuranceButton, homeInsuranceButton, 
                 holidayHomeInsuranceButton, travelInsuranceButton);
         buttons.forEach(b -> {

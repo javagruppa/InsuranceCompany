@@ -316,103 +316,83 @@ public class BoatInsuranceRegistration {
     }
     
     // GET METHODS:
-    
+
+    /** @return The main pane of this class. */
     public GridPane getMainPane() {
         return mainPane;
     }
     
-    /** @return the value of alarmCombo */
+    /** @return The value of alarmCombo. */
     public String getAlarm() {
         return alarmCombo.getValue() == null ? "" : alarmCombo.getValue();
     }
 
-    /**
-     * @return the brandField
-     */
+    /** @return The value of brandField. */
     public String getBrand() {
         return brandField.getText();
     }
 
-    /**
-     * @return the coverageComboBox
-     */
+    /** @return The value of coverageCombo. */
     public BoatInsuranceCoverage getCoverage() {
-        return coverageCombo.getValue();
+        if (coverageCombo.getValue() instanceof BoatInsuranceCoverage) {
+            // Casts the ComboBox value to CarInsuranceCoverage and returns this value.
+            BoatInsuranceCoverage coverage = (BoatInsuranceCoverage) coverageCombo.getValue();
+            return coverage;
+            // If for instance no value is selected, the value will not equal a CarInsuranceCoverage, in this case return null.
+        } else return null; 
     }
 
-    /**
-     * @return the customerIdField
-     */
+    /** @return The value of customerIdField. */
     public String getCustomerId() {
         return customerIdField.getText();
     }
 
-    /**
-     * @return the engineEffectField
-     */
+    /** @return The value of engineEffectField. */
     public String getEngineEffect() {
         return engineEffectField.getText();
     }
 
-    /**
-     * @return the engineTypeField
-     */
+    /** @return The value of engineTypeField. */
     public String getEngineType() {
         return engineTypeField.getText();
     }
 
-    /**
-     * @return the excessField
-     */
+    /** @return The value of excessCombo. */
     public String getExcess() {
         return excessCombo.getValue() == null ? "" : excessCombo.getValue();
     }
 
-    /**
-     * @return the lengthField
-     */
+    /** @return The value of lengthField. */
     public String getLength() {
         return lengthField.getText();
     }
 
-    /**
-     * @return the modelField
-     */
+    /** @return The value of modelField. */
     public String getModel() {
         return modelField.getText();
     }
 
-    /**
-     * @return the ownerPersonalNumberField
-     */
+    /** @return The value of ownerPersonalNumberField. */
     public String getOwnerPersonalNumber() {
         return ownerPersonalNumberField.getText();
     }
 
-    /**
-     * @return the customerPersonalNumberField
-     */
+    /** @return The value of personalNumberField. */
     public String getPersonalNumber() {
         return personalNumberField.getText();
     }
 
-    /**
-     * @return the premiumField
-     */
+    /** @return The value of premiumField. */
     public String getPremium() {
         return premiumField.getText();
     }
 
-    /**
-     * @return the registrationNumberField
-     */
+    /** @return The value of registrationNumberField. */
     public String getRegistrationNumber() {
         return registrationNumberField.getText();
     }
 
-    /**
-     * @return the registrationYearField
-     */
+    /** @return The value of registrationYearField. */
     public String getRegistrationYear() {
         return registrationYearField.getText();
     }

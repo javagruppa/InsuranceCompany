@@ -3,8 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package insurancecompany.model.properties;
+package insurancecompany.model.vehicles;
 
+import insurancecompany.model.properties.Address;
+import insurancecompany.model.properties.Property;
+import insurancecompany.model.properties.PropertyMaterial;
 import java.io.Serializable;
 
 /**

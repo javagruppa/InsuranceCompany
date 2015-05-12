@@ -6,7 +6,7 @@
 
 package insurancecompany.model.insurances;
 
-import insurancecompany.model.properties.HolidayHome;
+import insurancecompany.model.vehicles.HolidayHome;
 import insurancecompany.misc.hometypes.HolidayHomeType;
 import insurancecompany.misc.coverages.HolidayHomeInsuranceCoverage;
 import java.io.Serializable;

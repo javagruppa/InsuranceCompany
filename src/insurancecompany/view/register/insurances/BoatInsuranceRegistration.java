@@ -38,10 +38,10 @@ public class BoatInsuranceRegistration {
     
     // SEARCH FOR CUSTOMER NODES:
     
-    // Input nodes, TextFields
+    // Input nodes, TextFields:
     private TextField customerIdField;
     private TextField personalNumberField;
-    // Output nodes, TextArea and TableView and Text
+    // Output nodes, TextArea, TableView and Text:
     private TextArea customerArea;
     private TableView<Insurance> insurancesTable;
     private TableColumn<Insurance, String> insuranceTypeColumn;
@@ -57,6 +57,7 @@ public class BoatInsuranceRegistration {
     private int selectedCustomerId;
     
     // REGISTER INSURANCE NODES:
+    
     // Input nodes, ComboBoxes and TextFields:
     private ComboBox<String> alarmCombo;
     private ComboBox<BoatInsuranceCoverage> coverageCombo;
@@ -88,12 +89,12 @@ public class BoatInsuranceRegistration {
     
     public BoatInsuranceRegistration() {
         
-        // Sets up the mainPane
+        // Sets up the mainPane:
         mainPane = new GridPane();
         mainPane.setAlignment(Pos.CENTER);
         mainPane.setHgap(10);
         mainPane.setVgap(6);
-        // Set background color:
+        // Sets background color:
         mainPane.setStyle("-fx-background-color: #E7E7FF;");
         // Set up column constraints. Width in pixels:
         ColumnConstraints col1 = new ColumnConstraints(120);
@@ -103,15 +104,15 @@ public class BoatInsuranceRegistration {
         ColumnConstraints col5 = new ColumnConstraints(150);
         ColumnConstraints col6 = new ColumnConstraints(150);
         ColumnConstraints col7 = new ColumnConstraints(150);
-        // Add these constraints:
+        // Adds these constraints:
         mainPane.getColumnConstraints().addAll(col1, col2, col3, col4, col5, col6, col7);
         
         // SEARCH FOR CUSTOMER NODES:
         
-        // Declares Input
+        // Initializes Input:
         customerIdField = new TextField();
         personalNumberField = new TextField();
-        // Declares Output
+        // Initializes Output:
         customerArea = new TextArea();
         customerArea.setEditable(false);
         customerArea.setPrefColumnCount(2);
@@ -123,11 +124,11 @@ public class BoatInsuranceRegistration {
         insuranceIdColumn = new TableColumn<>("Forsikringsid");
         insurancesTable.getColumns().addAll(insuranceTypeColumn, insuranceCoverageColum, insuranceIdColumn);
         insurancesTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-        // Declares Buttons
+        // Initializes Buttons:
         searchCustomerIdButton = new Button("Søk");
         searchPersonalNumberButton = new Button("Søk");
         selectCustomerButton = new Button("Velg denne kunden");
-        // Declares Text and Label
+        // Declares and initializes Texts and Labels:
         Label customerIdLabel = new Label("Kundenummer:");
         Label personalNumberLabel = new Label("Personnummer:");
         Text insurancesTitle = new Text("Eksisterende forsikringer til denne kunden:");
@@ -139,7 +140,7 @@ public class BoatInsuranceRegistration {
         
         // REGISTER INSURANCE NODES:
         
-        // Declares Input
+        // Initializes Input:
         alarmCombo = new ComboBox<>();
         populateAlarmCombo();
         coverageCombo = new ComboBox<>();
@@ -156,7 +157,7 @@ public class BoatInsuranceRegistration {
         premiumField.setEditable(false);
         registrationNumberField = new TextField();
         registrationYearField = new TextField();
-        // Declares Output
+        // Initializes Output:
         alarmMessage = new Text();
         brandMessage = new Text();
         coverageMessage = new Text();
@@ -168,10 +169,10 @@ public class BoatInsuranceRegistration {
         ownerPersonalNumberMessage = new Text();
         registrationNumberMessage = new Text();
         registrationYearMessage = new Text();
-        // Declares all Buttons.
+        // Initializes Buttons:
         calculateButton = new Button("Regn ut");
         registerButton = new Button("Registrer");
-        // Declares Text and Label
+        // Declares and initializes Texts and Labels:
         customerSelectedMessage = new Text();
         Text insuranceOptionsTitle = new Text("Betingelser:");
         insuranceOptionsTitle.setId("textTitle");
@@ -249,7 +250,7 @@ public class BoatInsuranceRegistration {
         mainPane.add(registerButton, 5, 14);
     }
     
-    // POPULATE COMBOBOX
+    // POPULATE METHODS:
     
     private void populateAlarmCombo() {
         ObservableList<String> alarm = FXCollections.observableArrayList();  
@@ -272,8 +273,6 @@ public class BoatInsuranceRegistration {
         excessCombo.getItems().setAll(excess);
         excessCombo.setPrefWidth(150);
     }
-    
-    // POPULATE TABLE
     
     /**
      * 
@@ -306,7 +305,7 @@ public class BoatInsuranceRegistration {
         });   
     }
     
-    // EVENT HANDLERS
+    // SET EVENTHANDLER METHODS:
     
     public void setCalculateButtonEventHandler(EventHandler<ActionEvent> value) {
         calculateButton.setOnAction(value);
@@ -316,7 +315,7 @@ public class BoatInsuranceRegistration {
         registerButton.setOnAction(value);
     }
     
-    // GET METHODS
+    // GET METHODS:
     
     public GridPane getMainPane() {
         return mainPane;
@@ -418,7 +417,7 @@ public class BoatInsuranceRegistration {
         return registrationYearField.getText();
     }
     
-    // SET METHODS
+    // SET METHODS:
 
     /**
      * @param alarmMessage the alarmMessage to set

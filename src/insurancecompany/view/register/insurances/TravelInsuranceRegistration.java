@@ -62,8 +62,8 @@ public class TravelInsuranceRegistration {
     private ComboBox<String> excessCombo;
     private TextField premiumField;
     // Output nodes, Text messages:
-    private Label coverageMessage;
-    private Label excessMessage;
+    private Text coverageMessage;
+    private Text excessMessage;
     // Buttons:
     private Button calculateButton;
     private Button registerButton;
@@ -129,8 +129,8 @@ public class TravelInsuranceRegistration {
         premiumField = new TextField();
         premiumField.setEditable(false);
         // Initializes Output:
-        coverageMessage = new Label();
-        excessMessage = new Label();
+        coverageMessage = new Text();
+        excessMessage = new Text();
         // Initializes Buttons:
         calculateButton = new Button("Regn ut");
         registerButton = new Button("Registrer");
@@ -232,36 +232,39 @@ public class TravelInsuranceRegistration {
     
     // GET METHODS:
     
+    /** @return The main pane of this class. */
     public GridPane getMainPane() {
         return mainPane;
     }
 
-    /**
-     * @return the coverageField
-     */
-    public TravelInsuranceCoverage getCoverageField() {
-        return coverageCombo.getValue();
+    /** @return The value of coverageCombo. */
+    public TravelInsuranceCoverage getCoverage() {
+        if (coverageCombo.getValue() instanceof TravelInsuranceCoverage) {
+            // Casts the ComboBox value to CarInsuranceCoverage and returns this value.
+            TravelInsuranceCoverage coverage = (TravelInsuranceCoverage) coverageCombo.getValue();
+            return coverage;
+            // If for instance no value is selected, the value will not equal a CarInsuranceCoverage, in this case return null.
+        } else return null; 
     }
 
-    /**
-     * @return the customerIdField
-     */
-    public TextField getCustomerIdField() {
-        return customerIdField;
+    /** @return The value of customerIdField. */
+    public String getCustomerId() {
+        return customerIdField.getText();
     }
 
-    /**
-     * @return the excessField
-     */
-    public String getExcessField() {
+    /** @return The value of excessCombo. */
+    public String getExcess() {
         return excessCombo.getValue() == null ? "" : excessCombo.getValue();
     }
+    
+    /** @return The value of personalNumberField. */
+    public String getPersonalNumber() {
+        return personalNumberField.getText();
+    }
 
-    /**
-     * @return the premiumField
-     */
-    public TextField getPremiumField() {
-        return premiumField;
+    /** @return The value of premiumField. */
+    public String getPremium() {
+        return premiumField.getText();
     }
     
     // SET METHODS:

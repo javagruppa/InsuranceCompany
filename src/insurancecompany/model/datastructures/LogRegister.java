@@ -71,14 +71,17 @@ public class LogRegister {
     }
     
     public void writeToFile() throws IOException {
-        // Create a String based on current time
-        String timeLog = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
-        // Create a file with the filepath decided in the private constant combined with the timelog and ending with .txt 
-        File logFile = new File(logsFilePath + timeLog + ".txt");
-        try (BufferedWriter writer = new BufferedWriter(
-                new FileWriter(logFile))){
-            // Write this log registers toString to file:
-            writer.write(toString());
+        // Will only write to file if this log register is not empty:
+        if (!logs.isEmpty()) {
+            // Create a String based on current time
+            String timeLog = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
+            // Create a file with the filepath decided in the private constant combined with the timelog and ending with .txt 
+            File logFile = new File(logsFilePath + timeLog + ".txt");
+            try (BufferedWriter writer = new BufferedWriter(
+                    new FileWriter(logFile))){
+                // Write this log registers toString to file:
+                writer.write(toString());
+            }
         }
     }
 }

@@ -117,7 +117,8 @@ public class AdminView extends Application {
         HBox.setHgrow(hbox1, Priority.ALWAYS);
         
         Image ifLogo = new Image("insurancecompany/resources/images/if.png");
-        hbox.getChildren().addAll(new ImageView(ifLogo), registerTabButton, searchTabButton, statisticsTabButton);
+        hbox.getChildren().addAll(new ImageView(ifLogo), registerTabButton, processTabButton, 
+                searchTabButton, statisticsTabButton);
         hbox.getChildren().add(hbox1);
         
         return hbox;

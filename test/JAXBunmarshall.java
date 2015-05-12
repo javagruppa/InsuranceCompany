@@ -8,6 +8,8 @@
 
 
 import java.io.File;
+import javafx.event.ActionEvent;
+import javafx.scene.control.Button;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
@@ -37,3 +39,25 @@ public class JAXBunmarshall {
         unmarshalCarInfoRegister();
     }
 }
+public void selectedButtonStyleLower(Button button) {
+        personsButton.setId("subToolbarButton");
+        insurancesButton.setId("subToolbarButton");
+        claimsButton.setId("subToolbarButton");
+        button.setId("subToolbarButtonSelected");
+    }
+
+    private void registerViewPersonsButtonEventHandler(ActionEvent event) {
+        registerView.getMainPane().setCenter(personsView.getMainPane());
+        registerView.selectedButtonStyleLower((Button) event.getSource());
+    }
+    
+    private void registerViewInsurancesButtonEventHandler(ActionEvent event) {
+        registerView.getMainPane().setCenter(insurancesView.getMainPane());
+        registerView.selectedButtonStyleLower((Button) event.getSource());
+    }
+    
+    private void registerViewClaimsButtonEventHandler(ActionEvent event) {
+        registerView.getMainPane().setCenter(claimsView.getMainPane());
+        registerView.selectedButtonStyleLower((Button) event.getSource());
+    }
+    

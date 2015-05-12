@@ -364,7 +364,7 @@ public class CarInsuranceRegistration {
      * @return the existingBonusCombo
      */
     public String getExistingBonusComboValue() {
-        return existingBonusCombo.getValue().toString();
+        return existingBonusCombo.getValue() == null ? "" : existingBonusCombo.getValue().toString();
     }
 
     /**

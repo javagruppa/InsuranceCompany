@@ -38,6 +38,54 @@ public class TravelInsurance extends Insurance implements Serializable {
     }
     
     /**
+     * Finds and returns the basic price of this insurance
+     * @return the basic price
+     */
+    private int basicPrice(){
+	int basicP = coverage.getPricing();
+	return basicP;
+    }   
+
+    /**
+     * Calculates and returns the price drop of this insurance based
+     * on the set excess
+     * @return the drop in price due to excess
+     */
+    private int excessDrop(){
+	int excess = getExcess();
+	int drop = 0;
+
+	if (excess == 0){
+		drop = -2000;
+	}
+	else if (excess > 0 && excess <= 1000){
+		drop = excess / 10;
+	}
+	else if (excess > 1000 && excess <= 2000){
+		drop = excess / 9;
+	}
+	else if (excess > 2000 && excess <= 3500){
+		drop = excess / 8;
+	}
+	else if (excess > 3500 && excess <= 5000){
+		drop = excess / 7;
+	}
+	
+	return drop;
+    }
+
+    /**
+     * Calculates and sets the premium of this insurance, based on:
+     * The basic price
+     * The excess drop
+     */
+    public void premium(){
+	int newPremium = basicPrice() - excessDrop();
+	setPremium(newPremium);
+    }
+    
+    
+    /**
      * Returns the type of this insurance in form of a String.
      * @return 
      */

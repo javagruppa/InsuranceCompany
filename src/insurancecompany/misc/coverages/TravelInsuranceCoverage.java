@@ -34,4 +34,11 @@ public enum TravelInsuranceCoverage {
             default: throw new IllegalArgumentException();
         }
     }
+    
+    public int getPricing() {
+        switch(this) {
+            case STANDARD: return 2000;
+            default: throw new IllegalArgumentException();
+        }
+    }
 }

@@ -13,8 +13,7 @@ import java.io.Serializable;
 public abstract class PropertyInsurance extends Insurance implements Serializable {
     private static final long serialVersionUID = 1L;
     
-    /** The content insurance amount of this insurance. */
-    private int contentAmount;
+    
     
     /**
      * Constructs a new property insurance with the specified 
@@ -38,14 +37,7 @@ public abstract class PropertyInsurance extends Insurance implements Serializabl
         return "Eiendomsforsikring";
     }
     
-    /**
-     * Returns the content insurance amount of this insurance.
-     * 
-     * @return the content insurance amount of this insurance
-     */
-    public int getContentAmount() {
-        return contentAmount;
-    }
+    
     
     /**
      * Returns a string representation of this insurance. The string
@@ -61,7 +53,7 @@ public abstract class PropertyInsurance extends Insurance implements Serializabl
         StringBuilder result = new StringBuilder();
         // Appends the fields with appropriate sentences.
         result.append(super.toString());
-        result.append("\nForsikringsbeløp for innbo: ").append(contentAmount);
+        
         // Returns the string.
         return result.toString();
     }

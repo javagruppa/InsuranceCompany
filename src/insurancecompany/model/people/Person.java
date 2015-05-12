@@ -102,9 +102,10 @@ public abstract class Person implements Serializable {
      * 
      * @return a string representation of this person
      */
+    @Override
     public String toString() {
         String s = firstName + "\n" + lastName + "\n" + "Fødselsnr: " + personalNumber +
-                "/nEpost-adresse: " + email + "\n" + getAddress().toString();
+                "\nEpost-adresse: " + email + "\n" + getAddress().toString();
         return s;
     }
 

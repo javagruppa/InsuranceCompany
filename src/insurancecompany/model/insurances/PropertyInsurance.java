@@ -29,7 +29,14 @@ public abstract class PropertyInsurance extends Insurance implements Serializabl
         
     }
     
-   
+   /**
+     * Returns the type of this insurance in form of a String.
+     * @return 
+     */
+    @Override
+    public String getName() {
+        return "Eiendomsforsikring";
+    }
     
     /**
      * Returns the content insurance amount of this insurance.

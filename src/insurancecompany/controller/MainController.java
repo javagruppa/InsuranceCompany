@@ -93,9 +93,14 @@ public class MainController {
         adminView.setSaveDataButtonEventHandler(this::adminViewSaveDataButtonEventHandler);
         adminView.setExitButtonEventHandler(this::adminViewExitButtonEventHandler);
         
+        carInsuranceRegistration.setSearchCustomerIdButtonEventHandler(this::carInsuranceSearchCustomerButtonEventHandler);
+        carInsuranceRegistration.setSearchPersonalNumberButtonEventHandler(this::carInsuranceSearchPersonalNumberButtonEventHandler);
+        carInsuranceRegistration.setSelectCustomerButtonEventHandler(null);
         carInsuranceRegistration.setBrandComboListener(this::brandComboListener);
         carInsuranceRegistration.setYearComboListener(this::yearComboListener);
-        
+        carInsuranceRegistration.setCalculateButtonEventHandler(null);
+        carInsuranceRegistration.setRegisterButtonEventHandler(null);
+     
         customerRegistration.setRegisterButtonEventHandler(this::registerCustomerButtonEventHandler);
         employeeRegistration.setRegisterButtonEventHandler(this::registerEmployeeButtonEventHandler);
     }
@@ -131,7 +136,7 @@ public class MainController {
             customerRegistration.setPersonalNumberMessage(message);
             ok = false;
         }
- 
+        
         int zipCode = 0;
         try {
             zipCode = Integer.parseInt(zipCodeS);
@@ -205,6 +210,29 @@ public class MainController {
         employeeRegistration.setResultText(result);
     }
     
+    
+    private void carInsuranceSearchCustomerButtonEventHandler(ActionEvent event) {
+        
+        String customerId = carInsuranceRegistration.getCustomerIdField();
+        
+       // Customer c = customers.findCustomerById(customerId);
+    }
+    
+    private void carInsuranceSearchPersonalNumberButtonEventHandler(ActionEvent event) {
+        String personalNumber = carInsuranceRegistration.getPersonalNumberField();
+        // TODO regex:
+        Customer c = customers.findCustomerByPersonalNumber(personalNumber);
+        if (c != null) {
+            carInsuranceRegistration.setCustomerArea(c.toString());
+            int cId = c.getId();
+            List inc = insurances.getAllInsurancesByCustomerId(cId);
+            carInsuranceRegistration.populateInsurancesTable(inc);
+        }
+    }
+    
+    private void carInsuranceRegisterButtonEventHandler(ActionEvent event) {
+        // get all fields to String, then 
+    }
     
     private void setBrandComboBox() {
         List cars = modelController.getCarInfos();

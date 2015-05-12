@@ -92,6 +92,8 @@ public class Log {
             userType = "Admin";
         } else if (user instanceof Customer) {
             userType = "Customer";
+        } else {
+            userType = "Unknown";
         }
     }
 }

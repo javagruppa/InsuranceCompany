@@ -41,6 +41,7 @@ public class TravelInsurance extends Insurance implements Serializable {
      * Returns the type of this insurance in form of a String.
      * @return 
      */
+    @Override
     public String getName() {
         return "Reiseforsikring";
     }

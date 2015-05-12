@@ -61,7 +61,7 @@ public class RegisterView {
         insurancesButton.setId("subToolbarButton");
         claimsButton = new Button("Skademeldinger");
         claimsButton.setId("subToolbarButton");
-        ObservableList<Button> buttons = FXCollections.observableArrayList ();
+        ObservableList<Button> buttons = FXCollections.observableArrayList();
         buttons.addAll(personsButton, insurancesButton, claimsButton);        
         hbox.getChildren().addAll(buttons);
        

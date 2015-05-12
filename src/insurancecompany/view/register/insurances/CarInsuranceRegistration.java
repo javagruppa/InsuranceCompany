@@ -452,7 +452,14 @@ public class CarInsuranceRegistration {
      * @param insurances 
      */
     public void populateInsurancesTable(List<Insurance> insurances) {
-        // do something
+        insurancesTable.getItems().addAll("Type", "Forsikringsnummer");
+        ObservableList<Insurance> obList = FXCollections.observableArrayList(insurances);
+        for (Insurance ins : obList) {
+            ObservableList<String> row = FXCollections.observableArrayList();
+            row.addAll(ins.getName(), ins.getInsuranceId() + "");
+            insurancesTable.getItems().addAll(row);
+        }
+        
     }
 
     /**

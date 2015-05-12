@@ -28,9 +28,12 @@ public class Admin extends Employee implements Serializable {
     }
 
     /**
-     * Returns a string representation for the Admin
-     * @return a string of the admin
+          * Returns a string representation of this CaseWorker. The string
+     * representation consists of each field with a short description separated
+     * by a new line.
+     * @return a string representation of this caseworker
      */
+    @Override
     public String toString(){
         return super.toString();
     }

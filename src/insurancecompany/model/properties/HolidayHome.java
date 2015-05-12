@@ -20,8 +20,7 @@ public class HolidayHome extends Property implements Serializable {
     private static final long serialVersionUID = 1L;
     
     
-    /** Whether the holiday home is a rental or not. */
-    private boolean rental;
+    
     
     /**
      * Constructs a new holiday home with the specified address. Area and year 
@@ -35,24 +34,7 @@ public class HolidayHome extends Property implements Serializable {
         
     }
     
-    /**
-     * Returns whether the holiday home is a rental or not.
-     * 
-     * @return whether the holiday home is a rental or not
-     */
-    public boolean getRental() {
-        return rental;
-    }
-    
-    /**
-     * Sets a rental status to this holiday home.
-     * 
-     * @param rental whether the holiday home is a rental or not
-     */
-    public void setRental(boolean rental) {
-        this.rental = rental;
-    }
-    
+        
     /**
      * Returns a string representation of this property. The string
      * representation consists of each field with a short description separated
@@ -67,7 +49,6 @@ public class HolidayHome extends Property implements Serializable {
         StringBuilder result = new StringBuilder();
         // Appends the fields with appropriate sentences.
         result.append(super.toString());
-        result.append("\nUtleie: ").append(rental ? "Ja" : "Nei" );
         // Returns the string.
         return result.toString();
     }

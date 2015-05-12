@@ -8,7 +8,6 @@ package insurancecompany.view.register.insurances;
 import insurancecompany.misc.coverages.CarInsuranceCoverage;
 import insurancecompany.model.insurances.Insurance;
 import java.util.List;
-import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
@@ -127,14 +126,16 @@ public class CarInsuranceRegistration {
         customerArea.setEditable(false);
         customerArea.setPrefColumnCount(2);
         customerArea.setPrefRowCount(4);
+        selectCustomerButton = new Button("Velg denne kunden");
         Text insurancesTitle = new Text("Eksisterende forsikringer til denne kunden:");
         insurancesTitle.setId("textTitle");
         insurancesTable = new TableView();
         insurancesTable.setPrefHeight(150);
-        insuranceTypeColumn = new TableColumn<>();
-        insuranceIdColumn = new TableColumn<>();
-        insuranceCoverageColum = new TableColumn<>();
-        selectCustomerButton = new Button("Velg denne kunden");
+        insuranceTypeColumn = new TableColumn<>("Forsikring");
+        insuranceCoverageColum = new TableColumn<>("Dekning");
+        insuranceIdColumn = new TableColumn<>("Forsikringsid");
+        insurancesTable.getColumns().addAll(insuranceTypeColumn, insuranceCoverageColum, insuranceIdColumn);
+        insurancesTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);       
         
         Text insuranceOptionsTitle = new Text("Betingelser:");
         insuranceOptionsTitle.setId("textTitle");
@@ -206,9 +207,9 @@ public class CarInsuranceRegistration {
         
         mainPane.add(resultTitle, 0, 3);
         mainPane.add(customerArea, 0, 4, 3, 5);
-        mainPane.add(insurancesTitle, 0, 9);
-        mainPane.add(insurancesTable, 0, 10, 2, 5);
-        mainPane.add(selectCustomerButton, 0, 15);
+        mainPane.add(selectCustomerButton, 0, 9);
+        mainPane.add(insurancesTitle, 0, 10);
+        mainPane.add(insurancesTable, 0, 11, 3, 5);
         
         mainPane.add(insuranceOptionsTitle, 4, 0);
         mainPane.add(existingBonusLabel, 4, 1);
@@ -467,10 +468,9 @@ public class CarInsuranceRegistration {
      * @param insurances 
      */
     public void populateInsurancesTable(List<Insurance> insurances) {
-        //insurancesTable.getItems().addAll("Type", "Forsikringsnummer");
         ObservableList<Insurance> obList = FXCollections.observableArrayList(insurances);
         insurancesTable.setItems(obList);
-        insurancesTable.getColumns().addAll(insuranceTypeColumn, insuranceCoverageColum, insuranceIdColumn);
+        
         insuranceTypeColumn.setCellValueFactory((cellData) -> {
                 if ( cellData.getValue() != null) {
                     return new SimpleStringProperty(cellData.getValue().getName());
@@ -491,8 +491,7 @@ public class CarInsuranceRegistration {
                 } else {
                     return new SimpleObjectProperty(0);
                 }
-        });
-        
+        });   
     }
 
     /**

@@ -15,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -56,7 +57,6 @@ public class AdminView extends Application {
     
     public AdminView() {
         initializeViews();
-        initializeEventHandlers();
         scene = new Scene(mainPane, 1200, 700);
         scene.getStylesheets().add("insurancecompany/resources/css/stylesheet.css");
         
@@ -82,34 +82,6 @@ public class AdminView extends Application {
         statusBarPane = createStatusBar();
         vbox.getChildren().addAll(toolBarPane, statusBarPane);
         mainPane.setTop(vbox);
-    }
-    
-    private void initializeEventHandlers() {
-        toolBarPane.setOnMouseClicked((event) -> {
-            if(event.getButton().equals(MouseButton.PRIMARY)){
-                if(event.getClickCount() == 2){
-                    if (primaryStage.isFullScreen()) {
-                        primaryStage.setFullScreen(false);
-                    } else if (!primaryStage.isFullScreen()) {
-                    primaryStage.setFullScreen(true);
-                    }
-                }
-            }  
-        });
-        
-        toolBarPane.setOnMousePressed((event) -> {
-            if (!primaryStage.isFullScreen()) {
-                xOffset = event.getSceneX();
-                yOffset = event.getSceneY();
-            }
-        });
-        
-        toolBarPane.setOnMouseDragged((event) -> {
-            if (!primaryStage.isFullScreen()) {
-                primaryStage.setX(event.getScreenX() - xOffset);
-                primaryStage.setY(event.getScreenY() - yOffset);
-            }
-        });        
     }
     
     private HBox createToolBar() {
@@ -188,5 +160,45 @@ public class AdminView extends Application {
 
     public void setExitButtonEventHandler(EventHandler<ActionEvent> value) {
         exitButton.setOnAction(value);
+    }
+    
+    public void setToolbarOnMouseClickedEventHandler(EventHandler<MouseEvent> value) {
+        toolBarPane.setOnMouseClicked(value);
+    }
+    
+    public void setToolbarOnMouseDraggedEventHandler(EventHandler<MouseEvent> value) {
+        toolBarPane.setOnMouseDragged(value);
+    }
+    
+    public void setToolbarOnMousePressedEventHandler(EventHandler<MouseEvent> value) {
+        toolBarPane.setOnMousePressed(value);
+    }
+
+    /**
+     * @return the xOffset
+     */
+    public double getxOffset() {
+        return xOffset;
+    }
+
+    /**
+     * @param xOffset the xOffset to set
+     */
+    public void setxOffset(double xOffset) {
+        this.xOffset = xOffset;
+    }
+
+    /**
+     * @return the yOffset
+     */
+    public double getyOffset() {
+        return yOffset;
+    }
+
+    /**
+     * @param yOffset the yOffset to set
+     */
+    public void setyOffset(double yOffset) {
+        this.yOffset = yOffset;
     }
 }

@@ -33,7 +33,7 @@ import javafx.scene.text.Text;
  */
 public class HolidayHomeInsuranceRegistration {
     
-    /** The main pane of this class.*/
+    /** The main pane of this class. */
     private GridPane mainPane;
     
     // SEARCH FOR CUSTOMER NODES:

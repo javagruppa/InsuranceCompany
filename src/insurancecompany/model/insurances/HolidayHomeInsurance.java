@@ -153,9 +153,16 @@ public class HolidayHomeInsurance extends PropertyInsurance implements Serializa
         int setPremium = (int)finalprice;
         // Sets this insurances premium to the final price
 	setPremium(setPremium);
-}
+    }
     
-    
+    /**
+     * Returns the coverage of this insurance.
+     * @return 
+     */
+    @Override
+    public Object getCoverage() {
+        return coverage;
+    }
     
     /**
      * Returns the holiday home this insurance is for.

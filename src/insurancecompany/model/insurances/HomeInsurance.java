@@ -165,4 +165,13 @@ public class HomeInsurance extends PropertyInsurance implements Serializable {
     public Home getHome() {
         return home;
     }
+    
+     /**
+     * Returns the coverage of this insurance.
+     * @return 
+     */
+    @Override
+    public Object getCoverage() {
+        return coverage;
+    }
 }

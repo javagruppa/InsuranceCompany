@@ -54,6 +54,14 @@ public class HomeContentInsurance extends PropertyInsurance implements Serializa
         return "Innboforsikring";
     }
     
+     /**
+     * Returns the coverage of this insurance.
+     * @return 
+     */
+    @Override
+    public Object getCoverage() {
+        return coverage;
+    }    
     public Home getHome(){
         return home;
     }

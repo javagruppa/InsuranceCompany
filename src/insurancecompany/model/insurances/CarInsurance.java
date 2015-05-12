@@ -259,6 +259,15 @@ public class CarInsurance extends Insurance implements Serializable {
     }
     
     /**
+     * Returns the coverage of this insurance.
+     * @return 
+     */
+    @Override
+    public Object getCoverage() {
+        return coverage;
+    }
+    
+    /**
      * Returns the boolean representing whether the insurance covers young drivers.
      * @return 
      */

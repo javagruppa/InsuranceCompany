@@ -182,7 +182,16 @@ public class BoatInsurance extends Insurance implements Serializable {
         setPremium = (int)newPremium;
 	// Sets the premium of this insurance to the calculated price
         setPremium(setPremium); 
-}
+    }
+    
+    /**
+     * Returns the coverage of this insurance.
+     * @return 
+     */
+    @Override
+    public Object getCoverage() {
+        return coverage;
+    }
     
     /**
      * Returns a string representation of this insurance. The string

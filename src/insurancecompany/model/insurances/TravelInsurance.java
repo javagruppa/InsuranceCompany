@@ -65,4 +65,13 @@ public class TravelInsurance extends Insurance implements Serializable {
         // Returns the string.
         return result.toString();
     }
+    
+    /**
+     * Returns the coverage of this insurance.
+     * @return 
+     */
+    @Override
+    public Object getCoverage() {
+        return coverage;
+    }
 }

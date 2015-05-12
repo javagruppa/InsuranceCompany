@@ -399,91 +399,69 @@ public class BoatInsuranceRegistration {
     
     // SET METHODS:
 
-    /**
-     * @param alarmMessage the alarmMessage to set
-     */
-    public void setAlarmMessage(String alarmMessage) {
+    /** @param message The message to set. */
+    public void setAlarmMessage(String message) {
         this.alarmMessage.setFill(Color.FIREBRICK);
-        this.alarmMessage.setText(alarmMessage);
+        this.alarmMessage.setText(message);
     }
 
-    /**
-     * @param brandMessage the brandMessage to set
-     */
-    public void setBrandMessage(String brandMessage) {
+    /** @param message The message to set. */
+    public void setBrandMessage(String message) {
         this.brandMessage.setFill(Color.FIREBRICK);
-        this.brandMessage.setText(brandMessage);
+        this.brandMessage.setText(message);
     }
 
-    /**
-     * @param coverageMessage the coverageMessage to set
-     */
-    public void setCoverageMessage(String coverageMessage) {
+    /** @param message The message to set. */
+    public void setCoverageMessage(String message) {
         this.coverageMessage.setFill(Color.FIREBRICK);
-        this.coverageMessage.setText(coverageMessage);
+        this.coverageMessage.setText(message);
     }
 
-    /**
-     * @param engineEffectMessage the engineEffectMessage to set
-     */
-    public void setEngineEffectMessage(String engineEffectMessage) {
+    /** @param message The message to set. */
+    public void setEngineEffectMessage(String message) {
         this.engineEffectMessage.setFill(Color.FIREBRICK);
-        this.engineEffectMessage.setText(engineEffectMessage);
+        this.engineEffectMessage.setText(message);
     }
 
-    /**
-     * @param engineTypeMessage the engineTypeMessage to set
-     */
-    public void setEngineTypeMessage(String engineTypeMessage) {
+    /** @param message The message to set. */
+    public void setEngineTypeMessage(String message) {
         this.engineTypeMessage.setFill(Color.FIREBRICK);
-        this.engineTypeMessage.setText(engineTypeMessage);
+        this.engineTypeMessage.setText(message);
     }
 
-    /**
-     * @param excessMessage the excessMessage to set
-     */
-    public void setExcessMessage(String excessMessage) {
+    /** @param message The message to set. */
+    public void setExcessMessage(String message) {
         this.excessMessage.setFill(Color.FIREBRICK);
-        this.excessMessage.setText(excessMessage);
+        this.excessMessage.setText(message);
     }
 
-    /**
-     * @param lengthMessage the lengthMessage to set
-     */
-    public void setLengthMessage(String lengthMessage) {
+    /** @param message The message to set. */
+    public void setLengthMessage(String message) {
         this.lengthMessage.setFill(Color.FIREBRICK);
-        this.lengthMessage.setText(lengthMessage);
+        this.lengthMessage.setText(message);
     }
 
-    /**
-     * @param modelMessage the modelMessage to set
-     */
-    public void setModelMessage(String modelMessage) {
+    /** @param message The message to set. */
+    public void setModelMessage(String message) {
         this.modelMessage.setFill(Color.FIREBRICK);
-        this.modelMessage.setText(modelMessage);
+        this.modelMessage.setText(message);
     }
 
-    /**
-     * @param ownerPersonalNumberMessage the ownerPersonalNumberMessage to set
-     */
-    public void setOwnerPersonalNumberMessage(String ownerPersonalNumberMessage) {
+    /** @param message The message to set. */
+    public void setOwnerPersonalNumberMessage(String message) {
         this.ownerPersonalNumberMessage.setFill(Color.FIREBRICK);
-        this.ownerPersonalNumberMessage.setText(ownerPersonalNumberMessage);
+        this.ownerPersonalNumberMessage.setText(message);
     }
 
-    /**
-     * @param registrationNumberMessage the registrationNumberMessage to set
-     */
-    public void setRegistrationNumberMessage(String registrationNumberMessage) {
+    /** @param message The message to set. */
+    public void setRegistrationNumberMessage(String message) {
         this.registrationNumberMessage.setFill(Color.FIREBRICK);
-        this.registrationNumberMessage.setText(registrationNumberMessage);
+        this.registrationNumberMessage.setText(message);
     }
 
-    /**
-     * @param registrationYearMessage the registrationYearMessage to set
-     */
-    public void setRegistrationYearMessage(String registrationYearMessage) {
+    /** @param message The message to set. */
+    public void setRegistrationYearMessage(String message) {
         this.registrationYearMessage.setFill(Color.FIREBRICK);
-        this.registrationYearMessage.setText(registrationYearMessage);
+        this.registrationYearMessage.setText(message);
     }
 }

@@ -74,7 +74,8 @@ public class CarInsurance extends Insurance implements Serializable {
         this.hasGarage = hasGarage;
         this.maxLength = maxLength;
         this.youngDriver = youngDriver;
-        lastBonusUpdate = DateCalculations.dateToCalendar(getDate());
+        // Initializes last bonus update to the date of when the insurance was created, using the super class getDate()
+        lastBonusUpdate = super.getDate();
     }
     
     /**

@@ -20,9 +20,22 @@ public class VehicleOwner extends Person implements Serializable {
         super(firstname, lastname, personalNumber, email, address, phone);
     }
     
+    /**
+     * Returns a string representation of this VehicleOwner. The string
+     * representation consists of each field with a short description separated
+     * by a new line.
+     * @return a string representation of this vehicle owner
+     */
+    @Override
     public String toString() {
-        String text = "";
-        return text;
+        // Creates a StringBuilder which will be returned at the end of the 
+        // method.
+        StringBuilder result = new StringBuilder();
+        // Appends the fields with appropriate sentences.
+        result.append("EIER AV KJØRETØY");
+        result.append("\n").append(super.toString());
+        // Returns the string.
+        return result.toString();
     }
 
     @Override

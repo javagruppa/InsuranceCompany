@@ -80,6 +80,9 @@ public class CarInsuranceRegistration {
     private Text personalNumberOwnerMessage;
     private Text registerResultMessage;
     
+    private int tempCustomerId;
+    private int selectedCustomerId;
+    
     public CarInsuranceRegistration() {
         
         // Sets up the mainPane
@@ -612,5 +615,33 @@ public class CarInsuranceRegistration {
     public void setRegisterResultMessage(String registerResultMessage) {
         this.registerResultMessage.setFill(Color.FIREBRICK);
         this.registerResultMessage.setText(registerResultMessage);
+    }
+
+    /**
+     * @return the selectedCustomerId
+     */
+    public int getSelectedCustomerId() {
+        return selectedCustomerId;
+    }
+
+    /**
+     * @param selectedCustomerId the selectedCustomerId to set
+     */
+    public void setSelectedCustomerId(int selectedCustomerId) {
+        this.selectedCustomerId = selectedCustomerId;
+    }
+
+    /**
+     * @return the tempCustomerId
+     */
+    public int getTempCustomerId() {
+        return tempCustomerId;
+    }
+
+    /**
+     * @param tempCustomerId the tempCustomerId to set
+     */
+    public void setTempCustomerId(int tempCustomerId) {
+        this.tempCustomerId = tempCustomerId;
     }
 }

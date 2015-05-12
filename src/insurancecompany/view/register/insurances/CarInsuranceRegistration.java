@@ -72,7 +72,9 @@ public class CarInsuranceRegistration {
         mainPane.setAlignment(Pos.CENTER);
         mainPane.setHgap(10);
         mainPane.setVgap(6);
+        // Set background color:
         mainPane.setStyle("-fx-background-color: #E7E7FF;");
+        // Set up column constraints. Width in pixels:
         ColumnConstraints col1 = new ColumnConstraints(120);
         ColumnConstraints col2 = new ColumnConstraints(100);
         ColumnConstraints col3 = new ColumnConstraints(40);
@@ -80,10 +82,10 @@ public class CarInsuranceRegistration {
         ColumnConstraints col5 = new ColumnConstraints(150);
         ColumnConstraints col6 = new ColumnConstraints(150);
         ColumnConstraints col7 = new ColumnConstraints(150);
-        
+        // Add these constraints:
         mainPane.getColumnConstraints().addAll(col1, col2, col3, col4, col5, col6, col7);
         
-        
+        // Start initializing all nodes that are to be placed in the gridpane:
         Text selectCustomerTitle = new Text("Velg først en kunde i registeret:");
         selectCustomerTitle.setId("textTitle");
         Label customerIdLabel = new Label("Kundenummer:");
@@ -147,7 +149,7 @@ public class CarInsuranceRegistration {
         calculateButton = new Button("Regn ut");
         registerButton = new Button("Registrer");
         
-        // Add to mainPane:
+        // Add nodes to mainPane:
         mainPane.add(selectCustomerTitle, 0, 0);
         mainPane.add(customerIdLabel, 0, 1);
         mainPane.add(customerIdField, 1, 1);
@@ -409,21 +411,23 @@ public class CarInsuranceRegistration {
     }
 
     /**
-     * @param insurancesTable the insurancesTable to set
+     * 
+     * @param insurances 
      */
     public void populateInsurancesTable(List<Insurance> insurances) {
         // do something
     }
 
     /**
-     * @param searchCustomerIdButton the searchCustomerIdButton to set
+     * Sets event handler for the search customer button of this view.
+     * @param value 
      */
     public void setSearchCustomerIdButtonEventHandler(EventHandler<ActionEvent> value) {
         searchCustomerIdButton.setOnAction(value);
     }
 
     /**
-     * 
+     * Sets event handler for the search personal number button of this view.
      * @param value 
      */
     public void setSearchPersonalNumberButtonEventHandler(EventHandler<ActionEvent> value) {
@@ -431,26 +435,33 @@ public class CarInsuranceRegistration {
     }
 
     /**
-     * @param selectCustomerButton the selectCustomerButton to set
+     * Sets event handler for the select customer button of this view.
+     * @param value 
      */
     public void setSelectCustomerButtonEventHandler(EventHandler<ActionEvent> value) {
         selectCustomerButton.setOnAction(value);
     }
 
     /**
-     * @param calculateButton the calculateButton to set
+     * Sets event handler for the calculate button of this view.
+     * @param value 
      */
     public void setCalculateButtonEventHandler(EventHandler<ActionEvent> value) {
         calculateButton.setOnAction(value);
     }
 
     /**
-     * @param registerButton the registerButton to set
+     * Sets event handler for the register button of this view.
+     * @param value 
      */
     public void setRegisterButtonEventHandler(EventHandler<ActionEvent> value) {
         registerButton.setOnAction(value);
     }
     
+    /**
+     * Returns the mainPane of this view.
+     * @return the mainPane of this view.
+     */
     public Pane getMainPane() {
         return mainPane;
     }

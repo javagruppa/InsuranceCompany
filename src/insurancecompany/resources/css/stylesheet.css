@@ -9,8 +9,11 @@ and open the template in the editor.
 */
 
 .button {
-    -fx-background-color: #6577A1;
+    -fx-background-color: #395cab;
     -fx-text-fill: white;
+}
+.button:hover {
+    -fx-background-color: #6577A1;
 }
 
 .combo-box {
@@ -38,11 +41,12 @@ and open the template in the editor.
 }
 
 .label {
-    
+    -fx-text-fill: #000033;
 }
 
 #textTitle {
-    -fx-font-size: 14px;    
+    -fx-font-size: 14px;
+    -fx-text-fill: #6577A1;
 }
 
 #centrePane {
@@ -60,8 +64,9 @@ and open the template in the editor.
     -fx-text-fill: white;
     -fx-font-size: 15px;
 }
-#mainToolbarButton Text {
-    
+
+#mainToolbarButton:hover {
+    -fx-background-color: linear-gradient(#E7E7FF, #223768);
 }
 
 #mainToolbarButtonSelected {
@@ -88,8 +93,8 @@ and open the template in the editor.
     -fx-font-size: 15px;
 }
 
-#subToolbarButton Text {
-    
+#subToolbarButton:hover {
+    -fx-background-color: linear-gradient(#E7E7FF, #223768);
 }
 
 #subToolbarButtonSelected  {
@@ -116,6 +121,9 @@ and open the template in the editor.
     -fx-font-size: 15px;    
 }
 
+#sideToolbarButton:hover {
+    -fx-background-color: linear-gradient(#E7E7FF, #223768);
+}
 
 #sideToolbarButtonSelected {
     -fx-background-color: linear-gradient(#E7E7FF, #223768);

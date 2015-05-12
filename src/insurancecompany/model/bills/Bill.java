@@ -18,7 +18,7 @@ public class Bill implements Serializable {
     /** Constant representing the number of days until each due date from issue, as well as days to dunningDate */
     public static final int FIXED_DUE_DAYS = 14;
     private static int nextBillingId = 1000000;
-    private static String billingIdFileName = "insurancecompany/resources/nextidnumbers/billingId.dta";
+    private static String billingIdFileName = "src/insurancecompany/resources/nextidnumbers/billingId.dta";
     
     
     /** Unique billing id used to identify a specific bill.*/

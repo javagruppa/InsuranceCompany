@@ -148,7 +148,7 @@ public class BillRegister {
     
     
     /**
-     * Writes this registers set of claims to file.
+     * Writes this registers set of bills to file.
      * @throws IOException 
      */
     public void writeBillsToFile() throws IOException{
@@ -158,7 +158,7 @@ public class BillRegister {
         }
     }
     /**
-     * Reads a set of claims from file and stores them in the set in this register.
+     * Reads a set of bills from file and stores them in the set in this register.
      * @throws IOException
      * @throws ClassNotFoundException 
      */

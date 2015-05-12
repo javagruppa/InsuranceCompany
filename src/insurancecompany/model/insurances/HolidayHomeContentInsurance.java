@@ -10,6 +10,8 @@ import insurancecompany.model.properties.HolidayHome;
 import insurancecompany.misc.hometypes.HolidayHomeType;
 import insurancecompany.misc.coverages.HolidayHomeInsuranceCoverage;
 import java.io.Serializable;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 
 /**
@@ -55,6 +57,15 @@ public class HolidayHomeContentInsurance extends PropertyInsurance
     @Override
     public String getName() {
         return "Fritidsbolig innboforsikring";
+    }
+    
+    /**
+     * Returns the type of this insurance in form of a StringProperty.
+     * @return 
+     */
+    @Override
+    public StringProperty getPropertyName() {
+        return new SimpleStringProperty("Fritidsbolig innboforsikring");
     }
     
     public HolidayHome getholidayHome(){

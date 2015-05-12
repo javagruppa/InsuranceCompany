@@ -10,6 +10,8 @@ import insurancecompany.misc.hometypes.HomeType;
 import insurancecompany.misc.coverages.HomeInsuranceCoverage;
 import java.io.Serializable;   
 import java.util.Calendar;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 /**
  *
@@ -52,6 +54,15 @@ public class HomeInsurance extends PropertyInsurance implements Serializable {
     @Override
     public String getName() {
         return "Husforsikring";
+    }
+    
+        /**
+     * Returns the type of this insurance in form of a StringProperty.
+     * @return 
+     */
+    @Override
+    public StringProperty getPropertyName() {
+        return new SimpleStringProperty("Husforsikring");
     }
     
     /**

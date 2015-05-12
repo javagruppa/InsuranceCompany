@@ -12,6 +12,8 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
@@ -46,10 +48,11 @@ public class AdminView extends Application {
     private Pane toolBarPane;
     private Pane statusBarPane;
     
-    private Button registerTabButton;
-    //private Button processButton; // Til å behandle skademeldinger og evt regninger
-    private Button searchTabButton;
-    private Button statisticsTabButton;
+    private ToggleButton registerTabButton;
+    private ToggleButton processTabButton;
+    private ToggleButton searchTabButton;
+    private ToggleButton statisticsTabButton;
+    private ToggleGroup toggleGroup;
     private Button saveDataButton;
     private Button logOutButton;
     private Button exitButton;
@@ -87,12 +90,19 @@ public class AdminView extends Application {
     private HBox createToolBar() {
         HBox hbox = new HBox();
         hbox.setStyle("-fx-background-color: #6577A1;");
-        registerTabButton = new Button("Registrer");
+        registerTabButton = new ToggleButton("Registrer");
         registerTabButton.setId("mainToolbarButton");
-        searchTabButton = new Button("Søk");
+        processTabButton = new ToggleButton("Behandle");
+        processTabButton.setId("mainToolbarButton");
+        searchTabButton = new ToggleButton("Søk");
         searchTabButton.setId("mainToolbarButton");
-        statisticsTabButton = new Button("Statistikk");
+        statisticsTabButton = new ToggleButton("Statistikk");
         statisticsTabButton.setId("mainToolbarButton");
+        toggleGroup = new ToggleGroup();
+        registerTabButton.setToggleGroup(toggleGroup);
+        processTabButton.setToggleGroup(toggleGroup);
+        searchTabButton.setToggleGroup(toggleGroup);
+        statisticsTabButton.setToggleGroup(toggleGroup);
         
         saveDataButton = new Button("Lagre datastrukturer");
         saveDataButton.setId("mainToolbarButton");
@@ -121,13 +131,6 @@ public class AdminView extends Application {
         userStatusText = new Text("Logget inn som Admin. Ansattnr: 10000000");
         hbox.getChildren().add(userStatusText);
         return hbox;
-    }
-    
-    public void selectedButtonStyleUpper(Button button) {
-        registerTabButton.setId("mainToolbarButton");
-        searchTabButton.setId("mainToolbarButton");
-        statisticsTabButton.setId("mainToolbarButton");
-        button.setId("mainToolbarButtonSelected");
     }
     
     // GET MAIN PANE

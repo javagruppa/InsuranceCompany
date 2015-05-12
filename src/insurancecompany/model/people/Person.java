@@ -9,12 +9,18 @@ import insurancecompany.model.properties.Address;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
+import java.text.SimpleDateFormat;
 /**
  *
  * @author Carl
  */
 public abstract class Person implements Serializable {
     private static final long serialVersionUID = 1L;
+    
+    /** The norwegian standard for showing dates */
+    java.util.Locale norway = new java.util.Locale("no");
+    /** The date format to be shown in toString */
+    SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy", norway );
     
     /**the personal number of the person*/
     private String personalNumber;
@@ -104,9 +110,18 @@ public abstract class Person implements Serializable {
      */
     @Override
     public String toString() {
-        String s = firstName + "\n" + lastName + "\n" + "Fødselsnr: " + personalNumber +
-                "\nEpost-adresse: " + email + "\n" + getAddress().toString();
-        return s;
+        // Creates a StringBuilder which will be returned at the end of the 
+        // method.
+        StringBuilder result = new StringBuilder();
+        // Appends the fields with appropriate sentences.
+        result.append("Navn: ").append(firstName + " " + lastName);
+        result.append("\nPersonnummer: ").append(personalNumber);
+        result.append("\nAdresse: ").append(address.toString());
+        result.append("\nE-post adresse: ").append(email);
+        result.append("\nTelefonnummer: ").append(phone);
+        result.append("\nRegistrert dato: ").append(sdf.format(registeredDate));
+        // Returns the string.
+        return result.toString();
     }
 
     /**

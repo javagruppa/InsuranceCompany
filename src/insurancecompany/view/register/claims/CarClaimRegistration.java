@@ -19,6 +19,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -64,42 +65,19 @@ public class CarClaimRegistration {
     
     /** The date of when the damage happened */
     private DatePicker dateHappenedPicker;
-    /** Textual description of this claim. */
+    /** Textual description of the claim. */
     private TextArea descriptionTextArea;
-    /** Image description of this claim. */
+    /** File chooser for image of the damage. */
     private FileChooser fileChooser;
-    // REGISTER INSURANCE NODES:
-    // Input nodes, Comboboxes and textfiels:
-    private ComboBox existingBonusCombo;
-    private ComboBox drivingLengthCombo;
-    private ComboBox excessCombo; // Nor: Egenandel
-    private ComboBox brandCombo;
-    private ComboBox yearCombo;
-    private ComboBox modelCombo;
-    private ComboBox youngestDriverCombo;
-    private ComboBox alarmCombo;
-    private ComboBox coverageCombo; // Nor: Dekning
-    private ComboBox parkingConditionCombo;
-    private TextField registrationNumberField;
-    private TextField personalNumberOwnerField;
-    private TextField premiumField;
+    private TextField appraisalField;
+    private CheckBox damagesCheckBox; 
     // Buttons:
-    private Button calculateButton;
+    private Button selectImageButton;
+    private Button openClaimFormButton;
     private Button registerButton;
+    
     // Output nodes, Text messages:
-    private Text existingBonusMessage;
-    private Text drivingLengthMessage;
-    private Text excessMessage; // Nor: Egenandel
-    private Text brandMessage;
-    private Text yearMessage;
-    private Text modelMessage;
-    private Text youngestDriverMessage;
-    private Text alarmMessage;
-    private Text coverageMessage; // Nor: Dekning
-    private Text parkingConditionMessage;
-    private Text registrationNumberMessage;
-    private Text personalNumberOwnerMessage;
-    private Text registerResultMessage;
+
     
     
     public CarClaimRegistration() {
@@ -149,63 +127,20 @@ public class CarClaimRegistration {
         insurancesTable.getColumns().addAll(insuranceTypeColumn, insuranceCoverageColum, insuranceIdColumn);
         insurancesTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);    
         
-        Text insuranceOptionsTitle = new Text("Betingelser:");
-        insuranceOptionsTitle.setId("textTitle");
-        Label existingBonusLabel = new Label("Eksisterende bonussats:");
-        existingBonusCombo = new ComboBox();
-        populateExistingBonusCombo();
-        existingBonusMessage = new Text();
-        Label drivingLengthLabel = new Label("Kjørelengde:");
-        drivingLengthCombo = new ComboBox();
-        populateDrivingLengthCombo();
-        drivingLengthMessage = new Text();
-        Label excessLabel = new Label("Egenandel:");
-        excessCombo = new ComboBox();
-        populateExcessCombo();
-        excessMessage = new Text();
-        Label youngestDriverLabel = new Label("Yngste fører:");
-        youngestDriverCombo = new ComboBox();
-        populateYoungestDriverCombo();
-        youngestDriverMessage = new Text();
-        Label coverageLabel = new Label("Dekning:");
-        coverageCombo = new ComboBox();
-        populateCoverageCombo();
-        coverageMessage = new Text();
-        Label parkingConditionLabel = new Label("Parkeringsforhold:");
-        parkingConditionCombo = new ComboBox();
-        populateParkingConditionCombo();
-        parkingConditionMessage = new Text();
-        
-        Text carTitle = new Text("Bil:");
-        carTitle.setId("textTitle");
-        Label personalNumberOwnerLabel = new Label("Eierens personnummer:");
-        personalNumberOwnerField = new TextField();
-        personalNumberOwnerMessage = new Text();
-        Label registrationNumberLabel = new Label("Registreringsnummer:");
-        registrationNumberField = new TextField();
-        registrationNumberMessage = new Text();
-        Label brandLabel = new Label("Merke:");
-        brandCombo = new ComboBox();
-        brandCombo.setEditable(true);
-        brandMessage = new Text();
-        Label yearLabel = new Label("År:");      
-        yearCombo = new ComboBox();
-        yearCombo.setEditable(true);
-        yearMessage = new Text();
-        Label modelLabel = new Label("Modell:");
-        modelCombo = new ComboBox();
-        modelCombo.setEditable(true);
-        modelMessage = new Text();
-        Label alarmLabel = new Label("FG-godkjent alarm:");
-        alarmCombo = new ComboBox();
-        popualteAlarmCombo();
-        alarmMessage = new Text();
-        Label premiumLabel = new Label("Beregnet forsikringspremie:");
-        premiumField = new TextField();
-        premiumField.setEditable(false);
-        calculateButton = new Button("Regn ut");
-        registerButton = new Button("Registrer");
-        registerResultMessage = new Text();
+        Label dateHappenedLabel = new Label("Skadedato:");
+        dateHappenedPicker = new DatePicker();
+        Label descriptionLabel = new Label("Beskrivelse av skaden:");
+        descriptionTextArea = new TextArea();
+        Label appraisalLbel = new Label("Takseringsbeløp:");
+        appraisalField = new TextField();
+        Label damagesLabel = new Label("Skade:");
+        damagesCheckBox = new CheckBox(); 
+        Label selectImageLabel = new Label("Last opp et bilde som beskriver skaden");
+        selectImageButton = new Button();
+        fileChooser = new FileChooser();
+        Label openClaimFormLabel = new Label("Åpne bilskademelingsskjema");
+        openClaimFormButton = new Button();
+        registerButton = new Button();
         
         // Add nodes to mainPane:
         mainPane.add(selectCustomerTitle, 0, 0);
@@ -224,140 +159,21 @@ public class CarClaimRegistration {
         mainPane.add(insurancesTitle, 0, 10);
         mainPane.add(insurancesTable, 0, 11, 3, 5);
         
-        mainPane.add(insuranceOptionsTitle, 4, 0);
-        mainPane.add(existingBonusLabel, 4, 1);
-        mainPane.add(existingBonusCombo, 5, 1);
-        mainPane.add(existingBonusMessage, 6, 1);
-        mainPane.add(drivingLengthLabel, 4, 2);
-        mainPane.add(drivingLengthCombo, 5, 2);
-        mainPane.add(drivingLengthMessage, 6, 2);
-        mainPane.add(excessLabel, 4, 3);
-        mainPane.add(excessCombo, 5, 3);
-        mainPane.add(excessMessage, 6, 3);
-        mainPane.add(youngestDriverLabel, 4, 4);
-        mainPane.add(youngestDriverCombo, 5, 4);
-        mainPane.add(youngestDriverMessage, 6, 4);
-        mainPane.add(coverageLabel, 4, 5);
-        mainPane.add(coverageCombo, 5, 5);
-        mainPane.add(coverageMessage, 6, 5);
-        mainPane.add(parkingConditionLabel, 4, 6);
-        mainPane.add(parkingConditionCombo, 5, 6);
-        mainPane.add(parkingConditionMessage, 6, 6);
-
-        mainPane.add(carTitle, 4, 7);
-        mainPane.add(personalNumberOwnerLabel, 4, 8);
-        mainPane.add(personalNumberOwnerField, 5, 8);
-        mainPane.add(personalNumberOwnerMessage, 6, 8);
-        mainPane.add(registrationNumberLabel, 4, 9);
-        mainPane.add(registrationNumberField, 5, 9);
-        mainPane.add(registrationNumberMessage, 6, 9);
-        mainPane.add(brandLabel, 4, 10);
-        mainPane.add(brandCombo, 5, 10);
-        mainPane.add(brandMessage, 6, 10);
-        mainPane.add(yearLabel, 4, 11);
-        mainPane.add(yearCombo, 5, 11);
-        mainPane.add(yearMessage, 6, 11);
-        mainPane.add(modelLabel, 4, 12);
-        mainPane.add(modelCombo, 5, 12);
-        mainPane.add(modelMessage, 6, 12);
-        mainPane.add(alarmLabel, 4, 13);
-        mainPane.add(alarmCombo, 5, 13);
-        mainPane.add(alarmMessage, 6, 13);
-        mainPane.add(premiumLabel, 4, 14);
-        mainPane.add(premiumField, 5, 14);
-        mainPane.add(calculateButton, 6, 14);
-        mainPane.add(registerButton, 5, 15);
-        mainPane.add(registerResultMessage, 5, 16, 3, 1);
+        // 
+        mainPane.add(dateHappenedLabel, 4, 0);
+        mainPane.add(dateHappenedPicker, 5, 0);
+        mainPane.add(descriptionLabel, 4, 1);
+        mainPane.add(descriptionTextArea,4, 2);
+        mainPane.add(appraisalLbel, 4, 3);
+        mainPane.add(appraisalField, 5, 3);
+        mainPane.add(damagesLabel, 4, 4);
+        mainPane.add(damagesCheckBox, 5, 4);
+        mainPane.add(selectImageLabel, 4, 5);
+        mainPane.add(selectImageButton, 5, 5);
+        mainPane.add(openClaimFormLabel, 4, 6);
+        mainPane.add(openClaimFormButton, 5, 6);
+        mainPane.add(registerButton, 4, 7);
       
-    }
-    
-    private void populateExistingBonusCombo() {
-        ObservableList<String> bonuses = FXCollections.observableArrayList();
-        bonuses.addAll("-30", "-20", "-10", "0", "10", "20", "30", "40", 
-                "50", "60", "70", "75");
-        existingBonusCombo.getItems().setAll(bonuses);
-        existingBonusCombo.setPrefWidth(150);
-    }
-    
-    private void populateDrivingLengthCombo() {
-        ObservableList<String> drivingLength = FXCollections.observableArrayList();
-        drivingLength.addAll("6000", "8000", "10000", "15000", "14000", 
-                "16000", "18000", "20000", "25000", "30000", "40000", "50000", 
-                "Ubegrenset");
-        drivingLengthCombo.getItems().setAll(drivingLength);
-        drivingLengthCombo.setPrefWidth(150);
-    }
-    
-    private void populateExcessCombo() {
-        ObservableList<String> excess = FXCollections.observableArrayList();
-        excess.addAll("4000", "6000", "8000", "10000", "15000", "14000", 
-                "16000", "18000", "20000", "25000", "30000");
-        excessCombo.getItems().setAll(excess);
-        excessCombo.setPrefWidth(150);
-    }
-    
-    private void populateYoungestDriverCombo() {
-        ObservableList<String> youngestDriver = FXCollections.observableArrayList(); 
-        youngestDriver.addAll("Under 25", "Over 25");
-        youngestDriverCombo.getItems().setAll(youngestDriver);
-        youngestDriverCombo.setPrefWidth(150);
-    }
-    
-    private void populateCoverageCombo() {
-        ObservableList<CarInsuranceCoverage> obList;
-        obList = FXCollections.observableArrayList(CarInsuranceCoverage.values()); 
-        coverageCombo.getItems().setAll(obList);
-        coverageCombo.setPrefWidth(150);
-    }
-    
-    private void populateParkingConditionCombo() {
-        ObservableList<String> parkingCondition = FXCollections.observableArrayList(); 
-        parkingCondition.addAll("Har garasje", "Har ikke garasje");
-        parkingConditionCombo.getItems().setAll(parkingCondition);
-        parkingConditionCombo.setPrefWidth(150);
-    }
-    
-    private void popualteAlarmCombo() {
-        ObservableList<String> alarm = FXCollections.observableArrayList();  
-        alarm.addAll("Ja", "Nei");
-        alarmCombo.getItems().setAll(alarm);
-        alarmCombo.setPrefWidth(150);
-    }
-    
-    public void populateBrandComboBox(List cars) {
-        ObservableList obList = FXCollections.observableList(cars);
-        // Reset the previous value(shown value)
-        brandCombo.valueProperty().set(null);
-        brandCombo.getItems().setAll(obList);
-        brandCombo.setPrefWidth(150);
-    }
-    
-    public void populateYearComboBox(List years) {
-        ObservableList obList = FXCollections.observableList(years);
-        // Reset the previous value(shown value)
-        yearCombo.valueProperty().set(null);
-        yearCombo.getItems().setAll(obList);
-        yearCombo.setPrefWidth(150);
-    }
-    
-    public void populateModelComboBox(List models) {
-        ObservableList obList = FXCollections.observableList(models);
-        // Reset the previous value(shown value)
-        modelCombo.valueProperty().set(null);
-        modelCombo.getItems().setAll(obList);
-        modelCombo.setPrefWidth(150);
-    }
-    
-    public void setBrandComboListener(ChangeListener listener) {
-        brandCombo.valueProperty().addListener(listener);
-    }
-    
-    public void setYearComboListener(ChangeListener listener) {
-        yearCombo.valueProperty().addListener(listener);
-    }
-    
-    public Object getBrandComboValue() {
-        return brandCombo.getValue();
     }
     
     /**
@@ -374,102 +190,6 @@ public class CarClaimRegistration {
         return personalNumberField.getText();
     }
 
-    /**
-     * @return the existingBonusCombo
-     */
-    public String getExistingBonusComboValue() {
-        return existingBonusCombo.getValue() == null ? null : existingBonusCombo.getValue().toString();
-    }
-
-    /**
-     * @return the drivingLengthCombo
-     */
-    public String getDrivingLengthCombo() {
-        return drivingLengthCombo.getValue() == null ? null : drivingLengthCombo.getValue().toString();
-    }
-
-    /**
-     * @return the excessCombo
-     */
-    public String getExcessCombo() {
-        return excessCombo.getValue() == null ? null : excessCombo.getValue().toString();
-    }
-
-    /**
-     * @return the brandCombo
-     */
-    public String getBrandCombo() {
-        return brandCombo.getValue() == null ? null : brandCombo.getValue().toString();
-    }
-
-    /**
-     * @return the yearCombo
-     */
-    public String getYearCombo() {
-        return yearCombo.getValue() == null ? null : yearCombo.getValue().toString();
-    }
-
-    /**
-     * @return the modelCombo
-     */
-    public String getModelCombo() {
-        return modelCombo.getValue() == null ? null : modelCombo.getValue().toString();
-    }
-
-    /**
-     * @return the youngestDriverCombo
-     */
-    public String getYoungestDriverCombo() {
-        return youngestDriverCombo.getValue() == null ? null : youngestDriverCombo.getValue().toString();
-    }
-
-    /**
-     * @return the alarmCombo
-     */
-    public String getAlarmCombo() {
-        return alarmCombo.getValue() == null ? null : alarmCombo.getValue().toString();
-    }
-
-    /**
-     * @return the coverageCombo
-     */
-    public CarInsuranceCoverage getCoverageCombo() {
-        if (coverageCombo.getValue() instanceof CarInsuranceCoverage) {
-            // Casts the combobox value to CarInsuranceCoverage and return this value
-            CarInsuranceCoverage coverage = (CarInsuranceCoverage) coverageCombo.getValue();
-            return coverage;
-            // If for instance no value is selected, the value will not equal a CarInsuranceCoverage, 
-            //in this case return null:
-        } else return null; 
-    }
-
-    /**
-     * @return the parkingConditionCombo
-     */
-    public String getParkingConditionCombo() {
-        return parkingConditionCombo.getValue() == null ? null : parkingConditionCombo.getValue().toString();
-    }
-
-    /**
-     * @return the registrationNumberField
-     */
-    public String getRegistrationNumberField() {
-        return registrationNumberField.getText();
-    }
-
-    /**
-     * @return the personalNumberOwnerField
-     */
-    public String getPersonalNumberOwnerField() {
-        return personalNumberOwnerField.getText();
-    }
-
-    /**
-     * @return the premiumField
-     */
-    public String getPremiumField() {
-        return premiumField.getText();
-    }
 
     /**
      * @param customerArea the customerArea to set
@@ -533,13 +253,7 @@ public class CarClaimRegistration {
         selectCustomerButton.setOnAction(value);
     }
 
-    /**
-     * Sets event handler for the calculate button of this view.
-     * @param value 
-     */
-    public void setCalculateButtonEventHandler(EventHandler<ActionEvent> value) {
-        calculateButton.setOnAction(value);
-    }
+
 
     /**
      * Sets event handler for the register button of this view.
@@ -557,109 +271,6 @@ public class CarClaimRegistration {
         return mainPane;
     }
 
-    /**
-     * @param existingBonusMessage the existingBonusMessage to set
-     */
-    public void setExistingBonusMessage(String existingBonusMessage) {
-        this.existingBonusMessage.setFill(Color.FIREBRICK);
-        this.existingBonusMessage.setText(existingBonusMessage);
-    }
-
-    /**
-     * @param drivingLengthMessage the drivingLengthMessage to set
-     */
-    public void setDrivingLengthMessage(String drivingLengthMessage) {
-        this.drivingLengthMessage.setFill(Color.FIREBRICK);
-        this.drivingLengthMessage.setText(drivingLengthMessage);
-    }
-
-    /**
-     * @param excessMessage the excessMessage to set
-     */
-    public void setExcessMessage(String excessMessage) {
-        this.excessMessage.setFill(Color.FIREBRICK);
-        this.excessMessage.setText(excessMessage);
-    }
-
-    /**
-     * @param brandMessage the brandMessage to set
-     */
-    public void setBrandMessage(String brandMessage) {
-        this.brandMessage.setFill(Color.FIREBRICK);
-        this.brandMessage.setText(brandMessage);
-    }
-
-    /**
-     * @param yearMessage the yearMessage to set
-     */
-    public void setYearMessage(String yearMessage) {
-        this.yearMessage.setFill(Color.FIREBRICK);
-        this.yearMessage.setText(yearMessage);
-    }
-
-    /**
-     * @param modelMessage the modelMessage to set
-     */
-    public void setModelMessage(String modelMessage) {
-        this.modelMessage.setFill(Color.FIREBRICK);
-        this.modelMessage.setText(modelMessage);
-    }
-
-    /**
-     * @param youngestDriverMessage the youngestDriverMessage to set
-     */
-    public void setYoungestDriverMessage(String youngestDriverMessage) {
-        this.youngestDriverMessage.setFill(Color.FIREBRICK);
-        this.youngestDriverMessage.setText(youngestDriverMessage);
-    }
-
-    /**
-     * @param alarmMessage the alarmMessage to set
-     */
-    public void setAlarmMessage(String alarmMessage) {
-        this.alarmMessage.setFill(Color.FIREBRICK);
-        this.alarmMessage.setText(alarmMessage);
-    }
-
-    /**
-     * @param coverageMessage the coverageMessage to set
-     */
-    public void setCoverageMessage(String coverageMessage) {
-        this.coverageMessage.setFill(Color.FIREBRICK);
-        this.coverageMessage.setText(coverageMessage);
-    }
-
-    /**
-     * @param parkingConditionMessage the parkingConditionMessage to set
-     */
-    public void setParkingConditionMessage(String parkingConditionMessage) {
-        this.parkingConditionMessage.setFill(Color.FIREBRICK);
-        this.parkingConditionMessage.setText(parkingConditionMessage);
-    }
-
-    /**
-     * @param registrationNumberMessage the registrationNumberMessage to set
-     */
-    public void setRegistrationNumberMessage(String registrationNumberMessage) {
-        this.registrationNumberMessage.setFill(Color.FIREBRICK);
-        this.registrationNumberMessage.setText(registrationNumberMessage);
-    }
-
-    /**
-     * @param personalNumberOwnerMessage the personalNumberOwnerMessage to set
-     */
-    public void setPersonalNumberOwnerMessage(String personalNumberOwnerMessage) {
-        this.personalNumberOwnerMessage.setFill(Color.FIREBRICK);
-        this.personalNumberOwnerMessage.setText(personalNumberOwnerMessage);
-    }
-
-    /**
-     * @param registerResultMessage the registerResultMessage to set
-     */
-    public void setRegisterResultMessage(String registerResultMessage) {
-        this.registerResultMessage.setFill(Color.FIREBRICK);
-        this.registerResultMessage.setText(registerResultMessage);
-    }
 
     /**
      * @return the selectedCustomerId

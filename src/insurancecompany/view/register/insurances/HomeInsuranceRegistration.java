@@ -5,7 +5,6 @@
  */
 package insurancecompany.view.register.insurances;
 
-import insurancecompany.misc.coverages.HolidayHomeInsuranceCoverage;
 import insurancecompany.misc.coverages.HomeInsuranceCoverage;
 import insurancecompany.model.insurances.Insurance;
 import java.util.List;
@@ -16,7 +15,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -27,7 +25,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
 /**
  *
@@ -35,15 +32,15 @@ import javafx.stage.Stage;
  */
 public class HomeInsuranceRegistration {
     
-    /** The main pane of this class.*/
+    /** The main pane of this class. */
     private GridPane mainPane;
     
     // SEARCH FOR CUSTOMER NODES:
     
-    // Input nodes, TextFields
+    // Input nodes, TextFields:
     private TextField customerIdField;
     private TextField personalNumberField;
-    // Output nodes, TextArea and TableView and Text
+    // Output nodes, TextArea, TableView and Text:
     private TextArea customerArea;
     private TableView<Insurance> insurancesTable;
     private TableColumn<Insurance, String> insuranceTypeColumn;
@@ -59,7 +56,8 @@ public class HomeInsuranceRegistration {
     private int selectedCustomerId;
     
     // REGISTER INSURANCE NODES:
-    // Input nodes, Comboboxes and textfiels:
+    
+    // Input nodes, ComboBoxes and TextFields:
     private ComboBox<HomeInsuranceCoverage> coverageCombo;
     private ComboBox<String> excessCombo;
     private TextField areaField;
@@ -91,14 +89,14 @@ public class HomeInsuranceRegistration {
     
     public HomeInsuranceRegistration() {
         
-        // Sets up the mainPane
+        // Sets up the mainPane:
         mainPane = new GridPane();
         mainPane.setAlignment(Pos.CENTER);
         mainPane.setHgap(10);
         mainPane.setVgap(6);
-        // Set background color:
+        // Sets background color:
         mainPane.setStyle("-fx-background-color: #E7E7FF;");
-        // Set up column constraints. Width in pixels:
+        // Sets up column constraints. Width in pixels:
         ColumnConstraints col1 = new ColumnConstraints(120);
         ColumnConstraints col2 = new ColumnConstraints(100);
         ColumnConstraints col3 = new ColumnConstraints(40);
@@ -106,15 +104,15 @@ public class HomeInsuranceRegistration {
         ColumnConstraints col5 = new ColumnConstraints(150);
         ColumnConstraints col6 = new ColumnConstraints(150);
         ColumnConstraints col7 = new ColumnConstraints(150);
-        // Add these constraints:
+        // Adds these constraints:
         mainPane.getColumnConstraints().addAll(col1, col2, col3, col4, col5, col6, col7);
         
         // SEARCH FOR CUSTOMER NODES:
         
-        // Declares Input
+        // Initializes Input:
         customerIdField = new TextField();
         personalNumberField = new TextField();
-        // Declares Output
+        // Initializes Output:
         customerArea = new TextArea();
         customerArea.setEditable(false);
         customerArea.setPrefColumnCount(2);
@@ -126,11 +124,11 @@ public class HomeInsuranceRegistration {
         insuranceIdColumn = new TableColumn<>("Forsikringsid");
         insurancesTable.getColumns().addAll(insuranceTypeColumn, insuranceCoverageColum, insuranceIdColumn);
         insurancesTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-        // Declares Buttons
+        // Initializes Buttons:
         searchCustomerIdButton = new Button("Søk");
         searchPersonalNumberButton = new Button("Søk");
         selectCustomerButton = new Button("Velg denne kunden");
-        // Declares Text and Label
+        // Declares and initializes Texts and Labels:
         Label customerIdLabel = new Label("Kundenummer:");
         Label personalNumberLabel = new Label("Personnummer:");
         Text insurancesTitle = new Text("Eksisterende forsikringer til denne kunden:");
@@ -142,7 +140,7 @@ public class HomeInsuranceRegistration {
         
         // REGISTER INSURANCE NODES:
         
-        // Declares Input
+        // Initializes Input:
         coverageCombo = new ComboBox<>();
         populateCoverageCombo();
         excessCombo = new ComboBox<>();
@@ -157,7 +155,7 @@ public class HomeInsuranceRegistration {
         typeField = new TextField();
         yearField = new TextField();
         zipCodeField = new TextField();
-        // Declares Output
+        // Initializes Output:
         areaMessage = new Text();
         buildingAmountMessage = new Text();
         cityMessage = new Text();
@@ -170,10 +168,10 @@ public class HomeInsuranceRegistration {
         typeMessage = new Text();
         yearMessage = new Text();
         zipCodeMessage = new Text();
-        // Declares all Buttons.
+        // Initializes Buttons:
         calculateButton = new Button("Regn ut");
         registerButton = new Button("Registrer");
-        // Declares Text and Label
+        // Declares and initializes Texts and Labels:
         customerSelectedMessage = new Text();
         Text insuranceOptionsTitle = new Text("Betingelser:");
         insuranceOptionsTitle.setId("textTitle");
@@ -194,7 +192,7 @@ public class HomeInsuranceRegistration {
         Label cityLabel = new Label("By:");
         Label premiumLabel = new Label("Beregnet forsikringspremie:");
         
-        // Adds nodes to mainPane
+        // Adds nodes to mainPane:
         mainPane.add(selectCustomerTitle, 0, 0);
         mainPane.add(customerIdLabel, 0, 1);
         mainPane.add(customerIdField, 1, 1);
@@ -255,7 +253,7 @@ public class HomeInsuranceRegistration {
         mainPane.add(registerButton, 5, 15);
     }
     
-    // POPULATE COMBOBOX
+    // POPULATE METHODS:
     
     private void populateCoverageCombo() {
         ObservableList<HomeInsuranceCoverage> obList;
@@ -271,8 +269,6 @@ public class HomeInsuranceRegistration {
         excessCombo.getItems().setAll(excess);
         excessCombo.setPrefWidth(150);
     }
-    
-    // POPULATE TABLE
     
     /**
      * 
@@ -305,7 +301,7 @@ public class HomeInsuranceRegistration {
         });   
     }
     
-    // EVENT HANDLERS
+    // SET EVENTHANDLER METHODS:
     
     public void setCalculateButtonEventHandler(EventHandler<ActionEvent> value) {
         calculateButton.setOnAction(value);
@@ -315,7 +311,7 @@ public class HomeInsuranceRegistration {
         registerButton.setOnAction(value);
     }
     
-    // GET METHODS
+    // GET METHODS:
     
     public GridPane getMainPane() {
         return mainPane;
@@ -404,6 +400,8 @@ public class HomeInsuranceRegistration {
     public String getPremium() {
         return premiumField.getText();
     }
+    
+    // SET METHODS:
 
     /**
      * @param customerIdMessage the customerIdMessage to set

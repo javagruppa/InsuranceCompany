@@ -191,7 +191,7 @@ public class BoatInsuranceRegistration {
         Label alarmLabel = new Label("FG-godkjent alarm:");
         Label premiumLabel = new Label("Beregnet forsikringspremie:");
         
-        // Adds nodes to mainPane
+        // Adds nodes to mainPane:
         mainPane.add(selectCustomerTitle, 0, 0);
         mainPane.add(customerIdLabel, 0, 1);
         mainPane.add(customerIdField, 1, 1);

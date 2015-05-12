@@ -39,18 +39,39 @@ public class Customer extends Person implements Serializable {
         active = true;
     }
     
+    /**
+     * Returns the customerId for this customer
+     * @return the customer ID
+     */
     @Override
     public int getId(){
         return customerId;
     }
     
+    /**
+     * Returns a string representation of this Customer. The string
+     * representation consists of each field with a short description separated
+     * by a new line.
+     * @return a string representation of this customer
+     */
     @Override
-    public String toString(){
-        String s = "Kundenummer: " + customerId + "\n";
-        s += super.toString();
-        return s;
+    public String toString() {
+        // Creates a StringBuilder which will be returned at the end of the 
+        // method.
+        StringBuilder result = new StringBuilder();
+        // Appends the fields with appropriate sentences.
+        result.append("Kundenummer: ").append(customerId);
+        result.append("\n").append(super.toString());
+        result.append("\nAktiv kunde: ").
+                append(active ? "Ja" : "Nei");
+        // Returns the string.
+        return result.toString();
     }
     
+    /**
+     * Saves the new customer ID to file
+     * @throws IOException 
+     */
     public static void saveNextIdToFile() throws IOException {
         try (DataOutputStream dos = new DataOutputStream(
                 new BufferedOutputStream(
@@ -59,6 +80,10 @@ public class Customer extends Person implements Serializable {
         }
     }
     
+    /**
+     * Reads next customer ID from file
+     * @throws IOException 
+     */
     public static void readNextIdFromFile() throws IOException {
         try (DataInputStream dis = new DataInputStream(
                 new BufferedInputStream(
@@ -81,7 +106,7 @@ public class Customer extends Person implements Serializable {
         this.totalCustomer = totalCustomer;
     }
 
-    /**
+    /**Returns whether or not the customer is active
      * @return the active
      */
     public boolean isActive() {

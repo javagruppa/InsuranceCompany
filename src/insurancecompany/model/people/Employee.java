@@ -16,13 +16,14 @@ import java.io.*;
  */
 public abstract class Employee extends Person implements Serializable {
     private static final long serialVersionUID = 1L;
-    
+    //The next employee ID
     private static int nextEmployeeId = 1000000;
+    //Filename of employee IDs
     private static String employeeIdFileName = "src/insurancecompany/resources/nextidnumbers/employeeId.dta";
-    
+    //To be used if the program is to be extended in the future
     private String passwordSalt;
     private String passwordHash;
-    
+    //The customer ID
     private final int employeeId;
     
     /** Decides if this employees position/hire is active.*/
@@ -35,11 +36,30 @@ public abstract class Employee extends Person implements Serializable {
         active = true;
     }
     
-    public String toString(){
-        String s = "";
-        return s;
+       /**
+     * Returns a string representation of this insurance. The string
+     * representation consists of each field with a short description separated
+     * by a new line.
+     * 
+     * @return a string representation of this insurance
+     */
+    @Override
+    public String toString() {
+        // Creates a StringBuilder which will be returned at the end of the 
+        // method.
+        StringBuilder result = new StringBuilder();
+        // Appends the fields with appropriate sentences.
+        result.append(getEmployeeId());
+        result.append("\n").append(super.toString());
+        result.append("\nAktiv: ").append(active ? "Ja" : "Nei");
+        // Returns the string.
+        return result.toString();
     }
     
+    /**
+     * Saves next ID to file
+     * @throws IOException 
+     */
     public static void saveNextIdToFile() throws IOException {
         try (DataOutputStream dos = new DataOutputStream(
                 new BufferedOutputStream(
@@ -48,6 +68,10 @@ public abstract class Employee extends Person implements Serializable {
         }
     }
     
+    /**
+     * Reads the next ID from file
+     * @throws IOException 
+     */
     public static void readNextIdFromFile() throws IOException {
         try (DataInputStream dis = new DataInputStream(
                 new BufferedInputStream(
@@ -56,10 +80,13 @@ public abstract class Employee extends Person implements Serializable {
         }
     }
     
-    
+    /**
+     * Returns the ID of this employee
+     * @return the ID
+     */
     @Override
     public int getId() {
-        return employeeId;
+        return getEmployeeId();
     }
 
     /**
@@ -74,6 +101,13 @@ public abstract class Employee extends Person implements Serializable {
      */
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    /**
+     * @return the employeeId
+     */
+    public int getEmployeeId() {
+        return employeeId;
     }
     
 }

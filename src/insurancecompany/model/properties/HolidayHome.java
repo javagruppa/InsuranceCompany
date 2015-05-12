@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package insurancecompany.model.vehicles;
+package insurancecompany.model.properties;
 
 import insurancecompany.model.properties.Address;
 import insurancecompany.model.properties.Property;

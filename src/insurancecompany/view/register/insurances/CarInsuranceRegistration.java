@@ -45,25 +45,6 @@ public class CarInsuranceRegistration {
     
     private GridPane mainPane;
     
-    private Label customerIdLabel;
-    private Label personalNumberLabel;
-    
-    private Label existingBonusLabel;
-    private Label drivingLengthLabel;
-    private Label excessLabel; // Nor: Egenandel
-    private Label brandLabel;
-    private Label yearLabel;
-    private Label modelLabel;
-    private Label youngestDriverLabel;
-    private Label alarmLabel; // FG-approved alarm
-    private Label coverageLabel; // Nor: Dekning
-    private Label parkingConditionLabel;
-    private Label registrationNumberLabel;
-    private Label personalNumberOwnerLabel;
-    
-    private Label totalInsurancesLabel;
-    private Label premiumLabel;
-    
     private TextField customerIdField;
     private TextField personalNumberField;
     
@@ -115,58 +96,58 @@ public class CarInsuranceRegistration {
         
         
         Text selectCustomerTitle = new Text("Velg først en kunde i registeret:");
-        customerIdLabel = new Label("Kundenummer:");
+        Label customerIdLabel = new Label("Kundenummer:");
         customerIdField = new TextField();
         searchCustomerIdButton = new Button("Søk");
-        personalNumberLabel = new Label("Personnummer:");
+        Label personalNumberLabel = new Label("Personnummer:");
         personalNumberField = new TextField();
         searchPersonalNumberButton = new Button("Søk");
         customerArea = new TextArea();
         customerArea.setPrefColumnCount(2);
         customerArea.setPrefRowCount(4);
-        Text insurancesTitle = new Text("Forsikringer til denne kunden:");
+        Text insurancesTitle = new Text("Eksisterende forsikringer til denne kunden:");
         insurancesTable = new TableView();
         insurancesTable.setPrefHeight(150);
         selectCustomerButton = new Button("Velg kunde");
         
         Text insuranceOptionsTitle = new Text("Betingelser:");
-        existingBonusLabel = new Label("Eksisterende bonussats:");
+        Label existingBonusLabel = new Label("Eksisterende bonussats:");
         existingBonusCombo = new ComboBox();
         populateExistingBonusCombo();
-        drivingLengthLabel = new Label("Kjørelengde:");
+        Label drivingLengthLabel = new Label("Kjørelengde:");
         drivingLengthCombo = new ComboBox();
         populateDrivingLengthCombo();
-        excessLabel = new Label("Egenandel:");
+        Label excessLabel = new Label("Egenandel:");
         excessCombo = new ComboBox();
         populateExcessCombo();
-        youngestDriverLabel = new Label("Yngste fører:");
+        Label youngestDriverLabel = new Label("Yngste fører:");
         youngestDriverCombo = new ComboBox();
         populateYoungestDriverCombo();
-        coverageLabel = new Label("Dekning:");
+        Label coverageLabel = new Label("Dekning:");
         coverageCombo = new ComboBox();
         populateCoverageCombo();
-        parkingConditionLabel = new Label("Parkeringsforhold:");
+        Label parkingConditionLabel = new Label("Parkeringsforhold:");
         parkingConditionCombo = new ComboBox();
         populateParkingConditionCombo();
         
         Text carTitle = new Text("Bil:");
-        personalNumberOwnerLabel = new Label("Eierens personnummer:");
+        Label personalNumberOwnerLabel = new Label("Eierens personnummer:");
         personalNumberOwnerField = new TextField();
-        registrationNumberLabel = new Label("Registreringsnummer:");
+        Label registrationNumberLabel = new Label("Registreringsnummer:");
         registrationNumberField = new TextField();
-        brandLabel = new Label("Merke:");
+        Label brandLabel = new Label("Merke:");
         brandCombo = new ComboBox();
         brandCombo.setEditable(true);
-        yearLabel = new Label("År:");      
+        Label yearLabel = new Label("År:");      
         yearCombo = new ComboBox();
         yearCombo.setEditable(true);   
-        modelLabel = new Label("Modell:");
+        Label modelLabel = new Label("Modell:");
         modelCombo = new ComboBox();
         modelCombo.setEditable(true);
-        alarmLabel = new Label("FG-godkjent alarm:");
+        Label alarmLabel = new Label("FG-godkjent alarm:");
         alarmCombo = new ComboBox();
         popualteAlarmCombo();
-        premiumLabel = new Label("Beregnet forsikringspremie:");
+        Label premiumLabel = new Label("Beregnet forsikringspremie:");
         premiumField = new TextField();
         calculateButton = new Button("Regn ut");
         registerButton = new Button("Registrer");

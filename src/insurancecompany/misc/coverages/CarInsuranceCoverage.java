@@ -5,9 +5,6 @@
  */
 package insurancecompany.misc.coverages;
 
-
-import java.util.List;
-
 /**
  *
  * @author André

@@ -94,6 +94,4 @@ public class Log {
             userType = "Customer";
         }
     }
-    
-    // TODO: read and write from textfile
 }

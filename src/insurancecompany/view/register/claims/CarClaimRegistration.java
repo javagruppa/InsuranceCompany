@@ -3,14 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package insurancecompany.view.register.insurances;
+package insurancecompany.view.register.claims;
 
 import insurancecompany.misc.coverages.CarInsuranceCoverage;
 import insurancecompany.model.insurances.Insurance;
+import java.awt.Image;
+import java.util.Calendar;
 import java.util.List;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,7 +19,6 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -34,7 +32,7 @@ import javafx.scene.text.Text;
  *
  * @author André
  */
-public class CarInsuranceRegistration {
+public class CarClaimRegistration {
     
     /** The main pane of this class.*/
     private GridPane mainPane;
@@ -45,11 +43,7 @@ public class CarInsuranceRegistration {
     private TextField personalNumberField;
     // Output nodes, TextArea and TableView
     private TextArea customerArea;
-    private TableView<Insurance> insurancesTable;
-    private TableColumn<Insurance, String> insuranceTypeColumn;
-    private TableColumn<Insurance, String> insuranceCoverageColum;
-    private TableColumn<Insurance, Integer> insuranceIdColumn;
-    
+    private TableView insurancesTable;
     // Buttons:
     private Button searchCustomerIdButton;
     private Button searchPersonalNumberButton;
@@ -91,8 +85,25 @@ public class CarInsuranceRegistration {
     private Text personalNumberOwnerMessage;
     private Text registerResultMessage;
     
+        /** Customer id to the owner of this claim. */
+    private int customerId;
+    /** Insurance id that belongs to this claim. */
+    private int insuranceId;
+    /** The date this claim was submitted. */
+    private Calendar date;
+    /** The date of when the damage happened */
+    private Calendar dateHappened;
+    /** Unique claim id representing this claim. */
+    private final int claimId;
+    /** Textual description of this claim. */
+    private String description;
+    /** Image description of this claim. */
+    private Image image;
     
-    public CarInsuranceRegistration() {
+    private 
+    
+    
+    public CarClaimRegistration() {
         
         // Sets up the mainPane
         mainPane = new GridPane();
@@ -131,9 +142,6 @@ public class CarInsuranceRegistration {
         insurancesTitle.setId("textTitle");
         insurancesTable = new TableView();
         insurancesTable.setPrefHeight(150);
-        insuranceTypeColumn = new TableColumn<>();
-        insuranceIdColumn = new TableColumn<>();
-        insuranceCoverageColum = new TableColumn<>();
         selectCustomerButton = new Button("Velg denne kunden");
         
         Text insuranceOptionsTitle = new Text("Betingelser:");
@@ -207,7 +215,7 @@ public class CarInsuranceRegistration {
         mainPane.add(resultTitle, 0, 3);
         mainPane.add(customerArea, 0, 4, 3, 5);
         mainPane.add(insurancesTitle, 0, 9);
-        mainPane.add(insurancesTable, 0, 10, 2, 5);
+        mainPane.add(insurancesTable, 0, 10, 3, 5);
         mainPane.add(selectCustomerButton, 0, 15);
         
         mainPane.add(insuranceOptionsTitle, 4, 0);
@@ -467,31 +475,13 @@ public class CarInsuranceRegistration {
      * @param insurances 
      */
     public void populateInsurancesTable(List<Insurance> insurances) {
-        //insurancesTable.getItems().addAll("Type", "Forsikringsnummer");
+        insurancesTable.getItems().addAll("Type", "Forsikringsnummer");
         ObservableList<Insurance> obList = FXCollections.observableArrayList(insurances);
-        insurancesTable.setItems(obList);
-        insurancesTable.getColumns().addAll(insuranceTypeColumn, insuranceCoverageColum, insuranceIdColumn);
-        insuranceTypeColumn.setCellValueFactory((cellData) -> {
-                if ( cellData.getValue() != null) {
-                    return new SimpleStringProperty(cellData.getValue().getName());
-                } else {
-                    return new SimpleStringProperty("<no name>");
-                }
-        });
-        insuranceCoverageColum.setCellValueFactory((cellData) -> {
-                if ( cellData.getValue() != null) {
-                    return new SimpleObjectProperty<>(cellData.getValue().getCoverage().toString());
-                } else {
-                    return new SimpleObjectProperty(0);
-                }
-        });
-        insuranceIdColumn.setCellValueFactory((cellData) -> {
-                if ( cellData.getValue() != null) {
-                    return new SimpleObjectProperty<>(cellData.getValue().getInsuranceId());
-                } else {
-                    return new SimpleObjectProperty(0);
-                }
-        });
+        for (Insurance ins : obList) {
+            ObservableList<String> row = FXCollections.observableArrayList();
+            row.addAll(ins.getName(), ins.getInsuranceId() + "");
+            insurancesTable.getItems().addAll(row);
+        }
         
     }
 

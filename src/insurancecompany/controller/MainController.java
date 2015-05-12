@@ -6,6 +6,7 @@
 package insurancecompany.controller;
 
 import insurancecompany.misc.EmployeeType;
+import insurancecompany.misc.coverages.CarInsuranceCoverage;
 import insurancecompany.model.bills.*;
 import insurancecompany.model.claims.*;
 import insurancecompany.view.register.persons.*;
@@ -88,6 +89,7 @@ public class MainController {
             homeInsuranceRegistration, travelInsuranceRegistration, 
             customerRegistration, employeeRegistration);
         
+        readAllDataFromFile();
         setBrandComboBox();
         initializeEventHandlers();
     }
@@ -98,11 +100,11 @@ public class MainController {
         
         carInsuranceRegistration.setSearchCustomerIdButtonEventHandler(this::carInsuranceSearchCustomerButtonEventHandler);
         carInsuranceRegistration.setSearchPersonalNumberButtonEventHandler(this::carInsuranceSearchPersonalNumberButtonEventHandler);
-        carInsuranceRegistration.setSelectCustomerButtonEventHandler(null);
+        carInsuranceRegistration.setSelectCustomerButtonEventHandler(this::carInsuranceSelectCustomerButtonEventHandler);
         carInsuranceRegistration.setBrandComboListener(this::brandComboListener);
         carInsuranceRegistration.setYearComboListener(this::yearComboListener);
         carInsuranceRegistration.setCalculateButtonEventHandler(null);
-        carInsuranceRegistration.setRegisterButtonEventHandler(null);
+        carInsuranceRegistration.setRegisterButtonEventHandler(this::carInsuranceRegisterButtonEventHandler);
      
         customerRegistration.setRegisterButtonEventHandler(this::registerCustomerButtonEventHandler);
         employeeRegistration.setRegisterButtonEventHandler(this::registerEmployeeButtonEventHandler);
@@ -124,10 +126,24 @@ public class MainController {
         writeLogsToFile();
     }
     
+    private void readAllDataFromFile() {
+        readBillIdFromFile();
+        readBillsFromFile();
+        readClaimIdFromFile();
+        readClaimsFromFile();
+        readCustomerIdFromFile();
+        readCustomersFromFile();
+        readEmployeeIdFromFile();
+        readEmployeesFromFile();
+        readInsuranceIdFromFile();
+        readInsurancesFromFile();  
+    }
+    
     
     private void adminViewExitButtonEventHandler(ActionEvent event) {
         Platform.exit();
     }    
+    
     
     // TODO: Trenger regex og validering
     private void registerCustomerButtonEventHandler(ActionEvent event) {
@@ -237,12 +253,31 @@ public class MainController {
             carInsuranceRegistration.setCustomerArea(c.toString());
             int cId = c.getId();
             List inc = insurances.getAllInsurancesByCustomerId(cId);
-            carInsuranceRegistration.populateInsurancesTable(inc);
+            if (!inc.isEmpty()) {
+                carInsuranceRegistration.populateInsurancesTable(inc);
+            }
         }
+    }
+    
+    private void carInsuranceSelectCustomerButtonEventHandler(ActionEvent event) {
+        
+        String idS = carInsuranceRegistration.getCustomerIdField();
+        int id = Integer.parseInt(idS);
+        carInsuranceRegistration.setSelectedCustomerId(id);
     }
     
     private void carInsuranceRegisterButtonEventHandler(ActionEvent event) {
         // get all fields to String, then 
+        CarInsuranceCoverage coverage = carInsuranceRegistration.getCoverageCombo();
+        int customerId = carInsuranceRegistration.getSelectedCustomerId();
+        int excess = 1000;
+        int maxLength = 100;
+        CarInsurance ci = new CarInsurance(null, CarInsuranceCoverage.CASCO, customerId, excess, true, true, maxLength, true);
+        if (insurances.addInsurance(ci)) {
+            System.err.println("Registret");
+        } else {
+            System.err.println("Ikke reg");
+        }
     }
     
     private void setBrandComboBox() {

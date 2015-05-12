@@ -44,7 +44,7 @@ public class Customer extends Person implements Serializable {
     @Override
     public String toString(){
         String s = "Kundenummer: " + customerId + "\n";
-        s = super.toString();
+        s += super.toString();
         return s;
     }
     

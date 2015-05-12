@@ -10,6 +10,8 @@ import insurancecompany.model.insurances.Insurance;
 import java.awt.Image;
 import java.util.Calendar;
 import java.util.List;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,7 +20,9 @@ import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -27,6 +31,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
 
 /**
  *
@@ -41,9 +46,13 @@ public class CarClaimRegistration {
     // Input nodes, TextFields
     private TextField customerIdField;
     private TextField personalNumberField;
-    // Output nodes, TextArea and TableView
+    // Output nodes, TextArea and TableView and Text
     private TextArea customerArea;
-    private TableView insurancesTable;
+    private TableView<Insurance> insurancesTable;
+    private TableColumn<Insurance, String> insuranceTypeColumn;
+    private TableColumn<Insurance, String> insuranceCoverageColum;
+    private TableColumn<Insurance, Integer> insuranceIdColumn;
+    private Text customerSelectedMessage;
     // Buttons:
     private Button searchCustomerIdButton;
     private Button searchPersonalNumberButton;
@@ -52,6 +61,13 @@ public class CarClaimRegistration {
     private int tempCustomerId;
     private int selectedCustomerId;
     
+    
+    /** The date of when the damage happened */
+    private DatePicker dateHappenedPicker;
+    /** Textual description of this claim. */
+    private TextArea descriptionTextArea;
+    /** Image description of this claim. */
+    private FileChooser fileChooser;
     // REGISTER INSURANCE NODES:
     // Input nodes, Comboboxes and textfiels:
     private ComboBox existingBonusCombo;
@@ -84,21 +100,6 @@ public class CarClaimRegistration {
     private Text registrationNumberMessage;
     private Text personalNumberOwnerMessage;
     private Text registerResultMessage;
-    
-        /** Customer id to the owner of this claim. */
-    private int customerId;
-    /** Insurance id that belongs to this claim. */
-    private int insuranceId;
-    /** The date this claim was submitted. */
-    private Calendar date;
-    /** The date of when the damage happened */
-    private Calendar dateHappened;
-    /** Unique claim id representing this claim. */
-    private final int claimId = 1;
-    /** Textual description of this claim. */
-    private String description;
-    /** Image description of this claim. */
-    private Image image;
     
     
     public CarClaimRegistration() {
@@ -136,11 +137,17 @@ public class CarClaimRegistration {
         customerArea.setEditable(false);
         customerArea.setPrefColumnCount(2);
         customerArea.setPrefRowCount(4);
+        selectCustomerButton = new Button("Velg denne kunden");
+        customerSelectedMessage = new Text();
         Text insurancesTitle = new Text("Eksisterende forsikringer til denne kunden:");
         insurancesTitle.setId("textTitle");
         insurancesTable = new TableView();
         insurancesTable.setPrefHeight(150);
-        selectCustomerButton = new Button("Velg denne kunden");
+        insuranceTypeColumn = new TableColumn<>("Forsikring");
+        insuranceCoverageColum = new TableColumn<>("Dekning");
+        insuranceIdColumn = new TableColumn<>("Forsikringsid");
+        insurancesTable.getColumns().addAll(insuranceTypeColumn, insuranceCoverageColum, insuranceIdColumn);
+        insurancesTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);    
         
         Text insuranceOptionsTitle = new Text("Betingelser:");
         insuranceOptionsTitle.setId("textTitle");
@@ -212,9 +219,10 @@ public class CarClaimRegistration {
         
         mainPane.add(resultTitle, 0, 3);
         mainPane.add(customerArea, 0, 4, 3, 5);
-        mainPane.add(insurancesTitle, 0, 9);
-        mainPane.add(insurancesTable, 0, 10, 3, 5);
-        mainPane.add(selectCustomerButton, 0, 15);
+        mainPane.add(selectCustomerButton, 0, 9);
+        mainPane.add(customerSelectedMessage, 1, 9);
+        mainPane.add(insurancesTitle, 0, 10);
+        mainPane.add(insurancesTable, 0, 11, 3, 5);
         
         mainPane.add(insuranceOptionsTitle, 4, 0);
         mainPane.add(existingBonusLabel, 4, 1);
@@ -296,8 +304,8 @@ public class CarClaimRegistration {
     }
     
     private void populateCoverageCombo() {
-        ObservableList<CarInsuranceCoverage> obList; 
-        obList = FXCollections.observableArrayList(CarInsuranceCoverage.values());
+        ObservableList<CarInsuranceCoverage> obList;
+        obList = FXCollections.observableArrayList(CarInsuranceCoverage.values()); 
         coverageCombo.getItems().setAll(obList);
         coverageCombo.setPrefWidth(150);
     }
@@ -370,56 +378,56 @@ public class CarClaimRegistration {
      * @return the existingBonusCombo
      */
     public String getExistingBonusComboValue() {
-        return existingBonusCombo.getValue().toString();
+        return existingBonusCombo.getValue() == null ? null : existingBonusCombo.getValue().toString();
     }
 
     /**
      * @return the drivingLengthCombo
      */
     public String getDrivingLengthCombo() {
-        return drivingLengthCombo.getValue().toString();
+        return drivingLengthCombo.getValue() == null ? null : drivingLengthCombo.getValue().toString();
     }
 
     /**
      * @return the excessCombo
      */
     public String getExcessCombo() {
-        return excessCombo.getValue().toString();
+        return excessCombo.getValue() == null ? null : excessCombo.getValue().toString();
     }
 
     /**
      * @return the brandCombo
      */
     public String getBrandCombo() {
-        return brandCombo.getValue().toString();
+        return brandCombo.getValue() == null ? null : brandCombo.getValue().toString();
     }
 
     /**
      * @return the yearCombo
      */
     public String getYearCombo() {
-        return yearCombo.getValue().toString();
+        return yearCombo.getValue() == null ? null : yearCombo.getValue().toString();
     }
 
     /**
      * @return the modelCombo
      */
     public String getModelCombo() {
-        return modelCombo.getValue().toString();
+        return modelCombo.getValue() == null ? null : modelCombo.getValue().toString();
     }
 
     /**
      * @return the youngestDriverCombo
      */
     public String getYoungestDriverCombo() {
-        return youngestDriverCombo.getValue().toString();
+        return youngestDriverCombo.getValue() == null ? null : youngestDriverCombo.getValue().toString();
     }
 
     /**
      * @return the alarmCombo
      */
     public String getAlarmCombo() {
-        return alarmCombo.getValue().toString();
+        return alarmCombo.getValue() == null ? null : alarmCombo.getValue().toString();
     }
 
     /**
@@ -439,7 +447,7 @@ public class CarClaimRegistration {
      * @return the parkingConditionCombo
      */
     public String getParkingConditionCombo() {
-        return parkingConditionCombo.getValue().toString();
+        return parkingConditionCombo.getValue() == null ? null : parkingConditionCombo.getValue().toString();
     }
 
     /**
@@ -475,14 +483,30 @@ public class CarClaimRegistration {
      * @param insurances 
      */
     public void populateInsurancesTable(List<Insurance> insurances) {
-        insurancesTable.getItems().addAll("Type", "Forsikringsnummer");
         ObservableList<Insurance> obList = FXCollections.observableArrayList(insurances);
-        for (Insurance ins : obList) {
-            ObservableList<String> row = FXCollections.observableArrayList();
-            row.addAll(ins.getName(), ins.getInsuranceId() + "");
-            insurancesTable.getItems().addAll(row);
-        }
+        insurancesTable.setItems(obList);
         
+        insuranceTypeColumn.setCellValueFactory((cellData) -> {
+                if ( cellData.getValue() != null) {
+                    return new SimpleStringProperty(cellData.getValue().getName());
+                } else {
+                    return new SimpleStringProperty("<no name>");
+                }
+        });
+        insuranceCoverageColum.setCellValueFactory((cellData) -> {
+                if ( cellData.getValue() != null) {
+                    return new SimpleObjectProperty<>(cellData.getValue().getCoverage().toString());
+                } else {
+                    return new SimpleObjectProperty(0);
+                }
+        });
+        insuranceIdColumn.setCellValueFactory((cellData) -> {
+                if ( cellData.getValue() != null) {
+                    return new SimpleObjectProperty<>(cellData.getValue().getInsuranceId());
+                } else {
+                    return new SimpleObjectProperty(0);
+                }
+        });   
     }
 
     /**
@@ -663,5 +687,12 @@ public class CarClaimRegistration {
      */
     public void setTempCustomerId(int tempCustomerId) {
         this.tempCustomerId = tempCustomerId;
+    }
+
+    /**
+     * @param customerSelectedMessage the customerSelectedMessage to set
+     */
+    public void setCustomerSelectedMessage(String customerSelectedMessage) {
+        this.customerSelectedMessage.setText(customerSelectedMessage);
     }
 }

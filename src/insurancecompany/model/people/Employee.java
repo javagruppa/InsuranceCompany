@@ -25,10 +25,14 @@ public abstract class Employee extends Person implements Serializable {
     
     private final int employeeId;
     
+    /** Decides if this employees position/hire is active.*/
+    private boolean active;
+    
     public Employee(String firstname, String lastname, String personalNumber,
             String email, Address address, String phone) {
         super(firstname, lastname, personalNumber, email, address, phone);
         employeeId = nextEmployeeId++;
+        active = true;
     }
     
     public String toString(){
@@ -56,6 +60,20 @@ public abstract class Employee extends Person implements Serializable {
     @Override
     public int getId() {
         return employeeId;
+    }
+
+    /**
+     * @return the active
+     */
+    public boolean isActive() {
+        return active;
+    }
+
+    /**
+     * @param active the active to set
+     */
+    public void setActive(boolean active) {
+        this.active = active;
     }
     
 }

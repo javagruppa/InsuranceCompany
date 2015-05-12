@@ -30,10 +30,13 @@ public class Customer extends Person implements Serializable {
     
     private final int customerId;
     private List<Vehicle> vehicles;
+    /** Decides if this customers subscription is active.*/
+    private boolean active;
     
     public Customer(String firstname, String lastname, String personalNumber, String email, Address address, String phone) {
         super(firstname, lastname, personalNumber, email, address, phone);
         customerId = nextCustomerId++;
+        active = true;
     }
     
     @Override
@@ -76,6 +79,20 @@ public class Customer extends Person implements Serializable {
      */
     public void setTotalCustomer(boolean totalCustomer) {
         this.totalCustomer = totalCustomer;
+    }
+
+    /**
+     * @return the active
+     */
+    public boolean isActive() {
+        return active;
+    }
+
+    /**
+     * @param active the active to set
+     */
+    public void setActive(boolean active) {
+        this.active = active;
     }
     
 }

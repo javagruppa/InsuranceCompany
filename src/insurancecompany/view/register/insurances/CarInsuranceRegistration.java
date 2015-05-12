@@ -6,27 +6,17 @@
 package insurancecompany.view.register.insurances;
 
 import insurancecompany.misc.coverages.CarInsuranceCoverage;
-import insurancecompany.model.datastructures.carinfo.CarInfo;
-import insurancecompany.model.datastructures.carinfo.ModelInfo;
 import insurancecompany.model.insurances.Insurance;
-import java.util.ArrayList;
-import java.util.Calendar;
-import static java.util.Collections.list;
 import java.util.List;
 import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -34,7 +24,6 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
-import javafx.util.Callback;
 
 /**
  *
@@ -82,7 +71,7 @@ public class CarInsuranceRegistration {
         mainPane = new GridPane();
         mainPane.setAlignment(Pos.CENTER);
         mainPane.setHgap(10);
-        mainPane.setVgap(10);
+        mainPane.setVgap(6);
         mainPane.setStyle("-fx-background-color: #E7E7FF;");
         ColumnConstraints col1 = new ColumnConstraints(120);
         ColumnConstraints col2 = new ColumnConstraints(100);
@@ -96,6 +85,7 @@ public class CarInsuranceRegistration {
         
         
         Text selectCustomerTitle = new Text("Velg først en kunde i registeret:");
+        selectCustomerTitle.setId("textTitle");
         Label customerIdLabel = new Label("Kundenummer:");
         customerIdField = new TextField();
         searchCustomerIdButton = new Button("Søk");
@@ -103,14 +93,17 @@ public class CarInsuranceRegistration {
         personalNumberField = new TextField();
         searchPersonalNumberButton = new Button("Søk");
         customerArea = new TextArea();
+        customerArea.setEditable(false);
         customerArea.setPrefColumnCount(2);
         customerArea.setPrefRowCount(4);
         Text insurancesTitle = new Text("Eksisterende forsikringer til denne kunden:");
+        insurancesTitle.setId("textTitle");
         insurancesTable = new TableView();
         insurancesTable.setPrefHeight(150);
-        selectCustomerButton = new Button("Velg kunde");
+        selectCustomerButton = new Button("Velg denne kunden");
         
         Text insuranceOptionsTitle = new Text("Betingelser:");
+        insuranceOptionsTitle.setId("textTitle");
         Label existingBonusLabel = new Label("Eksisterende bonussats:");
         existingBonusCombo = new ComboBox();
         populateExistingBonusCombo();
@@ -131,6 +124,7 @@ public class CarInsuranceRegistration {
         populateParkingConditionCombo();
         
         Text carTitle = new Text("Bil:");
+        carTitle.setId("textTitle");
         Label personalNumberOwnerLabel = new Label("Eierens personnummer:");
         personalNumberOwnerField = new TextField();
         Label registrationNumberLabel = new Label("Registreringsnummer:");
@@ -149,6 +143,7 @@ public class CarInsuranceRegistration {
         popualteAlarmCombo();
         Label premiumLabel = new Label("Beregnet forsikringspremie:");
         premiumField = new TextField();
+        premiumField.setEditable(false);
         calculateButton = new Button("Regn ut");
         registerButton = new Button("Registrer");
         
@@ -202,29 +197,33 @@ public class CarInsuranceRegistration {
     }
     
     private void populateExistingBonusCombo() {
-        String[] bonuses = {"-30", "-20", "-10", "0", "10", "20", "30", "40", 
-            "50", "60", "70", "75"};
+        ObservableList<String> bonuses = FXCollections.observableArrayList();
+        bonuses.addAll("-30", "-20", "-10", "0", "10", "20", "30", "40", 
+                "50", "60", "70", "75");
         existingBonusCombo.getItems().setAll(bonuses);
         existingBonusCombo.setPrefWidth(150);
     }
     
     private void populateDrivingLengthCombo() {
-        String[] drivingLength = {"6000", "8000", "10000", "15000", "14000", 
-            "16000", "18000", "20000", "25000", "30000", "40000", "50000", 
-            "Ubegrenset"};
+        ObservableList<String> drivingLength = FXCollections.observableArrayList();
+        drivingLength.addAll("6000", "8000", "10000", "15000", "14000", 
+                "16000", "18000", "20000", "25000", "30000", "40000", "50000", 
+                "Ubegrenset");
         drivingLengthCombo.getItems().setAll(drivingLength);
         drivingLengthCombo.setPrefWidth(150);
     }
     
     private void populateExcessCombo() {
-        String[] excess = {"4000", "6000", "8000", "10000", "15000", "14000", 
-            "16000", "18000", "20000", "25000", "30000"};
+        ObservableList<String> excess = FXCollections.observableArrayList();
+        excess.addAll("4000", "6000", "8000", "10000", "15000", "14000", 
+                "16000", "18000", "20000", "25000", "30000");
         excessCombo.getItems().setAll(excess);
         excessCombo.setPrefWidth(150);
     }
     
     private void populateYoungestDriverCombo() {
-        String[] youngestDriver = {"Under 25", "Over 25"};
+        ObservableList<String> youngestDriver = FXCollections.observableArrayList(); 
+        youngestDriver.addAll("Under 25", "Over 25");
         youngestDriverCombo.getItems().setAll(youngestDriver);
         youngestDriverCombo.setPrefWidth(150);
     }
@@ -235,13 +234,15 @@ public class CarInsuranceRegistration {
     }
     
     private void populateParkingConditionCombo() {
-        String[] parkingCondition = {"Har garasje", "Har ikke garasje"};
+        ObservableList<String> parkingCondition = FXCollections.observableArrayList(); 
+        parkingCondition.addAll("Har garasje", "Har ikke garasje");
         parkingConditionCombo.getItems().setAll(parkingCondition);
         parkingConditionCombo.setPrefWidth(150);
     }
     
     private void popualteAlarmCombo() {
-        String[] alarm = {"Ja", "Nei"};
+        ObservableList<String> alarm = FXCollections.observableArrayList();  
+        alarm.addAll("Ja", "Nei");
         alarmCombo.getItems().setAll(alarm);
         alarmCombo.setPrefWidth(150);
     }

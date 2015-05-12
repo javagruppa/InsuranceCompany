@@ -5,10 +5,14 @@
  */
 package insurancecompany.model.claims;
 
+import insurancecompany.misc.coverages.Damage;
+import java.awt.Image;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 /**
  *
@@ -16,29 +20,25 @@ import java.util.List;
  */
 public class HomeClaim extends Claim implements Serializable {
     private static final long serialVersionUID = 1L;
-     
-    
+        
     private List<ClaimItem> items;
+
+    public HomeClaim(int customerId, int insuranceId, String description, 
+            Calendar dateHappened, Set<Damage> damages, int appraisal, 
+            List<ClaimItem> items) {
+        super(customerId, insuranceId, description, dateHappened, damages, 
+                appraisal);
+        this.items = items;
+    }    
     
-    /**
-     * 
-     * @param customerId
-     * @param insuranceId
-     * @param description
-     */
-    public HomeClaim(int customerId, int insuranceId, String description) {
-        super(customerId, insuranceId, description);
-        items = new ArrayList<ClaimItem>();
+    public HomeClaim(int customerId, int insuranceId, String description, 
+            Calendar dateHappened, Set<Damage> damages, int appraisal, 
+            Image image, List<ClaimItem> items) {
+        super(customerId, insuranceId, description, dateHappened, damages, 
+                appraisal, image);
+        this.items = items;
     }
     
-    /**
-     * Constructor initializing date and description of a claim.
-     * @param date
-     * @param description 
-     */
-    public HomeClaim(int customerId, String description) {
-        super(customerId, description);
-    }
     
     public void addItem(ClaimItem claimItem) {
         items.add(claimItem);

@@ -5,8 +5,12 @@
  */
 package insurancecompany.model.claims;
 
+import insurancecompany.misc.coverages.Damage;
+import java.awt.Image;
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Set;
 
 /**
  *
@@ -16,22 +20,23 @@ public class CarClaim extends Claim implements Serializable {
     private static final long serialVersionUID = 1L;
     
     CarClaimForm claimForm;
+
+    public CarClaim(int customerId, int insuranceId, String description, 
+            Calendar dateHappened, Set<Damage> damages, int appraisal, 
+            CarClaimForm claimForm) {
+        super(customerId, insuranceId, description, dateHappened, damages, 
+                appraisal);
+        this.claimForm = claimForm;
+    }    
     
-    /**
-     * Empty constructor.
-     */
-    public CarClaim(int customerId, int insuranceId, String description) {
-        super(customerId, insuranceId, description);
+    public CarClaim(int customerId, int insuranceId, String description, 
+            Calendar dateHappened, Set<Damage> damages, int appraisal, 
+            Image image, CarClaimForm claimForm) {
+        super(customerId, insuranceId, description, dateHappened, damages, 
+                appraisal, image);
+        this.claimForm = claimForm;
     }
     
-    /**
-     * Constructor initializing date and description of a car claim.
-     * @param date
-     * @param description 
-     */
-    public CarClaim(int customerId, String description) {
-        super(customerId, description);
-    }
     
     public void setClaimForm(CarClaimForm claimForm) {
         this.claimForm = claimForm;

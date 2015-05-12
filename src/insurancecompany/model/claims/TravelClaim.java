@@ -5,8 +5,12 @@
  */
 package insurancecompany.model.claims;
 
+import insurancecompany.misc.coverages.Damage;
+import java.awt.Image;
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Set;
 
 /**
  *
@@ -16,21 +20,23 @@ public class TravelClaim extends Claim implements Serializable {
     private static final long serialVersionUID = 1L;
     
     private String creditCardBrand;
-    /**
-     * Empty constructor.
-     */
-    public TravelClaim(int customerId, int insuranceId, String description) {
-        super(customerId, insuranceId, description);
-    }
+
+    public TravelClaim(int customerId, int insuranceId, String description, 
+            Calendar dateHappened, Set<Damage> damages, int appraisal, 
+            String creditCardBrand) {
+        super(customerId, insuranceId, description, dateHappened, damages, 
+                appraisal);
+        this.creditCardBrand = creditCardBrand;
+    }    
     
-    /**
-     * Constructor initializing date and description of a travel claim.
-     * @param date
-     * @param description 
-     */
-    public TravelClaim(int customerId, String description) {
-        super(customerId, description);
+    public TravelClaim(int customerId, int insuranceId, String description, 
+            Calendar dateHappened, Set<Damage> damages, int appraisal, 
+            Image image, String creditCardBrand) {
+        super(customerId, insuranceId, description, dateHappened, damages, 
+                appraisal, image);
+        this.creditCardBrand = creditCardBrand;
     }
+
     
     @Override
     public String toString() {

@@ -5,6 +5,7 @@
  */
 package insurancecompany.model.claims;
 
+import insurancecompany.misc.coverages.Damage;
 import insurancecompany.model.people.Customer;
 
 import java.util.Date;
@@ -14,6 +15,9 @@ import java.io.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.EnumSet;
+import java.util.Set;
 
 /**
  *
@@ -37,12 +41,14 @@ public abstract class Claim implements Serializable {
     private final int claimId;
     /** Textual description of this claim. */
     private String description;
+    /** Set of damages belonging to the claim.*/
+    private Set<Damage> damages;
     /** Image description of this claim. */
     private Image image;
     /** Appraisal sum set to this claim. */
-    private int appraisal;
+    private int appraisal; // NOR : takseringsbeløp av skaden
     /** Disbursement set to this claim. */
-    private int disbursement;
+    private int disbursement; // NOR : utbetalt erstatningsbeløp
     
     /**
      * 
@@ -50,24 +56,30 @@ public abstract class Claim implements Serializable {
      * @param insuranceId
      * @param description 
      */
-    public Claim(int customerId, int insuranceId, String description) {
+    public Claim(int customerId, int insuranceId, String description, 
+            Calendar dateHappened, Set<Damage> damages, int appraisal) {
         this.customerId = customerId;
         this.insuranceId = insuranceId;
         this.description = description;
+        this.dateHappened = dateHappened;
+        this.damages = damages;
+        this.appraisal = appraisal;
         // Set the date to current date:
         date = Calendar.getInstance();
         // Set unique claim id, aswell as uppdating next claim id:
         claimId = nextClaimId++;
     }
     
-    /**
-     * 
-     * @param customerId
-     * @param description 
-     */
-    public Claim(int customerId, String description) {
+    public Claim(int customerId, int insuranceId, String description, 
+            Calendar dateHappened, Set<Damage> damages, int appraisal,
+            Image image) {
         this.customerId = customerId;
+        this.insuranceId = insuranceId;
         this.description = description;
+        this.dateHappened = dateHappened;
+        this.damages = damages;
+        this.appraisal = appraisal;
+        this.image = image;
         // Set the date to current date:
         date = Calendar.getInstance();
         // Set unique claim id, aswell as uppdating next claim id:

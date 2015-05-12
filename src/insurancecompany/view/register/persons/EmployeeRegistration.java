@@ -181,8 +181,13 @@ public class EmployeeRegistration {
         return mainPane;
     }
 
-    public String getPositionComboValue() {
-        return positionCombo.getValue().toString();
+    public EmployeeType getPositionComboValue() {
+        if (positionCombo.getValue() instanceof EmployeeType) {
+            // Casts the combobox value to EmployeeType and return this value
+            EmployeeType emp = (EmployeeType) positionCombo.getValue();
+            return emp;
+            // If for instance no value is selected, the value will not equal a EmployeeType, in this case return null:
+        } else return null; 
     }
     
     /**

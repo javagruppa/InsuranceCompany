@@ -364,56 +364,56 @@ public class CarInsuranceRegistration {
      * @return the existingBonusCombo
      */
     public String getExistingBonusComboValue() {
-        return existingBonusCombo.getValue() == null ? "" : existingBonusCombo.getValue().toString();
+        return existingBonusCombo.getValue() == null ? null : existingBonusCombo.getValue().toString();
     }
 
     /**
      * @return the drivingLengthCombo
      */
     public String getDrivingLengthCombo() {
-        return drivingLengthCombo.getValue().toString();
+        return drivingLengthCombo.getValue() == null ? null : drivingLengthCombo.getValue().toString();
     }
 
     /**
      * @return the excessCombo
      */
     public String getExcessCombo() {
-        return excessCombo.getValue().toString();
+        return excessCombo.getValue() == null ? null : excessCombo.getValue().toString();
     }
 
     /**
      * @return the brandCombo
      */
     public String getBrandCombo() {
-        return brandCombo.getValue().toString();
+        return brandCombo.getValue() == null ? null : brandCombo.getValue().toString();
     }
 
     /**
      * @return the yearCombo
      */
     public String getYearCombo() {
-        return yearCombo.getValue().toString();
+        return yearCombo.getValue() == null ? null : yearCombo.getValue().toString();
     }
 
     /**
      * @return the modelCombo
      */
     public String getModelCombo() {
-        return modelCombo.getValue().toString();
+        return modelCombo.getValue() == null ? null : modelCombo.getValue().toString();
     }
 
     /**
      * @return the youngestDriverCombo
      */
     public String getYoungestDriverCombo() {
-        return youngestDriverCombo.getValue().toString();
+        return youngestDriverCombo.getValue() == null ? null : youngestDriverCombo.getValue().toString();
     }
 
     /**
      * @return the alarmCombo
      */
     public String getAlarmCombo() {
-        return alarmCombo.getValue().toString();
+        return alarmCombo.getValue() == null ? null : alarmCombo.getValue().toString();
     }
 
     /**
@@ -433,7 +433,7 @@ public class CarInsuranceRegistration {
      * @return the parkingConditionCombo
      */
     public String getParkingConditionCombo() {
-        return parkingConditionCombo.getValue().toString();
+        return parkingConditionCombo.getValue() == null ? null : parkingConditionCombo.getValue().toString();
     }
 
     /**

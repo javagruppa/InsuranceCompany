@@ -5,6 +5,7 @@
  */
 package insurancecompany.controller;
 
+import insurancecompany.misc.EmployeeType;
 import insurancecompany.view.register.persons.*;
 import insurancecompany.view.register.insurances.*;
 import insurancecompany.model.datastructures.*;
@@ -96,6 +97,7 @@ public class MainController {
         carInsuranceRegistration.setYearComboListener(this::yearComboListener);
         
         customerRegistration.setRegisterButtonEventHandler(this::registerCustomerButtonEventHandler);
+        employeeRegistration.setRegisterButtonEventHandler(this::registerEmployeeButtonEventHandler);
     }
  
     private void adminViewSaveDataButtonEventHandler(ActionEvent event) {
@@ -158,7 +160,7 @@ public class MainController {
     // TODO: Trenger regex og validering
     private void registerEmployeeButtonEventHandler(ActionEvent event) {
         
-        String position = employeeRegistration.getPositionComboValue();
+        EmployeeType position = employeeRegistration.getPositionComboValue();
         String personalNumber = employeeRegistration.getPersonalNumberField();
         String firstName = employeeRegistration.getFirstNameField();
         String lastName = employeeRegistration.getLastNameField();
@@ -168,7 +170,7 @@ public class MainController {
         String email = employeeRegistration.getEmailField();
         String phone = employeeRegistration.getPhoneField();
 
-        
+        System.out.println(position.toString());
         if (personalNumber.equals("")) {
             String message = "Fyll inn dette feltet.";
             employeeRegistration.setPersonalNumberMessage(message);
@@ -186,9 +188,9 @@ public class MainController {
         Employee employee;
         boolean ok = false;
         switch (position) {
-            case "Kundebehandler" : employee = new ServiceWorker(firstName, lastName, personalNumber, email, adress, phone);
-            case "Saksbehandler" : employee = new CaseWorker(firstName, lastName, personalNumber, email, adress, phone);
-            case "Administrator" : employee = new Admin(firstName, lastName, personalNumber, email, adress, phone);
+            case SERVICE_WORKER : employee = new ServiceWorker(firstName, lastName, personalNumber, email, adress, phone);
+            case CASE_WORKER : employee = new CaseWorker(firstName, lastName, personalNumber, email, adress, phone);
+            case ADMIN : employee = new Admin(firstName, lastName, personalNumber, email, adress, phone);
             default: employee = new ServiceWorker(firstName, lastName, personalNumber, email, adress, phone);
         }
         // Adds the new customer to the datastructure:

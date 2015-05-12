@@ -1,0 +1,27 @@
+Logs:Time: Tue May 12 16:47:04 CEST 2015
+Logged in user: Admin
+User id: 1000000
+Stack Trace: java.io.FileInputStream.open(Native Method)
+java.io.FileInputStream.<init>(FileInputStream.java:138)
+java.io.FileInputStream.<init>(FileInputStream.java:93)
+insurancecompany.model.datastructures.InsuranceRegister.readInsurancesFromFile(InsuranceRegister.java:211)
+insurancecompany.controller.MainController.readInsurancesFromFile(MainController.java:643)
+insurancecompany.controller.MainController.readAllDataFromFile(MainController.java:139)
+insurancecompany.controller.MainController.<init>(MainController.java:92)
+insurancecompany.main.Main.start(Main.java:28)
+com.sun.javafx.application.LauncherImpl.lambda$launchApplication1$153(LauncherImpl.java:821)
+com.sun.javafx.application.LauncherImpl$$Lambda$51/1239309469.run(Unknown Source)
+com.sun.javafx.application.PlatformImpl.lambda$runAndWait$166(PlatformImpl.java:323)
+com.sun.javafx.application.PlatformImpl$$Lambda$45/1051754451.run(Unknown Source)
+com.sun.javafx.application.PlatformImpl.lambda$null$164(PlatformImpl.java:292)
+com.sun.javafx.application.PlatformImpl$$Lambda$47/1872491273.run(Unknown Source)
+java.security.AccessController.doPrivileged(Native Method)
+com.sun.javafx.application.PlatformImpl.lambda$runLater$165(PlatformImpl.java:291)
+com.sun.javafx.application.PlatformImpl$$Lambda$46/1775282465.run(Unknown Source)
+com.sun.glass.ui.InvokeLaterDispatcher$Future.run(InvokeLaterDispatcher.java:95)
+com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+com.sun.glass.ui.win.WinApplication.lambda$null$141(WinApplication.java:102)
+com.sun.glass.ui.win.WinApplication$$Lambda$37/1109371569.run(Unknown Source)
+java.lang.Thread.run(Thread.java:745)
+
+Description: src\insurancecompany\resources\datastructures\insuranceSet.dta (Systemet finner ikke angitt fil)

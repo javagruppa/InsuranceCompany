@@ -212,6 +212,7 @@ public abstract class Insurance implements Serializable {
         // Appends the fields with appropriate sentences.
         result.append("Forsikringen er ").append(active ? "aktiv" : "inaktiv");
         result.append("\nForsikringsnummer: ").append(insuranceId);
+        result.append("\nKundenummer: ").append(customerId);
         result.append("\n\nDato: ").append(dateFormat.format(date));
         result.append("\nÅrlig forsikringspremie: ").append(premium);
         result.append("\nEgenandel: ").append(excess);

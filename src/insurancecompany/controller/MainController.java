@@ -6,10 +6,13 @@
 package insurancecompany.controller;
 
 import insurancecompany.misc.EmployeeType;
+import insurancecompany.model.bills.*;
+import insurancecompany.model.claims.*;
 import insurancecompany.view.register.persons.*;
 import insurancecompany.view.register.insurances.*;
 import insurancecompany.model.datastructures.*;
 import insurancecompany.model.datastructures.carinfo.*;
+import insurancecompany.model.insurances.*;
 import insurancecompany.model.people.*;
 import insurancecompany.model.properties.*;
 import insurancecompany.view.modules.*;
@@ -351,8 +354,149 @@ public class MainController {
         
     }
     
+    // READ AND WRITE IDS FROM/TO FILE:
     
-    // READ AND WRITE FROM/TO FILE:
+    /**
+     * Writes next unique customer id to file.
+     */
+    public void writeCustomerIdToFile() {
+        try {
+            Customer.saveNextIdToFile();
+        } catch (IOException ioe) {
+            logs.add(ioe.getStackTrace(), ioe.getMessage(), user);
+            System.err.println(ioe.getMessage());
+        }
+    }
+    
+    /**
+     * Reads next unique customer id from file and saves it as a static 
+     * in the Customer class.
+     */
+    public void readCustomerIdFromFile() {
+        try {
+            Customer.readNextIdFromFile();
+        } catch (FileNotFoundException fnfe) {
+            logs.add(fnfe.getStackTrace(), fnfe.getMessage(), user);
+            System.err.println(fnfe.getMessage());
+        } catch (IOException ioe) {
+            logs.add(ioe.getStackTrace(), ioe.getMessage(), user);
+            System.err.println(ioe.getMessage());
+        }
+    }
+ 
+    /**
+     * Writes next unique employee id to file.
+     */
+    public void writeEmployeeIdToFile() {
+        try {
+            Employee.saveNextIdToFile();
+        } catch (IOException ioe) {
+            logs.add(ioe.getStackTrace(), ioe.getMessage(), user);
+            System.err.println(ioe.getMessage());
+        }
+    }
+    
+    /**
+     * Reads next unique employee id from file and saves it as a static 
+     * in the Employee class.
+     */
+    public void readEmployeeIdFromFile() {
+        try {
+            Employee.readNextIdFromFile();
+        } catch (FileNotFoundException fnfe) {
+            logs.add(fnfe.getStackTrace(), fnfe.getMessage(), user);
+            System.err.println(fnfe.getMessage());
+        } catch (IOException ioe) {
+            logs.add(ioe.getStackTrace(), ioe.getMessage(), user);
+            System.err.println(ioe.getMessage());
+        }
+    }
+    
+    /**
+     * Writes next unique insurance id to file.
+     */
+    public void writeInsuranceIdToFile() {
+        try {
+            Insurance.saveNextIdToFile();
+        } catch (IOException ioe) {
+            logs.add(ioe.getStackTrace(), ioe.getMessage(), user);
+            System.err.println(ioe.getMessage());
+        }
+    }
+    
+    /**
+     * Reads next unique insurance id from file and saves it as a static 
+     * in the Insurance class.
+     */
+    public void readInsuranceIdFromFile() {
+        try {
+            Insurance.readNextIdFromFile();
+        } catch (FileNotFoundException fnfe) {
+            logs.add(fnfe.getStackTrace(), fnfe.getMessage(), user);
+            System.err.println(fnfe.getMessage());
+        } catch (IOException ioe) {
+            logs.add(ioe.getStackTrace(), ioe.getMessage(), user);
+            System.err.println(ioe.getMessage());
+        }
+    }
+    
+    /**
+     * Writes next unique claim id to file.
+     */
+    public void writeClaimIdToFile() {
+        try {
+            Claim.saveNextIdToFile();
+        } catch (IOException ioe) {
+            logs.add(ioe.getStackTrace(), ioe.getMessage(), user);
+            System.err.println(ioe.getMessage());
+        }
+    }
+    
+    /**
+     * Reads next unique claim id from file and saves it as a static 
+     * in the Claim class.
+     */
+    public void readClaimIdFromFile() {
+        try {
+            Claim.readNextIdFromFile();
+        } catch (FileNotFoundException fnfe) {
+            logs.add(fnfe.getStackTrace(), fnfe.getMessage(), user);
+            System.err.println(fnfe.getMessage());
+        } catch (IOException ioe) {
+            logs.add(ioe.getStackTrace(), ioe.getMessage(), user);
+            System.err.println(ioe.getMessage());
+        }
+    }
+    
+    /**
+     * Writes next unique bill id to file.
+     */
+    public void writeBillIdToFile() {
+        try {
+            Bill.saveNextIdToFile();
+        } catch (IOException ioe) {
+            logs.add(ioe.getStackTrace(), ioe.getMessage(), user);
+            System.err.println(ioe.getMessage());
+        }
+    }
+    
+    /**
+     * Reads next unique bill id from file and saves it as a static 
+     * in the Bills class.
+     */
+    public void readBillIdFromFile() {
+        try {
+            Bill.readNextIdFromFile();
+        } catch (FileNotFoundException fnfe) {
+            logs.add(fnfe.getStackTrace(), fnfe.getMessage(), user);
+            System.err.println(fnfe.getMessage());
+        } catch (IOException ioe) {
+            logs.add(ioe.getStackTrace(), ioe.getMessage(), user);
+            System.err.println(ioe.getMessage());
+        }
+    }
+    
+    // READ AND WRITE DATASTRUCTURES FROM/TO FILE:
     
     public void writeClaimsToFile() {
         try {

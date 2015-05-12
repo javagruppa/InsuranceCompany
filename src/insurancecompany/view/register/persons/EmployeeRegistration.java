@@ -81,7 +81,9 @@ public class EmployeeRegistration {
         registerT.setId("textTitle");
         Label position = new Label("Posisjon");
         positionCombo = new ComboBox();
-        positionCombo.getItems().addAll(EmployeeType.values());
+        ObservableList<EmployeeType> obList;
+        obList = FXCollections.observableArrayList(EmployeeType.values()); 
+        positionCombo.getItems().addAll(obList);
         positionCombo.setPrefWidth(150);
         positionMessage = new Text();
         

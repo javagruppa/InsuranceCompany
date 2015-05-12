@@ -94,13 +94,11 @@ public class CarClaimRegistration {
     /** The date of when the damage happened */
     private Calendar dateHappened;
     /** Unique claim id representing this claim. */
-    private final int claimId;
+    private final int claimId = 1;
     /** Textual description of this claim. */
     private String description;
     /** Image description of this claim. */
     private Image image;
-    
-    private 
     
     
     public CarClaimRegistration() {
@@ -298,7 +296,9 @@ public class CarClaimRegistration {
     }
     
     private void populateCoverageCombo() {
-        coverageCombo.getItems().setAll(CarInsuranceCoverage.values());
+        ObservableList<CarInsuranceCoverage> obList; 
+        obList = FXCollections.observableArrayList(CarInsuranceCoverage.values());
+        coverageCombo.getItems().setAll(obList);
         coverageCombo.setPrefWidth(150);
     }
     

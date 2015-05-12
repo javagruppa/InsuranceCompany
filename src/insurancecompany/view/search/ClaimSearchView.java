@@ -5,8 +5,9 @@
  */
 package insurancecompany.view.search;
 
-import com.sun.org.apache.bcel.internal.generic.AALOAD;
 import insurancecompany.misc.ClaimType;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -112,7 +113,9 @@ public class ClaimSearchView {
     
     public ComboBox createClaimTypeCombo() {
         ComboBox cb = new ComboBox();
-        cb.getItems().addAll(ClaimType.values());
+        ObservableList<ClaimType> obList;
+        obList = FXCollections.observableArrayList(ClaimType.values()); 
+        cb.getItems().addAll(obList);
         return cb;
     }
     

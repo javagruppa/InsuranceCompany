@@ -290,7 +290,9 @@ public class CarInsuranceRegistration {
     }
     
     private void populateCoverageCombo() {
-        coverageCombo.getItems().setAll(CarInsuranceCoverage.values());
+        ObservableList<CarInsuranceCoverage> obList;
+        obList = FXCollections.observableArrayList(CarInsuranceCoverage.values()); 
+        coverageCombo.getItems().setAll(obList);
         coverageCombo.setPrefWidth(150);
     }
     

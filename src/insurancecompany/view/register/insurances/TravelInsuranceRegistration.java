@@ -137,6 +137,7 @@ public class TravelInsuranceRegistration {
         calculateButton = new Button("Regn ut");
         registerButton = new Button("Registrer");
         // Declares Text and Label
+        customerSelectedMessage = new Text();
         Text insuranceOptionsTitle = new Text("Betingelser:");
         insuranceOptionsTitle.setId("textTitle");
         Label coverageLabel = new Label("Dekning:");

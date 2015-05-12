@@ -8,6 +8,7 @@ package insurancecompany.view.register.insurances;
 import insurancecompany.misc.coverages.CarInsuranceCoverage;
 import insurancecompany.model.datastructures.carinfo.CarInfo;
 import insurancecompany.model.datastructures.carinfo.ModelInfo;
+import insurancecompany.model.insurances.Insurance;
 import java.util.ArrayList;
 import java.util.Calendar;
 import static java.util.Collections.list;
@@ -300,6 +301,173 @@ public class CarInsuranceRegistration {
         return brandCombo.getValue();
     }
     
+    /**
+     * @return the customerIdField
+     */
+    public String getCustomerIdField() {
+        return customerIdField.getText();
+    }
+
+    /**
+     * @return the personalNumberField
+     */
+    public String getPersonalNumberField() {
+        return personalNumberField.getText();
+    }
+
+    /**
+     * @return the existingBonusCombo
+     */
+    public String getExistingBonusComboValue() {
+        return existingBonusCombo.getValue().toString();
+    }
+
+    /**
+     * @return the drivingLengthCombo
+     */
+    public String getDrivingLengthCombo() {
+        return drivingLengthCombo.getValue().toString();
+    }
+
+    /**
+     * @return the excessCombo
+     */
+    public String getExcessCombo() {
+        return excessCombo.getValue().toString();
+    }
+
+    /**
+     * @return the brandCombo
+     */
+    public String getBrandCombo() {
+        return brandCombo.getValue().toString();
+    }
+
+    /**
+     * @return the yearCombo
+     */
+    public String getYearCombo() {
+        return yearCombo.getValue().toString();
+    }
+
+    /**
+     * @return the modelCombo
+     */
+    public String getModelCombo() {
+        return modelCombo.getValue().toString();
+    }
+
+    /**
+     * @return the youngestDriverCombo
+     */
+    public String getYoungestDriverCombo() {
+        return youngestDriverCombo.getValue().toString();
+    }
+
+    /**
+     * @return the alarmCombo
+     */
+    public String getAlarmCombo() {
+        return alarmCombo.getValue().toString();
+    }
+
+    /**
+     * @return the coverageCombo
+     */
+    public CarInsuranceCoverage getCoverageCombo() {
+        if (coverageCombo.getValue() instanceof CarInsuranceCoverage) {
+            // Casts the combobox value to CarInsuranceCoverage and return this value
+            CarInsuranceCoverage coverage = (CarInsuranceCoverage) coverageCombo.getValue();
+            return coverage;
+            // If for instance no value is selected, the value will not equal a CarInsuranceCoverage, 
+            //in this case return null:
+        } else return null; 
+    }
+
+    /**
+     * @return the parkingConditionCombo
+     */
+    public String getParkingConditionCombo() {
+        return parkingConditionCombo.getValue().toString();
+    }
+
+    /**
+     * @return the registrationNumberField
+     */
+    public String getRegistrationNumberField() {
+        return registrationNumberField.getText();
+    }
+
+    /**
+     * @return the personalNumberOwnerField
+     */
+    public String getPersonalNumberOwnerField() {
+        return personalNumberOwnerField.getText();
+    }
+
+    /**
+     * @return the totalInsurancesCombo
+     */
+    public String getTotalInsurancesCombo() {
+        return totalInsurancesCombo.getValue().toString();
+    }
+
+    /**
+     * @return the premiumField
+     */
+    public String getPremiumField() {
+        return premiumField.getText();
+    }
+
+    /**
+     * @param customerArea the customerArea to set
+     */
+    public void setCustomerArea(String customerArea) {
+        this.customerArea.setText(customerArea);
+    }
+
+    /**
+     * @param insurancesTable the insurancesTable to set
+     */
+    public void populateInsurancesTable(List<Insurance> insurances) {
+        // do something
+    }
+
+    /**
+     * @param searchCustomerIdButton the searchCustomerIdButton to set
+     */
+    public void setSearchCustomerIdButtonEventHandler(EventHandler<ActionEvent> value) {
+        searchCustomerIdButton.setOnAction(value);
+    }
+
+    /**
+     * 
+     * @param value 
+     */
+    public void setSearchPersonalNumberButtonEventHandler(EventHandler<ActionEvent> value) {
+        searchPersonalNumberButton.setOnAction(value);
+    }
+
+    /**
+     * @param selectCustomerButton the selectCustomerButton to set
+     */
+    public void setSelectCustomerButtonEventHandler(EventHandler<ActionEvent> value) {
+        selectCustomerButton.setOnAction(value);
+    }
+
+    /**
+     * @param calculateButton the calculateButton to set
+     */
+    public void setCalculateButtonEventHandler(EventHandler<ActionEvent> value) {
+        calculateButton.setOnAction(value);
+    }
+
+    /**
+     * @param registerButton the registerButton to set
+     */
+    public void setRegisterButtonEventHandler(EventHandler<ActionEvent> value) {
+        registerButton.setOnAction(value);
+    }
     
     public Pane getMainPane() {
         return mainPane;

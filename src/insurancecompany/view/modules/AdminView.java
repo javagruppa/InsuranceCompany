@@ -145,7 +145,11 @@ public class AdminView extends Application {
     public void setRegisterButtonEventHandler(EventHandler<ActionEvent> value) {
         registerTabButton.setOnAction(value);
     }
-
+    
+    public void setProcessButtonEventHandler(EventHandler<ActionEvent> value) {
+        processTabButton.setOnAction(value);
+    }
+    
     public void setSearchButtonEventHandler(EventHandler<ActionEvent> value) {
         searchTabButton.setOnAction(value);
     }

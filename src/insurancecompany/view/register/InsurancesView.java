@@ -34,7 +34,9 @@ public class InsurancesView {
     private ToggleButton boatInsuranceButton;
     private ToggleButton carInsuranceButton;
     private ToggleButton homeInsuranceButton;
+    private ToggleButton contentInsuranceButton;
     private ToggleButton holidayHomeInsuranceButton;
+    private ToggleButton holidayHomeContentInsuranceButton;
     private ToggleButton travelInsuranceButton;
     private ToggleGroup toggleGroup;
             
@@ -78,10 +80,18 @@ public class InsurancesView {
         Image houseImage = new Image("insurancecompany/resources/images/house.png");
         homeInsuranceButton.setGraphic(new ImageView(houseImage));
         
+        contentInsuranceButton = new ToggleButton("Innboforsikring");
+        contentInsuranceButton.setId("sideToolbarButton");
+        contentInsuranceButton.setGraphic(new ImageView(houseImage));
+        
         holidayHomeInsuranceButton = new ToggleButton("Fritidsbolig-\nforsikring");
         holidayHomeInsuranceButton.setId("sideToolbarButton");
         Image cabinImage = new Image("insurancecompany/resources/images/cabin.png");
         holidayHomeInsuranceButton.setGraphic(new ImageView(cabinImage));
+        
+        holidayHomeContentInsuranceButton = new ToggleButton("Fritidsbolig-\nforsikring");
+        holidayHomeContentInsuranceButton.setId("sideToolbarButton");
+        holidayHomeContentInsuranceButton.setGraphic(new ImageView(cabinImage));
         
         travelInsuranceButton = new ToggleButton("Reiseforsikring");
         travelInsuranceButton.setId("sideToolbarButton");
@@ -93,11 +103,14 @@ public class InsurancesView {
         carInsuranceButton.setToggleGroup(toggleGroup);
         boatInsuranceButton.setToggleGroup(toggleGroup);
         homeInsuranceButton.setToggleGroup(toggleGroup);
+        contentInsuranceButton.setToggleGroup(toggleGroup);
         holidayHomeInsuranceButton.setToggleGroup(toggleGroup);
+        holidayHomeContentInsuranceButton.setToggleGroup(toggleGroup);
         travelInsuranceButton.setToggleGroup(toggleGroup);
         ObservableList<ToggleButton> buttons = FXCollections.observableArrayList ();
         buttons.addAll(carInsuranceButton, boatInsuranceButton, homeInsuranceButton, 
-                holidayHomeInsuranceButton, travelInsuranceButton);
+                contentInsuranceButton, holidayHomeInsuranceButton, 
+                holidayHomeContentInsuranceButton, travelInsuranceButton);
         buttons.forEach(b -> {
             b.setMinWidth(Button.USE_PREF_SIZE);
             b.setMaxWidth(Double.MAX_VALUE);

@@ -36,6 +36,7 @@ public class ViewController {
     
     // Tab Views
     private RegisterView registerView;
+    private ProcessView processView;
     private SearchView searchView;
     private StatisticsView statisticsView;
     
@@ -78,6 +79,7 @@ public class ViewController {
         
         // Initializes Tab Views
         this.registerView = new RegisterView();
+        this.processView = new ProcessView();
         this.searchView = new SearchView();
         this.statisticsView = new StatisticsView();
         
@@ -107,6 +109,7 @@ public class ViewController {
     
     public void initializeEventHandlers() {
         adminView.setRegisterButtonEventHandler(this::adminViewRegisterTabButtonEventHandler);
+        adminView.setProcessButtonEventHandler(this::adminViewProcessTabButtonEventHandler);
         adminView.setSearchButtonEventHandler(this::adminViewSearchTabButtonEventHandler);
         adminView.setToolbarOnMouseClickedEventHandler(this::adminViewToolbarMouseClickedEventHandler);
         adminView.setToolbarOnMouseDraggedEventHandler(this::adminViewToolbarMouseDraggedEventHandler);
@@ -114,6 +117,9 @@ public class ViewController {
         registerView.setInsurancesButtonEventHandler(this::registerViewInsurancesButtonEventHandler);
         registerView.setPersonsButtonEventHandler(this::registerViewPersonsButtonEventHandler);
         registerView.setClaimsButtonEventHandler(this::registerViewClaimsButtonEventHandler);
+        processView.setBillsButtonEventHandler(null);
+        processView.setClaimsButtonEventHandler(null);
+        processView.setSubscriptionsButtonEventHandler(null);
         insurancesView.setBoatInsuranceButtonEventHandler(this::insurancesViewBoatInsuranceButtonEventHandler);
         insurancesView.setCarInsuranceButtonEventHandler(this::insurancesViewCarInsuranceButtonEventHandler);
         insurancesView.setHolidayHomeInsuranceButtonEventHandler(this::insurancesViewHolidayHomeInsuranceButtonEventHandler);
@@ -139,6 +145,10 @@ public class ViewController {
     
     private void adminViewRegisterTabButtonEventHandler(ActionEvent event) {
         adminView.getMainPane().setCenter(registerView.getMainPane());
+    }
+    
+    private void adminViewProcessTabButtonEventHandler(ActionEvent event) {
+        adminView.getMainPane().setCenter(processView.getMainPane());
     }
     
     private void adminViewSearchTabButtonEventHandler(ActionEvent event) {
@@ -210,7 +220,7 @@ public class ViewController {
         insurancesView.getMainPane().setCenter(travelInsuranceRegistration.getMainPane());
     }
     
-    // REGISTER PERSONS VIEW INSURANCEHANDLER
+    // REGISTER PERSONS VIEW INSURANCEHANDLERS
     
     private void personsViewCustomerRegistrationButtonEventHandler(ActionEvent event) {
         personsView.getMainPane().setCenter(customerRegistration.getMainPane());
@@ -220,6 +230,11 @@ public class ViewController {
         personsView.getMainPane().setCenter(employeeRegistration.getMainPane());
     }
     
+    // PROCESS VIEW EVENT HANDLERS
+    
+    private void processViewSubscriptionsButtonEventHandler(ActionEvent event) {
+        
+    }
     
     // SEARCH CLAIMS VIEW EVENT HANDLERS
     

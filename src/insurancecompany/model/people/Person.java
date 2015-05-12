@@ -59,6 +59,10 @@ public abstract class Person implements Serializable {
     
     public abstract int getId();
     
+    /**
+     * Returns the full name of this person
+     * @return the first name and the last name
+     */
     public String getName(){
         return firstName + " " + lastName;
     }

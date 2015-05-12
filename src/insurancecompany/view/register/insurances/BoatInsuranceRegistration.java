@@ -6,9 +6,10 @@
 package insurancecompany.view.register.insurances;
 
 import insurancecompany.misc.coverages.BoatInsuranceCoverage;
-import insurancecompany.misc.coverages.CarInsuranceCoverage;
 import insurancecompany.model.insurances.Insurance;
 import java.util.List;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -23,6 +24,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 /**
@@ -34,28 +36,28 @@ public class BoatInsuranceRegistration {
     /** The main pane of this class. */
     private GridPane mainPane;
     
-    // SEARCH FOR CUSTOMER NODES
+    // SEARCH FOR CUSTOMER NODES:
     
-    // Input
+    // Input nodes, TextFields
     private TextField customerIdField;
     private TextField personalNumberField;
-    // Output
+    // Output nodes, TextArea and TableView and Text
     private TextArea customerArea;
     private TableView<Insurance> insurancesTable;
     private TableColumn<Insurance, String> insuranceTypeColumn;
     private TableColumn<Insurance, String> insuranceCoverageColum;
     private TableColumn<Insurance, Integer> insuranceIdColumn;
-    // Buttons
+    private Text customerSelectedMessage;
+    // Buttons:
     private Button searchCustomerIdButton;
     private Button searchPersonalNumberButton;
     private Button selectCustomerButton;
-    // Integers used to keep track of searched and selected customer id.
+    // ints used to keep track of searched and selected customer id:
     private int tempCustomerId;
     private int selectedCustomerId;
     
-    // REGISTER INSURANCE NODES
-    
-    // Input
+    // REGISTER INSURANCE NODES:
+    // Input nodes, Comboboxes and textfiels:
     private ComboBox<String> alarmCombo;
     private ComboBox<BoatInsuranceCoverage> coverageCombo;
     private ComboBox<String> excessCombo;
@@ -68,7 +70,7 @@ public class BoatInsuranceRegistration {
     private TextField premiumField;
     private TextField registrationNumberField;
     private TextField registrationYearField;
-    // Output
+    // Output nodes, Text messages:
     private Text alarmMessage;
     private Text brandMessage;
     private Text coverageMessage;
@@ -80,22 +82,20 @@ public class BoatInsuranceRegistration {
     private Text ownerPersonalNumberMessage;
     private Text registrationNumberMessage;
     private Text registrationYearMessage;
-    // Buttons
+    // Buttons:
     private Button calculateButton;
     private Button registerButton;
     
-    // Constructor.
     public BoatInsuranceRegistration() {
         
-        // SETS UP THE MAIN PANE
-        
+        // Sets up the mainPane
         mainPane = new GridPane();
         mainPane.setAlignment(Pos.CENTER);
         mainPane.setHgap(10);
         mainPane.setVgap(6);
-        // Sets the background color.
+        // Set background color:
         mainPane.setStyle("-fx-background-color: #E7E7FF;");
-        // Sets up column constraints. Width in pixels.
+        // Set up column constraints. Width in pixels:
         ColumnConstraints col1 = new ColumnConstraints(120);
         ColumnConstraints col2 = new ColumnConstraints(100);
         ColumnConstraints col3 = new ColumnConstraints(40);
@@ -103,10 +103,10 @@ public class BoatInsuranceRegistration {
         ColumnConstraints col5 = new ColumnConstraints(150);
         ColumnConstraints col6 = new ColumnConstraints(150);
         ColumnConstraints col7 = new ColumnConstraints(150);
-        // Adds these constraints.
+        // Add these constraints:
         mainPane.getColumnConstraints().addAll(col1, col2, col3, col4, col5, col6, col7);
         
-        // SEARCH FOR CUSTOMER NODES
+        // SEARCH FOR CUSTOMER NODES:
         
         // Declares Input
         customerIdField = new TextField();
@@ -137,7 +137,7 @@ public class BoatInsuranceRegistration {
         Text selectCustomerTitle = new Text("Velg først en kunde i registeret:");
         selectCustomerTitle.setId("textTitle");
         
-        // REGISTER INSURANCE NODES
+        // REGISTER INSURANCE NODES:
         
         // Declares Input
         alarmCombo = new ComboBox<>();
@@ -172,6 +172,7 @@ public class BoatInsuranceRegistration {
         calculateButton = new Button("Regn ut");
         registerButton = new Button("Registrer");
         // Declares Text and Label
+        customerSelectedMessage = new Text();
         Text insuranceOptionsTitle = new Text("Betingelser:");
         insuranceOptionsTitle.setId("textTitle");
         Text boatTitle = new Text("Bil:");
@@ -202,6 +203,7 @@ public class BoatInsuranceRegistration {
         mainPane.add(resultTitle, 0, 3);
         mainPane.add(customerArea, 0, 4, 3, 5);
         mainPane.add(selectCustomerButton, 0, 9);
+        mainPane.add(customerSelectedMessage, 1, 9);
         mainPane.add(insurancesTitle, 0, 10);
         mainPane.add(insurancesTable, 0, 11, 3, 5);
         
@@ -271,7 +273,50 @@ public class BoatInsuranceRegistration {
         excessCombo.setPrefWidth(150);
     }
     
-    // GET
+    // POPULATE TABLE
+    
+    /**
+     * 
+     * @param insurances 
+     */
+    public void populateInsurancesTable(List<Insurance> insurances) {
+        ObservableList<Insurance> obList = FXCollections.observableArrayList(insurances);
+        insurancesTable.setItems(obList);
+        
+        insuranceTypeColumn.setCellValueFactory((cellData) -> {
+                if ( cellData.getValue() != null) {
+                    return new SimpleStringProperty(cellData.getValue().getName());
+                } else {
+                    return new SimpleStringProperty("<no name>");
+                }
+        });
+        insuranceCoverageColum.setCellValueFactory((cellData) -> {
+                if ( cellData.getValue() != null) {
+                    return new SimpleObjectProperty<>(cellData.getValue().getCoverage().toString());
+                } else {
+                    return new SimpleObjectProperty(0);
+                }
+        });
+        insuranceIdColumn.setCellValueFactory((cellData) -> {
+                if ( cellData.getValue() != null) {
+                    return new SimpleObjectProperty<>(cellData.getValue().getInsuranceId());
+                } else {
+                    return new SimpleObjectProperty(0);
+                }
+        });   
+    }
+    
+    // EVENT HANDLERS
+    
+    public void setCalculateButtonEventHandler(EventHandler<ActionEvent> value) {
+        calculateButton.setOnAction(value);
+    }
+
+    public void setRegisterButtonEventHandler(EventHandler<ActionEvent> value) {
+        registerButton.setOnAction(value);
+    }
+    
+    // GET METHODS
     
     public GridPane getMainPane() {
         return mainPane;
@@ -372,11 +417,14 @@ public class BoatInsuranceRegistration {
     public String getRegistrationYear() {
         return registrationYearField.getText();
     }
+    
+    // SET METHODS
 
     /**
      * @param alarmMessage the alarmMessage to set
      */
     public void setAlarmMessage(String alarmMessage) {
+        this.alarmMessage.setFill(Color.FIREBRICK);
         this.alarmMessage.setText(alarmMessage);
     }
 
@@ -384,6 +432,7 @@ public class BoatInsuranceRegistration {
      * @param brandMessage the brandMessage to set
      */
     public void setBrandMessage(String brandMessage) {
+        this.brandMessage.setFill(Color.FIREBRICK);
         this.brandMessage.setText(brandMessage);
     }
 
@@ -391,6 +440,7 @@ public class BoatInsuranceRegistration {
      * @param coverageMessage the coverageMessage to set
      */
     public void setCoverageMessage(String coverageMessage) {
+        this.coverageMessage.setFill(Color.FIREBRICK);
         this.coverageMessage.setText(coverageMessage);
     }
 
@@ -398,6 +448,7 @@ public class BoatInsuranceRegistration {
      * @param engineEffectMessage the engineEffectMessage to set
      */
     public void setEngineEffectMessage(String engineEffectMessage) {
+        this.engineEffectMessage.setFill(Color.FIREBRICK);
         this.engineEffectMessage.setText(engineEffectMessage);
     }
 
@@ -405,6 +456,7 @@ public class BoatInsuranceRegistration {
      * @param engineTypeMessage the engineTypeMessage to set
      */
     public void setEngineTypeMessage(String engineTypeMessage) {
+        this.engineTypeMessage.setFill(Color.FIREBRICK);
         this.engineTypeMessage.setText(engineTypeMessage);
     }
 
@@ -412,6 +464,7 @@ public class BoatInsuranceRegistration {
      * @param excessMessage the excessMessage to set
      */
     public void setExcessMessage(String excessMessage) {
+        this.excessMessage.setFill(Color.FIREBRICK);
         this.excessMessage.setText(excessMessage);
     }
 
@@ -419,6 +472,7 @@ public class BoatInsuranceRegistration {
      * @param lengthMessage the lengthMessage to set
      */
     public void setLengthMessage(String lengthMessage) {
+        this.lengthMessage.setFill(Color.FIREBRICK);
         this.lengthMessage.setText(lengthMessage);
     }
 
@@ -426,14 +480,15 @@ public class BoatInsuranceRegistration {
      * @param modelMessage the modelMessage to set
      */
     public void setModelMessage(String modelMessage) {
+        this.modelMessage.setFill(Color.FIREBRICK);
         this.modelMessage.setText(modelMessage);
     }
 
     /**
      * @param ownerPersonalNumberMessage the ownerPersonalNumberMessage to set
      */
-    public void setOwnerPersonalNumberMessage(
-            String ownerPersonalNumberMessage) {
+    public void setOwnerPersonalNumberMessage(String ownerPersonalNumberMessage) {
+        this.ownerPersonalNumberMessage.setFill(Color.FIREBRICK);
         this.ownerPersonalNumberMessage.setText(ownerPersonalNumberMessage);
     }
 
@@ -441,6 +496,7 @@ public class BoatInsuranceRegistration {
      * @param registrationNumberMessage the registrationNumberMessage to set
      */
     public void setRegistrationNumberMessage(String registrationNumberMessage) {
+        this.registrationNumberMessage.setFill(Color.FIREBRICK);
         this.registrationNumberMessage.setText(registrationNumberMessage);
     }
 
@@ -448,14 +504,7 @@ public class BoatInsuranceRegistration {
      * @param registrationYearMessage the registrationYearMessage to set
      */
     public void setRegistrationYearMessage(String registrationYearMessage) {
+        this.registrationYearMessage.setFill(Color.FIREBRICK);
         this.registrationYearMessage.setText(registrationYearMessage);
-    }
-
-    public void setCalculateButtonEventHandler(EventHandler<ActionEvent> value) {
-        calculateButton.setOnAction(value);
-    }
-
-    public void setRegisterButtonEventHandler(EventHandler<ActionEvent> value) {
-        registerButton.setOnAction(value);
     }
 }

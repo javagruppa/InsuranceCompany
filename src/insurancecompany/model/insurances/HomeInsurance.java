@@ -46,6 +46,14 @@ public class HomeInsurance extends PropertyInsurance implements Serializable {
     }
     
     /**
+     * Returns the type of this insurance in form of a String.
+     * @return 
+     */
+    public String getName() {
+        return "Husforsikring";
+    }
+    
+    /**
      * Calculates the drop in price for this insurance based on the
      * applied excess
      * @return the drop value as an integer

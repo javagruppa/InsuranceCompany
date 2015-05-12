@@ -45,7 +45,13 @@ public class HomeContentInsurance extends PropertyInsurance implements Serializa
         this.coverage = coverage;
     }
     
-    
+    /**
+     * Returns the type of this insurance in form of a String.
+     * @return 
+     */
+    public String getName() {
+        return "Innboforsikring";
+    }
     
     public Home getHome(){
         return home;

@@ -41,6 +41,14 @@ public class BoatInsurance extends Insurance implements Serializable {
     }
     
     /**
+     * Returns the type of this insurance in form of a String.
+     * @return 
+     */
+    public String getName() {
+        return "Bårforsikring";
+    }
+    
+    /**
      * Generates the basic cost of this insurance, based on the value of the
      * boat this insurance is for.
      * Returns the basic cost as an int value

@@ -78,6 +78,14 @@ public class CarInsurance extends Insurance implements Serializable {
     }
     
     /**
+     * Returns the type of this insurance in form of a String.
+     * @return 
+     */
+    public String getName() {
+        return "Bilforsikring";
+    }
+    
+    /**
      * Returns a string representation of this insurance. The string
      * representation consists of each field with a short description separated
      * by a new line.

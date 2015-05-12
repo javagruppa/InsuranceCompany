@@ -48,6 +48,14 @@ public class HolidayHomeContentInsurance extends PropertyInsurance
         this.coverage = coverage;
     }
     
+    /**
+     * Returns the type of this insurance in form of a String.
+     * @return 
+     */
+    public String getName() {
+        return "Fritidsbolig innboforsikring";
+    }
+    
     public HolidayHome getholidayHome(){
         return holidayhome;
     }

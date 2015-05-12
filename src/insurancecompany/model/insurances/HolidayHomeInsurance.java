@@ -46,6 +46,14 @@ public class HolidayHomeInsurance extends PropertyInsurance implements Serializa
     }
     
     /**
+     * Returns the type of this insurance in form of a String.
+     * @return 
+     */
+    public String getName() {
+        return "Fritidsboligforsikring";
+    }
+    
+    /**
      * Calculates the drop in price for this insurance based on the
      * applied excess
      * @return the drop value as an integer

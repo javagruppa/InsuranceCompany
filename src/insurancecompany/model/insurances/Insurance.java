@@ -49,6 +49,12 @@ public abstract class Insurance implements Serializable {
     }
     
     /**
+     * Returns the name of the type of insurance of this class's subtypes.
+     * @return 
+     */
+    public abstract String getName();
+    
+    /**
      * Indicates whether some other insurance is equal to this one. The result 
      * is true if and only if the argument is not null and is an Insurance 
      * object that contains the same insuranceId value as this object.

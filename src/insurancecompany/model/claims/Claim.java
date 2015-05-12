@@ -23,7 +23,7 @@ public abstract class Claim implements Serializable {
     private static final long serialVersionUID = 1L;
     
     private static int nextClaimId = 1000000;
-    private static String claimIdFileName = "/nextIdNumbers/claimId.dta";
+    private static String claimIdFileName = "src/insurancecompany/resources/nextidnumbers/claimId.dta";
     
     /** Customer id to the owner of this claim. */
     private int customerId;
@@ -54,7 +54,7 @@ public abstract class Claim implements Serializable {
         this.customerId = customerId;
         this.insuranceId = insuranceId;
         this.description = description;
-        // Set the date to current date
+        // Set the date to current date:
         date = Calendar.getInstance();
         // Set unique claim id, aswell as uppdating next claim id:
         claimId = nextClaimId++;
@@ -68,7 +68,7 @@ public abstract class Claim implements Serializable {
     public Claim(int customerId, String description) {
         this.customerId = customerId;
         this.description = description;
-        // Set the date to current date
+        // Set the date to current date:
         date = Calendar.getInstance();
         // Set unique claim id, aswell as uppdating next claim id:
         claimId = nextClaimId++;

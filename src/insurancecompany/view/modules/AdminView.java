@@ -12,9 +12,12 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -45,10 +48,11 @@ public class AdminView extends Application {
     private Pane toolBarPane;
     private Pane statusBarPane;
     
-    private Button registerTabButton;
-    //private Button processButton; // Til å behandle skademeldinger og evt regninger
-    private Button searchTabButton;
-    private Button statisticsTabButton;
+    private ToggleButton registerTabButton;
+    private ToggleButton processTabButton;
+    private ToggleButton searchTabButton;
+    private ToggleButton statisticsTabButton;
+    private ToggleGroup toggleGroup;
     private Button saveDataButton;
     private Button logOutButton;
     private Button exitButton;
@@ -56,7 +60,6 @@ public class AdminView extends Application {
     
     public AdminView() {
         initializeViews();
-        initializeEventHandlers();
         scene = new Scene(mainPane, 1200, 700);
         scene.getStylesheets().add("insurancecompany/resources/css/stylesheet.css");
         
@@ -84,43 +87,22 @@ public class AdminView extends Application {
         mainPane.setTop(vbox);
     }
     
-    private void initializeEventHandlers() {
-        toolBarPane.setOnMouseClicked((event) -> {
-            if(event.getButton().equals(MouseButton.PRIMARY)){
-                if(event.getClickCount() == 2){
-                    if (primaryStage.isFullScreen()) {
-                        primaryStage.setFullScreen(false);
-                    } else if (!primaryStage.isFullScreen()) {
-                    primaryStage.setFullScreen(true);
-                    }
-                }
-            }  
-        });
-        
-        toolBarPane.setOnMousePressed((event) -> {
-            if (!primaryStage.isFullScreen()) {
-                xOffset = event.getSceneX();
-                yOffset = event.getSceneY();
-            }
-        });
-        
-        toolBarPane.setOnMouseDragged((event) -> {
-            if (!primaryStage.isFullScreen()) {
-                primaryStage.setX(event.getScreenX() - xOffset);
-                primaryStage.setY(event.getScreenY() - yOffset);
-            }
-        });        
-    }
-    
     private HBox createToolBar() {
         HBox hbox = new HBox();
         hbox.setStyle("-fx-background-color: #6577A1;");
-        registerTabButton = new Button("Registrer");
+        registerTabButton = new ToggleButton("Registrer");
         registerTabButton.setId("mainToolbarButton");
-        searchTabButton = new Button("Søk");
+        processTabButton = new ToggleButton("Behandle");
+        processTabButton.setId("mainToolbarButton");
+        searchTabButton = new ToggleButton("Søk");
         searchTabButton.setId("mainToolbarButton");
-        statisticsTabButton = new Button("Statistikk");
+        statisticsTabButton = new ToggleButton("Statistikk");
         statisticsTabButton.setId("mainToolbarButton");
+        toggleGroup = new ToggleGroup();
+        registerTabButton.setToggleGroup(toggleGroup);
+        processTabButton.setToggleGroup(toggleGroup);
+        searchTabButton.setToggleGroup(toggleGroup);
+        statisticsTabButton.setToggleGroup(toggleGroup);
         
         saveDataButton = new Button("Lagre datastrukturer");
         saveDataButton.setId("mainToolbarButton");
@@ -149,13 +131,6 @@ public class AdminView extends Application {
         userStatusText = new Text("Logget inn som Admin. Ansattnr: 10000000");
         hbox.getChildren().add(userStatusText);
         return hbox;
-    }
-    
-    public void selectedButtonStyleUpper(Button button) {
-        registerTabButton.setId("mainToolbarButton");
-        searchTabButton.setId("mainToolbarButton");
-        statisticsTabButton.setId("mainToolbarButton");
-        button.setId("mainToolbarButtonSelected");
     }
     
     // GET MAIN PANE
@@ -188,5 +163,45 @@ public class AdminView extends Application {
 
     public void setExitButtonEventHandler(EventHandler<ActionEvent> value) {
         exitButton.setOnAction(value);
+    }
+    
+    public void setToolbarOnMouseClickedEventHandler(EventHandler<MouseEvent> value) {
+        toolBarPane.setOnMouseClicked(value);
+    }
+    
+    public void setToolbarOnMouseDraggedEventHandler(EventHandler<MouseEvent> value) {
+        toolBarPane.setOnMouseDragged(value);
+    }
+    
+    public void setToolbarOnMousePressedEventHandler(EventHandler<MouseEvent> value) {
+        toolBarPane.setOnMousePressed(value);
+    }
+
+    /**
+     * @return the xOffset
+     */
+    public double getxOffset() {
+        return xOffset;
+    }
+
+    /**
+     * @param xOffset the xOffset to set
+     */
+    public void setxOffset(double xOffset) {
+        this.xOffset = xOffset;
+    }
+
+    /**
+     * @return the yOffset
+     */
+    public double getyOffset() {
+        return yOffset;
+    }
+
+    /**
+     * @param yOffset the yOffset to set
+     */
+    public void setyOffset(double yOffset) {
+        this.yOffset = yOffset;
     }
 }

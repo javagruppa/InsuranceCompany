@@ -11,6 +11,8 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
@@ -25,10 +27,11 @@ public class SearchView {
     private Scene scene;
     private BorderPane mainPane;
     
-    private Button customersButton;
-    private Button employeesButton;
-    private Button insurancesButton;
-    private Button claimsButton;
+    private ToggleButton customersButton;
+    private ToggleButton employeesButton;
+    private ToggleButton insurancesButton;
+    private ToggleButton claimsButton;
+    private ToggleGroup toggleGroup;
             
     public void show(Stage stage) {
         stage.setTitle("Kunderegistrering");
@@ -42,28 +45,26 @@ public class SearchView {
         scene = new Scene(mainPane, 800, 600);
              
     }
-    
-    public void selectedButtonStyleLower(Button button) {
-        customersButton.setId("subToolbarButton");
-        insurancesButton.setId("subToolbarButton");
-        claimsButton.setId("subToolbarButton");
-        button.setId("subToolbarButtonSelected");
-    }
-    
+
     private HBox createToolBar() {
         HBox hbox = new HBox();
         hbox.getStyleClass().add("insurancecompany/resources/css/stylesheet.css");
         hbox.setStyle("-fx-background-color: #6577A1;");
         hbox.setPrefSize(640, 20);
-        customersButton = new Button("Kunder");
+        customersButton = new ToggleButton("Kunder");
         customersButton.setId("subToolbarButton");
-        employeesButton = new Button("Ansatte");
+        employeesButton = new ToggleButton("Ansatte");
         employeesButton.setId("subToolbarButton");
-        insurancesButton = new Button("Forsikringer");
+        insurancesButton = new ToggleButton("Forsikringer");
         insurancesButton.setId("subToolbarButton");
-        claimsButton = new Button("Skademeldinger");
+        claimsButton = new ToggleButton("Skademeldinger");
         claimsButton.setId("subToolbarButton");
-        ObservableList<Button> buttons = FXCollections.observableArrayList ();
+        toggleGroup = new ToggleGroup();
+        customersButton.setToggleGroup(toggleGroup);
+        employeesButton.setToggleGroup(toggleGroup);
+        insurancesButton.setToggleGroup(toggleGroup);
+        claimsButton.setToggleGroup(toggleGroup);
+        ObservableList<ToggleButton> buttons = FXCollections.observableArrayList ();
         buttons.addAll(customersButton, employeesButton, insurancesButton, claimsButton);        
         hbox.getChildren().addAll(buttons);
        

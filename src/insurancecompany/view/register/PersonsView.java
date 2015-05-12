@@ -16,6 +16,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -39,8 +41,9 @@ public class PersonsView {
     
     private Pane sideToolBarPane;
     
-    private Button customerButton;
-    private Button employeeButton;
+    private ToggleButton customerButton;
+    private ToggleButton employeeButton;
+    private ToggleGroup toggleGroup;
             
     //public static void main(String[] args) {
     //    launch(args);
@@ -59,39 +62,9 @@ public class PersonsView {
     public PersonsView() {
         mainPane = new BorderPane();
         sideToolBarPane = createSideToolBar();
-        //ScrollPane sp = new ScrollPane();
-        //sp.setContent(sideToolBarPane);
-        //sp.setFitToHeight(true);
-        //sp.setFitToWidth(true);
         mainPane.setLeft(sideToolBarPane);
         scene = new Scene(mainPane, 800, 600);
-        //initializeViews();
-        //initializeEventHandlers();      
-    }
-    /*
-    private void initializeViews() {
-        //customerRegistration = new CustomerRegistration();
-        //customerRegistrationPane = customerRegistration.getMainPane();
-    }
-    
-    private void initializeEventHandlers() {
-      
-        customerButton.setOnAction((event) -> {
-            mainPane.setCenter(customerRegistrationPane);
-            selectedButtonStyleLower(customerButton);
-        });
-        
-        employeeButton.setOnAction((event) -> {
-            //mainPane.setCenter(boatInsuranceRegistrationPane);
-            //selectedButtonStyleLower(employeeButton);
-        });
-    }
-    */
-    
-    public void selectedButtonStyleLower(Button button) {
-        customerButton.setId("sideToolbarButton");
-        employeeButton.setId("sideToolbarButton");
-        button.setId("sideToolbarButtonSelected");
+        //initializeViews();  
     }
     
     private VBox createSideToolBar() {
@@ -100,18 +73,23 @@ public class PersonsView {
         vbox.getStyleClass().add("insurancecompany/resources/css/stylesheet.css");
         vbox.setStyle("-fx-background-color: #6577A1;");
     
-        customerButton = new Button("Ny kunde");       
+        customerButton = new ToggleButton("Ny kunde");       
         customerButton.setId("sideToolbarButton");
         Image customerImage = new Image("insurancecompany/resources/images/customer.png");
         customerButton.setGraphic(new ImageView(customerImage));
         //carInsuranceButton.setContentDisplay(ContentDisplay.LEFT);
         
-        employeeButton = new Button("Ny ansatt");
+        employeeButton = new ToggleButton("Ny ansatt");
         employeeButton.setId("sideToolbarButton");
         Image employeeImage = new Image("insurancecompany/resources/images/employee.png");
         employeeButton.setGraphic(new ImageView(employeeImage));
         
-        ObservableList<Button> buttons = FXCollections.observableArrayList ();
+        // Set up togglegroup and connect it to all togglebuttons:
+        toggleGroup = new ToggleGroup();
+        customerButton.setToggleGroup(toggleGroup);
+        employeeButton.setToggleGroup(toggleGroup);
+        
+        ObservableList<ToggleButton> buttons = FXCollections.observableArrayList ();
         buttons.addAll(customerButton, employeeButton);
         buttons.forEach(b -> {
             b.setMinWidth(Button.USE_PREF_SIZE);

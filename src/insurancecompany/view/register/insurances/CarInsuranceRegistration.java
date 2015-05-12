@@ -94,6 +94,8 @@ public class CarInsuranceRegistration {
         Label personalNumberLabel = new Label("Personnummer:");
         personalNumberField = new TextField();
         searchPersonalNumberButton = new Button("Søk");
+        Text resultTitle = new Text("Søkeresultat:");
+        resultTitle.setId("textTitle");
         customerArea = new TextArea();
         customerArea.setEditable(false);
         customerArea.setPrefColumnCount(2);
@@ -159,7 +161,8 @@ public class CarInsuranceRegistration {
         mainPane.add(personalNumberField, 1, 2);
         mainPane.add(searchPersonalNumberButton, 2, 2);
         
-        mainPane.add(customerArea, 0, 3, 3, 6);
+        mainPane.add(resultTitle, 0, 3);
+        mainPane.add(customerArea, 0, 4, 3, 5);
         mainPane.add(insurancesTitle, 0, 9);
         mainPane.add(insurancesTable, 0, 10, 3, 5);
         mainPane.add(selectCustomerButton, 0, 15);

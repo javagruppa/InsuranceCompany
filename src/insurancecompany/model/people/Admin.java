@@ -32,8 +32,7 @@ public class Admin extends Employee implements Serializable {
      * @return a string of the admin
      */
     public String toString(){
-        String s = "String tekst for Admin toString ikke lagt inn";
-        return s;
+        return super.toString();
     }
             
 }

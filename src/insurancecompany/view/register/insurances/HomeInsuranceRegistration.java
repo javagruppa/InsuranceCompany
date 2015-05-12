@@ -320,90 +320,87 @@ public class HomeInsuranceRegistration {
     
     // GET METHODS:
     
+    /** @return The main pane of this class. */
     public GridPane getMainPane() {
         return mainPane;
     }
-    
-    /**
-     * @return the customerIdField
-     */
-    public String getCustomerId() {
-        return customerIdField.getText();
-    }
 
-    /**
-     * @return the excessField
-     */
-    public String getExcess() {
-        return excessCombo.getValue() == null ? "" : excessCombo.getValue();
-    }
-
-    /**
-     * @return the buildingAmountField
-     */
-    public String getBuildingAmount() {
-        return buildingAmountField.getText();
-    }
-
-    /**
-     * @return the contentAmountField
-     */
-    public String getContentAmount() {
-        return contentAmountField.getText();
-    }
-
-    /**
-     * @return the areaField
-     */
+    /** @return The value of areaField. */
     public String getArea() {
         return areaField.getText();
     }
 
-    /**
-     * @return the yearField
-     */
-    public String getYear() {
-        return yearField.getText();
+    /** @return The value of buildingAmountField. */
+    public String getBuildingAmount() {
+        return buildingAmountField.getText();
     }
 
-    /**
-     * @return the materialField
-     */
-    public String getMaterial() {
-        return materialField.getText();
-    }
-
-    /**
-     * @return the typeField
-     */
-    public String getType() {
-        return typeCombo.getText();
-    }
-
-    /**
-     * @return the streetField
-     */
-    public String getStreet() {
-        return streetField.getText();
-    }
-
-    /**
-     * @return the zipCodeField
-     */
-    public String getZipCode() {
-        return zipCodeField.getText();
-    }
-
-    /**
-     * @return the cityField
-     */
+    /** @return The value of cityField. */
     public String getCity() {
         return cityField.getText();
     }
 
-    /**
-     * @return the premiumField
-     */
+    /** @return The value of contentAmountField. */
+    public String getContentAmount() {
+        return contentAmountField.getText();
+    }
+    
+    /** @return The value of coverageCombo. */
+    public HomeInsuranceCoverage getCoverage() {
+        if (coverageCombo.getValue() instanceof HomeInsuranceCoverage) {
+            // Casts the ComboBox value to HomeInsuranceCoverage and returns this value.
+            HomeInsuranceCoverage coverage = (HomeInsuranceCoverage) coverageCombo.getValue();
+            return coverage;
+            // If for instance no value is selected, the value will not equal a HomeInsuranceCoverage, in this case return null.
+        } else return null; 
+    }
+    
+    /** @return The value of customerIdField. */
+    public String getCustomerId() {
+        return customerIdField.getText();
+    }
+
+    /** @return The value of excessCombo. */
+    public String getExcess() {
+        return excessCombo.getValue() == null ? "" : excessCombo.getValue();
+    }
+
+    /** @return The value of materialField. */
+    public String getMaterial() {
+        return materialField.getText();
+    }
+    
+    /** @return The value of personalNumberField. */
+    public String getPersonalNumber() {
+        return personalNumberField.getText();
+    }
+
+    /** @return The value of streetField. */
+    public String getStreet() {
+        return streetField.getText();
+    }
+
+    /** @return The value of typeCombo. */
+    public HomeType getType() {
+        if (typeCombo.getValue() instanceof HomeType) {
+            // Casts the ComboBox value to HomeType and returns this value.
+            HomeType type = (HomeType) typeCombo.getValue();
+            return type;
+            // If for instance no value is selected, the value will not equal a HomeType, in this case return null.
+        } else return null; 
+    }
+
+    /** @return The value of yearField. */
+    public String getYear() {
+        return yearField.getText();
+    }
+
+    /** @return The value of zipCodeField. */
+    public String getZipCode() {
+        return zipCodeField.getText();
+    }
+
+    /** @return The value of premiumField. */
     public String getPremium() {
         return premiumField.getText();
     }

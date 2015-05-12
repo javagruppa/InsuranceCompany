@@ -6,6 +6,7 @@
 package insurancecompany.view.register.insurances;
 
 import insurancecompany.misc.coverages.HomeInsuranceCoverage;
+import insurancecompany.misc.hometypes.HomeType;
 import insurancecompany.model.insurances.Insurance;
 import java.util.List;
 import javafx.beans.property.SimpleObjectProperty;
@@ -60,6 +61,7 @@ public class HomeInsuranceRegistration {
     // Input nodes, ComboBoxes and TextFields:
     private ComboBox<HomeInsuranceCoverage> coverageCombo;
     private ComboBox<String> excessCombo;
+    private ComboBox<HomeType> typeCombo;
     private TextField areaField;
     private TextField buildingAmountField;
     private TextField cityField;
@@ -67,7 +69,6 @@ public class HomeInsuranceRegistration {
     private TextField materialField;
     private TextField premiumField;
     private TextField streetField;
-    private TextField typeField;
     private TextField yearField;
     private TextField zipCodeField;
     // Output nodes, Text messages:
@@ -76,7 +77,6 @@ public class HomeInsuranceRegistration {
     private Text cityMessage;
     private Text coverageMessage;
     private Text contentAmountMessage;
-    private Text customerIdMessage;
     private Text excessMessage;
     private Text materialMessage;
     private Text streetMessage;
@@ -145,6 +145,8 @@ public class HomeInsuranceRegistration {
         populateCoverageCombo();
         excessCombo = new ComboBox<>();
         populateExcessCombo();
+        typeCombo = new ComboBox<>();
+        populateTypeCombo();
         areaField = new TextField();
         buildingAmountField = new TextField();
         cityField = new TextField();
@@ -152,7 +154,6 @@ public class HomeInsuranceRegistration {
         materialField = new TextField();
         premiumField = new TextField();
         streetField = new TextField();
-        typeField = new TextField();
         yearField = new TextField();
         zipCodeField = new TextField();
         // Initializes Output:
@@ -161,7 +162,6 @@ public class HomeInsuranceRegistration {
         cityMessage = new Text();
         contentAmountMessage = new Text();
         coverageMessage = new Text();
-        customerIdMessage = new Text();
         excessMessage = new Text();
         materialMessage = new Text();
         streetMessage = new Text();
@@ -234,7 +234,7 @@ public class HomeInsuranceRegistration {
         mainPane.add(materialField, 5, 8);
         mainPane.add(materialMessage, 6, 8);
         mainPane.add(typeLabel, 4, 9);
-        mainPane.add(typeField, 5, 9);
+        mainPane.add(typeCombo, 5, 9);
         mainPane.add(typeMessage, 6, 9);
         
         mainPane.add(addressTitle, 4, 10);
@@ -268,6 +268,13 @@ public class HomeInsuranceRegistration {
                 "16000", "18000", "20000", "25000", "30000");
         excessCombo.getItems().setAll(excess);
         excessCombo.setPrefWidth(150);
+    }
+    
+    private void populateTypeCombo() {
+        ObservableList<HomeType> obList;
+        obList = FXCollections.observableArrayList(HomeType.values()); 
+        typeCombo.getItems().setAll(obList);
+        typeCombo.setPrefWidth(150);
     }
     
     /**
@@ -370,7 +377,7 @@ public class HomeInsuranceRegistration {
      * @return the typeField
      */
     public String getType() {
-        return typeField.getText();
+        return typeCombo.getText();
     }
 
     /**

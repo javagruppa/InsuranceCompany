@@ -57,7 +57,7 @@ public class BoatInsuranceRegistration {
     private int selectedCustomerId;
     
     // REGISTER INSURANCE NODES:
-    // Input nodes, Comboboxes and textfiels:
+    // Input nodes, ComboBoxes and TextFields:
     private ComboBox<String> alarmCombo;
     private ComboBox<BoatInsuranceCoverage> coverageCombo;
     private ComboBox<String> excessCombo;

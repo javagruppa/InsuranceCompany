@@ -92,7 +92,8 @@ public abstract class Property implements Serializable {
         result.append("Adresse: ").append(getAddress().toString());
         result.append("\nAntall kvadratmeter: ").append(getArea());
         result.append("\nByggeår: ").append(getYear());
-        result.append("\nByggemateriale: ").append(material.toString());
+        result.append("\nByggemateriale: ").append(getMaterial());
+        result.append("\nUtleiebolig: ").append(rental ? "Ja" : "Nei");
         // Returns the string.
         return result.toString();
     }
@@ -124,5 +125,13 @@ public abstract class Property implements Serializable {
      */
     public boolean getRental() {
         return rental;
+    }
+    
+    /**
+     * 
+     * @return the building material
+     */
+    public String getMaterial() {
+        return material.toString();
     }
 }

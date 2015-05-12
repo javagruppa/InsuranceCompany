@@ -111,6 +111,7 @@ public class ViewController {
         adminView.setRegisterButtonEventHandler(this::adminViewRegisterTabButtonEventHandler);
         adminView.setProcessButtonEventHandler(this::adminViewProcessTabButtonEventHandler);
         adminView.setSearchButtonEventHandler(this::adminViewSearchTabButtonEventHandler);
+        adminView.setStatisticsButtonEventHandler(this::adminViewStatisticsTabButtonEventHandler);
         adminView.setToolbarOnMouseClickedEventHandler(this::adminViewToolbarMouseClickedEventHandler);
         adminView.setToolbarOnMouseDraggedEventHandler(this::adminViewToolbarMouseDraggedEventHandler);
         adminView.setToolbarOnMousePressedEventHandler(this::adminViewToolbarMousePressedEventHandler);
@@ -153,6 +154,10 @@ public class ViewController {
     
     private void adminViewSearchTabButtonEventHandler(ActionEvent event) {
         adminView.getMainPane().setCenter(searchView.getMainPane());
+    }
+    
+    private void adminViewStatisticsTabButtonEventHandler(ActionEvent event) {
+        adminView.getMainPane().setCenter(statisticsView.getMainPane());
     }
     
     private void adminViewToolbarMouseClickedEventHandler(MouseEvent event) {

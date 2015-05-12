@@ -5,18 +5,25 @@
  */
 package insurancecompany.view.register.insurances;
 
+import insurancecompany.misc.coverages.BoatInsuranceCoverage;
+import insurancecompany.misc.coverages.CarInsuranceCoverage;
+import insurancecompany.model.insurances.Insurance;
+import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
 /**
  *
@@ -24,69 +31,124 @@ import javafx.stage.Stage;
  */
 public class BoatInsuranceRegistration {
     
-    // Declare the Gridpane and Scene.
+    /** The main pane of this class. */
     private GridPane mainPane;
-    private Scene scene;
     
-    // Declare all ComboBoxes and TextFields.
-    private ComboBox<String> alarmComboBox;
-    private TextField brandField;
-    private ComboBox<String> coverageComboBox;
+    // SEARCH FOR CUSTOMER NODES
+    
+    // Input
     private TextField customerIdField;
-    private TextField customerPersonalNumberField;
+    private TextField personalNumberField;
+    // Output
+    private TextArea customerArea;
+    private TableView<Insurance> insurancesTable;
+    private TableColumn<Insurance, String> insuranceTypeColumn;
+    private TableColumn<Insurance, String> insuranceCoverageColum;
+    private TableColumn<Insurance, Integer> insuranceIdColumn;
+    // Buttons
+    private Button searchCustomerIdButton;
+    private Button searchPersonalNumberButton;
+    private Button selectCustomerButton;
+    // Integers used to keep track of searched and selected customer id.
+    private int tempCustomerId;
+    private int selectedCustomerId;
+    
+    // REGISTER INSURANCE NODES
+    
+    // Input
+    private ComboBox<String> alarmCombo;
+    private ComboBox<BoatInsuranceCoverage> coverageCombo;
+    private ComboBox<String> excessCombo;
+    private TextField brandField;
     private TextField engineEffectField;
     private TextField engineTypeField;
-    private TextField excessField;
     private TextField lengthField;
     private TextField modelField;
     private TextField ownerPersonalNumberField;
     private TextField premiumField;
     private TextField registrationNumberField;
     private TextField registrationYearField;
-    
-    // Declare all Label messages.
-    private Label alarmMessage;
-    private Label brandMessage;
-    private Label coverageMessage;
-    private Label customerIdMessage;
-    private Label customerPersonalNumberMessage;
-    private Label engineEffectMessage;
-    private Label engineTypeMessage;
-    private Label excessMessage;
-    private Label lengthMessage;
-    private Label modelMessage;
-    private Label ownerPersonalNumberMessage;
-    private Label registrationNumberMessage;
-    private Label registrationYearMessage;
-    
-    // Declare all Buttons.
+    // Output
+    private Text alarmMessage;
+    private Text brandMessage;
+    private Text coverageMessage;
+    private Text engineEffectMessage;
+    private Text engineTypeMessage;
+    private Text excessMessage;
+    private Text lengthMessage;
+    private Text modelMessage;
+    private Text ownerPersonalNumberMessage;
+    private Text registrationNumberMessage;
+    private Text registrationYearMessage;
+    // Buttons
     private Button calculateButton;
     private Button registerButton;
     
-    // Constrcutor
+    // Constructor.
     public BoatInsuranceRegistration() {
         
-        // Sets up the mainPane and scene.
+        // SETS UP THE MAIN PANE
+        
         mainPane = new GridPane();
         mainPane.setAlignment(Pos.CENTER);
         mainPane.setHgap(10);
-        mainPane.setVgap(10);
+        mainPane.setVgap(6);
+        // Sets the background color.
         mainPane.setStyle("-fx-background-color: #E7E7FF;");
-        mainPane.getColumnConstraints().addAll(new ColumnConstraints(200), 
-                new ColumnConstraints(200), new ColumnConstraints(200));
-        scene = new Scene(mainPane, 300, 275);
+        // Sets up column constraints. Width in pixels.
+        ColumnConstraints col1 = new ColumnConstraints(120);
+        ColumnConstraints col2 = new ColumnConstraints(100);
+        ColumnConstraints col3 = new ColumnConstraints(40);
+        ColumnConstraints col4 = new ColumnConstraints(50);
+        ColumnConstraints col5 = new ColumnConstraints(150);
+        ColumnConstraints col6 = new ColumnConstraints(150);
+        ColumnConstraints col7 = new ColumnConstraints(150);
+        // Adds these constraints.
+        mainPane.getColumnConstraints().addAll(col1, col2, col3, col4, col5, col6, col7);
         
-        // Declares all ComboBoxes and TextFields.
-        alarmComboBox = new ComboBox<>();
-        alarmComboBox.getItems().addAll("Ja", "Nei");
-        brandField = new TextField();
-        coverageComboBox = new ComboBox<>();
-        coverageComboBox.getItems().addAll("Kasko", "Delkasko", "Ansvar");
+        // SEARCH FOR CUSTOMER NODES
+        
+        // Declares Input
         customerIdField = new TextField();
-        customerPersonalNumberField = new TextField();
+        personalNumberField = new TextField();
+        // Declares Output
+        customerArea = new TextArea();
+        customerArea.setEditable(false);
+        customerArea.setPrefColumnCount(2);
+        customerArea.setPrefRowCount(4);
+        insurancesTable = new TableView();
+        insurancesTable.setPrefHeight(150);
+        insuranceTypeColumn = new TableColumn<>("Forsikring");
+        insuranceCoverageColum = new TableColumn<>("Dekning");
+        insuranceIdColumn = new TableColumn<>("Forsikringsid");
+        insurancesTable.getColumns().addAll(insuranceTypeColumn, insuranceCoverageColum, insuranceIdColumn);
+        insurancesTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        // Declares Buttons
+        searchCustomerIdButton = new Button("Søk");
+        searchPersonalNumberButton = new Button("Søk");
+        selectCustomerButton = new Button("Velg denne kunden");
+        // Declares Text and Label
+        Label customerIdLabel = new Label("Kundenummer:");
+        Label personalNumberLabel = new Label("Personnummer:");
+        Text insurancesTitle = new Text("Eksisterende forsikringer til denne kunden:");
+        insurancesTitle.setId("textTitle");
+        Text resultTitle = new Text("Søkeresultat:");
+        resultTitle.setId("textTitle");
+        Text selectCustomerTitle = new Text("Velg først en kunde i registeret:");
+        selectCustomerTitle.setId("textTitle");
+        
+        // REGISTER INSURANCE NODES
+        
+        // Declares Input
+        alarmCombo = new ComboBox<>();
+        populateAlarmCombo();
+        coverageCombo = new ComboBox<>();
+        populateCoverageCombo();
+        excessCombo = new ComboBox<>();
+        populateExcessCombo();
+        brandField = new TextField();
         engineEffectField = new TextField();
         engineTypeField = new TextField();
-        excessField = new TextField();
         lengthField = new TextField();
         modelField = new TextField();
         ownerPersonalNumberField = new TextField();
@@ -94,105 +156,130 @@ public class BoatInsuranceRegistration {
         premiumField.setEditable(false);
         registrationNumberField = new TextField();
         registrationYearField = new TextField();
-        
-        // Declares all Label messages.
-        alarmMessage = new Label();
-        brandMessage = new Label();
-        coverageMessage = new Label();
-        customerIdMessage = new Label();
-        customerPersonalNumberMessage = new Label();
-        engineEffectMessage = new Label();
-        engineTypeMessage = new Label();
-        excessMessage = new Label();
-        lengthMessage = new Label();
-        modelMessage = new Label();
-        ownerPersonalNumberMessage = new Label();
-        registrationNumberMessage = new Label();
-        registrationYearMessage = new Label();
-        
+        // Declares Output
+        alarmMessage = new Text();
+        brandMessage = new Text();
+        coverageMessage = new Text();
+        engineEffectMessage = new Text();
+        engineTypeMessage = new Text();
+        excessMessage = new Text();
+        lengthMessage = new Text();
+        modelMessage = new Text();
+        ownerPersonalNumberMessage = new Text();
+        registrationNumberMessage = new Text();
+        registrationYearMessage = new Text();
         // Declares all Buttons.
         calculateButton = new Button("Regn ut");
         registerButton = new Button("Registrer");
+        // Declares Text and Label
+        Text insuranceOptionsTitle = new Text("Betingelser:");
+        insuranceOptionsTitle.setId("textTitle");
+        Text boatTitle = new Text("Bil:");
+        boatTitle.setId("textTitle");
+        Label coverageLabel = new Label("Dekning:");
+        Label excessLabel = new Label("Egenandel:");
+        Label ownerPersonalNumberLabel = new Label("Eierens personnummer:");
+        Label registrationNumberLabel = new Label("Registreringsnummer:");
+        Label brandLabel = new Label("Merke:");
+        Label modelLabel = new Label("Modell:");
+        Label registrationYearLabel = new Label("År:");
+        Label engineEffectLabel = new Label("Hestekrefter:");
+        Label engineTypeLabel = new Label("Motortype:");
+        Label lengthLabel = new Label("Lengde i fot:");
+        Label alarmLabel = new Label("FG-godkjent alarm:");
+        Label premiumLabel = new Label("Beregnet forsikringspremie:");
         
-        // Adds all elements to the mainPane.
-        mainPane.add(new Text("Registrer bilforsikring"), 0, 0);
-        
-        mainPane.add(new Label("Kundenummer:"), 0, 1);
+        // Adds nodes to mainPane
+        mainPane.add(selectCustomerTitle, 0, 0);
+        mainPane.add(customerIdLabel, 0, 1);
         mainPane.add(customerIdField, 1, 1);
-        mainPane.add(customerIdMessage, 2, 1);
+        mainPane.add(searchCustomerIdButton, 2, 1);
         
-        mainPane.add(new Label("Kundens personnummer:"), 0, 2);
-        mainPane.add(customerPersonalNumberField, 1, 2);
-        mainPane.add(customerPersonalNumberMessage, 2, 2);
+        mainPane.add(personalNumberLabel, 0, 2);
+        mainPane.add(personalNumberField, 1, 2);
+        mainPane.add(searchPersonalNumberButton, 2, 2);
         
-        mainPane.add(new Label("Velg forsikring:"), 0, 3);
-        mainPane.add(coverageComboBox, 1, 3);
-        mainPane.add(coverageMessage, 2, 3);
+        mainPane.add(resultTitle, 0, 3);
+        mainPane.add(customerArea, 0, 4, 3, 5);
+        mainPane.add(selectCustomerButton, 0, 9);
+        mainPane.add(insurancesTitle, 0, 10);
+        mainPane.add(insurancesTable, 0, 11, 3, 5);
         
-        mainPane.add(new Label("Egenandel:"), 0, 4);
-        mainPane.add(excessField, 1, 4);
-        mainPane.add(excessMessage, 2, 4);
+        mainPane.add(insuranceOptionsTitle, 4, 0);
+        mainPane.add(coverageLabel, 4, 1);
+        mainPane.add(coverageCombo, 5, 1);
+        mainPane.add(coverageMessage, 6, 1);
+        mainPane.add(excessLabel, 4, 2);
+        mainPane.add(excessCombo, 5, 2);
+        mainPane.add(excessMessage, 6, 2);
         
-        mainPane.add(new Text("Båt"), 0, 5);
-        
-        mainPane.add(new Label("Eierens personnummer:"), 0, 6);
-        mainPane.add(ownerPersonalNumberField, 1, 6);
-        mainPane.add(ownerPersonalNumberMessage, 2, 6);
-        
-        mainPane.add(new Label("Registreringsnummer:"), 0, 7);
-        mainPane.add(registrationNumberField, 1, 7);
-        mainPane.add(registrationNumberMessage, 2, 7);
-        
-        mainPane.add(new Label("Merke:"), 0, 8);
-        mainPane.add(brandField, 1, 8);
-        mainPane.add(brandMessage, 2, 8);
-        
-        mainPane.add(new Label("Model:"), 0, 9);
-        mainPane.add(modelField, 1, 9);
-        mainPane.add(modelMessage, 2, 9);
-        
-        mainPane.add(new Label("Registreringsår:"), 0, 10);
-        mainPane.add(registrationYearField, 1, 10);
-        mainPane.add(registrationYearMessage, 2, 10);
-        
-        mainPane.add(new Label("Hestekrefter:"), 0, 11);
-        mainPane.add(engineEffectField, 1, 11);
-        mainPane.add(engineEffectMessage, 2, 11);
-        
-        mainPane.add(new Label("Motortype:"), 0, 12);
-        mainPane.add(engineTypeField, 1, 12);
-        mainPane.add(engineTypeMessage, 2, 12);
-        
-        mainPane.add(new Label("Lengde (i fot):"), 0, 13);
-        mainPane.add(lengthField, 1, 13);
-        mainPane.add(lengthMessage, 2, 13);
-        
-        mainPane.add(new Label("Har alarm:"), 0, 14);
-        mainPane.add(alarmComboBox, 1, 14);
-        mainPane.add(alarmMessage, 2, 14);
-        
-        mainPane.add(new Label("Forsikringspremie:"), 0, 15);
-        mainPane.add(premiumField, 1, 15);
-        mainPane.add(calculateButton, 2, 15);
-        
-        mainPane.add(registerButton, 1, 16);
+        mainPane.add(boatTitle, 4, 3);
+        mainPane.add(ownerPersonalNumberLabel, 4, 4);
+        mainPane.add(ownerPersonalNumberField, 5, 4);
+        mainPane.add(ownerPersonalNumberMessage, 6, 4);
+        mainPane.add(registrationNumberLabel, 4, 5);
+        mainPane.add(registrationNumberField, 5, 5);
+        mainPane.add(registrationNumberMessage, 6, 5);
+        mainPane.add(brandLabel, 4, 6);
+        mainPane.add(brandField, 5, 6);
+        mainPane.add(brandMessage, 6, 6);
+        mainPane.add(modelLabel, 4, 7);
+        mainPane.add(modelField, 5, 7);
+        mainPane.add(modelMessage, 6, 7);
+        mainPane.add(registrationYearLabel, 4, 8);
+        mainPane.add(registrationYearField, 5, 8);
+        mainPane.add(registrationYearMessage, 6, 8);
+        mainPane.add(engineEffectLabel, 4, 9);
+        mainPane.add(engineEffectField, 5, 9);
+        mainPane.add(engineEffectMessage, 6, 9);
+        mainPane.add(engineTypeLabel, 4, 10);
+        mainPane.add(engineTypeField, 5, 10);
+        mainPane.add(engineTypeMessage, 6, 10);
+        mainPane.add(lengthLabel, 4, 11);
+        mainPane.add(lengthField, 5, 11);
+        mainPane.add(lengthMessage, 6, 11);
+        mainPane.add(alarmLabel, 4, 12);
+        mainPane.add(alarmCombo, 5, 12);
+        mainPane.add(alarmMessage, 6, 12);
+        mainPane.add(premiumLabel, 4, 13);
+        mainPane.add(premiumField, 5, 13);
+        mainPane.add(calculateButton, 6, 13);
+        mainPane.add(registerButton, 5, 14);
     }
+    
+    // POPULATE COMBOBOX
+    
+    private void populateAlarmCombo() {
+        ObservableList<String> alarm = FXCollections.observableArrayList();  
+        alarm.addAll("Ja", "Nei");
+        alarmCombo.getItems().setAll(alarm);
+        alarmCombo.setPrefWidth(150);
+    }
+    
+    private void populateCoverageCombo() {
+        ObservableList<BoatInsuranceCoverage> obList;
+        obList = FXCollections.observableArrayList(BoatInsuranceCoverage.values()); 
+        coverageCombo.getItems().setAll(obList);
+        coverageCombo.setPrefWidth(150);
+    }
+    
+    private void populateExcessCombo() {
+        ObservableList<String> excess = FXCollections.observableArrayList();
+        excess.addAll("4000", "6000", "8000", "10000", "15000", "14000", 
+                "16000", "18000", "20000", "25000", "30000");
+        excessCombo.getItems().setAll(excess);
+        excessCombo.setPrefWidth(150);
+    }
+    
+    // GET
     
     public GridPane getMainPane() {
         return mainPane;
     }
     
-    public void show(Stage stage) {
-        stage.setTitle("Registrering av båtforsikring.");
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    /**
-     * @return the alarmComboBox
-     */
-     public String getAlarm() {
-        return alarmComboBox.getValue() == null ? "" : alarmComboBox.getValue();
+    /** @return the value of alarmCombo */
+    public String getAlarm() {
+        return alarmCombo.getValue() == null ? "" : alarmCombo.getValue();
     }
 
     /**
@@ -205,8 +292,8 @@ public class BoatInsuranceRegistration {
     /**
      * @return the coverageComboBox
      */
-    public String getCoverage() {
-        return coverageComboBox.getValue() == null ? "" : coverageComboBox.getValue();
+    public BoatInsuranceCoverage getCoverage() {
+        return coverageCombo.getValue();
     }
 
     /**
@@ -214,13 +301,6 @@ public class BoatInsuranceRegistration {
      */
     public String getCustomerId() {
         return customerIdField.getText();
-    }
-
-    /**
-     * @return the customerPersonalNumberField
-     */
-    public String getCustomerPersonalNumber() {
-        return customerPersonalNumberField.getText();
     }
 
     /**
@@ -241,7 +321,7 @@ public class BoatInsuranceRegistration {
      * @return the excessField
      */
     public String getExcess() {
-        return excessField.getText();
+        return excessCombo.getValue() == null ? "" : excessCombo.getValue();
     }
 
     /**
@@ -263,6 +343,13 @@ public class BoatInsuranceRegistration {
      */
     public String getOwnerPersonalNumber() {
         return ownerPersonalNumberField.getText();
+    }
+
+    /**
+     * @return the customerPersonalNumberField
+     */
+    public String getPersonalNumber() {
+        return personalNumberField.getText();
     }
 
     /**
@@ -298,23 +385,6 @@ public class BoatInsuranceRegistration {
      */
     public void setBrandMessage(String brandMessage) {
         this.brandMessage.setText(brandMessage);
-    }
-
-    /**
-     * @param customerIdMessage the customerIdMessage to set
-     */
-    public void setCustomerIdMessage(String customerIdMessage) {
-        this.customerIdMessage.setText(customerIdMessage);
-    }
-
-    /**
-     * @param customerPersonalNumberMessage the customerPersonalNumberMessage 
-     * to set
-     */
-    public void setCustomerPersonalNumberMessage(
-            String customerPersonalNumberMessage) {
-        this.customerPersonalNumberMessage.
-                setText(customerPersonalNumberMessage);
     }
 
     /**

@@ -19,7 +19,7 @@ import java.util.Set;
  */
 public class InsuranceRegister {
     
-    private static String insurancesFilePath = "insurancecompany/resources/datastructures/insuranceSet.dta";
+    private static String insurancesFilePath = "src/insurancecompany/resources/datastructures/insuranceSet.dta";
     
     /** The list of this insurance register. */
     private Set<Insurance> insurances;

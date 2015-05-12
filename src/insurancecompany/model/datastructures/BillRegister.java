@@ -20,7 +20,7 @@ import java.util.Set;
  */
 public class BillRegister {
     
-    private static String billsFilePath = "insurancecompany/resources/datastructures/billSet.dta";
+    private static String billsFilePath = "src/insurancecompany/resources/datastructures/billSet.dta";
     
     private Set<Bill> bills;
     

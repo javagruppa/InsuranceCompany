@@ -18,7 +18,7 @@ import java.util.Set;
  */
 public class EmployeeRegister {
     
-    private static String employeesFilePath = "insurancecompany/resources/datastructures/employeeSet.dta";
+    private static String employeesFilePath = "src/insurancecompany/resources/datastructures/employeeSet.dta";
     
     /** List of all the employees that works or has worked in this company. */
     private Set<Employee> employees;

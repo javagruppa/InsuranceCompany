@@ -20,7 +20,7 @@ import java.util.Set;
  */
 public class ClaimRegister {
     
-    private static String claimsFilePath = "insurancecompany/resources/datastructures/claimSet.dta";
+    private static String claimsFilePath = "src/insurancecompany/resources/datastructures/claimSet.dta";
     
     private Set<Claim> claims;
     

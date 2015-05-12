@@ -35,9 +35,24 @@ public abstract class Employee extends Person implements Serializable {
         active = true;
     }
     
-    public String toString(){
-        String s = "";
-        return s;
+       /**
+     * Returns a string representation of this insurance. The string
+     * representation consists of each field with a short description separated
+     * by a new line.
+     * 
+     * @return a string representation of this insurance
+     */
+    @Override
+    public String toString() {
+        // Creates a StringBuilder which will be returned at the end of the 
+        // method.
+        StringBuilder result = new StringBuilder();
+        // Appends the fields with appropriate sentences.
+        result.append(employeeId);
+        result.append("\n").append(super.toString());
+        result.append("\nAktiv: ").append(active ? "Ja" : "Nei");
+        // Returns the string.
+        return result.toString();
     }
     
     public static void saveNextIdToFile() throws IOException {

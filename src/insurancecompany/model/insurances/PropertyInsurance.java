@@ -13,8 +13,7 @@ import java.io.Serializable;
 public abstract class PropertyInsurance extends Insurance implements Serializable {
     private static final long serialVersionUID = 1L;
     
-    /** The content insurance amount of this insurance. */
-    private int contentAmount;
+    
     
     /**
      * Constructs a new property insurance with the specified 

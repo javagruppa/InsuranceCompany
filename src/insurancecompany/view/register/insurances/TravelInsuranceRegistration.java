@@ -24,6 +24,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 /**
@@ -269,17 +270,15 @@ public class TravelInsuranceRegistration {
     
     // SET METHODS:
 
-    /**
-     * @param coverageMessage the coverageMessage to set
-     */
-    public void setCoverageMessage(Label coverageMessage) {
-        this.coverageMessage = coverageMessage;
+    /** @param message The message to set. */
+    public void setCoverageMessage(String message) {
+        this.coverageMessage.setFill(Color.FIREBRICK);
+        this.coverageMessage.setText(message);
     }
 
-    /**
-     * @param excessMessage the excessMessage to set
-     */
-    public void setExcessMessage(Label excessMessage) {
-        this.excessMessage = excessMessage;
+    /** @param message The message to set. */
+    public void setExcessMessage(String message) {
+        this.excessMessage.setFill(Color.FIREBRICK);
+        this.excessMessage.setText(message);
     }
 }

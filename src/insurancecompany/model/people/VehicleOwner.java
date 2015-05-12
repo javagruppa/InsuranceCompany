@@ -38,6 +38,10 @@ public class VehicleOwner extends Person implements Serializable {
         return result.toString();
     }
 
+    /**
+     * Returns the  ID, set to 0.
+     * @return 0
+     */
     @Override
     public int getId() {
         return 0;

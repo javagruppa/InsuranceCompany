@@ -5,6 +5,13 @@
  */
 package insurancecompany.model.insurances;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -19,6 +26,8 @@ public abstract class Insurance implements Serializable {
     
     /** The insurance id of the insurance created next */
     private static int nextInsuranceId = 1000000;
+    private static String insuranceIdFileName = "src/insurancecompany/resources/nextidnumbers/insuranceId.dta"; 
+
     /** Whether this insurance is active or not. */
     private boolean active;
     /** The id of the customer who owns this insurance. */
@@ -84,7 +93,22 @@ public abstract class Insurance implements Serializable {
         result = prime * result + getInsuranceId();
         return result;
     }
+
+    public static void saveNextIdToFile() throws IOException {
+        try (DataOutputStream dos = new DataOutputStream(
+                new BufferedOutputStream(
+                        new FileOutputStream(insuranceIdFileName)))) {
+            dos.writeInt(nextInsuranceId);
+        }
+    }
     
+    public static void readNextIdFromFile() throws IOException {
+        try (DataInputStream dis = new DataInputStream(
+                new BufferedInputStream(
+                        new FileInputStream(insuranceIdFileName)))) {
+            nextInsuranceId = dis.readInt();
+        }
+    }
     /**
      * Returns whether this insurance is active or not.
      * 

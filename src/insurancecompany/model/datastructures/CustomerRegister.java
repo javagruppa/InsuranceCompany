@@ -66,6 +66,20 @@ public class CustomerRegister {
     }
     
     /**
+     * Returns the first customer matching the given personal number.
+     * @param personalNumber
+     * @return 
+     */
+    public Customer findCustomerByPersonalNumber(String personalNumber) {
+        for (Customer customer : customers) {
+            if (customer.getPersonalNumber().equals(personalNumber)) {
+                return customer;
+            }
+        }
+        return null;
+    }
+    
+    /**
      * Returns an ArrayList containing customers living at given address.
      * @param address
      * @return 

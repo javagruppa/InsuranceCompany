@@ -11,8 +11,6 @@ import insurancecompany.misc.coverages.CarInsuranceCoverage;
 
 import java.util.Calendar;
 import java.io.Serializable;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 
 /**
  *
@@ -86,15 +84,6 @@ public class CarInsurance extends Insurance implements Serializable {
     @Override
     public String getName() {
         return "Bilforsikring";
-    }
-    
-    /**
-     * Returns the type of this insurance in form of a StringProperty.
-     * @return 
-     */
-    @Override
-    public StringProperty getPropertyName() {
-        return new SimpleStringProperty("Bilforsikring");
     }
     
     /**

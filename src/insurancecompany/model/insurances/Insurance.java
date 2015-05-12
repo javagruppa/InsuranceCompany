@@ -16,9 +16,6 @@ import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.io.Serializable;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.StringProperty;
 
 /**
  *
@@ -66,7 +63,6 @@ public abstract class Insurance implements Serializable {
      */
     public abstract String getName();
     
-    public abstract StringProperty getPropertyName();
     /**
      * Indicates whether some other insurance is equal to this one. The result 
      * is true if and only if the argument is not null and is an Insurance 
@@ -155,16 +151,6 @@ public abstract class Insurance implements Serializable {
      */
     public int getInsuranceId() {
         return insuranceId;
-    }
-    
-    /**
-     * Returns the unique insurance id representing this insurance
-     * as an IntegerProperty.
-     * 
-     * @return the unique insurance id representing this insurance
-     */
-    public IntegerProperty getPropertyInsuranceId() {
-        return new SimpleIntegerProperty(insuranceId);
     }
     
     /**

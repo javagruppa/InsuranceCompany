@@ -7,8 +7,6 @@ package insurancecompany.model.insurances;
 
 import insurancecompany.misc.coverages.TravelInsuranceCoverage;
 import java.io.Serializable;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 
 /**
  *
@@ -43,18 +41,8 @@ public class TravelInsurance extends Insurance implements Serializable {
      * Returns the type of this insurance in form of a String.
      * @return 
      */
-    @Override
     public String getName() {
         return "Reiseforsikring";
-    }
-    
-    /**
-     * Returns the type of this insurance in form of a StringProperty.
-     * @return 
-     */
-    @Override
-    public StringProperty getPropertyName() {
-        return new SimpleStringProperty("Reiseforsikring");
     }
     
     /**

@@ -10,8 +10,6 @@ import insurancecompany.misc.hometypes.HolidayHomeType;
 import insurancecompany.misc.coverages.HolidayHomeInsuranceCoverage;
 import java.io.Serializable;
 import java.util.Calendar;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 /**
  *
  * @author Sindre
@@ -54,15 +52,6 @@ public class HolidayHomeInsurance extends PropertyInsurance implements Serializa
     @Override
     public String getName() {
         return "Fritidsboligforsikring";
-    }
-    
-    /**
-     * Returns the type of this insurance in form of a StringProperty.
-     * @return 
-     */
-    @Override
-    public StringProperty getPropertyName() {
-        return new SimpleStringProperty("Fritidsboligforsikring");
     }
     
     /**

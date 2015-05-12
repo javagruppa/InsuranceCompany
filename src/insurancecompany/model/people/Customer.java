@@ -39,6 +39,10 @@ public class Customer extends Person implements Serializable {
         active = true;
     }
     
+    /**
+     * Returns the customerId for this customer
+     * @return the customer ID
+     */
     @Override
     public int getId(){
         return customerId;
@@ -64,6 +68,10 @@ public class Customer extends Person implements Serializable {
         return result.toString();
     }
     
+    /**
+     * Saves the new customer ID to file
+     * @throws IOException 
+     */
     public static void saveNextIdToFile() throws IOException {
         try (DataOutputStream dos = new DataOutputStream(
                 new BufferedOutputStream(
@@ -72,6 +80,10 @@ public class Customer extends Person implements Serializable {
         }
     }
     
+    /**
+     * Reads next customer ID from file
+     * @throws IOException 
+     */
     public static void readNextIdFromFile() throws IOException {
         try (DataInputStream dis = new DataInputStream(
                 new BufferedInputStream(
@@ -94,7 +106,7 @@ public class Customer extends Person implements Serializable {
         this.totalCustomer = totalCustomer;
     }
 
-    /**
+    /**Returns whether or not the customer is active
      * @return the active
      */
     public boolean isActive() {

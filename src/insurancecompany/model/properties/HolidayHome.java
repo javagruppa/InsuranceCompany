@@ -14,6 +14,7 @@ import java.io.Serializable;
 public class HolidayHome extends Property implements Serializable {
     private static final long serialVersionUID = 1L;
     
+    
     /** Whether the holiday home is a rental or not. */
     private boolean rental;
     

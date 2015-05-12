@@ -42,12 +42,13 @@ public class CarInsuranceRegistration {
     // Input nodes, TextFields
     private TextField customerIdField;
     private TextField personalNumberField;
-    // Output nodes, TextArea and TableView
+    // Output nodes, TextArea and TableView and Text
     private TextArea customerArea;
     private TableView<Insurance> insurancesTable;
     private TableColumn<Insurance, String> insuranceTypeColumn;
     private TableColumn<Insurance, String> insuranceCoverageColum;
     private TableColumn<Insurance, Integer> insuranceIdColumn;
+    private Text customerSelectedMessage;
     // Buttons:
     private Button searchCustomerIdButton;
     private Button searchPersonalNumberButton;
@@ -126,6 +127,7 @@ public class CarInsuranceRegistration {
         customerArea.setPrefColumnCount(2);
         customerArea.setPrefRowCount(4);
         selectCustomerButton = new Button("Velg denne kunden");
+        customerSelectedMessage = new Text();
         Text insurancesTitle = new Text("Eksisterende forsikringer til denne kunden:");
         insurancesTitle.setId("textTitle");
         insurancesTable = new TableView();
@@ -207,6 +209,7 @@ public class CarInsuranceRegistration {
         mainPane.add(resultTitle, 0, 3);
         mainPane.add(customerArea, 0, 4, 3, 5);
         mainPane.add(selectCustomerButton, 0, 9);
+        mainPane.add(customerSelectedMessage, 1, 9);
         mainPane.add(insurancesTitle, 0, 10);
         mainPane.add(insurancesTable, 0, 11, 3, 5);
         
@@ -673,5 +676,12 @@ public class CarInsuranceRegistration {
      */
     public void setTempCustomerId(int tempCustomerId) {
         this.tempCustomerId = tempCustomerId;
+    }
+
+    /**
+     * @param customerSelectedMessage the customerSelectedMessage to set
+     */
+    public void setCustomerSelectedMessage(String customerSelectedMessage) {
+        this.customerSelectedMessage.setText(customerSelectedMessage);
     }
 }

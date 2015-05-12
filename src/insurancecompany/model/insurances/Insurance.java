@@ -33,7 +33,7 @@ public abstract class Insurance implements Serializable {
     /** The id of the customer who owns this insurance. */
     private int customerId;
     /** The date this insurance was created. */
-    private Date date;
+    private Calendar date;
     /** The excess of this insurance. */
     private int excess;
     /** Unique insurance id representing this insurance. */
@@ -52,7 +52,7 @@ public abstract class Insurance implements Serializable {
     public Insurance(int customerId, int excess) {
         this.active = true;
         this.customerId = customerId;
-        this.date = Calendar.getInstance().getTime();
+        this.date = Calendar.getInstance();
         this.insuranceId = nextInsuranceId++;
         this.excess = excess;
     }
@@ -128,7 +128,7 @@ public abstract class Insurance implements Serializable {
      * Returns the date of when the insurance is signed.
      * @return the date the insurance is signed
      */
-    public Date getDate() {
+    public Calendar getDate() {
         return date;
     }
     
@@ -190,7 +190,7 @@ public abstract class Insurance implements Serializable {
      * Sets the date to when the Insurance is signed.
      * @param date of when the insurance is signed
      */
-    public void setDate(Date date) {
+    public void setDate(Calendar date) {
         this.date = date;
     }
     

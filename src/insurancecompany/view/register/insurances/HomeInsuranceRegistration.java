@@ -25,6 +25,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 /**
@@ -375,6 +376,11 @@ public class HomeInsuranceRegistration {
         return personalNumberField.getText();
     }
 
+    /** @return The value of premiumField. */
+    public String getPremium() {
+        return premiumField.getText();
+    }
+
     /** @return The value of streetField. */
     public String getStreet() {
         return streetField.getText();
@@ -399,88 +405,72 @@ public class HomeInsuranceRegistration {
     public String getZipCode() {
         return zipCodeField.getText();
     }
-
-    /** @return The value of premiumField. */
-    public String getPremium() {
-        return premiumField.getText();
-    }
     
     // SET METHODS:
 
-    /**
-     * @param customerIdMessage the customerIdMessage to set
-     */
-    public void setCustomerIdMessage(String customerIdMessage) {
-        this.customerIdMessage.setText(customerIdMessage);
+    /** @param message The message to set. */
+    public void setAreaMessage(String message) {
+        this.areaMessage.setFill(Color.FIREBRICK);
+        this.areaMessage.setText(message);
     }
 
-    /**
-     * @param excessMessage the excessMessage to set
-     */
-    public void setExcessMessage(String excessMessage) {
-        this.excessMessage.setText(excessMessage);
+    /** @param message The message to set. */
+    public void setBuildingAmountMessage(String message) {
+        this.buildingAmountMessage.setFill(Color.FIREBRICK);
+        this.buildingAmountMessage.setText(message);
     }
 
-    /**
-     * @param buildingAmountMessage the buildingAmountMessage to set
-     */
-    public void setBuildingAmountMessage(String buildingAmountMessage) {
-        this.buildingAmountMessage.setText(buildingAmountMessage);
+    /** @param message The message to set. */
+    public void setCityMessage(String message) {
+        this.cityMessage.setFill(Color.FIREBRICK);
+        this.cityMessage.setText(message);
     }
 
-    /**
-     * @param contentAmountMessage the contentAmountMessage to set
-     */
-    public void setContentAmountMessage(String contentAmountMessage) {
-        this.contentAmountMessage.setText(contentAmountMessage);
+    /** @param message The message to set. */
+    public void setContentAmountMessage(String message) {
+        this.contentAmountMessage.setFill(Color.FIREBRICK);
+        this.contentAmountMessage.setText(message);
+    }
+    
+    /** @param message The message to set. */
+    public void setCoverageMessage(String message) {
+        this.coverageMessage.setFill(Color.FIREBRICK);
+        this.coverageMessage.setText(message);
     }
 
-    /**
-     * @param areaMessage the areaMessage to set
-     */
-    public void setAreaMessage(String areaMessage) {
-        this.areaMessage.setText(areaMessage);
+    /** @param message The message to set. */
+    public void setExcessMessage(String message) {
+        this.excessMessage.setFill(Color.FIREBRICK);
+        this.excessMessage.setText(message);
     }
 
-    /**
-     * @param yearMessage the yearMessage to set
-     */
-    public void setYearMessage(String yearMessage) {
-        this.yearMessage.setText(yearMessage);
+    /** @param message The message to set. */
+    public void setMaterialMessage(String message) {
+        this.materialMessage.setFill(Color.FIREBRICK);
+        this.materialMessage.setText(message);
     }
 
-    /**
-     * @param materialMessage the materialMessage to set
-     */
-    public void setMaterialMessage(String materialMessage) {
-        this.materialMessage.setText(materialMessage);
+    /** @param message The message to set. */
+    public void setStreetMessage(String message) {
+        this.streetMessage.setFill(Color.FIREBRICK);
+        this.streetMessage.setText(message);
     }
 
-    /**
-     * @param typeMessage the typeMessage to set
-     */
-    public void setTypeMessage(String typeMessage) {
-        this.typeMessage.setText(typeMessage);
+    /** @param message The message to set. */
+    public void setTypeMessage(String message) {
+        this.typeMessage.setFill(Color.FIREBRICK);
+        this.typeMessage.setText(message);
     }
 
-    /**
-     * @param streetMessage the streetMessage to set
-     */
-    public void setStreetMessage(String streetMessage) {
-        this.streetMessage.setText(streetMessage);
+    /** @param message The message to set. */
+    public void setYearMessage(String message) {
+        this.yearMessage.setFill(Color.FIREBRICK);
+        this.yearMessage.setText(message);
     }
 
-    /**
-     * @param zipCodeMessage the zipCodeMessage to set
-     */
-    public void setZipCodeMessage(String zipCodeMessage) {
-        this.zipCodeMessage.setText(zipCodeMessage);
-    }
-
-    /**
-     * @param cityMessage the cityMessage to set
-     */
-    public void setCityMessage(String cityMessage) {
-        this.cityMessage.setText(cityMessage);
+    /** @param message The message to set. */
+    public void setZipCodeMessage(String message) {
+        this.zipCodeMessage.setFill(Color.FIREBRICK);
+        this.zipCodeMessage.setText(message);
     }
 }

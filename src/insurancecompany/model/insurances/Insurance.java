@@ -15,8 +15,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.io.Serializable;
+
 
 /**
  *
@@ -41,6 +41,7 @@ public abstract class Insurance implements Serializable {
     private final int insuranceId;
     /** The yearly insurance premium of this insurance. */
     private int premium;
+    
     
     /**
      * Constructs a new insurance with the specified customerId and excess. 

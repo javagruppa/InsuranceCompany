@@ -5,8 +5,12 @@
  */
 package insurancecompany.model.claims;
 
+import insurancecompany.misc.coverages.Damage;
+import java.awt.Image;
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Set;
 
 /**
  *
@@ -14,22 +18,22 @@ import java.util.Date;
  */
 public class BoatClaim extends Claim implements Serializable {
     private static final long serialVersionUID = 1L;
+
+    public BoatClaim(int customerId, int insuranceId, String description, 
+            Calendar dateHappened, Set<Damage> damages, int appraisal) {
+        super(customerId, insuranceId, description, dateHappened, damages, 
+                appraisal);
+    }    
     
-    /**
-     * Empty constructor.
-     */
-    public BoatClaim(int customerId, int insuranceId, String description) {
-        super(customerId, insuranceId, description);
+    public BoatClaim(int customerId, int insuranceId, String description, 
+            Calendar dateHappened, Set<Damage> damages, int appraisal, 
+            Image image) {
+        super(customerId, insuranceId, description, dateHappened, damages, 
+                appraisal, image);
     }
-    
-    /**
-     * 
-     * @param customerId
-     * @param description 
-     */
-    public BoatClaim(int customerId, String description) {
-        super(customerId, description);
-    }
+
+
+
     
     @Override
     public String toString() {

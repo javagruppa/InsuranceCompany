@@ -5,8 +5,12 @@
  */
 package insurancecompany.model.claims;
 
+import insurancecompany.misc.coverages.Damage;
+import java.awt.Image;
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Set;
 
 /**
  *
@@ -14,22 +18,21 @@ import java.util.Date;
  */
 public class HolidayHomeClaim extends Claim implements Serializable {
     private static final long serialVersionUID = 1L;
+
+    public HolidayHomeClaim(int customerId, int insuranceId, String description, 
+            Calendar dateHappened, Set<Damage> damages, int appraisal) {
+        super(customerId, insuranceId, description, dateHappened, damages, 
+                appraisal);
+    }    
     
-     /**
-     * Empty constructor.
-     */
-    public HolidayHomeClaim(int customerId, int insuranceId, String description) {
-        super(customerId, insuranceId, description);
+    public HolidayHomeClaim(int customerId, int insuranceId, String description, 
+            Calendar dateHappened, Set<Damage> damages, int appraisal, 
+            Image image) {
+        super(customerId, insuranceId, description, dateHappened, damages, 
+                appraisal, image);
     }
-    
-    /**
-     * Constructor initializing date and description of a holiday home claim.
-     * @param date
-     * @param description 
-     */
-    public HolidayHomeClaim(int customerId, String description) {
-        super(customerId, description);
-    }
+
+
     
     @Override
     public String toString() {

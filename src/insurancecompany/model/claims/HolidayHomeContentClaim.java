@@ -8,47 +8,46 @@ package insurancecompany.model.claims;
 import insurancecompany.misc.coverages.Damage;
 import java.awt.Image;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 /**
  *
  * @author André
  */
-public class CarClaim extends Claim implements Serializable {
+public class HolidayHomeContentClaim extends Claim implements Serializable {
     private static final long serialVersionUID = 1L;
-    
-    CarClaimForm claimForm;
+        
+    private List<ClaimItem> items;
 
-    public CarClaim(int customerId, int insuranceId, String description, 
+    public HolidayHomeContentClaim(int customerId, int insuranceId, String description, 
             Calendar dateHappened, Set<Damage> damages, int appraisal, 
-            CarClaimForm claimForm) {
+            List<ClaimItem> items) {
         super(customerId, insuranceId, description, dateHappened, damages, 
                 appraisal);
-        this.claimForm = claimForm;
+        this.items = items;
     }    
     
-    public CarClaim(int customerId, int insuranceId, String description, 
+    public HolidayHomeContentClaim(int customerId, int insuranceId, String description, 
             Calendar dateHappened, Set<Damage> damages, int appraisal, 
-            Image image, CarClaimForm claimForm) {
+            Image image, List<ClaimItem> items) {
         super(customerId, insuranceId, description, dateHappened, damages, 
                 appraisal, image);
-        this.claimForm = claimForm;
+        this.items = items;
     }
     
     
-    public void setClaimForm(CarClaimForm claimForm) {
-        this.claimForm = claimForm;
+    public void addItem(ClaimItem claimItem) {
+        items.add(claimItem);
     }
     
-    public CarClaimForm getClaimForm() {
-        return claimForm;
-    }
-    
+
     @Override
     public String toString() {
-        String text = "Bilskademelding\n";
+        String text = "Hus- og innbokademelding\n";
         text += super.toString();
         return text;
     }

@@ -87,6 +87,16 @@ public class InsuranceRegister {
         return result;
     }
     
+     public List<Insurance> getAllActiveInsurancesByCustomerId(int customerId) {
+        List<Insurance> result = new ArrayList<Insurance>();
+        for (Insurance insurance : insurances) {
+            if (insurance.getCustomerId() == customerId && insurance.isActive()) {
+                result.add(insurance);
+            }
+        }
+        return result;
+    }
+    
     /**
      * Returns the number of insurances of the specified type.
      * 

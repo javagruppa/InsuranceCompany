@@ -248,10 +248,14 @@ public class MainController {
     private void carInsuranceSearchPersonalNumberButtonEventHandler(ActionEvent event) {
         String personalNumber = carInsuranceRegistration.getPersonalNumberField();
         // TODO regex:
+        // Search for customer by personal numer:
         Customer c = customers.findCustomerByPersonalNumber(personalNumber);
+        // If we find a customer we proceed:
         if (c != null) {
+            // Show the customer in the text area inside our view:
             carInsuranceRegistration.setCustomerArea(c.toString());
             int cId = c.getId();
+            // Search for all insurances by 
             List inc = insurances.getAllInsurancesByCustomerId(cId);
             if (!inc.isEmpty()) {
                 carInsuranceRegistration.populateInsurancesTable(inc);

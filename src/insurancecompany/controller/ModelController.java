@@ -15,6 +15,7 @@ import insurancecompany.model.datastructures.carinfo.*;
 import insurancecompany.model.insurances.Insurance;
 import insurancecompany.model.people.Customer;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -46,6 +47,26 @@ public class ModelController {
         this.insurances = insurances;
         this.customers = customers;
         unmarshalCarInfoRegister();
+    }
+    
+    /**
+     * Returns all insurances based on personal number of the insurance owner.
+     * @param personalNumber
+     * @return 
+     */
+    public List<Insurance> getAllInsurancesByPersonalNumber(String personalNumber) {
+        List<Insurance> result = new ArrayList<>();
+        // Find the customer that matches the personal number:
+        Customer c = customers.findCustomerByPersonalNumber(personalNumber);
+        // If he/she exists:
+        if (c != null) {
+            // Get the customer id:
+            int customerId = c.getId();
+            // Use this id, to get all insurances of this customer:
+            result = insurances.getAllInsurancesByCustomerId(customerId);
+        }
+        // Return the result:
+        return result;
     }
     
     public final void unmarshalCarInfoRegister() {        

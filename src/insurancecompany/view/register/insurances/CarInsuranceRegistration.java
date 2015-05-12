@@ -48,7 +48,6 @@ public class CarInsuranceRegistration {
     private TableColumn<Insurance, String> insuranceTypeColumn;
     private TableColumn<Insurance, String> insuranceCoverageColum;
     private TableColumn<Insurance, Integer> insuranceIdColumn;
-    
     // Buttons:
     private Button searchCustomerIdButton;
     private Button searchPersonalNumberButton;
@@ -135,7 +134,7 @@ public class CarInsuranceRegistration {
         insuranceCoverageColum = new TableColumn<>("Dekning");
         insuranceIdColumn = new TableColumn<>("Forsikringsid");
         insurancesTable.getColumns().addAll(insuranceTypeColumn, insuranceCoverageColum, insuranceIdColumn);
-        insurancesTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);       
+        insurancesTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);    
         
         Text insuranceOptionsTitle = new Text("Betingelser:");
         insuranceOptionsTitle.setId("textTitle");

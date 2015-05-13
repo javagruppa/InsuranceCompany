@@ -254,8 +254,7 @@ public abstract class Claim implements Serializable {
         // method.
         StringBuilder result = new StringBuilder();
         // Appends the fields with appropriate sentences.
-        result.append("SKADEMELDING");
-        result.append("\nKundenummer: ").append(customerId);
+        result.append("Kundenummer: ").append(customerId);
         result.append("\nForsikringspolise nummer: ").append(insuranceId);
         result.append("\nDato registrert: ").append(DateUtility.NORWEGIAN_DATE_FORMAT.format(date));
         result.append("\nSkademeldingsnummer: ").append(claimId);

@@ -472,6 +472,7 @@ public class HolidayHomeInsuranceRegistration {
 
     /** @param message The message to set. */
     public void setCustomerSelectedMessage(String message) {
+        this.customerSelectedMessage.setFill(Color.FIREBRICK);
         this.customerSelectedMessage.setText(message);
     }
 

@@ -1,28 +1,23 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package insurancecompany.model.insurances;
 
 import insurancecompany.model.vehicles.Car;
 import insurancecompany.misc.DateUtility;
 import insurancecompany.misc.coverages.CarInsuranceCoverage;
-
 import java.util.Calendar;
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 
 
 /**
- *
+ * CarInsurance class. This is the insurances for cars.
+ * 
  * @author Sindre
  */
 public class CarInsurance extends Insurance implements Serializable {
+    /** SerialVersionUID used to identify this class for object IO */
     private static final long serialVersionUID = 1L;
-    
     /** The bonus of this insurance. Used to calculate the yearly insurance 
-     * premium. */
+     * premium.
+     */
     private int bonus;
     /** The car this insurance is for. */
     private Car car;
@@ -53,7 +48,6 @@ public class CarInsurance extends Insurance implements Serializable {
      * @param coverage the coverage of this insurance
      * @param customerId the id of the customer who owns this insurance
      * @param excess the excess of this insurance
-     * @param hasAlarm whether the car this insurance is for has an alarm or not
      * @param hasGarage whether the car this insurance is for has a garage or 
      * not
      * @param maxLength the maximum driving length for this insurance
@@ -69,13 +63,15 @@ public class CarInsurance extends Insurance implements Serializable {
         this.hasGarage = hasGarage;
         this.maxLength = maxLength;
         this.youngDriver = youngDriver;
-        // Initializes last bonus update to the date of when the insurance was created, using the super class getDate()
+        
+        /* Initializes last bonus update to the date of when the insurance
+        was created, using the super class getDate() */
         lastBonusUpdate = super.getDate();
     }
     
     /**
      * Returns the type of this insurance in form of a String.
-     * @return 
+     * @return the insurance type
      */
     @Override
     public String getName() {
@@ -110,8 +106,8 @@ public class CarInsurance extends Insurance implements Serializable {
     }
     
     /**
-     * Calculates the price for the maximum number of kilometers included in
-     * this insurance.
+     * Calculates and returns the price for the maximum number of kilometers
+     * included in this insurance.
      * @return the maxLengthCost of this insurance.
      */
     public int maxlengthCost(){
@@ -119,7 +115,8 @@ public class CarInsurance extends Insurance implements Serializable {
     }
 
     /**
-     * Calculates the price drop of this insurance due the chosen excess.
+     * Calculates and returns the price drop of this insurance due the chosen
+     * excess.
      * @return the price drop of this insurance based on the excess
      */
     public int excessCalculator(){
@@ -152,7 +149,7 @@ public class CarInsurance extends Insurance implements Serializable {
     }
 
     /**
-     * Calculates the total premium to this insurance, using different
+     * Calculates and sets the total premium of this insurance, using different
      * parameters including whether the customer fullfills certain aspects:
      * youngdriver, garage, alarm.
      */
@@ -160,6 +157,7 @@ public class CarInsurance extends Insurance implements Serializable {
 	double youngDriverMultiplicator = 1.0;
 	double garageMultiplicator = 1.0;
 	double alarmMultiplicator = 1.0;
+        int bonusMultiplicator = bonus / 100;
         // If there will be a young driver of this insured car, the
         // multiplicator is set to 1.2
 	if (youngDriver){
@@ -192,13 +190,15 @@ public class CarInsurance extends Insurance implements Serializable {
 	// Multiplicates the basic premium by the total multiplicator to get
         // the final premium for this insurance.
         double newPremium = basicPremium * totalMultiplicator;
+        // calculates the decrease in price due to the current bonus
+        double bonusDecrease = newPremium * bonusMultiplicator;
         // rounds the final premium to a whole number, converting it to an
         // int value
-        int setPremium = (int)newPremium;
+        int setPremium = (int)newPremium - (int)bonusDecrease;
         // Changes the premium of this insurance.
         setPremium(setPremium);
 
-}
+    }
     
     
     /**
@@ -217,7 +217,8 @@ public class CarInsurance extends Insurance implements Serializable {
         // When reaching 75, bonus only drops by 15 points the 5 first years.
         } else if (bonus == 75 && yearsOnSeventyFive <= 5) {
             bonus -= 15;
-        // With a bonus at 75 for 5 consecutive years bonus will remain constant with no drops.
+        // With a bonus at 75 for 5 consecutive years bonus will remain
+        //constant with no drops.
         } else if (bonus == 75 && yearsOnSeventyFive >= 6) {
             bonus -= 0;
         }
@@ -233,24 +234,29 @@ public class CarInsurance extends Insurance implements Serializable {
             bonus += 10;
             yearsOnSeventy = 0;
             yearsOnSeventyFive = 0;
-        // Once bonus has reached 70 points, we start counting consecutive years on seventy. This affects the bonus drops
+        // Once bonus has reached 70 points, we start counting consecutive
+        //years on seventy. This affects the bonus drops
         } else if (bonus == 70 && yearsOnSeventy < 5) {
             yearsOnSeventyFive = 0;
             yearsOnSeventy++;
-        // When 5 consecutive years with 70 as a bonus, bonus goes to 75, and we start counting consecutive years at this stage aswell.
+        // When 5 consecutive years with 70 as a bonus, bonus goes to 75,
+        //and we start counting consecutive years at this stage aswell.
         } else if (bonus == 70 && yearsOnSeventy == 5) {
             bonus = 75;
             yearsOnSeventyFive++;
         }
-        // Set the last bonus increase to 1 year later. If 1.5 years has passed the last update will correctly stay at 0.5 years ago.
+        // Set the last bonus increase to 1 year later. If 1.5 years has passed
+        // the last update will correctly stay at 0.5 years ago.
         lastBonusUpdate.add(Calendar.YEAR, 1);
     }
     
     /**
-     * Increases the bonus depending on how many years has past since the last bonus increase.
+     * Increases the bonus depending on how many years has past since the
+     * last bonus increase.
      */
     public void increaseBonus() {
-        int years = DateUtility.getDifferenceInYears(lastBonusUpdate, Calendar.getInstance());
+        int years = DateUtility.getDifferenceInYears(lastBonusUpdate,
+                Calendar.getInstance());
         for (int i = 0; i < years; i++) {
             yearlyBonusIncrease();
         }
@@ -258,7 +264,7 @@ public class CarInsurance extends Insurance implements Serializable {
     
     /**
      * Returns the coverage of this insurance.
-     * @return 
+     * @return the coverage
      */
     @Override
     public Object getCoverage() {
@@ -266,8 +272,10 @@ public class CarInsurance extends Insurance implements Serializable {
     }
     
     /**
-     * Returns the boolean representing whether the insurance covers young drivers.
-     * @return 
+     * Returns the boolean representing whether the insurance covers
+     * young drivers.
+     * 
+     * @return the boolean youngDriver
      */
     public boolean getYoungDriver() {
         return youngDriver;
@@ -276,63 +284,64 @@ public class CarInsurance extends Insurance implements Serializable {
     
     /**
      * Returns the bonus of this car insurance.
-     * @return 
+     * @return the bonus of this insurance
      */
     public int getBonus() {
         return bonus;
     }
     
     /**
-     * Sets the bonus of this car insurance.
-     * @param bonus 
+     * Sets the bonus of this car insurance, and calculates the new premium
+     * based on the new information.
+     * @param bonus to be set
      */
     public void setBonus(int bonus) {
         this.bonus = bonus;
+        // Calculates and sets new premium
+        premiumCalculator();
     }
     
     /**
-     * Sets the max length for the car to this car insurance.
-     * @param maxLength 
+     * Sets the max length for the car to this car insurance, and updates the
+     * premium of the insurance.
+     * @param maxLength the maxlenth to be set
      */
     public void setMaxLength(int maxLength) {
         this.maxLength = maxLength;
+        // Updates the premium based on the new maxlength
+        premiumCalculator();
     }
     
     /**
      * Returns the max length for the car to this car insurance.
-     * @return 
+     * @return the max length
      */
     public int getMaxLength() {
         return maxLength;
     }
     
     /**
-     * Sets a true or false to the has garage option of this insurance.
-     * @param hasGarage 
+     * Sets a true or false to the has garage option of this insurance, and
+     * updates the premium of this insurance.
+     * @param hasGarage to be set
      */
     public void setHasGarage(boolean hasGarage) {
         this.hasGarage = hasGarage;
+        // Updates the premium based on the new information
+        premiumCalculator();
     }
     
     /**
      * Returns a true or false to the has garage option of this insurance.
-     * @return 
+     * @return the boolean hasGarage
      */
     public boolean getHasGarage() {
         return hasGarage;
     }
     
     /**
-     * Sets the car of this car insurance.
-     * @param car 
-     */
-    public void setCar(Car car) {
-        this.car = car;
-    }
-    
-    /**
      * Returns the car of this car insurance.
-     * @return 
+     * @return the car
      */
     public Car getCar() {
         return car;

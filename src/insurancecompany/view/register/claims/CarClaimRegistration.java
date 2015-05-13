@@ -31,11 +31,11 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
-import javafx.stage.FileChooser;
 import javafx.util.Callback;
 
 /**
@@ -95,14 +95,12 @@ public class CarClaimRegistration {
     /** Button used to select an insurance to use for the claim. */
     private Button selectInsuranceButton;
 
-    
-    
+    /** Image uploaded by the user. */
+    private Image image;
     /** The date of when the damage happened. */
     private DatePicker dateHappenedPicker;
     /** Textual description of the claim. */
     private TextArea descriptionTextArea;
-    /** File chooser for image of the damage. */
-    private FileChooser fileChooser;
     /** Text field where the user can type in an appraisal for the claim. */
     private TextField appraisalField;
     /** GridPane used to display the damages available for the customers coverage. */
@@ -133,8 +131,8 @@ public class CarClaimRegistration {
         mainPane.setAlignment(Pos.CENTER);
         mainPane.setHgap(10);
         mainPane.setVgap(6);
-        // Set background color:
-        mainPane.setStyle("-fx-background-color: #E7E7FF;");
+        // Set CSS id:
+        mainPane.setId("innerPane");
         // Set up column constraints. Width in pixels:
         ColumnConstraints col1 = new ColumnConstraints(120);
         ColumnConstraints col2 = new ColumnConstraints(100);
@@ -195,12 +193,11 @@ public class CarClaimRegistration {
         damagesPane.setHgap(10);
         damagesPane.setVgap(6);
         // Set CSS ID:
-        damagesPane.setId("innerPane");
+        damagesPane.setId("customPane1");
         Label appraisalLbel = new Label("Takseringsbeløp:");
         appraisalField = new TextField();
         Label selectImageLabel = new Label("Bilde som beskriver skaden");
         selectImageButton = new Button("Hent bilde");
-        fileChooser = new FileChooser();
         Label openClaimFormLabel = new Label("Bilskademelingsskjema");
         openClaimFormButton = new Button("Åpne");
         registerButton = new Button("Registrer");
@@ -361,6 +358,8 @@ public class CarClaimRegistration {
         });   
     }  // end of method populateInsurancesTable
     
+    
+    
     /**
      * Returns the Insurance object selected in the table.
      * @return 
@@ -382,7 +381,10 @@ public class CarClaimRegistration {
         this.damages = new ArrayList(Arrays.asList(damages));
         populateDamagesPane(this.damages);
     }  // end of method setDamages
-
+    
+    //////////////////////////////////////////
+    // SET EVENT HANDLERS METHODS:
+    //////////////////////////////////////////
     /**
      * Sets event handler for the search customer button of this view.
      * @param value 
@@ -403,10 +405,18 @@ public class CarClaimRegistration {
      * Sets event handler for the select insurance button of this view.
      * @param value 
      */
-    public void setSelectInsuranceButtonButtonEventHandler(EventHandler<ActionEvent> value) {
+    public void setSelectInsuranceButtonEventHandler(EventHandler<ActionEvent> value) {
         selectInsuranceButton.setOnAction(value);
-    }  
-
+    }
+    
+    /**
+     * Sets event handler for the select image button of this view.
+     * @param value 
+     */
+    public void setSelectImageButtonEventHandler(EventHandler<ActionEvent> value) {
+        selectImageButton.setOnAction(value);
+    }
+    
     /**
      * Sets event handler for the register button of this view.
      * @param value 
@@ -466,4 +476,27 @@ public class CarClaimRegistration {
         }
         return result;
     } // end of method getSelectedDamages
+    
+    /**
+     * Clears the messages used to display invalid input.
+     */
+    public void clearMessages() {
+        selectInsuranceMessage.setText("");
+    }
+
+    /**
+     * Get the image of the damage from this view.
+     * @return the image
+     */
+    public Image getImage() {
+        return image;
+    }
+
+    /**
+     * Set an image of the damage.
+     * @param image the image to set
+     */
+    public void setImage(Image image) {
+        this.image = image;
+    }
 } // end of class CarClaimRegistration

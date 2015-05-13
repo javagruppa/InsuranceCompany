@@ -22,6 +22,8 @@ import insurancecompany.view.register.insurances.*;
 import insurancecompany.view.register.persons.*;
 import insurancecompany.view.search.*;
 import insurancecompany.view.statistics.*;
+import java.awt.Desktop;
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -29,10 +31,14 @@ import java.util.LinkedList;
 import java.util.List;
 import javafx.application.Platform;
 import javafx.beans.value.ObservableValue;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javax.imageio.ImageIO;
 
 /**
  * Main controller. This class acts as a communication between the model and the view.
@@ -42,6 +48,9 @@ public class MainController {
     
     /** Reference to the logged in user.*/
     private Person user;
+    
+    /** Primary Stage. */
+    private Stage primaryStage;
     
     // Models:
     private BillRegister bills;
@@ -209,7 +218,8 @@ public class MainController {
         employeeRegistration.setRegisterButtonEventHandler(this::registerEmployeeButtonEventHandler);
         
         carClaimRegistration.setSearchPersonalNumberButtonEventHandler(this::carClaimSearchPersonalNumberButtonEventHandler);
-        carClaimRegistration.setSelectInsuranceButtonButtonEventHandler(this::carClaimSelectInsuranceButtonEventHandler);
+        carClaimRegistration.setSelectInsuranceButtonEventHandler(this::carClaimSelectInsuranceButtonEventHandler);
+        carClaimRegistration.setSelectImageButtonEventHandler(this::carClaimSelectImageButtonEventHandler);
     }
  
     private void adminViewSaveDataButtonEventHandler(ActionEvent event) {
@@ -534,6 +544,36 @@ public class MainController {
         }
     }
     
+    private void carClaimSelectImageButtonEventHandler(ActionEvent event) {
+        // Initialize a file chooser:
+        FileChooser fileChooser = new FileChooser();
+        // Set the title:
+        fileChooser.setTitle("Velg bilde");
+        // Set the initial directory to the user folder:
+        fileChooser.setInitialDirectory(
+                new File(System.getProperty("user.home"))
+        );
+        // Set selectable file extennsion:
+        fileChooser.getExtensionFilters().addAll(
+            new FileChooser.ExtensionFilter("All Images", "*.*"),
+            new FileChooser.ExtensionFilter("JPG", "*.jpg"),
+            new FileChooser.ExtensionFilter("GIF", "*.gif"),
+            new FileChooser.ExtensionFilter("BMP", "*.bmp"),
+            new FileChooser.ExtensionFilter("PNG", "*.png")
+        );
+        // Get the file:
+        File file = fileChooser.showOpenDialog(primaryStage);
+        if (file != null) {
+            try {
+                BufferedImage bufferedImage = ImageIO.read(file);
+                Image image = SwingFXUtils.toFXImage(bufferedImage, null);
+                carClaimRegistration.setImage(image);
+            } catch (IOException ioe) {
+                logs.add(ioe.getStackTrace(), ioe.getMessage(), user);
+            }
+        }
+    }
+    
     // READ AND WRITE IDS FROM/TO FILE:
     
     /**
@@ -822,6 +862,7 @@ public class MainController {
     }
     
     public void show(Stage stage) {
+        this.primaryStage = stage;
         viewController.show(stage);
     }
 }

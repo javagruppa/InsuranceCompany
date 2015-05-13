@@ -5,12 +5,11 @@
  */
 package insurancecompany.misc.coverages;
 
-
-
 import java.util.List;
 
 /**
- *
+ * The coverage of a boat insurance
+ * 
  * @author André
  */
 public enum BoatInsuranceCoverage {

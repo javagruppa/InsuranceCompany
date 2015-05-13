@@ -1,18 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package insurancecompany.model.vehicles;
 
 import java.io.Serializable;
 
 /**
- *
+ * The class boat. Sub class of vehicle representing a boat that is insured
  * @author Carl
  * @author Sindre
  */
 public class Boat extends Vehicle implements Serializable {
+    /** SerialVersionUID used to identify this class for object IO */
     private static final long serialVersionUID = 1L;
     /** The type of the engine of this boat. */
     private String engineType;
@@ -36,6 +32,7 @@ public class Boat extends Vehicle implements Serializable {
      * @param personalNumber the personal number of the owner of this boat
      * @param registrationNumber the registration number of this boat
      * @param registrationYear the registration year of this boat
+     * @param value the value of this boat
      */
     public Boat(boolean alarm, String brand, int engineEffect, 
             String engineType, int length, String model, String personalNumber, 
@@ -47,8 +44,37 @@ public class Boat extends Vehicle implements Serializable {
         this.value = value;
     }
     
+    /**
+     * Returns the value of this boat
+     * @return the value
+     */
     public int getValue(){
         return value;
+    }
+    
+    /**
+     * Returns the length of this boat
+     * @return the length
+     */
+    public int getLength() {
+        return length;
+    }
+    
+    /**
+     * Returns the engine type of this boat
+     * @return the engine type
+     */
+    public String getEngineType() {
+        return engineType;
+    }
+    
+    /**
+     * Returns a string representation of this boat
+     * @return a string representation of this boat
+     */
+    @Override
+    public String toString() {
+        return "Båt:\n" + super.toString();
     }
             
 }

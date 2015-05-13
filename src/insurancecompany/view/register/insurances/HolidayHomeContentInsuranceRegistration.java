@@ -53,7 +53,6 @@ public class HolidayHomeContentInsuranceRegistration {
     // Buttons:
     private Button searchCustomerIdButton;
     private Button searchPersonalNumberButton;
-    private Button selectCustomerButton;
     // ints used to keep track of searched and selected customer id:
     private int tempCustomerId;
     private int selectedCustomerId;
@@ -129,13 +128,12 @@ public class HolidayHomeContentInsuranceRegistration {
         // Initializes Buttons:
         searchCustomerIdButton = new Button("Søk");
         searchPersonalNumberButton = new Button("Søk");
-        selectCustomerButton = new Button("Velg denne kunden");
         // Declares and initializes Texts and Labels:
         Label customerIdLabel = new Label("Kundenummer:");
         Label personalNumberLabel = new Label("Personnummer:");
         Text insurancesTitle = new Text("Eksisterende forsikringer til denne kunden:");
         insurancesTitle.setId("textTitle");
-        Text resultTitle = new Text("Søkeresultat:");
+        Text resultTitle = new Text("Valgt kunde:");
         resultTitle.setId("textTitle");
         Text selectCustomerTitle = new Text("Velg først en kunde i registeret:");
         selectCustomerTitle.setId("textTitle");
@@ -208,8 +206,7 @@ public class HolidayHomeContentInsuranceRegistration {
         
         mainPane.add(resultTitle, 0, 3);
         mainPane.add(customerArea, 0, 4, 3, 5);
-        mainPane.add(selectCustomerButton, 0, 9);
-        mainPane.add(customerSelectedMessage, 1, 9);
+        mainPane.add(customerSelectedMessage, 0, 9);
         mainPane.add(insurancesTitle, 0, 10);
         mainPane.add(insurancesTable, 0, 11, 3, 5);
         
@@ -342,10 +339,6 @@ public class HolidayHomeContentInsuranceRegistration {
 
     public void setSearchPersonalNumberButtonEventHandler(EventHandler<ActionEvent> value) {
         searchPersonalNumberButton.setOnAction(value);
-    }
-
-    public void setSelectCustomerButtonEventHandler(EventHandler<ActionEvent> value) {
-        selectCustomerButton.setOnAction(value);
     }
 
     // CLEAR MESSAGES METHOD

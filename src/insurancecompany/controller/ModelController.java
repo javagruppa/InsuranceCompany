@@ -10,6 +10,7 @@ import insurancecompany.misc.coverages.BoatInsuranceCoverage;
 import insurancecompany.misc.coverages.HomeInsuranceCoverage;
 import insurancecompany.misc.coverages.TravelInsuranceCoverage;
 import insurancecompany.misc.hometypes.HomeType;
+import insurancecompany.model.datastructures.BillRegister;
 import insurancecompany.model.datastructures.ClaimRegister;
 import insurancecompany.model.datastructures.CustomerRegister;
 import insurancecompany.model.datastructures.EmployeeRegister;
@@ -25,18 +26,34 @@ import insurancecompany.model.properties.Address;
 import insurancecompany.model.properties.Property;
 import insurancecompany.model.properties.PropertyMaterial;
 import insurancecompany.model.vehicles.Boat;
+import insurancecompany.view.modules.AdminView;
+import insurancecompany.view.process.BillsProcessView;
+import insurancecompany.view.process.ClaimsProcessView;
+import insurancecompany.view.process.SubscriptionsProcessView;
 import insurancecompany.view.register.claims.BoatClaimRegistration;
 import insurancecompany.view.register.claims.CarClaimRegistration;
 import insurancecompany.view.register.claims.HolidayHomeClaimRegistration;
+import insurancecompany.view.register.claims.HolidayHomeContentClaimRegistration;
 import insurancecompany.view.register.claims.HomeClaimRegistration;
+import insurancecompany.view.register.claims.HomeContentClaimRegistration;
 import insurancecompany.view.register.claims.TravelClaimRegistration;
 import insurancecompany.view.register.insurances.BoatInsuranceRegistration;
 import insurancecompany.view.register.insurances.CarInsuranceRegistration;
+import insurancecompany.view.register.insurances.HolidayHomeContentInsuranceRegistration;
 import insurancecompany.view.register.insurances.HolidayHomeInsuranceRegistration;
+import insurancecompany.view.register.insurances.HomeContentInsuranceRegistration;
 import insurancecompany.view.register.insurances.HomeInsuranceRegistration;
 import insurancecompany.view.register.insurances.TravelInsuranceRegistration;
 import insurancecompany.view.register.persons.CustomerRegistration;
 import insurancecompany.view.register.persons.EmployeeRegistration;
+import insurancecompany.view.search.ClaimSearchView;
+import insurancecompany.view.search.CustomerSearchView;
+import insurancecompany.view.search.EmployeeSearchView;
+import insurancecompany.view.search.InsuranceSearchView;
+import insurancecompany.view.statistics.ClaimStatisticsView;
+import insurancecompany.view.statistics.CustomerStatisticsView;
+import insurancecompany.view.statistics.EmployeeStatisticsView;
+import insurancecompany.view.statistics.InsuranceStatisticsView;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -56,29 +73,54 @@ import javax.xml.bind.Unmarshaller;
  */
 public class ModelController {
     
-    // Insurance Registration Views:
-    private BoatInsuranceRegistration boatInsuranceRegistration;
-    private CarInsuranceRegistration carInsuranceRegistration;
-    private HolidayHomeInsuranceRegistration holidayHomeInsuranceRegistration;
-    private HomeInsuranceRegistration homeInsuranceRegistration;
-    private TravelInsuranceRegistration travelInsuranceRegistration;
-    // Person Registration Views:
-    private CustomerRegistration customerRegistration;
-    private EmployeeRegistration employeeRegistration;
+    
+    // Models:
+    private CarInfoRegister carInfoRegister;
+    private EmployeeRegister employees;
+    private CustomerRegister customers;
+    private InsuranceRegister insurances;
+    private ClaimRegister claims;
+    private LogRegister logRegister;
+    private BillRegister bills;
+    
+    // Process Views:
+    private BillsProcessView billsProcessView;
+    private ClaimsProcessView claimsProcessView;
+    private SubscriptionsProcessView subscriptionsProcessView;
+    
     // Claim Registration Views:
     private BoatClaimRegistration boatClaimRegistration;
     private CarClaimRegistration carClaimRegistration;
     private HolidayHomeClaimRegistration holidayHomeClaimRegistration;
+    private HolidayHomeContentClaimRegistration holidayHomeContentClaimRegistration;
     private HomeClaimRegistration homeClaimRegistration;
+    private HomeContentClaimRegistration homeContentClaimRegistration;
     private TravelClaimRegistration travelClaimRegistration;
     
-    private CarInfoRegister carInfoRegister;
-    private LogRegister logRegister;
+    // Insurance Registration Views:
+    private BoatInsuranceRegistration boatInsuranceRegistration;
+    private CarInsuranceRegistration carInsuranceRegistration;
+    private HolidayHomeInsuranceRegistration holidayHomeInsuranceRegistration;
+    private HolidayHomeContentInsuranceRegistration holidayHomeContentInsuranceRegistration;
+    private HomeInsuranceRegistration homeInsuranceRegistration;
+    private HomeContentInsuranceRegistration homeContentInsuranceRegistration;
+    private TravelInsuranceRegistration travelInsuranceRegistration;
     
-    private ClaimRegister claims;
-    private EmployeeRegister employees;
-    private InsuranceRegister insurances;
-    private CustomerRegister customers;
+    // Person Registration Views:
+    private CustomerRegistration customerRegistration;
+    private EmployeeRegistration employeeRegistration;
+    
+    // Search Views:
+    private ClaimSearchView claimSearchView;
+    private CustomerSearchView customerSearchView;
+    private EmployeeSearchView employeeSearchView;
+    private InsuranceSearchView insuranceSearchView;
+    
+    // Statistics Views:
+    private ClaimStatisticsView claimStatisticsView;
+    private CustomerStatisticsView customerStatisticsView;
+    private EmployeeStatisticsView employeeStatisticsView;
+    private InsuranceStatisticsView insuranceStatisticsView;
         
     // Creates strings to be used in messages to the user:
     private final String NO_CUSTOMER_MESSAGE = "Du har ikke valgt noen kunde.";
@@ -90,39 +132,56 @@ public class ModelController {
     private final String PERSONALNUMBER_EMPTY_MESSAGE = "Du må skrive inn et personnummer.";
     private final String PERSONALNUMBER_NOT_FOUND_MESSAGE = "Fant ingen kunde med personnummer: ";
     
-    public ModelController(ClaimRegister claims, CustomerRegister customers, 
-            EmployeeRegister employees, InsuranceRegister insurances, 
-            BoatInsuranceRegistration boatInsuranceRegistration, 
-            CarInsuranceRegistration carInsuranceRegistration, 
-            HolidayHomeInsuranceRegistration holidayHomeInsuranceRegistration,
-            HomeInsuranceRegistration homeInsuranceRegistration,
-            TravelInsuranceRegistration travelInsuranceRegistration,
-            CustomerRegistration customerRegistration,
-            EmployeeRegistration employeeRegistration,
-            BoatClaimRegistration boatClaimRegistration,
-            CarClaimRegistration carClaimRegistration,
-            HolidayHomeClaimRegistration holidayHomeClaimRegistration,
-            HomeClaimRegistration homeClaimRegistration,
-            TravelClaimRegistration travelClaimRegistration) {
+    public ModelController(BillRegister bills, ClaimRegister claims, CustomerRegister customers, 
+            EmployeeRegister employees, InsuranceRegister insurances, LogRegister logRegister,
+            ArrayList<Object> views) {
         
-        // Initializes Registration Views
-        this.boatInsuranceRegistration = boatInsuranceRegistration;
-        this.carInsuranceRegistration = carInsuranceRegistration;
-        this.holidayHomeInsuranceRegistration = holidayHomeInsuranceRegistration;
-        this.homeInsuranceRegistration = homeInsuranceRegistration;
-        this.travelInsuranceRegistration = travelInsuranceRegistration;
-        this.customerRegistration = customerRegistration;
-        this.employeeRegistration = employeeRegistration; 
-        this.boatClaimRegistration = boatClaimRegistration;
-        this.carClaimRegistration = carClaimRegistration;
-        this.holidayHomeClaimRegistration = holidayHomeClaimRegistration;
-        this.homeClaimRegistration = homeClaimRegistration;
-        this.travelClaimRegistration = travelClaimRegistration;
-        
+        // Models:
+        this.bills = bills;
         this.claims = claims;
+        this.customers = customers;
         this.employees = employees;
         this.insurances = insurances;
-        this.customers = customers;
+        this.logRegister = logRegister;
+        
+        // Process Views:
+        this.billsProcessView = (BillsProcessView) views.get(0);
+        this.claimsProcessView = (ClaimsProcessView) views.get(1);
+        this.subscriptionsProcessView = (SubscriptionsProcessView) views.get(2);
+        
+        // Claim Registration Views:
+        this.boatClaimRegistration = (BoatClaimRegistration) views.get(3);
+        this.carClaimRegistration = (CarClaimRegistration) views.get(4);
+        this.holidayHomeClaimRegistration = (HolidayHomeClaimRegistration) views.get(5);
+        this.holidayHomeContentClaimRegistration = (HolidayHomeContentClaimRegistration) views.get(6);
+        this.homeClaimRegistration = (HomeClaimRegistration) views.get(7);
+        this.homeContentClaimRegistration = (HomeContentClaimRegistration) views.get(8);
+        this.travelClaimRegistration = (TravelClaimRegistration) views.get(9);
+        
+        // Insurance Registration Views:
+        this.boatInsuranceRegistration = (BoatInsuranceRegistration) views.get(10);
+        this.carInsuranceRegistration = (CarInsuranceRegistration) views.get(11);
+        this.holidayHomeInsuranceRegistration = (HolidayHomeInsuranceRegistration) views.get(12);
+        this.holidayHomeContentInsuranceRegistration = (HolidayHomeContentInsuranceRegistration) views.get(13);
+        this.homeInsuranceRegistration = (HomeInsuranceRegistration) views.get(14);
+        this.homeContentInsuranceRegistration = (HomeContentInsuranceRegistration) views.get(15);
+        this.travelInsuranceRegistration = (TravelInsuranceRegistration) views.get(16);
+        
+        // Person Registration Views:
+        this.customerRegistration = (CustomerRegistration) views.get(17);
+        this.employeeRegistration = (EmployeeRegistration) views.get(18);
+    
+        // Search Views:
+        this.claimSearchView = (ClaimSearchView) views.get(19);
+        this.customerSearchView = (CustomerSearchView) views.get(20);
+        this.employeeSearchView = (EmployeeSearchView) views.get(21);
+        this.insuranceSearchView = (InsuranceSearchView) views.get(22);
+
+        // Statistics Views:
+        this.claimStatisticsView = (ClaimStatisticsView) views.get(23);
+        this.customerStatisticsView = (CustomerStatisticsView) views.get(24);
+        this.employeeStatisticsView = (EmployeeStatisticsView) views.get(25);
+        this.insuranceStatisticsView = (InsuranceStatisticsView) views.get(26);
         
         initializeEventHandlers();
         unmarshalCarInfoRegister();

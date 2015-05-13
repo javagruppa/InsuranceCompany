@@ -5,12 +5,16 @@
  */
 package insurancecompany.view.register.claims;
 
+import insurancecompany.misc.coverages.Damage;
 import insurancecompany.model.insurances.Insurance;
 import java.time.LocalDate;
 import java.time.chrono.HijrahChronology;
+import java.util.ArrayList;
 import java.util.List;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -52,14 +56,11 @@ public class CarClaimRegistration {
     private TableColumn<Insurance, String> insuranceTypeColumn;
     private TableColumn<Insurance, String> insuranceCoverageColum;
     private TableColumn<Insurance, Integer> insuranceIdColumn;
-    private Text customerSelectedMessage;
     // Buttons:
     private Button searchCustomerIdButton;
     private Button searchPersonalNumberButton;
-    private Button selectCustomerButton;
-    // ints used to keep track of searched and selected customer id:
-    private int tempCustomerId;
-    private int selectedCustomerId;
+    private Button selectInsuranceButton;
+
     
     
     /** The date of when the damage happened */
@@ -69,7 +70,8 @@ public class CarClaimRegistration {
     /** File chooser for image of the damage. */
     private FileChooser fileChooser;
     private TextField appraisalField;
-    private CheckBox damagesCheckBox; 
+    private GridPane damagesPane;
+    private List<CheckBox> damagesCheckBox;
     // Buttons:
     private Button selectImageButton;
     private Button openClaimFormButton;
@@ -114,8 +116,9 @@ public class CarClaimRegistration {
         customerArea.setEditable(false);
         customerArea.setPrefColumnCount(2);
         customerArea.setPrefRowCount(4);
-        selectCustomerButton = new Button("Velg denne kunden");
-        customerSelectedMessage = new Text();
+        Label selectInsuranceLabel = new Label("Velg forsikringen denne skademelding går under:");
+        selectInsuranceButton = new Button("Velg");
+
         Text insurancesTitle = new Text("Eksisterende forsikringer til denne kunden:");
         insurancesTitle.setId("textTitle");
         insurancesTable = new TableView();
@@ -131,10 +134,12 @@ public class CarClaimRegistration {
         restrictDatePicker();
         Label descriptionLabel = new Label("Beskrivelse av skaden:");
         descriptionTextArea = new TextArea();
+        damagesPane = new GridPane();
+        Label damagesLabel = new Label("Skade:");
+        damagesPane = new GridPane();
+        damagesPane.setPrefSize(200, 100);
         Label appraisalLbel = new Label("Takseringsbeløp:");
         appraisalField = new TextField();
-        Label damagesLabel = new Label("Skade:");
-        damagesCheckBox = new CheckBox(); 
         Label selectImageLabel = new Label("Last opp et bilde som beskriver skaden");
         selectImageButton = new Button("Hent bilde");
         fileChooser = new FileChooser();
@@ -154,8 +159,6 @@ public class CarClaimRegistration {
         
         mainPane.add(resultTitle, 0, 3);
         mainPane.add(customerArea, 0, 4, 3, 5);
-        mainPane.add(selectCustomerButton, 0, 9);
-        mainPane.add(customerSelectedMessage, 1, 9);
         mainPane.add(insurancesTitle, 0, 10);
         mainPane.add(insurancesTable, 0, 11, 3, 5);
         
@@ -163,17 +166,29 @@ public class CarClaimRegistration {
         mainPane.add(dateHappenedLabel, 4, 0);
         mainPane.add(dateHappenedPicker, 5, 0);
         mainPane.add(descriptionLabel, 4, 1);
-        mainPane.add(descriptionTextArea,4, 2);
-        mainPane.add(appraisalLbel, 4, 3);
-        mainPane.add(appraisalField, 5, 3);
-        mainPane.add(damagesLabel, 4, 4);
-        mainPane.add(damagesCheckBox, 5, 4);
-        mainPane.add(selectImageLabel, 4, 5);
-        mainPane.add(selectImageButton, 5, 5);
-        mainPane.add(openClaimFormLabel, 4, 6);
-        mainPane.add(openClaimFormButton, 5, 6);
-        mainPane.add(registerButton, 4, 7);
+        mainPane.add(descriptionTextArea,4, 2, 3, 4);
+        mainPane.add(appraisalLbel, 4, 6);
+        mainPane.add(appraisalField, 5, 6);
+        mainPane.add(damagesLabel, 4, 7);
+        mainPane.add(damagesPane, 5, 7);
+        mainPane.add(selectImageLabel, 4, 8);
+        mainPane.add(selectImageButton, 5, 8);
+        mainPane.add(openClaimFormLabel, 4, 9);
+        mainPane.add(openClaimFormButton, 5, 9);
+        mainPane.add(registerButton, 4, 10);
       
+    }
+    
+    public void populateDamagesPane(ArrayList<Damage> damages) {
+        damagesCheckBox = new ArrayList<CheckBox>();
+        int columns = 5;
+        for (int i = 0; i < (damages.size() / columns); i++) {
+            CheckBox cb = new CheckBox(damages.get(i).toString());
+            damagesCheckBox.add(cb);
+            for(int j = 0; j < columns; j++) {
+                damagesPane.add(cb, j, i);
+            }
+        }
     }
     
     private void restrictDatePicker() {
@@ -226,7 +241,11 @@ public class CarClaimRegistration {
     public void populateInsurancesTable(List<Insurance> insurances) {
         ObservableList<Insurance> obList = FXCollections.observableArrayList(insurances);
         insurancesTable.setItems(obList);
-        
+        if (obList.isEmpty()) {
+            System.err.println("Tom liste");
+        } else {
+            System.err.println("Ikke Tom liste");
+        }
         insuranceTypeColumn.setCellValueFactory((cellData) -> {
                 if ( cellData.getValue() != null) {
                     return new SimpleStringProperty(cellData.getValue().getName());
@@ -249,6 +268,10 @@ public class CarClaimRegistration {
                 }
         });   
     }
+    
+    public Insurance getInsuranceTableValue() {
+        return insurancesTable.getSelectionModel().getSelectedItem();
+    }
 
     /**
      * Sets event handler for the search customer button of this view.
@@ -265,16 +288,14 @@ public class CarClaimRegistration {
     public void setSearchPersonalNumberButtonEventHandler(EventHandler<ActionEvent> value) {
         searchPersonalNumberButton.setOnAction(value);
     }
-
+    
     /**
-     * Sets event handler for the select customer button of this view.
+     * Sets event handler for the select insurance button of this view.
      * @param value 
      */
-    public void setSelectCustomerButtonEventHandler(EventHandler<ActionEvent> value) {
-        selectCustomerButton.setOnAction(value);
-    }
-
-
+    public void setSelectInsuranceButtonButtonEventHandler(EventHandler<ActionEvent> value) {
+        selectInsuranceButton.setOnAction(value);
+    }  
 
     /**
      * Sets event handler for the register button of this view.
@@ -293,38 +314,4 @@ public class CarClaimRegistration {
     }
 
 
-    /**
-     * @return the selectedCustomerId
-     */
-    public int getSelectedCustomerId() {
-        return selectedCustomerId;
-    }
-
-    /**
-     * @param selectedCustomerId the selectedCustomerId to set
-     */
-    public void setSelectedCustomerId(int selectedCustomerId) {
-        this.selectedCustomerId = selectedCustomerId;
-    }
-
-    /**
-     * @return the tempCustomerId
-     */
-    public int getTempCustomerId() {
-        return tempCustomerId;
-    }
-
-    /**
-     * @param tempCustomerId the tempCustomerId to set
-     */
-    public void setTempCustomerId(int tempCustomerId) {
-        this.tempCustomerId = tempCustomerId;
-    }
-
-    /**
-     * @param customerSelectedMessage the customerSelectedMessage to set
-     */
-    public void setCustomerSelectedMessage(String customerSelectedMessage) {
-        this.customerSelectedMessage.setText(customerSelectedMessage);
-    }
 }

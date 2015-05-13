@@ -592,6 +592,7 @@ public class ModelController {
                 area = Integer.parseInt(areaString);
             } catch(NumberFormatException nfe) {
                 homeInsuranceRegistration.setAreaMessage(FORMAT_MESSAGE);
+
                 abort = true;
             }
         }

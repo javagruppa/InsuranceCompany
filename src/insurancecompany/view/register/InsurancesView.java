@@ -89,7 +89,7 @@ public class InsurancesView {
         Image cabinImage = new Image("insurancecompany/resources/images/cabin.png");
         holidayHomeInsuranceButton.setGraphic(new ImageView(cabinImage));
         
-        holidayHomeContentInsuranceButton = new ToggleButton("Fritidsbolig-\nforsikring");
+        holidayHomeContentInsuranceButton = new ToggleButton("Fritidsbolig-\ninnboforsikring");
         holidayHomeContentInsuranceButton.setId("sideToolbarButton");
         holidayHomeContentInsuranceButton.setGraphic(new ImageView(cabinImage));
         

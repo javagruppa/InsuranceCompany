@@ -107,22 +107,45 @@ public class MainController {
         
         // Modules:
         this.adminView = new AdminView();
+    
+        // Process Views:
+        this.billsProcessView = new BillsProcessView();
+        this.claimsProcessView = new ClaimsProcessView();
+        this.subscriptionsProcessView = new SubscriptionsProcessView();
+        
+        // Claim Registration Views:
+        this.boatClaimRegistration = new BoatClaimRegistration();
+        this.carClaimRegistration = new CarClaimRegistration();
+        this.holidayHomeClaimRegistration = new HolidayHomeClaimRegistration();
+        this.holidayHomeContentClaimRegistration = new HolidayHomeContentClaimRegistration();
+        this.homeClaimRegistration = new HomeClaimRegistration();
+        this.homeContentClaimRegistration = new HomeContentClaimRegistration();
+        this.travelClaimRegistration = new TravelClaimRegistration();
         
         // Insurance Registration Views:
         this.boatInsuranceRegistration = new BoatInsuranceRegistration();
         this.carInsuranceRegistration = new CarInsuranceRegistration();
         this.holidayHomeInsuranceRegistration = new HolidayHomeInsuranceRegistration();
+        this.holidayHomeContentInsuranceRegistration = new HolidayHomeContentInsuranceRegistration();
         this.homeInsuranceRegistration = new HomeInsuranceRegistration();
+        this.homeContentInsuranceRegistration = new HomeContentInsuranceRegistration();
         this.travelInsuranceRegistration = new TravelInsuranceRegistration();
+        
         // Person Registration Views:
         this.customerRegistration = new CustomerRegistration();
         this.employeeRegistration = new EmployeeRegistration();
-        // Claim Registration Views:
-        this.boatClaimRegistration = new BoatClaimRegistration();
-        this.carClaimRegistration = new CarClaimRegistration();
-        this.holidayHomeClaimRegistration = new HolidayHomeClaimRegistration();
-        this.homeClaimRegistration = new HomeClaimRegistration();
-        this.travelClaimRegistration = new TravelClaimRegistration();
+    
+        // Search Views:
+        this.claimSearchView = new ClaimSearchView();
+        this.customerSearchView = new CustomerSearchView();
+        this.employeeSearchView = new EmployeeSearchView();
+        this.insuranceSearchView = new InsuranceSearchView();
+
+        // Statistics Views:
+        this.claimStatisticsView = new ClaimStatisticsView();
+        this.customerStatisticsView = new CustomerStatisticsView();
+        this.employeeStatisticsView = new EmployeeStatisticsView();
+        this.insuranceStatisticsView = new InsuranceStatisticsView();
         
         // Controllers:
         this.modelController = new ModelController(claims, customers, employees, 

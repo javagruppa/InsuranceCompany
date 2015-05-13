@@ -468,7 +468,7 @@ public class ModelController {
         String amountString = homeInsuranceRegistration.getAmount();
         String excessString = homeInsuranceRegistration.getExcess();
         
-        // Collects information about the home:
+        // Collects information about the property:
         HomeType type = homeInsuranceRegistration.getType();
         PropertyMaterial material = homeInsuranceRegistration.getMaterial();
         String areaString = homeInsuranceRegistration.getArea();

@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package insurancecompany.view.search;
+package insurancecompany.view.statistics;
 
+import insurancecompany.view.search.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 

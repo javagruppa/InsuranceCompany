@@ -6,6 +6,7 @@
 
 package insurancecompany.model.insurances;
 
+import insurancecompany.misc.DateCalculations;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.DataInputStream;
@@ -211,7 +212,8 @@ public abstract class Insurance implements Serializable {
         // Creates a DateFormat to format the field date.
         DateFormat dateFormat = DateFormat.getInstance();
         // Appends the fields with appropriate sentences.
-        result.append("Forsikringen er ").append(active ? "aktiv" : "inaktiv");
+        result.append("Forsikringen ble tegnet: ").append(DateUtility.NORWEGIAN_DATE_FORMAT.format(date));
+        result.append("\nForsikringen er ").append(active ? "aktiv" : "inaktiv");
         result.append("\nForsikringsnummer: ").append(insuranceId);
         result.append("\nKundenummer: ").append(customerId);
         result.append("\n\nDato: ").append(dateFormat.format(date));

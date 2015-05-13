@@ -1,9 +1,3 @@
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package insurancecompany.model.people;
 import insurancecompany.model.properties.Address;
 import java.io.Serializable;
@@ -11,10 +5,14 @@ import java.util.Calendar;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 /**
- *
- * @author Carl
+ * Abstract class Person. This is the super class of all person objects
+ * registered in this program.
+ * 
+ * 
+ *@author Carl
  */
 public abstract class Person implements Serializable {
+    /** SerialVersionUID used to identify this class for object IO */
     private static final long serialVersionUID = 1L;
     
     /** The norwegian standard for showing dates */
@@ -57,6 +55,10 @@ public abstract class Person implements Serializable {
         registeredDate = Calendar.getInstance().getTime();
     }
     
+    /**
+     * Returns the Id of the person object
+     * @return the persons Id
+     */
     public abstract int getId();
     
     /**
@@ -129,6 +131,7 @@ public abstract class Person implements Serializable {
     }
 
     /**
+     * returns the adress object of this person
      * @return the address
      */
     public Address getAddress() {
@@ -136,6 +139,7 @@ public abstract class Person implements Serializable {
     }
 
     /**
+     * returns te phone number of this person
      * @return the phone
      */
     public String getPhone() {

@@ -6,7 +6,7 @@
 package insurancecompany.model.insurances;
 
 import insurancecompany.model.vehicles.Car;
-import insurancecompany.misc.DateCalculations;
+import insurancecompany.misc.DateUtility;
 import insurancecompany.misc.coverages.CarInsuranceCoverage;
 
 import java.util.Calendar;
@@ -40,12 +40,7 @@ public class CarInsurance extends Insurance implements Serializable {
     /** The number of consecutive years the bonus has stayed at 70 */
     private int yearsOnSeventy;
     /** The number of consecutive years the bonus has stayed at 75 */
-    private int yearsOnSeventyFive;
-    /** The norwegian standard for showing dates */
-    java.util.Locale norway = new java.util.Locale("no");
-    /** The date format to be shown in toString */
-    SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy", norway );
-    
+    private int yearsOnSeventyFive; 
     
     
     /**
@@ -108,9 +103,10 @@ public class CarInsurance extends Insurance implements Serializable {
                 append(youngDriver ? "Ja" : "Nei");
         result.append("\nMaksimum kjørelengde: ").append(maxLength);
         result.append("\nBonus: ").append(bonus).append("%");
-        result.append("\nBonus sist endret: ").append(sdf.format(lastBonusUpdate));
+        result.append("\nBonus sist endret: ").append(DateUtility.NORWEGIAN_DATE_FORMAT.format(lastBonusUpdate));
         // Returns the string.
         return result.toString();
+
     }
     
     /**
@@ -254,7 +250,7 @@ public class CarInsurance extends Insurance implements Serializable {
      * Increases the bonus depending on how many years has past since the last bonus increase.
      */
     public void increaseBonus() {
-        int years = DateCalculations.getDifferenceInYears(lastBonusUpdate, Calendar.getInstance());
+        int years = DateUtility.getDifferenceInYears(lastBonusUpdate, Calendar.getInstance());
         for (int i = 0; i < years; i++) {
             yearlyBonusIncrease();
         }

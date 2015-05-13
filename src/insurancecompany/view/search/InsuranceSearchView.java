@@ -5,10 +5,26 @@
  */
 package insurancecompany.view.search;
 
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
+
 /**
  *
  * @author André
  */
 public class InsuranceSearchView {
+    // Decalaration of the Gridpane and Scene.
+    private GridPane mainPane;
     
+    public InsuranceSearchView() {
+        
+    }
+    
+    /**
+     * Returns the main Pane of this view.
+     * @return 
+     */
+    public Pane getMainPane() {
+        return mainPane;
+    }
 }

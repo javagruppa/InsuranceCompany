@@ -282,6 +282,11 @@ public class TravelInsuranceRegistration {
         this.coverageMessage.setFill(Color.FIREBRICK);
         this.coverageMessage.setText(message);
     }
+    
+    /** @param text The text to set. */
+    public void setCustomerArea(String text) {
+        this.customerArea.setText(text);
+    }
 
     /** @param message The message to set. */
     public void setCustomerSelectedMessage(String message) {

@@ -56,6 +56,7 @@ public class CarClaimRegistration {
     private TableColumn<Insurance, String> insuranceTypeColumn;
     private TableColumn<Insurance, String> insuranceCoverageColum;
     private TableColumn<Insurance, Integer> insuranceIdColumn;
+    private Text selectInsuranceMessage;
     // Buttons:
     private Button searchCustomerIdButton;
     private Button searchPersonalNumberButton;
@@ -118,6 +119,7 @@ public class CarClaimRegistration {
         customerArea.setPrefRowCount(4);
         Label selectInsuranceLabel = new Label("Velg forsikringen denne skademelding går under:");
         selectInsuranceButton = new Button("Velg");
+        selectInsuranceMessage = new Text();
 
         Text insurancesTitle = new Text("Eksisterende forsikringer til denne kunden:");
         insurancesTitle.setId("textTitle");
@@ -272,6 +274,10 @@ public class CarClaimRegistration {
     public Insurance getInsuranceTableValue() {
         return insurancesTable.getSelectionModel().getSelectedItem();
     }
+    
+    public void setCoverage(String coverage, Damage[] damages) {
+        
+    }
 
     /**
      * Sets event handler for the search customer button of this view.
@@ -311,6 +317,13 @@ public class CarClaimRegistration {
      */
     public Pane getMainPane() {
         return mainPane;
+    }
+
+    /**
+     * @param selectInsuranceMessage the selectInsuranceMessage to set
+     */
+    public void setSelectInsuranceMessage(Text selectInsuranceMessage) {
+        this.selectInsuranceMessage = selectInsuranceMessage;
     }
 
 

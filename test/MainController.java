@@ -6,7 +6,7 @@
 package insurancecompany.controller;
 
 import insurancecompany.misc.EmployeeType;
-import insurancecompany.misc.coverages.*;
+import insurancecompany.misc.coverages.CarInsuranceCoverage;
 import insurancecompany.model.bills.*;
 import insurancecompany.model.claims.*;
 import insurancecompany.model.datastructures.*;
@@ -14,7 +14,6 @@ import insurancecompany.model.datastructures.carinfo.*;
 import insurancecompany.model.insurances.*;
 import insurancecompany.model.people.*;
 import insurancecompany.model.properties.*;
-import insurancecompany.model.vehicles.Car;
 import insurancecompany.view.modules.*;
 import insurancecompany.view.process.*;
 import insurancecompany.view.register.claims.*;
@@ -30,8 +29,6 @@ import java.util.List;
 import javafx.application.Platform;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /**
@@ -80,7 +77,6 @@ public class MainController {
     // Person Registration Views:
     private CustomerRegistration customerRegistration;
     private EmployeeRegistration employeeRegistration;
-    
     
     // Search Views:
     private ClaimSearchView claimSearchView;
@@ -200,16 +196,14 @@ public class MainController {
         
         carInsuranceRegistration.setSearchCustomerIdButtonEventHandler(this::carInsuranceSearchCustomerButtonEventHandler);
         carInsuranceRegistration.setSearchPersonalNumberButtonEventHandler(this::carInsuranceSearchPersonalNumberButtonEventHandler);
+        carInsuranceRegistration.setSelectCustomerButtonEventHandler(this::carInsuranceSelectCustomerButtonEventHandler);
         carInsuranceRegistration.setBrandComboListener(this::brandComboListener);
         carInsuranceRegistration.setYearComboListener(this::yearComboListener);
         carInsuranceRegistration.setCalculateButtonEventHandler(null);
         carInsuranceRegistration.setRegisterButtonEventHandler(this::carInsuranceRegisterButtonEventHandler);
-        
+     
         customerRegistration.setRegisterButtonEventHandler(this::registerCustomerButtonEventHandler);
         employeeRegistration.setRegisterButtonEventHandler(this::registerEmployeeButtonEventHandler);
-        
-        carClaimRegistration.setSearchPersonalNumberButtonEventHandler(this::carClaimSearchPersonalNumberButtonEventHandler);
-        carClaimRegistration.setSelectInsuranceButtonButtonEventHandler(this::carClaimSelectInsuranceButtonEventHandler);
     }
  
     private void adminViewSaveDataButtonEventHandler(ActionEvent event) {
@@ -250,6 +244,7 @@ public class MainController {
     // TODO: Trenger regex og validering
     private void registerCustomerButtonEventHandler(ActionEvent event) {
         boolean ok = true;
+        int zipCode = 0;
         
         String personalNumber = customerRegistration.getPersonalNumberField();
         String firstName = customerRegistration.getFirstNameField();
@@ -260,17 +255,103 @@ public class MainController {
         String email = customerRegistration.getEmailField();
         String phone = customerRegistration.getPhoneField();
         
+        customerRegistration.setPersonalNumberMessage("");
+        customerRegistration.setFirstNameMessage("");
+        customerRegistration.setLastNameMessage("");
+        customerRegistration.setStreetMessage("");
+        customerRegistration.setCityMessage("");
+        customerRegistration.setEmailMessage("");
+        customerRegistration.setPhoneMessage("");
+        customerRegistration.setZipCodeMessage("");
+        
         if (personalNumber.equals("")) {
             String message = "Fyll inn dette feltet.";
             customerRegistration.setPersonalNumberMessage(message);
             ok = false;
+        } else if (!personalNumber.matches("\\d{11}")) {
+            String message = "Fyll inn 11 siffer.";
+            customerRegistration.setPersonalNumberMessage(message);
+            ok = false;
         }
         
-        int zipCode = 0;
-        try {
-            zipCode = Integer.parseInt(zipCodeS);
-        } catch (NumberFormatException nfe) {
+        if (firstName.equals("")) {
+            String message = "Fyll inn dette feltet.";
+            customerRegistration.setFirstNameMessage(message);
             ok = false;
+        } else if (!firstName.matches("^[ÆØÅæøåA-Za-z]{2-30}")) {
+            String message = "Fyll inn korrekt navn, kun bokstaver tillatt";
+            customerRegistration.setFirstNameMessage(message);
+            ok = false;
+        }
+        
+        if (lastName.equals("")) {
+            String message = "Fyll inn dette feltet.";
+            customerRegistration.setLastNameMessage(message);
+            ok = false;
+        } else if (!lastName.matches("^[ÆØÅæøåA-Za-z]{2-30}")) {
+            String message = "Fyll inn korrekt navn, kun bokstaver tillatt";
+            customerRegistration.setLastNameMessage(message);
+            ok = false;
+        }
+        
+        if (street.equals("")) {
+            String message = "Fyll inn dette feltet.";
+            customerRegistration.setStreetMessage(message);
+            ok = false;
+        } else if (!street.matches("[ÆØÅæøåa-zA-Z0-9]{2-30}")) {
+            String message = "Fyll inn korrekt gateadresse, kun bokstaver og"
+                    + " tall tillatt";
+            customerRegistration.setStreetMessage(message);
+            ok = false;
+        }
+        
+        if (city.equals("")) {
+            String message = "Fyll inn dette feltet.";
+            customerRegistration.setCityMessage(message);
+            ok = false;
+        } else if (!city.matches("^[æøåÆØÅa-zA-Z]{2-30}")) {
+            String message = "Fyll inn korrekt poststed, kun bokstaver tillatt";
+            customerRegistration.setCityMessage(message);
+            ok = false;
+        }
+        
+        if (email.equals("")) {
+            String message = "Fyll inn dette feltet.";
+            customerRegistration.setEmailMessage(message);
+            ok = false;
+        } else if (!email.matches("^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+(?:\\.[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+)*@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$")) {
+            String message = "Fyll inn korrekt email adresse.";
+            customerRegistration.setEmailMessage(message);
+            ok = false;
+        }
+        
+        if (phone.equals("")) {
+            String message = "Fyll inn dette feltet.";
+            customerRegistration.setPhoneMessage(message);
+            ok = false;
+        } else if (!phone.matches("\\d{8-13}")) {
+            String message = "Fyll inn korrekt telefonnummer.";
+            customerRegistration.setPhoneMessage(message);
+            ok = false;
+        }
+        
+        
+        if (zipCodeS.equals("")) {
+            String message = "Fyll inn dette feltet.";
+            customerRegistration.setZipCodeMessage(message);
+            ok = false;
+        } else if (!zipCodeS.matches("\\d{4}")) {
+            String message = "Fyll inn korrekt postnummer, 4 siffer.";
+            customerRegistration.setZipCodeMessage(message);
+            ok = false;
+        } else {
+            
+            try {
+                zipCode = Integer.parseInt(zipCodeS);
+            } catch (NumberFormatException nfe) {
+                    ok = false;
+                    logs.add(nfe.getStackTrace(), nfe.getMessage(), user);
+            }
         }
         
         // If all fields are filled in correctly proceed to creating and adding customer:
@@ -293,7 +374,8 @@ public class MainController {
     
     // TODO: Trenger regex og validering
     private void registerEmployeeButtonEventHandler(ActionEvent event) {
-        
+        boolean ok = true;
+        int zipCode = 0;
         EmployeeType position = employeeRegistration.getPositionComboValue();
         String personalNumber = employeeRegistration.getPersonalNumberField();
         String firstName = employeeRegistration.getFirstNameField();
@@ -304,23 +386,110 @@ public class MainController {
         String email = employeeRegistration.getEmailField();
         String phone = employeeRegistration.getPhoneField();
 
-        System.out.println(position.toString());
+        customerRegistration.setPersonalNumberMessage("");
+        customerRegistration.setFirstNameMessage("");
+        customerRegistration.setLastNameMessage("");
+        customerRegistration.setStreetMessage("");
+        customerRegistration.setZipCodeMessage("");
+        customerRegistration.setCityMessage("");
+        customerRegistration.setEmailMessage("");
+        customerRegistration.setPersonalNumberMessage("");
+        
+        
         if (personalNumber.equals("")) {
             String message = "Fyll inn dette feltet.";
-            employeeRegistration.setPersonalNumberMessage(message);
-        } 
- 
-        int zipCode = 0;
-        try {
-            zipCode = Integer.parseInt(zipCodeS);
-        } catch (NumberFormatException nfe) {
-            
+            customerRegistration.setPersonalNumberMessage(message);
+            ok = false;
+        } else if (!personalNumber.matches("\\d{11}")) {
+            String message = "Fyll inn 11 siffer.";
+            customerRegistration.setPersonalNumberMessage(message);
+            ok = false;
         }
+        
+        if (firstName.equals("")) {
+            String message = "Fyll inn dette feltet.";
+            customerRegistration.setFirstNameMessage(message);
+            ok = false;
+        } else if (!firstName.matches("^[ÆØÅæøåA-Za-z]{2-30}")) {
+            String message = "Fyll inn korrekt navn, kun bokstaver tillatt";
+            customerRegistration.setFirstNameMessage(message);
+            ok = false;
+        }
+        
+        if (lastName.equals("")) {
+            String message = "Fyll inn dette feltet.";
+            customerRegistration.setLastNameMessage(message);
+            ok = false;
+        } else if (!lastName.matches("^[ÆØÅæøåA-Za-z]{2-30}")) {
+            String message = "Fyll inn korrekt navn, kun bokstaver tillatt";
+            customerRegistration.setLastNameMessage(message);
+            ok = false;
+        }
+        
+        if (street.equals("")) {
+            String message = "Fyll inn dette feltet.";
+            customerRegistration.setStreetMessage(message);
+            ok = false;
+        } else if (!street.matches("[ÆØÅæøåa-zA-Z0-9]{2-30}")) {
+            String message = "Fyll inn korrekt gateadresse, kun bokstaver og"
+                    + " tall tillatt";
+            customerRegistration.setStreetMessage(message);
+            ok = false;
+        }
+        
+        if (city.equals("")) {
+            String message = "Fyll inn dette feltet.";
+            customerRegistration.setCityMessage(message);
+            ok = false;
+        } else if (!city.matches("^[æøåÆØÅa-zA-Z]{2-30}")) {
+            String message = "Fyll inn korrekt poststed, kun bokstaver tillatt";
+            customerRegistration.setCityMessage(message);
+            ok = false;
+        }
+        
+        if (email.equals("")) {
+            String message = "Fyll inn dette feltet.";
+            customerRegistration.setEmailMessage(message);
+            ok = false;
+        } else if (!email.matches("^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+(?:\\.[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+)*@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$")) {
+            String message = "Fyll inn korrekt email adresse.";
+            customerRegistration.setEmailMessage(message);
+            ok = false;
+        }
+        
+        if (phone.equals("")) {
+            String message = "Fyll inn dette feltet.";
+            customerRegistration.setPhoneMessage(message);
+            ok = false;
+        } else if (!phone.matches("\\d{8-13}")) {
+            String message = "Fyll inn korrekt telefonnummer.";
+            customerRegistration.setPhoneMessage(message);
+            ok = false;
+        }
+ 
+        if (zipCodeS.equals("")) {
+            String message = "Fyll inn dette feltet.";
+            customerRegistration.setZipCodeMessage(message);
+            ok = false;
+        } else if (!zipCodeS.matches("\\d{4}")) {
+            String message = "Fyll inn korrekt postnummer, 4 siffer.";
+            customerRegistration.setZipCodeMessage(message);
+            ok = false;
+        } else {
+            
+            try {
+                zipCode = Integer.parseInt(zipCodeS);
+            } catch (NumberFormatException nfe) {
+                    ok = false;
+                    logs.add(nfe.getStackTrace(), nfe.getMessage(), user);
+            }
+        }
+        
         // Creates an adress object for the customer:
         Address adress = new Address(street, zipCode, city);
         // Creates a new customer:
         Employee employee;
-        boolean ok = false;
+
         switch (position) {
             case SERVICE_WORKER : employee = new ServiceWorker(firstName, lastName, personalNumber, email, adress, phone);
             case CASE_WORKER : employee = new CaseWorker(firstName, lastName, personalNumber, email, adress, phone);
@@ -360,10 +529,8 @@ public class MainController {
             // Search for all insurances by 
             List inc = insurances.getAllInsurancesByCustomerId(cId);
             if (!inc.isEmpty()) {
-                System.err.println("HEI");
                 carInsuranceRegistration.populateInsurancesTable(inc);
             }
-            System.err.println("HEINEI");
         }
     }
     
@@ -390,7 +557,7 @@ public class MainController {
     
     private void setBrandComboBox() {
         List cars = modelController.getCarInfos();
-        carInsuranceRegistration.populateBrandCombo(cars);
+        carInsuranceRegistration.populateBrandComboBox(cars);
     }
     
     private void setYearComboBox() {
@@ -401,7 +568,7 @@ public class MainController {
             years.add(i + "");
         }
         
-        carInsuranceRegistration.populateYearCombo(years);
+        carInsuranceRegistration.populateYearComboBox(years);
     }
     
     // INVISIBLE BUG: method gets called twice for every change.
@@ -450,7 +617,7 @@ public class MainController {
         // Whenever a change in the combox is done, this method gets called twice, hence this check to
         // avoid creating a complete list, for so to replace it with an empty list.
         if (years.size() != 0) {
-            carInsuranceRegistration.populateYearCombo(years);
+            carInsuranceRegistration.populateYearComboBox(years);
         }
         
     }
@@ -494,7 +661,7 @@ public class MainController {
                         }
                     }
                 }
-                carInsuranceRegistration.populateModelCombo(modelsResult);
+                carInsuranceRegistration.populateModelComboBox(modelsResult);
   
             } catch (NumberFormatException nfe) {
                 //setSomeMessage
@@ -503,38 +670,6 @@ public class MainController {
         }
         
         
-    }
-    
-    private void carClaimSearchPersonalNumberButtonEventHandler(ActionEvent event) {
-        String personalNumber = carClaimRegistration.getPersonalNumberField();
-        // TODO regex:
-        // Search for customer by personal numer:
-        Customer c = customers.findCustomerByPersonalNumber(personalNumber);
-        // If we find a customer we proceed:
-        if (c != null) {
-            // Show the customer in the text area inside our view:
-            carClaimRegistration.setCustomerArea(c.toString());
-            int cId = c.getId();
-            // Search for all insurances by 
-            List inc = insurances.getAllInsurancesByCustomerId(cId);
-            if (!inc.isEmpty()) {
-                carClaimRegistration.populateInsurancesTable(inc);
-            }
-        }
-    }
-    
-    private void carClaimSelectInsuranceButtonEventHandler(ActionEvent event) {
-        Insurance insurance = carClaimRegistration.getInsuranceTableValue();
-        
-        if (insurance instanceof CarInsurance) {
-            CarInsuranceCoverage coverage = (CarInsuranceCoverage) insurance.getCoverage();
-            carClaimRegistration.setCoverage(coverage.toString(), coverage.damages());
-        } else {
-            Text message = new Text();
-            message.setFill(Color.FIREBRICK);
-            carClaimRegistration.setSelectInsuranceMessage(message);
-                    
-        }
     }
     
     // READ AND WRITE IDS FROM/TO FILE:

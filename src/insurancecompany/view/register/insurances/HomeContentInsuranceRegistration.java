@@ -53,8 +53,7 @@ public class HomeContentInsuranceRegistration {
     // Buttons:
     private Button searchCustomerIdButton;
     private Button searchPersonalNumberButton;
-    // ints used to keep track of searched and selected customer id:
-    private int tempCustomerId;
+    // The customerId used in the insurance registration:
     private int selectedCustomerId;
     
     // REGISTER INSURANCE NODES:
@@ -63,7 +62,6 @@ public class HomeContentInsuranceRegistration {
     private ComboBox<HomeContentInsuranceCoverage> coverageCombo;
     private ComboBox<String> excessCombo;
     private ComboBox<PropertyMaterial> materialCombo;
-    private ComboBox<String> rentalCombo;
     private ComboBox<HomeType> typeCombo;
     private TextField amountField;
     private TextField areaField;
@@ -79,7 +77,6 @@ public class HomeContentInsuranceRegistration {
     private Text coverageMessage;
     private Text excessMessage;
     private Text materialMessage;
-    private Text rentalMessage;
     private Text streetMessage;
     private Text typeMessage;
     private Text yearMessage;
@@ -147,8 +144,6 @@ public class HomeContentInsuranceRegistration {
         populateExcessCombo();
         materialCombo = new ComboBox<>();
         populateMaterialCombo();
-        rentalCombo = new ComboBox<>();
-        populateRentalCombo();
         typeCombo = new ComboBox<>();
         populateTypeCombo();
         amountField = new TextField();
@@ -165,7 +160,6 @@ public class HomeContentInsuranceRegistration {
         coverageMessage = new Text();
         excessMessage = new Text();
         materialMessage = new Text();
-        rentalMessage = new Text();
         streetMessage = new Text();
         typeMessage = new Text();
         yearMessage = new Text();
@@ -188,7 +182,6 @@ public class HomeContentInsuranceRegistration {
         Label excessLabel = new Label("Egenandel:");
         Label materialLabel = new Label("Materiale:");
         Label premiumLabel = new Label("Beregnet forsikringspremie:");
-        Label rentalLabel = new Label("For leie:");
         Label streetLabel = new Label("Gate:");
         Label typeLabel = new Label("Type:");
         Label yearLabel = new Label("Byggeår:");
@@ -220,38 +213,35 @@ public class HomeContentInsuranceRegistration {
         mainPane.add(amountLabel, 4, 3);
         mainPane.add(amountField, 5, 3);
         mainPane.add(amountMessage, 6, 3);
-        mainPane.add(rentalLabel, 4, 4);
-        mainPane.add(rentalCombo, 5, 4);
-        mainPane.add(rentalMessage, 6, 4);
         
-        mainPane.add(houseTitle, 4, 5);
-        mainPane.add(areaLabel, 4, 6);
-        mainPane.add(areaField, 5, 6);
-        mainPane.add(areaMessage, 6, 6);
-        mainPane.add(yearLabel, 4, 7);
-        mainPane.add(yearField, 5, 7);
-        mainPane.add(yearMessage, 6, 7);
-        mainPane.add(materialLabel, 4, 8);
-        mainPane.add(materialCombo, 5, 8);
-        mainPane.add(materialMessage, 6, 8);
-        mainPane.add(typeLabel, 4, 9);
-        mainPane.add(typeCombo, 5, 9);
-        mainPane.add(typeMessage, 6, 9);
+        mainPane.add(houseTitle, 4, 4);
+        mainPane.add(areaLabel, 4, 5);
+        mainPane.add(areaField, 5, 5);
+        mainPane.add(areaMessage, 6, 5);
+        mainPane.add(yearLabel, 4, 6);
+        mainPane.add(yearField, 5, 6);
+        mainPane.add(yearMessage, 6, 6);
+        mainPane.add(materialLabel, 4, 7);
+        mainPane.add(materialCombo, 5, 7);
+        mainPane.add(materialMessage, 6, 7);
+        mainPane.add(typeLabel, 4, 8);
+        mainPane.add(typeCombo, 5, 8);
+        mainPane.add(typeMessage, 6, 8);
         
-        mainPane.add(addressTitle, 4, 10);
-        mainPane.add(streetLabel, 4, 11);
-        mainPane.add(streetField, 5, 11);
-        mainPane.add(streetMessage, 6, 11);
-        mainPane.add(zipCodeLabel, 4, 12);
-        mainPane.add(zipCodeField, 5, 12);
-        mainPane.add(zipCodeMessage, 6, 12);
-        mainPane.add(cityLabel, 4, 13);
-        mainPane.add(cityField, 5, 13);
-        mainPane.add(cityMessage, 6, 13);
-        mainPane.add(premiumLabel, 4, 14);
-        mainPane.add(premiumField, 5, 14);
-        mainPane.add(calculateButton, 6, 14);
-        mainPane.add(registerButton, 5, 15);
+        mainPane.add(addressTitle, 4, 9);
+        mainPane.add(streetLabel, 4, 10);
+        mainPane.add(streetField, 5, 10);
+        mainPane.add(streetMessage, 6, 10);
+        mainPane.add(zipCodeLabel, 4, 11);
+        mainPane.add(zipCodeField, 5, 11);
+        mainPane.add(zipCodeMessage, 6, 11);
+        mainPane.add(cityLabel, 4, 12);
+        mainPane.add(cityField, 5, 12);
+        mainPane.add(cityMessage, 6, 12);
+        mainPane.add(premiumLabel, 4, 13);
+        mainPane.add(premiumField, 5, 13);
+        mainPane.add(calculateButton, 6, 13);
+        mainPane.add(registerButton, 5, 14);
     }
     
     // POPULATE METHODS:
@@ -276,13 +266,6 @@ public class HomeContentInsuranceRegistration {
         obList = FXCollections.observableArrayList(PropertyMaterial.values()); 
         materialCombo.getItems().setAll(obList);
         materialCombo.setPrefWidth(150);
-    }
-    
-    private void populateRentalCombo() {
-        ObservableList<String> rental = FXCollections.observableArrayList();  
-        rental.addAll("Ja", "Nei");
-        rentalCombo.getItems().setAll(rental);
-        rentalCombo.setPrefWidth(150);
     }
     
     private void populateTypeCombo() {
@@ -350,7 +333,6 @@ public class HomeContentInsuranceRegistration {
         coverageMessage.setText("");
         excessMessage.setText("");
         materialMessage.setText("");
-        rentalMessage.setText("");
         streetMessage.setText("");
         typeMessage.setText("");
         yearMessage.setText("");
@@ -412,11 +394,6 @@ public class HomeContentInsuranceRegistration {
     /** @return The value of personalNumberField. */
     public String getPersonalNumber() {
         return personalNumberField.getText();
-    }
-
-    /** @return The value of rentalCombo. */
-    public String getRental() {
-        return rentalCombo.getValue() == null ? "" : rentalCombo.getValue();
     }
 
     /** @return The value of selectedCustomerId. */
@@ -498,12 +475,6 @@ public class HomeContentInsuranceRegistration {
         this.materialMessage.setText(message);
     }
 
-    /** @param message The message to set. */
-    public void setRentalMessage(String message) {
-        this.rentalMessage.setFill(Color.FIREBRICK);
-        this.rentalMessage.setText(message);
-    }
-    
     /** @param selectedCustomerId The selectedCustomerId to set. */
     public void setSelectedCustomerId(int selectedCustomerId) {
         this.selectedCustomerId = selectedCustomerId;

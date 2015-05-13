@@ -53,8 +53,7 @@ public class HolidayHomeInsuranceRegistration {
     // Buttons:
     private Button searchCustomerIdButton;
     private Button searchPersonalNumberButton;
-    // ints used to keep track of searched and selected customer id:
-    private int tempCustomerId;
+    // The customerId used in the insurance registration:
     private int selectedCustomerId;
     
     // REGISTER INSURANCE NODES:
@@ -201,7 +200,7 @@ public class HolidayHomeInsuranceRegistration {
         
         mainPane.add(resultTitle, 0, 3);
         mainPane.add(customerArea, 0, 4, 3, 5);
-        mainPane.add(customerSelectedMessage, 1, 9);
+        mainPane.add(customerSelectedMessage, 0, 9);
         mainPane.add(insurancesTitle, 0, 10);
         mainPane.add(insurancesTable, 0, 11, 3, 5);
         

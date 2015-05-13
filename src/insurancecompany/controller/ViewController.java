@@ -5,26 +5,14 @@
  */
 package insurancecompany.controller;
 
-import insurancecompany.model.datastructures.ClaimRegister;
-import insurancecompany.model.datastructures.CustomerRegister;
-import insurancecompany.model.datastructures.EmployeeRegister;
-import insurancecompany.model.datastructures.InsuranceRegister;
 import insurancecompany.view.*;
 import insurancecompany.view.modules.*;
 import insurancecompany.view.register.*;
 import insurancecompany.view.register.claims.*;
-import insurancecompany.view.register.claims.BoatClaimRegistration;
-import insurancecompany.view.register.claims.CarClaimRegistration;
-import insurancecompany.view.register.claims.HolidayHomeClaimRegistration;
-import insurancecompany.view.register.claims.HomeClaimRegistration;
-import insurancecompany.view.register.claims.TravelClaimRegistration;
 import insurancecompany.view.register.insurances.*;
 import insurancecompany.view.register.persons.*;
 import insurancecompany.view.search.*;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Button;
-import javafx.scene.control.ToggleButton;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;

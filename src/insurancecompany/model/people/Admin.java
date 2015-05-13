@@ -9,6 +9,7 @@ import java.io.Serializable;
  * @author Carl
  */
 public class Admin extends Employee implements Serializable {
+    /** SerialVersionUID used to identify this class for object IO */
     private static final long serialVersionUID = 1L;
 
     /**

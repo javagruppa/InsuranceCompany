@@ -7,6 +7,8 @@ package insurancecompany.controller;
 
 
 import insurancecompany.misc.coverages.BoatInsuranceCoverage;
+import insurancecompany.misc.coverages.HomeInsuranceCoverage;
+import insurancecompany.misc.hometypes.HomeType;
 import insurancecompany.model.datastructures.ClaimRegister;
 import insurancecompany.model.datastructures.CustomerRegister;
 import insurancecompany.model.datastructures.EmployeeRegister;
@@ -337,5 +339,119 @@ public class ModelController {
         insurances.addInsurance(insurance); //returns boolean
         // TODO: Give a message to the user whether the insurance was added or not. It would not
         //       be added if the register already contained such an insurance.
+    }
+    
+    private void homeInsuranceRegisterButtonEventHandler(ActionEvent e) {
+        
+        // Clears previous messages:
+        homeInsuranceRegistration.clearMessages();
+        
+        // Collects information about the customer and the insurance:
+        HomeInsuranceCoverage coverage = homeInsuranceRegistration.getCoverage();
+        int customerId = homeInsuranceRegistration.getSelectedCustomerId();
+        String amountString = homeInsuranceRegistration.getAmount();
+        String excessString = homeInsuranceRegistration.getExcess();
+        
+        // Collects information about the home:
+        HomeType type = homeInsuranceRegistration.getType();
+        String area = homeInsuranceRegistration.getArea();
+        String city = homeInsuranceRegistration.getCity();
+        String material = homeInsuranceRegistration.getMaterial();
+        String street = homeInsuranceRegistration.getStreet();
+        String yearString = homeInsuranceRegistration.getYear();
+        String zipCode = homeInsuranceRegistration.getZipCode();
+        
+        // Creates a boolean which is to be set true if the user has made a 
+        // mistake and the method has to abort:
+        boolean abort = false;
+        
+        // Creates strings to be used in messages to the user:
+        String formatMessage = "* Kan kun bestå av tall.";
+        String missingMessage = "* Dette feltet må fylles ut.";
+        
+        // Creates ints and booleans for the converted values:
+        int amount = 0;
+        int excess = 0;
+        int year = 0;
+        
+        // Evaluates Input:
+        if(area.equals("")) {
+            homeInsuranceRegistration.setAreaMessage(missingMessage);
+            abort = true;
+        }
+        if(city.equals("")) {
+            homeInsuranceRegistration.setCityMessage(missingMessage);
+            abort = true;
+        }
+        if(coverage == null) {
+            homeInsuranceRegistration.setCoverageMessage(missingMessage);
+            abort = true;
+        }
+        if(material.equals("")) {
+            homeInsuranceRegistration.setMaterialMessage(missingMessage);
+            abort = true;
+        }
+        if(street.equals("")) {
+            homeInsuranceRegistration.setStreetMessage(missingMessage);
+            abort = true;
+        }
+        if(type == null) {
+            homeInsuranceRegistration.setTypeMessage(missingMessage);
+            abort = true;
+        }
+        if(zipCode.equals("")) {
+            homeInsuranceRegistration.setZipCodeMessage(missingMessage);
+            abort = true;
+        }
+        
+        // Evaluates and converts Input:
+        if(amountString.equals("")) {
+            homeInsuranceRegistration.setAmountMessage(missingMessage);
+        } else {
+            try {
+                amount = Integer.parseInt(amountString);
+            } catch(NumberFormatException nfe) {
+                homeInsuranceRegistration.setAmountMessage(formatMessage);
+                abort = true;
+            }
+        }
+        if(excessString.equals("")) {
+            homeInsuranceRegistration.setExcessMessage(missingMessage);
+        } else {
+            try {
+                excess = Integer.parseInt(excessString);
+            } catch(NumberFormatException nfe) {
+                homeInsuranceRegistration.setExcessMessage(formatMessage);
+                abort = true;
+            }
+        }
+        if(yearString.equals("")) {
+            homeInsuranceRegistration.setYearMessage(missingMessage);
+        } else {
+            try {
+                year = Integer.parseInt(yearString);
+            } catch(NumberFormatException nfe) {
+                homeInsuranceRegistration.setYearMessage(formatMessage);
+                abort = true;
+            }
+        }
+        
+        if(abort) {
+            return;
+        }
+        /*
+        // Creates Home:
+        Home home = new Home(alarm, brand, engineEffect, engineType, length, 
+                model, ownerPersonalNumber, registrationNumber, 
+                registrationYear, value);
+        
+        // Creates BoatInsurance:
+        BoatInsurance insurance = new BoatInsurance(boat, customerId, coverage, excess);
+        
+        // Adds insurance to Register:
+        insurances.addInsurance(insurance); //returns boolean
+        // TODO: Give a message to the user whether the insurance was added or not. It would not
+        //       be added if the register already contained such an insurance.
+        */
     }
 }

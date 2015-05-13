@@ -1,34 +1,45 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package insurancecompany.model.claims;
 
+import insurancecompany.misc.DateUtility;
 import insurancecompany.model.people.Customer;
-import insurancecompany.model.people.Person;
+import insurancecompany.model.people.VehicleOwner;
 import insurancecompany.model.vehicles.Car;
 import java.io.Serializable;
+import java.util.Calendar;
 
 /**
- *
+ * Class CarClaimForm. A form to be included with all car claim, giving
+ * necessary information about the damage, drivers/cars included and course
+ * of events.
+ * 
  * @author Carl
  */
 public class CarClaimForm implements Serializable {
+    /** SerialVersionUID used to identify this class for object IO */
     private static final long serialVersionUID = 1L;
-    
+    /** The car covered by this carclaimform */
     private Car car;
+    /** The customer who owns the insurance */
     private Customer owner;
-    private Person otherPerson;
+    /** The owner of another vehicle involved in the accident */
+    private VehicleOwner otherPerson;
+    /** Another car involved in the accident */
     private Car otherCar;
+    /** The name of the insurance company of the other part involved */
     private String insuranceCompanyOther;
+    /** The location of the accident */
     private String location;
+    /** The course of events */
     private String courseOfEvents;
+    /** The date of the accident */
+    private Calendar date;
+    /** The Id for the insurance covering this damage */
+    private int insuranceId;
     
     /**
      * Constructs a new CarClaimForm with the specified car, owner, otherperson,
      * othercar, insuranceComp, location and events.
+     * This is for accidents with other cars involved
      * 
      * @param car the car this CarClaimForm covers
      * @param owner the owner of the card this CarClaimForm covers
@@ -37,9 +48,11 @@ public class CarClaimForm implements Serializable {
      * @param insuranceComp the insurance company of the other part involved
      * @param location where the accident happened
      * @param events the courseOfEvents
+     * @param insuranceId the Id of the insurance covering this damage
      */
-    public CarClaimForm(Car car, Customer owner, Person otherPerson,
-            Car otherCar, String insuranceComp, String location, String events){
+    public CarClaimForm(Car car, Customer owner, VehicleOwner otherPerson,
+            Car otherCar, String insuranceComp, String location, String events,
+            int insuranceId){
         this.car = car;
         this.owner = owner;
         this.otherPerson = otherPerson;
@@ -47,6 +60,29 @@ public class CarClaimForm implements Serializable {
         this.insuranceCompanyOther = insuranceComp;
         this.location = location;
         this.courseOfEvents = events;
+        this.insuranceId = insuranceId;
+        date = Calendar.getInstance();
+    }
+    
+    /**
+     * Constructs a new CarClaimForm with the specified car, owner, otherperson,
+     * othercar, insuranceComp, location and events.
+     * This is for accidents without other cars involved
+     * 
+     * @param car the car this CarClaimForm covers
+     * @param owner the owner of the card this CarClaimForm covers
+     * @param location where the accident happened
+     * @param events the courseOfEvents
+     * @param insuranceId the Id of the insurance covering this damage
+     */
+    public CarClaimForm(Car car, Customer owner, String location,
+            String events, int insuranceId){
+        this.car = car;
+        this.owner = owner;
+        this.location = location;
+        this.courseOfEvents = events;
+        this.insuranceId = insuranceId;
+        date = Calendar.getInstance();
     }
     
     /**
@@ -77,7 +113,7 @@ public class CarClaimForm implements Serializable {
      * Returns the other person involved in the accident.
      * @return a Person-object from this accident
      */
-    public Person getOtherPerson(){
+    public VehicleOwner getOtherPerson(){
         return otherPerson;
     }
     
@@ -112,15 +148,39 @@ public class CarClaimForm implements Serializable {
      * 
      * @return a string representation of this CarClaimForm
      */
-    public String toString(){
-        String s = "Kunde:\n" + owner.toString() + "\n\n"
-                + "Kundens kjøretøy:\n" + car.toString() + "\n\n"
-                + "Andre involverte part:\n" + otherPerson.toString()
-                + "\n\n" + "Andre involverte kjøretøy:\n"
-                + otherCar.toString() + "\n\nSted for hendelse:\n" + location
-                + "\n\nHendelsesforløp:\n" + courseOfEvents;
-        return s;
-    }
-    
+    public String toString() {
+        // Creates a StringBuilder which will be returned at the end of the 
+        // method.
+        StringBuilder result = new StringBuilder();
+        // Appends the fields with appropriate sentences.
+        result.append("SKADEMELDINGSSKJEMA");
+        result.append("\nDato registrert: ").append
+                (DateUtility.NORWEGIAN_DATE_FORMAT.format(date));
+        result.append("\n\nBIL A:");
+        result.append("\nKundenummer: ").append(owner.getId());
+        result.append("\nKundenavn: ").append(owner.getName());
+        result.append("\nBilens registeringsnummer: ").append
+                (car.getRegistrationNumber());
+        result.append("\nForsikringsnummer: ").append(insuranceId);
+        // If another person is involved in the accident, the following fields
+        // will also be added
+        if(otherPerson != null) {
+            result.append("\n\nBIL B: ");
+            result.append("\nEiers navn: ").append(otherPerson.getName());
+            result.append("\nEiers personnummer: ").append
+                    (otherPerson.getPersonalNumber());
+            result.append("\nBilens registreringsnummer: ").append
+                    (otherCar.getRegistrationNumber());
+            result.append("\nForsikringsselskap: ").append
+                    (insuranceCompanyOther);
+        }
+        // These fields are added regardless of if another person i involved
+        result.append("\n\nHvor hendelsen skjedde:\n").append
+                (location).append("\n");
+        result.append("\nHendelsesforløp:\n").append(courseOfEvents);
+        // Returns the string.
+        return result.toString();
+        
+    }    
     
 }

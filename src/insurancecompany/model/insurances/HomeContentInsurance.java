@@ -6,7 +6,7 @@
 
 package insurancecompany.model.insurances;
 
-import insurancecompany.model.properties.Home;
+import insurancecompany.model.properties.Property;
 import insurancecompany.misc.hometypes.HomeType;
 import insurancecompany.misc.coverages.HomeInsuranceCoverage;
 import java.io.Serializable;
@@ -20,7 +20,7 @@ public class HomeContentInsurance extends PropertyInsurance implements Serializa
     private static final long serialVersionUID = 1L;
     
     /** the home this insurance is for */
-    private Home home;
+    private Property home;
     /** the hometype this insurance is for */
     private HomeType hometype;
     /** the coverage of this insurance */
@@ -40,7 +40,7 @@ public class HomeContentInsurance extends PropertyInsurance implements Serializa
      * @param coverage the coverage of this insurance
      * @param amount the value this insurance covers
      */
-    public HomeContentInsurance(int customerId, int excess, Home home,
+    public HomeContentInsurance(int customerId, int excess, Property home,
             HomeType hometype, HomeInsuranceCoverage coverage, int amount){
         super(customerId, excess);
         this.home = home;
@@ -167,7 +167,7 @@ public class HomeContentInsurance extends PropertyInsurance implements Serializa
     public Object getCoverage() {
         return coverage;
     }    
-    public Home getHome(){
+    public Property getHome(){
         return home;
     }
 }

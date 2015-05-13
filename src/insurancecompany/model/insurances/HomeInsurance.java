@@ -5,7 +5,7 @@
  */
 package insurancecompany.model.insurances;
 
-import insurancecompany.model.properties.Home;
+import insurancecompany.model.properties.Property;
 import insurancecompany.misc.hometypes.HomeType;
 import insurancecompany.misc.coverages.HomeInsuranceCoverage;
 import java.io.Serializable;   
@@ -19,12 +19,13 @@ public class HomeInsurance extends PropertyInsurance implements Serializable {
     private static final long serialVersionUID = 1L;
     
     /** The home this insurance is for. */
-    private Home home;
+    private Property home;
     /** The type of home this insurance is for */
     private HomeType hometype;
     /** The coverage of this insurance */
     private HomeInsuranceCoverage coverage;
-    
+    /** Whether or not the insurance covers rental property */
+    private boolean rental;
     
     /**
      * Constructs a new home insurance with the specified customerId, excess
@@ -37,12 +38,13 @@ public class HomeInsurance extends PropertyInsurance implements Serializable {
      * @param hometype the type of home this insurance is for
      * @param coverage the coverage of this insurance
      */
-    public HomeInsurance(int customerId, int excess, Home home, 
-            HomeType hometype, HomeInsuranceCoverage coverage) {
+    public HomeInsurance(int customerId, int excess, Property home, 
+            HomeType hometype, HomeInsuranceCoverage coverage, boolean rental) {
         super(customerId, excess);
         this.home = home;
         this.hometype = hometype;
         this.coverage = coverage;
+        this.rental = rental;
     }
     
     /**
@@ -52,6 +54,14 @@ public class HomeInsurance extends PropertyInsurance implements Serializable {
     @Override
     public String getName() {
         return "Husforsikring";
+    }
+    
+    /**
+     * Returns whether or not this insurance covers rentals
+     * @return rental
+     */
+    public boolean getRental() {
+        return rental;
     }
     
     /**
@@ -71,7 +81,7 @@ public class HomeInsurance extends PropertyInsurance implements Serializable {
         result.append("\n").append(super.toString());
         result.append("\nDekning: ").append(coverage.toString());
         result.append("\nUtleiedekning: ").
-                append(home.getRental() ? "Ja" : "Nei");
+                append(rental ? "Ja" : "Nei");
         // Returns the string.
         return result.toString();
     }
@@ -103,7 +113,7 @@ public class HomeInsurance extends PropertyInsurance implements Serializable {
     private double rentalExtra(){
 	double rentalExtra = 1;
 
-	if (home.getRental()){
+	if (rental){
             rentalExtra = 1.15;
 	}
 
@@ -175,7 +185,17 @@ public class HomeInsurance extends PropertyInsurance implements Serializable {
         int setPremium = (int)finalprice;
         // Sets this insurances premium to the final price
 	setPremium(setPremium);
-}
+    }
+    
+    /**
+     * Sets the rental status of this insurance to the received parameter.
+     * Also changes the premium of this insurance based on the new information.
+     * @param rental whether or not this insurance covers rentals
+     */
+    public void setRental(boolean rental) {
+        this.rental = rental;
+        insuranceprice();
+    }
     
     
     
@@ -184,7 +204,7 @@ public class HomeInsurance extends PropertyInsurance implements Serializable {
      * 
      * @return the home this insurance is for
      */
-    public Home getHome() {
+    public Property getHome() {
         return home;
     }
     

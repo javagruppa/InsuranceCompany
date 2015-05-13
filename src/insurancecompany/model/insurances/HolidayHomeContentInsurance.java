@@ -6,7 +6,7 @@
 
 package insurancecompany.model.insurances;
 
-import insurancecompany.model.properties.HolidayHome;
+import insurancecompany.model.properties.Property;
 import insurancecompany.misc.hometypes.HolidayHomeType;
 import insurancecompany.misc.coverages.HolidayHomeInsuranceCoverage;
 import java.io.Serializable;
@@ -21,7 +21,7 @@ public class HolidayHomeContentInsurance extends PropertyInsurance
     private static final long serialVersionUID = 1L;
     
     /** the home this insurance is for */
-    private HolidayHome holidayhome;
+    private Property holidayhome;
     /** the hometype this insurance is for */
     private HolidayHomeType holidayhometype;
     /** the coverage of this insurance */
@@ -43,7 +43,7 @@ public class HolidayHomeContentInsurance extends PropertyInsurance
      * @param amount the value of this insurance
      */
     public HolidayHomeContentInsurance(int customerId, int excess,
-            HolidayHome holidayhome, HolidayHomeType holidayhometype,
+            Property holidayhome, HolidayHomeType holidayhometype,
             HolidayHomeInsuranceCoverage coverage, int amount){
         super(customerId, excess);
         this.holidayhome = holidayhome;
@@ -172,7 +172,7 @@ public class HolidayHomeContentInsurance extends PropertyInsurance
         return coverage;
     }
     
-    public HolidayHome getholidayHome(){
+    public Property getholidayHome(){
         return holidayhome;
     }
 }

@@ -13,6 +13,11 @@ import insurancecompany.view.*;
 import insurancecompany.view.modules.*;
 import insurancecompany.view.register.*;
 import insurancecompany.view.register.claims.*;
+import insurancecompany.view.register.claims.BoatClaimRegistration;
+import insurancecompany.view.register.claims.CarClaimRegistration;
+import insurancecompany.view.register.claims.HolidayHomeClaimRegistration;
+import insurancecompany.view.register.claims.HomeClaimRegistration;
+import insurancecompany.view.register.claims.TravelClaimRegistration;
 import insurancecompany.view.register.insurances.*;
 import insurancecompany.view.register.persons.*;
 import insurancecompany.view.search.*;
@@ -77,7 +82,6 @@ public class ViewController {
     private HolidayHomeClaimRegistration holidayHomeClaimRegistration;
     private HomeClaimRegistration homeClaimRegistration;
     private TravelClaimRegistration travelClaimRegistration;
-
     
     // Constructor
     public ViewController(AdminView adminView, 

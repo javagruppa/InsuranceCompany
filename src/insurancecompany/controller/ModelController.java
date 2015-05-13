@@ -19,6 +19,7 @@ import insurancecompany.model.insurances.BoatInsurance;
 import insurancecompany.model.insurances.Insurance;
 import insurancecompany.model.people.Customer;
 import insurancecompany.model.properties.Address;
+import insurancecompany.model.properties.PropertyMaterial;
 import insurancecompany.model.vehicles.Boat;
 import insurancecompany.view.register.insurances.BoatInsuranceRegistration;
 import insurancecompany.view.register.insurances.CarInsuranceRegistration;
@@ -354,9 +355,9 @@ public class ModelController {
         
         // Collects information about the home:
         HomeType type = homeInsuranceRegistration.getType();
+        PropertyMaterial material = homeInsuranceRegistration.getMaterial();
         String area = homeInsuranceRegistration.getArea();
         String city = homeInsuranceRegistration.getCity();
-        String material = homeInsuranceRegistration.getMaterial();
         String street = homeInsuranceRegistration.getStreet();
         String yearString = homeInsuranceRegistration.getYear();
         String zipCode = homeInsuranceRegistration.getZipCode();
@@ -387,7 +388,7 @@ public class ModelController {
             homeInsuranceRegistration.setCoverageMessage(missingMessage);
             abort = true;
         }
-        if(material.equals("")) {
+        if(material == null) {
             homeInsuranceRegistration.setMaterialMessage(missingMessage);
             abort = true;
         }

@@ -18,7 +18,6 @@ import javafx.event.ActionEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import org.omg.CORBA.BAD_CONTEXT;
 
 /**
  * View Controller. This class connects all the views together.
@@ -71,12 +70,14 @@ public class ViewController {
     private ClaimsProcessView claimsProcessView;
     private SubscriptionsProcessView subscriptionsProcessView;
     
+    /*
     // Sub-Tab Views for SearchView
     private CustomerSearchView customerSearchView;
     private EmployeeSearchView employeeSearchView;
     private InsuranceSearchView insuranceSearchView;
     private ClaimSearchView claimsSearchView;
     
+    */
     // Sub-Tab Views for StatisticsView
     private CustomerStatisticsView customerStatisticsView;
     private EmployeeStatisticsView employeeStatisticsView;
@@ -121,12 +122,14 @@ public class ViewController {
         this.insurancesView = new InsurancesView();
         this.personsView = new PersonsView();
         
+        /*
         // Initializes Sub-Tab Views for SearchView
         this.customerSearchView = new CustomerSearchView();
         this.employeeSearchView = new EmployeeSearchView();
         this.insuranceSearchView = new InsuranceSearchView();
         this.claimsSearchView = new ClaimSearchView();
-        
+        */
+                
         // Initializes Sub-Tab Views for StatisticsView
         this.customerStatisticsView = new CustomerStatisticsView();
         this.employeeStatisticsView = new EmployeeStatisticsView();
@@ -326,6 +329,6 @@ public class ViewController {
     // SEARCH CLAIMS VIEW EVENT HANDLERS
     
     private void searchViewClaimsButtonEventHandler(ActionEvent event) {
-        searchView.getMainPane().setCenter(claimsSearchView.getMainPane());
+        //searchView.getMainPane().setCenter(claimsSearchView.getMainPane());
     }
 }

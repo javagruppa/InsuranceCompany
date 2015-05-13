@@ -204,6 +204,9 @@ public class ModelController {
     
     private void boatInsuranceRegisterButtonEventHandler(ActionEvent e) {
         
+        // Clears previous messages:
+        boatInsuranceRegistration.clearMessages();
+        
         // Collects information about the customer and the insurance:
         BoatInsuranceCoverage coverage = boatInsuranceRegistration.getCoverage();
         int customerId = boatInsuranceRegistration.getSelectedCustomerId();

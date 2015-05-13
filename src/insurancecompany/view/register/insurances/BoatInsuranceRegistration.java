@@ -323,6 +323,23 @@ public class BoatInsuranceRegistration {
         registerButton.setOnAction(value);
     }
     
+    // CLEAR MESSAGES METHOD
+    
+    public void clearMessages() {
+        alarmMessage.setText("");
+        brandMessage.setText("");
+        coverageMessage.setText("");
+        engineEffectMessage.setText("");
+        engineTypeMessage.setText("");
+        excessMessage.setText("");
+        lengthMessage.setText("");
+        modelMessage.setText("");
+        ownerPersonalNumberMessage.setText("");
+        registrationNumberMessage.setText("");
+        registrationYearMessage.setText("");
+        valueMessage.setText("");
+    }
+    
     // GET METHODS:
 
     /** @return The main pane of this class. */

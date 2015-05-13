@@ -244,6 +244,7 @@ public class MainController {
     // TODO: Trenger regex og validering
     private void registerCustomerButtonEventHandler(ActionEvent event) {
         boolean ok = true;
+        int zipCode = 0;
         
         String personalNumber = customerRegistration.getPersonalNumberField();
         String firstName = customerRegistration.getFirstNameField();
@@ -344,7 +345,7 @@ public class MainController {
             customerRegistration.setZipCodeMessage(message);
             ok = false;
         } else {
-            int zipCode = 0;
+            
             try {
                 zipCode = Integer.parseInt(zipCodeS);
             } catch (NumberFormatException nfe) {
@@ -374,6 +375,7 @@ public class MainController {
     // TODO: Trenger regex og validering
     private void registerEmployeeButtonEventHandler(ActionEvent event) {
         boolean ok = true;
+        int zipCode = 0;
         EmployeeType position = employeeRegistration.getPositionComboValue();
         String personalNumber = employeeRegistration.getPersonalNumberField();
         String firstName = employeeRegistration.getFirstNameField();
@@ -474,7 +476,7 @@ public class MainController {
             customerRegistration.setZipCodeMessage(message);
             ok = false;
         } else {
-            int zipCode = 0;
+            
             try {
                 zipCode = Integer.parseInt(zipCodeS);
             } catch (NumberFormatException nfe) {
@@ -487,7 +489,7 @@ public class MainController {
         Address adress = new Address(street, zipCode, city);
         // Creates a new customer:
         Employee employee;
-        boolean ok = false;
+
         switch (position) {
             case SERVICE_WORKER : employee = new ServiceWorker(firstName, lastName, personalNumber, email, adress, phone);
             case CASE_WORKER : employee = new CaseWorker(firstName, lastName, personalNumber, email, adress, phone);

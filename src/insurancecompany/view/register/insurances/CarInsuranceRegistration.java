@@ -406,7 +406,9 @@ public class CarInsuranceRegistration {
     }
     
     // CLEAR MESSAGES METHOD:
-    
+    /**
+     * Clears the messages used to display invalid input.
+     */
     public void clearMessages() {
         alarmMessage.setText("");
         brandMessage.setText("");
@@ -442,7 +444,7 @@ public class CarInsuranceRegistration {
     
     ///
     ///
-    /// SINDRE HAR KOMMET SÅ LANGT MED Å OPPDATERE DENNE KLASSEN. =D
+    /// SINDRE HAR KOMMET SÅ LANGT MED Å OPPDATERE DENNE KLASSEN. =D GOOD JOB!! :D
     ///
     ///
     

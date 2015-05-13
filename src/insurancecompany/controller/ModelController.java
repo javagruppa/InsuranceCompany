@@ -360,7 +360,7 @@ public class ModelController {
         // Collects information about the home:
         HomeType type = homeInsuranceRegistration.getType();
         PropertyMaterial material = homeInsuranceRegistration.getMaterial();
-        String area = homeInsuranceRegistration.getArea();
+        String areaString = homeInsuranceRegistration.getArea();
         String city = homeInsuranceRegistration.getCity();
         String street = homeInsuranceRegistration.getStreet();
         String yearString = homeInsuranceRegistration.getYear();
@@ -376,14 +376,11 @@ public class ModelController {
         
         // Creates ints and booleans for the converted values:
         int amount = 0;
+        int area = 0;
         int excess = 0;
         int year = 0;
         
         // Evaluates Input:
-        if(area.equals("")) {
-            homeInsuranceRegistration.setAreaMessage(missingMessage);
-            abort = true;
-        }
         if(city.equals("")) {
             homeInsuranceRegistration.setCityMessage(missingMessage);
             abort = true;
@@ -410,6 +407,17 @@ public class ModelController {
         }
         
         // Evaluates and converts Input:
+        if(areaString.equals("")) {
+            homeInsuranceRegistration.setAreaMessage(missingMessage);
+            abort = true;
+        } else {
+            try {
+                area = Integer.parseInt(areaString);
+            } catch(NumberFormatException nfe) {
+                homeInsuranceRegistration.setAreaMessage(formatMessage);
+                abort = true;
+            }
+        }
         if(amountString.equals("")) {
             homeInsuranceRegistration.setAmountMessage(missingMessage);
         } else {

@@ -8,6 +8,7 @@ package insurancecompany.controller;
 import insurancecompany.view.*;
 import insurancecompany.view.modules.*;
 import insurancecompany.view.register.*;
+import insurancecompany.view.register.claims.*;
 import insurancecompany.view.register.insurances.*;
 import insurancecompany.view.register.persons.*;
 import insurancecompany.view.search.*;
@@ -53,14 +54,17 @@ public class ViewController {
     
     // Sub-Tab Views for PersonsView
     
+    // Persons RRegistration Views
+    private CustomerRegistration customerRegistration;
+    private EmployeeRegistration employeeRegistration;
     // Insurance Registration Views
     private BoatInsuranceRegistration boatInsuranceRegistration;
     private CarInsuranceRegistration carInsuranceRegistration;
-    private CustomerRegistration customerRegistration;
-    private EmployeeRegistration employeeRegistration;
     private HolidayHomeInsuranceRegistration holidayHomeInsuranceRegistration;
     private HomeInsuranceRegistration homeInsuranceRegistration;
     private TravelInsuranceRegistration travelInsuranceRegistration;
+    // Claims Registration Views
+    private CarClaimRegistration carClaimRegistration;
     
     // Constructor
     public ViewController(AdminView adminView, BoatInsuranceRegistration boatInsuranceRegistration, 

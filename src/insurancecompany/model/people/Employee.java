@@ -1,38 +1,48 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package insurancecompany.model.people;
 
 import insurancecompany.model.properties.Address;
-
 import java.io.*;
 
 /**
- *
+ * Employee class. This is an employee of the insurance company. This is a
+ * super class of Admin, CaseWorker and ServiceWorker, and the employee is
+ * either of these.
+ * 
  * @author Carl
  */
 public abstract class Employee extends Person implements Serializable {
+    /** SerialVersionUID used to identify this class for object IO */
     private static final long serialVersionUID = 1L;
-    //The next employee ID
+    /** The next employee ID */
     private static int nextEmployeeId = 1000000;
-    //Filename of employee IDs
+    /** The filepath of the file the customer IDs are saved to */
     private static String employeeIdFileName = "src/insurancecompany/resources/nextidnumbers/employeeId.dta";
-    //To be used if the program is to be extended in the future
-    private String passwordSalt;
-    private String passwordHash;
-    //The customer ID
-    private final int employeeId;
     
-    /** Decides if this employees position/hire is active.*/
+    /** passwords */
+    private String passwordSalt; // to be used in future upgrades
+    private String passwordHash; // to be used in future upgrades
+    
+    /** The employee ID */
+    private final int employeeId;
+    /** Whether or not this employees position/hire is active.*/
     private boolean active;
     
+    /**
+     * Constructs an employee with the specified parameters
+     * 
+     * @param firstname the first name of this employee
+     * @param lastname the last name of this employee
+     * @param personalNumber the personal number of this employee
+     * @param email the email address of this employee
+     * @param address the address of this employee
+     * @param phone the phone number of this employee
+     */
     public Employee(String firstname, String lastname, String personalNumber,
             String email, Address address, String phone) {
         super(firstname, lastname, personalNumber, email, address, phone);
+        // Sets the employee ID to nextEmployeeId, and adds 1 to nextEmployeeId
         employeeId = nextEmployeeId++;
+        // Sets that the employee is active
         active = true;
     }
     
@@ -90,13 +100,15 @@ public abstract class Employee extends Person implements Serializable {
     }
 
     /**
-     * @return the active
+     * Returns whether or not this employee is active
+     * @return the boolean active
      */
     public boolean isActive() {
         return active;
     }
 
     /**
+     * Sets whether or not this employee is active
      * @param active the active to set
      */
     public void setActive(boolean active) {
@@ -104,6 +116,7 @@ public abstract class Employee extends Person implements Serializable {
     }
 
     /**
+     * Returns the employeeId of this employee
      * @return the employeeId
      */
     public int getEmployeeId() {

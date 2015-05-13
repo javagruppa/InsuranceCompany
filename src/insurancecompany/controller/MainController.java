@@ -83,11 +83,14 @@ public class MainController {
         this.employeeRegistration = new EmployeeRegistration();
         
         
-        this.modelController = new ModelController(claims, employees, insurances, customers);
+        this.modelController = new ModelController(boatInsuranceRegistration, 
+                carInsuranceRegistration, holidayHomeInsuranceRegistration, 
+                homeInsuranceRegistration, travelInsuranceRegistration, 
+                claims, employees, insurances, customers);
         this.viewController = new ViewController(adminView, boatInsuranceRegistration, 
-            carInsuranceRegistration, holidayHomeInsuranceRegistration,
-            homeInsuranceRegistration, travelInsuranceRegistration, 
-            customerRegistration, employeeRegistration);
+                carInsuranceRegistration, holidayHomeInsuranceRegistration, 
+                homeInsuranceRegistration, travelInsuranceRegistration, 
+                customerRegistration, employeeRegistration);
         
         readAllDataFromFile();
         setBrandComboBox();

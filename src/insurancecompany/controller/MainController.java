@@ -6,7 +6,7 @@
 package insurancecompany.controller;
 
 import insurancecompany.misc.EmployeeType;
-import insurancecompany.misc.coverages.CarInsuranceCoverage;
+import insurancecompany.misc.coverages.*;
 import insurancecompany.model.bills.*;
 import insurancecompany.model.claims.*;
 import insurancecompany.model.datastructures.*;
@@ -14,6 +14,7 @@ import insurancecompany.model.datastructures.carinfo.*;
 import insurancecompany.model.insurances.*;
 import insurancecompany.model.people.*;
 import insurancecompany.model.properties.*;
+import insurancecompany.model.vehicles.Car;
 import insurancecompany.view.modules.*;
 import insurancecompany.view.process.*;
 import insurancecompany.view.register.claims.*;
@@ -29,6 +30,8 @@ import java.util.List;
 import javafx.application.Platform;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /**
@@ -524,7 +527,15 @@ public class MainController {
     private void carClaimSelectInsuranceButtonEventHandler(ActionEvent event) {
         Insurance insurance = carClaimRegistration.getInsuranceTableValue();
         
-        
+        if (insurance instanceof CarInsurance) {
+            CarInsuranceCoverage coverage = (CarInsuranceCoverage) insurance.getCoverage();
+            carClaimRegistration.setCoverage(coverage.toString(), coverage.damages());
+        } else {
+            Text message = new Text();
+            message.setFill(Color.FIREBRICK);
+            carClaimRegistration.setSelectInsuranceMessage(message);
+                    
+        }
     }
     
     // READ AND WRITE IDS FROM/TO FILE:

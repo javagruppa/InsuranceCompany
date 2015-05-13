@@ -323,6 +323,18 @@ public class BoatInsuranceRegistration {
         registerButton.setOnAction(value);
     }
     
+    public void setSearchCustomerIdButtonEventHandler(EventHandler<ActionEvent> value) {
+        searchCustomerIdButton.setOnAction(value);
+    }
+
+    public void setSearchPersonalNumberButtonEventHandler(EventHandler<ActionEvent> value) {
+        searchPersonalNumberButton.setOnAction(value);
+    }
+
+    public void setSelectCustomerButtonEventHandler(EventHandler<ActionEvent> value) {
+        selectCustomerButton.setOnAction(value);
+    }
+    
     // CLEAR MESSAGES METHOD
     
     public void clearMessages() {
@@ -445,6 +457,11 @@ public class BoatInsuranceRegistration {
     public void setCoverageMessage(String message) {
         this.coverageMessage.setFill(Color.FIREBRICK);
         this.coverageMessage.setText(message);
+    }
+    
+    /** @param text The text to set. */
+    public void setCustomerArea(String text) {
+        this.customerArea.setText(text);
     }
 
     /** @param message The message to set. */

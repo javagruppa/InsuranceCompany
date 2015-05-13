@@ -4,10 +4,23 @@
  */
 package insurancecompany.view.register.claims;
 
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
+
 /**
- *
+ * 
  * @author Sindre
  */
 public class BoatClaimRegistration {
     
+    /** The main pane of this class.*/
+    private GridPane mainPane;
+    
+    public BoatClaimRegistration() {
+        
+    }
+    
+    public Pane getMainPane() {
+        return mainPane;
+    }
 }

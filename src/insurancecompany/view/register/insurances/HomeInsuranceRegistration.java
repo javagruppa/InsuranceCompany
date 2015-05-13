@@ -8,6 +8,7 @@ package insurancecompany.view.register.insurances;
 import insurancecompany.misc.coverages.HomeInsuranceCoverage;
 import insurancecompany.misc.hometypes.HomeType;
 import insurancecompany.model.insurances.Insurance;
+import insurancecompany.model.properties.PropertyMaterial;
 import java.util.List;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -62,11 +63,11 @@ public class HomeInsuranceRegistration {
     // Input nodes, ComboBoxes and TextFields:
     private ComboBox<HomeInsuranceCoverage> coverageCombo;
     private ComboBox<String> excessCombo;
+    private ComboBox<PropertyMaterial> materialCombo;
     private ComboBox<HomeType> typeCombo;
     private TextField amountField;
     private TextField areaField;
     private TextField cityField;
-    private TextField materialField;
     private TextField premiumField;
     private TextField streetField;
     private TextField yearField;
@@ -144,12 +145,13 @@ public class HomeInsuranceRegistration {
         populateCoverageCombo();
         excessCombo = new ComboBox<>();
         populateExcessCombo();
+        materialCombo = new ComboBox<>();
+        populateMaterialCombo();
         typeCombo = new ComboBox<>();
         populateTypeCombo();
         amountField = new TextField();
         areaField = new TextField();
         cityField = new TextField();
-        materialField = new TextField();
         premiumField = new TextField();
         streetField = new TextField();
         yearField = new TextField();
@@ -224,7 +226,7 @@ public class HomeInsuranceRegistration {
         mainPane.add(yearField, 5, 6);
         mainPane.add(yearMessage, 6, 6);
         mainPane.add(materialLabel, 4, 7);
-        mainPane.add(materialField, 5, 7);
+        mainPane.add(materialCombo, 5, 7);
         mainPane.add(materialMessage, 6, 7);
         mainPane.add(typeLabel, 4, 8);
         mainPane.add(typeCombo, 5, 8);
@@ -261,6 +263,13 @@ public class HomeInsuranceRegistration {
                 "16000", "18000", "20000", "25000", "30000");
         excessCombo.getItems().setAll(excess);
         excessCombo.setPrefWidth(150);
+    }
+    
+    private void populateMaterialCombo() {
+        ObservableList<PropertyMaterial> obList;
+        obList = FXCollections.observableArrayList(PropertyMaterial.values()); 
+        materialCombo.getItems().setAll(obList);
+        materialCombo.setPrefWidth(150);
     }
     
     private void populateTypeCombo() {
@@ -368,9 +377,14 @@ public class HomeInsuranceRegistration {
         return excessCombo.getValue() == null ? "" : excessCombo.getValue();
     }
 
-    /** @return The value of materialField. */
-    public String getMaterial() {
-        return materialField.getText();
+    /** @return The value of materialCombo. */
+    public PropertyMaterial getMaterial() {
+        if (materialCombo.getValue() instanceof PropertyMaterial) {
+            // Casts the ComboBox value to PropertyMaterial and returns this value.
+            PropertyMaterial material = (PropertyMaterial) materialCombo.getValue();
+            return material;
+            // If for instance no value is selected, the value will not equal a PropertyMaterial, in this case return null.
+        } else return null; 
     }
     
     /** @return The value of personalNumberField. */

@@ -113,7 +113,7 @@ public class TravelInsuranceRegistration {
         Label personalNumberLabel = new Label("Personnummer:");
         Text insurancesTitle = new Text("Eksisterende forsikringer til denne kunden:");
         insurancesTitle.setId("textTitle");
-        Text resultTitle = new Text("Søkeresultat:");
+        Text resultTitle = new Text("Valgt kunde:");
         resultTitle.setId("textTitle");
         Text selectCustomerTitle = new Text("Velg først en kunde i registeret:");
         selectCustomerTitle.setId("textTitle");

@@ -56,7 +56,7 @@ public enum HolidayHomeContentInsuranceCoverage {
     
     public int getPricing() {
         switch(this) {
-            case PLUS: return 1000;
+            case PLUS: return 1200;
             case BASIC: return 0;
             default: throw new IllegalArgumentException();
         }

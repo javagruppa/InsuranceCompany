@@ -181,16 +181,9 @@ public class MainController {
         views.add(26, insuranceStatisticsView);
                 
         // Controllers:
-        this.modelController = new ModelController(bills, claims, customers, employees, 
-                insurances, logs, views);
-        this.viewController = new ViewController(adminView, 
-                boatInsuranceRegistration, carInsuranceRegistration, 
-                holidayHomeInsuranceRegistration, 
-                homeInsuranceRegistration, travelInsuranceRegistration, 
-                customerRegistration, employeeRegistration, 
-                boatClaimRegistration, carClaimRegistration, 
-                holidayHomeClaimRegistration, homeClaimRegistration, 
-                travelClaimRegistration);
+        this.modelController = new ModelController(bills, claims, customers, 
+                employees, insurances, logs, views);
+        this.viewController = new ViewController(adminView, views);
         
         readAllDataFromFile();
         setBrandComboBox();

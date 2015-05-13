@@ -84,7 +84,7 @@ public class ModelController {
     }
     
     public void initializeEventHandlers() {
-        boatInsuranceRegistration.setRegisterButtonEventHandler(this::registerBoatInsuranceEventHandler);
+        boatInsuranceRegistration.setRegisterButtonEventHandler(this::boatInsuranceRegisterButtonEventHandler);
     }
     
     /**
@@ -200,14 +200,15 @@ public class ModelController {
         }
     }*/
     
-    private void registerBoatInsuranceEventHandler(ActionEvent e) {
-        // Collects information about the customer and the insurance.
+    private void boatInsuranceRegisterButtonEventHandler(ActionEvent e) {
+        
+        // Collects information about the customer and the insurance:
         BoatInsuranceCoverage coverage = boatInsuranceRegistration.getCoverage();
         String customerId = boatInsuranceRegistration.getCustomerId();
-        String customerPersonalNumber = boatInsuranceRegistration.getPersonalNumber();
+        String personalNumber = boatInsuranceRegistration.getPersonalNumber();
         String excessString = boatInsuranceRegistration.getExcess();
         
-        // Collects information about the boat.
+        // Collects information about the boat:
         String alarmString = boatInsuranceRegistration.getAlarm();
         String brand = boatInsuranceRegistration.getBrand();
         String engineEffectString = boatInsuranceRegistration.getEngineEffect();
@@ -218,75 +219,37 @@ public class ModelController {
         String registrationNumber = boatInsuranceRegistration.getRegistrationNumber();
         String registrationYearString = boatInsuranceRegistration.getRegistrationYear();
         
-        // Creates a boolean which is to be  set true if the user has made a 
-        // mistake and the method has to abort.
+        // Creates a boolean which is to be set true if the user has made a 
+        // mistake and the method has to abort:
         boolean abort = false;
         
-        // Creates strings to be used in messages to the user.
-        String nfeMessage = "* Kan kun bestå av tall.";
-        
-        // Converts strings to integers.
-        int engineEffect;
-        try {
-            engineEffect = Integer.parseInt(engineEffectString);
-        } catch(NumberFormatException nfe) {
-            boatInsuranceRegistration.setEngineEffectMessage(nfeMessage);
-            abort = true;
-        }
-        
-        int excess;
-        try {
-            excess = Integer.parseInt(excessString);
-        } catch(NumberFormatException nfe) {
-            boatInsuranceRegistration.setExcessMessage(nfeMessage);
-            abort = true;
-        }
-        
-        int length;
-        try {
-            length = Integer.parseInt(lengthString);
-        } catch(NumberFormatException nfe) {
-            boatInsuranceRegistration.
-                    setLengthMessage("* Kan kun bestå av tall.");
-            abort = true;
-        }
-        
-        int registrationYear;
-        try {
-            registrationYear = Integer.parseInt(registrationYearString);
-        } catch(NumberFormatException nfe) {
-            boatInsuranceRegistration.
-                    setRegistrationYearMessage("* Kan kun bestå av tall.");
-            abort = true;
-        }
-        
-        // Creates strings to be used in messages to the user.
+        // Creates strings to be used in messages to the user:
+        String formatMessage = "* Kan kun bestå av tall.";
         String missingMessage = "* Dette feltet må fylles ut.";
         
-        if(coverage.equals("")) {
+        // Creates ints and booleans for the converted values:
+        boolean alarm;
+        int engineEffect;
+        int excess;
+        int length;
+        int registrationYear;
+        
+        // Evaluates Input:
+        if(brand.equals("")) {
+            boatInsuranceRegistration.setBrandMessage(missingMessage);
+            abort = true;
+        }
+        if(coverage == null) {
             boatInsuranceRegistration.setCoverageMessage(missingMessage);
             abort = true;
         }
-        if(excessString.equals("")) {
-            boatInsuranceRegistration.setExcessMessage(missingMessage);
-        }
-        if(alarmString.equals("")) {
-            boatInsuranceRegistration.setAlarmMessage(missingMessage);
-        }
-        if(brand.equals("")) {
-            boatInsuranceRegistration.setBrandMessage(missingMessage);
-        }
-        if(engineEffectString.equals("")) {
-            boatInsuranceRegistration.setEngineEffectMessage(missingMessage);
-        }
         if(engineType.equals("")) {
             boatInsuranceRegistration.setEngineTypeMessage(missingMessage);
-        }
-        if(lengthString.equals("")) {
-            boatInsuranceRegistration.setLengthMessage(missingMessage);
+            abort = true;
         }
         if(model.equals("")) {
             boatInsuranceRegistration.setModelMessage(missingMessage);
+            abort = true;
         }
         if(ownerPersonalNumber.equals("")) {
             boatInsuranceRegistration.setOwnerPersonalNumberMessage(missingMessage);
@@ -294,8 +257,52 @@ public class ModelController {
         if(registrationNumber.equals("")) {
             boatInsuranceRegistration.setRegistrationNumberMessage(missingMessage);
         }
+        
+        // Evaluates and converts Input:
+        if(alarmString.equals("")) {
+            boatInsuranceRegistration.setAlarmMessage(missingMessage);
+        } else {
+            alarm = alarmString.equals("Ja");
+        }
+        if(engineEffectString.equals("")) {
+            boatInsuranceRegistration.setEngineEffectMessage(missingMessage);
+        } else {
+            try {
+                engineEffect = Integer.parseInt(engineEffectString);
+            } catch(NumberFormatException nfe) {
+                boatInsuranceRegistration.setEngineEffectMessage(formatMessage);
+                abort = true;
+            }
+        }
+        if(excessString.equals("")) {
+            boatInsuranceRegistration.setExcessMessage(missingMessage);
+        } else {
+            try {
+                excess = Integer.parseInt(excessString);
+            } catch(NumberFormatException nfe) {
+                boatInsuranceRegistration.setExcessMessage(formatMessage);
+                abort = true;
+            }
+        }
+        if(lengthString.equals("")) {
+            boatInsuranceRegistration.setLengthMessage(missingMessage);
+        } else {
+            try {
+                length = Integer.parseInt(lengthString);
+            } catch(NumberFormatException nfe) {
+                boatInsuranceRegistration.setLengthMessage(formatMessage);
+                abort = true;
+            }
+        }
         if(registrationYearString.equals("")) {
             boatInsuranceRegistration.setRegistrationYearMessage(missingMessage);
+        } else {
+            try {
+                registrationYear = Integer.parseInt(registrationYearString);
+            } catch(NumberFormatException nfe) {
+                boatInsuranceRegistration.setRegistrationYearMessage(formatMessage);
+                abort = true;
+            }
         }
         
         if(abort) {

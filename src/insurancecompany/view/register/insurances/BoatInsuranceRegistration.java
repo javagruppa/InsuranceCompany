@@ -177,7 +177,7 @@ public class BoatInsuranceRegistration {
         customerSelectedMessage = new Text();
         Text insuranceOptionsTitle = new Text("Betingelser:");
         insuranceOptionsTitle.setId("textTitle");
-        Text boatTitle = new Text("Bil:");
+        Text boatTitle = new Text("Båt:");
         boatTitle.setId("textTitle");
         Label alarmLabel = new Label("FG-godkjent alarm:");
         Label brandLabel = new Label("Merke:");
@@ -327,7 +327,7 @@ public class BoatInsuranceRegistration {
         searchPersonalNumberButton.setOnAction(value);
     }
 
-    // CLEAR MESSAGES METHOD
+    // CLEAR MESSAGES METHOD:
     
     public void clearMessages() {
         alarmMessage.setText("");

@@ -32,6 +32,7 @@ import javafx.scene.text.Text;
 /**
  *
  * @author André
+ * @author Sindre
  */
 public class CarInsuranceRegistration {
     
@@ -39,10 +40,11 @@ public class CarInsuranceRegistration {
     private GridPane mainPane;
     
     // SEARCH FOR CUSTOMER NODES:
-    // Input nodes, TextFields
+    
+    // Input nodes, TextFields:
     private TextField customerIdField;
     private TextField personalNumberField;
-    // Output nodes, TextArea and TableView and Text
+    // Output nodes, TextArea, TableView and Text:
     private TextArea customerArea;
     private TableView<Insurance> insurancesTable;
     private TableColumn<Insurance, String> insuranceTypeColumn;
@@ -52,55 +54,53 @@ public class CarInsuranceRegistration {
     // Buttons:
     private Button searchCustomerIdButton;
     private Button searchPersonalNumberButton;
-    private Button selectCustomerButton;
-    // ints used to keep track of searched and selected customer id:
-    private int tempCustomerId;
+    // The customerId used in the insurance registration:
     private int selectedCustomerId;
     
     // REGISTER INSURANCE NODES:
-    // Input nodes, Comboboxes and textfiels:
-    private ComboBox existingBonusCombo;
-    private ComboBox drivingLengthCombo;
-    private ComboBox excessCombo; // Nor: Egenandel
+    
+    // Input nodes, ComboBoxes and TextFields:
+    private ComboBox<String> alarmCombo;
     private ComboBox brandCombo;
-    private ComboBox yearCombo;
+    private ComboBox coverageCombo;
+    private ComboBox drivingLengthCombo;
+    private ComboBox excessCombo;
+    private ComboBox existingBonusCombo;
     private ComboBox modelCombo;
-    private ComboBox youngestDriverCombo;
-    private ComboBox alarmCombo;
-    private ComboBox coverageCombo; // Nor: Dekning
     private ComboBox parkingConditionCombo;
-    private TextField registrationNumberField;
+    private ComboBox yearCombo;
+    private ComboBox youngestDriverCombo;
     private TextField personalNumberOwnerField;
     private TextField premiumField;
+    private TextField registrationNumberField;
+    // Output nodes, Text messages:
+    private Text alarmMessage;
+    private Text brandMessage;
+    private Text coverageMessage;
+    private Text drivingLengthMessage;
+    private Text excessMessage;
+    private Text existingBonusMessage;
+    private Text modelMessage;
+    private Text parkingConditionMessage;
+    private Text personalNumberOwnerMessage;
+    private Text registrationNumberMessage;
+    private Text yearMessage;
+    private Text youngestDriverMessage;
     // Buttons:
     private Button calculateButton;
     private Button registerButton;
-    // Output nodes, Text messages:
-    private Text existingBonusMessage;
-    private Text drivingLengthMessage;
-    private Text excessMessage; // Nor: Egenandel
-    private Text brandMessage;
-    private Text yearMessage;
-    private Text modelMessage;
-    private Text youngestDriverMessage;
-    private Text alarmMessage;
-    private Text coverageMessage; // Nor: Dekning
-    private Text parkingConditionMessage;
-    private Text registrationNumberMessage;
-    private Text personalNumberOwnerMessage;
-    private Text registerResultMessage;
     
     
     public CarInsuranceRegistration() {
         
-        // Sets up the mainPane
+        // Sets up the mainPane:
         mainPane = new GridPane();
         mainPane.setAlignment(Pos.CENTER);
         mainPane.setHgap(10);
         mainPane.setVgap(6);
-        // Set background color:
+        // Sets background color:
         mainPane.setStyle("-fx-background-color: #E7E7FF;");
-        // Set up column constraints. Width in pixels:
+        // Sets up column constraints. Width in pixels:
         ColumnConstraints col1 = new ColumnConstraints(120);
         ColumnConstraints col2 = new ColumnConstraints(100);
         ColumnConstraints col3 = new ColumnConstraints(40);
@@ -108,95 +108,104 @@ public class CarInsuranceRegistration {
         ColumnConstraints col5 = new ColumnConstraints(150);
         ColumnConstraints col6 = new ColumnConstraints(150);
         ColumnConstraints col7 = new ColumnConstraints(150);
-        // Add these constraints:
+        // Adds these constraints:
         mainPane.getColumnConstraints().addAll(col1, col2, col3, col4, col5, col6, col7);
         
-        // Start initializing all nodes that are to be placed in the gridpane:
-        Text selectCustomerTitle = new Text("Velg først en kunde i registeret:");
-        selectCustomerTitle.setId("textTitle");
-        Label customerIdLabel = new Label("Kundenummer:");
+        // SEARCH FOR CUSTOMER NODES:
+        
+        // Initializes Input:
         customerIdField = new TextField();
-        searchCustomerIdButton = new Button("Søk");
-        Label personalNumberLabel = new Label("Personnummer:");
         personalNumberField = new TextField();
-        searchPersonalNumberButton = new Button("Søk");
-        Text resultTitle = new Text("Søkeresultat:");
-        resultTitle.setId("textTitle");
+        // Initializes Output:
         customerArea = new TextArea();
         customerArea.setEditable(false);
         customerArea.setPrefColumnCount(2);
         customerArea.setPrefRowCount(4);
-        selectCustomerButton = new Button("Velg denne kunden");
-        customerSelectedMessage = new Text();
-        Text insurancesTitle = new Text("Eksisterende forsikringer til denne kunden:");
-        insurancesTitle.setId("textTitle");
         insurancesTable = new TableView();
         insurancesTable.setPrefHeight(150);
         insuranceTypeColumn = new TableColumn<>("Forsikring");
         insuranceCoverageColum = new TableColumn<>("Dekning");
         insuranceIdColumn = new TableColumn<>("Forsikringsid");
         insurancesTable.getColumns().addAll(insuranceTypeColumn, insuranceCoverageColum, insuranceIdColumn);
-        insurancesTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);    
+        insurancesTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        // Initializes Buttons:
+        searchCustomerIdButton = new Button("Søk");
+        searchPersonalNumberButton = new Button("Søk");
+        // Declares and initializes Texts and Labels:
+        Label customerIdLabel = new Label("Kundenummer:");
+        Label personalNumberLabel = new Label("Personnummer:");
+        Text insurancesTitle = new Text("Eksisterende forsikringer til denne kunden:");
+        insurancesTitle.setId("textTitle");
+        Text resultTitle = new Text("Valgt kunde:");
+        resultTitle.setId("textTitle");
+        Text selectCustomerTitle = new Text("Velg først en kunde i registeret:");
+        selectCustomerTitle.setId("textTitle");
         
-        Text insuranceOptionsTitle = new Text("Betingelser:");
-        insuranceOptionsTitle.setId("textTitle");
-        Label existingBonusLabel = new Label("Eksisterende bonussats:");
-        existingBonusCombo = new ComboBox();
-        populateExistingBonusCombo();
-        existingBonusMessage = new Text();
-        Label drivingLengthLabel = new Label("Kjørelengde:");
-        drivingLengthCombo = new ComboBox();
-        populateDrivingLengthCombo();
-        drivingLengthMessage = new Text();
-        Label excessLabel = new Label("Egenandel:");
-        excessCombo = new ComboBox();
-        populateExcessCombo();
-        excessMessage = new Text();
-        Label youngestDriverLabel = new Label("Yngste fører:");
-        youngestDriverCombo = new ComboBox();
-        populateYoungestDriverCombo();
-        youngestDriverMessage = new Text();
-        Label coverageLabel = new Label("Dekning:");
-        coverageCombo = new ComboBox();
-        populateCoverageCombo();
-        coverageMessage = new Text();
-        Label parkingConditionLabel = new Label("Parkeringsforhold:");
-        parkingConditionCombo = new ComboBox();
-        populateParkingConditionCombo();
-        parkingConditionMessage = new Text();
+        // REGISTER INSURANCE NODES:
         
-        Text carTitle = new Text("Bil:");
-        carTitle.setId("textTitle");
-        Label personalNumberOwnerLabel = new Label("Eierens personnummer:");
-        personalNumberOwnerField = new TextField();
-        personalNumberOwnerMessage = new Text();
-        Label registrationNumberLabel = new Label("Registreringsnummer:");
-        registrationNumberField = new TextField();
-        registrationNumberMessage = new Text();
-        Label brandLabel = new Label("Merke:");
+        // Initializes Input:
+        alarmCombo = new ComboBox();
+        populateAlarmCombo();
         brandCombo = new ComboBox();
         brandCombo.setEditable(true);
-        brandMessage = new Text();
-        Label yearLabel = new Label("År:");      
-        yearCombo = new ComboBox();
-        yearCombo.setEditable(true);
-        yearMessage = new Text();
-        Label modelLabel = new Label("Modell:");
+        coverageCombo = new ComboBox();
+        populateCoverageCombo();
+        drivingLengthCombo = new ComboBox();
+        populateDrivingLengthCombo();
+        excessCombo = new ComboBox();
+        populateExcessCombo();
+        existingBonusCombo = new ComboBox();
+        populateExistingBonusCombo();
         modelCombo = new ComboBox();
         modelCombo.setEditable(true);
-        modelMessage = new Text();
-        Label alarmLabel = new Label("FG-godkjent alarm:");
-        alarmCombo = new ComboBox();
-        popualteAlarmCombo();
-        alarmMessage = new Text();
-        Label premiumLabel = new Label("Beregnet forsikringspremie:");
+        parkingConditionCombo = new ComboBox();
+        populateParkingConditionCombo();
+        yearCombo = new ComboBox();
+        yearCombo.setEditable(true);
+        youngestDriverCombo = new ComboBox();
+        populateYoungestDriverCombo();
+        personalNumberOwnerField = new TextField();
         premiumField = new TextField();
         premiumField.setEditable(false);
+        registrationNumberField = new TextField();
+        // Initializes Output:
+        alarmMessage = new Text();
+        brandMessage = new Text(); 
+        coverageMessage = new Text();
+        drivingLengthMessage = new Text();
+        excessMessage = new Text();
+        existingBonusMessage = new Text();
+        modelMessage = new Text();
+        parkingConditionMessage = new Text();
+        personalNumberOwnerMessage = new Text();
+        registrationNumberMessage = new Text();
+        yearMessage = new Text();
+        youngestDriverMessage = new Text();
+        // Initializes Buttons:
         calculateButton = new Button("Regn ut");
         registerButton = new Button("Registrer");
-        registerResultMessage = new Text();
+        // Declares and initializes Texts and Labels:
+        customerSelectedMessage = new Text();
+        Text insuranceOptionsTitle = new Text("Betingelser:");
+        insuranceOptionsTitle.setId("textTitle");
+        Text carTitle = new Text("Bil:");
+        carTitle.setId("textTitle");
+        Label alarmLabel = new Label("FG-godkjent alarm:");
+        Label brandLabel = new Label("Merke:");
+        Label coverageLabel = new Label("Dekning:");
+        Label drivingLengthLabel = new Label("Kjørelengde:");
+        Label excessLabel = new Label("Egenandel:");
+        Label existingBonusLabel = new Label("Eksisterende bonussats:");
+        Label modelLabel = new Label("Modell:");
+        Label parkingConditionLabel = new Label("Parkeringsforhold:");
+        Label personalNumberOwnerLabel = new Label("Eierens personnummer:");
+        Label premiumLabel = new Label("Beregnet forsikringspremie:");
+        Label registrationNumberLabel = new Label("Registreringsnummer:");
+        Label yearLabel = new Label("År:");     
+        Label youngestDriverLabel = new Label("Yngste fører:");
         
-        // Add nodes to mainPane:
+        
+        // Adds nodes to mainPane:
         mainPane.add(selectCustomerTitle, 0, 0);
         mainPane.add(customerIdLabel, 0, 1);
         mainPane.add(customerIdField, 1, 1);
@@ -208,8 +217,7 @@ public class CarInsuranceRegistration {
         
         mainPane.add(resultTitle, 0, 3);
         mainPane.add(customerArea, 0, 4, 3, 5);
-        mainPane.add(selectCustomerButton, 0, 9);
-        mainPane.add(customerSelectedMessage, 1, 9);
+        mainPane.add(customerSelectedMessage, 0, 9);
         mainPane.add(insurancesTitle, 0, 10);
         mainPane.add(insurancesTable, 0, 11, 3, 5);
         
@@ -256,16 +264,31 @@ public class CarInsuranceRegistration {
         mainPane.add(premiumField, 5, 14);
         mainPane.add(calculateButton, 6, 14);
         mainPane.add(registerButton, 5, 15);
-        mainPane.add(registerResultMessage, 5, 16, 3, 1);
       
     }
     
-    private void populateExistingBonusCombo() {
-        ObservableList<String> bonuses = FXCollections.observableArrayList();
-        bonuses.addAll("-30", "-20", "-10", "0", "10", "20", "30", "40", 
-                "50", "60", "70", "75");
-        existingBonusCombo.getItems().setAll(bonuses);
-        existingBonusCombo.setPrefWidth(150);
+    // POPULATE METHODS:
+    
+    private void populateAlarmCombo() {
+        ObservableList<String> alarm = FXCollections.observableArrayList();  
+        alarm.addAll("Ja", "Nei");
+        alarmCombo.getItems().setAll(alarm);
+        alarmCombo.setPrefWidth(150);
+    }
+    
+    public void populateBrandCombo(List cars) {
+        ObservableList obList = FXCollections.observableList(cars);
+        // Reset the previous value(shown value)
+        brandCombo.valueProperty().set(null);
+        brandCombo.getItems().setAll(obList);
+        brandCombo.setPrefWidth(150);
+    }
+    
+    private void populateCoverageCombo() {
+        ObservableList<CarInsuranceCoverage> obList;
+        obList = FXCollections.observableArrayList(CarInsuranceCoverage.values()); 
+        coverageCombo.getItems().setAll(obList);
+        coverageCombo.setPrefWidth(150);
     }
     
     private void populateDrivingLengthCombo() {
@@ -285,18 +308,20 @@ public class CarInsuranceRegistration {
         excessCombo.setPrefWidth(150);
     }
     
-    private void populateYoungestDriverCombo() {
-        ObservableList<String> youngestDriver = FXCollections.observableArrayList(); 
-        youngestDriver.addAll("Under 25", "Over 25");
-        youngestDriverCombo.getItems().setAll(youngestDriver);
-        youngestDriverCombo.setPrefWidth(150);
+    private void populateExistingBonusCombo() {
+        ObservableList<String> bonuses = FXCollections.observableArrayList();
+        bonuses.addAll("-30", "-20", "-10", "0", "10", "20", "30", "40", 
+                "50", "60", "70", "75");
+        existingBonusCombo.getItems().setAll(bonuses);
+        existingBonusCombo.setPrefWidth(150);
     }
     
-    private void populateCoverageCombo() {
-        ObservableList<CarInsuranceCoverage> obList;
-        obList = FXCollections.observableArrayList(CarInsuranceCoverage.values()); 
-        coverageCombo.getItems().setAll(obList);
-        coverageCombo.setPrefWidth(150);
+    public void populateModelCombo(List models) {
+        ObservableList obList = FXCollections.observableList(models);
+        // Reset the previous value(shown value)
+        modelCombo.valueProperty().set(null);
+        modelCombo.getItems().setAll(obList);
+        modelCombo.setPrefWidth(150);
     }
     
     private void populateParkingConditionCombo() {
@@ -306,22 +331,7 @@ public class CarInsuranceRegistration {
         parkingConditionCombo.setPrefWidth(150);
     }
     
-    private void popualteAlarmCombo() {
-        ObservableList<String> alarm = FXCollections.observableArrayList();  
-        alarm.addAll("Ja", "Nei");
-        alarmCombo.getItems().setAll(alarm);
-        alarmCombo.setPrefWidth(150);
-    }
-    
-    public void populateBrandComboBox(List cars) {
-        ObservableList obList = FXCollections.observableList(cars);
-        // Reset the previous value(shown value)
-        brandCombo.valueProperty().set(null);
-        brandCombo.getItems().setAll(obList);
-        brandCombo.setPrefWidth(150);
-    }
-    
-    public void populateYearComboBox(List years) {
+    public void populateYearCombo(List years) {
         ObservableList obList = FXCollections.observableList(years);
         // Reset the previous value(shown value)
         yearCombo.valueProperty().set(null);
@@ -329,13 +339,45 @@ public class CarInsuranceRegistration {
         yearCombo.setPrefWidth(150);
     }
     
-    public void populateModelComboBox(List models) {
-        ObservableList obList = FXCollections.observableList(models);
-        // Reset the previous value(shown value)
-        modelCombo.valueProperty().set(null);
-        modelCombo.getItems().setAll(obList);
-        modelCombo.setPrefWidth(150);
+    private void populateYoungestDriverCombo() {
+        ObservableList<String> youngestDriver = FXCollections.observableArrayList(); 
+        youngestDriver.addAll("Under 25", "Over 25");
+        youngestDriverCombo.getItems().setAll(youngestDriver);
+        youngestDriverCombo.setPrefWidth(150);
     }
+
+    /**
+     * 
+     * @param insurances 
+     */
+    public void populateInsurancesTable(List<Insurance> insurances) {
+        ObservableList<Insurance> obList = FXCollections.observableArrayList(insurances);
+        insurancesTable.setItems(obList);
+        
+        insuranceTypeColumn.setCellValueFactory((cellData) -> {
+                if ( cellData.getValue() != null) {
+                    return new SimpleStringProperty(cellData.getValue().getName());
+                } else {
+                    return new SimpleStringProperty("<no name>");
+                }
+        });
+        insuranceCoverageColum.setCellValueFactory((cellData) -> {
+                if ( cellData.getValue() != null) {
+                    return new SimpleObjectProperty<>(cellData.getValue().getCoverage().toString());
+                } else {
+                    return new SimpleObjectProperty(0);
+                }
+        });
+        insuranceIdColumn.setCellValueFactory((cellData) -> {
+                if ( cellData.getValue() != null) {
+                    return new SimpleObjectProperty<>(cellData.getValue().getInsuranceId());
+                } else {
+                    return new SimpleObjectProperty(0);
+                }
+        });   
+    }
+    
+    // SET COMBOLISTENER METHODS:
     
     public void setBrandComboListener(ChangeListener listener) {
         brandCombo.valueProperty().addListener(listener);
@@ -344,6 +386,65 @@ public class CarInsuranceRegistration {
     public void setYearComboListener(ChangeListener listener) {
         yearCombo.valueProperty().addListener(listener);
     }
+    
+    // SET EVENTHANDLER METHODS:
+
+    public void setCalculateButtonEventHandler(EventHandler<ActionEvent> value) {
+        calculateButton.setOnAction(value);
+    }
+
+    public void setRegisterButtonEventHandler(EventHandler<ActionEvent> value) {
+        registerButton.setOnAction(value);
+    }
+    
+    public void setSearchCustomerIdButtonEventHandler(EventHandler<ActionEvent> value) {
+        searchCustomerIdButton.setOnAction(value);
+    }
+
+    public void setSearchPersonalNumberButtonEventHandler(EventHandler<ActionEvent> value) {
+        searchPersonalNumberButton.setOnAction(value);
+    }
+    
+    // CLEAR MESSAGES METHOD:
+    
+    public void clearMessages() {
+        alarmMessage.setText("");
+        brandMessage.setText("");
+        coverageMessage.setText("");
+        drivingLengthMessage.setText("");
+        excessMessage.setText("");
+        existingBonusMessage.setText("");
+        modelMessage.setText("");
+        parkingConditionMessage.setText("");
+        personalNumberOwnerMessage.setText("");
+        registrationNumberMessage.setText("");
+        yearMessage.setText("");
+        youngestDriverMessage.setText("");
+    }
+    
+    // GET METHODS:
+    
+    /** @return The main pane of this class. */
+    public GridPane getMainPane() {
+        return mainPane;
+    }
+    
+    /** @return The value of alarmCombo. */
+    public String getAlarm() {
+        return alarmCombo.getValue() == null ? "" : alarmCombo.getValue();
+    }
+
+    /** @return The value of brandCombo. */
+    public String getBrand() {
+        return brandCombo.getValue() == null ? "" : brandCombo.getValue().toString();
+    }
+    
+    
+    ///
+    ///
+    /// SINDRE HAR KOMMET SÅ LANGT MED Å OPPDATERE DENNE KLASSEN. =D
+    ///
+    ///
     
     public Object getBrandComboValue() {
         return brandCombo.getValue();
@@ -385,13 +486,6 @@ public class CarInsuranceRegistration {
     }
 
     /**
-     * @return the brandCombo
-     */
-    public String getBrandCombo() {
-        return brandCombo.getValue() == null ? null : brandCombo.getValue().toString();
-    }
-
-    /**
      * @return the yearCombo
      */
     public String getYearCombo() {
@@ -410,13 +504,6 @@ public class CarInsuranceRegistration {
      */
     public String getYoungestDriverCombo() {
         return youngestDriverCombo.getValue() == null ? null : youngestDriverCombo.getValue().toString();
-    }
-
-    /**
-     * @return the alarmCombo
-     */
-    public String getAlarmCombo() {
-        return alarmCombo.getValue() == null ? null : alarmCombo.getValue().toString();
     }
 
     /**
@@ -465,85 +552,6 @@ public class CarInsuranceRegistration {
      */
     public void setCustomerArea(String customerArea) {
         this.customerArea.setText(customerArea);
-    }
-
-    /**
-     * 
-     * @param insurances 
-     */
-    public void populateInsurancesTable(List<Insurance> insurances) {
-        ObservableList<Insurance> obList = FXCollections.observableArrayList(insurances);
-        insurancesTable.setItems(obList);
-        
-        insuranceTypeColumn.setCellValueFactory((cellData) -> {
-                if ( cellData.getValue() != null) {
-                    return new SimpleStringProperty(cellData.getValue().getName());
-                } else {
-                    return new SimpleStringProperty("<no name>");
-                }
-        });
-        insuranceCoverageColum.setCellValueFactory((cellData) -> {
-                if ( cellData.getValue() != null) {
-                    return new SimpleObjectProperty<>(cellData.getValue().getCoverage().toString());
-                } else {
-                    return new SimpleObjectProperty(0);
-                }
-        });
-        insuranceIdColumn.setCellValueFactory((cellData) -> {
-                if ( cellData.getValue() != null) {
-                    return new SimpleObjectProperty<>(cellData.getValue().getInsuranceId());
-                } else {
-                    return new SimpleObjectProperty(0);
-                }
-        });   
-    }
-
-    /**
-     * Sets event handler for the search customer button of this view.
-     * @param value 
-     */
-    public void setSearchCustomerIdButtonEventHandler(EventHandler<ActionEvent> value) {
-        searchCustomerIdButton.setOnAction(value);
-    }
-
-    /**
-     * Sets event handler for the search personal number button of this view.
-     * @param value 
-     */
-    public void setSearchPersonalNumberButtonEventHandler(EventHandler<ActionEvent> value) {
-        searchPersonalNumberButton.setOnAction(value);
-    }
-
-    /**
-     * Sets event handler for the select customer button of this view.
-     * @param value 
-     */
-    public void setSelectCustomerButtonEventHandler(EventHandler<ActionEvent> value) {
-        selectCustomerButton.setOnAction(value);
-    }
-
-    /**
-     * Sets event handler for the calculate button of this view.
-     * @param value 
-     */
-    public void setCalculateButtonEventHandler(EventHandler<ActionEvent> value) {
-        calculateButton.setOnAction(value);
-    }
-
-    /**
-     * Sets event handler for the register button of this view.
-     * @param value 
-     */
-    public void setRegisterButtonEventHandler(EventHandler<ActionEvent> value) {
-        registerButton.setOnAction(value);
-    }
-    
-    /**
-     * Returns the mainPane of this view.
-     * @return the mainPane of this view.
-     */
-    public Pane getMainPane() {
-        return mainPane;
     }
 
     /**
@@ -643,14 +651,6 @@ public class CarInsuranceRegistration {
     }
 
     /**
-     * @param registerResultMessage the registerResultMessage to set
-     */
-    public void setRegisterResultMessage(String registerResultMessage) {
-        this.registerResultMessage.setFill(Color.FIREBRICK);
-        this.registerResultMessage.setText(registerResultMessage);
-    }
-
-    /**
      * @return the selectedCustomerId
      */
     public int getSelectedCustomerId() {
@@ -662,20 +662,6 @@ public class CarInsuranceRegistration {
      */
     public void setSelectedCustomerId(int selectedCustomerId) {
         this.selectedCustomerId = selectedCustomerId;
-    }
-
-    /**
-     * @return the tempCustomerId
-     */
-    public int getTempCustomerId() {
-        return tempCustomerId;
-    }
-
-    /**
-     * @param tempCustomerId the tempCustomerId to set
-     */
-    public void setTempCustomerId(int tempCustomerId) {
-        this.tempCustomerId = tempCustomerId;
     }
 
     /**

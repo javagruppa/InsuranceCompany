@@ -30,8 +30,6 @@ public class CarInsurance extends Insurance implements Serializable {
     private CarInsuranceCoverage coverage;
     /** Whether the car this insurance is for has a garage or not. */
     private boolean hasGarage;
-    /** Whether the car this insurance is for has an alarm or not. */
-    private boolean hasAlarm;
     /** The maximum driving length for this insurance. */
     private int maxLength;
     /** Whether a person under 25 years is allowed to drive the car this 
@@ -68,13 +66,11 @@ public class CarInsurance extends Insurance implements Serializable {
      * the car this insurance is for
      */
     public CarInsurance(Car car, CarInsuranceCoverage coverage, int customerId, 
-            int excess, boolean hasAlarm, boolean hasGarage, int maxLength, 
-            boolean youngDriver) {
+            int excess, boolean hasGarage, int maxLength, boolean youngDriver) {
         super(customerId, excess);
         this.bonus = 0;
         this.car = car;
         this.coverage = coverage;
-        this.hasAlarm = hasAlarm;
         this.hasGarage = hasGarage;
         this.maxLength = maxLength;
         this.youngDriver = youngDriver;
@@ -175,7 +171,7 @@ public class CarInsurance extends Insurance implements Serializable {
         }
         // If the car of this insurance has an alam, the alarm multiplicator
         // is set to 0.8
-	if (hasAlarm){
+	if (car.getAlarm()){
 	alarmMultiplicator = 0.8;
         }
         // If the car of this insurance has a garage, the garage multiplicator

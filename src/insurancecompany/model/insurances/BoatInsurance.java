@@ -30,11 +30,9 @@ public class BoatInsurance extends Insurance implements Serializable {
      * @param coverage the coverage of this insurance
      * @param customerId the id of the customer who owns this insurance
      * @param excess the excess of this insurance
-     * @param hasAlarm whether the car this insurance is for has an alarm 
-     * or not
      */
     public BoatInsurance(Boat boat, int customerId, 
-            BoatInsuranceCoverage coverage, int excess, boolean hasAlarm) {
+            BoatInsuranceCoverage coverage, int excess) {
         super(customerId, excess);
         this.boat = boat;
         this.coverage = coverage;

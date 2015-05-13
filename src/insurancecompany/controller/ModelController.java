@@ -22,12 +22,18 @@ import insurancecompany.model.insurances.TravelInsurance;
 import insurancecompany.model.people.Customer;
 import insurancecompany.model.properties.PropertyMaterial;
 import insurancecompany.model.vehicles.Boat;
+import insurancecompany.view.register.claims.BoatClaimRegistration;
+import insurancecompany.view.register.claims.CarClaimRegistration;
+import insurancecompany.view.register.claims.HolidayHomeClaimRegistration;
+import insurancecompany.view.register.claims.HomeClaimRegistration;
+import insurancecompany.view.register.claims.TravelClaimRegistration;
 import insurancecompany.view.register.insurances.BoatInsuranceRegistration;
 import insurancecompany.view.register.insurances.CarInsuranceRegistration;
 import insurancecompany.view.register.insurances.HolidayHomeInsuranceRegistration;
 import insurancecompany.view.register.insurances.HomeInsuranceRegistration;
 import insurancecompany.view.register.insurances.TravelInsuranceRegistration;
 import insurancecompany.view.register.persons.CustomerRegistration;
+import insurancecompany.view.register.persons.EmployeeRegistration;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -47,13 +53,21 @@ import javax.xml.bind.Unmarshaller;
  */
 public class ModelController {
     
-    // Insurance Registration Views
+    // Insurance Registration Views:
     private BoatInsuranceRegistration boatInsuranceRegistration;
     private CarInsuranceRegistration carInsuranceRegistration;
-    private CustomerRegistration customerRegistration;
     private HolidayHomeInsuranceRegistration holidayHomeInsuranceRegistration;
     private HomeInsuranceRegistration homeInsuranceRegistration;
     private TravelInsuranceRegistration travelInsuranceRegistration;
+    // Person Registration Views:
+    private CustomerRegistration customerRegistration;
+    private EmployeeRegistration employeeRegistration;
+    // Claim Registration Views:
+    private BoatClaimRegistration boatClaimRegistration;
+    private CarClaimRegistration carClaimRegistration;
+    private HolidayHomeClaimRegistration holidayHomeClaimRegistration;
+    private HomeClaimRegistration homeClaimRegistration;
+    private TravelClaimRegistration travelClaimRegistration;
     
     private CarInfoRegister carInfoRegister;
     private LogRegister logRegister;
@@ -68,13 +82,20 @@ public class ModelController {
     private final String FORMAT_MESSAGE = "Dette feltet kan kun bestå av tall.";
     private final String EMPTY_MESSAGE = "Dette feltet må fylles ut.";
     
-    public ModelController(BoatInsuranceRegistration boatInsuranceRegistration, 
+    public ModelController(ClaimRegister claims, CustomerRegister customers, 
+            EmployeeRegister employees, InsuranceRegister insurances, 
+            BoatInsuranceRegistration boatInsuranceRegistration, 
             CarInsuranceRegistration carInsuranceRegistration, 
             HolidayHomeInsuranceRegistration holidayHomeInsuranceRegistration,
             HomeInsuranceRegistration homeInsuranceRegistration,
-            TravelInsuranceRegistration travelInsuranceRegistration, 
-            ClaimRegister claims, EmployeeRegister employees, 
-            InsuranceRegister insurances, CustomerRegister customers) {
+            TravelInsuranceRegistration travelInsuranceRegistration,
+            CustomerRegistration customerRegistration,
+            EmployeeRegistration employeeRegistration,
+            BoatClaimRegistration boatClaimRegistration,
+            CarClaimRegistration carClaimRegistration,
+            HolidayHomeClaimRegistration holidayHomeClaimRegistration,
+            HomeClaimRegistration homeClaimRegistration,
+            TravelClaimRegistration travelClaimRegistration) {
         
         // Initializes Registration Views
         this.boatInsuranceRegistration = boatInsuranceRegistration;
@@ -82,6 +103,13 @@ public class ModelController {
         this.holidayHomeInsuranceRegistration = holidayHomeInsuranceRegistration;
         this.homeInsuranceRegistration = homeInsuranceRegistration;
         this.travelInsuranceRegistration = travelInsuranceRegistration;
+        this.customerRegistration = customerRegistration;
+        this.employeeRegistration = employeeRegistration; 
+        this.boatClaimRegistration = boatClaimRegistration;
+        this.carClaimRegistration = carClaimRegistration;
+        this.holidayHomeClaimRegistration = holidayHomeClaimRegistration;
+        this.homeClaimRegistration = homeClaimRegistration;
+        this.travelClaimRegistration = travelClaimRegistration;
         
         this.claims = claims;
         this.employees = employees;

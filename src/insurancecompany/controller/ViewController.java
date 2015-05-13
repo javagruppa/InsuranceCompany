@@ -5,6 +5,10 @@
  */
 package insurancecompany.controller;
 
+import insurancecompany.model.datastructures.ClaimRegister;
+import insurancecompany.model.datastructures.CustomerRegister;
+import insurancecompany.model.datastructures.EmployeeRegister;
+import insurancecompany.model.datastructures.InsuranceRegister;
 import insurancecompany.view.*;
 import insurancecompany.view.modules.*;
 import insurancecompany.view.register.*;
@@ -54,26 +58,41 @@ public class ViewController {
     
     // Sub-Tab Views for PersonsView
     
-    // Persons RRegistration Views
+
+    // Persons Registration Views
     private CustomerRegistration customerRegistration;
     private EmployeeRegistration employeeRegistration;
     // Insurance Registration Views
+
+    // Insurance Registration Views:
+
     private BoatInsuranceRegistration boatInsuranceRegistration;
     private CarInsuranceRegistration carInsuranceRegistration;
     private HolidayHomeInsuranceRegistration holidayHomeInsuranceRegistration;
     private HomeInsuranceRegistration homeInsuranceRegistration;
     private TravelInsuranceRegistration travelInsuranceRegistration;
-    // Claims Registration Views
+    // Claim Registration Views:
+    private BoatClaimRegistration boatClaimRegistration;
     private CarClaimRegistration carClaimRegistration;
+    private HolidayHomeClaimRegistration holidayHomeClaimRegistration;
+    private HomeClaimRegistration homeClaimRegistration;
+    private TravelClaimRegistration travelClaimRegistration;
+
     
     // Constructor
-    public ViewController(AdminView adminView, BoatInsuranceRegistration boatInsuranceRegistration, 
+    public ViewController(AdminView adminView, 
+            BoatInsuranceRegistration boatInsuranceRegistration, 
             CarInsuranceRegistration carInsuranceRegistration, 
             HolidayHomeInsuranceRegistration holidayHomeInsuranceRegistration,
             HomeInsuranceRegistration homeInsuranceRegistration,
             TravelInsuranceRegistration travelInsuranceRegistration,
             CustomerRegistration customerRegistration,
-            EmployeeRegistration employeeRegistration) {
+            EmployeeRegistration employeeRegistration,
+            BoatClaimRegistration boatClaimRegistration,
+            CarClaimRegistration carClaimRegistration,
+            HolidayHomeClaimRegistration holidayHomeClaimRegistration,
+            HomeClaimRegistration homeClaimRegistration,
+            TravelClaimRegistration travelClaimRegistration) {
         
         // Initializes Module Views
         this.adminView = adminView;
@@ -104,9 +123,13 @@ public class ViewController {
         this.holidayHomeInsuranceRegistration = holidayHomeInsuranceRegistration;
         this.homeInsuranceRegistration = homeInsuranceRegistration;
         this.travelInsuranceRegistration = travelInsuranceRegistration;
-        
         this.customerRegistration = customerRegistration;
         this.employeeRegistration = employeeRegistration; 
+        this.boatClaimRegistration = boatClaimRegistration;
+        this.carClaimRegistration = carClaimRegistration;
+        this.holidayHomeClaimRegistration = holidayHomeClaimRegistration;
+        this.homeClaimRegistration = homeClaimRegistration;
+        this.travelClaimRegistration = travelClaimRegistration;
         
         initializeEventHandlers();
     }
@@ -125,6 +148,13 @@ public class ViewController {
         processView.setBillsButtonEventHandler(null);
         processView.setClaimsButtonEventHandler(null);
         processView.setSubscriptionsButtonEventHandler(null);
+        
+        claimsView.setBoatClaimButtonEventHandler(this::claimsViewBoatClaimButtonEventHandler);
+        claimsView.setCarClaimButtonEventHandler(this::claimsViewCarClaimButtonEventHandler);
+        claimsView.setHolidayHomeClaimButtonEventHandler(this::claimsViewHolidayHomeClaimButtonEventHandler);
+        claimsView.setHomeClaimButtonEventHandler(this::claimsViewHomeClaimButtonEventHandler);
+        claimsView.setTravelClaimButtonEventHandler(this::claimsViewTravelClaimButtonEventHandler);
+        
         insurancesView.setBoatInsuranceButtonEventHandler(this::insurancesViewBoatInsuranceButtonEventHandler);
         insurancesView.setCarInsuranceButtonEventHandler(this::insurancesViewCarInsuranceButtonEventHandler);
         insurancesView.setHolidayHomeInsuranceButtonEventHandler(this::insurancesViewHolidayHomeInsuranceButtonEventHandler);
@@ -205,6 +235,28 @@ public class ViewController {
     
     private void registerViewClaimsButtonEventHandler(ActionEvent event) {
         registerView.getMainPane().setCenter(claimsView.getMainPane());
+    }
+    
+    // REGISTER CLAIMS VIEW EVENT HANDLERS
+    
+    private void claimsViewBoatClaimButtonEventHandler(ActionEvent event) {
+        //claimsView.getMainPane().setCenter(boatClaimRegistration.getMainPane());
+    }
+    
+    private void claimsViewCarClaimButtonEventHandler(ActionEvent event) {
+        claimsView.getMainPane().setCenter(carClaimRegistration.getMainPane());
+    }
+    
+    private void claimsViewHomeClaimButtonEventHandler(ActionEvent event) {
+        //claimsView.getMainPane().setCenter(homeClaimRegistration.getMainPane());
+    }
+    
+    private void claimsViewHolidayHomeClaimButtonEventHandler(ActionEvent event) {
+        //claimsView.getMainPane().setCenter(holidayClaimInsuranceRegistration.getMainPane());
+    }
+    
+    private void claimsViewTravelClaimButtonEventHandler(ActionEvent event) {
+        //claimsView.getMainPane().setCenter(travelClaimRegistration.getMainPane());
     }
     
     // REGISTER INSURANCES VIEW EVENT HANDLERS

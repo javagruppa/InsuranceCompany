@@ -1,18 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package insurancecompany.model.vehicles;
 
 import java.io.Serializable;
 
 /**
- *
+ * Class Car. Sub class of vehicle, representing a car that is insured or
+ * a part of an accident.
  * @author Carl
  * @author Sindre
  */
 public class Car extends Vehicle implements Serializable {
+    /** SerialVersionUID used to identify this class for object IO */
     private static final long serialVersionUID = 1L;
     
     /**
@@ -33,5 +30,10 @@ public class Car extends Vehicle implements Serializable {
             int registrationYear){
         super(alarm, brand, engineEffect, model, personalNumber, 
                 registrationNumber, registrationYear);
+        }
+
+    public String toString() {
+        return "Bil: \n" + super.toString();
     }
+
 }

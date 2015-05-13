@@ -574,6 +574,36 @@ public class MainController {
         }
     }
     
+    private void carClaimSelectImageButtonEventHandler(ActionEvent event) {
+        // Initialize a file chooser:
+        FileChooser fileChooser = new FileChooser();
+        // Set the title:
+        fileChooser.setTitle("Velg bilde");
+        // Set the initial directory to the user folder:
+        fileChooser.setInitialDirectory(
+                new File(System.getProperty("user.home"))
+        );
+        // Set selectable file extennsion:
+        fileChooser.getExtensionFilters().addAll(
+            new FileChooser.ExtensionFilter("All Images", "*.*"),
+            new FileChooser.ExtensionFilter("JPG", "*.jpg"),
+            new FileChooser.ExtensionFilter("GIF", "*.gif"),
+            new FileChooser.ExtensionFilter("BMP", "*.bmp"),
+            new FileChooser.ExtensionFilter("PNG", "*.png")
+        );
+        // Get the file:
+        File file = fileChooser.showOpenDialog(primaryStage);
+        if (file != null) {
+            try {
+                BufferedImage bufferedImage = ImageIO.read(file);
+                Image image = SwingFXUtils.toFXImage(bufferedImage, null);
+                carClaimRegistration.setImage(image);
+            } catch (IOException ioe) {
+                logs.add(ioe.getStackTrace(), ioe.getMessage(), user);
+            }
+        }
+    }
+    
     // READ AND WRITE IDS FROM/TO FILE:
     
     /**

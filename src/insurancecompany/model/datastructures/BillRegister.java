@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package insurancecompany.model.datastructures;
 
 import insurancecompany.model.bills.Bill;
@@ -15,17 +10,17 @@ import java.util.List;
 import java.util.Set;
 
 /**
- *
+ * Class BillRegister. Register of all bills and invoices towards the customers
  * @author André
  */
 public class BillRegister {
-    
+    /** the filapath of the file where the bills are saved */
     private static String billsFilePath = "src/insurancecompany/resources/datastructures/billSet.dta";
-    
+    /** the list of bills */
     private Set<Bill> bills;
     
     /**
-     * Constructor:
+     * Constructs a new BillRegister
      */
     public BillRegister() {
         bills = new HashSet<Bill>();

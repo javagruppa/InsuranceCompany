@@ -64,21 +64,19 @@ public class HolidayHomeInsuranceRegistration {
     private ComboBox<String> excessCombo;
     private ComboBox<String> rentalCombo;
     private ComboBox<HolidayHomeType> typeCombo;
+    private TextField amountField;
     private TextField areaField;
-    private TextField buildingAmountField;
     private TextField cityField;
-    private TextField contentAmountField;
     private TextField materialField;
     private TextField premiumField;
     private TextField streetField;
     private TextField yearField;
     private TextField zipCodeField;
     // Output nodes, Text messages:
+    private Text amountMessage;
     private Text areaMessage;
-    private Text buildingAmountMessage;
     private Text cityMessage;
     private Text coverageMessage;
-    private Text contentAmountMessage;
     private Text excessMessage;
     private Text materialMessage;
     private Text rentalMessage;
@@ -153,9 +151,8 @@ public class HolidayHomeInsuranceRegistration {
         typeCombo = new ComboBox<>();
         populateTypeCombo();
         areaField = new TextField();
-        buildingAmountField = new TextField();
+        amountField = new TextField();
         cityField = new TextField();
-        contentAmountField = new TextField();
         materialField = new TextField();
         premiumField = new TextField();
         streetField = new TextField();
@@ -163,9 +160,8 @@ public class HolidayHomeInsuranceRegistration {
         zipCodeField = new TextField();
         // Initializes Output:
         areaMessage = new Text();
-        buildingAmountMessage = new Text();
+        amountMessage = new Text();
         cityMessage = new Text();
-        contentAmountMessage = new Text();
         coverageMessage = new Text();
         excessMessage = new Text();
         materialMessage = new Text();
@@ -187,8 +183,7 @@ public class HolidayHomeInsuranceRegistration {
         addressTitle.setId("textTitle");
         Label coverageLabel = new Label("Dekning:");
         Label excessLabel = new Label("Egenandel:");
-        Label buildingAmountLabel = new Label("Forsikringsbeløp for bygning:");
-        Label contentAmountLabel = new Label("Forsikringsbeløp for innbo:");
+        Label amountLabel = new Label("Forsikringsbeløp:");
         Label rentalLabel = new Label("For leie:");
         Label areaLabel = new Label("Areal:");
         Label yearLabel = new Label("Byggeår:");
@@ -223,44 +218,41 @@ public class HolidayHomeInsuranceRegistration {
         mainPane.add(excessLabel, 4, 2);
         mainPane.add(excessCombo, 5, 2);
         mainPane.add(excessMessage, 6, 2);
-        mainPane.add(buildingAmountLabel, 4, 3);
-        mainPane.add(buildingAmountField, 5, 3);
-        mainPane.add(buildingAmountMessage, 6, 3);
-        mainPane.add(contentAmountLabel, 4, 4);
-        mainPane.add(contentAmountField, 5, 4);
-        mainPane.add(contentAmountMessage, 6, 4);
-        mainPane.add(rentalLabel, 4, 5);
-        mainPane.add(rentalCombo, 5, 5);
-        mainPane.add(rentalMessage, 6, 5);
+        mainPane.add(amountLabel, 4, 3);
+        mainPane.add(amountField, 5, 3);
+        mainPane.add(amountMessage, 6, 3);
+        mainPane.add(rentalLabel, 4, 4);
+        mainPane.add(rentalCombo, 5, 4);
+        mainPane.add(rentalMessage, 6, 4);
         
-        mainPane.add(houseTitle, 4, 6);
-        mainPane.add(areaLabel, 4, 7);
-        mainPane.add(areaField, 5, 7);
-        mainPane.add(areaMessage, 6, 7);
-        mainPane.add(yearLabel, 4, 8);
-        mainPane.add(yearField, 5, 8);
-        mainPane.add(yearMessage, 6, 8);
-        mainPane.add(materialLabel, 4, 9);
-        mainPane.add(materialField, 5, 9);
-        mainPane.add(materialMessage, 6, 9);
-        mainPane.add(typeLabel, 4, 10);
-        mainPane.add(typeCombo, 5, 10);
-        mainPane.add(typeMessage, 6, 10);
+        mainPane.add(houseTitle, 4, 5);
+        mainPane.add(areaLabel, 4, 6);
+        mainPane.add(areaField, 5, 6);
+        mainPane.add(areaMessage, 6, 6);
+        mainPane.add(yearLabel, 4, 7);
+        mainPane.add(yearField, 5, 7);
+        mainPane.add(yearMessage, 6, 7);
+        mainPane.add(materialLabel, 4, 8);
+        mainPane.add(materialField, 5, 8);
+        mainPane.add(materialMessage, 6, 8);
+        mainPane.add(typeLabel, 4, 9);
+        mainPane.add(typeCombo, 5, 9);
+        mainPane.add(typeMessage, 6, 9);
         
-        mainPane.add(addressTitle, 4, 11);
-        mainPane.add(streetLabel, 4, 12);
-        mainPane.add(streetField, 5, 12);
-        mainPane.add(streetMessage, 6, 12);
-        mainPane.add(zipCodeLabel, 4, 13);
-        mainPane.add(zipCodeField, 5, 13);
-        mainPane.add(zipCodeMessage, 6, 13);
-        mainPane.add(cityLabel, 4, 14);
-        mainPane.add(cityField, 5, 14);
-        mainPane.add(cityMessage, 6, 14);
-        mainPane.add(premiumLabel, 4, 15);
-        mainPane.add(premiumField, 5, 15);
-        mainPane.add(calculateButton, 6, 15);
-        mainPane.add(registerButton, 5, 16);
+        mainPane.add(addressTitle, 4, 10);
+        mainPane.add(streetLabel, 4, 11);
+        mainPane.add(streetField, 5, 11);
+        mainPane.add(streetMessage, 6, 11);
+        mainPane.add(zipCodeLabel, 4, 12);
+        mainPane.add(zipCodeField, 5, 12);
+        mainPane.add(zipCodeMessage, 6, 12);
+        mainPane.add(cityLabel, 4, 13);
+        mainPane.add(cityField, 5, 13);
+        mainPane.add(cityMessage, 6, 13);
+        mainPane.add(premiumLabel, 4, 14);
+        mainPane.add(premiumField, 5, 14);
+        mainPane.add(calculateButton, 6, 14);
+        mainPane.add(registerButton, 5, 15);
     }
     
     // POPULATE METHODS:
@@ -338,10 +330,9 @@ public class HolidayHomeInsuranceRegistration {
     // CLEAR MESSAGES METHOD
     
     public void clearMessages() {
+        amountMessage.setText("");
         areaMessage.setText("");
-        buildingAmountMessage.setText("");
         cityMessage.setText("");
-        contentAmountMessage.setText("");
         coverageMessage.setText("");
         excessMessage.setText("");
         materialMessage.setText("");
@@ -364,9 +355,9 @@ public class HolidayHomeInsuranceRegistration {
         return areaField.getText();
     }
 
-    /** @return The value of buildingAmountField. */
-    public String getBuildingAmount() {
-        return buildingAmountField.getText();
+    /** @return The value of amountField. */
+    public String getAmount() {
+        return amountField.getText();
     }
 
     /** @return The value of cityField. */
@@ -374,11 +365,6 @@ public class HolidayHomeInsuranceRegistration {
         return cityField.getText();
     }
 
-    /** @return The value of contentAmountField. */
-    public String getContentAmount() {
-        return contentAmountField.getText();
-    }
-    
     /** @return The value of coverageCombo. */
     public HolidayHomeInsuranceCoverage getCoverage() {
         if (coverageCombo.getValue() instanceof HolidayHomeInsuranceCoverage) {
@@ -453,9 +439,9 @@ public class HolidayHomeInsuranceRegistration {
     }
 
     /** @param message The message to set. */
-    public void setBuildingAmountMessage(String message) {
-        this.buildingAmountMessage.setFill(Color.FIREBRICK);
-        this.buildingAmountMessage.setText(message);
+    public void setAmountMessage(String message) {
+        this.amountMessage.setFill(Color.FIREBRICK);
+        this.amountMessage.setText(message);
     }
 
     /** @param message The message to set. */
@@ -464,12 +450,6 @@ public class HolidayHomeInsuranceRegistration {
         this.cityMessage.setText(message);
     }
 
-    /** @param message The message to set. */
-    public void setContentAmountMessage(String message) {
-        this.contentAmountMessage.setFill(Color.FIREBRICK);
-        this.contentAmountMessage.setText(message);
-    }
-    
     /** @param message The message to set. */
     public void setCoverageMessage(String message) {
         this.coverageMessage.setFill(Color.FIREBRICK);

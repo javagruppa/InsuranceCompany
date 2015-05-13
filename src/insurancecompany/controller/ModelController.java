@@ -325,15 +325,15 @@ public class ModelController {
             return;
         }
         
-        // Creates Boat
+        // Creates Boat:
         Boat boat = new Boat(alarm, brand, engineEffect, engineType, length, 
                 model, ownerPersonalNumber, registrationNumber, 
                 registrationYear, value);
         
-        // Creates BoatInsurance
+        // Creates BoatInsurance:
         BoatInsurance insurance = new BoatInsurance(boat, customerId, coverage, excess);
         
-        // Adds insurance to Register
+        // Adds insurance to Register:
         insurances.addInsurance(insurance); //returns boolean
         // TODO: Give a message to the user whether the insurance was added or not. It would not
         //       be added if the register already contained such an insurance.

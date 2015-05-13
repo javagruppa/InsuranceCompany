@@ -61,16 +61,16 @@ public class CarInsuranceRegistration {
     
     // Input nodes, ComboBoxes and TextFields:
     private ComboBox<String> alarmCombo;
-    private ComboBox brandCombo;
-    private ComboBox coverageCombo;
-    private ComboBox drivingLengthCombo;
-    private ComboBox excessCombo;
-    private ComboBox existingBonusCombo;
-    private ComboBox modelCombo;
-    private ComboBox parkingConditionCombo;
-    private ComboBox yearCombo;
-    private ComboBox youngestDriverCombo;
-    private TextField personalNumberOwnerField;
+    private ComboBox<String> brandCombo;
+    private ComboBox<CarInsuranceCoverage> coverageCombo;
+    private ComboBox<String> drivingLengthCombo;
+    private ComboBox<String> excessCombo;
+    private ComboBox<String> existingBonusCombo;
+    private ComboBox<String> modelCombo;
+    private ComboBox<String> parkingConditionCombo;
+    private ComboBox<String> yearCombo;
+    private ComboBox<String> youngestDriverCombo;
+    private TextField ownerPersonalNumberField;
     private TextField premiumField;
     private TextField registrationNumberField;
     // Output nodes, Text messages:
@@ -82,14 +82,13 @@ public class CarInsuranceRegistration {
     private Text existingBonusMessage;
     private Text modelMessage;
     private Text parkingConditionMessage;
-    private Text personalNumberOwnerMessage;
+    private Text ownerPersonalNumberMessage;
     private Text registrationNumberMessage;
     private Text yearMessage;
     private Text youngestDriverMessage;
     // Buttons:
     private Button calculateButton;
     private Button registerButton;
-    
     
     public CarInsuranceRegistration() {
         
@@ -164,7 +163,7 @@ public class CarInsuranceRegistration {
         yearCombo.setEditable(true);
         youngestDriverCombo = new ComboBox();
         populateYoungestDriverCombo();
-        personalNumberOwnerField = new TextField();
+        ownerPersonalNumberField = new TextField();
         premiumField = new TextField();
         premiumField.setEditable(false);
         registrationNumberField = new TextField();
@@ -177,7 +176,7 @@ public class CarInsuranceRegistration {
         existingBonusMessage = new Text();
         modelMessage = new Text();
         parkingConditionMessage = new Text();
-        personalNumberOwnerMessage = new Text();
+        ownerPersonalNumberMessage = new Text();
         registrationNumberMessage = new Text();
         yearMessage = new Text();
         youngestDriverMessage = new Text();
@@ -243,8 +242,8 @@ public class CarInsuranceRegistration {
 
         mainPane.add(carTitle, 4, 7);
         mainPane.add(personalNumberOwnerLabel, 4, 8);
-        mainPane.add(personalNumberOwnerField, 5, 8);
-        mainPane.add(personalNumberOwnerMessage, 6, 8);
+        mainPane.add(ownerPersonalNumberField, 5, 8);
+        mainPane.add(ownerPersonalNumberMessage, 6, 8);
         mainPane.add(registrationNumberLabel, 4, 9);
         mainPane.add(registrationNumberField, 5, 9);
         mainPane.add(registrationNumberMessage, 6, 9);
@@ -416,7 +415,7 @@ public class CarInsuranceRegistration {
         existingBonusMessage.setText("");
         modelMessage.setText("");
         parkingConditionMessage.setText("");
-        personalNumberOwnerMessage.setText("");
+        ownerPersonalNumberMessage.setText("");
         registrationNumberMessage.setText("");
         yearMessage.setText("");
         youngestDriverMessage.setText("");
@@ -436,238 +435,171 @@ public class CarInsuranceRegistration {
 
     /** @return The value of brandCombo. */
     public String getBrand() {
-        return brandCombo.getValue() == null ? "" : brandCombo.getValue().toString();
+        return brandCombo.getValue() == null ? "" : brandCombo.getValue();
+    }
+
+    /** @return The value of coverageCombo. */
+    public CarInsuranceCoverage getCoverage() {
+        if (coverageCombo.getValue() instanceof CarInsuranceCoverage) {
+            // Casts the ComboBox value to TravelInsuranceCoverage and returns this value.
+            CarInsuranceCoverage coverage = (CarInsuranceCoverage) coverageCombo.getValue();
+            return coverage;
+            // If for instance no value is selected, the value will not equal a TravelInsuranceCoverage, in this case return null.
+        } else return null; 
     }
     
-    
-    ///
-    ///
-    /// SINDRE HAR KOMMET SÅ LANGT MED Å OPPDATERE DENNE KLASSEN. =D
-    ///
-    ///
-    
-    public Object getBrandComboValue() {
-        return brandCombo.getValue();
-    }
-    
-    /**
-     * @return the customerIdField
-     */
-    public String getCustomerIdField() {
+    /** @return The value of customerIdField. */
+    public String getCustomerId() {
         return customerIdField.getText();
     }
 
-    /**
-     * @return the personalNumberField
-     */
-    public String getPersonalNumberField() {
+    /** @return The value of drivingLengthCombo. */
+    public String getDrivingLength() {
+        return drivingLengthCombo.getValue() == null ? "" : drivingLengthCombo.getValue();
+    }
+
+    /** @return The value of excessCombo. */
+    public String getExcess() {
+        return excessCombo.getValue() == null ? "" : excessCombo.getValue();
+    }
+
+    /** @return The value of existingBonusCombo. */
+    public String getExistingBonus() {
+        return existingBonusCombo.getValue() == null ? "" : existingBonusCombo.getValue();
+    }
+
+    /** @return The value of modelCombo. */
+    public String getModel() {
+        return modelCombo.getValue() == null ? "" : modelCombo.getValue();
+    }
+
+    /** @return The value of parkingConditionCombo. */
+    public String getParkingCondition() {
+        return parkingConditionCombo.getValue() == null ? "" : parkingConditionCombo.getValue();
+    }
+
+    /** @return The value of personalNumberField. */
+    public String getPersonalNumber() {
         return personalNumberField.getText();
     }
 
-    /**
-     * @return the existingBonusCombo
-     */
-    public String getExistingBonusComboValue() {
-        return existingBonusCombo.getValue() == null ? null : existingBonusCombo.getValue().toString();
+    /** @return The value of ownerPersonalNumberField. */
+    public String getOwnerPersonalNumberField() {
+        return ownerPersonalNumberField.getText();
     }
 
-    /**
-     * @return the drivingLengthCombo
-     */
-    public String getDrivingLengthCombo() {
-        return drivingLengthCombo.getValue() == null ? null : drivingLengthCombo.getValue().toString();
-    }
-
-    /**
-     * @return the excessCombo
-     */
-    public String getExcessCombo() {
-        return excessCombo.getValue() == null ? null : excessCombo.getValue().toString();
-    }
-
-    /**
-     * @return the yearCombo
-     */
-    public String getYearCombo() {
-        return yearCombo.getValue() == null ? null : yearCombo.getValue().toString();
-    }
-
-    /**
-     * @return the modelCombo
-     */
-    public String getModelCombo() {
-        return modelCombo.getValue() == null ? null : modelCombo.getValue().toString();
-    }
-
-    /**
-     * @return the youngestDriverCombo
-     */
-    public String getYoungestDriverCombo() {
-        return youngestDriverCombo.getValue() == null ? null : youngestDriverCombo.getValue().toString();
-    }
-
-    /**
-     * @return the coverageCombo
-     */
-    public CarInsuranceCoverage getCoverageCombo() {
-        if (coverageCombo.getValue() instanceof CarInsuranceCoverage) {
-            // Casts the combobox value to CarInsuranceCoverage and return this value
-            CarInsuranceCoverage coverage = (CarInsuranceCoverage) coverageCombo.getValue();
-            return coverage;
-            // If for instance no value is selected, the value will not equal a CarInsuranceCoverage, 
-            //in this case return null:
-        } else return null; 
-    }
-
-    /**
-     * @return the parkingConditionCombo
-     */
-    public String getParkingConditionCombo() {
-        return parkingConditionCombo.getValue() == null ? null : parkingConditionCombo.getValue().toString();
-    }
-
-    /**
-     * @return the registrationNumberField
-     */
+    /** @return The value of registrationNumberField. */
     public String getRegistrationNumberField() {
         return registrationNumberField.getText();
     }
 
-    /**
-     * @return the personalNumberOwnerField
-     */
-    public String getPersonalNumberOwnerField() {
-        return personalNumberOwnerField.getText();
-    }
-
-    /**
-     * @return the premiumField
-     */
-    public String getPremiumField() {
-        return premiumField.getText();
-    }
-
-    /**
-     * @param customerArea the customerArea to set
-     */
-    public void setCustomerArea(String customerArea) {
-        this.customerArea.setText(customerArea);
-    }
-
-    /**
-     * @param existingBonusMessage the existingBonusMessage to set
-     */
-    public void setExistingBonusMessage(String existingBonusMessage) {
-        this.existingBonusMessage.setFill(Color.FIREBRICK);
-        this.existingBonusMessage.setText(existingBonusMessage);
-    }
-
-    /**
-     * @param drivingLengthMessage the drivingLengthMessage to set
-     */
-    public void setDrivingLengthMessage(String drivingLengthMessage) {
-        this.drivingLengthMessage.setFill(Color.FIREBRICK);
-        this.drivingLengthMessage.setText(drivingLengthMessage);
-    }
-
-    /**
-     * @param excessMessage the excessMessage to set
-     */
-    public void setExcessMessage(String excessMessage) {
-        this.excessMessage.setFill(Color.FIREBRICK);
-        this.excessMessage.setText(excessMessage);
-    }
-
-    /**
-     * @param brandMessage the brandMessage to set
-     */
-    public void setBrandMessage(String brandMessage) {
-        this.brandMessage.setFill(Color.FIREBRICK);
-        this.brandMessage.setText(brandMessage);
-    }
-
-    /**
-     * @param yearMessage the yearMessage to set
-     */
-    public void setYearMessage(String yearMessage) {
-        this.yearMessage.setFill(Color.FIREBRICK);
-        this.yearMessage.setText(yearMessage);
-    }
-
-    /**
-     * @param modelMessage the modelMessage to set
-     */
-    public void setModelMessage(String modelMessage) {
-        this.modelMessage.setFill(Color.FIREBRICK);
-        this.modelMessage.setText(modelMessage);
-    }
-
-    /**
-     * @param youngestDriverMessage the youngestDriverMessage to set
-     */
-    public void setYoungestDriverMessage(String youngestDriverMessage) {
-        this.youngestDriverMessage.setFill(Color.FIREBRICK);
-        this.youngestDriverMessage.setText(youngestDriverMessage);
-    }
-
-    /**
-     * @param alarmMessage the alarmMessage to set
-     */
-    public void setAlarmMessage(String alarmMessage) {
-        this.alarmMessage.setFill(Color.FIREBRICK);
-        this.alarmMessage.setText(alarmMessage);
-    }
-
-    /**
-     * @param coverageMessage the coverageMessage to set
-     */
-    public void setCoverageMessage(String coverageMessage) {
-        this.coverageMessage.setFill(Color.FIREBRICK);
-        this.coverageMessage.setText(coverageMessage);
-    }
-
-    /**
-     * @param parkingConditionMessage the parkingConditionMessage to set
-     */
-    public void setParkingConditionMessage(String parkingConditionMessage) {
-        this.parkingConditionMessage.setFill(Color.FIREBRICK);
-        this.parkingConditionMessage.setText(parkingConditionMessage);
-    }
-
-    /**
-     * @param registrationNumberMessage the registrationNumberMessage to set
-     */
-    public void setRegistrationNumberMessage(String registrationNumberMessage) {
-        this.registrationNumberMessage.setFill(Color.FIREBRICK);
-        this.registrationNumberMessage.setText(registrationNumberMessage);
-    }
-
-    /**
-     * @param personalNumberOwnerMessage the personalNumberOwnerMessage to set
-     */
-    public void setPersonalNumberOwnerMessage(String personalNumberOwnerMessage) {
-        this.personalNumberOwnerMessage.setFill(Color.FIREBRICK);
-        this.personalNumberOwnerMessage.setText(personalNumberOwnerMessage);
-    }
-
-    /**
-     * @return the selectedCustomerId
-     */
+    /** @return The value of selectedCustomerId. */
     public int getSelectedCustomerId() {
         return selectedCustomerId;
     }
 
-    /**
-     * @param selectedCustomerId the selectedCustomerId to set
-     */
+    /** @return The value of yearCombo. */
+    public String getYear() {
+        return yearCombo.getValue() == null ? "" : yearCombo.getValue();
+    }
+
+    /** @return The value of youngestDriverCombo. */
+    public String getYoungestDriver() {
+        return youngestDriverCombo.getValue() == null ? "" : youngestDriverCombo.getValue();
+    }
+    
+    /** @return The value of brandCombo. */
+    public Object getBrandComboValue() {
+        return brandCombo.getValue();
+    }
+    
+    // SET METHODS
+    
+    /** @param message The message to set. */
+    public void setAlarmMessage(String message) {
+        this.alarmMessage.setFill(Color.FIREBRICK);
+        this.alarmMessage.setText(message);
+    }
+
+    /** @param message The message to set. */
+    public void setBrandMessage(String message) {
+        this.brandMessage.setFill(Color.FIREBRICK);
+        this.brandMessage.setText(message);
+    }
+
+    /** @param message The message to set. */
+    public void setCoverageMessage(String message) {
+        this.coverageMessage.setFill(Color.FIREBRICK);
+        this.coverageMessage.setText(message);
+    }
+    
+    /** @param text The text to set. */
+    public void setCustomerArea(String text) {
+        this.customerArea.setText(text);
+    }
+
+    /** @param message The message to set. */
+    public void setCustomerSelectedMessage(String message) {
+        this.customerSelectedMessage.setFill(Color.FIREBRICK);
+        this.customerSelectedMessage.setText(message);
+    }
+
+    /** @param message The message to set. */
+    public void setDrivingLengthMessage(String message) {
+        this.drivingLengthMessage.setFill(Color.FIREBRICK);
+        this.drivingLengthMessage.setText(message);
+    }
+
+    /** @param message The message to set. */
+    public void setExcessMessage(String message) {
+        this.excessMessage.setFill(Color.FIREBRICK);
+        this.excessMessage.setText(message);
+    }
+
+    /** @param message The message to set. */
+    public void setExistingBonusMessage(String message) {
+        this.existingBonusMessage.setFill(Color.FIREBRICK);
+        this.existingBonusMessage.setText(message);
+    }
+
+    /** @param message The message to set. */
+    public void setModelMessage(String message) {
+        this.modelMessage.setFill(Color.FIREBRICK);
+        this.modelMessage.setText(message);
+    }
+
+    /** @param message The message to set. */
+    public void setParkingConditionMessage(String message) {
+        this.parkingConditionMessage.setFill(Color.FIREBRICK);
+        this.parkingConditionMessage.setText(message);
+    }
+
+    /** @param message The message to set. */
+    public void setOwnerPersonalNumberMessage(String message) {
+        this.ownerPersonalNumberMessage.setFill(Color.FIREBRICK);
+        this.ownerPersonalNumberMessage.setText(message);
+    }
+
+    /** @param message The message to set. */
+    public void setRegistrationNumberMessage(String message) {
+        this.registrationNumberMessage.setFill(Color.FIREBRICK);
+        this.registrationNumberMessage.setText(message);
+    }
+
+    /** @param selectedCustomerId The selectedCustomerId to set. */
     public void setSelectedCustomerId(int selectedCustomerId) {
         this.selectedCustomerId = selectedCustomerId;
     }
 
-    /**
-     * @param customerSelectedMessage the customerSelectedMessage to set
-     */
-    public void setCustomerSelectedMessage(String customerSelectedMessage) {
-        this.customerSelectedMessage.setText(customerSelectedMessage);
+    /** @param message The message to set. */
+    public void setYearMessage(String message) {
+        this.yearMessage.setFill(Color.FIREBRICK);
+        this.yearMessage.setText(message);
+    }
+
+    /** @param message The message to set. */
+    public void setYoungestDriverMessage(String message) {
+        this.youngestDriverMessage.setFill(Color.FIREBRICK);
+        this.youngestDriverMessage.setText(message);
     }
 }

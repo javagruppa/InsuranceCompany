@@ -342,13 +342,13 @@ public class MainController {
     
     private void carInsuranceSearchCustomerButtonEventHandler(ActionEvent event) {
         
-        String customerId = carInsuranceRegistration.getCustomerIdField();
+        String customerId = carInsuranceRegistration.getCustomerId();
         
        // Customer c = customers.findCustomerById(customerId);
     }
     
     private void carInsuranceSearchPersonalNumberButtonEventHandler(ActionEvent event) {
-        String personalNumber = carInsuranceRegistration.getPersonalNumberField();
+        String personalNumber = carInsuranceRegistration.getPersonalNumber();
         // TODO regex:
         // Search for customer by personal numer:
         Customer c = customers.findCustomerByPersonalNumber(personalNumber);
@@ -367,14 +367,14 @@ public class MainController {
     
     private void carInsuranceSelectCustomerButtonEventHandler(ActionEvent event) {
         
-        String idS = carInsuranceRegistration.getCustomerIdField();
+        String idS = carInsuranceRegistration.getCustomerId();
         int id = Integer.parseInt(idS);
         carInsuranceRegistration.setSelectedCustomerId(id);
     }
     
     private void carInsuranceRegisterButtonEventHandler(ActionEvent event) {
         // get all fields to String, then 
-        CarInsuranceCoverage coverage = carInsuranceRegistration.getCoverageCombo();
+        CarInsuranceCoverage coverage = carInsuranceRegistration.getCoverage();
         int customerId = carInsuranceRegistration.getSelectedCustomerId();
         int excess = 1000;
         int maxLength = 100;

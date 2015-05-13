@@ -3,7 +3,7 @@ import insurancecompany.model.properties.Address;
 import java.io.Serializable;
 /**
  * CaseWorker class. This is an employee of the insurance company.
- * The case worker registeres and views customers, insurances and claims.
+ * The case worker processes claims and decides the outcome of these.
  * 
  * @author Carl
  */

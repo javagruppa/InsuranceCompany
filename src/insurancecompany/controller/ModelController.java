@@ -6,6 +6,7 @@
 package insurancecompany.controller;
 
 
+import insurancecompany.misc.coverages.BoatInsuranceCoverage;
 import insurancecompany.model.datastructures.ClaimRegister;
 import insurancecompany.model.datastructures.CustomerRegister;
 import insurancecompany.model.datastructures.EmployeeRegister;
@@ -14,9 +15,19 @@ import insurancecompany.model.datastructures.LogRegister;
 import insurancecompany.model.datastructures.carinfo.*;
 import insurancecompany.model.insurances.Insurance;
 import insurancecompany.model.people.Customer;
+import insurancecompany.model.properties.Address;
+import insurancecompany.view.register.insurances.BoatInsuranceRegistration;
+import insurancecompany.view.register.insurances.CarInsuranceRegistration;
+import insurancecompany.view.register.insurances.HolidayHomeInsuranceRegistration;
+import insurancecompany.view.register.insurances.HomeInsuranceRegistration;
+import insurancecompany.view.register.insurances.TravelInsuranceRegistration;
+import insurancecompany.view.register.persons.CustomerRegistration;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.event.ActionEvent;
+import javafx.scene.control.Label;
+import javafx.scene.paint.Color;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
@@ -32,6 +43,14 @@ import javax.xml.bind.Unmarshaller;
  */
 public class ModelController {
     
+    // Insurance Registration Views
+    private BoatInsuranceRegistration boatInsuranceRegistration;
+    private CarInsuranceRegistration carInsuranceRegistration;
+    private CustomerRegistration customerRegistration;
+    private HolidayHomeInsuranceRegistration holidayHomeInsuranceRegistration;
+    private HomeInsuranceRegistration homeInsuranceRegistration;
+    private TravelInsuranceRegistration travelInsuranceRegistration;
+    
     private CarInfoRegister carInfoRegister;
     private LogRegister logRegister;
     
@@ -40,13 +59,32 @@ public class ModelController {
     private InsuranceRegister insurances;
     private CustomerRegister customers;
     
-    public ModelController(ClaimRegister claims, EmployeeRegister employees, InsuranceRegister insurances,
-            CustomerRegister customers) {
+    public ModelController(BoatInsuranceRegistration boatInsuranceRegistration, 
+            CarInsuranceRegistration carInsuranceRegistration, 
+            HolidayHomeInsuranceRegistration holidayHomeInsuranceRegistration,
+            HomeInsuranceRegistration homeInsuranceRegistration,
+            TravelInsuranceRegistration travelInsuranceRegistration, 
+            ClaimRegister claims, EmployeeRegister employees, 
+            InsuranceRegister insurances, CustomerRegister customers) {
+        
+        // Initializes Registration Views
+        this.boatInsuranceRegistration = boatInsuranceRegistration;
+        this.carInsuranceRegistration = carInsuranceRegistration;
+        this.holidayHomeInsuranceRegistration = holidayHomeInsuranceRegistration;
+        this.homeInsuranceRegistration = homeInsuranceRegistration;
+        this.travelInsuranceRegistration = travelInsuranceRegistration;
+        
         this.claims = claims;
         this.employees = employees;
         this.insurances = insurances;
         this.customers = customers;
+        
+        initializeEventHandlers();
         unmarshalCarInfoRegister();
+    }
+    
+    public void initializeEventHandlers() {
+        boatInsuranceRegistration.setRegisterButtonEventHandler(this::registerBoatInsuranceEventHandler);
     }
     
     /**
@@ -114,43 +152,7 @@ public class ModelController {
         }
     }
     
-    
-}
-    
-    
-    /*
-    // Insurance Registration Views
-    private BoatInsuranceRegistration boatInsuranceRegistration;
-    private CarInsuranceRegistration carInsuranceRegistration;
-    private CustomerRegistration customerRegistration;
-    private HolidayHomeInsuranceRegistration holidayHomeInsuranceRegistration;
-    private HomeInsuranceRegistration homeInsuranceRegistration;
-    private TravelInsuranceRegistration travelInsuranceRegistration;
-    
-    private CarInfoRegister carInfoRegister;
-    
-    public ModelController(BoatInsuranceRegistration boatInsuranceRegistration, 
-            CarInsuranceRegistration carInsuranceRegistration, 
-            HolidayHomeInsuranceRegistration holidayHomeInsuranceRegistration,
-            HomeInsuranceRegistration homeInsuranceRegistration,
-            TravelInsuranceRegistration travelInsuranceRegistration) {
-        
-        // Initializes Registration Views
-        this.boatInsuranceRegistration = boatInsuranceRegistration;
-        this.carInsuranceRegistration = carInsuranceRegistration;
-        this.holidayHomeInsuranceRegistration = holidayHomeInsuranceRegistration;
-        this.homeInsuranceRegistration = homeInsuranceRegistration;
-        this.travelInsuranceRegistration = travelInsuranceRegistration;
-        
-        initializeEventHandlers();
-        unmarshalCarInfoRegister();
-    }
-    
-    public void initializeEventHandlers() {
-        boatInsuranceRegistration.setRegisterButtonEventHandler(this::registerBoatInsuranceEventHandler);
-    }
-    
-    private void registerCustomerEventHandler(ActionEvent e) {
+    /*private void registerCustomerEventHandler(ActionEvent e) {
         boolean ok = true;
         String output = "";
         
@@ -196,13 +198,13 @@ public class ModelController {
             output += "Får ikke lagt til kunden. Kunde med personnummer: " + personalNumberS 
                     + " eksisterer allerede i kunderegisteret.";
         }
-    }
+    }*/
     
     private void registerBoatInsuranceEventHandler(ActionEvent e) {
         // Collects information about the customer and the insurance.
-        String coverage = boatInsuranceRegistration.getCoverage();
-        String customerId = boatInsuranceRegistration.getId();
-        String customerPersonalNumber = boatInsuranceRegistration.getCustomerPersonalNumber();
+        BoatInsuranceCoverage coverage = boatInsuranceRegistration.getCoverage();
+        String customerId = boatInsuranceRegistration.getCustomerId();
+        String customerPersonalNumber = boatInsuranceRegistration.getPersonalNumber();
         String excessString = boatInsuranceRegistration.getExcess();
         
         // Collects information about the boat.
@@ -265,13 +267,6 @@ public class ModelController {
             boatInsuranceRegistration.setCoverageMessage(missingMessage);
             abort = true;
         }
-        if(customerId.equals("")) {
-            boatInsuranceRegistration.setCustomerIdMessage(missingMessage);
-            abort = true;
-        }
-        if(customerPersonalNumber.equals("")) {
-            boatInsuranceRegistration.setCustomerPersonalNumberMessage(missingMessage);
-        }
         if(excessString.equals("")) {
             boatInsuranceRegistration.setExcessMessage(missingMessage);
         }
@@ -313,31 +308,4 @@ public class ModelController {
         
         // Adds insurance to Register
     }
-    
-    public final void unmarshalCarInfoRegister() {        
-        try {
-		File file = new File("src/insurancecompany/resources/xml/Car_makes_and_models.xml");
-                JAXBContext jaxbContext = JAXBContext.newInstance(CarInfoRegister.class);
-		Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();               
-		CarInfoRegister carInfoRegister = (CarInfoRegister) jaxbUnmarshaller.unmarshal(file);
-                this.carInfoRegister = carInfoRegister;
-                
-                // test:
-                String name = carInfoRegister.getCars().get(1).getName();
-                int to = carInfoRegister.getCars().get(0).getModelRegister().getModels().get(2).getTo();
-		System.out.println(name + to);
- 
-	  } catch (JAXBException e) {
-		e.printStackTrace();
-	  }
-    }
-    
-    public List<CarInfo> getCarInfos() {
-        return carInfoRegister.getCars();
-    }
-    
-    public CarInfo findCarInfo(String name) {
-        return carInfoRegister.findCarByName(name);
-    }
 }
-*/

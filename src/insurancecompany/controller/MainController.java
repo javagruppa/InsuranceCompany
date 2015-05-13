@@ -9,15 +9,18 @@ import insurancecompany.misc.EmployeeType;
 import insurancecompany.misc.coverages.CarInsuranceCoverage;
 import insurancecompany.model.bills.*;
 import insurancecompany.model.claims.*;
-import insurancecompany.view.register.claims.*;
-import insurancecompany.view.register.insurances.*;
-import insurancecompany.view.register.persons.*;
 import insurancecompany.model.datastructures.*;
 import insurancecompany.model.datastructures.carinfo.*;
 import insurancecompany.model.insurances.*;
 import insurancecompany.model.people.*;
 import insurancecompany.model.properties.*;
 import insurancecompany.view.modules.*;
+import insurancecompany.view.process.*;
+import insurancecompany.view.register.claims.*;
+import insurancecompany.view.register.insurances.*;
+import insurancecompany.view.register.persons.*;
+import insurancecompany.view.search.*;
+import insurancecompany.view.statistics.*;
 import java.io.*;
 import java.util.Calendar;
 import java.util.LinkedList;
@@ -47,21 +50,44 @@ public class MainController {
     // Modules:
     private AdminView adminView;
     
-    // Insurance Registration Views:
-    private BoatInsuranceRegistration boatInsuranceRegistration;
-    private CarInsuranceRegistration carInsuranceRegistration;
-    private HolidayHomeInsuranceRegistration holidayHomeInsuranceRegistration;
-    private HomeInsuranceRegistration homeInsuranceRegistration;
-    private TravelInsuranceRegistration travelInsuranceRegistration;
-    // Person Registration Views:
-    private CustomerRegistration customerRegistration;
-    private EmployeeRegistration employeeRegistration;
+    // Process Views:
+    private BillsProcessView billsProcessView;
+    private ClaimsProcessView claimsProcessView;
+    private SubscriptionsProcessView subscriptionsProcessView;
+    
     // Claim Registration Views:
     private BoatClaimRegistration boatClaimRegistration;
     private CarClaimRegistration carClaimRegistration;
     private HolidayHomeClaimRegistration holidayHomeClaimRegistration;
+    private HolidayHomeContentClaimRegistration holidayHomeContentClaimRegistration;
     private HomeClaimRegistration homeClaimRegistration;
+    private HomeContentClaimRegistration homeContentClaimRegistration;
     private TravelClaimRegistration travelClaimRegistration;
+    
+    // Insurance Registration Views:
+    private BoatInsuranceRegistration boatInsuranceRegistration;
+    private CarInsuranceRegistration carInsuranceRegistration;
+    private HolidayHomeInsuranceRegistration holidayHomeInsuranceRegistration;
+    private HolidayHomeContentInsuranceRegistration holidayHomeContentInsuranceRegistration;
+    private HomeInsuranceRegistration homeInsuranceRegistration;
+    private HomeContentInsuranceRegistration homeContentInsuranceRegistration;
+    private TravelInsuranceRegistration travelInsuranceRegistration;
+    
+    // Person Registration Views:
+    private CustomerRegistration customerRegistration;
+    private EmployeeRegistration employeeRegistration;
+    
+    // Search Views:
+    private ClaimSearchView claimSearchView;
+    private CustomerSearchView customerSearchView;
+    private EmployeeSearchView employeeSearchView;
+    private InsuranceSearchView insuranceSearchView;
+    
+    // Statistics Views:
+    private ClaimStatisticsView claimStatisticsView;
+    private CustomerStatisticsView customerStatisticsView;
+    private EmployeeStatisticsView employeeStatisticsView;
+    private InsuranceStatisticsView insuranceStatisticsView;
     
     // Controllers:
     private ModelController modelController;

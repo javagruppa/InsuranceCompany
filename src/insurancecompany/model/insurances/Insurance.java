@@ -6,7 +6,7 @@
 
 package insurancecompany.model.insurances;
 
-import insurancecompany.misc.DateCalculations;
+import insurancecompany.misc.DateUtility;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.DataInputStream;
@@ -14,9 +14,9 @@ import java.io.DataOutputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.util.Calendar;
-import java.io.Serializable;
 
 
 /**

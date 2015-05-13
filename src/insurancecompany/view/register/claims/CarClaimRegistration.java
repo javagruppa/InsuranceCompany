@@ -149,7 +149,7 @@ public class CarClaimRegistration {
         damagesPane.setId("innerPane");
         Label appraisalLbel = new Label("Takseringsbeløp:");
         appraisalField = new TextField();
-        Label selectImageLabel = new Label("Last opp et bilde som beskriver skaden");
+        Label selectImageLabel = new Label("Bilde som beskriver skaden");
         selectImageButton = new Button("Hent bilde");
         fileChooser = new FileChooser();
         Label openClaimFormLabel = new Label("Bilskademelingsskjema");

@@ -32,8 +32,9 @@ public class Car extends Vehicle implements Serializable {
                 registrationNumber, registrationYear);
         }
 
+    @Override
     public String toString() {
-        return "Bil: \n" + super.toString();
+        return "Bil:\n" + super.toString();
     }
 
 }

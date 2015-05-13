@@ -136,3 +136,9 @@ and open the template in the editor.
     -fx-text-fill: white;
     -fx-font-size: 15px;    
 }
+
+#innerPane {
+    -fx-background-color: #ccffff;
+    -fx-border-style: solid;
+    -fx-border-color: #395cab;
+}

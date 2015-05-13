@@ -8,14 +8,11 @@ package insurancecompany.view.register.claims;
 import insurancecompany.misc.coverages.Damage;
 import insurancecompany.model.insurances.Insurance;
 import java.time.LocalDate;
-import java.time.chrono.HijrahChronology;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -31,8 +28,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Border;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -100,12 +95,13 @@ public class CarClaimRegistration {
         ColumnConstraints col3 = new ColumnConstraints(40);
         ColumnConstraints col4 = new ColumnConstraints(50);
         ColumnConstraints col5 = new ColumnConstraints(150);
-        ColumnConstraints col6 = new ColumnConstraints(150);
+        ColumnConstraints col6 = new ColumnConstraints(100);
         ColumnConstraints col7 = new ColumnConstraints(150);
         // Add these constraints:
         mainPane.getColumnConstraints().addAll(col1, col2, col3, col4, col5, col6, col7);
         
         // Start initializing all nodes that are to be placed in the gridpane:
+        // Nodes that are used for customer searching and displaying customer info and insurances:
         Text selectCustomerTitle = new Text("Velg først en kunde i registeret:");
         selectCustomerTitle.setId("textTitle");
         Label customerIdLabel = new Label("Kundenummer:");
@@ -132,12 +128,13 @@ public class CarClaimRegistration {
         insurancesTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         selectInsuranceButton = new Button("Velg");
         selectInsuranceMessage = new Text();
-        
+        // Nodes that are used for registering claim:
         Text damagesTitle = new Text("Fyll inn informasjon:");
         damagesTitle.setId("textTitle");
         Label dateHappenedLabel = new Label("Skadedato:");
         dateHappenedPicker = new DatePicker();
-        restrictDatePicker();
+        // Set restrictions for the datepicker:
+        restrictDatePicker(dateHappenedPicker);
         Label descriptionLabel = new Label("Beskrivelse av skaden:");
         descriptionTextArea = new TextArea();
         descriptionTextArea.setPrefHeight(140);
@@ -145,10 +142,11 @@ public class CarClaimRegistration {
         damagesPane = new GridPane();
         damagesPane.setPadding(new Insets(10));
         damagesPane.setPrefHeight(150);
+        // Set gaps to damages pane:
         damagesPane.setHgap(10);
         damagesPane.setVgap(6);
-        damagesPane.setBorder(Border.EMPTY);
-        damagesPane.setStyle("-fx-background-color: #ffffff; ");
+        // Set CSS ID:
+        damagesPane.setId("innerPane");
         Label appraisalLbel = new Label("Takseringsbeløp:");
         appraisalField = new TextField();
         Label selectImageLabel = new Label("Last opp et bilde som beskriver skaden");
@@ -159,23 +157,21 @@ public class CarClaimRegistration {
         registerButton = new Button("Registrer");
         
         // Add nodes to mainPane:
+        // Nodes that are used for registering claim:
         mainPane.add(selectCustomerTitle, 0, 0);
         mainPane.add(customerIdLabel, 0, 1);
         mainPane.add(customerIdField, 1, 1);
-        mainPane.add(searchCustomerIdButton, 2, 1);
-        
+        mainPane.add(searchCustomerIdButton, 2, 1);      
         mainPane.add(personalNumberLabel, 0, 2);
         mainPane.add(personalNumberField, 1, 2);
         mainPane.add(searchPersonalNumberButton, 2, 2);
-        
         mainPane.add(resultTitle, 0, 3);
         mainPane.add(customerArea, 0, 4, 3, 4);
         mainPane.add(insurancesTitle, 0, 8);
         mainPane.add(insurancesTable, 0, 9, 3, 7);
         mainPane.add(selectInsuranceButton, 0, 16);
         mainPane.add(selectInsuranceMessage, 1, 16);
-        
-        // 
+        // Nodes that are used for registering claim:
         mainPane.add(damagesTitle, 4, 0);
         mainPane.add(dateHappenedLabel, 4, 1);
         mainPane.add(dateHappenedPicker, 5, 1);
@@ -190,9 +186,13 @@ public class CarClaimRegistration {
         mainPane.add(openClaimFormLabel, 4, 15);
         mainPane.add(openClaimFormButton, 5, 15);
         mainPane.add(registerButton, 4, 16);
-      
     }
     
+    /**
+     * Places list of damages inside a list of combo boxes and places
+     * each combo box inside the damage grid pane of this view.
+     * @param damages 
+     */
     public void populateDamagesPane(ArrayList<Damage> damages) {
         damageCheckBoxes = new ArrayList<CheckBox>();
         // Decides number of columns of damages:
@@ -222,7 +222,11 @@ public class CarClaimRegistration {
  
     }
     
-    private void restrictDatePicker() {
+    /**
+     * Sets up date restrictions to the DatePicker in the parameter.
+     * @param dateHappenedPicker 
+     */
+    private void restrictDatePicker(DatePicker dateHappenedPicker) {
         dateHappenedPicker.setValue(LocalDate.now());
         // Sets up a restricton for choosable dates:
         Callback<DatePicker, DateCell> dayCellFactory = dp -> new DateCell()
@@ -245,7 +249,8 @@ public class CarClaimRegistration {
         dateHappenedPicker.setPromptText("dd/MM/yyyy");
     }
     
-    /**
+    /** 
+     * Returns the customer id field as a String.
      * @return the customerIdField
      */
     public String getCustomerIdField() {
@@ -253,6 +258,7 @@ public class CarClaimRegistration {
     }
 
     /**
+     * Returns the personal number field as a String.
      * @return the personalNumberField
      */
     public String getPersonalNumberField() {
@@ -261,6 +267,8 @@ public class CarClaimRegistration {
 
 
     /**
+     * Places the String in the parameter inside the customer
+     * area TextArea.
      * @param customerArea the customerArea to set
      */
     public void setCustomerArea(String customerArea) {
@@ -268,7 +276,7 @@ public class CarClaimRegistration {
     }
 
     /**
-     * 
+     * Populates the insurance table of this class with a list of insurances:
      * @param insurances 
      */
     public void populateInsurancesTable(List<Insurance> insurances) {
@@ -276,6 +284,8 @@ public class CarClaimRegistration {
         insurancesTable.setItems(obList);
         insuranceTypeColumn.setCellValueFactory((cellData) -> {
                 if ( cellData.getValue() != null) {
+                    // Places a SimpleStringProperty version of the insurance name in
+                    // the first column:
                     return new SimpleStringProperty(cellData.getValue().getName());
                 } else {
                     return new SimpleStringProperty("<no name>");
@@ -283,6 +293,8 @@ public class CarClaimRegistration {
         });
         insuranceCoverageColum.setCellValueFactory((cellData) -> {
                 if ( cellData.getValue() != null) {
+                    // Places a SimpleObjectProperty version of the insurance's coverage in
+                    // the second column:
                     return new SimpleObjectProperty<>(cellData.getValue().getCoverage().toString());
                 } else {
                     return new SimpleObjectProperty(0);
@@ -290,6 +302,8 @@ public class CarClaimRegistration {
         });
         insuranceIdColumn.setCellValueFactory((cellData) -> {
                 if ( cellData.getValue() != null) {
+                    // Places a SimpleObjectProperty version of the insurance's id in
+                    // the third column:
                     return new SimpleObjectProperty<>(cellData.getValue().getInsuranceId());
                 } else {
                     return new SimpleObjectProperty(0);
@@ -297,10 +311,20 @@ public class CarClaimRegistration {
         });   
     }
     
+    /**
+     * Returns the Insurance object selected in the table.
+     * @return 
+     */
     public Insurance getInsuranceTableValue() {
-        return insurancesTable.getSelectionModel().getSelectedItem();
+        // If no row is selected in the table, retur null, otherwise return the selected insurance:
+        return insurancesTable.getSelectionModel() == null ? null : insurancesTable.getSelectionModel().getSelectedItem();
     }
     
+    /**
+     * Takes an array of damages as a parameter and forwards these to the damage
+     * pane.
+     * @param damages 
+     */
     public void setDamages(Damage[] damages) {
         ArrayList<Damage> damage = new ArrayList(Arrays.asList(damages));
         populateDamagesPane(damage);
@@ -347,6 +371,7 @@ public class CarClaimRegistration {
     }
 
     /**
+     * Sets the select insurance message of this view.
      * @param selectInsuranceMessage the selectInsuranceMessage to set
      */
     public void setSelectInsuranceMessage(Text selectInsuranceMessage) {

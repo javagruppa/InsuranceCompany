@@ -11,7 +11,7 @@ import java.io.Serializable;
  *
  * @author Sindre
  */
-public abstract class Property implements Serializable {
+public class Property implements Serializable {
     private static final long serialVersionUID = 1L;
     
     /** The address of this property. */
@@ -23,8 +23,7 @@ public abstract class Property implements Serializable {
     /** The building material of this property. */
     private PropertyMaterial material;
     /** Whether this property is to be rented out. */
-    private boolean rental;
-    
+        
     /**
      * Constructs a new property with the specified address. Area and year are 
      * set to 0. Material is set to null, rental is set to false.
@@ -32,13 +31,12 @@ public abstract class Property implements Serializable {
      * @param address the address of this property
      */
     public Property(Address address, PropertyMaterial material, int area,
-            int year, boolean rental) {
+            int year) {
         this.address = address;
         this.area = area;
         this.year = year;
         this.material = material;
-        this.rental = rental;
-        
+                
     }
     
     public double getMaterialMultiplicator(){
@@ -63,19 +61,6 @@ public abstract class Property implements Serializable {
         this.year = year;
     }
     
-    
-    
-    /**
-     * Sets the rental status of this property
-     * @param rental whether this property is a rental
-     */
-    public void setRental(boolean rental){
-        this.rental = rental;
-    }
-    
-    
-    
-    
     /**
      * Returns a string representation of this property. The string
      * representation consists of each field with a short description separated
@@ -93,7 +78,6 @@ public abstract class Property implements Serializable {
         result.append("\nAntall kvadratmeter: ").append(getArea());
         result.append("\nByggeår: ").append(getYear());
         result.append("\nByggemateriale: ").append(getMaterial());
-        result.append("\nUtleiebolig: ").append(rental ? "Ja" : "Nei");
         // Returns the string.
         return result.toString();
     }
@@ -119,13 +103,6 @@ public abstract class Property implements Serializable {
         return year;
     }
 
-    
-    /**
-     * @return the rental status
-     */
-    public boolean getRental() {
-        return rental;
-    }
     
     /**
      * 

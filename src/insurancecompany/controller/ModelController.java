@@ -595,7 +595,7 @@ public class ModelController {
 
                 abort = true;
             }
-        }*/
+        }
         if(excessString.equals("")) {
             homeInsuranceRegistration.setExcessMessage(EMPTY_MESSAGE);
             abort = true;

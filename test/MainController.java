@@ -254,6 +254,15 @@ public class MainController {
         String email = customerRegistration.getEmailField();
         String phone = customerRegistration.getPhoneField();
         
+        customerRegistration.setPersonalNumberMessage("");
+        customerRegistration.setFirstNameMessage("");
+        customerRegistration.setLastNameMessage("");
+        customerRegistration.setStreetMessage("");
+        customerRegistration.setCityMessage("");
+        customerRegistration.setEmailMessage("");
+        customerRegistration.setPhoneMessage("");
+        customerRegistration.setZipCodeMessage("");
+        
         if (personalNumber.equals("")) {
             String message = "Fyll inn dette feltet.";
             customerRegistration.setPersonalNumberMessage(message);
@@ -326,12 +335,22 @@ public class MainController {
         }
         
         
-        
-        int zipCode = 0;
-        try {
-            zipCode = Integer.parseInt(zipCodeS);
-        } catch (NumberFormatException nfe) {
+        if (zipCodeS.equals("")) {
+            String message = "Fyll inn dette feltet.";
+            customerRegistration.setZipCodeMessage(message);
             ok = false;
+        } else if (!zipCodeS.matches("\\d{4}")) {
+            String message = "Fyll inn korrekt postnummer, 4 siffer.";
+            customerRegistration.setZipCodeMessage(message);
+            ok = false;
+        } else {
+            int zipCode = 0;
+            try {
+                zipCode = Integer.parseInt(zipCodeS);
+            } catch (NumberFormatException nfe) {
+                    ok = false;
+                    logs.add(nfe.getStackTrace(), nfe.getMessage(), user);
+            }
         }
         
         // If all fields are filled in correctly proceed to creating and adding customer:
@@ -365,6 +384,14 @@ public class MainController {
         String email = employeeRegistration.getEmailField();
         String phone = employeeRegistration.getPhoneField();
 
+        customerRegistration.setPersonalNumberMessage("");
+        customerRegistration.setFirstNameMessage("");
+        customerRegistration.setLastNameMessage("");
+        customerRegistration.setStreetMessage("");
+        customerRegistration.setZipCodeMessage("");
+        customerRegistration.setCityMessage("");
+        customerRegistration.setEmailMessage("");
+        customerRegistration.setPersonalNumberMessage("");
         
         
         if (personalNumber.equals("")) {
@@ -438,12 +465,24 @@ public class MainController {
             ok = false;
         }
  
-        int zipCode = 0;
-        try {
-            zipCode = Integer.parseInt(zipCodeS);
-        } catch (NumberFormatException nfe) {
-            
+        if (zipCodeS.equals("")) {
+            String message = "Fyll inn dette feltet.";
+            customerRegistration.setZipCodeMessage(message);
+            ok = false;
+        } else if (!zipCodeS.matches("\\d{4}")) {
+            String message = "Fyll inn korrekt postnummer, 4 siffer.";
+            customerRegistration.setZipCodeMessage(message);
+            ok = false;
+        } else {
+            int zipCode = 0;
+            try {
+                zipCode = Integer.parseInt(zipCodeS);
+            } catch (NumberFormatException nfe) {
+                    ok = false;
+                    logs.add(nfe.getStackTrace(), nfe.getMessage(), user);
+            }
         }
+        
         // Creates an adress object for the customer:
         Address adress = new Address(street, zipCode, city);
         // Creates a new customer:

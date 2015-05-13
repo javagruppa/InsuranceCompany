@@ -21,14 +21,26 @@ public class Customer extends Person implements Serializable {
     /** whether or not this customer is a total customer */
     private boolean totalCustomer;
     
-    private String passwordSalt;
-    private String passwordHash;
+    /** passwords */
+    private String passwordSalt; // to be used in future updates
+    private String passwordHash; // to be used in future updates
     
+    /** this customers Id */
     private final int customerId;
+    /** this customers Vehicles */
     private List<Vehicle> vehicles;
     /** Decides if this customers subscription is active.*/
     private boolean active;
     
+    /**
+     * Constructs a customer with the specified parameters
+     * @param firstname this customers first name
+     * @param lastname this customers last name
+     * @param personalNumber this customers personal number
+     * @param email this customers email address
+     * @param address this customers address
+     * @param phone this customers phone number
+     */
     public Customer(String firstname, String lastname, String personalNumber, String email, Address address, String phone) {
         super(firstname, lastname, personalNumber, email, address, phone);
         customerId = nextCustomerId++;
@@ -89,27 +101,32 @@ public class Customer extends Person implements Serializable {
     }    
 
     /**
-     * @return the totalCustomer
+     * Returns whether or not this customer is a total customer (3 or more
+     * different insurances)
+     * @return the boolean totalCustomer
      */
     public boolean isTotalCustomer() {
         return totalCustomer;
     }
 
     /**
+     * Sets whether or not this customer is a total customer
      * @param totalCustomer the totalCustomer to set
      */
     public void setTotalCustomer(boolean totalCustomer) {
         this.totalCustomer = totalCustomer;
     }
 
-    /**Returns whether or not the customer is active
-     * @return the active
+    /**
+     * Returns whether or not the customer is active
+     * @return the boolean active
      */
     public boolean isActive() {
         return active;
     }
 
     /**
+     * Sets whether or not this customer is active
      * @param active the active to set
      */
     public void setActive(boolean active) {

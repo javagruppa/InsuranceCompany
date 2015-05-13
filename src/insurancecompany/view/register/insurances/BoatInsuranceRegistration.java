@@ -396,6 +396,11 @@ public class BoatInsuranceRegistration {
     public String getRegistrationYear() {
         return registrationYearField.getText();
     }
+
+    /** @return The value of selectedCustomerId. */
+    public int getSelectedCustomerId() {
+        return selectedCustomerId;
+    }
     
     // SET METHODS:
 
@@ -463,5 +468,10 @@ public class BoatInsuranceRegistration {
     public void setRegistrationYearMessage(String message) {
         this.registrationYearMessage.setFill(Color.FIREBRICK);
         this.registrationYearMessage.setText(message);
+    }
+    
+    /** @param selectedCustomerId The selectedCustomerId to set. */
+    public void setSelectedCustomerId(int selectedCustomerId) {
+        this.selectedCustomerId = selectedCustomerId;
     }
 }

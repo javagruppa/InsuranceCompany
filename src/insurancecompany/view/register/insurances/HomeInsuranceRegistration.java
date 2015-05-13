@@ -381,6 +381,11 @@ public class HomeInsuranceRegistration {
         return premiumField.getText();
     }
 
+    /** @return The value of selectedCustomerId. */
+    public int getSelectedCustomerId() {
+        return selectedCustomerId;
+    }
+
     /** @return The value of streetField. */
     public String getStreet() {
         return streetField.getText();
@@ -448,6 +453,11 @@ public class HomeInsuranceRegistration {
     public void setMaterialMessage(String message) {
         this.materialMessage.setFill(Color.FIREBRICK);
         this.materialMessage.setText(message);
+    }
+    
+    /** @param selectedCustomerId The selectedCustomerId to set. */
+    public void setSelectedCustomerId(int selectedCustomerId) {
+        this.selectedCustomerId = selectedCustomerId;
     }
 
     /** @param message The message to set. */

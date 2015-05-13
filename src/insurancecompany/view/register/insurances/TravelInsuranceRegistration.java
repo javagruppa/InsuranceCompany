@@ -267,6 +267,11 @@ public class TravelInsuranceRegistration {
     public String getPremium() {
         return premiumField.getText();
     }
+
+    /** @return The value of selectedCustomerId. */
+    public int getSelectedCustomerId() {
+        return selectedCustomerId;
+    }
     
     // SET METHODS:
 
@@ -280,5 +285,10 @@ public class TravelInsuranceRegistration {
     public void setExcessMessage(String message) {
         this.excessMessage.setFill(Color.FIREBRICK);
         this.excessMessage.setText(message);
+    }
+    
+    /** @param selectedCustomerId The selectedCustomerId to set. */
+    public void setSelectedCustomerId(int selectedCustomerId) {
+        this.selectedCustomerId = selectedCustomerId;
     }
 }

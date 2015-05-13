@@ -7,15 +7,18 @@ package insurancecompany.controller;
 
 import insurancecompany.view.*;
 import insurancecompany.view.modules.*;
+import insurancecompany.view.process.*;
 import insurancecompany.view.register.*;
 import insurancecompany.view.register.claims.*;
 import insurancecompany.view.register.insurances.*;
 import insurancecompany.view.register.persons.*;
 import insurancecompany.view.search.*;
+import insurancecompany.view.statistics.*;
 import javafx.event.ActionEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import org.omg.CORBA.BAD_CONTEXT;
 
 /**
  * View Controller. This class connects all the views together.
@@ -42,6 +45,31 @@ public class ViewController {
     private ClaimsView claimsView;
     private InsurancesView insurancesView;
     private PersonsView personsView;
+  
+    // Persons Registration Views
+    private CustomerRegistration customerRegistration;
+    private EmployeeRegistration employeeRegistration;
+    // Insurance Registration Views
+    private BoatInsuranceRegistration boatInsuranceRegistration;
+    private CarInsuranceRegistration carInsuranceRegistration;
+    private HomeInsuranceRegistration homeInsuranceRegistration;
+    //private HomeContentInsuranceRegistration homeContentInsuranceRegistration;
+    private HolidayHomeInsuranceRegistration holidayHomeInsuranceRegistration;
+    //private HolidayHomeContentInsuranceRegistration holidayHomeContentInsuranceRegistration;
+    private TravelInsuranceRegistration travelInsuranceRegistration;
+    // Claim Registration Views:
+    private BoatClaimRegistration boatClaimRegistration;
+    private CarClaimRegistration carClaimRegistration;
+    private HomeClaimRegistration homeClaimRegistration;
+    private HomeContentClaimRegistration homeContentClaimRegistration;
+    private HolidayHomeClaimRegistration holidayHomeClaimRegistration;
+    private HolidayHomeContentClaimRegistration holidayHomeContentClaimRegistration;
+    private TravelClaimRegistration travelClaimRegistration;
+    
+    // Sub-Tab Views for ProcessView
+    private BillsProcessView billsProcessView;
+    private ClaimsProcessView claimsProcessView;
+    private SubscriptionsProcessView subscriptionsProcessView;
     
     // Sub-Tab Views for SearchView
     private CustomerSearchView customerSearchView;
@@ -49,27 +77,12 @@ public class ViewController {
     private InsuranceSearchView insuranceSearchView;
     private ClaimSearchView claimsSearchView;
     
-    // Sub-Tab Views for PersonsView
+    // Sub-Tab Views for StatisticsView
+    private CustomerStatisticsView customerStatisticsView;
+    private EmployeeStatisticsView employeeStatisticsView;
+    private InsuranceStatisticsView insuranceStatisticsView;
+    private ClaimStatisticsView claimsStatisticsView;
     
-
-    // Persons Registration Views
-    private CustomerRegistration customerRegistration;
-    private EmployeeRegistration employeeRegistration;
-    // Insurance Registration Views
-
-    // Insurance Registration Views:
-
-    private BoatInsuranceRegistration boatInsuranceRegistration;
-    private CarInsuranceRegistration carInsuranceRegistration;
-    private HolidayHomeInsuranceRegistration holidayHomeInsuranceRegistration;
-    private HomeInsuranceRegistration homeInsuranceRegistration;
-    private TravelInsuranceRegistration travelInsuranceRegistration;
-    // Claim Registration Views:
-    private BoatClaimRegistration boatClaimRegistration;
-    private CarClaimRegistration carClaimRegistration;
-    private HolidayHomeClaimRegistration holidayHomeClaimRegistration;
-    private HomeClaimRegistration homeClaimRegistration;
-    private TravelClaimRegistration travelClaimRegistration;
     
     // Constructor
     public ViewController(AdminView adminView, 
@@ -99,6 +112,11 @@ public class ViewController {
         this.statisticsView = new StatisticsView();
         
         // Initializes Sub-Tab Views for RegisterView
+        this.billsProcessView = new BillsProcessView();
+        this.claimsProcessView = new ClaimsProcessView();
+        this.subscriptionsProcessView = new SubscriptionsProcessView();
+        
+        // Initializes Sub-Tab Views for ProcessView
         this.claimsView = new ClaimsView();
         this.insurancesView = new InsurancesView();
         this.personsView = new PersonsView();
@@ -108,6 +126,12 @@ public class ViewController {
         this.employeeSearchView = new EmployeeSearchView();
         this.insuranceSearchView = new InsuranceSearchView();
         this.claimsSearchView = new ClaimSearchView();
+        
+        // Initializes Sub-Tab Views for StatisticsView
+        this.customerStatisticsView = new CustomerStatisticsView();
+        this.employeeStatisticsView = new EmployeeStatisticsView();
+        this.insuranceStatisticsView = new InsuranceStatisticsView();
+        this.claimsStatisticsView = new ClaimStatisticsView();
         
         // Initializes Registration Views
         this.boatInsuranceRegistration = boatInsuranceRegistration;

@@ -13,12 +13,12 @@ import javafx.scene.layout.Pane;
  *
  * @author André
  */
-public class InsuranceSearchView {
+public class InsuranceStatisticsView {
     // Decalaration of the Gridpane and Scene.
     private GridPane mainPane;
     
-    public InsuranceSearchView() {
-        
+    public InsuranceStatisticsView() {
+        mainPane = new GridPane();
     }
     
     /**

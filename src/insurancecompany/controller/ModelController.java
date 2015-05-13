@@ -376,6 +376,28 @@ public class ModelController {
         //       be added if the register already contained such an insurance.
     }
     
+    private void boatInsuranceSearchPersonalNumberButtonEventHandler(ActionEvent event) {
+        String personalNumber = boatInsuranceRegistration.getPersonalNumber();
+        // TODO: Regex.
+        // Searches for the customer by personal number:
+        Customer customer = customers.findCustomerByPersonalNumber(personalNumber);
+        // If it doesn't find the customer:
+        if(customer == null) {
+            // Gives the user an appropriate message if the customer wasn't found:
+            boatInsuranceRegistration.setCustomerArea("Fant ingen kunde med personnummer:" + personalNumber);
+        } else {
+            // Displays the customer:
+            boatInsuranceRegistration.setCustomerArea(customer.toString());
+            // Finds the customer's insurances:
+            int customerId = customer.getId();
+            List insuranceList = insurances.getAllInsurancesByCustomerId(customerId);
+            if (!insuranceList.isEmpty()) {
+                // Displays the insurances if there is at least one:
+                boatInsuranceRegistration.populateInsurancesTable(insuranceList);
+            }
+        }
+    }
+    
     private void homeInsuranceRegisterButtonEventHandler(ActionEvent e) {
         
         // Clears previous messages:

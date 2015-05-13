@@ -5,8 +5,8 @@
  */
 package insurancecompany.view.register.insurances;
 
-import insurancecompany.misc.coverages.HolidayHomeInsuranceCoverage;
-import insurancecompany.misc.hometypes.HolidayHomeType;
+import insurancecompany.misc.coverages.HomeContentInsuranceCoverage;
+import insurancecompany.misc.hometypes.HomeType;
 import insurancecompany.model.insurances.Insurance;
 import insurancecompany.model.properties.PropertyMaterial;
 import java.util.List;
@@ -33,7 +33,7 @@ import javafx.scene.text.Text;
  *
  * @author Sindre
  */
-public class HolidayHomeInsuranceRegistration {
+public class HomeContentInsuranceRegistration {
     
     /** The main pane of this class. */
     private GridPane mainPane;
@@ -61,11 +61,11 @@ public class HolidayHomeInsuranceRegistration {
     // REGISTER INSURANCE NODES:
     
     // Input nodes, ComboBoxes and TextFields:
-    private ComboBox<HolidayHomeInsuranceCoverage> coverageCombo;
+    private ComboBox<HomeContentInsuranceCoverage> coverageCombo;
     private ComboBox<String> excessCombo;
     private ComboBox<PropertyMaterial> materialCombo;
     private ComboBox<String> rentalCombo;
-    private ComboBox<HolidayHomeType> typeCombo;
+    private ComboBox<HomeType> typeCombo;
     private TextField amountField;
     private TextField areaField;
     private TextField cityField;
@@ -89,7 +89,7 @@ public class HolidayHomeInsuranceRegistration {
     private Button calculateButton;
     private Button registerButton;
     
-    public HolidayHomeInsuranceRegistration() {
+    public HomeContentInsuranceRegistration() {
         
         // Sets up the mainPane:
         mainPane = new GridPane();
@@ -153,16 +153,16 @@ public class HolidayHomeInsuranceRegistration {
         populateRentalCombo();
         typeCombo = new ComboBox<>();
         populateTypeCombo();
-        areaField = new TextField();
         amountField = new TextField();
+        areaField = new TextField();
         cityField = new TextField();
         premiumField = new TextField();
         streetField = new TextField();
         yearField = new TextField();
         zipCodeField = new TextField();
         // Initializes Output:
-        areaMessage = new Text();
         amountMessage = new Text();
+        areaMessage = new Text();
         cityMessage = new Text();
         coverageMessage = new Text();
         excessMessage = new Text();
@@ -260,8 +260,8 @@ public class HolidayHomeInsuranceRegistration {
     // POPULATE METHODS:
     
     private void populateCoverageCombo() {
-        ObservableList<HolidayHomeInsuranceCoverage> obList;
-        obList = FXCollections.observableArrayList(HolidayHomeInsuranceCoverage.values()); 
+        ObservableList<HomeContentInsuranceCoverage> obList;
+        obList = FXCollections.observableArrayList(HomeContentInsuranceCoverage.values()); 
         coverageCombo.getItems().setAll(obList);
         coverageCombo.setPrefWidth(150);
     }
@@ -289,8 +289,8 @@ public class HolidayHomeInsuranceRegistration {
     }
     
     private void populateTypeCombo() {
-        ObservableList<HolidayHomeType> obList;
-        obList = FXCollections.observableArrayList(HolidayHomeType.values()); 
+        ObservableList<HomeType> obList;
+        obList = FXCollections.observableArrayList(HomeType.values()); 
         typeCombo.getItems().setAll(obList);
         typeCombo.setPrefWidth(150);
     }
@@ -327,7 +327,7 @@ public class HolidayHomeInsuranceRegistration {
     }
     
     // SET EVENTHANDLER METHODS:
-
+    
     public void setCalculateButtonEventHandler(EventHandler<ActionEvent> value) {
         calculateButton.setOnAction(value);
     }
@@ -371,14 +371,14 @@ public class HolidayHomeInsuranceRegistration {
         return mainPane;
     }
 
-    /** @return The value of areaField. */
-    public String getArea() {
-        return areaField.getText();
-    }
-
     /** @return The value of amountField. */
     public String getAmount() {
         return amountField.getText();
+    }
+
+    /** @return The value of areaField. */
+    public String getArea() {
+        return areaField.getText();
     }
 
     /** @return The value of cityField. */
@@ -387,12 +387,12 @@ public class HolidayHomeInsuranceRegistration {
     }
 
     /** @return The value of coverageCombo. */
-    public HolidayHomeInsuranceCoverage getCoverage() {
-        if (coverageCombo.getValue() instanceof HolidayHomeInsuranceCoverage) {
-            // Casts the ComboBox value to HolidayHomeInsuranceCoverage and returns this value.
-            HolidayHomeInsuranceCoverage coverage = (HolidayHomeInsuranceCoverage) coverageCombo.getValue();
+    public HomeContentInsuranceCoverage getCoverage() {
+        if (coverageCombo.getValue() instanceof HomeContentInsuranceCoverage) {
+            // Casts the ComboBox value to HomeContentInsuranceCoverage and returns this value.
+            HomeContentInsuranceCoverage coverage = (HomeContentInsuranceCoverage) coverageCombo.getValue();
             return coverage;
-            // If for instance no value is selected, the value will not equal a HolidayHomeInsuranceCoverage, in this case return null.
+            // If for instance no value is selected, the value will not equal a HomeContentInsuranceCoverage, in this case return null.
         } else return null; 
     }
     
@@ -437,12 +437,12 @@ public class HolidayHomeInsuranceRegistration {
     }
 
     /** @return The value of typeCombo. */
-    public HolidayHomeType getType() {
-        if (typeCombo.getValue() instanceof HolidayHomeType) {
-            // Casts the ComboBox value to HolidayHomeType and returns this value.
-            HolidayHomeType type = (HolidayHomeType) typeCombo.getValue();
+    public HomeType getType() {
+        if (typeCombo.getValue() instanceof HomeType) {
+            // Casts the ComboBox value to HomeType and returns this value.
+            HomeType type = (HomeType) typeCombo.getValue();
             return type;
-            // If for instance no value is selected, the value will not equal a HolidayHomeType, in this case return null.
+            // If for instance no value is selected, the value will not equal a HomeType, in this case return null.
         } else return null; 
     }
 

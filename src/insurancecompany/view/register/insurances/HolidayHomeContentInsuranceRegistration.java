@@ -5,7 +5,7 @@
  */
 package insurancecompany.view.register.insurances;
 
-import insurancecompany.misc.coverages.HolidayHomeInsuranceCoverage;
+import insurancecompany.misc.coverages.HolidayHomeContentInsuranceCoverage;
 import insurancecompany.misc.hometypes.HolidayHomeType;
 import insurancecompany.model.insurances.Insurance;
 import insurancecompany.model.properties.PropertyMaterial;
@@ -33,7 +33,7 @@ import javafx.scene.text.Text;
  *
  * @author Sindre
  */
-public class HolidayHomeInsuranceRegistration {
+public class HolidayHomeContentInsuranceRegistration {
     
     /** The main pane of this class. */
     private GridPane mainPane;
@@ -61,7 +61,7 @@ public class HolidayHomeInsuranceRegistration {
     // REGISTER INSURANCE NODES:
     
     // Input nodes, ComboBoxes and TextFields:
-    private ComboBox<HolidayHomeInsuranceCoverage> coverageCombo;
+    private ComboBox<HolidayHomeContentInsuranceCoverage> coverageCombo;
     private ComboBox<String> excessCombo;
     private ComboBox<PropertyMaterial> materialCombo;
     private ComboBox<String> rentalCombo;
@@ -89,7 +89,7 @@ public class HolidayHomeInsuranceRegistration {
     private Button calculateButton;
     private Button registerButton;
     
-    public HolidayHomeInsuranceRegistration() {
+    public HolidayHomeContentInsuranceRegistration() {
         
         // Sets up the mainPane:
         mainPane = new GridPane();
@@ -260,8 +260,8 @@ public class HolidayHomeInsuranceRegistration {
     // POPULATE METHODS:
     
     private void populateCoverageCombo() {
-        ObservableList<HolidayHomeInsuranceCoverage> obList;
-        obList = FXCollections.observableArrayList(HolidayHomeInsuranceCoverage.values()); 
+        ObservableList<HolidayHomeContentInsuranceCoverage> obList;
+        obList = FXCollections.observableArrayList(HolidayHomeContentInsuranceCoverage.values()); 
         coverageCombo.getItems().setAll(obList);
         coverageCombo.setPrefWidth(150);
     }
@@ -387,12 +387,12 @@ public class HolidayHomeInsuranceRegistration {
     }
 
     /** @return The value of coverageCombo. */
-    public HolidayHomeInsuranceCoverage getCoverage() {
-        if (coverageCombo.getValue() instanceof HolidayHomeInsuranceCoverage) {
-            // Casts the ComboBox value to HolidayHomeInsuranceCoverage and returns this value.
-            HolidayHomeInsuranceCoverage coverage = (HolidayHomeInsuranceCoverage) coverageCombo.getValue();
+    public HolidayHomeContentInsuranceCoverage getCoverage() {
+        if (coverageCombo.getValue() instanceof HolidayHomeContentInsuranceCoverage) {
+            // Casts the ComboBox value to HolidayHomeContentInsuranceCoverage and returns this value.
+            HolidayHomeContentInsuranceCoverage coverage = (HolidayHomeContentInsuranceCoverage) coverageCombo.getValue();
             return coverage;
-            // If for instance no value is selected, the value will not equal a HolidayHomeInsuranceCoverage, in this case return null.
+            // If for instance no value is selected, the value will not equal a HolidayHomeContentInsuranceCoverage, in this case return null.
         } else return null; 
     }
     

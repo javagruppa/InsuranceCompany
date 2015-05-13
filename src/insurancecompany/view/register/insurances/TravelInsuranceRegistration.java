@@ -230,6 +230,13 @@ public class TravelInsuranceRegistration {
     public void setRegisterButtonEventHandler(EventHandler<ActionEvent> value) {
         registerButton.setOnAction(value);
     }
+
+    // CLEAR MESSAGES METHOD
+    
+    public void clearMessages() {
+        coverageMessage.setText("");
+        excessMessage.setText("");
+    }
     
     // GET METHODS:
     

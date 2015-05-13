@@ -35,6 +35,8 @@ public class CarClaimForm implements Serializable {
     private Calendar date;
     /** The Id for the insurance covering this damage */
     private int insuranceId;
+    /** if there is any witnesses to the accident */
+    private String witnesses;
     
     /**
      * Constructs a new CarClaimForm with the specified car, owner, otherperson,
@@ -49,10 +51,11 @@ public class CarClaimForm implements Serializable {
      * @param location where the accident happened
      * @param events the courseOfEvents
      * @param insuranceId the Id of the insurance covering this damage
+     * @param witnesses the witnesses for the accident, if any
      */
     public CarClaimForm(Car car, Customer owner, VehicleOwner otherPerson,
             Car otherCar, String insuranceComp, String location, String events,
-            int insuranceId){
+            int insuranceId, String witnesses){
         this.car = car;
         this.owner = owner;
         this.otherPerson = otherPerson;
@@ -61,6 +64,7 @@ public class CarClaimForm implements Serializable {
         this.location = location;
         this.courseOfEvents = events;
         this.insuranceId = insuranceId;
+        this.witnesses = witnesses;
         date = Calendar.getInstance();
     }
     
@@ -173,6 +177,10 @@ public class CarClaimForm implements Serializable {
                     (otherCar.getRegistrationNumber());
             result.append("\nForsikringsselskap: ").append
                     (insuranceCompanyOther);
+        }
+        // If there are witnesses, these are added
+        if(witnesses != null) {
+            result.append("\nVitne(r) med telefonnummer: ").append(witnesses);
         }
         // These fields are added regardless of if another person i involved
         result.append("\n\nHvor hendelsen skjedde:\n").append

@@ -51,8 +51,7 @@ public class TravelInsuranceRegistration {
     // Buttons:
     private Button searchCustomerIdButton;
     private Button searchPersonalNumberButton;
-    // ints used to keep track of searched and selected customer id:
-    private int tempCustomerId;
+    // The customerId used in the insurance registration:
     private int selectedCustomerId;
     
     // REGISTER INSURANCE NODES:

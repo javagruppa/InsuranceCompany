@@ -5,6 +5,7 @@
  */
 package insurancecompany.misc;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -12,8 +13,12 @@ import java.util.Date;
  *
  * @author André
  */
-public class DateCalculations {
-    
+public class DateUtility {
+
+    /** The norwegian standard for showing dates */
+    public static final java.util.Locale NORWAY = new java.util.Locale("no");
+    /** The date format to be shown in toString */
+    public static final SimpleDateFormat NORWEGIAN_DATE_FORMAT = new SimpleDateFormat("dd.MM.yyyy", NORWAY );
     
     public static int getDifferenceInYears(Calendar first, Calendar last) {
         int diff = last.get(Calendar.YEAR) - first.get(Calendar.YEAR);
@@ -30,4 +35,5 @@ public class DateCalculations {
         cal.setTime(date);
         return cal;
     }
+
 }

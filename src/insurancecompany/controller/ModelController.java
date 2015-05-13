@@ -8,6 +8,7 @@ package insurancecompany.controller;
 
 import insurancecompany.misc.coverages.BoatInsuranceCoverage;
 import insurancecompany.misc.coverages.HomeInsuranceCoverage;
+import insurancecompany.misc.coverages.TravelInsuranceCoverage;
 import insurancecompany.misc.hometypes.HomeType;
 import insurancecompany.model.datastructures.ClaimRegister;
 import insurancecompany.model.datastructures.CustomerRegister;
@@ -17,6 +18,7 @@ import insurancecompany.model.datastructures.LogRegister;
 import insurancecompany.model.datastructures.carinfo.*;
 import insurancecompany.model.insurances.BoatInsurance;
 import insurancecompany.model.insurances.Insurance;
+import insurancecompany.model.insurances.TravelInsurance;
 import insurancecompany.model.people.Customer;
 import insurancecompany.model.properties.Address;
 import insurancecompany.model.properties.PropertyMaterial;
@@ -90,6 +92,8 @@ public class ModelController {
     
     public void initializeEventHandlers() {
         boatInsuranceRegistration.setRegisterButtonEventHandler(this::boatInsuranceRegisterButtonEventHandler);
+        homeInsuranceRegistration.setRegisterButtonEventHandler(this::homeInsuranceRegisterButtonEventHandler);
+        travelInsuranceRegistration.setRegisterButtonEventHandler(this::travelInsuranceRegisterButtonEventHandler);
     }
     
     /**
@@ -454,5 +458,57 @@ public class ModelController {
         // TODO: Give a message to the user whether the insurance was added or not. It would not
         //       be added if the register already contained such an insurance.
         */
+    }
+    
+    private void travelInsuranceRegisterButtonEventHandler(ActionEvent e) {
+        
+        // Clears previous messages:
+        travelInsuranceRegistration.clearMessages();
+        
+        // Collects information about the customer and the insurance:
+        TravelInsuranceCoverage coverage = travelInsuranceRegistration.getCoverage();
+        int customerId = travelInsuranceRegistration.getSelectedCustomerId();
+        String excessString = travelInsuranceRegistration.getExcess();
+        
+        // Creates a boolean which is to be set true if the user has made a 
+        // mistake and the method has to abort:
+        boolean abort = false;
+        
+        // Creates strings to be used in messages to the user:
+        String formatMessage = "* Kan kun bestå av tall.";
+        String missingMessage = "* Dette feltet må fylles ut.";
+        
+        // Creates ints for the converted values:
+        int excess = 0;
+        
+        // Evaluates Input:
+        if(coverage == null) {
+            travelInsuranceRegistration.setCoverageMessage(missingMessage);
+            abort = true;
+        }
+        
+        // Evaluates and converts Input:
+        if(excessString.equals("")) {
+            travelInsuranceRegistration.setExcessMessage(missingMessage);
+        } else {
+            try {
+                excess = Integer.parseInt(excessString);
+            } catch(NumberFormatException nfe) {
+                travelInsuranceRegistration.setExcessMessage(formatMessage);
+                abort = true;
+            }
+        }
+        
+        if(abort) {
+            return;
+        }
+        
+        // Creates TravelInsurance:
+        TravelInsurance insurance = new TravelInsurance(customerId, coverage, excess);
+        
+        // Adds insurance to Register:
+        insurances.addInsurance(insurance); //returns boolean
+        // TODO: Give a message to the user whether the insurance was added or not. It would not
+        //       be added if the register already contained such an insurance.
     }
 }

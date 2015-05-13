@@ -332,5 +332,7 @@ public class ModelController {
         
         // Adds insurance to Register
         insurances.addInsurance(insurance); //returns boolean
+        // TODO: Give a message to the user whether the insurance was added or not. It would not
+        //       be added if the register already contained such an insurance.
     }
 }

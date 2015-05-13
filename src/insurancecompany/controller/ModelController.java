@@ -65,6 +65,11 @@ public class ModelController {
     private EmployeeRegister employees;
     private InsuranceRegister insurances;
     private CustomerRegister customers;
+        
+    // Creates strings to be used in messages to the user:
+    private final String NO_CUSTOMER_MESSAGE = "Du har ikke valgt noen kunde.";
+    private final String FORMAT_MESSAGE = "Dette feltet kan kun bestå av tall.";
+    private final String EMPTY_MESSAGE = "Dette feltet må fylles ut.";
     
     public ModelController(BoatInsuranceRegistration boatInsuranceRegistration, 
             CarInsuranceRegistration carInsuranceRegistration, 
@@ -235,10 +240,6 @@ public class ModelController {
         // mistake and the method has to abort:
         boolean abort = false;
         
-        // Creates strings to be used in messages to the user:
-        String formatMessage = "* Kan kun bestå av tall.";
-        String missingMessage = "* Dette feltet må fylles ut.";
-        
         // Creates ints and booleans for the converted values:
         boolean alarm = false;
         int engineEffect = 0;
@@ -249,81 +250,85 @@ public class ModelController {
         
         // Evaluates Input:
         if(brand.equals("")) {
-            boatInsuranceRegistration.setBrandMessage(missingMessage);
+            boatInsuranceRegistration.setBrandMessage(EMPTY_MESSAGE);
             abort = true;
         }
         if(coverage == null) {
-            boatInsuranceRegistration.setCoverageMessage(missingMessage);
+            boatInsuranceRegistration.setCoverageMessage(EMPTY_MESSAGE);
+            abort = true;
+        }
+        if(customerId == 0) {
+            boatInsuranceRegistration.setCustomerSelectedMessage(NO_CUSTOMER_MESSAGE);
             abort = true;
         }
         if(engineType.equals("")) {
-            boatInsuranceRegistration.setEngineTypeMessage(missingMessage);
+            boatInsuranceRegistration.setEngineTypeMessage(EMPTY_MESSAGE);
             abort = true;
         }
         if(model.equals("")) {
-            boatInsuranceRegistration.setModelMessage(missingMessage);
+            boatInsuranceRegistration.setModelMessage(EMPTY_MESSAGE);
             abort = true;
         }
         if(ownerPersonalNumber.equals("")) {
-            boatInsuranceRegistration.setOwnerPersonalNumberMessage(missingMessage);
+            boatInsuranceRegistration.setOwnerPersonalNumberMessage(EMPTY_MESSAGE);
         }
         if(registrationNumber.equals("")) {
-            boatInsuranceRegistration.setRegistrationNumberMessage(missingMessage);
+            boatInsuranceRegistration.setRegistrationNumberMessage(EMPTY_MESSAGE);
         }
         
         // Evaluates and converts Input:
         if(alarmString.equals("")) {
-            boatInsuranceRegistration.setAlarmMessage(missingMessage);
+            boatInsuranceRegistration.setAlarmMessage(EMPTY_MESSAGE);
         } else {
             alarm = alarmString.equals("Ja");
         }
         if(engineEffectString.equals("")) {
-            boatInsuranceRegistration.setEngineEffectMessage(missingMessage);
+            boatInsuranceRegistration.setEngineEffectMessage(EMPTY_MESSAGE);
         } else {
             try {
                 engineEffect = Integer.parseInt(engineEffectString);
             } catch(NumberFormatException nfe) {
-                boatInsuranceRegistration.setEngineEffectMessage(formatMessage);
+                boatInsuranceRegistration.setEngineEffectMessage(FORMAT_MESSAGE);
                 abort = true;
             }
         }
         if(excessString.equals("")) {
-            boatInsuranceRegistration.setExcessMessage(missingMessage);
+            boatInsuranceRegistration.setExcessMessage(EMPTY_MESSAGE);
         } else {
             try {
                 excess = Integer.parseInt(excessString);
             } catch(NumberFormatException nfe) {
-                boatInsuranceRegistration.setExcessMessage(formatMessage);
+                boatInsuranceRegistration.setExcessMessage(FORMAT_MESSAGE);
                 abort = true;
             }
         }
         if(lengthString.equals("")) {
-            boatInsuranceRegistration.setLengthMessage(missingMessage);
+            boatInsuranceRegistration.setLengthMessage(EMPTY_MESSAGE);
         } else {
             try {
                 length = Integer.parseInt(lengthString);
             } catch(NumberFormatException nfe) {
-                boatInsuranceRegistration.setLengthMessage(formatMessage);
+                boatInsuranceRegistration.setLengthMessage(FORMAT_MESSAGE);
                 abort = true;
             }
         }
         if(registrationYearString.equals("")) {
-            boatInsuranceRegistration.setRegistrationYearMessage(missingMessage);
+            boatInsuranceRegistration.setRegistrationYearMessage(EMPTY_MESSAGE);
         } else {
             try {
                 registrationYear = Integer.parseInt(registrationYearString);
             } catch(NumberFormatException nfe) {
-                boatInsuranceRegistration.setRegistrationYearMessage(formatMessage);
+                boatInsuranceRegistration.setRegistrationYearMessage(FORMAT_MESSAGE);
                 abort = true;
             }
         }
         if(valueString.equals("")) {
-            boatInsuranceRegistration.setValueMessage(missingMessage);
+            boatInsuranceRegistration.setValueMessage(EMPTY_MESSAGE);
         } else {
             try {
                 value = Integer.parseInt(valueString);
             } catch(NumberFormatException nfe) {
-                boatInsuranceRegistration.setValueMessage(formatMessage);
+                boatInsuranceRegistration.setValueMessage(FORMAT_MESSAGE);
                 abort = true;
             }
         }
@@ -370,10 +375,6 @@ public class ModelController {
         // mistake and the method has to abort:
         boolean abort = false;
         
-        // Creates strings to be used in messages to the user:
-        String formatMessage = "* Kan kun bestå av tall.";
-        String missingMessage = "* Dette feltet må fylles ut.";
-        
         // Creates ints and booleans for the converted values:
         int amount = 0;
         int area = 0;
@@ -382,69 +383,73 @@ public class ModelController {
         
         // Evaluates Input:
         if(city.equals("")) {
-            homeInsuranceRegistration.setCityMessage(missingMessage);
+            homeInsuranceRegistration.setCityMessage(EMPTY_MESSAGE);
             abort = true;
         }
         if(coverage == null) {
-            homeInsuranceRegistration.setCoverageMessage(missingMessage);
+            homeInsuranceRegistration.setCoverageMessage(EMPTY_MESSAGE);
+            abort = true;
+        }
+        if(customerId == 0) {
+            homeInsuranceRegistration.setCustomerSelectedMessage(NO_CUSTOMER_MESSAGE);
             abort = true;
         }
         if(material == null) {
-            homeInsuranceRegistration.setMaterialMessage(missingMessage);
+            homeInsuranceRegistration.setMaterialMessage(EMPTY_MESSAGE);
             abort = true;
         }
         if(street.equals("")) {
-            homeInsuranceRegistration.setStreetMessage(missingMessage);
+            homeInsuranceRegistration.setStreetMessage(EMPTY_MESSAGE);
             abort = true;
         }
         if(type == null) {
-            homeInsuranceRegistration.setTypeMessage(missingMessage);
+            homeInsuranceRegistration.setTypeMessage(EMPTY_MESSAGE);
             abort = true;
         }
         if(zipCode.equals("")) {
-            homeInsuranceRegistration.setZipCodeMessage(missingMessage);
+            homeInsuranceRegistration.setZipCodeMessage(EMPTY_MESSAGE);
             abort = true;
         }
         
         // Evaluates and converts Input:
         if(areaString.equals("")) {
-            homeInsuranceRegistration.setAreaMessage(missingMessage);
+            homeInsuranceRegistration.setAreaMessage(EMPTY_MESSAGE);
             abort = true;
         } else {
             try {
                 area = Integer.parseInt(areaString);
             } catch(NumberFormatException nfe) {
-                homeInsuranceRegistration.setAreaMessage(formatMessage);
+                homeInsuranceRegistration.setAreaMessage(FORMAT_MESSAGE);
                 abort = true;
             }
         }
         if(amountString.equals("")) {
-            homeInsuranceRegistration.setAmountMessage(missingMessage);
+            homeInsuranceRegistration.setAmountMessage(EMPTY_MESSAGE);
         } else {
             try {
                 amount = Integer.parseInt(amountString);
             } catch(NumberFormatException nfe) {
-                homeInsuranceRegistration.setAmountMessage(formatMessage);
+                homeInsuranceRegistration.setAmountMessage(FORMAT_MESSAGE);
                 abort = true;
             }
         }
         if(excessString.equals("")) {
-            homeInsuranceRegistration.setExcessMessage(missingMessage);
+            homeInsuranceRegistration.setExcessMessage(EMPTY_MESSAGE);
         } else {
             try {
                 excess = Integer.parseInt(excessString);
             } catch(NumberFormatException nfe) {
-                homeInsuranceRegistration.setExcessMessage(formatMessage);
+                homeInsuranceRegistration.setExcessMessage(FORMAT_MESSAGE);
                 abort = true;
             }
         }
         if(yearString.equals("")) {
-            homeInsuranceRegistration.setYearMessage(missingMessage);
+            homeInsuranceRegistration.setYearMessage(EMPTY_MESSAGE);
         } else {
             try {
                 year = Integer.parseInt(yearString);
             } catch(NumberFormatException nfe) {
-                homeInsuranceRegistration.setYearMessage(formatMessage);
+                homeInsuranceRegistration.setYearMessage(FORMAT_MESSAGE);
                 abort = true;
             }
         }
@@ -482,27 +487,27 @@ public class ModelController {
         // mistake and the method has to abort:
         boolean abort = false;
         
-        // Creates strings to be used in messages to the user:
-        String formatMessage = "* Kan kun bestå av tall.";
-        String missingMessage = "* Dette feltet må fylles ut.";
-        
         // Creates ints for the converted values:
         int excess = 0;
         
         // Evaluates Input:
         if(coverage == null) {
-            travelInsuranceRegistration.setCoverageMessage(missingMessage);
+            travelInsuranceRegistration.setCoverageMessage(EMPTY_MESSAGE);
+            abort = true;
+        }
+        if(customerId == 0) {
+            travelInsuranceRegistration.setCustomerSelectedMessage(NO_CUSTOMER_MESSAGE);
             abort = true;
         }
         
         // Evaluates and converts Input:
         if(excessString.equals("")) {
-            travelInsuranceRegistration.setExcessMessage(missingMessage);
+            travelInsuranceRegistration.setExcessMessage(EMPTY_MESSAGE);
         } else {
             try {
                 excess = Integer.parseInt(excessString);
             } catch(NumberFormatException nfe) {
-                travelInsuranceRegistration.setExcessMessage(formatMessage);
+                travelInsuranceRegistration.setExcessMessage(FORMAT_MESSAGE);
                 abort = true;
             }
         }

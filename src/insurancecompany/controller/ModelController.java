@@ -84,6 +84,11 @@ public class ModelController {
     private final String NO_CUSTOMER_MESSAGE = "Du har ikke valgt noen kunde.";
     private final String FORMAT_MESSAGE = "Dette feltet kan kun bestå av tall.";
     private final String EMPTY_MESSAGE = "Dette feltet må fylles ut.";
+    private final String CUSTOMERID_FORMAT_MESSAGE = "Kundenummeret kan kun bestå av tall.";
+    private final String CUSTOMERID_EMPTY_MESSAGE = "Du må skrive inn et kundenummer.";
+    private final String CUSTOMERID_NOT_FOUND_MESSAGE = "Fant ingen kunde med kundenummer: ";
+    private final String PERSONALNUMBER_EMPTY_MESSAGE = "Du må skrive inn et personnummer.";
+    private final String PERSONALNUMBER_NOT_FOUND_MESSAGE = "Fant ingen kunde med personnummer: ";
     
     public ModelController(ClaimRegister claims, CustomerRegister customers, 
             EmployeeRegister employees, InsuranceRegister insurances, 
@@ -243,6 +248,8 @@ public class ModelController {
         }
     }*/
     
+    // BOAT INSURANCE REGISTRATION EVENT HANDLERS
+    
     private void boatInsuranceRegisterButtonEventHandler(ActionEvent e) {
         
         // Clears previous messages:
@@ -386,20 +393,53 @@ public class ModelController {
         //       be added if the register already contained such an insurance.
     }
     
+    private void boatInsuranceSearchCustomerIdButtonEventHandler(ActionEvent event) {
+        String customerIdString = boatInsuranceRegistration.getCustomerId();
+        int customerId;
+        if(customerIdString.equals("")) {
+            // Gives the user an appropriate message if the user hasn't put in a customerId:
+            boatInsuranceRegistration.setCustomerArea(CUSTOMERID_EMPTY_MESSAGE);
+            return;
+        }
+        try {
+            // Converts the customerId to int:
+            customerId = Integer.parseInt(customerIdString);
+        } catch(NumberFormatException nfe) {
+            // Gives the user an appropriate message if the customerId wasn't formatted correctly:
+            boatInsuranceRegistration.setCustomerArea(CUSTOMERID_FORMAT_MESSAGE);
+            return;
+        }
+        // TODO: Regex.
+        // Searches for the customer by customerId:
+        Customer customer = customers.findCustomerById(customerId);
+        if(customer == null) {
+            // Gives the user an appropriate message if the customer wasn't found:
+            boatInsuranceRegistration.setCustomerArea(CUSTOMERID_NOT_FOUND_MESSAGE + customerId);
+        } else {
+            // Displays the customer:
+            boatInsuranceRegistration.setCustomerArea(customer.toString());
+            // Finds the customer's insurances:
+            List insuranceList = insurances.getAllInsurancesByCustomerId(customerId);
+            if (!insuranceList.isEmpty()) {
+                // Displays the insurances if there is at least one:
+                boatInsuranceRegistration.populateInsurancesTable(insuranceList);
+            }
+        }
+    }
+    
     private void boatInsuranceSearchPersonalNumberButtonEventHandler(ActionEvent event) {
         String personalNumber = boatInsuranceRegistration.getPersonalNumber();
         if(personalNumber.equals("")) {
             // Gives the user an appropriate message if the user hasn't put in a personalNumber:
-            boatInsuranceRegistration.setCustomerArea("Du må skrive inn et personnummer.");
+            boatInsuranceRegistration.setCustomerArea(PERSONALNUMBER_EMPTY_MESSAGE);
             return;
         }
         // TODO: Regex.
-        // Searches for the customer by personal number:
+        // Searches for the customer by personalNumber:
         Customer customer = customers.findCustomerByPersonalNumber(personalNumber);
-        // If it doesn't find the customer:
         if(customer == null) {
             // Gives the user an appropriate message if the customer wasn't found:
-            boatInsuranceRegistration.setCustomerArea("Fant ingen kunde med personnummer: " + personalNumber);
+            boatInsuranceRegistration.setCustomerArea(PERSONALNUMBER_NOT_FOUND_MESSAGE + personalNumber);
         } else {
             // Displays the customer:
             boatInsuranceRegistration.setCustomerArea(customer.toString());

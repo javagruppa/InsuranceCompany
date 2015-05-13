@@ -22,6 +22,7 @@ import insurancecompany.view.register.persons.*;
 import insurancecompany.view.search.*;
 import insurancecompany.view.statistics.*;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
@@ -40,12 +41,12 @@ public class MainController {
     private Person user;
     
     // Models:
-    private EmployeeRegister employees;
-    private CustomerRegister customers;
-    private InsuranceRegister insurances;
-    private ClaimRegister claims;
-    private LogRegister logs;
     private BillRegister bills;
+    private ClaimRegister claims;
+    private CustomerRegister customers;
+    private EmployeeRegister employees;
+    private InsuranceRegister insurances;
+    private LogRegister logs;
     
     // Modules:
     private AdminView adminView;
@@ -98,12 +99,12 @@ public class MainController {
         user = new Admin("asd", "asd", "asd", "asd", null, "asd");
         
         // Models:
-        this.employees = new EmployeeRegister();
-        this.customers = new CustomerRegister();
-        this.insurances = new InsuranceRegister();
-        this.claims = new ClaimRegister();
-        this.logs = new LogRegister();
         this.bills = new BillRegister();
+        this.claims = new ClaimRegister();
+        this.customers = new CustomerRegister();
+        this.employees = new EmployeeRegister();
+        this.insurances = new InsuranceRegister();
+        this.logs = new LogRegister();
         
         // Modules:
         this.adminView = new AdminView();
@@ -147,14 +148,41 @@ public class MainController {
         this.employeeStatisticsView = new EmployeeStatisticsView();
         this.insuranceStatisticsView = new InsuranceStatisticsView();
         
+        // Create an ArrayList with all views to be sent as a parameter to the 
+        // controllers. This is done to make the constructor of the controllers
+        // cleaner.
+        ArrayList<Object> views = new ArrayList<>();
+        views.add(0, billsProcessView);
+        views.add(1, claimsProcessView);
+        views.add(2, subscriptionsProcessView);
+        views.add(3, boatClaimRegistration);
+        views.add(4, carClaimRegistration);
+        views.add(5, holidayHomeClaimRegistration);
+        views.add(6, holidayHomeContentClaimRegistration);
+        views.add(7, homeClaimRegistration);
+        views.add(8, homeContentClaimRegistration);
+        views.add(9, travelClaimRegistration);
+        views.add(10, boatInsuranceRegistration);
+        views.add(11, carInsuranceRegistration);
+        views.add(12, holidayHomeInsuranceRegistration);
+        views.add(13, holidayHomeContentInsuranceRegistration);
+        views.add(14, homeInsuranceRegistration);
+        views.add(15, homeContentInsuranceRegistration);
+        views.add(16, travelInsuranceRegistration);
+        views.add(17, customerRegistration);
+        views.add(18, employeeRegistration);
+        views.add(19, claimSearchView);
+        views.add(20, customerSearchView);
+        views.add(21, employeeSearchView);
+        views.add(22, insuranceSearchView);
+        views.add(23, claimStatisticsView);
+        views.add(24, customerStatisticsView);
+        views.add(25, employeeStatisticsView);
+        views.add(26, insuranceStatisticsView);
+                
         // Controllers:
-        this.modelController = new ModelController(claims, customers, employees, 
-                insurances, boatInsuranceRegistration, carInsuranceRegistration, 
-                holidayHomeInsuranceRegistration, homeInsuranceRegistration, 
-                travelInsuranceRegistration, customerRegistration, 
-                employeeRegistration, boatClaimRegistration, 
-                carClaimRegistration, holidayHomeClaimRegistration, 
-                homeClaimRegistration, travelClaimRegistration);
+        this.modelController = new ModelController(bills, claims, customers, employees, 
+                insurances, logs, views);
         this.viewController = new ViewController(adminView, 
                 boatInsuranceRegistration, carInsuranceRegistration, 
                 holidayHomeInsuranceRegistration, 

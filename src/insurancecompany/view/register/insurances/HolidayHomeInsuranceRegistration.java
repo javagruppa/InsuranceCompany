@@ -335,6 +335,18 @@ public class HolidayHomeInsuranceRegistration {
     public void setRegisterButtonEventHandler(EventHandler<ActionEvent> value) {
         registerButton.setOnAction(value);
     }
+    
+    public void setSearchCustomerIdButtonEventHandler(EventHandler<ActionEvent> value) {
+        searchCustomerIdButton.setOnAction(value);
+    }
+
+    public void setSearchPersonalNumberButtonEventHandler(EventHandler<ActionEvent> value) {
+        searchPersonalNumberButton.setOnAction(value);
+    }
+
+    public void setSelectCustomerButtonEventHandler(EventHandler<ActionEvent> value) {
+        selectCustomerButton.setOnAction(value);
+    }
 
     // CLEAR MESSAGES METHOD
     

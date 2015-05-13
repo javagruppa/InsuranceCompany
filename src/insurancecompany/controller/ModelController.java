@@ -17,9 +17,12 @@ import insurancecompany.model.datastructures.InsuranceRegister;
 import insurancecompany.model.datastructures.LogRegister;
 import insurancecompany.model.datastructures.carinfo.*;
 import insurancecompany.model.insurances.BoatInsurance;
+import insurancecompany.model.insurances.HomeInsurance;
 import insurancecompany.model.insurances.Insurance;
 import insurancecompany.model.insurances.TravelInsurance;
 import insurancecompany.model.people.Customer;
+import insurancecompany.model.properties.Address;
+import insurancecompany.model.properties.Property;
 import insurancecompany.model.properties.PropertyMaterial;
 import insurancecompany.model.vehicles.Boat;
 import insurancecompany.view.register.claims.BoatClaimRegistration;
@@ -305,11 +308,13 @@ public class ModelController {
         // Evaluates and converts Input:
         if(alarmString.equals("")) {
             boatInsuranceRegistration.setAlarmMessage(EMPTY_MESSAGE);
+            abort = true;
         } else {
             alarm = alarmString.equals("Ja");
         }
         if(engineEffectString.equals("")) {
             boatInsuranceRegistration.setEngineEffectMessage(EMPTY_MESSAGE);
+            abort = true;
         } else {
             try {
                 engineEffect = Integer.parseInt(engineEffectString);
@@ -320,6 +325,7 @@ public class ModelController {
         }
         if(excessString.equals("")) {
             boatInsuranceRegistration.setExcessMessage(EMPTY_MESSAGE);
+            abort = true;
         } else {
             try {
                 excess = Integer.parseInt(excessString);
@@ -330,6 +336,7 @@ public class ModelController {
         }
         if(lengthString.equals("")) {
             boatInsuranceRegistration.setLengthMessage(EMPTY_MESSAGE);
+            abort = true;
         } else {
             try {
                 length = Integer.parseInt(lengthString);
@@ -340,6 +347,7 @@ public class ModelController {
         }
         if(registrationYearString.equals("")) {
             boatInsuranceRegistration.setRegistrationYearMessage(EMPTY_MESSAGE);
+            abort = true;
         } else {
             try {
                 registrationYear = Integer.parseInt(registrationYearString);
@@ -350,6 +358,7 @@ public class ModelController {
         }
         if(valueString.equals("")) {
             boatInsuranceRegistration.setValueMessage(EMPTY_MESSAGE);
+            abort = true;
         } else {
             try {
                 value = Integer.parseInt(valueString);
@@ -422,7 +431,7 @@ public class ModelController {
         String city = homeInsuranceRegistration.getCity();
         String street = homeInsuranceRegistration.getStreet();
         String yearString = homeInsuranceRegistration.getYear();
-        String zipCode = homeInsuranceRegistration.getZipCode();
+        String zipCodeString = homeInsuranceRegistration.getZipCode();
         
         // Creates a boolean which is to be set true if the user has made a 
         // mistake and the method has to abort:
@@ -433,6 +442,7 @@ public class ModelController {
         int area = 0;
         int excess = 0;
         int year = 0;
+        int zipCode = 0;
         
         // Evaluates Input:
         if(city.equals("")) {
@@ -459,10 +469,6 @@ public class ModelController {
             homeInsuranceRegistration.setTypeMessage(EMPTY_MESSAGE);
             abort = true;
         }
-        if(zipCode.equals("")) {
-            homeInsuranceRegistration.setZipCodeMessage(EMPTY_MESSAGE);
-            abort = true;
-        }
         
         // Evaluates and converts Input:
         if(areaString.equals("")) {
@@ -478,6 +484,7 @@ public class ModelController {
         }
         if(amountString.equals("")) {
             homeInsuranceRegistration.setAmountMessage(EMPTY_MESSAGE);
+            abort = true;
         } else {
             try {
                 amount = Integer.parseInt(amountString);
@@ -488,6 +495,7 @@ public class ModelController {
         }
         if(excessString.equals("")) {
             homeInsuranceRegistration.setExcessMessage(EMPTY_MESSAGE);
+            abort = true;
         } else {
             try {
                 excess = Integer.parseInt(excessString);
@@ -498,6 +506,7 @@ public class ModelController {
         }
         if(yearString.equals("")) {
             homeInsuranceRegistration.setYearMessage(EMPTY_MESSAGE);
+            abort = true;
         } else {
             try {
                 year = Integer.parseInt(yearString);
@@ -506,18 +515,29 @@ public class ModelController {
                 abort = true;
             }
         }
+        if(zipCodeString.equals("")) {
+            homeInsuranceRegistration.setZipCodeMessage(EMPTY_MESSAGE);
+            abort = true;
+        } else {
+            try {
+                zipCode = Integer.parseInt(zipCodeString);
+            } catch(NumberFormatException nfe) {
+                homeInsuranceRegistration.setZipCodeMessage(FORMAT_MESSAGE);
+                abort = true;
+            }
+        }
         
         if(abort) {
             return;
         }
-        /*
-        // Creates Home:
-        Home home = new Home(alarm, brand, engineEffect, engineType, length, 
-                model, ownerPersonalNumber, registrationNumber, 
-                registrationYear, value);
         
-        // Creates BoatInsurance:
-        BoatInsurance insurance = new BoatInsurance(boat, customerId, coverage, excess);
+        // Creates Address:
+        Address address = new Address(street, zipCode, city);
+        // Creates Property:
+        Property property = new Property(address, material, area, year);
+        // Creates HomeInsurance:
+        /*HomeInsurance insurance = new HomeInsurance(customerId, excess, property, 
+            type, coverage, rental);
         
         // Adds insurance to Register:
         insurances.addInsurance(insurance); //returns boolean
@@ -556,6 +576,7 @@ public class ModelController {
         // Evaluates and converts Input:
         if(excessString.equals("")) {
             travelInsuranceRegistration.setExcessMessage(EMPTY_MESSAGE);
+            abort = true;
         } else {
             try {
                 excess = Integer.parseInt(excessString);

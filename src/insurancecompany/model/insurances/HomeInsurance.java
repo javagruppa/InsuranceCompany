@@ -185,7 +185,17 @@ public class HomeInsurance extends PropertyInsurance implements Serializable {
         int setPremium = (int)finalprice;
         // Sets this insurances premium to the final price
 	setPremium(setPremium);
-}
+    }
+    
+    /**
+     * Sets the rental status of this insurance to the received parameter.
+     * Also changes the premium of this insurance based on the new information.
+     * @param rental whether or not this insurance covers rentals
+     */
+    public void setRental(boolean rental) {
+        this.rental = rental;
+        insuranceprice();
+    }
     
     
     

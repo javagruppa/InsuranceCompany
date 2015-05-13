@@ -13,9 +13,11 @@ import insurancecompany.model.datastructures.EmployeeRegister;
 import insurancecompany.model.datastructures.InsuranceRegister;
 import insurancecompany.model.datastructures.LogRegister;
 import insurancecompany.model.datastructures.carinfo.*;
+import insurancecompany.model.insurances.BoatInsurance;
 import insurancecompany.model.insurances.Insurance;
 import insurancecompany.model.people.Customer;
 import insurancecompany.model.properties.Address;
+import insurancecompany.model.vehicles.Boat;
 import insurancecompany.view.register.insurances.BoatInsuranceRegistration;
 import insurancecompany.view.register.insurances.CarInsuranceRegistration;
 import insurancecompany.view.register.insurances.HolidayHomeInsuranceRegistration;
@@ -204,8 +206,7 @@ public class ModelController {
         
         // Collects information about the customer and the insurance:
         BoatInsuranceCoverage coverage = boatInsuranceRegistration.getCoverage();
-        String customerId = boatInsuranceRegistration.getCustomerId();
-        String personalNumber = boatInsuranceRegistration.getPersonalNumber();
+        int customerId = boatInsuranceRegistration.getSelectedCustomerId();
         String excessString = boatInsuranceRegistration.getExcess();
         
         // Collects information about the boat:
@@ -310,9 +311,13 @@ public class ModelController {
         }
         
         // Creates Boat
+        // Boat boat = new Boat(alarm, brand, engineEffect, engineType, length, 
+                // model, ownerPersonalNumber, registrationNumber, registrationYear);
         
         // Creates BoatInsurance
+        // BoatInsurance insurance = new BoatInsurance(boat, customerId, coverage, excess);
         
         // Adds insurance to Register
+        // insurances.addInsurance(insurance); //returns boolean
     }
 }

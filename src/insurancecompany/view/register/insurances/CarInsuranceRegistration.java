@@ -405,7 +405,9 @@ public class CarInsuranceRegistration {
     }
     
     // CLEAR MESSAGES METHOD:
-    
+    /**
+     * Clears the messages used to display invalid input.
+     */
     public void clearMessages() {
         alarmMessage.setText("");
         brandMessage.setText("");

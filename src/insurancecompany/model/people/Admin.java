@@ -1,14 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package insurancecompany.model.people;
 import insurancecompany.model.properties.Address;
 import java.io.Serializable;
 /**
- *
+ * person object Admin.
+ * This is an administrating type of employee with more rights than the
+ * caseworker and the serviceworker.
+ * 
  * @author Carl
  */
 public class Admin extends Employee implements Serializable {
@@ -16,12 +13,13 @@ public class Admin extends Employee implements Serializable {
 
     /**
      * Constructs an Admin-object with the specified parameters
-     * @param firstname first name of person
-     * @param lastname last name of person
-     * @param personalNumber personal number of person
-     * @param email e-mail address of the person
-     * @param address address of the person
-     * @param phone  phone number for the person
+     * 
+     * @param firstname this Admins first name
+     * @param lastname this Admins last name
+     * @param personalNumber this Admins personal number
+     * @param email this Admins email address
+     * @param address this Admins address
+     * @param phone this Admins phone number
      */
     public Admin(String firstname, String lastname, String personalNumber, String email, Address address, String phone) {
         super(firstname, lastname, personalNumber, email, address, phone);

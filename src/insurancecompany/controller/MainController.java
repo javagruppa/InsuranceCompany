@@ -232,7 +232,7 @@ public class MainController {
         if (personalNumber.equals("")) {
             String message = "Fyll inn dette feltet.";
             employeeRegistration.setPersonalNumberMessage(message);
-        }
+        } 
  
         int zipCode = 0;
         try {

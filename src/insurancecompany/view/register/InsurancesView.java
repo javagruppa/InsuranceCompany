@@ -34,7 +34,7 @@ public class InsurancesView {
     private ToggleButton boatInsuranceButton;
     private ToggleButton carInsuranceButton;
     private ToggleButton homeInsuranceButton;
-    private ToggleButton contentInsuranceButton;
+    private ToggleButton homeContentInsuranceButton;
     private ToggleButton holidayHomeInsuranceButton;
     private ToggleButton holidayHomeContentInsuranceButton;
     private ToggleButton travelInsuranceButton;
@@ -80,9 +80,9 @@ public class InsurancesView {
         Image houseImage = new Image("insurancecompany/resources/images/house.png");
         homeInsuranceButton.setGraphic(new ImageView(houseImage));
         
-        contentInsuranceButton = new ToggleButton("Innboforsikring");
-        contentInsuranceButton.setId("sideToolbarButton");
-        contentInsuranceButton.setGraphic(new ImageView(houseImage));
+        homeContentInsuranceButton = new ToggleButton("Innboforsikring");
+        homeContentInsuranceButton.setId("sideToolbarButton");
+        homeContentInsuranceButton.setGraphic(new ImageView(houseImage));
         
         holidayHomeInsuranceButton = new ToggleButton("Fritidsbolig-\nforsikring");
         holidayHomeInsuranceButton.setId("sideToolbarButton");
@@ -103,13 +103,13 @@ public class InsurancesView {
         carInsuranceButton.setToggleGroup(toggleGroup);
         boatInsuranceButton.setToggleGroup(toggleGroup);
         homeInsuranceButton.setToggleGroup(toggleGroup);
-        contentInsuranceButton.setToggleGroup(toggleGroup);
+        homeContentInsuranceButton.setToggleGroup(toggleGroup);
         holidayHomeInsuranceButton.setToggleGroup(toggleGroup);
         holidayHomeContentInsuranceButton.setToggleGroup(toggleGroup);
         travelInsuranceButton.setToggleGroup(toggleGroup);
         ObservableList<ToggleButton> buttons = FXCollections.observableArrayList ();
         buttons.addAll(carInsuranceButton, boatInsuranceButton, homeInsuranceButton, 
-                contentInsuranceButton, holidayHomeInsuranceButton, 
+                homeContentInsuranceButton, holidayHomeInsuranceButton, 
                 holidayHomeContentInsuranceButton, travelInsuranceButton);
         buttons.forEach(b -> {
             b.setMinWidth(Button.USE_PREF_SIZE);
@@ -138,9 +138,18 @@ public class InsurancesView {
     public void setHomeInsuranceButtonEventHandler(EventHandler<ActionEvent> value) {
         homeInsuranceButton.setOnAction(value);
     }
+    
+    public void setHomeContentInsuranceButtonEventHandler(EventHandler<ActionEvent> value) {
+        homeContentInsuranceButton.setOnAction(value);
+    }
+
 
     public void setHolidayHomeInsuranceButtonEventHandler(EventHandler<ActionEvent> value) {
         holidayHomeInsuranceButton.setOnAction(value);
+    }
+    
+    public void setHolidayHomeContentInsuranceButtonEventHandler(EventHandler<ActionEvent> value) {
+        holidayHomeContentInsuranceButton.setOnAction(value);
     }
 
     public void setTravelInsuranceButtonEventHandler(EventHandler<ActionEvent> value) {

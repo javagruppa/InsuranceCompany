@@ -418,7 +418,8 @@ public class ModelController {
         } else {
             // Displays the customer:
             boatInsuranceRegistration.setCustomerArea(customer.toString());
-            // Finds the customer's insurances:
+            boatInsuranceRegistration.setSelectedCustomerId(customerId);
+            // Finds the customers insurances:
             List insuranceList = insurances.getAllInsurancesByCustomerId(customerId);
             if (!insuranceList.isEmpty()) {
                 // Displays the insurances if there is at least one:
@@ -441,10 +442,11 @@ public class ModelController {
             // Gives the user an appropriate message if the customer wasn't found:
             boatInsuranceRegistration.setCustomerArea(PERSONALNUMBER_NOT_FOUND_MESSAGE + personalNumber);
         } else {
+            // Finds the customers insurances:
+            int customerId = customer.getId();
             // Displays the customer:
             boatInsuranceRegistration.setCustomerArea(customer.toString());
-            // Finds the customer's insurances:
-            int customerId = customer.getId();
+            boatInsuranceRegistration.setSelectedCustomerId(customerId);
             List insuranceList = insurances.getAllInsurancesByCustomerId(customerId);
             if (!insuranceList.isEmpty()) {
                 // Displays the insurances if there is at least one:
@@ -452,6 +454,8 @@ public class ModelController {
             }
         }
     }
+    
+    // HOME INSURANCE EVENT HANDLERS
     
     private void homeInsuranceRegisterButtonEventHandler(ActionEvent e) {
         
@@ -464,7 +468,7 @@ public class ModelController {
         String amountString = homeInsuranceRegistration.getAmount();
         String excessString = homeInsuranceRegistration.getExcess();
         
-        // Collects information about the home:
+        // Collects information about the property:
         HomeType type = homeInsuranceRegistration.getType();
         PropertyMaterial material = homeInsuranceRegistration.getMaterial();
         String areaString = homeInsuranceRegistration.getArea();
@@ -593,6 +597,70 @@ public class ModelController {
         //       be added if the register already contained such an insurance.
     }
     
+    private void homeInsuranceSearchCustomerIdButtonEventHandler(ActionEvent event) {
+        String customerIdString = homeInsuranceRegistration.getCustomerId();
+        int customerId;
+        if(customerIdString.equals("")) {
+            // Gives the user an appropriate message if the user hasn't put in a customerId:
+            homeInsuranceRegistration.setCustomerArea(CUSTOMERID_EMPTY_MESSAGE);
+            return;
+        }
+        try {
+            // Converts the customerId to int:
+            customerId = Integer.parseInt(customerIdString);
+        } catch(NumberFormatException nfe) {
+            // Gives the user an appropriate message if the customerId wasn't formatted correctly:
+            homeInsuranceRegistration.setCustomerArea(CUSTOMERID_FORMAT_MESSAGE);
+            return;
+        }
+        // TODO: Regex.
+        // Searches for the customer by customerId:
+        Customer customer = customers.findCustomerById(customerId);
+        if(customer == null) {
+            // Gives the user an appropriate message if the customer wasn't found:
+            homeInsuranceRegistration.setCustomerArea(CUSTOMERID_NOT_FOUND_MESSAGE + customerId);
+        } else {
+            // Displays the customer:
+            homeInsuranceRegistration.setCustomerArea(customer.toString());
+            homeInsuranceRegistration.setSelectedCustomerId(customerId);
+            // Finds the customers insurances:
+            List insuranceList = insurances.getAllInsurancesByCustomerId(customerId);
+            if (!insuranceList.isEmpty()) {
+                // Displays the insurances if there is at least one:
+                homeInsuranceRegistration.populateInsurancesTable(insuranceList);
+            }
+        }
+    }
+    
+    private void homeInsuranceSearchPersonalNumberButtonEventHandler(ActionEvent event) {
+        String personalNumber = homeInsuranceRegistration.getPersonalNumber();
+        if(personalNumber.equals("")) {
+            // Gives the user an appropriate message if the user hasn't put in a personalNumber:
+            homeInsuranceRegistration.setCustomerArea(PERSONALNUMBER_EMPTY_MESSAGE);
+            return;
+        }
+        // TODO: Regex.
+        // Searches for the customer by personalNumber:
+        Customer customer = customers.findCustomerByPersonalNumber(personalNumber);
+        if(customer == null) {
+            // Gives the user an appropriate message if the customer wasn't found:
+            homeInsuranceRegistration.setCustomerArea(PERSONALNUMBER_NOT_FOUND_MESSAGE + personalNumber);
+        } else {
+            // Finds the customers insurances:
+            int customerId = customer.getId();
+            // Displays the customer:
+            homeInsuranceRegistration.setCustomerArea(customer.toString());
+            homeInsuranceRegistration.setSelectedCustomerId(customerId);
+            List insuranceList = insurances.getAllInsurancesByCustomerId(customerId);
+            if (!insuranceList.isEmpty()) {
+                // Displays the insurances if there is at least one:
+                homeInsuranceRegistration.populateInsurancesTable(insuranceList);
+            }
+        }
+    }
+    
+    // TRAVEL INSURANCE EVENT HANDLERS
+    
     private void travelInsuranceRegisterButtonEventHandler(ActionEvent e) {
         
         // Clears previous messages:
@@ -644,5 +712,67 @@ public class ModelController {
         insurances.addInsurance(insurance); //returns boolean
         // TODO: Give a message to the user whether the insurance was added or not. It would not
         //       be added if the register already contained such an insurance.
+    }
+    
+    private void travelInsuranceSearchCustomerIdButtonEventHandler(ActionEvent event) {
+        String customerIdString = travelInsuranceRegistration.getCustomerId();
+        int customerId;
+        if(customerIdString.equals("")) {
+            // Gives the user an appropriate message if the user hasn't put in a customerId:
+            travelInsuranceRegistration.setCustomerArea(CUSTOMERID_EMPTY_MESSAGE);
+            return;
+        }
+        try {
+            // Converts the customerId to int:
+            customerId = Integer.parseInt(customerIdString);
+        } catch(NumberFormatException nfe) {
+            // Gives the user an appropriate message if the customerId wasn't formatted correctly:
+            travelInsuranceRegistration.setCustomerArea(CUSTOMERID_FORMAT_MESSAGE);
+            return;
+        }
+        // TODO: Regex.
+        // Searches for the customer by customerId:
+        Customer customer = customers.findCustomerById(customerId);
+        if(customer == null) {
+            // Gives the user an appropriate message if the customer wasn't found:
+            travelInsuranceRegistration.setCustomerArea(CUSTOMERID_NOT_FOUND_MESSAGE + customerId);
+        } else {
+            // Displays the customer:
+            travelInsuranceRegistration.setCustomerArea(customer.toString());
+            travelInsuranceRegistration.setSelectedCustomerId(customerId);
+            // Finds the customers insurances:
+            List insuranceList = insurances.getAllInsurancesByCustomerId(customerId);
+            if (!insuranceList.isEmpty()) {
+                // Displays the insurances if there is at least one:
+                travelInsuranceRegistration.populateInsurancesTable(insuranceList);
+            }
+        }
+    }
+    
+    private void travelInsuranceSearchPersonalNumberButtonEventHandler(ActionEvent event) {
+        String personalNumber = travelInsuranceRegistration.getPersonalNumber();
+        if(personalNumber.equals("")) {
+            // Gives the user an appropriate message if the user hasn't put in a personalNumber:
+            travelInsuranceRegistration.setCustomerArea(PERSONALNUMBER_EMPTY_MESSAGE);
+            return;
+        }
+        // TODO: Regex.
+        // Searches for the customer by personalNumber:
+        Customer customer = customers.findCustomerByPersonalNumber(personalNumber);
+        if(customer == null) {
+            // Gives the user an appropriate message if the customer wasn't found:
+            travelInsuranceRegistration.setCustomerArea(PERSONALNUMBER_NOT_FOUND_MESSAGE + personalNumber);
+        } else {
+            // Finds the customers insurances:
+            int customerId = customer.getId();
+            // Displays the customer:
+            travelInsuranceRegistration.setCustomerArea(customer.toString());
+            travelInsuranceRegistration.setSelectedCustomerId(customerId);
+            List insuranceList = insurances.getAllInsurancesByCustomerId(customerId);
+            if (!insuranceList.isEmpty()) {
+                // Displays the insurances if there is at least one:
+                travelInsuranceRegistration.populateInsurancesTable(insuranceList);
+            }
+        }
     }
 }

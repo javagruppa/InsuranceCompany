@@ -52,9 +52,9 @@ public class ViewController {
     private BoatInsuranceRegistration boatInsuranceRegistration;
     private CarInsuranceRegistration carInsuranceRegistration;
     private HomeInsuranceRegistration homeInsuranceRegistration;
-    //private HomeContentInsuranceRegistration homeContentInsuranceRegistration;
+    private HomeContentInsuranceRegistration homeContentInsuranceRegistration;
     private HolidayHomeInsuranceRegistration holidayHomeInsuranceRegistration;
-    //private HolidayHomeContentInsuranceRegistration holidayHomeContentInsuranceRegistration;
+    private HolidayHomeContentInsuranceRegistration holidayHomeContentInsuranceRegistration;
     private TravelInsuranceRegistration travelInsuranceRegistration;
     // Claim Registration Views:
     private BoatClaimRegistration boatClaimRegistration;
@@ -167,7 +167,17 @@ public class ViewController {
         processView.setBillsButtonEventHandler(null);
         processView.setClaimsButtonEventHandler(null);
         processView.setSubscriptionsButtonEventHandler(null);
-        
+       
+        // REGISTER SUB TAB CONTENT EVENT HANDLERS:
+        personsView.setCustomerButtonEventHandler(this::personsViewCustomerRegistrationButtonEventHandler);
+        personsView.setEmployeeButtonEventHandler(this::personsViewEmployeeRegistrationButtonEventHandler);
+        insurancesView.setBoatInsuranceButtonEventHandler(this::insurancesViewBoatInsuranceButtonEventHandler);
+        insurancesView.setCarInsuranceButtonEventHandler(this::insurancesViewCarInsuranceButtonEventHandler);
+        insurancesView.setHolidayHomeInsuranceButtonEventHandler(this::insurancesViewHolidayHomeInsuranceButtonEventHandler);
+        insurancesView.setHolidayHomeContentInsuranceButtonEventHandler(this::insurancesViewHolidayHomeContentInsuranceButtonEventHandler);
+        insurancesView.setHomeInsuranceButtonEventHandler(this::insurancesViewHomeInsuranceButtonEventHandler);
+        insurancesView.setHomeContentInsuranceButtonEventHandler(this::insurancesViewHomeContentInsuranceButtonEventHandler);
+        insurancesView.setTravelInsuranceButtonEventHandler(this::insurancesViewTravelInsuranceButtonEventHandler);
         claimsView.setBoatClaimButtonEventHandler(this::claimsViewBoatClaimButtonEventHandler);
         claimsView.setCarClaimButtonEventHandler(this::claimsViewCarClaimButtonEventHandler);
         claimsView.setHolidayHomeClaimButtonEventHandler(this::claimsViewHolidayHomeClaimButtonEventHandler);
@@ -176,17 +186,22 @@ public class ViewController {
         claimsView.setHomeContentClaimButtonEventHandler(this::claimsViewHomeContentClaimButtonEventHandler);
         claimsView.setTravelClaimButtonEventHandler(this::claimsViewTravelClaimButtonEventHandler);
         
-        insurancesView.setBoatInsuranceButtonEventHandler(this::insurancesViewBoatInsuranceButtonEventHandler);
-        insurancesView.setCarInsuranceButtonEventHandler(this::insurancesViewCarInsuranceButtonEventHandler);
-        insurancesView.setHolidayHomeInsuranceButtonEventHandler(this::insurancesViewHolidayHomeInsuranceButtonEventHandler);
-        insurancesView.setHomeInsuranceButtonEventHandler(this::insurancesViewHomeInsuranceButtonEventHandler);
-        insurancesView.setTravelInsuranceButtonEventHandler(this::insurancesViewTravelInsuranceButtonEventHandler);
-        personsView.setCustomerButtonEventHandler(this::personsViewCustomerRegistrationButtonEventHandler);
-        personsView.setEmployeeButtonEventHandler(this::personsViewEmployeeRegistrationButtonEventHandler);
+        // PROCESS SUB TAB EVENT HANDLERS:
+        processView.setClaimsButtonEventHandler(null);
+        processView.setBillsButtonEventHandler(null);
+        processView.setSubscriptionsButtonEventHandler(null);
+        
+        // SEARCH SUB TAB EVENT HANDLERS:
         searchView.setClaimsButtonEventHandler(this::searchViewClaimsButtonEventHandler);
         searchView.setCustomersButtonEventHandler(null);
         searchView.setEmployeesButtonEventHandler(null);
         searchView.setInsurancesButtonEventHandler(null);
+        
+        // STATISTCS SUB TAB EVENT HANDLERS:
+        statisticsView.setClaimsButtonEventHandler(this::searchViewClaimsButtonEventHandler);
+        statisticsView.setCustomersButtonEventHandler(null);
+        statisticsView.setEmployeesButtonEventHandler(null);
+        statisticsView.setInsurancesButtonEventHandler(null);
         
     }
     
@@ -302,10 +317,18 @@ public class ViewController {
         insurancesView.getMainPane().setCenter(homeInsuranceRegistration.getMainPane());
     }
     
+    private void insurancesViewHomeContentInsuranceButtonEventHandler(ActionEvent event) {
+        insurancesView.getMainPane().setCenter(homeContentInsuranceRegistration.getMainPane());
+    }
+    
     private void insurancesViewHolidayHomeInsuranceButtonEventHandler(ActionEvent event) {
         insurancesView.getMainPane().setCenter(holidayHomeInsuranceRegistration.getMainPane());
     }
     
+    private void insurancesViewHolidayHomeContentInsuranceButtonEventHandler(ActionEvent event) {
+        insurancesView.getMainPane().setCenter(holidayHomeContentInsuranceRegistration.getMainPane());
+    }
+ 
     private void insurancesViewTravelInsuranceButtonEventHandler(ActionEvent event) {
         insurancesView.getMainPane().setCenter(travelInsuranceRegistration.getMainPane());
     }

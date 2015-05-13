@@ -42,7 +42,7 @@ public class ClaimsView {
     private ToggleButton carClaimButton;
     private ToggleButton boatClaimButton;
     private ToggleButton homeClaimButton;
-    private ToggleButton contentClaimButton;
+    private ToggleButton homeContentClaimButton;
     private ToggleButton holidayHomeClaimButton;
     private ToggleButton holidayHomeContentClaimButton;
     private ToggleButton travelClaimButton;
@@ -103,9 +103,9 @@ public class ClaimsView {
         Image houseImage = new Image("insurancecompany/resources/images/house.png");
         homeClaimButton.setGraphic(new ImageView(houseImage));
         
-        contentClaimButton = new ToggleButton("Innboskade");
-        contentClaimButton.setId("sideToolbarButton");
-        contentClaimButton.setGraphic(new ImageView(houseImage));
+        homeContentClaimButton = new ToggleButton("Innboskade");
+        homeContentClaimButton.setId("sideToolbarButton");
+        homeContentClaimButton.setGraphic(new ImageView(houseImage));
         
         holidayHomeClaimButton = new ToggleButton("Fritidsbolig-\nskade");
         holidayHomeClaimButton.setId("sideToolbarButton");
@@ -125,13 +125,13 @@ public class ClaimsView {
         carClaimButton.setToggleGroup(toggleGroup);
         boatClaimButton.setToggleGroup(toggleGroup);
         homeClaimButton.setToggleGroup(toggleGroup);
-        contentClaimButton.setToggleGroup(toggleGroup);
+        homeContentClaimButton.setToggleGroup(toggleGroup);
         holidayHomeClaimButton.setToggleGroup(toggleGroup);
         holidayHomeContentClaimButton.setToggleGroup(toggleGroup);
         travelClaimButton.setToggleGroup(toggleGroup);
         ObservableList<ToggleButton> buttons = FXCollections.observableArrayList ();
         buttons.addAll(carClaimButton, boatClaimButton, homeClaimButton, 
-                contentClaimButton, holidayHomeClaimButton, 
+                homeContentClaimButton, holidayHomeClaimButton, 
                 holidayHomeContentClaimButton, travelClaimButton);
         buttons.forEach(b -> {
             b.setMinWidth(Button.USE_PREF_SIZE);
@@ -161,9 +161,17 @@ public class ClaimsView {
     public void setHomeClaimButtonEventHandler(EventHandler<ActionEvent> value) {
         homeClaimButton.setOnAction(value);
     }
+    
+    public void setHomeContentClaimButtonEventHandler(EventHandler<ActionEvent> value) {
+        homeContentClaimButton.setOnAction(value);
+    }
 
     public void setHolidayHomeClaimButtonEventHandler(EventHandler<ActionEvent> value) {
         holidayHomeClaimButton.setOnAction(value);
+    }
+    
+    public void setHolidayHomeContentClaimButtonEventHandler(EventHandler<ActionEvent> value) {
+        holidayHomeContentClaimButton.setOnAction(value);
     }
 
     public void setTravelClaimButtonEventHandler(EventHandler<ActionEvent> value) {

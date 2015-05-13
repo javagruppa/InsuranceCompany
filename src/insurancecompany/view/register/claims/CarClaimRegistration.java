@@ -6,6 +6,8 @@
 package insurancecompany.view.register.claims;
 
 import insurancecompany.model.insurances.Insurance;
+import java.time.LocalDate;
+import java.time.chrono.HijrahChronology;
 import java.util.List;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -16,17 +18,20 @@ import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
+import javafx.util.Callback;
 
 /**
  *
@@ -123,6 +128,7 @@ public class CarClaimRegistration {
         
         Label dateHappenedLabel = new Label("Skadedato:");
         dateHappenedPicker = new DatePicker();
+        restrictDatePicker();
         Label descriptionLabel = new Label("Beskrivelse av skaden:");
         descriptionTextArea = new TextArea();
         Label appraisalLbel = new Label("Takseringsbeløp:");
@@ -130,11 +136,11 @@ public class CarClaimRegistration {
         Label damagesLabel = new Label("Skade:");
         damagesCheckBox = new CheckBox(); 
         Label selectImageLabel = new Label("Last opp et bilde som beskriver skaden");
-        selectImageButton = new Button();
+        selectImageButton = new Button("Hent bilde");
         fileChooser = new FileChooser();
-        Label openClaimFormLabel = new Label("Åpne bilskademelingsskjema");
-        openClaimFormButton = new Button();
-        registerButton = new Button();
+        Label openClaimFormLabel = new Label("Bilskademelingsskjema");
+        openClaimFormButton = new Button("Åpne");
+        registerButton = new Button("Registrer");
         
         // Add nodes to mainPane:
         mainPane.add(selectCustomerTitle, 0, 0);
@@ -168,6 +174,27 @@ public class CarClaimRegistration {
         mainPane.add(openClaimFormButton, 5, 6);
         mainPane.add(registerButton, 4, 7);
       
+    }
+    
+    private void restrictDatePicker() {
+        dateHappenedPicker.setValue(LocalDate.now());
+        // Sets up a restricton, where only dates before the current date are optional:
+        Callback<DatePicker, DateCell> dayCellFactory = dp -> new DateCell()
+        {
+            @Override
+            public void updateItem(LocalDate item, boolean empty)
+            {
+                super.updateItem(item, empty);
+                if(item.isAfter(LocalDate.now()))
+                {   // Sets the background color of the invalid dates to a pink/red color:
+                    setStyle("-fx-background-color: #ffc0cb;");
+                    // Disables them, so they can not be picked:
+                    setDisable(true);
+                }
+            }
+        };
+        dateHappenedPicker.setDayCellFactory(dayCellFactory);
+        dateHappenedPicker.setPromptText("dd/MM/yyyy");
     }
     
     /**

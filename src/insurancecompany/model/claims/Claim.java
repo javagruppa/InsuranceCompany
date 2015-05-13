@@ -1,22 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package insurancecompany.model.claims;
 
+import insurancecompany.misc.DateUtility;
 import insurancecompany.misc.coverages.Damage;
-import insurancecompany.model.people.Customer;
-
-import java.util.Date;
 import java.awt.Image;
-
 import java.io.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Collections;
-import java.util.EnumSet;
 import java.util.Set;
 
 /**
@@ -24,11 +14,12 @@ import java.util.Set;
  * @author André
  */
 public abstract class Claim implements Serializable {
+    /** SerialVersionUID used to identify this class for object IO */
     private static final long serialVersionUID = 1L;
-    
+    /** Claim ID for the next registered claim */
     private static int nextClaimId = 1000000;
+    /** the filapath of the file the claim Ids are saved in */
     private static String claimIdFileName = "src/insurancecompany/resources/nextidnumbers/claimId.dta";
-    
     /** Customer id to the owner of this claim. */
     private int customerId;
     /** Insurance id that belongs to this claim. */
@@ -51,10 +42,14 @@ public abstract class Claim implements Serializable {
     private int disbursement; // NOR : utbetalt erstatningsbeløp
     
     /**
+     * Constructs a claim with the specified parameters
      * 
-     * @param customerId
-     * @param insuranceId
-     * @param description 
+     * @param customerId the customer Id of the customer reporting the claim
+     * @param insuranceId the insurance Id of the insurance this claim is for
+     * @param description description of the damage/claim
+     * @param dateHappened the date the damage/accident happened
+     * @param damages the damage(s) that has happened
+     * @param appraisal the appraisal for this claim
      */
     public Claim(int customerId, int insuranceId, String description, 
             Calendar dateHappened, Set<Damage> damages, int appraisal) {
@@ -70,6 +65,15 @@ public abstract class Claim implements Serializable {
         claimId = nextClaimId++;
     }
     
+    /**
+     * Constructs a claim with the specified parameters. Also includes image.
+     * @param insuranceId the insurance Id of the insurance this claim is for
+     * @param description description of the damage/claim
+     * @param dateHappened the date the damage/accident happened
+     * @param damages the damage(s) that has happened
+     * @param appraisal the appraisal for this claim
+     * @param image image of the damage
+     */
     public Claim(int customerId, int insuranceId, String description, 
             Calendar dateHappened, Set<Damage> damages, int appraisal,
             Image image) {
@@ -88,7 +92,7 @@ public abstract class Claim implements Serializable {
     
     /**
      * Sets owner to this claim.
-     * @param owner 
+     * @param owner the owner of this claim
      */
     public void setOwner(int customerId) {
         this.customerId = customerId;
@@ -96,7 +100,7 @@ public abstract class Claim implements Serializable {
     
     /**
      * Sets a date to the claim.
-     * @param date 
+     * @param date the date for this claim
      */
     public void setDate(Calendar date) {
         this.date = date;
@@ -104,7 +108,7 @@ public abstract class Claim implements Serializable {
     
     /**
      * Sets a description to the damage.
-     * @param description 
+     * @param description the description of the damage
      */
     public void setDescription(String description) {
         this.description = description;
@@ -112,7 +116,7 @@ public abstract class Claim implements Serializable {
     
     /**
      * Sets an image of the damage.
-     * @param image 
+     * @param image image of the damage
      */
     public void setImage(Image image) {
         this.image = image;
@@ -120,7 +124,7 @@ public abstract class Claim implements Serializable {
     
     /**
      * Sets an appraisal sum to this claim.
-     * @param appraisal 
+     * @param appraisal sum of appraisal for the claim
      */
     public void setAppraisal(int appraisal) {
         this.appraisal = appraisal;
@@ -128,26 +132,30 @@ public abstract class Claim implements Serializable {
     
     /**
      * Sets a disbursement sum to this claim.
-     * @param disbursement 
+     * @param disbursement sum of disbursement for this claim
      */
     public void setDisbursement(int disbursement) {
         this.disbursement = disbursement;
     }
     
     /**
-     * 
+     * returns the owner of this claim
      * @return owner of this claim
      */
     public int getCustomerId() {
         return customerId;
     }
     
+    /**
+     * Returns the Id for this claim
+     * @return the claimId
+     */
     public int getClaimId() {
         return claimId;
     }
     
     /**
-     * 
+     * returns the description of the damage
      * @return description of the damage.
      */
     public String getDescription() {
@@ -155,7 +163,7 @@ public abstract class Claim implements Serializable {
     }
     
     /**
-     * 
+     * returns the image of the damage
      * @return image of the damage.
      */
     public Image getImage() {
@@ -163,7 +171,7 @@ public abstract class Claim implements Serializable {
     }
     
     /**
-     * 
+     * returns the appraisal sum for this claim
      * @return appraisal sum.
      */
     public int getAppraisal() {
@@ -171,13 +179,17 @@ public abstract class Claim implements Serializable {
     }
     
     /**
-     * 
+     * returns the disbursement sum for this claim
      * @return disbursement sum.
      */
     public int getDisbursement() {
         return disbursement;
     }
     
+    /**
+     * Saves the next id to file
+     * @throws IOException 
+     */
     public static void saveNextIdToFile() throws IOException {
         try (DataOutputStream dos = new DataOutputStream(
                 new BufferedOutputStream(
@@ -186,6 +198,10 @@ public abstract class Claim implements Serializable {
         }
     }
     
+    /**
+     * reads the next Id from file
+     * @throws IOException 
+     */
     public static void readNextIdFromFile() throws IOException {
         try (DataInputStream dis = new DataInputStream(
                 new BufferedInputStream(
@@ -194,8 +210,11 @@ public abstract class Claim implements Serializable {
         }
     }
     
-    public void uploadImage() {
-        
+    /**
+     * Uploads an image
+     */
+    public void uploadImage(Image image) {
+        this.image = image;
     }
     
     /**
@@ -231,14 +250,22 @@ public abstract class Claim implements Serializable {
     
     @Override
     public String toString() {
-        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-        String text = "Dato: " + df.format(date) + "\n";
-        text += "Skademeldingsnummer: " + claimId + "\n";
-        text += "Beskrivelse av skade:\n";
-        text += description + "\n";
-        text += "Takseringsbeløp: " + appraisal + "\n";
-        text += "Utbetalt erstatningsbeløp: " + disbursement;
-        return text;
+        // Creates a StringBuilder which will be returned at the end of the 
+        // method.
+        StringBuilder result = new StringBuilder();
+        // Appends the fields with appropriate sentences.
+        result.append("SKADEMELDING");
+        result.append("\nKundenummer: ").append(customerId);
+        result.append("\nForsikringspolise nummer: ").append(insuranceId);
+        result.append("\nDato registrert: ").append(DateUtility.NORWEGIAN_DATE_FORMAT.format(date));
+        result.append("\nSkademeldingsnummer: ").append(claimId);
+        result.append("\nDato for skade/hendelse: ").append(dateHappened);
+        result.append("\nBeskrivelse av skade:\n").append(description).append("\n");
+        result.append("\nTakseringsbeløp: ").append(appraisal);
+        result.append("\nUtbetalt erstatningsbeløp: ").append(disbursement);
+        // Returns the string.
+        return result.toString();
+        
     }
 
     /**
@@ -256,6 +283,7 @@ public abstract class Claim implements Serializable {
     }
 
     /**
+     * returns the insuranceId
      * @return the insuranceId
      */
     public int getInsuranceId() {

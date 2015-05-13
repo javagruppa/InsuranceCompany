@@ -147,6 +147,13 @@ public class ViewController {
         processView.setBillsButtonEventHandler(null);
         processView.setClaimsButtonEventHandler(null);
         processView.setSubscriptionsButtonEventHandler(null);
+        
+        claimsView.setBoatClaimButtonEventHandler(this::claimsViewBoatClaimButtonEventHandler);
+        claimsView.setCarClaimButtonEventHandler(this::claimsViewCarClaimButtonEventHandler);
+        claimsView.setHolidayHomeClaimButtonEventHandler(this::claimsViewHolidayHomeClaimButtonEventHandler);
+        claimsView.setHomeClaimButtonEventHandler(this::claimsViewHomeClaimButtonEventHandler);
+        claimsView.setTravelClaimButtonEventHandler(this::claimsViewTravelClaimButtonEventHandler);
+        
         insurancesView.setBoatInsuranceButtonEventHandler(this::insurancesViewBoatInsuranceButtonEventHandler);
         insurancesView.setCarInsuranceButtonEventHandler(this::insurancesViewCarInsuranceButtonEventHandler);
         insurancesView.setHolidayHomeInsuranceButtonEventHandler(this::insurancesViewHolidayHomeInsuranceButtonEventHandler);
@@ -227,6 +234,28 @@ public class ViewController {
     
     private void registerViewClaimsButtonEventHandler(ActionEvent event) {
         registerView.getMainPane().setCenter(claimsView.getMainPane());
+    }
+    
+    // REGISTER CLAIMS VIEW EVENT HANDLERS
+    
+    private void claimsViewBoatClaimButtonEventHandler(ActionEvent event) {
+        //claimsView.getMainPane().setCenter(boatClaimRegistration.getMainPane());
+    }
+    
+    private void claimsViewCarClaimButtonEventHandler(ActionEvent event) {
+        claimsView.getMainPane().setCenter(carClaimRegistration.getMainPane());
+    }
+    
+    private void claimsViewHomeClaimButtonEventHandler(ActionEvent event) {
+        //claimsView.getMainPane().setCenter(homeClaimRegistration.getMainPane());
+    }
+    
+    private void claimsViewHolidayHomeClaimButtonEventHandler(ActionEvent event) {
+        //claimsView.getMainPane().setCenter(holidayClaimInsuranceRegistration.getMainPane());
+    }
+    
+    private void claimsViewTravelClaimButtonEventHandler(ActionEvent event) {
+        //claimsView.getMainPane().setCenter(travelClaimRegistration.getMainPane());
     }
     
     // REGISTER INSURANCES VIEW EVENT HANDLERS

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package insurancecompany.model.claims;
 
 import insurancecompany.misc.coverages.Damage;
@@ -15,14 +10,28 @@ import java.util.List;
 import java.util.Set;
 
 /**
- *
+ * HolidayHome Content claim class. Sub class to claim. All claims regarding 
+ * Holiday Home content insurances are registered as HolidayHome content claims.
+ * 
  * @author André
  */
 public class HolidayHomeContentClaim extends Claim implements Serializable {
+    /** SerialVersionUID used to identify this class for object IO */
     private static final long serialVersionUID = 1L;
-        
+    /** List of the items this claim covers */    
     private List<ClaimItem> items;
 
+    /**
+     * Constructs a content claim with the specified parameters
+     * 
+     * @param customerId the Id of the customer who owns this insurance
+     * @param insuranceId the Id of the insurance covering this claim
+     * @param description description of what has happened
+     * @param dateHappened the date the event occured
+     * @param damages the damage(s) this claim is for
+     * @param appraisal the appraisal of this claim
+     * @param items the items this claim is for
+     */
     public HolidayHomeContentClaim(int customerId, int insuranceId, String description, 
             Calendar dateHappened, Set<Damage> damages, int appraisal, 
             List<ClaimItem> items) {
@@ -31,6 +40,18 @@ public class HolidayHomeContentClaim extends Claim implements Serializable {
         this.items = items;
     }    
     
+    /**
+     * Constructs a content claim with the specified parameters
+     * 
+     * @param customerId the Id of the customer who owns this insurance
+     * @param insuranceId the Id of the insurance covering this claim
+     * @param description description of what has happened
+     * @param dateHappened the date the event occured
+     * @param damages the damage(s) this claim is for
+     * @param appraisal the appraisal of this claim
+     * @param items the items this claim is for
+     * @param image an image of the damage(s)
+     */
     public HolidayHomeContentClaim(int customerId, int insuranceId, String description, 
             Calendar dateHappened, Set<Damage> damages, int appraisal, 
             Image image, List<ClaimItem> items) {
@@ -39,16 +60,30 @@ public class HolidayHomeContentClaim extends Claim implements Serializable {
         this.items = items;
     }
     
-    
+    /**
+     * Adds an item to the list of item claimed for
+     * @param claimItem the item to add
+     */
     public void addItem(ClaimItem claimItem) {
-        items.add(claimItem);
+        getItems().add(claimItem);
     }
     
-
+    /**
+     * Returns a string representation of this claim
+     * @return a string representation of this claim
+     */
     @Override
     public String toString() {
-        String text = "Hus- og innbokademelding\n";
+        String text = "Skademelding innbo fritidsbolig\n";
         text += super.toString();
         return text;
+    }
+
+    /**
+     * Returns the list of items claimed for in this insurance
+     * @return the items claimed for
+     */
+    public List<ClaimItem> getItems() {
+        return items;
     }
 }

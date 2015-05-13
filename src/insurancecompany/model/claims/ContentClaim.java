@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package insurancecompany.model.claims;
 
 import insurancecompany.misc.coverages.Damage;
@@ -15,14 +10,28 @@ import java.util.List;
 import java.util.Set;
 
 /**
- *
+ * Content claim class. Sub class to claim. All claims regarding content
+ * insurances are registered as content claims.
+ * 
  * @author André
  */
 public class ContentClaim extends Claim implements Serializable {
+    /** SerialVersionUID used to identify this class for object IO */
     private static final long serialVersionUID = 1L;
-        
+    /** List of the items this claim is for */    
     private List<ClaimItem> items;
 
+    /**
+     * Constructs a content claim with the specified parameters
+     * 
+     * @param customerId the Id of the customer who owns this insurance
+     * @param insuranceId the Id of the insurance covering this claim
+     * @param description description of what has happened
+     * @param dateHappened the date the event occured
+     * @param damages the damage(s) this claim is for
+     * @param appraisal the appraisal of this claim
+     * @param items the items this claim is for
+     */
     public ContentClaim(int customerId, int insuranceId, String description, 
             Calendar dateHappened, Set<Damage> damages, int appraisal, 
             List<ClaimItem> items) {
@@ -31,6 +40,18 @@ public class ContentClaim extends Claim implements Serializable {
         this.items = items;
     }    
     
+    /**
+     * Constructs a content claim with the specified parameters
+     * 
+     * @param customerId the Id of the customer who owns this insurance
+     * @param insuranceId the Id of the insurance covering this claim
+     * @param description description of what has happened
+     * @param dateHappened the date the event occured
+     * @param damages the damage(s) this claim is for
+     * @param appraisal the appraisal of this claim
+     * @param items the items this claim is for
+     * @param image an image of the damage(s)
+     */
     public ContentClaim(int customerId, int insuranceId, String description, 
             Calendar dateHappened, Set<Damage> damages, int appraisal, 
             Image image, List<ClaimItem> items) {
@@ -39,16 +60,32 @@ public class ContentClaim extends Claim implements Serializable {
         this.items = items;
     }
     
-    
+    /**
+     * Adds an item to the list of damaged/lost items
+     * @param claimItem the item to be added
+     */
     public void addItem(ClaimItem claimItem) {
-        items.add(claimItem);
+        getItems().add(claimItem);
     }
     
-
+    /**
+     * Returns the list of item concerned in this claim
+     * @return the items
+     */
+    public List<ClaimItem> getItems() {
+        return items;
+    }
+    
+    /**
+     * Returns a string representation of this claim
+     * @return a string representation of this claim
+     */
     @Override
     public String toString() {
-        String text = "Hus- og innbokademelding\n";
+        String text = "Skademelding innbo\n";
         text += super.toString();
         return text;
     }
+
+    
 }

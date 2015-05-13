@@ -12,6 +12,7 @@ import java.text.SimpleDateFormat;
  *@author Carl
  */
 public abstract class Person implements Serializable {
+    /** SerialVersionUID used to identify this class for object IO */
     private static final long serialVersionUID = 1L;
     
     /** The norwegian standard for showing dates */

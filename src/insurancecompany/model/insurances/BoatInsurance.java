@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package insurancecompany.model.insurances;
 
 import insurancecompany.misc.coverages.BoatInsuranceCoverage;
@@ -10,21 +5,22 @@ import insurancecompany.model.vehicles.Boat;
 import java.io.Serializable;
 
 /**
- *
+ * Class BoatInsurance. This is the insurances for boats.
+ * 
  * @author Sindre
  */
 public class BoatInsurance extends Insurance implements Serializable {
+    /** SerialVersionUID used to identify this class for object IO */
     private static final long serialVersionUID = 1L;
-    
     /** The boat this insurance is for. */
     private Boat boat;
     /** The coverage of this insurance. */
     private BoatInsuranceCoverage coverage;
     
     /**
-     * Constructs a new boat insurance with the specified boat, coverage, 
-     * customerId, excess and hasAlarm. Active is set to true. Date is set to 
-     * the current date. InsuranceId is automatically set to nextInsuranceId.
+     * Constructs a new boat insurance with the specified parameters.
+     * Active is set to true. Date is set to the current date.
+     * InsuranceId is automatically set to nextInsuranceId.
      * 
      * @param boat the boat this insurance is for
      * @param coverage the coverage of this insurance
@@ -40,17 +36,17 @@ public class BoatInsurance extends Insurance implements Serializable {
     
     /**
      * Returns the type of this insurance in form of a String.
-     * @return 
+     * @return the type of insurance
      */
     @Override
     public String getName() {
-        return "Bårforsikring";
+        return "Båtforsikring";
     }
     
     /**
-     * Generates the basic cost of this insurance, based on the value of the
+     * Generates and returns the basic cost of this insurance, based on the value of the
      * boat this insurance is for.
-     * Returns the basic cost as an int value
+     * 
      * @return the basic cost of this insurance
      */
     public int basicCost(){
@@ -59,8 +55,8 @@ public class BoatInsurance extends Insurance implements Serializable {
         // The value of the boat this insurance is for.
         int worth = boat.getValue();
         
-        // Sets the basic cost based on the price range the boats value
-        // is within
+        /* Sets the basic cost based on the price range the
+        boats value is within */
 	if (worth <= 25000){
 	basic = 1000;
 	}
@@ -90,8 +86,9 @@ public class BoatInsurance extends Insurance implements Serializable {
     }
 
     /**
-     * Calculates the extra costs of this insurance due to the engine effect of
-     * the boat this insurance is for. Returns this as an int value.
+     * Calculates and returns the extra costs of this insurance due to the
+     * engine effect of the boat insured.
+     * 
      * @return the extra engine cost
      */
     public int effectCost(){
@@ -100,50 +97,51 @@ public class BoatInsurance extends Insurance implements Serializable {
         // The extra cost based on the effect of the boat. Initialized at 0
         int effectC = 0;
 
-	// Calculates the effect cost of this insurance based on what range
-        // the engine effect of the boat insured is within.
+	/* Calculates the effect cost of this insurance based on what range
+        the engine effect of the boat insured is within. */
         if (effect <= 50){
-	effectC = 250;
+            effectC = 250;
 	}
 	else if (effect > 50 && effect <= 100){
-	effectC = 500;
+            effectC = 500;
 	}
 	else if (effect > 100 && effect <= 250){
-	effectC = 1500;
+            effectC = 1500;
 	}
 	else if (effect > 250){
-	effectC = 3000;
+            effectC = 3000;
 	}
         // Returns the set effect cost
         return effectC;
 }
 
     /**
-     * Calculates the drop in price for this insurance based on how high the
-     * excess is set. The higher the excess, the more money is saved. Returns
-     * the price drop as an int value.
+     * Calculates and returns the drop in price for this insurance based on how
+     * high the excess is set.
+     * The higher the excess, the more money is saved
+     * 
      * @return the drop in price based on the excess on this insurance
      */
     public int excessDrop(){
 	// The excess set for this insurance
         int excess = getExcess();
-        // The price drop of this insurance based on the set excess.
-        // Initialized at 0
+        /* The price drop of this insurance based on the set excess.
+        Initialized at 0 */
         int excessSaving = 0;
 
         // Calculates the price drop of the insurance based on the set excess.
         // If excess is set at 0, the price will rise instead of dropping.
 	if(excess == 0){
-	excessSaving = -2000;
+            excessSaving = -2000;
 	}
 	else if(excess > 0 && excess <= 5000){
-	excessSaving = excess / 5;
+            excessSaving = excess / 5;
 	}
 	else if(excess > 5000 && excess <= 10000){
-	excessSaving = excess / 4;
+            excessSaving = excess / 4;
 	}
 	else if(excess > 10000){
-	excessSaving = excess / 3;
+            excessSaving = excess / 3;
 	}
         // Returns the set price drop
         return excessSaving;
@@ -170,10 +168,10 @@ public class BoatInsurance extends Insurance implements Serializable {
 
 	// Drops the price of the insurance if the boat insured has an alarm.
         if (hasAlarm){
-	newPremium = totalP * 0.85;
+            newPremium = totalP * 0.85;
 	}
 	else{
-	newPremium = totalP;
+            newPremium = totalP;
 	}
         
         // Changes the new premium from a double value to an integer value
@@ -184,7 +182,7 @@ public class BoatInsurance extends Insurance implements Serializable {
     
     /**
      * Returns the coverage of this insurance.
-     * @return 
+     * @return the coverage 
      */
     @Override
     public Object getCoverage() {

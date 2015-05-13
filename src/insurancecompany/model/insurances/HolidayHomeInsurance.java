@@ -5,7 +5,7 @@
  */
 package insurancecompany.model.insurances;
 
-import insurancecompany.model.properties.HolidayHome;
+import insurancecompany.model.properties.Property;
 import insurancecompany.misc.hometypes.HolidayHomeType;
 import insurancecompany.misc.coverages.HolidayHomeInsuranceCoverage;
 import java.io.Serializable;
@@ -18,11 +18,13 @@ public class HolidayHomeInsurance extends PropertyInsurance implements Serializa
     private static final long serialVersionUID = 1L;
     
     /** The holiday home this insurance is for. */
-    private HolidayHome holidayHome;
+    private Property holidayHome;
     /** The type of house this insurance is for. */
     private HolidayHomeType holidayhometype;
     /** the coverage of this insurance */
     private HolidayHomeInsuranceCoverage coverage;
+    /** whether or not this insurance covers rentals */
+    private boolean rental;
     
     /**
      *  * Constructs a new holiday home insurance with the specified contentAmount, 
@@ -35,14 +37,16 @@ public class HolidayHomeInsurance extends PropertyInsurance implements Serializa
      * @param excess the excess of this insurance
      * @param holidayHome  the holidayhome that is insured
      * @param coverage the coverage of this insurance
+     * @param rental whether or not this insurance covers rentals
      */
     public HolidayHomeInsurance(HolidayHomeType type, int customerId,
-            int excess, HolidayHome holidayHome,
+            int excess, Property holidayHome,
             HolidayHomeInsuranceCoverage coverage) {
         super(customerId, excess);
         this.holidayHome = holidayHome;
         this.holidayhometype = type;
         this.coverage = coverage;
+        this.rental = rental;
     }
     
     /**
@@ -81,7 +85,7 @@ public class HolidayHomeInsurance extends PropertyInsurance implements Serializa
     private double rentalExtra(){
 	double rentalExtra = 1;
 
-	if (holidayHome.getRental()){
+	if (rental){
             rentalExtra = 1.15;
 	}
 
@@ -165,11 +169,19 @@ public class HolidayHomeInsurance extends PropertyInsurance implements Serializa
     }
     
     /**
+     * 
+     * @return whether or not this insurance covers rentals 
+     */
+    public boolean getRental() {
+        return rental;
+    }
+    
+    /**
      * Returns the holiday home this insurance is for.
      * 
      * @return the holiday home this insurance is for
      */
-    public HolidayHome getHolidayHome() {
+    public Property getHolidayHome() {
         return holidayHome;
     }
     
@@ -190,7 +202,7 @@ public class HolidayHomeInsurance extends PropertyInsurance implements Serializa
         result.append("\n").append(super.toString());
         result.append("\nDekning: ").append(coverage.toString());
         result.append("\nUtleiedekning: ").
-                append(holidayHome.getRental() ? "Ja" : "Nei");
+                append(rental ? "Ja" : "Nei");
         // Returns the string.
         return result.toString();
     }

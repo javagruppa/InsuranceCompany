@@ -10,7 +10,10 @@ import insurancecompany.model.insurances.Insurance;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.EnumSet;
 import java.util.List;
+import java.util.Set;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -28,15 +31,36 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
-import javafx.stage.FileChooser;
 import javafx.util.Callback;
 
 /**
- *
+ * This class represents a car claim registration view. This view is connected
+ * to the model through a controller. The class creates a GridPane with nodes.
+ * The GridPane consists of 2 main parts. 
+ * 
+ * <p>The left side of this pane is used for searching for customers. If the 
+ * search engine finds a customer this customer is displayed and a list of all 
+ * this customer's insurances is as well displayed in a table view. The user 
+ * is then able to select which insurance he/she wants to use for the claim. 
+ * Only car insurances are allowed to be selected. 
+ * 
+ * <p>The right side of this pane is used for typing in the fields connected
+ * to the damage/claim.
+ * 
+ * <p>After typing in all fields the user is able to register this as a claim
+ * as long as all fields are selected and typed in properly.
+ * 
+ * <p>Each value used in the registration goes through validation, and 
+ * informative messages are displayed to the user if the input is not valid.
+ * 
+ * <p>This class has a method the returns the GridPane. This method is used to
+ * connect the content of this class to another view.
+ * 
  * @author André
  */
 public class CarClaimRegistration {
@@ -45,41 +69,61 @@ public class CarClaimRegistration {
     private GridPane mainPane;
     
     // SEARCH FOR CUSTOMER NODES:
-    // Input nodes, TextFields
+    // Input nodes, TextFields:
+    /** Text field where user can input a customer id. */
     private TextField customerIdField;
+    /** Text field where user can input a personal number. */
     private TextField personalNumberField;
     // Output nodes, TextArea and TableView and Text
+    /** Text area where customer information is displayed. */
     private TextArea customerArea;
+    /** Table view where a list of a customers insurances are displayed. */
     private TableView<Insurance> insurancesTable;
+    /** Table column displaying an insurance type. */
     private TableColumn<Insurance, String> insuranceTypeColumn;
+    /** Table column displaying an insurance's coverage. */
     private TableColumn<Insurance, String> insuranceCoverageColum;
+    /** Table column displaying an insurance's id. */
     private TableColumn<Insurance, Integer> insuranceIdColumn;
+    /** Text used to display information after an insurance is selected. */
     private Text selectInsuranceMessage;
     // Buttons:
+    /** Button used to search for a customer through a customer id. */
     private Button searchCustomerIdButton;
+    /** Button used to search for a customer through a personal number. */
     private Button searchPersonalNumberButton;
+    /** Button used to select an insurance to use for the claim. */
     private Button selectInsuranceButton;
 
-    
-    
-    /** The date of when the damage happened */
+    /** Image uploaded by the user. */
+    private Image image;
+    /** The date of when the damage happened. */
     private DatePicker dateHappenedPicker;
     /** Textual description of the claim. */
     private TextArea descriptionTextArea;
-    /** File chooser for image of the damage. */
-    private FileChooser fileChooser;
+    /** Text field where the user can type in an appraisal for the claim. */
     private TextField appraisalField;
+    /** GridPane used to display the damages available for the customers coverage. */
     private GridPane damagesPane;
+    /** List of check boxes used in conjuction with the damages. */
     private List<CheckBox> damageCheckBoxes;
+    /** List of damages available for the customers coverage. */
+    private ArrayList<Damage> damages;
     // Buttons:
+    /** Button used to select an image describing the claim. */
     private Button selectImageButton;
+    /** Button used to open up a car claim form. */
     private Button openClaimFormButton;
+    /** Button used to register the claim. */
     private Button registerButton;
     
     // Output nodes, Text messages:
 
     
-    
+    /**
+     * Sole constructor. Initializes the main Pane and sets up all its nodes.
+     * Each node is then added to the Pane.
+     */
     public CarClaimRegistration() {
         
         // Sets up the mainPane
@@ -87,8 +131,8 @@ public class CarClaimRegistration {
         mainPane.setAlignment(Pos.CENTER);
         mainPane.setHgap(10);
         mainPane.setVgap(6);
-        // Set background color:
-        mainPane.setStyle("-fx-background-color: #E7E7FF;");
+        // Set CSS id:
+        mainPane.setId("innerPane");
         // Set up column constraints. Width in pixels:
         ColumnConstraints col1 = new ColumnConstraints(120);
         ColumnConstraints col2 = new ColumnConstraints(100);
@@ -137,6 +181,9 @@ public class CarClaimRegistration {
         restrictDatePicker(dateHappenedPicker);
         Label descriptionLabel = new Label("Beskrivelse av skaden:");
         descriptionTextArea = new TextArea();
+        // Wrap the text area, so that when text reaches the end of each line,
+        // a line break is made:
+        descriptionTextArea.setWrapText(true);
         descriptionTextArea.setPrefHeight(140);
         Label damagesLabel = new Label("Skade:");
         damagesPane = new GridPane();
@@ -146,12 +193,11 @@ public class CarClaimRegistration {
         damagesPane.setHgap(10);
         damagesPane.setVgap(6);
         // Set CSS ID:
-        damagesPane.setId("innerPane");
+        damagesPane.setId("customPane1");
         Label appraisalLbel = new Label("Takseringsbeløp:");
         appraisalField = new TextField();
         Label selectImageLabel = new Label("Bilde som beskriver skaden");
         selectImageButton = new Button("Hent bilde");
-        fileChooser = new FileChooser();
         Label openClaimFormLabel = new Label("Bilskademelingsskjema");
         openClaimFormButton = new Button("Åpne");
         registerButton = new Button("Registrer");
@@ -186,7 +232,7 @@ public class CarClaimRegistration {
         mainPane.add(openClaimFormLabel, 4, 15);
         mainPane.add(openClaimFormButton, 5, 15);
         mainPane.add(registerButton, 4, 16);
-    }
+    } // end of sole Constructor
     
     /**
      * Places list of damages inside a list of combo boxes and places
@@ -219,8 +265,7 @@ public class CarClaimRegistration {
             // After each addition we ready our column for our next combobox:
             column++;
         }
- 
-    }
+    } // end of method populateDamagesPane
     
     /**
      * Sets up date restrictions to the DatePicker in the parameter.
@@ -247,7 +292,7 @@ public class CarClaimRegistration {
         // Apply these restrictions to our DatePicker
         dateHappenedPicker.setDayCellFactory(dayCellFactory);
         dateHappenedPicker.setPromptText("dd/MM/yyyy");
-    }
+    } // end of method restrictDatePicker
     
     /** 
      * Returns the customer id field as a String.
@@ -280,7 +325,9 @@ public class CarClaimRegistration {
      * @param insurances 
      */
     public void populateInsurancesTable(List<Insurance> insurances) {
+        // Create an observable list from the recieved insurance list:
         ObservableList<Insurance> obList = FXCollections.observableArrayList(insurances);
+        // Place this list in the insurance table view:
         insurancesTable.setItems(obList);
         insuranceTypeColumn.setCellValueFactory((cellData) -> {
                 if ( cellData.getValue() != null) {
@@ -309,7 +356,9 @@ public class CarClaimRegistration {
                     return new SimpleObjectProperty(0);
                 }
         });   
-    }
+    }  // end of method populateInsurancesTable
+    
+    
     
     /**
      * Returns the Insurance object selected in the table.
@@ -321,15 +370,21 @@ public class CarClaimRegistration {
     }
     
     /**
-     * Takes an array of damages as a parameter and forwards these to the damage
-     * pane.
+     * Takes an array of damages as a parameter and sets it to this views damages
+     * list. Also forwards this list to the damages pane.
      * @param damages 
      */
     public void setDamages(Damage[] damages) {
-        ArrayList<Damage> damage = new ArrayList(Arrays.asList(damages));
-        populateDamagesPane(damage);
-    }
-
+        // Create an ArrayList of the recieved damages array:
+        List<Damage> damage = new ArrayList(Arrays.asList(damages));
+        // Initialize the damages field with this list of damages:
+        this.damages = new ArrayList(Arrays.asList(damages));
+        populateDamagesPane(this.damages);
+    }  // end of method setDamages
+    
+    //////////////////////////////////////////
+    // SET EVENT HANDLERS METHODS:
+    //////////////////////////////////////////
     /**
      * Sets event handler for the search customer button of this view.
      * @param value 
@@ -350,10 +405,18 @@ public class CarClaimRegistration {
      * Sets event handler for the select insurance button of this view.
      * @param value 
      */
-    public void setSelectInsuranceButtonButtonEventHandler(EventHandler<ActionEvent> value) {
+    public void setSelectInsuranceButtonEventHandler(EventHandler<ActionEvent> value) {
         selectInsuranceButton.setOnAction(value);
-    }  
-
+    }
+    
+    /**
+     * Sets event handler for the select image button of this view.
+     * @param value 
+     */
+    public void setSelectImageButtonEventHandler(EventHandler<ActionEvent> value) {
+        selectImageButton.setOnAction(value);
+    }
+    
     /**
      * Sets event handler for the register button of this view.
      * @param value 
@@ -378,5 +441,62 @@ public class CarClaimRegistration {
         this.selectInsuranceMessage = selectInsuranceMessage;
     }
 
+    /**
+     * Returns the text from the description text area as a String.
+     * @return the descriptionTextArea
+     */
+    public String getDescriptionTextArea() {
+        return descriptionTextArea.getText();
+    }
 
-}
+    /**
+     * Returns the text from the appraisal text field as a String.
+     * @return the appraisalField
+     */
+    public String getAppraisalField() {
+        return appraisalField.getText();
+    }
+
+    
+    /**
+     * Returns the damages selected from the check boxes.
+     * @return a Set of Damages
+     */
+    public Set<Damage> getSelectedDamages() {
+        // Creates an enum set:
+        Set<Damage> result = Collections.synchronizedSet(EnumSet.noneOf(Damage.class));
+        // Loops through all the checkboxes:
+        for (int i = 0; i < damageCheckBoxes.size(); i++) {
+            // For each checkbox that is selected:
+            if (damageCheckBoxes.get(i).isSelected()) {
+                // Add the damage from the damages list. This list is ordered in the same
+                // order as its respective values in the checkbox list:
+                result.add(damages.get(i));
+            }
+        }
+        return result;
+    } // end of method getSelectedDamages
+    
+    /**
+     * Clears the messages used to display invalid input.
+     */
+    public void clearMessages() {
+        selectInsuranceMessage.setText("");
+    }
+
+    /**
+     * Get the image of the damage from this view.
+     * @return the image
+     */
+    public Image getImage() {
+        return image;
+    }
+
+    /**
+     * Set an image of the damage.
+     * @param image the image to set
+     */
+    public void setImage(Image image) {
+        this.image = image;
+    }
+} // end of class CarClaimRegistration

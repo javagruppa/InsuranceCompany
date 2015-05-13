@@ -1,16 +1,16 @@
-/*
- * Here comes the text of your license
- * Each line should be prefixed with  * 
- */
 package insurancecompany.misc;
 
 /**
- *
+ * class EmployeeType. Enums setting the type of an employee object
  * @author André
  */
 public enum EmployeeType {
     ADMIN, CASE_WORKER, SERVICE_WORKER;
     
+    /**
+     * Returns a string representation of the type of employee
+     * @return a string representation of the type of employee
+     */
     @Override
     public String toString() {
         switch(this) {

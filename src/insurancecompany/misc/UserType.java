@@ -1,16 +1,16 @@
-/*
- * Here comes the text of your license
- * Each line should be prefixed with  * 
- */
 package insurancecompany.misc;
 
 /**
- *
+ * class UserType. Enums showing what kind of user a person object is
  * @author André
  */
 public enum UserType {
     CUSTOMER, ADMIN, CASE_WORKER, SERVICE_WORKER;
     
+    /**
+     * Returns a string representation of the user type of a person
+     * @return a string representation of the user type of a person
+     */
     @Override
     public String toString() {
         switch(this) {

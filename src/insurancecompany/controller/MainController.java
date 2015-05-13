@@ -83,11 +83,14 @@ public class MainController {
         this.employeeRegistration = new EmployeeRegistration();
         
         
-        this.modelController = new ModelController(claims, employees, insurances, customers);
+        this.modelController = new ModelController(boatInsuranceRegistration, 
+                carInsuranceRegistration, holidayHomeInsuranceRegistration, 
+                homeInsuranceRegistration, travelInsuranceRegistration, 
+                claims, employees, insurances, customers);
         this.viewController = new ViewController(adminView, boatInsuranceRegistration, 
-            carInsuranceRegistration, holidayHomeInsuranceRegistration,
-            homeInsuranceRegistration, travelInsuranceRegistration, 
-            customerRegistration, employeeRegistration);
+                carInsuranceRegistration, holidayHomeInsuranceRegistration, 
+                homeInsuranceRegistration, travelInsuranceRegistration, 
+                customerRegistration, employeeRegistration);
         
         readAllDataFromFile();
         setBrandComboBox();
@@ -276,7 +279,7 @@ public class MainController {
         int customerId = carInsuranceRegistration.getSelectedCustomerId();
         int excess = 1000;
         int maxLength = 100;
-        CarInsurance ci = new CarInsurance(null, CarInsuranceCoverage.CASCO, customerId, excess, true, true, maxLength, true);
+        CarInsurance ci = new CarInsurance(null, CarInsuranceCoverage.CASCO, customerId, excess, true, maxLength, true);
         if (insurances.addInsurance(ci)) {
             System.err.println("Registret");
         } else {

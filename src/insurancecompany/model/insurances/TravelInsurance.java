@@ -17,24 +17,20 @@ public class TravelInsurance extends Insurance implements Serializable {
     
     /** The coverage of this insurance. */
     private TravelInsuranceCoverage coverage;
-    /** The insurance area of this insurance. */
-    private String insuranceArea;
     
     /**
      * Constructs a new travel insurance with the specified customerId, 
-     * coverage, excess and insuranceArea. Active is set to true. Date is set 
-     * to the current date. InsuranceId is automatically set to nextInsuranceId.
+     * coverage and excess. Active is set to true. Date is set to the current 
+     * date. InsuranceId is automatically set to nextInsuranceId.
      * 
      * @param customerId the id of the customer who owns this insurance
      * @param coverage the coverage of this insurance
      * @param excess the excess of this insurance
-     * @param insuranceArea the insurance area of this insurance
      */
     public TravelInsurance(int customerId, TravelInsuranceCoverage coverage,
-            int excess, String insuranceArea) {
+            int excess) {
         super(customerId, excess);
         this.coverage = coverage;
-        this.insuranceArea = insuranceArea;
     }
     
     /**
@@ -109,7 +105,6 @@ public class TravelInsurance extends Insurance implements Serializable {
         result.append("REISEFORSIKRING");
         result.append("\n").append(super.toString());
         result.append("\nDekning: ").append(coverage);
-        result.append("\nForsikringsområde: ").append(insuranceArea);
         // Returns the string.
         return result.toString();
     }

@@ -24,4 +24,22 @@ public class Home extends Property implements Serializable {
             int year, boolean rental) {
         super(address, material, area, year, rental);
     }
+    
+    /**
+     * Returns a string representation of this property. The string
+     * representation consists of each field with a short description separated
+     * by a new line.
+     * 
+     * @return a string representation of this property
+     */
+    @Override
+    public String toString() {
+        // Creates a StringBuilder which will be returned at the end of the 
+        // method.
+        StringBuilder result = new StringBuilder();
+        // Appends the fields with appropriate sentences.
+        result.append(super.toString());
+        // Returns the string.
+        return result.toString();
+    }
 }

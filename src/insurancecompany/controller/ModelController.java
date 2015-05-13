@@ -6,17 +6,35 @@
 package insurancecompany.controller;
 
 
+import insurancecompany.misc.coverages.BoatInsuranceCoverage;
+import insurancecompany.misc.coverages.HomeInsuranceCoverage;
+import insurancecompany.misc.coverages.TravelInsuranceCoverage;
+import insurancecompany.misc.hometypes.HomeType;
 import insurancecompany.model.datastructures.ClaimRegister;
 import insurancecompany.model.datastructures.CustomerRegister;
 import insurancecompany.model.datastructures.EmployeeRegister;
 import insurancecompany.model.datastructures.InsuranceRegister;
 import insurancecompany.model.datastructures.LogRegister;
 import insurancecompany.model.datastructures.carinfo.*;
+import insurancecompany.model.insurances.BoatInsurance;
 import insurancecompany.model.insurances.Insurance;
+import insurancecompany.model.insurances.TravelInsurance;
 import insurancecompany.model.people.Customer;
+import insurancecompany.model.properties.Address;
+import insurancecompany.model.properties.PropertyMaterial;
+import insurancecompany.model.vehicles.Boat;
+import insurancecompany.view.register.insurances.BoatInsuranceRegistration;
+import insurancecompany.view.register.insurances.CarInsuranceRegistration;
+import insurancecompany.view.register.insurances.HolidayHomeInsuranceRegistration;
+import insurancecompany.view.register.insurances.HomeInsuranceRegistration;
+import insurancecompany.view.register.insurances.TravelInsuranceRegistration;
+import insurancecompany.view.register.persons.CustomerRegistration;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.event.ActionEvent;
+import javafx.scene.control.Label;
+import javafx.scene.paint.Color;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
@@ -32,6 +50,14 @@ import javax.xml.bind.Unmarshaller;
  */
 public class ModelController {
     
+    // Insurance Registration Views
+    private BoatInsuranceRegistration boatInsuranceRegistration;
+    private CarInsuranceRegistration carInsuranceRegistration;
+    private CustomerRegistration customerRegistration;
+    private HolidayHomeInsuranceRegistration holidayHomeInsuranceRegistration;
+    private HomeInsuranceRegistration homeInsuranceRegistration;
+    private TravelInsuranceRegistration travelInsuranceRegistration;
+    
     private CarInfoRegister carInfoRegister;
     private LogRegister logRegister;
     
@@ -39,14 +65,40 @@ public class ModelController {
     private EmployeeRegister employees;
     private InsuranceRegister insurances;
     private CustomerRegister customers;
+        
+    // Creates strings to be used in messages to the user:
+    private final String NO_CUSTOMER_MESSAGE = "Du har ikke valgt noen kunde.";
+    private final String FORMAT_MESSAGE = "Dette feltet kan kun bestå av tall.";
+    private final String EMPTY_MESSAGE = "Dette feltet må fylles ut.";
     
-    public ModelController(ClaimRegister claims, EmployeeRegister employees, InsuranceRegister insurances,
-            CustomerRegister customers) {
+    public ModelController(BoatInsuranceRegistration boatInsuranceRegistration, 
+            CarInsuranceRegistration carInsuranceRegistration, 
+            HolidayHomeInsuranceRegistration holidayHomeInsuranceRegistration,
+            HomeInsuranceRegistration homeInsuranceRegistration,
+            TravelInsuranceRegistration travelInsuranceRegistration, 
+            ClaimRegister claims, EmployeeRegister employees, 
+            InsuranceRegister insurances, CustomerRegister customers) {
+        
+        // Initializes Registration Views
+        this.boatInsuranceRegistration = boatInsuranceRegistration;
+        this.carInsuranceRegistration = carInsuranceRegistration;
+        this.holidayHomeInsuranceRegistration = holidayHomeInsuranceRegistration;
+        this.homeInsuranceRegistration = homeInsuranceRegistration;
+        this.travelInsuranceRegistration = travelInsuranceRegistration;
+        
         this.claims = claims;
         this.employees = employees;
         this.insurances = insurances;
         this.customers = customers;
+        
+        initializeEventHandlers();
         unmarshalCarInfoRegister();
+    }
+    
+    public void initializeEventHandlers() {
+        boatInsuranceRegistration.setRegisterButtonEventHandler(this::boatInsuranceRegisterButtonEventHandler);
+        homeInsuranceRegistration.setRegisterButtonEventHandler(this::homeInsuranceRegisterButtonEventHandler);
+        travelInsuranceRegistration.setRegisterButtonEventHandler(this::travelInsuranceRegisterButtonEventHandler);
     }
     
     /**
@@ -114,43 +166,7 @@ public class ModelController {
         }
     }
     
-    
-}
-    
-    
-    /*
-    // Insurance Registration Views
-    private BoatInsuranceRegistration boatInsuranceRegistration;
-    private CarInsuranceRegistration carInsuranceRegistration;
-    private CustomerRegistration customerRegistration;
-    private HolidayHomeInsuranceRegistration holidayHomeInsuranceRegistration;
-    private HomeInsuranceRegistration homeInsuranceRegistration;
-    private TravelInsuranceRegistration travelInsuranceRegistration;
-    
-    private CarInfoRegister carInfoRegister;
-    
-    public ModelController(BoatInsuranceRegistration boatInsuranceRegistration, 
-            CarInsuranceRegistration carInsuranceRegistration, 
-            HolidayHomeInsuranceRegistration holidayHomeInsuranceRegistration,
-            HomeInsuranceRegistration homeInsuranceRegistration,
-            TravelInsuranceRegistration travelInsuranceRegistration) {
-        
-        // Initializes Registration Views
-        this.boatInsuranceRegistration = boatInsuranceRegistration;
-        this.carInsuranceRegistration = carInsuranceRegistration;
-        this.holidayHomeInsuranceRegistration = holidayHomeInsuranceRegistration;
-        this.homeInsuranceRegistration = homeInsuranceRegistration;
-        this.travelInsuranceRegistration = travelInsuranceRegistration;
-        
-        initializeEventHandlers();
-        unmarshalCarInfoRegister();
-    }
-    
-    public void initializeEventHandlers() {
-        boatInsuranceRegistration.setRegisterButtonEventHandler(this::registerBoatInsuranceEventHandler);
-    }
-    
-    private void registerCustomerEventHandler(ActionEvent e) {
+    /*private void registerCustomerEventHandler(ActionEvent e) {
         boolean ok = true;
         String output = "";
         
@@ -196,16 +212,19 @@ public class ModelController {
             output += "Får ikke lagt til kunden. Kunde med personnummer: " + personalNumberS 
                     + " eksisterer allerede i kunderegisteret.";
         }
-    }
+    }*/
     
-    private void registerBoatInsuranceEventHandler(ActionEvent e) {
-        // Collects information about the customer and the insurance.
-        String coverage = boatInsuranceRegistration.getCoverage();
-        String customerId = boatInsuranceRegistration.getId();
-        String customerPersonalNumber = boatInsuranceRegistration.getCustomerPersonalNumber();
+    private void boatInsuranceRegisterButtonEventHandler(ActionEvent e) {
+        
+        // Clears previous messages:
+        boatInsuranceRegistration.clearMessages();
+        
+        // Collects information about the customer and the insurance:
+        BoatInsuranceCoverage coverage = boatInsuranceRegistration.getCoverage();
+        int customerId = boatInsuranceRegistration.getSelectedCustomerId();
         String excessString = boatInsuranceRegistration.getExcess();
         
-        // Collects information about the boat.
+        // Collects information about the boat:
         String alarmString = boatInsuranceRegistration.getAlarm();
         String brand = boatInsuranceRegistration.getBrand();
         String engineEffectString = boatInsuranceRegistration.getEngineEffect();
@@ -215,129 +234,294 @@ public class ModelController {
         String ownerPersonalNumber = boatInsuranceRegistration.getOwnerPersonalNumber();
         String registrationNumber = boatInsuranceRegistration.getRegistrationNumber();
         String registrationYearString = boatInsuranceRegistration.getRegistrationYear();
+        String valueString = boatInsuranceRegistration.getValue();
         
-        // Creates a boolean which is to be  set true if the user has made a 
-        // mistake and the method has to abort.
+        // Creates a boolean which is to be set true if the user has made a 
+        // mistake and the method has to abort:
         boolean abort = false;
         
-        // Creates strings to be used in messages to the user.
-        String nfeMessage = "* Kan kun bestå av tall.";
+        // Creates ints and booleans for the converted values:
+        boolean alarm = false;
+        int engineEffect = 0;
+        int excess = 0;
+        int length = 0;
+        int registrationYear = 0;
+        int value = 0;
         
-        // Converts strings to integers.
-        int engineEffect;
-        try {
-            engineEffect = Integer.parseInt(engineEffectString);
-        } catch(NumberFormatException nfe) {
-            boatInsuranceRegistration.setEngineEffectMessage(nfeMessage);
-            abort = true;
-        }
-        
-        int excess;
-        try {
-            excess = Integer.parseInt(excessString);
-        } catch(NumberFormatException nfe) {
-            boatInsuranceRegistration.setExcessMessage(nfeMessage);
-            abort = true;
-        }
-        
-        int length;
-        try {
-            length = Integer.parseInt(lengthString);
-        } catch(NumberFormatException nfe) {
-            boatInsuranceRegistration.
-                    setLengthMessage("* Kan kun bestå av tall.");
-            abort = true;
-        }
-        
-        int registrationYear;
-        try {
-            registrationYear = Integer.parseInt(registrationYearString);
-        } catch(NumberFormatException nfe) {
-            boatInsuranceRegistration.
-                    setRegistrationYearMessage("* Kan kun bestå av tall.");
-            abort = true;
-        }
-        
-        // Creates strings to be used in messages to the user.
-        String missingMessage = "* Dette feltet må fylles ut.";
-        
-        if(coverage.equals("")) {
-            boatInsuranceRegistration.setCoverageMessage(missingMessage);
-            abort = true;
-        }
-        if(customerId.equals("")) {
-            boatInsuranceRegistration.setCustomerIdMessage(missingMessage);
-            abort = true;
-        }
-        if(customerPersonalNumber.equals("")) {
-            boatInsuranceRegistration.setCustomerPersonalNumberMessage(missingMessage);
-        }
-        if(excessString.equals("")) {
-            boatInsuranceRegistration.setExcessMessage(missingMessage);
-        }
-        if(alarmString.equals("")) {
-            boatInsuranceRegistration.setAlarmMessage(missingMessage);
-        }
+        // Evaluates Input:
         if(brand.equals("")) {
-            boatInsuranceRegistration.setBrandMessage(missingMessage);
+            boatInsuranceRegistration.setBrandMessage(EMPTY_MESSAGE);
+            abort = true;
         }
-        if(engineEffectString.equals("")) {
-            boatInsuranceRegistration.setEngineEffectMessage(missingMessage);
+        if(coverage == null) {
+            boatInsuranceRegistration.setCoverageMessage(EMPTY_MESSAGE);
+            abort = true;
+        }
+        if(customerId == 0) {
+            boatInsuranceRegistration.setCustomerSelectedMessage(NO_CUSTOMER_MESSAGE);
+            abort = true;
         }
         if(engineType.equals("")) {
-            boatInsuranceRegistration.setEngineTypeMessage(missingMessage);
-        }
-        if(lengthString.equals("")) {
-            boatInsuranceRegistration.setLengthMessage(missingMessage);
+            boatInsuranceRegistration.setEngineTypeMessage(EMPTY_MESSAGE);
+            abort = true;
         }
         if(model.equals("")) {
-            boatInsuranceRegistration.setModelMessage(missingMessage);
+            boatInsuranceRegistration.setModelMessage(EMPTY_MESSAGE);
+            abort = true;
         }
         if(ownerPersonalNumber.equals("")) {
-            boatInsuranceRegistration.setOwnerPersonalNumberMessage(missingMessage);
+            boatInsuranceRegistration.setOwnerPersonalNumberMessage(EMPTY_MESSAGE);
         }
         if(registrationNumber.equals("")) {
-            boatInsuranceRegistration.setRegistrationNumberMessage(missingMessage);
+            boatInsuranceRegistration.setRegistrationNumberMessage(EMPTY_MESSAGE);
+        }
+        
+        // Evaluates and converts Input:
+        if(alarmString.equals("")) {
+            boatInsuranceRegistration.setAlarmMessage(EMPTY_MESSAGE);
+        } else {
+            alarm = alarmString.equals("Ja");
+        }
+        if(engineEffectString.equals("")) {
+            boatInsuranceRegistration.setEngineEffectMessage(EMPTY_MESSAGE);
+        } else {
+            try {
+                engineEffect = Integer.parseInt(engineEffectString);
+            } catch(NumberFormatException nfe) {
+                boatInsuranceRegistration.setEngineEffectMessage(FORMAT_MESSAGE);
+                abort = true;
+            }
+        }
+        if(excessString.equals("")) {
+            boatInsuranceRegistration.setExcessMessage(EMPTY_MESSAGE);
+        } else {
+            try {
+                excess = Integer.parseInt(excessString);
+            } catch(NumberFormatException nfe) {
+                boatInsuranceRegistration.setExcessMessage(FORMAT_MESSAGE);
+                abort = true;
+            }
+        }
+        if(lengthString.equals("")) {
+            boatInsuranceRegistration.setLengthMessage(EMPTY_MESSAGE);
+        } else {
+            try {
+                length = Integer.parseInt(lengthString);
+            } catch(NumberFormatException nfe) {
+                boatInsuranceRegistration.setLengthMessage(FORMAT_MESSAGE);
+                abort = true;
+            }
         }
         if(registrationYearString.equals("")) {
-            boatInsuranceRegistration.setRegistrationYearMessage(missingMessage);
+            boatInsuranceRegistration.setRegistrationYearMessage(EMPTY_MESSAGE);
+        } else {
+            try {
+                registrationYear = Integer.parseInt(registrationYearString);
+            } catch(NumberFormatException nfe) {
+                boatInsuranceRegistration.setRegistrationYearMessage(FORMAT_MESSAGE);
+                abort = true;
+            }
+        }
+        if(valueString.equals("")) {
+            boatInsuranceRegistration.setValueMessage(EMPTY_MESSAGE);
+        } else {
+            try {
+                value = Integer.parseInt(valueString);
+            } catch(NumberFormatException nfe) {
+                boatInsuranceRegistration.setValueMessage(FORMAT_MESSAGE);
+                abort = true;
+            }
         }
         
         if(abort) {
             return;
         }
         
-        // Creates Boat
+        // Creates Boat:
+        Boat boat = new Boat(alarm, brand, engineEffect, engineType, length, 
+                model, ownerPersonalNumber, registrationNumber, 
+                registrationYear, value);
         
-        // Creates BoatInsurance
+        // Creates BoatInsurance:
+        BoatInsurance insurance = new BoatInsurance(boat, customerId, coverage, excess);
         
-        // Adds insurance to Register
+        // Adds insurance to Register:
+        insurances.addInsurance(insurance); //returns boolean
+        // TODO: Give a message to the user whether the insurance was added or not. It would not
+        //       be added if the register already contained such an insurance.
     }
     
-    public final void unmarshalCarInfoRegister() {        
-        try {
-		File file = new File("src/insurancecompany/resources/xml/Car_makes_and_models.xml");
-                JAXBContext jaxbContext = JAXBContext.newInstance(CarInfoRegister.class);
-		Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();               
-		CarInfoRegister carInfoRegister = (CarInfoRegister) jaxbUnmarshaller.unmarshal(file);
-                this.carInfoRegister = carInfoRegister;
-                
-                // test:
-                String name = carInfoRegister.getCars().get(1).getName();
-                int to = carInfoRegister.getCars().get(0).getModelRegister().getModels().get(2).getTo();
-		System.out.println(name + to);
- 
-	  } catch (JAXBException e) {
-		e.printStackTrace();
-	  }
+    private void homeInsuranceRegisterButtonEventHandler(ActionEvent e) {
+        
+        // Clears previous messages:
+        homeInsuranceRegistration.clearMessages();
+        
+        // Collects information about the customer and the insurance:
+        HomeInsuranceCoverage coverage = homeInsuranceRegistration.getCoverage();
+        int customerId = homeInsuranceRegistration.getSelectedCustomerId();
+        String amountString = homeInsuranceRegistration.getAmount();
+        String excessString = homeInsuranceRegistration.getExcess();
+        
+        // Collects information about the home:
+        HomeType type = homeInsuranceRegistration.getType();
+        PropertyMaterial material = homeInsuranceRegistration.getMaterial();
+        String areaString = homeInsuranceRegistration.getArea();
+        String city = homeInsuranceRegistration.getCity();
+        String street = homeInsuranceRegistration.getStreet();
+        String yearString = homeInsuranceRegistration.getYear();
+        String zipCode = homeInsuranceRegistration.getZipCode();
+        
+        // Creates a boolean which is to be set true if the user has made a 
+        // mistake and the method has to abort:
+        boolean abort = false;
+        
+        // Creates ints and booleans for the converted values:
+        int amount = 0;
+        int area = 0;
+        int excess = 0;
+        int year = 0;
+        
+        // Evaluates Input:
+        if(city.equals("")) {
+            homeInsuranceRegistration.setCityMessage(EMPTY_MESSAGE);
+            abort = true;
+        }
+        if(coverage == null) {
+            homeInsuranceRegistration.setCoverageMessage(EMPTY_MESSAGE);
+            abort = true;
+        }
+        if(customerId == 0) {
+            homeInsuranceRegistration.setCustomerSelectedMessage(NO_CUSTOMER_MESSAGE);
+            abort = true;
+        }
+        if(material == null) {
+            homeInsuranceRegistration.setMaterialMessage(EMPTY_MESSAGE);
+            abort = true;
+        }
+        if(street.equals("")) {
+            homeInsuranceRegistration.setStreetMessage(EMPTY_MESSAGE);
+            abort = true;
+        }
+        if(type == null) {
+            homeInsuranceRegistration.setTypeMessage(EMPTY_MESSAGE);
+            abort = true;
+        }
+        if(zipCode.equals("")) {
+            homeInsuranceRegistration.setZipCodeMessage(EMPTY_MESSAGE);
+            abort = true;
+        }
+        
+        // Evaluates and converts Input:
+        if(areaString.equals("")) {
+            homeInsuranceRegistration.setAreaMessage(EMPTY_MESSAGE);
+            abort = true;
+        } else {
+            try {
+                area = Integer.parseInt(areaString);
+            } catch(NumberFormatException nfe) {
+                homeInsuranceRegistration.setAreaMessage(FORMAT_MESSAGE);
+                abort = true;
+            }
+        }
+        if(amountString.equals("")) {
+            homeInsuranceRegistration.setAmountMessage(EMPTY_MESSAGE);
+        } else {
+            try {
+                amount = Integer.parseInt(amountString);
+            } catch(NumberFormatException nfe) {
+                homeInsuranceRegistration.setAmountMessage(FORMAT_MESSAGE);
+                abort = true;
+            }
+        }
+        if(excessString.equals("")) {
+            homeInsuranceRegistration.setExcessMessage(EMPTY_MESSAGE);
+        } else {
+            try {
+                excess = Integer.parseInt(excessString);
+            } catch(NumberFormatException nfe) {
+                homeInsuranceRegistration.setExcessMessage(FORMAT_MESSAGE);
+                abort = true;
+            }
+        }
+        if(yearString.equals("")) {
+            homeInsuranceRegistration.setYearMessage(EMPTY_MESSAGE);
+        } else {
+            try {
+                year = Integer.parseInt(yearString);
+            } catch(NumberFormatException nfe) {
+                homeInsuranceRegistration.setYearMessage(FORMAT_MESSAGE);
+                abort = true;
+            }
+        }
+        
+        if(abort) {
+            return;
+        }
+        /*
+        // Creates Home:
+        Home home = new Home(alarm, brand, engineEffect, engineType, length, 
+                model, ownerPersonalNumber, registrationNumber, 
+                registrationYear, value);
+        
+        // Creates BoatInsurance:
+        BoatInsurance insurance = new BoatInsurance(boat, customerId, coverage, excess);
+        
+        // Adds insurance to Register:
+        insurances.addInsurance(insurance); //returns boolean
+        // TODO: Give a message to the user whether the insurance was added or not. It would not
+        //       be added if the register already contained such an insurance.
+        */
     }
     
-    public List<CarInfo> getCarInfos() {
-        return carInfoRegister.getCars();
-    }
-    
-    public CarInfo findCarInfo(String name) {
-        return carInfoRegister.findCarByName(name);
+    private void travelInsuranceRegisterButtonEventHandler(ActionEvent e) {
+        
+        // Clears previous messages:
+        travelInsuranceRegistration.clearMessages();
+        
+        // Collects information about the customer and the insurance:
+        TravelInsuranceCoverage coverage = travelInsuranceRegistration.getCoverage();
+        int customerId = travelInsuranceRegistration.getSelectedCustomerId();
+        String excessString = travelInsuranceRegistration.getExcess();
+        
+        // Creates a boolean which is to be set true if the user has made a 
+        // mistake and the method has to abort:
+        boolean abort = false;
+        
+        // Creates ints for the converted values:
+        int excess = 0;
+        
+        // Evaluates Input:
+        if(coverage == null) {
+            travelInsuranceRegistration.setCoverageMessage(EMPTY_MESSAGE);
+            abort = true;
+        }
+        if(customerId == 0) {
+            travelInsuranceRegistration.setCustomerSelectedMessage(NO_CUSTOMER_MESSAGE);
+            abort = true;
+        }
+        
+        // Evaluates and converts Input:
+        if(excessString.equals("")) {
+            travelInsuranceRegistration.setExcessMessage(EMPTY_MESSAGE);
+        } else {
+            try {
+                excess = Integer.parseInt(excessString);
+            } catch(NumberFormatException nfe) {
+                travelInsuranceRegistration.setExcessMessage(FORMAT_MESSAGE);
+                abort = true;
+            }
+        }
+        
+        if(abort) {
+            return;
+        }
+        
+        // Creates TravelInsurance:
+        TravelInsurance insurance = new TravelInsurance(customerId, coverage, excess);
+        
+        // Adds insurance to Register:
+        insurances.addInsurance(insurance); //returns boolean
+        // TODO: Give a message to the user whether the insurance was added or not. It would not
+        //       be added if the register already contained such an insurance.
     }
 }
-*/

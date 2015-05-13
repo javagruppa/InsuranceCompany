@@ -318,6 +318,22 @@ public class HomeInsuranceRegistration {
     public void setRegisterButtonEventHandler(EventHandler<ActionEvent> value) {
         registerButton.setOnAction(value);
     }
+
+    // CLEAR MESSAGES METHOD
+    
+    public void clearMessages() {
+        areaMessage.setText("");
+        buildingAmountMessage.setText("");
+        cityMessage.setText("");
+        contentAmountMessage.setText("");
+        coverageMessage.setText("");
+        excessMessage.setText("");
+        materialMessage.setText("");
+        streetMessage.setText("");
+        typeMessage.setText("");
+        yearMessage.setText("");
+        zipCodeMessage.setText("");
+    }
     
     // GET METHODS:
     

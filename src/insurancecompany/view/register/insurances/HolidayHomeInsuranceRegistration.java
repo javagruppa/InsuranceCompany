@@ -345,8 +345,9 @@ public class HolidayHomeInsuranceRegistration {
         coverageMessage.setText("");
         excessMessage.setText("");
         materialMessage.setText("");
-        typeMessage.setText("");
+        rentalMessage.setText("");
         streetMessage.setText("");
+        typeMessage.setText("");
         yearMessage.setText("");
         zipCodeMessage.setText("");
     }

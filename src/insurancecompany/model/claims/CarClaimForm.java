@@ -179,7 +179,7 @@ public class CarClaimForm implements Serializable {
                     (insuranceCompanyOther);
         }
         // If there are witnesses, these are added
-        if(!witnesses.equals("")) {
+        if(witnesses != null) {
             result.append("\nVitne(r) med telefonnummer: ").append(witnesses);
         }
         // These fields are added regardless of if another person i involved

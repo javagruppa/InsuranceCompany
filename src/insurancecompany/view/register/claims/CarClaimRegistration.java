@@ -10,6 +10,7 @@ import insurancecompany.model.insurances.Insurance;
 import java.time.LocalDate;
 import java.time.chrono.HijrahChronology;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -19,6 +20,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -30,6 +32,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Border;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -72,7 +75,7 @@ public class CarClaimRegistration {
     private FileChooser fileChooser;
     private TextField appraisalField;
     private GridPane damagesPane;
-    private List<CheckBox> damagesCheckBox;
+    private List<CheckBox> damageCheckBoxes;
     // Buttons:
     private Button selectImageButton;
     private Button openClaimFormButton;
@@ -114,32 +117,38 @@ public class CarClaimRegistration {
         Text resultTitle = new Text("Søkeresultat:");
         resultTitle.setId("textTitle");
         customerArea = new TextArea();
+        customerArea.setPrefSize(100, 150);
         customerArea.setEditable(false);
         customerArea.setPrefColumnCount(2);
-        customerArea.setPrefRowCount(4);
-        Label selectInsuranceLabel = new Label("Velg forsikringen denne skademelding går under:");
-        selectInsuranceButton = new Button("Velg");
-        selectInsuranceMessage = new Text();
-
-        Text insurancesTitle = new Text("Eksisterende forsikringer til denne kunden:");
+        customerArea.setPrefRowCount(3);
+        Text insurancesTitle = new Text("Velg forsikringen denne skademelding går under:");
         insurancesTitle.setId("textTitle");
         insurancesTable = new TableView();
-        insurancesTable.setPrefHeight(150);
+        insurancesTable.setPrefHeight(100);
         insuranceTypeColumn = new TableColumn<>("Forsikring");
         insuranceCoverageColum = new TableColumn<>("Dekning");
         insuranceIdColumn = new TableColumn<>("Forsikringsid");
         insurancesTable.getColumns().addAll(insuranceTypeColumn, insuranceCoverageColum, insuranceIdColumn);
-        insurancesTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);    
+        insurancesTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        selectInsuranceButton = new Button("Velg");
+        selectInsuranceMessage = new Text();
         
+        Text damagesTitle = new Text("Fyll inn informasjon:");
+        damagesTitle.setId("textTitle");
         Label dateHappenedLabel = new Label("Skadedato:");
         dateHappenedPicker = new DatePicker();
         restrictDatePicker();
         Label descriptionLabel = new Label("Beskrivelse av skaden:");
         descriptionTextArea = new TextArea();
-        damagesPane = new GridPane();
+        descriptionTextArea.setPrefHeight(140);
         Label damagesLabel = new Label("Skade:");
         damagesPane = new GridPane();
-        damagesPane.setPrefSize(200, 100);
+        damagesPane.setPadding(new Insets(10));
+        damagesPane.setPrefHeight(150);
+        damagesPane.setHgap(10);
+        damagesPane.setVgap(6);
+        damagesPane.setBorder(Border.EMPTY);
+        damagesPane.setStyle("-fx-background-color: #ffffff; ");
         Label appraisalLbel = new Label("Takseringsbeløp:");
         appraisalField = new TextField();
         Label selectImageLabel = new Label("Last opp et bilde som beskriver skaden");
@@ -160,49 +169,70 @@ public class CarClaimRegistration {
         mainPane.add(searchPersonalNumberButton, 2, 2);
         
         mainPane.add(resultTitle, 0, 3);
-        mainPane.add(customerArea, 0, 4, 3, 5);
-        mainPane.add(insurancesTitle, 0, 10);
-        mainPane.add(insurancesTable, 0, 11, 3, 5);
+        mainPane.add(customerArea, 0, 4, 3, 4);
+        mainPane.add(insurancesTitle, 0, 8);
+        mainPane.add(insurancesTable, 0, 9, 3, 7);
+        mainPane.add(selectInsuranceButton, 0, 16);
+        mainPane.add(selectInsuranceMessage, 1, 16);
         
         // 
-        mainPane.add(dateHappenedLabel, 4, 0);
-        mainPane.add(dateHappenedPicker, 5, 0);
-        mainPane.add(descriptionLabel, 4, 1);
-        mainPane.add(descriptionTextArea,4, 2, 3, 4);
-        mainPane.add(appraisalLbel, 4, 6);
-        mainPane.add(appraisalField, 5, 6);
+        mainPane.add(damagesTitle, 4, 0);
+        mainPane.add(dateHappenedLabel, 4, 1);
+        mainPane.add(dateHappenedPicker, 5, 1);
+        mainPane.add(descriptionLabel, 4, 2);
+        mainPane.add(descriptionTextArea,4, 3, 3, 4);
         mainPane.add(damagesLabel, 4, 7);
-        mainPane.add(damagesPane, 5, 7);
-        mainPane.add(selectImageLabel, 4, 8);
-        mainPane.add(selectImageButton, 5, 8);
-        mainPane.add(openClaimFormLabel, 4, 9);
-        mainPane.add(openClaimFormButton, 5, 9);
-        mainPane.add(registerButton, 4, 10);
+        mainPane.add(damagesPane, 4, 7, 3, 5);
+        mainPane.add(appraisalLbel, 4, 13);
+        mainPane.add(appraisalField, 5, 13);
+        mainPane.add(selectImageLabel, 4, 14);
+        mainPane.add(selectImageButton, 5, 14);
+        mainPane.add(openClaimFormLabel, 4, 15);
+        mainPane.add(openClaimFormButton, 5, 15);
+        mainPane.add(registerButton, 4, 16);
       
     }
     
     public void populateDamagesPane(ArrayList<Damage> damages) {
-        damagesCheckBox = new ArrayList<CheckBox>();
-        int columns = 5;
-        for (int i = 0; i < (damages.size() / columns); i++) {
+        damageCheckBoxes = new ArrayList<CheckBox>();
+        // Decides number of columns of damages:
+        int columns = 3 ;
+        // Start at first column:
+        int column = 0;
+        // Start at first row:
+        int row = 0;
+        // Go through all damages:
+        for (int i = 0; i < damages.size(); i++) {
+            // Create a checkbox for each damage:
             CheckBox cb = new CheckBox(damages.get(i).toString());
-            damagesCheckBox.add(cb);
-            for(int j = 0; j < columns; j++) {
-                damagesPane.add(cb, j, i);
+            // Add each checkbox to our list of checkboxes:
+            damageCheckBoxes.add(cb);
+            // When our column count has reached the value of our limit:
+            if (column == columns) {
+                // We reset our column back to 0
+                column = 0;
+                // And start at a new row:
+                row++;
             }
+            // We add each combobox to our GridPane:
+            damagesPane.add(cb, column, row);
+            // After each addition we ready our column for our next combobox:
+            column++;
         }
+ 
     }
     
     private void restrictDatePicker() {
         dateHappenedPicker.setValue(LocalDate.now());
-        // Sets up a restricton, where only dates before the current date are optional:
+        // Sets up a restricton for choosable dates:
         Callback<DatePicker, DateCell> dayCellFactory = dp -> new DateCell()
         {
             @Override
             public void updateItem(LocalDate item, boolean empty)
             {
                 super.updateItem(item, empty);
-                if(item.isAfter(LocalDate.now()))
+                // Only allow dates that are up to 2 months old, and not newer than current date:
+                if(item.isBefore(LocalDate.now().minusMonths(2)) || item.isAfter(LocalDate.now()))
                 {   // Sets the background color of the invalid dates to a pink/red color:
                     setStyle("-fx-background-color: #ffc0cb;");
                     // Disables them, so they can not be picked:
@@ -210,6 +240,7 @@ public class CarClaimRegistration {
                 }
             }
         };
+        // Apply these restrictions to our DatePicker
         dateHappenedPicker.setDayCellFactory(dayCellFactory);
         dateHappenedPicker.setPromptText("dd/MM/yyyy");
     }
@@ -243,11 +274,6 @@ public class CarClaimRegistration {
     public void populateInsurancesTable(List<Insurance> insurances) {
         ObservableList<Insurance> obList = FXCollections.observableArrayList(insurances);
         insurancesTable.setItems(obList);
-        if (obList.isEmpty()) {
-            System.err.println("Tom liste");
-        } else {
-            System.err.println("Ikke Tom liste");
-        }
         insuranceTypeColumn.setCellValueFactory((cellData) -> {
                 if ( cellData.getValue() != null) {
                     return new SimpleStringProperty(cellData.getValue().getName());
@@ -275,8 +301,9 @@ public class CarClaimRegistration {
         return insurancesTable.getSelectionModel().getSelectedItem();
     }
     
-    public void setCoverage(String coverage, Damage[] damages) {
-        
+    public void setDamages(Damage[] damages) {
+        ArrayList<Damage> damage = new ArrayList(Arrays.asList(damages));
+        populateDamagesPane(damage);
     }
 
     /**

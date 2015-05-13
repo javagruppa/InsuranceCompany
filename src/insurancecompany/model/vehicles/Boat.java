@@ -67,5 +67,14 @@ public class Boat extends Vehicle implements Serializable {
     public String getEngineType() {
         return engineType;
     }
+    
+    /**
+     * Returns a string representation of this boat
+     * @return a string representation of this boat
+     */
+    @Override
+    public String toString() {
+        return "Båt:\n" + super.toString();
+    }
             
 }

@@ -1,19 +1,26 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package insurancecompany.model.people;
 import insurancecompany.model.properties.Address;
 import java.io.Serializable;
 /**
- *
+ * CaseWorker class. This is an employee of the insurance company.
+ * The case worker registeres and views customers, insurances and claims.
+ * 
  * @author Carl
  */
 public class CaseWorker extends Employee implements Serializable {
+    /** SerialVersionUID used to identify this class for object IO */
     private static final long serialVersionUID = 1L;
 
+    /**
+     * Constructs a CaseWorker object with the  specified parameters.
+     * 
+     * @param firstname the first name of this case worker
+     * @param lastname the last name of this case worker
+     * @param personalNumber the personal number of this case worker
+     * @param email the email address of this case worker
+     * @param address the address of this case worker
+     * @param phone the phone number of this case worker
+     */
     public CaseWorker(String firstname, String lastname, String personalNumber, String email, Address address, String phone) {
         super(firstname, lastname, personalNumber, email, address, phone);
     }

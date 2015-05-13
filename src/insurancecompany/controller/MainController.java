@@ -9,8 +9,9 @@ import insurancecompany.misc.EmployeeType;
 import insurancecompany.misc.coverages.CarInsuranceCoverage;
 import insurancecompany.model.bills.*;
 import insurancecompany.model.claims.*;
-import insurancecompany.view.register.persons.*;
+import insurancecompany.view.register.claims.*;
 import insurancecompany.view.register.insurances.*;
+import insurancecompany.view.register.persons.*;
 import insurancecompany.model.datastructures.*;
 import insurancecompany.model.datastructures.carinfo.*;
 import insurancecompany.model.insurances.*;
@@ -55,6 +56,12 @@ public class MainController {
     // Person Registration Views:
     private CustomerRegistration customerRegistration;
     private EmployeeRegistration employeeRegistration;
+    // Claim Registration Views:
+    private BoatClaimRegistration boatClaimRegistration;
+    private CarClaimRegistration carClaimRegistration;
+    private HolidayHomeClaimRegistration holidayHomeClaimRegistration;
+    private HomeClaimRegistration homeClaimRegistration;
+    private TravelClaimRegistration travelClaimRegistration;
     
     // Controllers:
     private ModelController modelController;
@@ -64,6 +71,7 @@ public class MainController {
         
         user = new Admin("asd", "asd", "asd", "asd", null, "asd");
         
+        // Models:
         this.employees = new EmployeeRegister();
         this.customers = new CustomerRegister();
         this.insurances = new InsuranceRegister();
@@ -71,26 +79,41 @@ public class MainController {
         this.logs = new LogRegister();
         this.bills = new BillRegister();
         
-        
+        // Modules:
         this.adminView = new AdminView();
         
+        // Insurance Registration Views:
         this.boatInsuranceRegistration = new BoatInsuranceRegistration();
         this.carInsuranceRegistration = new CarInsuranceRegistration();
         this.holidayHomeInsuranceRegistration = new HolidayHomeInsuranceRegistration();
         this.homeInsuranceRegistration = new HomeInsuranceRegistration();
         this.travelInsuranceRegistration = new TravelInsuranceRegistration();
+        // Person Registration Views:
         this.customerRegistration = new CustomerRegistration();
         this.employeeRegistration = new EmployeeRegistration();
+        // Claim Registration Views:
+        this.boatClaimRegistration = new BoatClaimRegistration();
+        this.carClaimRegistration = new CarClaimRegistration();
+        this.holidayHomeClaimRegistration = new HolidayHomeClaimRegistration();
+        this.homeClaimRegistration = new HomeClaimRegistration();
+        this.travelClaimRegistration = new TravelClaimRegistration();
         
-        
-        this.modelController = new ModelController(boatInsuranceRegistration, 
-                carInsuranceRegistration, holidayHomeInsuranceRegistration, 
+        // Controllers:
+        this.modelController = new ModelController(claims, customers, employees, 
+                insurances, boatInsuranceRegistration, carInsuranceRegistration, 
+                holidayHomeInsuranceRegistration, homeInsuranceRegistration, 
+                travelInsuranceRegistration, customerRegistration, 
+                employeeRegistration, boatClaimRegistration, 
+                carClaimRegistration, holidayHomeClaimRegistration, 
+                homeClaimRegistration, travelClaimRegistration);
+        this.viewController = new ViewController(adminView, 
+                boatInsuranceRegistration, carInsuranceRegistration, 
+                holidayHomeInsuranceRegistration, 
                 homeInsuranceRegistration, travelInsuranceRegistration, 
-                claims, employees, insurances, customers);
-        this.viewController = new ViewController(adminView, boatInsuranceRegistration, 
-                carInsuranceRegistration, holidayHomeInsuranceRegistration, 
-                homeInsuranceRegistration, travelInsuranceRegistration, 
-                customerRegistration, employeeRegistration);
+                customerRegistration, employeeRegistration, 
+                boatClaimRegistration, carClaimRegistration, 
+                holidayHomeClaimRegistration, homeClaimRegistration, 
+                travelClaimRegistration);
         
         readAllDataFromFile();
         setBrandComboBox();

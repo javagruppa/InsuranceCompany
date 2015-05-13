@@ -5,9 +5,18 @@
  */
 package insurancecompany.controller;
 
+import insurancecompany.model.datastructures.ClaimRegister;
+import insurancecompany.model.datastructures.CustomerRegister;
+import insurancecompany.model.datastructures.EmployeeRegister;
+import insurancecompany.model.datastructures.InsuranceRegister;
 import insurancecompany.view.*;
 import insurancecompany.view.modules.*;
 import insurancecompany.view.register.*;
+import insurancecompany.view.register.claims.BoatClaimRegistration;
+import insurancecompany.view.register.claims.CarClaimRegistration;
+import insurancecompany.view.register.claims.HolidayHomeClaimRegistration;
+import insurancecompany.view.register.claims.HomeClaimRegistration;
+import insurancecompany.view.register.claims.TravelClaimRegistration;
 import insurancecompany.view.register.insurances.*;
 import insurancecompany.view.register.persons.*;
 import insurancecompany.view.search.*;
@@ -53,23 +62,36 @@ public class ViewController {
     
     // Sub-Tab Views for PersonsView
     
-    // Insurance Registration Views
+    // Insurance Registration Views:
     private BoatInsuranceRegistration boatInsuranceRegistration;
     private CarInsuranceRegistration carInsuranceRegistration;
-    private CustomerRegistration customerRegistration;
-    private EmployeeRegistration employeeRegistration;
     private HolidayHomeInsuranceRegistration holidayHomeInsuranceRegistration;
     private HomeInsuranceRegistration homeInsuranceRegistration;
     private TravelInsuranceRegistration travelInsuranceRegistration;
+    // Person Registration Views:
+    private CustomerRegistration customerRegistration;
+    private EmployeeRegistration employeeRegistration;
+    // Claim Registration Views:
+    private BoatClaimRegistration boatClaimRegistration;
+    private CarClaimRegistration carClaimRegistration;
+    private HolidayHomeClaimRegistration holidayHomeClaimRegistration;
+    private HomeClaimRegistration homeClaimRegistration;
+    private TravelClaimRegistration travelClaimRegistration;
     
     // Constructor
-    public ViewController(AdminView adminView, BoatInsuranceRegistration boatInsuranceRegistration, 
+    public ViewController(AdminView adminView, 
+            BoatInsuranceRegistration boatInsuranceRegistration, 
             CarInsuranceRegistration carInsuranceRegistration, 
             HolidayHomeInsuranceRegistration holidayHomeInsuranceRegistration,
             HomeInsuranceRegistration homeInsuranceRegistration,
             TravelInsuranceRegistration travelInsuranceRegistration,
             CustomerRegistration customerRegistration,
-            EmployeeRegistration employeeRegistration) {
+            EmployeeRegistration employeeRegistration,
+            BoatClaimRegistration boatClaimRegistration,
+            CarClaimRegistration carClaimRegistration,
+            HolidayHomeClaimRegistration holidayHomeClaimRegistration,
+            HomeClaimRegistration homeClaimRegistration,
+            TravelClaimRegistration travelClaimRegistration) {
         
         // Initializes Module Views
         this.adminView = adminView;
@@ -100,9 +122,13 @@ public class ViewController {
         this.holidayHomeInsuranceRegistration = holidayHomeInsuranceRegistration;
         this.homeInsuranceRegistration = homeInsuranceRegistration;
         this.travelInsuranceRegistration = travelInsuranceRegistration;
-        
         this.customerRegistration = customerRegistration;
         this.employeeRegistration = employeeRegistration; 
+        this.boatClaimRegistration = boatClaimRegistration;
+        this.carClaimRegistration = carClaimRegistration;
+        this.holidayHomeClaimRegistration = holidayHomeClaimRegistration;
+        this.homeClaimRegistration = homeClaimRegistration;
+        this.travelClaimRegistration = travelClaimRegistration;
         
         initializeEventHandlers();
     }

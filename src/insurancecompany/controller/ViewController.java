@@ -168,7 +168,9 @@ public class ViewController {
         claimsView.setBoatClaimButtonEventHandler(this::claimsViewBoatClaimButtonEventHandler);
         claimsView.setCarClaimButtonEventHandler(this::claimsViewCarClaimButtonEventHandler);
         claimsView.setHolidayHomeClaimButtonEventHandler(this::claimsViewHolidayHomeClaimButtonEventHandler);
+        claimsView.setHolidayHomeContentClaimButtonEventHandler(this::claimsViewHolidayHomeContentClaimButtonEventHandler);
         claimsView.setHomeClaimButtonEventHandler(this::claimsViewHomeClaimButtonEventHandler);
+        claimsView.setHomeContentClaimButtonEventHandler(this::claimsViewHomeContentClaimButtonEventHandler);
         claimsView.setTravelClaimButtonEventHandler(this::claimsViewTravelClaimButtonEventHandler);
         
         insurancesView.setBoatInsuranceButtonEventHandler(this::insurancesViewBoatInsuranceButtonEventHandler);
@@ -179,9 +181,9 @@ public class ViewController {
         personsView.setCustomerButtonEventHandler(this::personsViewCustomerRegistrationButtonEventHandler);
         personsView.setEmployeeButtonEventHandler(this::personsViewEmployeeRegistrationButtonEventHandler);
         searchView.setClaimsButtonEventHandler(this::searchViewClaimsButtonEventHandler);
-        //searchView.setCustomersButtonEventHandler(null);
-        //searchView.setEmployeesButtonEventHandler(null);
-        //searchView.setInsurancesButtonEventHandler(null);
+        searchView.setCustomersButtonEventHandler(null);
+        searchView.setEmployeesButtonEventHandler(null);
+        searchView.setInsurancesButtonEventHandler(null);
         
     }
     
@@ -264,11 +266,19 @@ public class ViewController {
     }
     
     private void claimsViewHomeClaimButtonEventHandler(ActionEvent event) {
-        //claimsView.getMainPane().setCenter(homeClaimRegistration.getMainPane());
+        claimsView.getMainPane().setCenter(homeClaimRegistration.getMainPane());
     }
     
+    private void claimsViewHomeContentClaimButtonEventHandler(ActionEvent event) {
+        claimsView.getMainPane().setCenter(homeContentClaimRegistration.getMainPane());
+    }
+
     private void claimsViewHolidayHomeClaimButtonEventHandler(ActionEvent event) {
-        //claimsView.getMainPane().setCenter(holidayClaimInsuranceRegistration.getMainPane());
+        claimsView.getMainPane().setCenter(holidayHomeClaimRegistration.getMainPane());
+    }
+        
+    private void claimsViewHolidayHomeContentClaimButtonEventHandler(ActionEvent event) {
+        claimsView.getMainPane().setCenter(holidayHomeContentClaimRegistration.getMainPane());
     }
     
     private void claimsViewTravelClaimButtonEventHandler(ActionEvent event) {

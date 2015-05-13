@@ -279,7 +279,7 @@ public class MainController {
         int customerId = carInsuranceRegistration.getSelectedCustomerId();
         int excess = 1000;
         int maxLength = 100;
-        CarInsurance ci = new CarInsurance(null, CarInsuranceCoverage.CASCO, customerId, excess, true, true, maxLength, true);
+        CarInsurance ci = new CarInsurance(null, CarInsuranceCoverage.CASCO, customerId, excess, true, maxLength, true);
         if (insurances.addInsurance(ci)) {
             System.err.println("Registret");
         } else {

@@ -448,6 +448,11 @@ public class BoatInsuranceRegistration {
     }
 
     /** @param message The message to set. */
+    public void setCustomerSelectedMessage(String message) {
+        this.customerSelectedMessage.setText(message);
+    }
+
+    /** @param message The message to set. */
     public void setEngineEffectMessage(String message) {
         this.engineEffectMessage.setFill(Color.FIREBRICK);
         this.engineEffectMessage.setText(message);

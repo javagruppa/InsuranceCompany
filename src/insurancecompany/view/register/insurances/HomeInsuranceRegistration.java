@@ -449,6 +449,11 @@ public class HomeInsuranceRegistration {
     }
 
     /** @param message The message to set. */
+    public void setCustomerSelectedMessage(String message) {
+        this.customerSelectedMessage.setText(message);
+    }
+
+    /** @param message The message to set. */
     public void setExcessMessage(String message) {
         this.excessMessage.setFill(Color.FIREBRICK);
         this.excessMessage.setText(message);

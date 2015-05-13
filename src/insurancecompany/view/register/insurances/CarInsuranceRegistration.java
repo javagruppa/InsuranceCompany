@@ -450,21 +450,8 @@ public class CarInsuranceRegistration {
         } else return null; 
     }
     
-    
-    ///
-    ///
-    /// SINDRE HAR KOMMET SÅ LANGT MED Å OPPDATERE DENNE KLASSEN. =D GOOD JOB!! :D
-    ///
-    ///
-    
-    public Object getBrandComboValue() {
-        return brandCombo.getValue();
-    }
-    
-    /**
-     * @return the customerIdField
-     */
-    public String getCustomerIdField() {
+    /** @return The value of customerIdField. */
+    public String getCustomerId() {
         return customerIdField.getText();
     }
 

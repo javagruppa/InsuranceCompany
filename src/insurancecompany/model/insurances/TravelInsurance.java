@@ -13,6 +13,7 @@ import java.io.Serializable;
  * @author Sindre
  */
 public class TravelInsurance extends Insurance implements Serializable {
+    /** SerialVersionUID used to identify this class for object IO */
     private static final long serialVersionUID = 1L;
     
     /** The coverage of this insurance. */

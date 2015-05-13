@@ -16,6 +16,7 @@ import java.util.Calendar;
  * @author Sindre
  */
 public class HomeInsurance extends PropertyInsurance implements Serializable {
+    /** SerialVersionUID used to identify this class for object IO */
     private static final long serialVersionUID = 1L;
     
     /** The home this insurance is for. */

@@ -71,6 +71,7 @@ public class BoatInsuranceRegistration {
     private TextField premiumField;
     private TextField registrationNumberField;
     private TextField registrationYearField;
+    private TextField valueField;
     // Output nodes, Text messages:
     private Text alarmMessage;
     private Text brandMessage;
@@ -83,6 +84,7 @@ public class BoatInsuranceRegistration {
     private Text ownerPersonalNumberMessage;
     private Text registrationNumberMessage;
     private Text registrationYearMessage;
+    private Text valueMessage;
     // Buttons:
     private Button calculateButton;
     private Button registerButton;
@@ -157,6 +159,7 @@ public class BoatInsuranceRegistration {
         premiumField.setEditable(false);
         registrationNumberField = new TextField();
         registrationYearField = new TextField();
+        valueField = new TextField();
         // Initializes Output:
         alarmMessage = new Text();
         brandMessage = new Text();
@@ -169,6 +172,7 @@ public class BoatInsuranceRegistration {
         ownerPersonalNumberMessage = new Text();
         registrationNumberMessage = new Text();
         registrationYearMessage = new Text();
+        valueMessage = new Text();
         // Initializes Buttons:
         calculateButton = new Button("Regn ut");
         registerButton = new Button("Registrer");
@@ -178,18 +182,19 @@ public class BoatInsuranceRegistration {
         insuranceOptionsTitle.setId("textTitle");
         Text boatTitle = new Text("Bil:");
         boatTitle.setId("textTitle");
-        Label coverageLabel = new Label("Dekning:");
-        Label excessLabel = new Label("Egenandel:");
-        Label ownerPersonalNumberLabel = new Label("Eierens personnummer:");
-        Label registrationNumberLabel = new Label("Registreringsnummer:");
+        Label alarmLabel = new Label("FG-godkjent alarm:");
         Label brandLabel = new Label("Merke:");
-        Label modelLabel = new Label("Modell:");
-        Label registrationYearLabel = new Label("År:");
+        Label coverageLabel = new Label("Dekning:");
         Label engineEffectLabel = new Label("Hestekrefter:");
         Label engineTypeLabel = new Label("Motortype:");
+        Label excessLabel = new Label("Egenandel:");
         Label lengthLabel = new Label("Lengde i fot:");
-        Label alarmLabel = new Label("FG-godkjent alarm:");
+        Label modelLabel = new Label("Modell:");
+        Label ownerPersonalNumberLabel = new Label("Eierens personnummer:");
         Label premiumLabel = new Label("Beregnet forsikringspremie:");
+        Label registrationNumberLabel = new Label("Registreringsnummer:");
+        Label registrationYearLabel = new Label("År:");
+        Label valueLabel = new Label("Verdi:");
         
         // Adds nodes to mainPane:
         mainPane.add(selectCustomerTitle, 0, 0);
@@ -244,10 +249,13 @@ public class BoatInsuranceRegistration {
         mainPane.add(alarmLabel, 4, 12);
         mainPane.add(alarmCombo, 5, 12);
         mainPane.add(alarmMessage, 6, 12);
-        mainPane.add(premiumLabel, 4, 13);
-        mainPane.add(premiumField, 5, 13);
-        mainPane.add(calculateButton, 6, 13);
-        mainPane.add(registerButton, 5, 14);
+        mainPane.add(valueLabel, 4, 13);
+        mainPane.add(valueField, 5, 13);
+        mainPane.add(valueMessage, 6, 13);
+        mainPane.add(premiumLabel, 4, 14);
+        mainPane.add(premiumField, 5, 14);
+        mainPane.add(calculateButton, 6, 14);
+        mainPane.add(registerButton, 5, 15);
     }
     
     // POPULATE METHODS:
@@ -401,6 +409,11 @@ public class BoatInsuranceRegistration {
     public int getSelectedCustomerId() {
         return selectedCustomerId;
     }
+
+    /** @return The value of valueField. */
+    public String getValue() {
+        return valueField.getText();
+    }
     
     // SET METHODS:
 
@@ -473,5 +486,11 @@ public class BoatInsuranceRegistration {
     /** @param selectedCustomerId The selectedCustomerId to set. */
     public void setSelectedCustomerId(int selectedCustomerId) {
         this.selectedCustomerId = selectedCustomerId;
+    }
+
+    /** @param message The message to set. */
+    public void setValueMessage(String message) {
+        this.valueMessage.setFill(Color.FIREBRICK);
+        this.valueMessage.setText(message);
     }
 }

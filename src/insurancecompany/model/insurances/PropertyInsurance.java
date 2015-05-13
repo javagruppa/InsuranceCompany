@@ -11,6 +11,7 @@ import java.io.Serializable;
  * @author Sindre
  */
 public abstract class PropertyInsurance extends Insurance implements Serializable {
+    /** SerialVersionUID used to identify this class for object IO */
     private static final long serialVersionUID = 1L;
     
     

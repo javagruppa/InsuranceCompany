@@ -78,6 +78,7 @@ public class MainController {
     private CustomerRegistration customerRegistration;
     private EmployeeRegistration employeeRegistration;
     
+    
     // Search Views:
     private ClaimSearchView claimSearchView;
     private CustomerSearchView customerSearchView;
@@ -208,9 +209,12 @@ public class MainController {
         carInsuranceRegistration.setYearComboListener(this::yearComboListener);
         carInsuranceRegistration.setCalculateButtonEventHandler(null);
         carInsuranceRegistration.setRegisterButtonEventHandler(this::carInsuranceRegisterButtonEventHandler);
-     
+        
         customerRegistration.setRegisterButtonEventHandler(this::registerCustomerButtonEventHandler);
         employeeRegistration.setRegisterButtonEventHandler(this::registerEmployeeButtonEventHandler);
+        
+        carClaimRegistration.setSearchPersonalNumberButtonEventHandler(this::carClaimSearchPersonalNumberButtonEventHandler);
+        carClaimRegistration.setSelectInsuranceButtonButtonEventHandler(this::carClaimSelectInsuranceButtonEventHandler);
     }
  
     private void adminViewSaveDataButtonEventHandler(ActionEvent event) {
@@ -361,8 +365,10 @@ public class MainController {
             // Search for all insurances by 
             List inc = insurances.getAllInsurancesByCustomerId(cId);
             if (!inc.isEmpty()) {
+                System.err.println("HEI");
                 carInsuranceRegistration.populateInsurancesTable(inc);
             }
+            System.err.println("HEINEI");
         }
     }
     
@@ -500,6 +506,30 @@ public class MainController {
                 return;
             }
         }
+        
+        
+    }
+    
+    private void carClaimSearchPersonalNumberButtonEventHandler(ActionEvent event) {
+        String personalNumber = carClaimRegistration.getPersonalNumberField();
+        // TODO regex:
+        // Search for customer by personal numer:
+        Customer c = customers.findCustomerByPersonalNumber(personalNumber);
+        // If we find a customer we proceed:
+        if (c != null) {
+            // Show the customer in the text area inside our view:
+            carClaimRegistration.setCustomerArea(c.toString());
+            int cId = c.getId();
+            // Search for all insurances by 
+            List inc = insurances.getAllInsurancesByCustomerId(cId);
+            if (!inc.isEmpty()) {
+                carClaimRegistration.populateInsurancesTable(inc);
+            }
+        }
+    }
+    
+    private void carClaimSelectInsuranceButtonEventHandler(ActionEvent event) {
+        Insurance insurance = carClaimRegistration.getInsuranceTableValue();
         
         
     }

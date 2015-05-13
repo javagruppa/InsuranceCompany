@@ -524,7 +524,7 @@ public class ModelController {
         // Collects information about the customer and the insurance:
         HomeInsuranceCoverage coverage = homeInsuranceRegistration.getCoverage();
         int customerId = homeInsuranceRegistration.getSelectedCustomerId();
-        String amountString = homeInsuranceRegistration.getAmount();
+//        String amountString = homeInsuranceRegistration.getAmount();
         String excessString = homeInsuranceRegistration.getExcess();
         
         // Collects information about the property:
@@ -586,7 +586,7 @@ public class ModelController {
                 homeInsuranceRegistration.setAreaMessage(FORMAT_MESSAGE);
                 abort = true;
             }
-        }
+        }/*
         if(amountString.equals("")) {
             homeInsuranceRegistration.setAmountMessage(EMPTY_MESSAGE);
             abort = true;
@@ -597,7 +597,7 @@ public class ModelController {
                 homeInsuranceRegistration.setAmountMessage(FORMAT_MESSAGE);
                 abort = true;
             }
-        }
+        }*/
         if(excessString.equals("")) {
             homeInsuranceRegistration.setExcessMessage(EMPTY_MESSAGE);
             abort = true;

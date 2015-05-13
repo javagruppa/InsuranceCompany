@@ -8,7 +8,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
 /**
- *
+ * 
  * @author Sindre
  */
 public class BoatClaimRegistration {

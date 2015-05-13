@@ -6,6 +6,7 @@
 package insurancecompany.view.register.insurances;
 
 import insurancecompany.misc.coverages.HolidayHomeInsuranceCoverage;
+import insurancecompany.misc.hometypes.HolidayHomeType;
 import insurancecompany.model.insurances.Insurance;
 import java.util.List;
 import javafx.beans.property.SimpleObjectProperty;
@@ -62,6 +63,7 @@ public class HolidayHomeInsuranceRegistration {
     private ComboBox<HolidayHomeInsuranceCoverage> coverageCombo;
     private ComboBox<String> excessCombo;
     private ComboBox<String> rentalCombo;
+    private ComboBox<HolidayHomeType> typeCombo;
     private TextField areaField;
     private TextField buildingAmountField;
     private TextField cityField;
@@ -69,7 +71,6 @@ public class HolidayHomeInsuranceRegistration {
     private TextField materialField;
     private TextField premiumField;
     private TextField streetField;
-    private TextField typeField;
     private TextField yearField;
     private TextField zipCodeField;
     // Output nodes, Text messages:
@@ -78,7 +79,6 @@ public class HolidayHomeInsuranceRegistration {
     private Text cityMessage;
     private Text coverageMessage;
     private Text contentAmountMessage;
-    private Text customerIdMessage;
     private Text excessMessage;
     private Text materialMessage;
     private Text rentalMessage;
@@ -150,6 +150,8 @@ public class HolidayHomeInsuranceRegistration {
         populateExcessCombo();
         rentalCombo = new ComboBox<>();
         populateRentalCombo();
+        typeCombo = new ComboBox<>();
+        populateTypeCombo();
         areaField = new TextField();
         buildingAmountField = new TextField();
         cityField = new TextField();
@@ -157,7 +159,6 @@ public class HolidayHomeInsuranceRegistration {
         materialField = new TextField();
         premiumField = new TextField();
         streetField = new TextField();
-        typeField = new TextField();
         yearField = new TextField();
         zipCodeField = new TextField();
         // Initializes Output:
@@ -166,7 +167,6 @@ public class HolidayHomeInsuranceRegistration {
         cityMessage = new Text();
         contentAmountMessage = new Text();
         coverageMessage = new Text();
-        customerIdMessage = new Text();
         excessMessage = new Text();
         materialMessage = new Text();
         rentalMessage = new Text();
@@ -244,7 +244,7 @@ public class HolidayHomeInsuranceRegistration {
         mainPane.add(materialField, 5, 9);
         mainPane.add(materialMessage, 6, 9);
         mainPane.add(typeLabel, 4, 10);
-        mainPane.add(typeField, 5, 10);
+        mainPane.add(typeCombo, 5, 10);
         mainPane.add(typeMessage, 6, 10);
         
         mainPane.add(addressTitle, 4, 11);
@@ -285,6 +285,13 @@ public class HolidayHomeInsuranceRegistration {
         rental.addAll("Ja", "Nei");
         rentalCombo.getItems().setAll(rental);
         rentalCombo.setPrefWidth(150);
+    }
+    
+    private void populateTypeCombo() {
+        ObservableList<HolidayHomeType> obList;
+        obList = FXCollections.observableArrayList(HolidayHomeType.values()); 
+        typeCombo.getItems().setAll(obList);
+        typeCombo.setPrefWidth(150);
     }
     
     /**
@@ -387,7 +394,7 @@ public class HolidayHomeInsuranceRegistration {
      * @return the typeField
      */
     public String getType() {
-        return typeField.getText();
+        return typeCombo.getText();
     }
 
     /**

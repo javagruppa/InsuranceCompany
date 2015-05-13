@@ -337,99 +337,94 @@ public class HolidayHomeInsuranceRegistration {
     
     // GET METHODS:
     
+    /** @return The main pane of this class. */
     public GridPane getMainPane() {
         return mainPane;
     }
 
-    /**
-     * @return the customerIdField
-     */
-    public String getCustomerId() {
-        return customerIdField.getText();
-    }
-
-    /**
-     * @return the excessField
-     */
-    public String getExcess() {
-        return excessCombo.getValue() == null ? "" : excessCombo.getValue();
-    }
-
-    /**
-     * @return the buildingAmountField
-     */
-    public String getBuildingAmount() {
-        return buildingAmountField.getText();
-    }
-
-    /**
-     * @return the contentAmountField
-     */
-    public String getContentAmount() {
-        return contentAmountField.getText();
-    }
-
-    /**
-     * @return the areaField
-     */
+    /** @return The value of areaField. */
     public String getArea() {
         return areaField.getText();
     }
 
-    /**
-     * @return the yearField
-     */
-    public String getYear() {
-        return yearField.getText();
+    /** @return The value of buildingAmountField. */
+    public String getBuildingAmount() {
+        return buildingAmountField.getText();
     }
 
-    /**
-     * @return the materialField
-     */
-    public String getMaterial() {
-        return materialField.getText();
-    }
-
-    /**
-     * @return the typeField
-     */
-    public String getType() {
-        return typeCombo.getText();
-    }
-
-    /**
-     * @return the streetField
-     */
-    public String getStreet() {
-        return streetField.getText();
-    }
-
-    /**
-     * @return the zipCodeField
-     */
-    public String getZipCode() {
-        return zipCodeField.getText();
-    }
-
-    /**
-     * @return the cityField
-     */
+    /** @return The value of cityField. */
     public String getCity() {
         return cityField.getText();
     }
 
-    /**
-     * @return the premiumField
-     */
+    /** @return The value of contentAmountField. */
+    public String getContentAmount() {
+        return contentAmountField.getText();
+    }
+    
+    /** @return The value of coverageCombo. */
+    public HolidayHomeInsuranceCoverage getCoverage() {
+        if (coverageCombo.getValue() instanceof HolidayHomeInsuranceCoverage) {
+            // Casts the ComboBox value to HolidayHomeInsuranceCoverage and returns this value.
+            HolidayHomeInsuranceCoverage coverage = (HolidayHomeInsuranceCoverage) coverageCombo.getValue();
+            return coverage;
+            // If for instance no value is selected, the value will not equal a HolidayHomeInsuranceCoverage, in this case return null.
+        } else return null; 
+    }
+    
+    /** @return The value of customerIdField. */
+    public String getCustomerId() {
+        return customerIdField.getText();
+    }
+
+    /** @return The value of excessCombo. */
+    public String getExcess() {
+        return excessCombo.getValue() == null ? "" : excessCombo.getValue();
+    }
+
+    /** @return The value of materialField. */
+    public String getMaterial() {
+        return materialField.getText();
+    }
+    
+    /** @return The value of personalNumberField. */
+    public String getPersonalNumber() {
+        return personalNumberField.getText();
+    }
+
+    /** @return The value of premiumField. */
     public String getPremium() {
         return premiumField.getText();
     }
 
-    /**
-     * @return the rentalComboBox
-     */
+    /** @return The value of rentalCombo. */
     public String getRental() {
         return rentalCombo.getValue() == null ? "" : rentalCombo.getValue();
+    }
+
+    /** @return The value of streetField. */
+    public String getStreet() {
+        return streetField.getText();
+    }
+
+    /** @return The value of typeCombo. */
+    public HolidayHomeType getType() {
+        if (typeCombo.getValue() instanceof HolidayHomeType) {
+            // Casts the ComboBox value to HolidayHomeType and returns this value.
+            HolidayHomeType type = (HolidayHomeType) typeCombo.getValue();
+            return type;
+            // If for instance no value is selected, the value will not equal a HolidayHomeType, in this case return null.
+        } else return null; 
+    }
+
+    /** @return The value of yearField. */
+    public String getYear() {
+        return yearField.getText();
+    }
+
+    /** @return The value of zipCodeField. */
+    public String getZipCode() {
+        return zipCodeField.getText();
     }
     
     // SET METHODS:

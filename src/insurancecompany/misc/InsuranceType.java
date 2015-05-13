@@ -1,17 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package insurancecompany.misc;
 
 /**
- *
+ * class InsuranceType. Enums showing the type of an insurance
  * @author André
  */
 public enum InsuranceType {
     BOAT_INSURANCE, CAR_INSURANCE, HOME_INSURANCE, HOLIDAY_HOME_INSURANCE, TRAVEL_INSURANCE;
     
+    /**
+     * Returns a string representation of the type of an insurance
+     * @return a string representation of the type of an insurance
+     */
     @Override
     public String toString() {
         switch(this) {

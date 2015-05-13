@@ -263,11 +263,6 @@ public class TravelInsuranceRegistration {
         return personalNumberField.getText();
     }
 
-    /** @return The value of premiumField. */
-    public String getPremium() {
-        return premiumField.getText();
-    }
-
     /** @return The value of selectedCustomerId. */
     public int getSelectedCustomerId() {
         return selectedCustomerId;

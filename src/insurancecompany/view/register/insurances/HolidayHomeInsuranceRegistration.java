@@ -334,6 +334,22 @@ public class HolidayHomeInsuranceRegistration {
     public void setRegisterButtonEventHandler(EventHandler<ActionEvent> value) {
         registerButton.setOnAction(value);
     }
+
+    // CLEAR MESSAGES METHOD
+    
+    public void clearMessages() {
+        areaMessage.setText("");
+        buildingAmountMessage.setText("");
+        cityMessage.setText("");
+        contentAmountMessage.setText("");
+        coverageMessage.setText("");
+        excessMessage.setText("");
+        materialMessage.setText("");
+        typeMessage.setText("");
+        streetMessage.setText("");
+        yearMessage.setText("");
+        zipCodeMessage.setText("");
+    }
     
     // GET METHODS:
     

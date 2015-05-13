@@ -418,6 +418,7 @@ public class ModelController {
         } else {
             // Displays the customer:
             boatInsuranceRegistration.setCustomerArea(customer.toString());
+            boatInsuranceRegistration.setSelectedCustomerId(customerId);
             // Finds the customer's insurances:
             List insuranceList = insurances.getAllInsurancesByCustomerId(customerId);
             if (!insuranceList.isEmpty()) {
@@ -441,10 +442,11 @@ public class ModelController {
             // Gives the user an appropriate message if the customer wasn't found:
             boatInsuranceRegistration.setCustomerArea(PERSONALNUMBER_NOT_FOUND_MESSAGE + personalNumber);
         } else {
-            // Displays the customer:
-            boatInsuranceRegistration.setCustomerArea(customer.toString());
             // Finds the customer's insurances:
             int customerId = customer.getId();
+            // Displays the customer:
+            boatInsuranceRegistration.setCustomerArea(customer.toString());
+            boatInsuranceRegistration.setSelectedCustomerId(customerId);
             List insuranceList = insurances.getAllInsurancesByCustomerId(customerId);
             if (!insuranceList.isEmpty()) {
                 // Displays the insurances if there is at least one:

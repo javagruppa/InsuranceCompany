@@ -62,7 +62,7 @@ public enum HomeContentInsuranceCoverage {
     
     public int getPricing() {
         switch(this) {
-            case PLUS: return 1200;
+            case PLUS: return 1000;
             case BASIC: return 0;
             default: throw new IllegalArgumentException();
         }

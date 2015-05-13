@@ -14,12 +14,12 @@ import javafx.scene.layout.Pane;
  *
  * @author André
  */
-public class BillsProcess {
+public class ClaimsProcessView {
     // Decalaration of the Gridpane and Scene.
     private GridPane mainPane;
     
-    public BillsProcess() {
-        
+    public ClaimsProcessView() {
+        mainPane = new GridPane();
     }
     
     /**

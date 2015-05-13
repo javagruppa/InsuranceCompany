@@ -7,11 +7,13 @@ package insurancecompany.controller;
 
 import insurancecompany.view.*;
 import insurancecompany.view.modules.*;
+import insurancecompany.view.process.*;
 import insurancecompany.view.register.*;
 import insurancecompany.view.register.claims.*;
 import insurancecompany.view.register.insurances.*;
 import insurancecompany.view.register.persons.*;
 import insurancecompany.view.search.*;
+import insurancecompany.view.statistics.*;
 import javafx.event.ActionEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -42,34 +44,46 @@ public class ViewController {
     private ClaimsView claimsView;
     private InsurancesView insurancesView;
     private PersonsView personsView;
+  
+    // Persons Registration Views
+    private CustomerRegistration customerRegistration;
+    private EmployeeRegistration employeeRegistration;
+    // Insurance Registration Views
+    private BoatInsuranceRegistration boatInsuranceRegistration;
+    private CarInsuranceRegistration carInsuranceRegistration;
+    private HomeInsuranceRegistration homeInsuranceRegistration;
+    //private HomeContentInsuranceRegistration homeContentInsuranceRegistration;
+    private HolidayHomeInsuranceRegistration holidayHomeInsuranceRegistration;
+    //private HolidayHomeContentInsuranceRegistration holidayHomeContentInsuranceRegistration;
+    private TravelInsuranceRegistration travelInsuranceRegistration;
+    // Claim Registration Views:
+    private BoatClaimRegistration boatClaimRegistration;
+    private CarClaimRegistration carClaimRegistration;
+    private HomeClaimRegistration homeClaimRegistration;
+    private HomeContentClaimRegistration homeContentClaimRegistration;
+    private HolidayHomeClaimRegistration holidayHomeClaimRegistration;
+    private HolidayHomeContentClaimRegistration holidayHomeContentClaimRegistration;
+    private TravelClaimRegistration travelClaimRegistration;
     
+    // Sub-Tab Views for ProcessView
+    private BillsProcessView billsProcessView;
+    private ClaimsProcessView claimsProcessView;
+    private SubscriptionsProcessView subscriptionsProcessView;
+    
+    /*
     // Sub-Tab Views for SearchView
     private CustomerSearchView customerSearchView;
     private EmployeeSearchView employeeSearchView;
     private InsuranceSearchView insuranceSearchView;
     private ClaimSearchView claimsSearchView;
     
-    // Sub-Tab Views for PersonsView
+    */
+    // Sub-Tab Views for StatisticsView
+    private CustomerStatisticsView customerStatisticsView;
+    private EmployeeStatisticsView employeeStatisticsView;
+    private InsuranceStatisticsView insuranceStatisticsView;
+    private ClaimStatisticsView claimsStatisticsView;
     
-
-    // Persons Registration Views
-    private CustomerRegistration customerRegistration;
-    private EmployeeRegistration employeeRegistration;
-    // Insurance Registration Views
-
-    // Insurance Registration Views:
-
-    private BoatInsuranceRegistration boatInsuranceRegistration;
-    private CarInsuranceRegistration carInsuranceRegistration;
-    private HolidayHomeInsuranceRegistration holidayHomeInsuranceRegistration;
-    private HomeInsuranceRegistration homeInsuranceRegistration;
-    private TravelInsuranceRegistration travelInsuranceRegistration;
-    // Claim Registration Views:
-    private BoatClaimRegistration boatClaimRegistration;
-    private CarClaimRegistration carClaimRegistration;
-    private HolidayHomeClaimRegistration holidayHomeClaimRegistration;
-    private HomeClaimRegistration homeClaimRegistration;
-    private TravelClaimRegistration travelClaimRegistration;
     
     // Constructor
     public ViewController(AdminView adminView, 
@@ -99,15 +113,28 @@ public class ViewController {
         this.statisticsView = new StatisticsView();
         
         // Initializes Sub-Tab Views for RegisterView
+        this.billsProcessView = new BillsProcessView();
+        this.claimsProcessView = new ClaimsProcessView();
+        this.subscriptionsProcessView = new SubscriptionsProcessView();
+        
+        // Initializes Sub-Tab Views for ProcessView
         this.claimsView = new ClaimsView();
         this.insurancesView = new InsurancesView();
         this.personsView = new PersonsView();
         
+        /*
         // Initializes Sub-Tab Views for SearchView
         this.customerSearchView = new CustomerSearchView();
         this.employeeSearchView = new EmployeeSearchView();
         this.insuranceSearchView = new InsuranceSearchView();
         this.claimsSearchView = new ClaimSearchView();
+        */
+                
+        // Initializes Sub-Tab Views for StatisticsView
+        this.customerStatisticsView = new CustomerStatisticsView();
+        this.employeeStatisticsView = new EmployeeStatisticsView();
+        this.insuranceStatisticsView = new InsuranceStatisticsView();
+        this.claimsStatisticsView = new ClaimStatisticsView();
         
         // Initializes Registration Views
         this.boatInsuranceRegistration = boatInsuranceRegistration;
@@ -144,7 +171,9 @@ public class ViewController {
         claimsView.setBoatClaimButtonEventHandler(this::claimsViewBoatClaimButtonEventHandler);
         claimsView.setCarClaimButtonEventHandler(this::claimsViewCarClaimButtonEventHandler);
         claimsView.setHolidayHomeClaimButtonEventHandler(this::claimsViewHolidayHomeClaimButtonEventHandler);
+        claimsView.setHolidayHomeContentClaimButtonEventHandler(this::claimsViewHolidayHomeContentClaimButtonEventHandler);
         claimsView.setHomeClaimButtonEventHandler(this::claimsViewHomeClaimButtonEventHandler);
+        claimsView.setHomeContentClaimButtonEventHandler(this::claimsViewHomeContentClaimButtonEventHandler);
         claimsView.setTravelClaimButtonEventHandler(this::claimsViewTravelClaimButtonEventHandler);
         
         insurancesView.setBoatInsuranceButtonEventHandler(this::insurancesViewBoatInsuranceButtonEventHandler);
@@ -155,9 +184,9 @@ public class ViewController {
         personsView.setCustomerButtonEventHandler(this::personsViewCustomerRegistrationButtonEventHandler);
         personsView.setEmployeeButtonEventHandler(this::personsViewEmployeeRegistrationButtonEventHandler);
         searchView.setClaimsButtonEventHandler(this::searchViewClaimsButtonEventHandler);
-        //searchView.setCustomersButtonEventHandler(null);
-        //searchView.setEmployeesButtonEventHandler(null);
-        //searchView.setInsurancesButtonEventHandler(null);
+        searchView.setCustomersButtonEventHandler(null);
+        searchView.setEmployeesButtonEventHandler(null);
+        searchView.setInsurancesButtonEventHandler(null);
         
     }
     
@@ -240,11 +269,19 @@ public class ViewController {
     }
     
     private void claimsViewHomeClaimButtonEventHandler(ActionEvent event) {
-        //claimsView.getMainPane().setCenter(homeClaimRegistration.getMainPane());
+        claimsView.getMainPane().setCenter(homeClaimRegistration.getMainPane());
     }
     
+    private void claimsViewHomeContentClaimButtonEventHandler(ActionEvent event) {
+        claimsView.getMainPane().setCenter(homeContentClaimRegistration.getMainPane());
+    }
+
     private void claimsViewHolidayHomeClaimButtonEventHandler(ActionEvent event) {
-        //claimsView.getMainPane().setCenter(holidayClaimInsuranceRegistration.getMainPane());
+        claimsView.getMainPane().setCenter(holidayHomeClaimRegistration.getMainPane());
+    }
+        
+    private void claimsViewHolidayHomeContentClaimButtonEventHandler(ActionEvent event) {
+        claimsView.getMainPane().setCenter(holidayHomeContentClaimRegistration.getMainPane());
     }
     
     private void claimsViewTravelClaimButtonEventHandler(ActionEvent event) {
@@ -292,6 +329,6 @@ public class ViewController {
     // SEARCH CLAIMS VIEW EVENT HANDLERS
     
     private void searchViewClaimsButtonEventHandler(ActionEvent event) {
-        searchView.getMainPane().setCenter(claimsSearchView.getMainPane());
+        //searchView.getMainPane().setCenter(claimsSearchView.getMainPane());
     }
 }

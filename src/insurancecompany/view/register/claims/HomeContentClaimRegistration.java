@@ -11,12 +11,12 @@ import javafx.scene.layout.Pane;
  *
  * @author Sindre
  */
-public class ContentClaimRegistration {
+public class HomeContentClaimRegistration {
     
     /** The main pane of this class.*/
     private GridPane mainPane;
     
-    public ContentClaimRegistration() {
+    public HomeContentClaimRegistration() {
         
     }
     

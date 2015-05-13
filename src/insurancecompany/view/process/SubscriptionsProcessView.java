@@ -7,6 +7,7 @@ package insurancecompany.view.process;
 
 import insurancecompany.view.statistics.*;
 import insurancecompany.view.search.*;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
@@ -14,12 +15,12 @@ import javafx.scene.layout.Pane;
  *
  * @author André
  */
-public class SubscriptionsProcess {
+public class SubscriptionsProcessView {
     // Decalaration of the Gridpane and Scene.
-    private GridPane mainPane;
+    private BorderPane mainPane;
     
-    public SubscriptionsProcess() {
-        
+    public SubscriptionsProcessView() {
+        mainPane = new BorderPane();
     }
     
     /**

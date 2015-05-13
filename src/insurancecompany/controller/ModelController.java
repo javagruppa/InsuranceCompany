@@ -429,6 +429,7 @@ public class ModelController {
         PropertyMaterial material = homeInsuranceRegistration.getMaterial();
         String areaString = homeInsuranceRegistration.getArea();
         String city = homeInsuranceRegistration.getCity();
+        String rentalString = homeInsuranceRegistration.getRental();
         String street = homeInsuranceRegistration.getStreet();
         String yearString = homeInsuranceRegistration.getYear();
         String zipCodeString = homeInsuranceRegistration.getZipCode();
@@ -441,6 +442,7 @@ public class ModelController {
         int amount = 0;
         int area = 0;
         int excess = 0;
+        boolean rental = false;
         int year = 0;
         int zipCode = 0;
         
@@ -504,6 +506,12 @@ public class ModelController {
                 abort = true;
             }
         }
+        if(rentalString.equals("")) {
+            homeInsuranceRegistration.setRentalMessage(EMPTY_MESSAGE);
+            abort = true;
+        } else {
+            rental = rentalString.equals("Ja");
+        }
         if(yearString.equals("")) {
             homeInsuranceRegistration.setYearMessage(EMPTY_MESSAGE);
             abort = true;
@@ -536,14 +544,13 @@ public class ModelController {
         // Creates Property:
         Property property = new Property(address, material, area, year);
         // Creates HomeInsurance:
-        /*HomeInsurance insurance = new HomeInsurance(customerId, excess, property, 
-            type, coverage, rental);
+        HomeInsurance insurance = new HomeInsurance(customerId, excess, 
+                property, type, coverage, rental);
         
         // Adds insurance to Register:
         insurances.addInsurance(insurance); //returns boolean
         // TODO: Give a message to the user whether the insurance was added or not. It would not
         //       be added if the register already contained such an insurance.
-        */
     }
     
     private void travelInsuranceRegisterButtonEventHandler(ActionEvent e) {

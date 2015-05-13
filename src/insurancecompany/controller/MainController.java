@@ -200,7 +200,6 @@ public class MainController {
         
         carInsuranceRegistration.setSearchCustomerIdButtonEventHandler(this::carInsuranceSearchCustomerButtonEventHandler);
         carInsuranceRegistration.setSearchPersonalNumberButtonEventHandler(this::carInsuranceSearchPersonalNumberButtonEventHandler);
-        carInsuranceRegistration.setSelectCustomerButtonEventHandler(this::carInsuranceSelectCustomerButtonEventHandler);
         carInsuranceRegistration.setBrandComboListener(this::brandComboListener);
         carInsuranceRegistration.setYearComboListener(this::yearComboListener);
         carInsuranceRegistration.setCalculateButtonEventHandler(null);
@@ -389,7 +388,7 @@ public class MainController {
     
     private void setBrandComboBox() {
         List cars = modelController.getCarInfos();
-        carInsuranceRegistration.populateBrandComboBox(cars);
+        carInsuranceRegistration.populateBrandCombo(cars);
     }
     
     private void setYearComboBox() {
@@ -400,7 +399,7 @@ public class MainController {
             years.add(i + "");
         }
         
-        carInsuranceRegistration.populateYearComboBox(years);
+        carInsuranceRegistration.populateYearCombo(years);
     }
     
     // INVISIBLE BUG: method gets called twice for every change.
@@ -449,7 +448,7 @@ public class MainController {
         // Whenever a change in the combox is done, this method gets called twice, hence this check to
         // avoid creating a complete list, for so to replace it with an empty list.
         if (years.size() != 0) {
-            carInsuranceRegistration.populateYearComboBox(years);
+            carInsuranceRegistration.populateYearCombo(years);
         }
         
     }
@@ -493,7 +492,7 @@ public class MainController {
                         }
                     }
                 }
-                carInsuranceRegistration.populateModelComboBox(modelsResult);
+                carInsuranceRegistration.populateModelCombo(modelsResult);
   
             } catch (NumberFormatException nfe) {
                 //setSomeMessage

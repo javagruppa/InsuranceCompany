@@ -183,18 +183,18 @@ public class HolidayHomeInsuranceRegistration {
         houseTitle.setId("textTitle");
         Text addressTitle = new Text("Adresse:");
         addressTitle.setId("textTitle");
+        Label amountLabel = new Label("Forsikringsbeløp:");
+        Label areaLabel = new Label("Areal:");
+        Label cityLabel = new Label("By:");
         Label coverageLabel = new Label("Dekning:");
         Label excessLabel = new Label("Egenandel:");
-        Label amountLabel = new Label("Forsikringsbeløp:");
-        Label rentalLabel = new Label("For leie:");
-        Label areaLabel = new Label("Areal:");
-        Label yearLabel = new Label("Byggeår:");
         Label materialLabel = new Label("Materiale:");
-        Label typeLabel = new Label("Type:");
-        Label streetLabel = new Label("Gate:");
-        Label zipCodeLabel = new Label("Postboks:");
-        Label cityLabel = new Label("By:");
         Label premiumLabel = new Label("Beregnet forsikringspremie:");
+        Label rentalLabel = new Label("For leie:");
+        Label streetLabel = new Label("Gate:");
+        Label typeLabel = new Label("Type:");
+        Label yearLabel = new Label("Byggeår:");
+        Label zipCodeLabel = new Label("Postboks:");
         
         // Adds nodes to mainPane:
         mainPane.add(selectCustomerTitle, 0, 0);

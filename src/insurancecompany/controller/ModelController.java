@@ -219,6 +219,7 @@ public class ModelController {
         String ownerPersonalNumber = boatInsuranceRegistration.getOwnerPersonalNumber();
         String registrationNumber = boatInsuranceRegistration.getRegistrationNumber();
         String registrationYearString = boatInsuranceRegistration.getRegistrationYear();
+        String valueString = boatInsuranceRegistration.getValue();
         
         // Creates a boolean which is to be set true if the user has made a 
         // mistake and the method has to abort:
@@ -229,11 +230,12 @@ public class ModelController {
         String missingMessage = "* Dette feltet må fylles ut.";
         
         // Creates ints and booleans for the converted values:
-        boolean alarm;
-        int engineEffect;
-        int excess;
-        int length;
-        int registrationYear;
+        boolean alarm = false;
+        int engineEffect = 0;
+        int excess = 0;
+        int length = 0;
+        int registrationYear = 0;
+        int value = 0;
         
         // Evaluates Input:
         if(brand.equals("")) {
@@ -305,19 +307,30 @@ public class ModelController {
                 abort = true;
             }
         }
+        if(valueString.equals("")) {
+            boatInsuranceRegistration.setValueMessage(missingMessage);
+        } else {
+            try {
+                value = Integer.parseInt(valueString);
+            } catch(NumberFormatException nfe) {
+                boatInsuranceRegistration.setValueMessage(formatMessage);
+                abort = true;
+            }
+        }
         
         if(abort) {
             return;
         }
         
         // Creates Boat
-        // Boat boat = new Boat(alarm, brand, engineEffect, engineType, length, 
-                // model, ownerPersonalNumber, registrationNumber, registrationYear);
+        Boat boat = new Boat(alarm, brand, engineEffect, engineType, length, 
+                model, ownerPersonalNumber, registrationNumber, 
+                registrationYear, value);
         
         // Creates BoatInsurance
-        // BoatInsurance insurance = new BoatInsurance(boat, customerId, coverage, excess);
+        BoatInsurance insurance = new BoatInsurance(boat, customerId, coverage, excess);
         
         // Adds insurance to Register
-        // insurances.addInsurance(insurance); //returns boolean
+        insurances.addInsurance(insurance); //returns boolean
     }
 }

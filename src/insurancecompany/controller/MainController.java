@@ -361,10 +361,8 @@ public class MainController {
             // Search for all insurances by 
             List inc = insurances.getAllInsurancesByCustomerId(cId);
             if (!inc.isEmpty()) {
-                System.err.println("HEI");
                 carInsuranceRegistration.populateInsurancesTable(inc);
             }
-            System.err.println("HEINEI");
         }
     }
     
@@ -529,12 +527,11 @@ public class MainController {
         
         if (insurance instanceof CarInsurance) {
             CarInsuranceCoverage coverage = (CarInsuranceCoverage) insurance.getCoverage();
-            carClaimRegistration.setCoverage(coverage.toString(), coverage.damages());
+            carClaimRegistration.setDamages(coverage.damages());
         } else {
             Text message = new Text();
             message.setFill(Color.FIREBRICK);
             carClaimRegistration.setSelectInsuranceMessage(message);
-                    
         }
     }
     

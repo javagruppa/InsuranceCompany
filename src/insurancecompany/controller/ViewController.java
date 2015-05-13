@@ -12,6 +12,7 @@ import insurancecompany.model.datastructures.InsuranceRegister;
 import insurancecompany.view.*;
 import insurancecompany.view.modules.*;
 import insurancecompany.view.register.*;
+import insurancecompany.view.register.claims.*;
 import insurancecompany.view.register.claims.BoatClaimRegistration;
 import insurancecompany.view.register.claims.CarClaimRegistration;
 import insurancecompany.view.register.claims.HolidayHomeClaimRegistration;
@@ -62,15 +63,19 @@ public class ViewController {
     
     // Sub-Tab Views for PersonsView
     
+
+    // Persons Registration Views
+    private CustomerRegistration customerRegistration;
+    private EmployeeRegistration employeeRegistration;
+    // Insurance Registration Views
+
     // Insurance Registration Views:
+
     private BoatInsuranceRegistration boatInsuranceRegistration;
     private CarInsuranceRegistration carInsuranceRegistration;
     private HolidayHomeInsuranceRegistration holidayHomeInsuranceRegistration;
     private HomeInsuranceRegistration homeInsuranceRegistration;
     private TravelInsuranceRegistration travelInsuranceRegistration;
-    // Person Registration Views:
-    private CustomerRegistration customerRegistration;
-    private EmployeeRegistration employeeRegistration;
     // Claim Registration Views:
     private BoatClaimRegistration boatClaimRegistration;
     private CarClaimRegistration carClaimRegistration;

@@ -122,6 +122,7 @@ public class ModelController {
     
     public void initializeEventHandlers() {
         boatInsuranceRegistration.setRegisterButtonEventHandler(this::boatInsuranceRegisterButtonEventHandler);
+        boatInsuranceRegistration.setSearchPersonalNumberButtonEventHandler(this::boatInsuranceSearchPersonalNumberButtonEventHandler);
         homeInsuranceRegistration.setRegisterButtonEventHandler(this::homeInsuranceRegisterButtonEventHandler);
         travelInsuranceRegistration.setRegisterButtonEventHandler(this::travelInsuranceRegisterButtonEventHandler);
     }
@@ -378,13 +379,18 @@ public class ModelController {
     
     private void boatInsuranceSearchPersonalNumberButtonEventHandler(ActionEvent event) {
         String personalNumber = boatInsuranceRegistration.getPersonalNumber();
+        if(personalNumber.equals("")) {
+            // Gives the user an appropriate message if the user hasn't put in a personalNumber:
+            boatInsuranceRegistration.setCustomerArea("Du må skrive inn et personnummer.");
+            return;
+        }
         // TODO: Regex.
         // Searches for the customer by personal number:
         Customer customer = customers.findCustomerByPersonalNumber(personalNumber);
         // If it doesn't find the customer:
         if(customer == null) {
             // Gives the user an appropriate message if the customer wasn't found:
-            boatInsuranceRegistration.setCustomerArea("Fant ingen kunde med personnummer:" + personalNumber);
+            boatInsuranceRegistration.setCustomerArea("Fant ingen kunde med personnummer: " + personalNumber);
         } else {
             // Displays the customer:
             boatInsuranceRegistration.setCustomerArea(customer.toString());

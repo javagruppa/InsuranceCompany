@@ -37,12 +37,12 @@ public class HolidayHomeContentInsurance extends PropertyInsurance
      * to true. Date is set to the current date. InsuranceId is automatically 
      * set to nextInsuranceId.
      * 
-     * @param amount the value of this insurance
-     * @param coverage the coverage of this insurance
-     * @param customerId the ID of the customer who owns this insurance
-     * @param excess the excess of this insurance 
-     * @param property the holidayhome this insurance is for
-     * @param type the holidayhometype this insurance is for
+     * @param amount The insurance amount of this insurance.
+     * @param coverage The coverage of this insurance.
+     * @param customerId The id of the customer who owns this insurance.
+     * @param excess The excess of this insurance.
+     * @param property The property this insurance is for.
+     * @param type The type of home this insurance is for.
      */
     public HolidayHomeContentInsurance(int amount, 
             HolidayHomeContentInsuranceCoverage coverage, int customerId, 

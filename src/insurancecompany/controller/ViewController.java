@@ -5,6 +5,7 @@
  */
 package insurancecompany.controller;
 
+import insurancecompany.model.claims.CarClaimForm;
 import insurancecompany.view.*;
 import insurancecompany.view.modules.*;
 import insurancecompany.view.process.*;
@@ -208,8 +209,9 @@ public class ViewController {
     public void show(Stage stage) {
         this.primaryStage = stage;
         //login.show(stage);
-        
-        adminView.show(primaryStage);
+        CarClaimFormView car = new CarClaimFormView();
+        car.show(stage);
+        //adminView.show(primaryStage);
     }
     
     // ADMIN VIEW EVENT HANDLERS

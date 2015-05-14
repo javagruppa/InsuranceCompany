@@ -142,4 +142,32 @@ public abstract class Vehicle implements Serializable {
         // Returns the string.
         return result.toString();
     }
+
+    /**
+     * @return the alarm
+     */
+    public boolean isAlarm() {
+        return alarm;
+    }
+
+    /**
+     * @return the brand
+     */
+    public String getBrand() {
+        return brand;
+    }
+
+    /**
+     * @return the model
+     */
+    public String getModel() {
+        return model;
+    }
+
+    /**
+     * @return the registrationYear
+     */
+    public int getRegistrationYear() {
+        return registrationYear;
+    }
 }

@@ -138,6 +138,10 @@ and open the template in the editor.
 }
 
 #innerPane {
+    -fx-background-color: #E7E7FF;
+}
+
+#customPane1 {
     -fx-background-color: #ccffff;
     -fx-border-style: solid;
     -fx-border-color: #395cab;

@@ -25,6 +25,16 @@ public class Address implements Serializable {
         this.city = city;
     }
     
+    /**
+     * Optional constructor which leaves out the city field. Is used in
+     * CarClaimFormView.
+     * @param street
+     * @param zipCode 
+     */
+    public Address(String street, int zipCode) {
+        this.street = street;
+        this.zipCode = zipCode;
+    }
 
     
     public String getStreet() {
@@ -39,9 +49,20 @@ public class Address implements Serializable {
         return city;
     }
     
+    @Override
     public String toString(){
-            String s = "\n" + street + "\n" + zipCode + " " + city;
-            return s;
+        StringBuilder sb = new StringBuilder();
+        sb.append("Adresse:\n");
+        if (street != null) {
+            sb.append("Gate: ").append(street).append("\n");
+        }
+        if (zipCode != 0) {
+            sb.append("Postnummer: ").append(zipCode).append("\n");
+        }
+        if (city != null) {
+            sb.append("By: ").append(city).append("\n");
+        }
+        return sb.toString();
     }
     
 }

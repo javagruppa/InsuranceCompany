@@ -203,6 +203,12 @@ public class MainController {
         initializeEventHandlers();
     }
     
+    
+    public void show(Stage stage) {
+        this.primaryStage = stage;
+        viewController.show(stage);
+    }
+    
     private void initializeEventHandlers() {
         adminView.setSaveDataButtonEventHandler(this::adminViewSaveDataButtonEventHandler);
         adminView.setExitButtonEventHandler(this::adminViewExitButtonEventHandler);
@@ -859,10 +865,5 @@ public class MainController {
         } catch (IOException ioe) {
             System.err.println(ioe.getMessage());
         }
-    }
-    
-    public void show(Stage stage) {
-        this.primaryStage = stage;
-        viewController.show(stage);
     }
 }

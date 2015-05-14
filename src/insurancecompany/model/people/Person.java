@@ -123,7 +123,9 @@ public abstract class Person implements Serializable {
         result.append("Navn: ").append(firstName + " " + lastName);
         result.append("\nPersonnummer: ").append(personalNumber);
         result.append("\nAdresse: ").append(address.toString());
-        result.append("\nE-post adresse: ").append(email);
+        if (email != null) {
+            result.append("\nE-post adresse: ").append(email);
+        }
         result.append("\nTelefonnummer: ").append(phone);
         result.append("\nRegistrert dato: ").append(sdf.format(registeredDate));
         // Returns the string.

@@ -1,0 +1,21 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : May 4, 2015, 2:31:17 PM
+    Author     : André
+*/
+
+.text-field {
+    -fx-border-style: solid;
+    -fx-border-color: #ff0000;
+    -fx-border-width: 2px;
+}
+
+.text-area {
+    -fx-border-style: solid;
+    -fx-border-color: #ff0000;
+    -fx-border-width: 2px;
+}

@@ -203,7 +203,7 @@ public class ViewController {
         searchView.setClaimsButtonEventHandler(this::searchViewClaimsButtonEventHandler);
         searchView.setCustomersButtonEventHandler(null);
         searchView.setEmployeesButtonEventHandler(null);
-        searchView.setInsurancesButtonEventHandler(null);
+        searchView.setInsurancesButtonEventHandler(this::searchViewInsurancesButtonEventHandler);
         
         // STATISTCS SUB TAB EVENT HANDLERS:
         statisticsView.setClaimsButtonEventHandler(null);
@@ -354,5 +354,9 @@ public class ViewController {
     
     private void searchViewClaimsButtonEventHandler(ActionEvent event) {
         searchView.getMainPane().setCenter(claimSearchView.getMainPane());
+    }
+    
+    private void searchViewInsurancesButtonEventHandler(ActionEvent event) {
+        searchView.getMainPane().setCenter(insuranceSearchView.getMainPane());
     }
 }

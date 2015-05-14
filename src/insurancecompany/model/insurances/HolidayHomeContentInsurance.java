@@ -52,6 +52,20 @@ public class HolidayHomeContentInsurance extends PropertyInsurance
         this.type = type;
     }
     
+    // GET METHODS
+    
+    /** @return The coverage of this insurance. */
+    @Override
+    public HolidayHomeContentInsuranceCoverage getCoverage() {
+        return coverage;
+    }
+    
+    /** @return The type of insurance in form of a String. */
+    @Override
+    public String getName() {
+        return "Fritidsbolig innboforsikring";
+    }
+    
     // CALCULATE PREMIUM METHODS
     
     /**
@@ -121,20 +135,6 @@ public class HolidayHomeContentInsurance extends PropertyInsurance
     public void premium(){
 	int newPremium = basicPrice() + (int)contentPrice() - excessDrop();
 	setPremium(newPremium);
-    }
-    
-    // GET METHODS
-    
-    /** @return The coverage of this insurance. */
-    @Override
-    public Object getCoverage() {
-        return coverage;
-    }
-    
-    /** @return The type of insurance in form of a String. */
-    @Override
-    public String getName() {
-        return "Fritidsbolig innboforsikring";
     }
     
     // TO STRING METHOD

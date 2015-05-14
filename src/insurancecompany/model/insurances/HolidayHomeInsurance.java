@@ -56,7 +56,7 @@ public class HolidayHomeInsurance extends PropertyInsurance
     
     /** @return The coverage of this insurance. */
     @Override
-    public Object getCoverage() {
+    public HolidayHomeInsuranceCoverage getCoverage() {
         return coverage;
     }
     

@@ -65,11 +65,8 @@ public class EmployeeRegistration {
     // TODO: Set fixed size for Text message fields:(or one of them)
     public EmployeeRegistration() {
         mainPane = new GridPane();
-        mainPane.setAlignment(Pos.CENTER);
-        mainPane.setHgap(10);
-        mainPane.setVgap(6);
-        // Set background color:
-        mainPane.setStyle("-fx-background-color: #E7E7FF;");
+        // Sets CSS ID:
+        mainPane.setId("innerPane");
         // Set up column constraints. Width in pixels:
         ColumnConstraints col1 = new ColumnConstraints(150);
         ColumnConstraints col2 = new ColumnConstraints(150);

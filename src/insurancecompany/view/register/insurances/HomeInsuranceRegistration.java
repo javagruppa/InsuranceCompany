@@ -89,11 +89,8 @@ public class HomeInsuranceRegistration {
         
         // Sets up the mainPane:
         mainPane = new GridPane();
-        mainPane.setAlignment(Pos.CENTER);
-        mainPane.setHgap(10);
-        mainPane.setVgap(6);
-        // Sets background color:
-        mainPane.setStyle("-fx-background-color: #E7E7FF;");
+        // Sets CSS ID:
+        mainPane.setId("innerPane");
         // Sets up column constraints. Width in pixels:
         ColumnConstraints col1 = new ColumnConstraints(120);
         ColumnConstraints col2 = new ColumnConstraints(100);

@@ -8,6 +8,7 @@ and open the template in the editor.
     Author     : André
 */
 
+
 .button {
     -fx-background-color: #395cab;
     -fx-text-fill: white;
@@ -139,6 +140,10 @@ and open the template in the editor.
 
 #innerPane {
     -fx-background-color: #E7E7FF;
+    -fx-padding: 25.0 25.0 5.0 25.0;
+    -fx-alignment: TOP_CENTER;
+    -fx-hgap: 10;
+    -fx-vgap: 6;
 }
 
 #customPane1 {

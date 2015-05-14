@@ -82,38 +82,6 @@ public class CarInsurance extends Insurance implements Serializable {
     }
     
     // CALCULATE PREMIUM METHODS
-    
-    /**
-     * Calculates and returns the price drop of this insurance due the chosen
-     * excess.
-     * 
-     * @return The price drop of this insurance based on the excess.
-     */
-    public int excessDrop() {
-	// Finds the excess set for this insurance.
-        int excess = getExcess();
-        // The price drop based on the set excess of this insurance.
-        int excessSaving = 0;
-	if (excess == 0) {
-            // If excess is set to 0, the excess saving will be set to -2000, 
-            // and there will be 2000 added to the price.
-            excessSaving = -2000;
-        } else if (excess > 0 && excess <= 5000) {
-            // With excess set between 0 and 5000, the excess saving will be
-            // calulated to 20% of the excess.
-            excessSaving = excess / 5;
-        } else if (excess > 5000 && excess <= 10000) {
-            // With excess set between 5000 and 10000, the excess saving will 
-            // be calulated to 25% of the excess.
-            excessSaving = excess / 4;
-        } else if (excess > 10000) {
-            // With excess set above 10000, the excess saving will be
-            // calulated to 33% of the excess.
-            excessSaving = excess / 3;
-        }
-        // Returns the price drop.
-        return excessSaving;
-    }
 
     /**
      * Calculates and sets the total premium of this insurance, using different
@@ -163,6 +131,38 @@ public class CarInsurance extends Insurance implements Serializable {
         int setPremium = (int)newPremium - (int)bonusDecrease;
         // Changes the premium of this insurance.
         setPremium(setPremium);
+    }
+    
+    /**
+     * Calculates and returns the price drop of this insurance due the chosen
+     * excess.
+     * 
+     * @return The price drop of this insurance based on the excess.
+     */
+    private int excessDrop() {
+	// Finds the excess set for this insurance.
+        int excess = getExcess();
+        // The price drop based on the set excess of this insurance.
+        int excessSaving = 0;
+	if (excess == 0) {
+            // If excess is set to 0, the excess saving will be set to -2000, 
+            // and there will be 2000 added to the price.
+            excessSaving = -2000;
+        } else if (excess > 0 && excess <= 5000) {
+            // With excess set between 0 and 5000, the excess saving will be
+            // calulated to 20% of the excess.
+            excessSaving = excess / 5;
+        } else if (excess > 5000 && excess <= 10000) {
+            // With excess set between 5000 and 10000, the excess saving will 
+            // be calulated to 25% of the excess.
+            excessSaving = excess / 4;
+        } else if (excess > 10000) {
+            // With excess set above 10000, the excess saving will be
+            // calulated to 33% of the excess.
+            excessSaving = excess / 3;
+        }
+        // Returns the price drop.
+        return excessSaving;
     }
     
     // BONUS METHODS

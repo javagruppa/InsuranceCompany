@@ -44,7 +44,7 @@ public class HolidayHomeContentInsurance extends PropertyInsurance
      */
     public HolidayHomeContentInsurance(int amount, 
             HolidayHomeContentInsuranceCoverage coverage, int customerId, 
-            int excess, HolidayHomeType type, Property property){
+            int excess, Property property, HolidayHomeType type){
         super(customerId, excess);
         this.amount = amount;
         this.coverage = coverage;

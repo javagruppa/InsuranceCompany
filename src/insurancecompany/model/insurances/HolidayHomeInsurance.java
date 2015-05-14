@@ -52,46 +52,50 @@ public class HolidayHomeInsurance extends PropertyInsurance
         this.type = type;
     }
     
-    /**
-     * Returns the type of this insurance in form of a String.
-     * @return 
-     */
+    // GET METHODS
+    
+    /** @return The coverage of this insurance. */
+    @Override
+    public Object getCoverage() {
+        return coverage;
+    }
+    
+    /** @return The type of insurance in form of a String. */
     @Override
     public String getName() {
         return "Fritidsboligforsikring";
     }
     
+    // CALCULATE PREMIUM METHODS
+    
     /**
      * Calculates the drop in price for this insurance based on the
      * applied excess
-     * @return the drop value as an integer
+     * 
+     * @return The drop value as an integer.
      */
-    private int excessDrop(){
+    private int excessDrop() {
 	int excess = getExcess();
 	int drop = 0;
-
 	if (excess == 0){
             drop = -1000;
-	}
-	else if (excess > 0){
+	} else if (excess > 0) {
             drop = excess / 6;
 	}
-
 	return drop;
     }
     
     /**
      * Creates a multiplier for the extra cost of this insurance if the insured
      * house is to be rented out.
-     * @return the multiplicator for extra pricing as a double
+     * 
+     * @return The multiplicator for extra pricing as a double.
      */
     private double rentalExtra(){
 	double rentalExtra = 1;
-
 	if (rental){
             rentalExtra = 1.15;
 	}
-
 	return rentalExtra;
     }
     
@@ -100,35 +104,27 @@ public class HolidayHomeInsurance extends PropertyInsurance
      * built.
      * @return the multiplicator as a double 
      */
-    private double buildingYearMultiplicator(){
+    private double buildingYearMultiplicator() {
         double multiplicator = 1;
         int year = property.getYear();
         int currentYear = Calendar.getInstance().get(Calendar.YEAR);
-        if (currentYear - year <= 10){
+        if (currentYear - year <= 10) {
             multiplicator = 0.85;
-        }
-        else if (currentYear - year > 10 && currentYear - year <= 20){
+        } else if (currentYear - year > 10 && currentYear - year <= 20) {
             multiplicator = 0.95;
-        }
-        else if (currentYear - year > 20 && currentYear - year <= 30){
+        } else if (currentYear - year > 20 && currentYear - year <= 30) {
             multiplicator = 1.05;
-        }
-        else if (currentYear - year > 30 && currentYear - year <= 45){
+        } else if (currentYear - year > 30 && currentYear - year <= 45) {
             multiplicator = 1.1;
-        }
-        else if (currentYear - year > 45 && currentYear - year <= 55){
+        } else if (currentYear - year > 45 && currentYear - year <= 55) {
             multiplicator = 1.19;
-        }
-        else if (currentYear - year > 55 && currentYear - year <= 80){
+        } else if (currentYear - year > 55 && currentYear - year <= 80) {
             multiplicator = 1.25;
-        }
-        else if (currentYear - year > 80 && currentYear - year <= 100){
+        } else if (currentYear - year > 80 && currentYear - year <= 100) {
             multiplicator = 1.5;
-        }
-        else if (currentYear - year > 100){
+        } else if (currentYear - year > 100) {
             multiplicator = 1.9;
         }
-        
         return multiplicator;
     }
     
@@ -138,7 +134,6 @@ public class HolidayHomeInsurance extends PropertyInsurance
      * The type of the insured home
      * The building material of the home
      * The year the home was built
-     * 
      */
     public void insuranceprice(){
         // Multiplicator for the homes building material
@@ -155,48 +150,13 @@ public class HolidayHomeInsurance extends PropertyInsurance
 	double materialPrice = totalPrice * MaterialMultiplicator;
         // Final price. Material price multiplied by year multiplicator
         double finalprice = materialPrice * yearMultiplicator;
-
         // Converts the final price to an int value
         int setPremium = (int)finalprice;
         // Sets this insurances premium to the final price
 	setPremium(setPremium);
     }
     
-    /**
-     * Sets the rental status of this insurance to the received parameter.
-     * Also changes the premium of this insurance based on the new information.
-     * @param rental whether or not this insurance covers rentals
-     */
-    public void setRental(boolean rental) {
-        this.rental = rental;
-        insuranceprice();
-    }
-    
-    /**
-     * Returns the coverage of this insurance.
-     * @return 
-     */
-    @Override
-    public Object getCoverage() {
-        return coverage;
-    }
-    
-    /**
-     * 
-     * @return whether or not this insurance covers rentals 
-     */
-    public boolean getRental() {
-        return rental;
-    }
-    
-    /**
-     * Returns the holiday home this insurance is for.
-     * 
-     * @return the holiday home this insurance is for
-     */
-    public Property getProperty() {
-        return property;
-    }
+    // TO STRING METHOD
     
     /**
      * Returns a string representation of this insurance. The string

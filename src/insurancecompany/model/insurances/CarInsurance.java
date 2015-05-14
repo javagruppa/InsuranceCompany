@@ -81,35 +81,6 @@ public class CarInsurance extends Insurance implements Serializable {
         return "Bilforsikring";
     }
     
-    // TO STRING METHOD
-    
-    /**
-     * Returns a string representation of this insurance. The string
-     * representation consists of each field with a short description separated
-     * by a new line.
-     * 
-     * @return a string representation of this insurance
-     */
-    @Override
-    public String toString() {
-        // Creates a StringBuilder which will be returned at the end of the 
-        // method.
-        StringBuilder result = new StringBuilder();
-        // Appends the fields with appropriate sentences.
-        result.append("BILFORSIKRING");
-        result.append("\n").append(super.toString());
-        result.append("\nType: ").append(coverage.toString());
-        result.append("\nGarasje: ").append(garage ? "Ja" : "Nei");
-        result.append("\nKan personer under 25 kjøre bilen: ").
-                append(youngDriver ? "Ja" : "Nei");
-        result.append("\nMaksimum kjørelengde: ").append(maxLength);
-        result.append("\nBonus: ").append(bonus).append("%");
-        result.append("\nBonus sist endret: ").append(DateUtility.
-                NORWEGIAN_DATE_FORMAT.format(lastBonusUpdate));
-        // Returns the string.
-        return result.toString();
-    }
-    
     // CALCULATE PREMIUM METHODS
     
     /**
@@ -264,5 +235,34 @@ public class CarInsurance extends Insurance implements Serializable {
         for (int i = 0; i < years; i++) {
             yearlyBonusIncrease();
         }
+    }
+    
+    // TO STRING METHOD
+    
+    /**
+     * Returns a string representation of this insurance. The string
+     * representation consists of each field with a short description separated
+     * by a new line.
+     * 
+     * @return a string representation of this insurance
+     */
+    @Override
+    public String toString() {
+        // Creates a StringBuilder which will be returned at the end of the 
+        // method.
+        StringBuilder result = new StringBuilder();
+        // Appends the fields with appropriate sentences.
+        result.append("BILFORSIKRING");
+        result.append("\n").append(super.toString());
+        result.append("\nType: ").append(coverage.toString());
+        result.append("\nGarasje: ").append(garage ? "Ja" : "Nei");
+        result.append("\nKan personer under 25 kjøre bilen: ").
+                append(youngDriver ? "Ja" : "Nei");
+        result.append("\nMaksimum kjørelengde: ").append(maxLength);
+        result.append("\nBonus: ").append(bonus).append("%");
+        result.append("\nBonus sist endret: ").append(DateUtility.
+                NORWEGIAN_DATE_FORMAT.format(lastBonusUpdate));
+        // Returns the string.
+        return result.toString();
     }
 }

@@ -413,13 +413,6 @@ public class MainController {
         }
     }
     
-    private void carInsuranceSelectCustomerButtonEventHandler(ActionEvent event) {
-        
-        String idS = carInsuranceRegistration.getCustomerId();
-        int id = Integer.parseInt(idS);
-        carInsuranceRegistration.setSelectedCustomerId(id);
-    }
-    
     private void carInsuranceRegisterButtonEventHandler(ActionEvent event) {
         // get all fields to String, then 
         CarInsuranceCoverage coverage = carInsuranceRegistration.getCoverage();

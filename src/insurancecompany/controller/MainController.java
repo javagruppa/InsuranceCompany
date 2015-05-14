@@ -226,6 +226,7 @@ public class MainController {
         carClaimRegistration.setSearchPersonalNumberButtonEventHandler(this::carClaimSearchPersonalNumberButtonEventHandler);
         carClaimRegistration.setSelectInsuranceButtonEventHandler(this::carClaimSelectInsuranceButtonEventHandler);
         carClaimRegistration.setSelectImageButtonEventHandler(this::carClaimSelectImageButtonEventHandler);
+        carClaimRegistration.setOpenClaimFormButtonEventHandler(this::carClaimRegisterButtonEventHandler);
     }
  
     private void adminViewSaveDataButtonEventHandler(ActionEvent event) {
@@ -578,6 +579,12 @@ public class MainController {
                 logs.add(ioe.getStackTrace(), ioe.getMessage(), user);
             }
         }
+    }
+    
+    private void carClaimRegisterButtonEventHandler(ActionEvent event) {
+        Stage stage = new Stage();
+        CarClaimFormView cView = new CarClaimFormView();
+        cView.show(stage);
     }
     
     

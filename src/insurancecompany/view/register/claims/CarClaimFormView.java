@@ -15,6 +15,8 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
@@ -24,10 +26,12 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
@@ -37,30 +41,37 @@ import javafx.util.Callback;
  */
 public class CarClaimFormView {
     
+    /** Scroll pane used to show the whole car claim form. */
     private ScrollPane scrollPane;
+    /** Stack pane used to stack input nodes on top of the car claim form image. */
     private StackPane stackPane;
+    /** Grid pane used to lay out the user action nodes. */
     private GridPane gridPane;
+    /** Scene used to display this view. */
     private Scene scene;
+    /** Car claim form background image. */
     private Image image;
+    /** Canvas used to draw an image of the accident. */
+    private Canvas canvas;
     
-    /** The date of the accident */
+    /** The date of the accident. */
     private DatePicker date;
-    /** The location of the accident */
+    /** The location of the accident. */
     private TextField location;
     /** if there is any witnesses to the accident */
     private TextArea witnesses;
     
-    /**the last name of the person*/
+    /**the last name of the person.*/
     private TextField lastNameA;
-    /**the first name of the person*/
+    /**the first name of the person.*/
     private TextField firstNameA;
-    /**the personal number of the person*/
+    /**the personal number of the person.*/
     private TextField personalNumberA;
     private TextField streetA; // Includes street name, number and letter.
     private TextField zipCodeA;
-    /**the phone number of the person*/
+    /**the phone number of the person.*/
     private TextField phoneA;
-    /**the e-mail address for the person*/
+    /**the e-mail address for the person.*/
     private TextField emailA;
     private TextField registrationNumberA;
     private TextField brandA;
@@ -74,17 +85,15 @@ public class CarClaimFormView {
     private TextField personalNumberB;
     private TextField streetB; // Includes street name, number and letter.
     private TextField zipCodeB;
-    /**the phone number of the person*/
+    /**The phone number of the person. */
     private TextField phoneB;
-    /**the e-mail address for the person*/
+    /**The e-mail address for the person.*/
     private TextField emailB;
     private TextField registrationNumberB;
     private TextField brandB;
     /** The name of the insurance company of the other part involved */
     private TextField insuranceCompanyB;
     
-    /** The course of events */
-    private TextArea courseOfEvents;
     // TODO: Remember to onAction close window when button is clicked. 
     // If not all fields are filled in correctly, show a dialog window:
     private Button registerButton;
@@ -102,7 +111,9 @@ public class CarClaimFormView {
     /** The Id for the insurance covering this damage */
     private int insuranceId;
 
-    
+    /**
+     * Sole constructor.
+     */
     public CarClaimFormView() {
         stackPane = new StackPane();
         image = new Image("insurancecompany/resources/images/carclaimform.jpg");
@@ -185,14 +196,26 @@ public class CarClaimFormView {
         brandB = new TextField();
         insuranceCompanyB = new TextField();
         
-        Label courseOfEventsLabel = new Label("      Beskriv skaden:      ");
-        courseOfEventsLabel.setId("custom");
-        courseOfEvents = new TextArea();
-        courseOfEvents.setWrapText(true);
-        
         registerButton = new Button("Registrer");
         registerButton.setId("custom");
         
+        canvas = new Canvas(700, 400);
+        final GraphicsContext graphicsContext = canvas.getGraphicsContext2D();
+        initDraw(graphicsContext);
+         
+        canvas.addEventHandler(MouseEvent.MOUSE_PRESSED, (MouseEvent event) -> {
+            graphicsContext.beginPath();
+            graphicsContext.moveTo(event.getX(), event.getY());
+            graphicsContext.stroke();
+        });
+        canvas.addEventHandler(MouseEvent.MOUSE_DRAGGED, (MouseEvent event) -> {
+            graphicsContext.lineTo(event.getX(), event.getY());
+            graphicsContext.stroke();
+        });
+        canvas.addEventHandler(MouseEvent.MOUSE_RELEASED, (MouseEvent event) -> {
+        });
+ 
+
         // ADD TO THE GRIDPANE:
         
         gridPane.add(date, 1, 1);
@@ -221,8 +244,8 @@ public class CarClaimFormView {
         gridPane.add(brandB, 7, 12, 2, 1);
         gridPane.add(insuranceCompanyB, 9, 14, 2, 1);
         
-        gridPane.add(courseOfEventsLabel, 6, 17, 5, 1);
-        gridPane.add(courseOfEvents, 3, 18, 6, 1);
+        //gridPane.add(courseOfEvents, 3, 18, 6, 1);
+        gridPane.add(canvas, 3, 18, 6, 1);
         
         gridPane.add(registerButton, 6, 19, 5, 1);
 
@@ -235,8 +258,29 @@ public class CarClaimFormView {
         stage.setScene(scene);
         stage.show();
     }
-    
-        /**
+
+     
+    private void initDraw(GraphicsContext gc){
+        double canvasWidth = gc.getCanvas().getWidth();
+        double canvasHeight = gc.getCanvas().getHeight();
+         
+        gc.setFill(Color.LIGHTGRAY);
+        gc.setStroke(Color.BLACK);
+        gc.setLineWidth(5);
+ 
+        gc.fill();
+        gc.strokeRect(
+                0,              //x of the upper left corner
+                0,              //y of the upper left corner
+                canvasWidth,    //width of the rectangle
+                canvasHeight);  //height of the rectangle
+         
+        gc.setFill(Color.RED);
+        gc.setStroke(Color.BLACK);
+        gc.setLineWidth(2);
+         
+    }
+     /**
      * Sets up date restrictions to the DatePicker in the parameter.
      * @param date 
      */
@@ -262,7 +306,11 @@ public class CarClaimFormView {
         date.setDayCellFactory(dayCellFactory);
         date.setPromptText("dd/MM/yyyy");
     } // end of method restrictDatePicker
-
+    
+    public Image getDrawnImage() {
+        return canvas.snapshot(null, null);
+    }
+    
     /**
      * Returns the selected date as a Calendar object.
      * @return the date
@@ -424,12 +472,6 @@ public class CarClaimFormView {
         return insuranceCompanyB;
     }
 
-    /**
-     * @return the courseOfEvents
-     */
-    public TextArea getCourseOfEvents() {
-        return courseOfEvents;
-    }
 
     /**
      * Sets the event handler for the register button of this view.

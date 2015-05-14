@@ -6,6 +6,7 @@ import insurancecompany.model.people.VehicleOwner;
 import insurancecompany.model.vehicles.Car;
 import java.io.Serializable;
 import java.util.Calendar;
+import javafx.scene.image.Image;
 
 /**
  * Class CarClaimForm. A form to be included with all car claim, giving
@@ -29,8 +30,8 @@ public class CarClaimForm implements Serializable {
     private String insuranceCompanyOther;
     /** The location of the accident */
     private String location;
-    /** The course of events */
-    private String courseOfEvents;
+    /** A user drawn image of the accident. */
+    private Image drawnImage;
     /** The date of the accident */
     private Calendar date;
     /** The Id for the insurance covering this damage */
@@ -49,22 +50,22 @@ public class CarClaimForm implements Serializable {
      * @param otherCar the other car involved in the accident
      * @param insuranceComp the insurance company of the other part involved
      * @param location where the accident happened
-     * @param events the courseOfEvents
      * @param insuranceId the Id of the insurance covering this damage
      * @param witnesses the witnesses for the accident, if any
+     * @param drawnImage
      */
     public CarClaimForm(Car car, Customer owner, VehicleOwner otherPerson,
-            Car otherCar, String insuranceComp, String location, String events,
-            int insuranceId, String witnesses){
+            Car otherCar, String insuranceComp, String location,
+            int insuranceId, String witnesses, Image drawnImage){
         this.car = car;
         this.owner = owner;
         this.otherPerson = otherPerson;
         this.otherCar = otherCar;
         this.insuranceCompanyOther = insuranceComp;
         this.location = location;
-        this.courseOfEvents = events;
         this.insuranceId = insuranceId;
         this.witnesses = witnesses;
+        this.drawnImage = drawnImage;
         date = Calendar.getInstance();
     }
     
@@ -76,16 +77,16 @@ public class CarClaimForm implements Serializable {
      * @param car the car this CarClaimForm covers
      * @param owner the owner of the card this CarClaimForm covers
      * @param location where the accident happened
-     * @param events the courseOfEvents
      * @param insuranceId the Id of the insurance covering this damage
+     * @param drawnImage
      */
-    public CarClaimForm(Car car, Customer owner, String location,
-            String events, int insuranceId){
+    public CarClaimForm(Car car, Customer owner, String location, 
+            int insuranceId, Image drawnImage){
         this.car = car;
         this.owner = owner;
         this.location = location;
-        this.courseOfEvents = events;
         this.insuranceId = insuranceId;
+        this.drawnImage = drawnImage;
         date = Calendar.getInstance();
     }
     
@@ -138,13 +139,6 @@ public class CarClaimForm implements Serializable {
         return location;
     }
     
-    /**
-     * Return a string with the course of events for the accident
-     * @return  a string representation of the course of events.
-     */
-    public String getCourseOfEvents(){
-        return  courseOfEvents;
-    }
     
     /**
      * Returns a string representation of the CarClaimForm. The string
@@ -152,6 +146,7 @@ public class CarClaimForm implements Serializable {
      * 
      * @return a string representation of this CarClaimForm
      */
+    @Override
     public String toString() {
         // Creates a StringBuilder which will be returned at the end of the 
         // method.
@@ -185,10 +180,17 @@ public class CarClaimForm implements Serializable {
         // These fields are added regardless of if another person i involved
         result.append("\n\nHvor hendelsen skjedde:\n").append
                 (location).append("\n");
-        result.append("\nHendelsesforløp:\n").append(courseOfEvents);
         // Returns the string.
         return result.toString();
         
     }    
+
+    /**
+     * Returns the user drawn image of the accident.
+     * @return the drawnImage
+     */
+    public Image getDrawnImage() {
+        return drawnImage;
+    }
     
 }

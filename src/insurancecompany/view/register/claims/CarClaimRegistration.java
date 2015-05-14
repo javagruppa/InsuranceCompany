@@ -418,6 +418,14 @@ public class CarClaimRegistration {
     }
     
     /**
+     * Sets event handler for the open claim form button of this view.
+     * @param value 
+     */
+    public void setOpenClaimFormButtonEventHandler(EventHandler<ActionEvent> value) {
+        openClaimFormButton.setOnAction(value);
+    }
+    
+    /**
      * Sets event handler for the register button of this view.
      * @param value 
      */

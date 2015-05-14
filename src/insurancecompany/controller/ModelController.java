@@ -189,7 +189,7 @@ public class ModelController {
         unmarshalCarInfoRegister();
     }
     
-    public void initializeEventHandlers() {
+    public final void initializeEventHandlers() {
         boatInsuranceRegistration.setRegisterButtonEventHandler(this::boatInsuranceRegisterButtonEventHandler);
         boatInsuranceRegistration.setSearchCustomerIdButtonEventHandler(this::boatInsuranceSearchCustomerIdButtonEventHandler);
         boatInsuranceRegistration.setSearchPersonalNumberButtonEventHandler(this::boatInsuranceSearchPersonalNumberButtonEventHandler);
@@ -652,7 +652,7 @@ public class ModelController {
         insurances.addInsurance(insurance); //returns boolean
         // TODO: Give a message to the user whether the insurance was added or not. It would not
         //       be added if the register already contained such an insurance.
-    }
+    } // end of method homeInsuranceRegisterButtonEventHandler
     
     private void homeInsuranceSearchCustomerIdButtonEventHandler(ActionEvent event) {
         String customerIdString = homeInsuranceRegistration.getCustomerId();
@@ -687,7 +687,7 @@ public class ModelController {
                 homeInsuranceRegistration.populateInsurancesTable(insuranceList);
             }
         }
-    }
+    } // end of method homeInsuranceSearchCustomerIdButtonEventHandler
     
     private void homeInsuranceSearchPersonalNumberButtonEventHandler(ActionEvent event) {
         String personalNumber = homeInsuranceRegistration.getPersonalNumber();
@@ -714,7 +714,7 @@ public class ModelController {
                 homeInsuranceRegistration.populateInsurancesTable(insuranceList);
             }
         }
-    }
+    } // end of method homeInsuranceSearchPersonalNumberButtonEventHandler
     
     // HOME CONTENT INSURANCE EVENT HANDLERS
     
@@ -848,7 +848,7 @@ public class ModelController {
         insurances.addInsurance(insurance); //returns boolean
         // TODO: Give a message to the user whether the insurance was added or not. It would not
         //       be added if the register already contained such an insurance.
-    }
+    } // end of method homeContentInsuranceRegisterButtonEventHandler
     
     private void homeContentInsuranceSearchCustomerIdButtonEventHandler(ActionEvent event) {
         String customerIdString = homeContentInsuranceRegistration.getCustomerId();
@@ -883,7 +883,7 @@ public class ModelController {
                 homeContentInsuranceRegistration.populateInsurancesTable(insuranceList);
             }
         }
-    }
+    } // end of method homeContentInsuranceSearchCustomerIdButtonEventHandler
     
     private void homeContentInsuranceSearchPersonalNumberButtonEventHandler(ActionEvent event) {
         String personalNumber = homeContentInsuranceRegistration.getPersonalNumber();
@@ -910,7 +910,7 @@ public class ModelController {
                 homeContentInsuranceRegistration.populateInsurancesTable(insuranceList);
             }
         }
-    }
+    } // end of method homeContentInsuranceSearchPersonalNumberButtonEventHandler
     
     // TRAVEL INSURANCE EVENT HANDLERS
     
@@ -965,7 +965,7 @@ public class ModelController {
         insurances.addInsurance(insurance); //returns boolean
         // TODO: Give a message to the user whether the insurance was added or not. It would not
         //       be added if the register already contained such an insurance.
-    }
+    } // end of method travelInsuranceRegisterButtonEventHandler
     
     private void travelInsuranceSearchCustomerIdButtonEventHandler(ActionEvent event) {
         String customerIdString = travelInsuranceRegistration.getCustomerId();
@@ -1000,7 +1000,7 @@ public class ModelController {
                 travelInsuranceRegistration.populateInsurancesTable(insuranceList);
             }
         }
-    }
+    } // end of method travelInsuranceSearchCustomerIdButtonEventHandler
     
     private void travelInsuranceSearchPersonalNumberButtonEventHandler(ActionEvent event) {
         String personalNumber = travelInsuranceRegistration.getPersonalNumber();
@@ -1027,5 +1027,5 @@ public class ModelController {
                 travelInsuranceRegistration.populateInsurancesTable(insuranceList);
             }
         }
-    }
-}
+    } // end of method travelInsuranceSearchPersonalNumberButtonEventHandler
+} // end of class ModelController

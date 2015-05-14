@@ -5,7 +5,6 @@
  */
 package insurancecompany.controller;
 
-import insurancecompany.model.claims.CarClaimForm;
 import insurancecompany.view.*;
 import insurancecompany.view.modules.*;
 import insurancecompany.view.process.*;
@@ -152,6 +151,14 @@ public class ViewController {
         this.insuranceStatisticsView = (InsuranceStatisticsView) views.get(26);
         
         initializeEventHandlers();
+    } // end of sole constructor
+    
+    public void show(Stage stage) {
+        this.primaryStage = stage;
+        //login.show(stage);
+        //CarClaimFormView car = new CarClaimFormView();
+        //car.show(stage);
+        adminView.show(primaryStage);
     }
     
     public void initializeEventHandlers() {
@@ -204,16 +211,8 @@ public class ViewController {
         statisticsView.setEmployeesButtonEventHandler(null);
         statisticsView.setInsurancesButtonEventHandler(null);
         
-    }
-    
-    public void show(Stage stage) {
-        this.primaryStage = stage;
-        //login.show(stage);
-        CarClaimFormView car = new CarClaimFormView();
-        car.show(stage);
-        //adminView.show(primaryStage);
-    }
-    
+    } // end of method initializeEventHandlers
+   
     // ADMIN VIEW EVENT HANDLERS
     
     private void adminViewRegisterTabButtonEventHandler(ActionEvent event) {
@@ -243,7 +242,7 @@ public class ViewController {
                 }
             }
         }  
-    }
+    } // end of method adminViewToolbarMouseClickedEventHandler
     
     private void adminViewToolbarMousePressedEventHandler(MouseEvent event) {
         // Used to move the window around:
@@ -278,7 +277,7 @@ public class ViewController {
     // REGISTER CLAIMS VIEW EVENT HANDLERS
     
     private void claimsViewBoatClaimButtonEventHandler(ActionEvent event) {
-        //claimsView.getMainPane().setCenter(boatClaimRegistration.getMainPane());
+        claimsView.getMainPane().setCenter(boatClaimRegistration.getMainPane());
     }
     
     private void claimsViewCarClaimButtonEventHandler(ActionEvent event) {
@@ -302,7 +301,7 @@ public class ViewController {
     }
     
     private void claimsViewTravelClaimButtonEventHandler(ActionEvent event) {
-        //claimsView.getMainPane().setCenter(travelClaimRegistration.getMainPane());
+        claimsView.getMainPane().setCenter(travelClaimRegistration.getMainPane());
     }
     
     // REGISTER INSURANCES VIEW EVENT HANDLERS

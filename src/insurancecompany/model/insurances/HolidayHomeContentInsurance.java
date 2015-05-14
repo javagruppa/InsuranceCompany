@@ -3,54 +3,53 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package insurancecompany.model.insurances;
 
-import insurancecompany.model.properties.Property;
+import insurancecompany.misc.coverages.HolidayHomeContentInsuranceCoverage;
 import insurancecompany.misc.hometypes.HolidayHomeType;
-import insurancecompany.misc.coverages.HolidayHomeInsuranceCoverage;
+import insurancecompany.model.properties.Property;
 import java.io.Serializable;
-
 
 /**
  *
  * @author Carl
+ * @author Sindre
  */
 public class HolidayHomeContentInsurance extends PropertyInsurance
         implements Serializable {
-    /** SerialVersionUID used to identify this class for object IO */
-    private static final long serialVersionUID = 1L;
     
-    /** the home this insurance is for */
-    private Property holidayhome;
-    /** the hometype this insurance is for */
-    private HolidayHomeType holidayhometype;
-    /** the coverage of this insurance */
-    private HolidayHomeInsuranceCoverage coverage;
-    /**  the value of this insurance */
+    /** SerialVersionUID used to identify this class for object IO. */
+    private static final long serialVersionUID = 1L;
+    /** The insurance amount of this insurance. */
     private int amount;
+    /** The coverage of this insurance. */
+    private HolidayHomeContentInsuranceCoverage coverage;
+    /** The property this insurance is for. */
+    private Property property;
+    /** The type of home this insurance is for. */
+    private HolidayHomeType type;
     
     /**
-     * Constructs a new holiday home contents insurance with the specified
-     * customerId, excess, holidayhome, holidayhometype and coverage.
-     * Active is set to true.
-     * Date is set to the current date.
-     * InsuranceId is automatically set to nextInsuranceId.
-     * @param customerId the ID of the customer who owns this insurance
-     * @param excess the excess of this insurance
-     * @param holidayhome the holidayhome this insurance is for
-     * @param holidayhometype the holidayhometype this insurance is for 
-     * @param coverage the coverage of this insurance
-     * @param amount the value of this insurance
+     * Constructs a new holiday home content insurance with the specified
+     * amount, coverage, customerId, excess, property and type. Active is set 
+     * to true. Date is set to the current date. InsuranceId is automatically 
+     * set to nextInsuranceId.
+     * 
+     * @param amount The insurance amount of this insurance.
+     * @param coverage The coverage of this insurance.
+     * @param customerId The id of the customer who owns this insurance.
+     * @param excess The excess of this insurance.
+     * @param property The property this insurance is for.
+     * @param type The type of home this insurance is for.
      */
-    public HolidayHomeContentInsurance(int customerId, int excess,
-            Property holidayhome, HolidayHomeType holidayhometype,
-            HolidayHomeInsuranceCoverage coverage, int amount){
+    public HolidayHomeContentInsurance(int amount, 
+            HolidayHomeContentInsuranceCoverage coverage, int customerId, 
+            int excess, Property property, HolidayHomeType type){
         super(customerId, excess);
-        this.holidayhome = holidayhome;
-        this.holidayhometype = holidayhometype;
-        this.coverage = coverage;
         this.amount = amount;
+        this.coverage = coverage;
+        this.property = property;
+        this.type = type;
     }
     
     /**
@@ -174,6 +173,6 @@ public class HolidayHomeContentInsurance extends PropertyInsurance
     }
     
     public Property getholidayHome(){
-        return holidayhome;
+        return property;
     }
 }

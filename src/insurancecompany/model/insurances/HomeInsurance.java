@@ -16,36 +16,37 @@ import java.util.Calendar;
  * @author Sindre
  */
 public class HomeInsurance extends PropertyInsurance implements Serializable {
-    /** SerialVersionUID used to identify this class for object IO */
-    private static final long serialVersionUID = 1L;
     
-    /** The home this insurance is for. */
-    private Property home;
-    /** The type of home this insurance is for */
-    private HomeType hometype;
-    /** The coverage of this insurance */
+    /** SerialVersionUID used to identify this class for object IO. */
+    private static final long serialVersionUID = 1L;
+    /** The coverage of this insurance. */
     private HomeInsuranceCoverage coverage;
-    /** Whether or not the insurance covers rental property */
+    /** The property this insurance is for. */
+    private Property property;
+    /** Whether or not this insurance covers rentals. */
     private boolean rental;
+    /** The type of home this insurance is for. */
+    private HomeType type;
     
     /**
-     * Constructs a new home insurance with the specified customerId, excess
-     * and home. Active is set to true. Date is set to the current date.
-     * InsuranceId is automatically set to nextInsuranceId.
+     * Constructs a new home insurance with the specified coverage, customerId, 
+     * excess, property, rental and type. Active is set to true. Date is set to 
+     * the current date. InsuranceId is automatically set to nextInsuranceId.
      * 
-     * @param customerId the id of the customer who owns this insurance
-     * @param excess the excess of this insurance
-     * @param home the holiday home this insurance is for
-     * @param hometype the type of home this insurance is for
-     * @param coverage the coverage of this insurance
+     * @param coverage The coverage of this insurance.
+     * @param customerId The id of the customer who owns this insurance.
+     * @param excess The excess of this insurance.
+     * @param property The property this insurance is for.
+     * @param rental Whether or not this insurance covers rentals.
+     * @param type The type of home this insurance is for.
      */
-    public HomeInsurance(int customerId, int excess, Property home, 
-            HomeType hometype, HomeInsuranceCoverage coverage, boolean rental) {
+    public HomeInsurance(HomeInsuranceCoverage coverage, int customerId, 
+            int excess, Property property, boolean rental, HomeType type) {
         super(customerId, excess);
-        this.home = home;
-        this.hometype = hometype;
         this.coverage = coverage;
+        this.property = property;
         this.rental = rental;
+        this.type = type;
     }
     
     /**
@@ -122,13 +123,13 @@ public class HomeInsurance extends PropertyInsurance implements Serializable {
     }
     
     /**
-     * Sets and returns the price multiplicator for what year the home was
-     * built.
+     * Sets and returns the price multiplicator for what year the property was
+ built.
      * @return the multiplicator as a double 
      */
     private double buildingYearMultiplicator(){
         double multiplicator = 1;
-        int year = home.getYear();
+        int year = property.getYear();
         int currentYear = Calendar.getInstance().get(Calendar.YEAR);
         if (currentYear - year <= 10){
             multiplicator = 0.85;
@@ -160,22 +161,22 @@ public class HomeInsurance extends PropertyInsurance implements Serializable {
     
     /**
      * Calculates and sets the premium for this insurance based on:
-     * If the house is to be rented out
-     * The type of the insured home
-     * The building material of the home
-     * The year the home was built
+ If the house is to be rented out
+ The type of the insured property
+ The building material of the property
+ The year the property was built
      * 
      */
     public void insuranceprice(){
         // Multiplicator for the homes building material
-	double MaterialMultiplicator = home.getMaterialMultiplicator();
+	double MaterialMultiplicator = property.getMaterialMultiplicator();
         // Multiplicator for the homes building year
         double yearMultiplicator = buildingYearMultiplicator();
-        // Price for what type of home is insured
-	int typePrice = hometype.getPricing();
+        // Price for what type of property is insured
+	int typePrice = type.getPricing();
         // Base price. Price after excess drop (incl price for plus or basic)
 	int baseprice = typePrice + coverage.getPricing() - excessDrop();
-        // Total price. Base price including extra if the home is a rental
+        // Total price. Base price including extra if the property is a rental
 	double totalPrice = baseprice * rentalExtra();
         // Material price. Total price multiplied by material multiplicator
 	double materialPrice = totalPrice * MaterialMultiplicator;
@@ -201,12 +202,12 @@ public class HomeInsurance extends PropertyInsurance implements Serializable {
     
     
     /**
-     * Returns the home this insurance is for.
+     * Returns the property this insurance is for.
      * 
-     * @return the home this insurance is for
+     * @return the property this insurance is for
      */
-    public Property getHome() {
-        return home;
+    public Property getProperty() {
+        return property;
     }
     
      /**

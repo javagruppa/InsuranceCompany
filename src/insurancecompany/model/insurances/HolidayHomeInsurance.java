@@ -17,36 +17,36 @@ import java.util.Calendar;
 public class HolidayHomeInsurance extends PropertyInsurance implements Serializable {
     /** SerialVersionUID used to identify this class for object IO */
     private static final long serialVersionUID = 1L;
+    /** The coverage of this insurance. */
+    private HolidayHomeInsuranceCoverage coverage;
     /** The holiday home this insurance is for. */
     private Property holidayHome;
-    /** The type of house this insurance is for. */
-    private HolidayHomeType holidayhometype;
-    /** the coverage of this insurance */
-    private HolidayHomeInsuranceCoverage coverage;
-    /** whether or not this insurance covers rentals */
+    /** Whether or not this insurance covers rentals. */
     private boolean rental;
+    /** The type of house this insurance is for. */
+    private HolidayHomeType type;
     
     /**
-     *  * Constructs a new holiday home insurance with the specified contentAmount, 
-     * customerId, excess, holidayhometype, holidayhomecoverage and holidayHome. 
-     * Active is set to true. Date is set to the current date. InsuranceId is 
-     * automatically set to nextInsuranceId.
+     * Constructs a new holiday home insurance with the specified coverage, 
+     * customerId, excess, holidayHome, rental and type. Active is set to true. 
+     * Date is set to the current date. InsuranceId is automatically set to 
+     * nextInsuranceId.
      * 
-     * @param type the type of holidayhouse this insurance is for
-     * @param customerId the customer that has this insurance
-     * @param excess the excess of this insurance
-     * @param holidayHome  the holidayhome that is insured
-     * @param coverage the coverage of this insurance
-     * @param rental whether or not this insurance covers rentals
+     * @param coverage The coverage of this insurance.
+     * @param customerId The id of the customer who owns this insurance.
+     * @param excess The excess of this insurance.
+     * @param holidayHome The holiday home this insurance is for.
+     * @param rental Whether or not this insurance covers rentals.
+     * @param type The type of house this insurance is for.
      */
-    public HolidayHomeInsurance(HolidayHomeType type, int customerId,
-            int excess, Property holidayHome,
-            HolidayHomeInsuranceCoverage coverage) {
+    public HolidayHomeInsurance(HolidayHomeInsuranceCoverage coverage, 
+            int customerId, int excess, Property holidayHome, 
+            boolean rental, HolidayHomeType type) {
         super(customerId, excess);
-        this.holidayHome = holidayHome;
-        this.holidayhometype = type;
         this.coverage = coverage;
+        this.holidayHome = holidayHome;
         this.rental = rental;
+        this.type = type;
     }
     
     /**
@@ -143,7 +143,7 @@ public class HolidayHomeInsurance extends PropertyInsurance implements Serializa
         // Multiplicator for the homes building year
         double yearMultiplicator = buildingYearMultiplicator();
         // Price for what type of home is insured
-	int typePrice = holidayhometype.getPricing();
+	int typePrice = type.getPricing();
         // Base price. Price after excess drop (incl price for plus or basic)
 	int baseprice = typePrice + coverage.getPricing() - excessDrop();
         // Total price. Base price including extra if the home is a rental

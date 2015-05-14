@@ -133,7 +133,7 @@ public class BoatClaimRegistration {
         ColumnConstraints col4 = new ColumnConstraints(50);
         ColumnConstraints col5 = new ColumnConstraints(150);
         ColumnConstraints col6 = new ColumnConstraints(100);
-        ColumnConstraints col7 = new ColumnConstraints(150);
+        ColumnConstraints col7 = new ColumnConstraints(100);
         // Add these constraints:
         mainPane.getColumnConstraints().addAll(col1, col2, col3, col4, col5, col6, col7);
         

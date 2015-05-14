@@ -306,7 +306,7 @@ public class CarClaimRegistration {
      * Returns the customer id field as a String.
      * @return the customerIdField
      */
-    public String getCustomerIdField() {
+    public String getCustomerId() {
         return customerIdField.getText();
     }
 
@@ -314,7 +314,7 @@ public class CarClaimRegistration {
      * Returns the personal number field as a String.
      * @return the personalNumberField
      */
-    public String getPersonalNumberField() {
+    public String getPersonalNumber() {
         return personalNumberField.getText();
     }
 

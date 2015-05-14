@@ -108,14 +108,14 @@ public class MainController {
     private ViewController viewController;
     
     // Creates strings to be used in messages to the user:
-    private final String NO_CUSTOMER_MESSAGE = "Du har ikke valgt noen kunde.";
-    private final String FORMAT_MESSAGE = "Dette feltet kan kun bestå av tall.";
-    private final String EMPTY_MESSAGE = "Dette feltet må fylles ut.";
-    private final String CUSTOMERID_FORMAT_MESSAGE = "Kundenummeret kan kun bestå av tall.";
-    private final String CUSTOMERID_EMPTY_MESSAGE = "Du må skrive inn et kundenummer.";
-    private final String CUSTOMERID_NOT_FOUND_MESSAGE = "Fant ingen kunde med kundenummer: ";
-    private final String PERSONALNUMBER_EMPTY_MESSAGE = "Du må skrive inn et personnummer.";
-    private final String PERSONALNUMBER_NOT_FOUND_MESSAGE = "Fant ingen kunde med personnummer: ";
+    private final static String NO_CUSTOMER_MESSAGE = "Du har ikke valgt noen kunde.";
+    private final static String FORMAT_MESSAGE = "Dette feltet kan kun bestå av tall.";
+    private final static String EMPTY_MESSAGE = "Dette feltet må fylles ut.";
+    private final static String CUSTOMERID_FORMAT_MESSAGE = "Kundenummeret kan kun bestå av tall.";
+    private final static String CUSTOMERID_EMPTY_MESSAGE = "Du må skrive inn et kundenummer.";
+    private final static String CUSTOMERID_NOT_FOUND_MESSAGE = "Fant ingen kunde med kundenummer: ";
+    private final static String PERSONALNUMBER_EMPTY_MESSAGE = "Du må skrive inn et personnummer.";
+    private final static String PERSONALNUMBER_NOT_FOUND_MESSAGE = "Fant ingen kunde med personnummer: ";
     
     public MainController()  {
         
@@ -219,9 +219,18 @@ public class MainController {
     }
     
     private void initializeEventHandlers() {
+        initializeRegisterInsuranceEventHandlers();
+        initializeRegisterClaimEventHandlers();
         adminView.setSaveDataButtonEventHandler(this::adminViewSaveDataButtonEventHandler);
         adminView.setExitButtonEventHandler(this::adminViewExitButtonEventHandler);
         
+        
+        customerRegistration.setRegisterButtonEventHandler(this::registerCustomerButtonEventHandler);
+        employeeRegistration.setRegisterButtonEventHandler(this::registerEmployeeButtonEventHandler);
+
+    }
+    
+    private void initializeRegisterInsuranceEventHandlers() {
         boatInsuranceRegistration.setRegisterButtonEventHandler(this::boatInsuranceRegisterButtonEventHandler);
         boatInsuranceRegistration.setSearchCustomerIdButtonEventHandler(this::boatInsuranceSearchCustomerIdButtonEventHandler);
         boatInsuranceRegistration.setSearchPersonalNumberButtonEventHandler(this::boatInsuranceSearchPersonalNumberButtonEventHandler);
@@ -252,15 +261,17 @@ public class MainController {
         travelInsuranceRegistration.setRegisterButtonEventHandler(this::travelInsuranceRegisterButtonEventHandler);
         travelInsuranceRegistration.setSearchCustomerIdButtonEventHandler(this::travelInsuranceSearchCustomerIdButtonEventHandler);
         travelInsuranceRegistration.setSearchPersonalNumberButtonEventHandler(this::travelInsuranceSearchPersonalNumberButtonEventHandler);
-        
-        customerRegistration.setRegisterButtonEventHandler(this::registerCustomerButtonEventHandler);
-        employeeRegistration.setRegisterButtonEventHandler(this::registerEmployeeButtonEventHandler);
-        
+    } // end of class initializeRegisterInsuranceEventHandlers
+ 
+    private void initializeRegisterClaimEventHandlers() {
+        carClaimRegistration.setRegisterButtonEventHandler(this::carClaimRegisterButtonEventHandler);
+        carClaimRegistration.setSearchCustomerIdButtonEventHandler(this::carClaimSearchCustomerIdButtonEventHandler);
         carClaimRegistration.setSearchPersonalNumberButtonEventHandler(this::carClaimSearchPersonalNumberButtonEventHandler);
         carClaimRegistration.setSelectInsuranceButtonEventHandler(this::carClaimSelectInsuranceButtonEventHandler);
         carClaimRegistration.setSelectImageButtonEventHandler(this::carClaimSelectImageButtonEventHandler);
-    }
- 
+        
+    } // end of class initializeRegisterClaimEventHandlers
+    
     private void adminViewSaveDataButtonEventHandler(ActionEvent event) {
         writeBillsToFile();
         writeClaimsToFile();
@@ -402,7 +413,7 @@ public class MainController {
         carInsuranceRegistration.populateYearCombo(years);
     }
     
-    // INVISIBLE BUG: method gets called twice for every change.
+    // BUG: method gets called twice for every change, but this is resolved by an if statement at the end of the method:
     private void brandComboListener(ObservableValue observable, Object oldValue, Object newValue) {
         Object value = newValue;
         CarInfo car;
@@ -446,7 +457,7 @@ public class MainController {
         
         // Whenever a change in the combox is done, this method gets called twice, hence this check to
         // avoid creating a complete list, for so to replace it with an empty list.
-        if (years.size() != 0) {
+        if (!years.isEmpty()) {
             carInsuranceRegistration.populateYearCombo(years);
         }
         
@@ -500,20 +511,70 @@ public class MainController {
         }
     }
     
+    // CAR CLAIM REGISTRATION EVENT HANDLERS
+    
+    // TODO:zlokex Create this method
+    private void carClaimRegisterButtonEventHandler(ActionEvent event) {
+        
+    }
+    // TODO:zlokex Create this method
+    private void carClaimSearchCustomerIdButtonEventHandler(ActionEvent event) {
+        String customerIdString = carClaimRegistration.getCustomerId();
+        int customerId;
+        if(customerIdString.equals("")) {
+            // Gives the user an appropriate message if the user hasn't put in a customerId:
+            carClaimRegistration.setCustomerArea(CUSTOMERID_EMPTY_MESSAGE);
+            return;
+        }
+        try {
+            // Converts the customerId to int:
+            customerId = Integer.parseInt(customerIdString);
+        } catch(NumberFormatException nfe) {
+            logs.add(nfe.getStackTrace(), nfe.getMessage(), user);
+            // Gives the user an appropriate message if the customerId wasn't formatted correctly:
+            carClaimRegistration.setCustomerArea(CUSTOMERID_FORMAT_MESSAGE);
+            return;
+        }
+        // TODO: Regex.
+        // Searches for the customer by customerId:
+        Customer customer = customers.findCustomerById(customerId);
+        if(customer == null) {
+            // Gives the user an appropriate message if the customer wasn't found:
+            carClaimRegistration.setCustomerArea(CUSTOMERID_NOT_FOUND_MESSAGE + customerId);
+        } else {
+            // Displays the customer:
+            carClaimRegistration.setCustomerArea(customer.toString());
+            // Finds the customers insurances:
+            List insuranceList = insurances.getAllActiveTypeInsurancesByCustomerId(customerId, CarInsurance.class);
+            if (!insuranceList.isEmpty()) {
+                // Displays the insurances if there is at least one:
+                carClaimRegistration.populateInsurancesTable(insuranceList);
+            }
+        }
+    }
+    
     private void carClaimSearchPersonalNumberButtonEventHandler(ActionEvent event) {
-        String personalNumber = carClaimRegistration.getPersonalNumberField();
-        // TODO regex:
-        // Search for customer by personal numer:
-        Customer c = customers.findCustomerByPersonalNumber(personalNumber);
-        // If we find a customer we proceed:
-        if (c != null) {
-            // Show the customer in the text area inside our view:
-            carClaimRegistration.setCustomerArea(c.toString());
-            int cId = c.getId();
-            // Search for all insurances by 
-            List inc = insurances.getAllInsurancesByCustomerId(cId);
-            if (!inc.isEmpty()) {
-                carClaimRegistration.populateInsurancesTable(inc);
+        String personalNumber = carClaimRegistration.getPersonalNumber();
+        if(personalNumber.equals("")) {
+            // Gives the user an appropriate message if the user hasn't put in a personalNumber:
+            carClaimRegistration.setCustomerArea(PERSONALNUMBER_EMPTY_MESSAGE);
+            return;
+        }
+        // TODO: Regex.
+        // Searches for the customer by personalNumber:
+        Customer customer = customers.findCustomerByPersonalNumber(personalNumber);
+        if(customer == null) {
+            // Gives the user an appropriate message if the customer wasn't found:
+            carClaimRegistration.setCustomerArea(PERSONALNUMBER_NOT_FOUND_MESSAGE + personalNumber);
+        } else {
+            // Finds the customers insurances:
+            int customerId = customer.getId();
+            // Displays the customer:
+            carClaimRegistration.setCustomerArea(customer.toString());
+            List insuranceList = insurances.getAllActiveTypeInsurancesByCustomerId(customerId, CarInsurance.class);
+            if (!insuranceList.isEmpty()) {
+                // Displays the insurances if there is at least one:
+                carClaimRegistration.populateInsurancesTable(insuranceList);
             }
         }
     }
@@ -554,6 +615,7 @@ public class MainController {
             try {
                 BufferedImage bufferedImage = ImageIO.read(file);
                 Image image = SwingFXUtils.toFXImage(bufferedImage, null);
+                // ! Sets this image to the image in field in the carClaimRegistration view:
                 carClaimRegistration.setImage(image);
             } catch (IOException ioe) {
                 logs.add(ioe.getStackTrace(), ioe.getMessage(), user);
@@ -1865,6 +1927,7 @@ public class MainController {
             }
         }
     } // end of method travelInsuranceSearchPersonalNumberButtonEventHandler
+    
     
     // READ AND WRITE IDS FROM/TO FILE:
     

@@ -87,10 +87,27 @@ public class InsuranceRegister {
         return result;
     }
     
-     public List<Insurance> getAllActiveInsurancesByCustomerId(int customerId) {
+    public List<Insurance> getAllActiveInsurancesByCustomerId(int customerId) {
         List<Insurance> result = new ArrayList<Insurance>();
         for (Insurance insurance : insurances) {
             if (insurance.getCustomerId() == customerId && insurance.isActive()) {
+                result.add(insurance);
+            }
+        }
+        return result;
+    }
+    
+    /**
+     * Returns a List of all active insurances of a specified class type to a 
+     * customer by its customer id.
+     * @param customerId
+     * @param type
+     * @return 
+     */
+    public List<Insurance> getAllActiveTypeInsurancesByCustomerId(int customerId, Class<?> type) {
+        List<Insurance> result = new ArrayList<Insurance>();
+        for (Insurance insurance : insurances) {
+            if ((insurance.getCustomerId() == customerId) && insurance.isActive() && type.isInstance(insurance)) {
                 result.add(insurance);
             }
         }

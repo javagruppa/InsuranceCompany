@@ -7,6 +7,7 @@ package insurancecompany.controller;
 
 import insurancecompany.misc.EmployeeType;
 import insurancecompany.misc.coverages.*;
+import insurancecompany.misc.hometypes.HolidayHomeType;
 import insurancecompany.misc.hometypes.HomeType;
 import insurancecompany.model.bills.*;
 import insurancecompany.model.claims.*;
@@ -805,6 +806,197 @@ public class MainController {
             }
         }
     }
+    
+    // HOLIDAY HOME INSURANCE EVENT HANDLERS
+    
+    private void holidayHomeInsuranceRegisterButtonEventHandler(ActionEvent e) {
+        
+        // Clears previous messages:
+        holidayHomeInsuranceRegistration.clearMessages();
+        
+        // Collects information about the customer and the insurance:
+        HolidayHomeInsuranceCoverage coverage = holidayHomeInsuranceRegistration.getCoverage();
+        int customerId = holidayHomeInsuranceRegistration.getSelectedCustomerId();
+        String excessString = holidayHomeInsuranceRegistration.getExcess();
+        
+        // Collects information about the property:
+        HolidayHomeType type = holidayHomeInsuranceRegistration.getType();
+        PropertyMaterial material = holidayHomeInsuranceRegistration.getMaterial();
+        String areaString = holidayHomeInsuranceRegistration.getArea();
+        String city = holidayHomeInsuranceRegistration.getCity();
+        String rentalString = holidayHomeInsuranceRegistration.getRental();
+        String street = holidayHomeInsuranceRegistration.getStreet();
+        String yearString = holidayHomeInsuranceRegistration.getYear();
+        String zipCodeString = holidayHomeInsuranceRegistration.getZipCode();
+        
+        // Creates a boolean which is to be set true if the user has made a 
+        // mistake and the method has to abort:
+        boolean abort = false;
+        
+        // Creates ints and booleans for the converted values:
+        int area = 0;
+        int excess = 0;
+        boolean rental = false;
+        int year = 0;
+        int zipCode = 0;
+        
+        // Evaluates Input:
+        if(city.equals("")) {
+            holidayHomeInsuranceRegistration.setCityMessage(EMPTY_MESSAGE);
+            abort = true;
+        }
+        if(coverage == null) {
+            holidayHomeInsuranceRegistration.setCoverageMessage(EMPTY_MESSAGE);
+            abort = true;
+        }
+        if(customerId == 0) {
+            holidayHomeInsuranceRegistration.setCustomerSelectedMessage(NO_CUSTOMER_MESSAGE);
+            abort = true;
+        }
+        if(material == null) {
+            holidayHomeInsuranceRegistration.setMaterialMessage(EMPTY_MESSAGE);
+            abort = true;
+        }
+        if(street.equals("")) {
+            holidayHomeInsuranceRegistration.setStreetMessage(EMPTY_MESSAGE);
+            abort = true;
+        }
+        if(type == null) {
+            holidayHomeInsuranceRegistration.setTypeMessage(EMPTY_MESSAGE);
+            abort = true;
+        }
+        
+        // Evaluates and converts Input:
+        if(areaString.equals("")) {
+            holidayHomeInsuranceRegistration.setAreaMessage(EMPTY_MESSAGE);
+            abort = true;
+        } else {
+            try {
+                area = Integer.parseInt(areaString);
+            } catch(NumberFormatException nfe) {
+                holidayHomeInsuranceRegistration.setAreaMessage(FORMAT_MESSAGE);
+                abort = true;
+            }
+        }
+        if(excessString.equals("")) {
+            holidayHomeInsuranceRegistration.setExcessMessage(EMPTY_MESSAGE);
+            abort = true;
+        } else {
+            try {
+                excess = Integer.parseInt(excessString);
+            } catch(NumberFormatException nfe) {
+                holidayHomeInsuranceRegistration.setExcessMessage(FORMAT_MESSAGE);
+                abort = true;
+            }
+        }
+        if(rentalString.equals("")) {
+            holidayHomeInsuranceRegistration.setRentalMessage(EMPTY_MESSAGE);
+            abort = true;
+        } else {
+            rental = rentalString.equals("Ja");
+        }
+        if(yearString.equals("")) {
+            holidayHomeInsuranceRegistration.setYearMessage(EMPTY_MESSAGE);
+            abort = true;
+        } else {
+            try {
+                year = Integer.parseInt(yearString);
+            } catch(NumberFormatException nfe) {
+                holidayHomeInsuranceRegistration.setYearMessage(FORMAT_MESSAGE);
+                abort = true;
+            }
+        }
+        if(zipCodeString.equals("")) {
+            holidayHomeInsuranceRegistration.setZipCodeMessage(EMPTY_MESSAGE);
+            abort = true;
+        } else {
+            try {
+                zipCode = Integer.parseInt(zipCodeString);
+            } catch(NumberFormatException nfe) {
+                holidayHomeInsuranceRegistration.setZipCodeMessage(FORMAT_MESSAGE);
+                abort = true;
+            }
+        }
+        
+        if(abort) {
+            return;
+        }
+        
+        // Creates Address:
+        Address address = new Address(street, zipCode, city);
+        // Creates Property:
+        Property property = new Property(address, material, area, year);
+        // Creates HolidayHomeInsurance:
+        HolidayHomeInsurance insurance = new HolidayHomeInsurance(coverage, 
+                customerId, excess, property, rental, type);
+        
+        // Adds insurance to Register:
+        insurances.addInsurance(insurance); //returns boolean
+        // TODO: Give a message to the user whether the insurance was added or not. It would not
+        //       be added if the register already contained such an insurance.
+    } // end of method homeInsuranceRegisterButtonEventHandler
+    
+    private void holidayHomeInsuranceSearchCustomerIdButtonEventHandler(ActionEvent event) {
+        String customerIdString = holidayHomeInsuranceRegistration.getCustomerId();
+        int customerId;
+        if(customerIdString.equals("")) {
+            // Gives the user an appropriate message if the user hasn't put in a customerId:
+            holidayHomeInsuranceRegistration.setCustomerArea(CUSTOMERID_EMPTY_MESSAGE);
+            return;
+        }
+        try {
+            // Converts the customerId to int:
+            customerId = Integer.parseInt(customerIdString);
+        } catch(NumberFormatException nfe) {
+            // Gives the user an appropriate message if the customerId wasn't formatted correctly:
+            holidayHomeInsuranceRegistration.setCustomerArea(CUSTOMERID_FORMAT_MESSAGE);
+            return;
+        }
+        // TODO: Regex.
+        // Searches for the customer by customerId:
+        Customer customer = customers.findCustomerById(customerId);
+        if(customer == null) {
+            // Gives the user an appropriate message if the customer wasn't found:
+            holidayHomeInsuranceRegistration.setCustomerArea(CUSTOMERID_NOT_FOUND_MESSAGE + customerId);
+        } else {
+            // Displays the customer:
+            holidayHomeInsuranceRegistration.setCustomerArea(customer.toString());
+            holidayHomeInsuranceRegistration.setSelectedCustomerId(customerId);
+            // Finds the customers insurances:
+            List insuranceList = insurances.getAllInsurancesByCustomerId(customerId);
+            if (!insuranceList.isEmpty()) {
+                // Displays the insurances if there is at least one:
+                holidayHomeInsuranceRegistration.populateInsurancesTable(insuranceList);
+            }
+        }
+    } // end of method holidayHomeInsuranceSearchCustomerIdButtonEventHandler
+    
+    private void holidayHomeInsuranceSearchPersonalNumberButtonEventHandler(ActionEvent event) {
+        String personalNumber = holidayHomeInsuranceRegistration.getPersonalNumber();
+        if(personalNumber.equals("")) {
+            // Gives the user an appropriate message if the user hasn't put in a personalNumber:
+            holidayHomeInsuranceRegistration.setCustomerArea(PERSONALNUMBER_EMPTY_MESSAGE);
+            return;
+        }
+        // TODO: Regex.
+        // Searches for the customer by personalNumber:
+        Customer customer = customers.findCustomerByPersonalNumber(personalNumber);
+        if(customer == null) {
+            // Gives the user an appropriate message if the customer wasn't found:
+            holidayHomeInsuranceRegistration.setCustomerArea(PERSONALNUMBER_NOT_FOUND_MESSAGE + personalNumber);
+        } else {
+            // Finds the customers insurances:
+            int customerId = customer.getId();
+            // Displays the customer:
+            holidayHomeInsuranceRegistration.setCustomerArea(customer.toString());
+            holidayHomeInsuranceRegistration.setSelectedCustomerId(customerId);
+            List insuranceList = insurances.getAllInsurancesByCustomerId(customerId);
+            if (!insuranceList.isEmpty()) {
+                // Displays the insurances if there is at least one:
+                holidayHomeInsuranceRegistration.populateInsurancesTable(insuranceList);
+            }
+        }
+    } // end of method holidayHomeInsuranceSearchPersonalNumberButtonEventHandler
     
     // HOME INSURANCE EVENT HANDLERS
     

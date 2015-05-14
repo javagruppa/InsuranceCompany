@@ -18,7 +18,7 @@ public abstract class Claim implements Serializable {
     private static final long serialVersionUID = 1L;
     /** Claim ID for the next registered claim */
     private static int nextClaimId = 1000000;
-    /** the filapath of the file the claim Ids are saved in */
+    /** the file path of the file the claim Id's are saved in */
     private static String claimIdFileName = "src/insurancecompany/resources/nextidnumbers/claimId.dta";
     /** Customer id to the owner of this claim. */
     private int customerId;

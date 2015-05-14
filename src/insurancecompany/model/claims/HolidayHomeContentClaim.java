@@ -16,9 +16,9 @@ import java.util.Set;
  * @author André
  */
 public class HolidayHomeContentClaim extends Claim implements Serializable {
-    /** SerialVersionUID used to identify this class for object IO */
+    /** SerialVersionUID used to identify this class for object IO. */
     private static final long serialVersionUID = 1L;
-    /** List of the items this claim covers */    
+    /** List of the items this claim covers. */    
     private List<ClaimItem> items;
 
     /**
@@ -27,7 +27,7 @@ public class HolidayHomeContentClaim extends Claim implements Serializable {
      * @param customerId the Id of the customer who owns this insurance
      * @param insuranceId the Id of the insurance covering this claim
      * @param description description of what has happened
-     * @param dateHappened the date the event occured
+     * @param dateHappened the date the event occurred
      * @param damages the damage(s) this claim is for
      * @param appraisal the appraisal of this claim
      * @param items the items this claim is for

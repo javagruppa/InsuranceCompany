@@ -31,15 +31,15 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
-import javafx.stage.FileChooser;
 import javafx.util.Callback;
 
 /**
- * This class represents a car claim registration view. This view is connected
+ * This class represents a boat claim registration view. This view is connected
  * to the model through a controller. The class creates a GridPane with nodes.
  * The GridPane consists of 2 main parts. 
  * 
@@ -47,7 +47,7 @@ import javafx.util.Callback;
  * search engine finds a customer this customer is displayed and a list of all 
  * this customer's insurances is as well displayed in a table view. The user 
  * is then able to select which insurance he/she wants to use for the claim. 
- * Only car insurances are allowed to be selected. 
+ * Only boat insurances are allowed to be selected. 
  * 
  * <p>The right side of this pane is used for typing in the fields connected
  * to the damage/claim.
@@ -95,14 +95,12 @@ public class BoatClaimRegistration {
     /** Button used to select an insurance to use for the claim. */
     private Button selectInsuranceButton;
 
-    
-    
+    /** Image uploaded by the user. */
+    private Image image;
     /** The date of when the damage happened. */
     private DatePicker dateHappenedPicker;
     /** Textual description of the claim. */
     private TextArea descriptionTextArea;
-    /** File chooser for image of the damage. */
-    private FileChooser fileChooser;
     /** Text field where the user can type in an appraisal for the claim. */
     private TextField appraisalField;
     /** GridPane used to display the damages available for the customers coverage. */
@@ -114,13 +112,9 @@ public class BoatClaimRegistration {
     // Buttons:
     /** Button used to select an image describing the claim. */
     private Button selectImageButton;
-    /** Button used to open up a car claim form. */
-    private Button openClaimFormButton;
     /** Button used to register the claim. */
-    private Button registerButton;
-    
+    private Button registerButton;  
     // Output nodes, Text messages:
-
     
     /**
      * Sole constructor. Initializes the main Pane and sets up all its nodes.
@@ -200,9 +194,6 @@ public class BoatClaimRegistration {
         appraisalField = new TextField();
         Label selectImageLabel = new Label("Bilde som beskriver skaden");
         selectImageButton = new Button("Hent bilde");
-        fileChooser = new FileChooser();
-        Label openClaimFormLabel = new Label("Bilskademelingsskjema");
-        openClaimFormButton = new Button("Åpne");
         registerButton = new Button("Registrer");
         
         // Add nodes to mainPane:
@@ -232,8 +223,6 @@ public class BoatClaimRegistration {
         mainPane.add(appraisalField, 5, 13);
         mainPane.add(selectImageLabel, 4, 14);
         mainPane.add(selectImageButton, 5, 14);
-        mainPane.add(openClaimFormLabel, 4, 15);
-        mainPane.add(openClaimFormButton, 5, 15);
         mainPane.add(registerButton, 4, 16);
     } // end of sole Constructor
     
@@ -251,9 +240,9 @@ public class BoatClaimRegistration {
         // Start at first row:
         int row = 0;
         // Go through all damages:
-        for (int i = 0; i < damages.size(); i++) {
+        for (Damage damage : damages) {
             // Create a checkbox for each damage:
-            CheckBox cb = new CheckBox(damages.get(i).toString());
+            CheckBox cb = new CheckBox(damage.toString());
             // Add each checkbox to our list of checkboxes:
             damageCheckBoxes.add(cb);
             // When our column count has reached the value of our limit:
@@ -360,6 +349,8 @@ public class BoatClaimRegistration {
                 }
         });   
     }  // end of method populateInsurancesTable
+    
+    
     
     /**
      * Returns the Insurance object selected in the table.
@@ -484,4 +475,21 @@ public class BoatClaimRegistration {
     public void clearMessages() {
         selectInsuranceMessage.setText("");
     }
-} // end of class CarClaimRegistration
+
+    /**
+     * Get the image of the damage from this view.
+     * @return the image
+     */
+    public Image getImage() {
+        return image;
+    }
+
+    /**
+     * Set an image of the damage.
+     * @param image the image to set
+     */
+    public void setImage(Image image) {
+        this.image = image;
+    }
+
+} // end of class BoatClaimRegistration

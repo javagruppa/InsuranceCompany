@@ -20,9 +20,9 @@ public class CarClaim extends Claim implements Serializable {
     CarClaimForm claimForm;
 
     /**
-      * Constructs a boatclaim with the specified parameters
+      * Constructs a car claim with the specified parameters
      * 
-     * @param customerId the customerId of the customer who owns the isnurance
+     * @param customerId the customerId of the customer who owns the insurance
      * @param insuranceId the Id of the insurance this claim is covered by
      * @param description the description of the damage
      * @param dateHappened the date the damage happened

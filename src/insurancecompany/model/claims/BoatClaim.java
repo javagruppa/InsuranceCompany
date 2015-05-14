@@ -17,9 +17,9 @@ public class BoatClaim extends Claim implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     * Constructs a boatclaim with the specified parameters
+     * Constructs a boat claim with the specified parameters.
      * 
-     * @param customerId the customerId of the customer who owns the isnurance
+     * @param customerId the customerId of the customer who owns the insurance
      * @param insuranceId the Id of the insurance this claim is covered by
      * @param description the description of the damage
      * @param dateHappened the date the damage happened

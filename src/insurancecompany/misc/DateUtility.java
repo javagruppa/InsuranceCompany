@@ -14,10 +14,10 @@ import java.util.Date;
  */
 public class DateUtility {
 
-    /** The norwegian standard for showing dates */
-    public static final java.util.Locale NORWAY = new java.util.Locale("no");
-    /** The date format to be shown in toString */
-    public static final SimpleDateFormat NORWEGIAN_DATE_FORMAT = new SimpleDateFormat("dd.MM.yyyy", NORWAY );
+    /** The Norwegian standard for showing dates. */
+    public static final java.util.Locale NORWAY_LOCALE = new java.util.Locale("no");
+    /** Date format following the Norwegian date format. */
+    public static final SimpleDateFormat NORWEGIAN_DATE_FORMAT = new SimpleDateFormat("dd.MM.yyyy", NORWAY_LOCALE );
     
     /**
      * Calculates the difference in whole years between 2 dates.
@@ -37,7 +37,7 @@ public class DateUtility {
     
     /**
      * Returns a Calendar object from a Date object.
-     * @param date the date to be set
+     * @param date the date to be converted
      * @return the calendar object with the specified date
      */
     public static Calendar dateToCalendar(Date date){ 
@@ -46,6 +46,11 @@ public class DateUtility {
         return cal;
     }
     
+    /**
+     * Returns a Date object from a LocalDate object
+     * @param localDate the LocalDate to be converted
+     * @return
+     */
     public static Date localDateToDate(LocalDate localDate) {
         return Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
     }

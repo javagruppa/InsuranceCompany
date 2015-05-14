@@ -15,9 +15,9 @@ public class ClaimItem implements Serializable {
     private static final long serialVersionUID = 1L;
     /** description of the item */
     private String description;
-    /** Where the item was aqquired */
+    /** Where the item was acquired */
     private String aqquiredArea;
-    /** The date the item was aqquired */
+    /** The date the item was acquired */
     private Calendar aqquiredDate;
     /** The value of the item */
     private int value;
@@ -27,8 +27,8 @@ public class ClaimItem implements Serializable {
     /**
      * Constructs a claimItem with the specified parameters
      * @param description description of the item
-     * @param aqquiredArea where the item was aqquired
-     * @param aqquiredDate when the item was aqquired
+     * @param aqquiredArea where the item was acquired
+     * @param aqquiredDate when the item was acquired
      * @param value the value of the item
      * @param descOfDocumentation description of how the item can be documented
      */
@@ -57,7 +57,7 @@ public class ClaimItem implements Serializable {
     }
 
     /**
-     * Returns where the item was aqquired
+     * Returns where the item was acquired
      * @return the aqquiredArea
      */
     public String getAqquiredArea() {
@@ -65,7 +65,7 @@ public class ClaimItem implements Serializable {
     }
 
     /**
-     * sets where the item was aqquired
+     * sets where the item was acquired
      * @param aqquiredArea the aqquiredArea to set
      */
     public void setAqquiredArea(String aqquiredArea) {
@@ -73,7 +73,7 @@ public class ClaimItem implements Serializable {
     }
 
     /**
-     * Returns when the item was aqquired
+     * Returns when the item was acquired
      * @return the aqquiredDate
      */
     public Calendar getAqquiredDate() {
@@ -81,7 +81,7 @@ public class ClaimItem implements Serializable {
     }
 
     /**
-     * sets when the item was aqquired
+     * sets when the item was acquired
      * @param aqquiredDate the aqquiredDate to set
      */
     public void setAqquiredDate(Calendar aqquiredDate) {

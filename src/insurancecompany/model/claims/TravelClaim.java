@@ -4,7 +4,7 @@ import insurancecompany.misc.coverages.Damage;
 import java.awt.Image;
 import java.io.Serializable;
 import java.util.Calendar;
-import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -14,15 +14,17 @@ import java.util.Set;
  * @author André
  */
 public class TravelClaim extends Claim implements Serializable {
-    /** SerialVersionUID used to identify this class for object IO */
+    /** SerialVersionUID used to identify this class for object IO. */
     private static final long serialVersionUID = 1L;
-    /** Brand of the customers credit card */
+    /** Brand of the customers credit card. */
     private String creditCardBrand;
-    /** Country of the event */
+    /** Country of the event. */
     private String country;
+    /** List of the items this claim covers. */
+    private List<ClaimItem> items;
     
     /**
-     * Constructs a TravelClaim with the specified parameters
+     * Constructs a TravelClaim with the specified parameters.
      * 
      * @param customerId Id of customer owning the insurance covering this claim
      * @param insuranceId Id of insurance covering this claim
@@ -32,14 +34,16 @@ public class TravelClaim extends Claim implements Serializable {
      * @param appraisal the appraisal to this claim
      * @param creditCardBrand the credit card brand of the customer
      * @param country the country the event happened
+     * @param items the items this claim is for
      */
     public TravelClaim(int customerId, int insuranceId, String description, 
             Calendar dateHappened, Set<Damage> damages, int appraisal, 
-            String creditCardBrand, String country) {
+            String creditCardBrand, String country, List<ClaimItem> items) {
         super(customerId, insuranceId, description, dateHappened, damages, 
                 appraisal);
         this.creditCardBrand = creditCardBrand;
         this.country = country;
+        this.items = items;
     }    
     
     /**
@@ -54,14 +58,17 @@ public class TravelClaim extends Claim implements Serializable {
      * @param creditCardBrand the credit card brand of the customer
      * @param country the country the event happened
      * @param image image of the damage/loss
+     * @param items the items this claim is for
      */
     public TravelClaim(int customerId, int insuranceId, String description, 
             Calendar dateHappened, Set<Damage> damages, int appraisal, 
-            Image image, String creditCardBrand, String country) {
+            Image image, String creditCardBrand, String country,
+            List<ClaimItem> items) {
         super(customerId, insuranceId, description, dateHappened, damages, 
                 appraisal, image);
         this.creditCardBrand = creditCardBrand;
         this.country = country;
+        this.items = items;
     }
 
     /**
@@ -84,7 +91,7 @@ public class TravelClaim extends Claim implements Serializable {
     }
 
     /**
-     * Sets the creditcard brand
+     * Sets the credit card brand
      * @param creditCardBrand the creditCardBrand to set
      */
     public void setCreditCardBrand(String creditCardBrand) {

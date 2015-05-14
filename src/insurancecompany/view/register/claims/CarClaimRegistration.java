@@ -37,6 +37,7 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 
 /**
@@ -118,12 +119,9 @@ public class CarClaimRegistration {
     /** Button used to register the claim. */
     private Button registerButton;  
     // Output nodes, Text messages:
-
-    /**
-     * Car claim form object which is initialized after the user has filled in
-     * the car claim form view.
-     */
-    private CarClaimForm carClaimForm;
+    
+    /** The car claim form view belonging to this claim view. */
+    private CarClaimFormView carClaimFormView;
     
     /**
      * Sole constructor. Initializes the main Pane and sets up all its nodes.
@@ -237,7 +235,14 @@ public class CarClaimRegistration {
         mainPane.add(openClaimFormLabel, 4, 15);
         mainPane.add(openClaimFormButton, 5, 15);
         mainPane.add(registerButton, 4, 16);
+        
+        // Initialize local event handlers:
+        initializeLocalEventHandlers();
     } // end of sole Constructor
+    
+    private void initializeLocalEventHandlers() {
+        initializeOpenClaimFormButtonEventHandler();
+    }
     
     /**
      * Places list of damages inside a list of combo boxes and places
@@ -245,7 +250,7 @@ public class CarClaimRegistration {
      * @param damages 
      */
     public void populateDamagesPane(ArrayList<Damage> damages) {
-        damageCheckBoxes = new ArrayList<CheckBox>();
+        damageCheckBoxes = new ArrayList<>();
         // Decides number of columns of damages:
         int columns = 3 ;
         // Start at first column:
@@ -253,9 +258,9 @@ public class CarClaimRegistration {
         // Start at first row:
         int row = 0;
         // Go through all damages:
-        for (int i = 0; i < damages.size(); i++) {
+        for (Damage damage : damages) {
             // Create a checkbox for each damage:
-            CheckBox cb = new CheckBox(damages.get(i).toString());
+            CheckBox cb = new CheckBox(damage.toString());
             // Add each checkbox to our list of checkboxes:
             damageCheckBoxes.add(cb);
             // When our column count has reached the value of our limit:
@@ -422,12 +427,13 @@ public class CarClaimRegistration {
         selectImageButton.setOnAction(value);
     }
     
-    /**
-     * Sets event handler for the open claim form button of this view.
-     * @param value 
-     */
-    public void setOpenClaimFormButtonEventHandler(EventHandler<ActionEvent> value) {
-        openClaimFormButton.setOnAction(value);
+    
+    private void initializeOpenClaimFormButtonEventHandler() {
+        openClaimFormButton.setOnAction((event) -> {
+            Stage stage = new Stage();
+            carClaimFormView = new CarClaimFormView();
+            carClaimFormView.show(stage);
+        });
     }
     
     /**
@@ -514,18 +520,11 @@ public class CarClaimRegistration {
     }
 
     /**
-     * Returns the car claim form object of this view.
-     * @return the carClaimForm
+     * Returns the car claim form view belonging to this car claim view.
+     * @return the carClaimFormView
      */
-    public CarClaimForm getCarClaimForm() {
-        return carClaimForm;
+    public CarClaimFormView getCarClaimFormView() {
+        return carClaimFormView;
     }
 
-    /**
-     * Sets the car claim form object of this view.
-     * @param carClaimForm the carClaimForm to set
-     */
-    public void setCarClaimForm(CarClaimForm carClaimForm) {
-        this.carClaimForm = carClaimForm;
-    }
 } // end of class CarClaimRegistration

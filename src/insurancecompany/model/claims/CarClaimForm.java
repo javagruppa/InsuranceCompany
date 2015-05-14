@@ -18,7 +18,7 @@ import javafx.scene.image.Image;
 public class CarClaimForm implements Serializable {
     /** SerialVersionUID used to identify this class for object IO */
     private static final long serialVersionUID = 1L;
-    /** The car covered by this carclaimform */
+    /** The car covered by this car claim form */
     private Car car;
     /** The customer who owns the insurance */
     private Customer owner;

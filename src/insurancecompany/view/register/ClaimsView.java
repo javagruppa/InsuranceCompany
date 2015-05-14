@@ -11,7 +11,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
@@ -26,13 +25,6 @@ import javafx.stage.Stage;
  * @author André
  */
 public class ClaimsView {
-   
-    //private BoatInsuranceRegistration boatInsuranceRegistration;
-    //private TravelInsuranceRegistration travelInsuranceRegistration;
-    
-    private Pane customerRegistrationPane;
-    private Pane boatInsuranceRegistrationPane;
-    private Pane travelInsuranceRegistrationPane;
     
     private Scene scene;
     private BorderPane mainPane;
@@ -48,9 +40,6 @@ public class ClaimsView {
     private ToggleButton travelClaimButton;
     private ToggleGroup toggleGroup;
             
-    //public static void main(String[] args) {
-    //    launch(args);
-    //}
     
     public void start(Stage stage) throws Exception {
         show(stage);
@@ -65,19 +54,8 @@ public class ClaimsView {
     public ClaimsView() {
         mainPane = new BorderPane();
         sideToolBarPane = createSideToolBar();
-        //ScrollPane sp = new ScrollPane();
-        //sp.setContent(sideToolBarPane);
-        //sp.setFitToHeight(true);
-        //sp.setFitToWidth(true);
         mainPane.setLeft(sideToolBarPane);
-        scene = new Scene(mainPane, 800, 600);
-        initializeViews();    
-    }
-    private void initializeViews() {
-        //boatInsuranceRegistration = new BoatInsuranceRegistration();
-        //boatInsuranceRegistrationPane = boatInsuranceRegistration.getMainPane();
-        //travelInsuranceRegistration = new TravelInsuranceRegistration();
-        //travelInsuranceRegistrationPane = travelInsuranceRegistration.getMainPane();
+        scene = new Scene(mainPane, 800, 600);   
     }
     
     

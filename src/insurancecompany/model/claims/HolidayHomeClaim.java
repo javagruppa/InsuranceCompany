@@ -23,7 +23,7 @@ public class HolidayHomeClaim extends Claim implements Serializable {
      * @param customerId the Id of the customers who owns the insurance
      * @param insuranceId the Id of the insurance covering the claim
      * @param description description of the event
-     * @param dateHappened when the event occured
+     * @param dateHappened when the event occurred
      * @param damages the damaged this claim is for
      * @param appraisal the appraisal of this claim
      */

@@ -452,7 +452,6 @@ public class MainController {
     
     // INVISIBLE BUG: method gets called twice for every change.
     private void brandComboListener(ObservableValue observable, Object oldValue, Object newValue) {
-        //Object value = carInsuranceRegistration.getBrandComboValue();
         Object value = newValue;
         CarInfo car;
         int since = Integer.MAX_VALUE;

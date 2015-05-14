@@ -47,12 +47,22 @@ public class DateUtility {
     }
     
     /**
-     * Returns a Date object from a LocalDate object
+     * Returns a Date object from a LocalDate object.
      * @param localDate the LocalDate to be converted
      * @return
      */
     public static Date localDateToDate(LocalDate localDate) {
         return Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+    }
+    
+    /**
+     * Returns a Calendar object from a LocalDate object.
+     * @param localDate
+     * @return 
+     */
+    public static Calendar LocalDateToCalendar(LocalDate localDate) {
+        Date date = localDateToDate(localDate);
+        return dateToCalendar(date);
     }
 
 }

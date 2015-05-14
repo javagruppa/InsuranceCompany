@@ -14,13 +14,16 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.RowConstraints;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -31,14 +34,12 @@ import javafx.stage.Stage;
 public class ClaimSearchView {
     
     // Decalaration of the Gridpane and Scene.
-    private GridPane mainPane;
+    private GridPane gridPane;
+    private BorderPane mainPane;
     private Scene scene;
     
-    // Declaration of all Label messages.
-    private Label claimIdLabel;
-    private Label customerIdLabel;
-    private Label insuranceIdLabel;
-    private Label claimTypeLabel;
+    private DatePicker dateFromDatePicker;
+    private DatePicker dateToDatePicker;
     
     // Declaration of all TextField and ComboBoxes
     private TextField claimIdField;
@@ -66,20 +67,49 @@ public class ClaimSearchView {
     
     public void buildMainPane() {
         // Sets up the mainPane
-        mainPane = new GridPane();
-        mainPane.setAlignment(Pos.CENTER);
-        mainPane.setHgap(10);
-        mainPane.setVgap(10);
-        mainPane.setStyle("-fx-background-color: #E7E7FF;");
-        mainPane.getColumnConstraints().addAll(new ColumnConstraints(200), 
-                new ColumnConstraints(200), new ColumnConstraints(200));
+        gridPane = new GridPane();
+        mainPane = new BorderPane();
+        mainPane.setId("innerPane");
+                // Column constraints for the gridpane
+        ColumnConstraints col0 = new ColumnConstraints(140); // gap
+        ColumnConstraints col1 = new ColumnConstraints(200); // first field
+        ColumnConstraints col2 = new ColumnConstraints(100); // gap
+        ColumnConstraints col3 = new ColumnConstraints(100); // gap
+        ColumnConstraints col4 = new ColumnConstraints(100); // second field
+        ColumnConstraints col5 = new ColumnConstraints(10); // gap
+        ColumnConstraints col6 = new ColumnConstraints(100); // third field
+        ColumnConstraints col7 = new ColumnConstraints(10); // gap
+        ColumnConstraints col8 = new ColumnConstraints(100); // fourth field
+        ColumnConstraints col9 = new ColumnConstraints(5); // gap
+        ColumnConstraints col10 = new ColumnConstraints(100); // fifth field
+        // Add these constraints:
+        gridPane.getColumnConstraints().addAll(col0, col1, col2, col3, col4, col5, col6, col7, col8, col9, col10);
+        // Row constraints for the gridpane
+        RowConstraints row0 = new RowConstraints(65); // gap
+        RowConstraints row1 = new RowConstraints(50); // Skadedato, skadested
+        RowConstraints row2 = new RowConstraints(17); // gap
+        RowConstraints row3 = new RowConstraints(55); // Vitner
+        RowConstraints row4 = new RowConstraints(27); // gap
+        RowConstraints row5 = new RowConstraints(50); // Etternavn
+        RowConstraints row6 = new RowConstraints(30); // Fornavn, fødselsnummer
+        RowConstraints row7 = new RowConstraints(35); // Adresse
+        RowConstraints row8 = new RowConstraints(38); // Postnr
+        RowConstraints row9 = new RowConstraints(38); // Telefon
+        RowConstraints row10 = new RowConstraints(36); // Epost
+        RowConstraints row11 = new RowConstraints(42); // Regnr
+        RowConstraints row12 = new RowConstraints(38); // Merke
+        RowConstraints row13 = new RowConstraints(38); // empty
+        // Add these constraints:
+        gridPane.getRowConstraints().addAll(row0, row1, row2, row3, row4, row5, 
+                row6, row7, row8, row9, row10, row11, row12, row13);
         
+        Text searchClaimTitle = new Text("Søk etter skade:");
         
         // Initialize all Label messages:
-        claimIdLabel = new Label("Skademeldingsnummer:");
-        customerIdLabel = new Label("Kundenummer:");
-        insuranceIdLabel = new Label("Forsikringsnummer:");
-        claimTypeLabel = new Label("Skademelding type:");
+        Label claimIdLabel = new Label("Skademeldingsnummer:");
+        Label customerIdLabel = new Label("Kundenummer:");
+        Label insuranceIdLabel = new Label("Forsikringsnummer:");
+        Label claimTypeLabel = new Label("Skademelding type:");
         
         // Initialize all ComboBoxes and TextFields:
         claimIdField = new TextField();
@@ -98,24 +128,31 @@ public class ClaimSearchView {
         
         
         // Adds all elements to the mainPane:
-        mainPane.add(customerIdLabel, 0, 0);
-        mainPane.add(customerIdField, 1, 0);
-        mainPane.add(searchCustomerIdButton, 2, 0);
+       // gridPane.add()
+        gridPane.add(customerIdLabel, 0, 0);
+        gridPane.add(customerIdField, 1, 0);
+        gridPane.add(searchCustomerIdButton, 2, 0);
         
-        mainPane.add(insuranceIdLabel, 0, 1);
-        mainPane.add(insuranceIdField, 1, 1);
-        mainPane.add(searchInsuranceIdButton, 2, 1);
+        gridPane.add(insuranceIdLabel, 0, 1);
+        gridPane.add(insuranceIdField, 1, 1);
+        gridPane.add(searchInsuranceIdButton, 2, 1);
         
-        mainPane.add(claimTypeLabel, 0, 2);
-        mainPane.add(claimTypeCombo, 1, 2);
-        mainPane.add(searchClaimTypeButton, 2, 2);
+        gridPane.add(claimTypeLabel, 0, 2);
+        gridPane.add(claimTypeCombo, 1, 2);
+        gridPane.add(searchClaimTypeButton, 2, 2);
     }
     
     public ComboBox createClaimTypeCombo() {
         ComboBox cb = new ComboBox();
         ObservableList<ClaimType> obList;
         obList = FXCollections.observableArrayList(ClaimType.values()); 
+        // Default value to all claims:
+        final String allDamages = "Alle skademeldinger";
+        cb.setValue(allDamages);
+        // Set this String as a selectable option:
+        cb.getItems().addAll(allDamages);
         cb.getItems().addAll(obList);
+        
         return cb;
     }
     
@@ -133,7 +170,4 @@ public class ClaimSearchView {
         //calculateButton.setOnAction(value);
     }
 
-    public void setRegisterButtonEventHandler(EventHandler<ActionEvent> value) {
-        //registerButton.setOnAction(value);
-    }
 }

@@ -207,7 +207,7 @@ public class MainController {
                 
         // Controllers:
         this.modelController = new ModelController(bills, claims, customers, 
-                employees, insurances, logs, views);
+                employees, insurances, logs);
         this.viewController = new ViewController(adminView, views);
         
         readAllDataFromFile();

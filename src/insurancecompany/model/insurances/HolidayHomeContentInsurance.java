@@ -7,9 +7,8 @@
 package insurancecompany.model.insurances;
 
 import insurancecompany.misc.coverages.HolidayHomeContentInsuranceCoverage;
-import insurancecompany.model.properties.Property;
 import insurancecompany.misc.hometypes.HolidayHomeType;
-import insurancecompany.misc.coverages.HolidayHomeInsuranceCoverage;
+import insurancecompany.model.properties.Property;
 import java.io.Serializable;
 
 

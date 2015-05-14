@@ -5,9 +5,9 @@
  */
 package insurancecompany.model.insurances;
 
-import insurancecompany.model.properties.Property;
-import insurancecompany.misc.hometypes.HolidayHomeType;
 import insurancecompany.misc.coverages.HolidayHomeInsuranceCoverage;
+import insurancecompany.misc.hometypes.HolidayHomeType;
+import insurancecompany.model.properties.Property;
 import java.io.Serializable;
 import java.util.Calendar;
 /**

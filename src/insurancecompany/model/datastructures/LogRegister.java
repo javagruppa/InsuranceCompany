@@ -28,7 +28,7 @@ public class LogRegister {
     private List<Log> logs;
     
     public LogRegister() {
-        logs = new ArrayList<Log>();
+        logs = new ArrayList<>();
     }
     
     public void add(Log log) {
@@ -37,6 +37,11 @@ public class LogRegister {
     
     public void add(String message) {
         Log log = new Log(message);
+        add(log);
+    }
+    
+    public void add(String message, Person user) {
+        Log log = new Log(message, user);
         add(log);
     }
     
@@ -64,9 +69,9 @@ public class LogRegister {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Logs:");
-        for (Log log : logs) {
-            sb.append(log.toString() + "\n");
-        }
+        logs.stream().forEach((log) -> {
+            sb.append(log.toString()).append("\n");
+        });
         return sb.toString();
     }
     

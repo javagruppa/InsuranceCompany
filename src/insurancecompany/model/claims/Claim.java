@@ -2,10 +2,10 @@ package insurancecompany.model.claims;
 
 import insurancecompany.misc.DateUtility;
 import insurancecompany.misc.coverages.Damage;
-import java.awt.Image;
 import java.io.*;
 import java.util.Calendar;
 import java.util.Set;
+import javafx.scene.image.Image;
 
 /**
  *

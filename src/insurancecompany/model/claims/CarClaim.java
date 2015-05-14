@@ -1,11 +1,10 @@
 package insurancecompany.model.claims;
 
 import insurancecompany.misc.coverages.Damage;
-import java.awt.Image;
 import java.io.Serializable;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Set;
+import javafx.scene.image.Image;
 
 /**
  * Car claim class. Sub class to claim. All claims regarding cars are

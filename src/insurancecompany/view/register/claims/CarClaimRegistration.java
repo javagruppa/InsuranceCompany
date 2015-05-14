@@ -5,13 +5,15 @@
  */
 package insurancecompany.view.register.claims;
 
+import insurancecompany.misc.DateUtility;
 import insurancecompany.misc.coverages.Damage;
-import insurancecompany.model.claims.CarClaimForm;
 import insurancecompany.model.insurances.Insurance;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Set;
@@ -22,7 +24,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.DateCell;
@@ -119,7 +120,13 @@ public class CarClaimRegistration {
     /** Button used to register the claim. */
     private Button registerButton;  
     // Output nodes, Text messages:
+    /** Text used to display a status/help message when the user presses the register button. */
+    private Text registerButtonMessage;
+    /** Text used to display a help message if the user types in an invalid value for the appraisal. */
+    private Text appraisalFieldMessage;
     
+    /** The customerId used in the claim registration. */
+    private int selectedCustomerId;
     /** The car claim form view belonging to this claim view. */
     private CarClaimFormView carClaimFormView;
     
@@ -196,11 +203,13 @@ public class CarClaimRegistration {
         damagesPane.setId("customPane1");
         Label appraisalLbel = new Label("Takseringsbeløp:");
         appraisalField = new TextField();
+        appraisalFieldMessage = new Text();
         Label selectImageLabel = new Label("Bilde som beskriver skaden");
         selectImageButton = new Button("Hent bilde");
         Label openClaimFormLabel = new Label("Bilskademelingsskjema");
         openClaimFormButton = new Button("Fyll ut");
         registerButton = new Button("Registrer");
+        registerButtonMessage = new Text();
         
         // Add nodes to mainPane:
         // Nodes that are used for registering claim:
@@ -227,13 +236,14 @@ public class CarClaimRegistration {
         mainPane.add(damagesPane, 4, 7, 3, 5);
         mainPane.add(appraisalLbel, 4, 13);
         mainPane.add(appraisalField, 5, 13);
+        mainPane.add(appraisalFieldMessage, 6, 13, 2, 1);
         mainPane.add(selectImageLabel, 4, 14);
         mainPane.add(selectImageButton, 5, 14);
         mainPane.add(openClaimFormLabel, 4, 15);
         mainPane.add(openClaimFormButton, 5, 15);
         mainPane.add(registerButton, 4, 16);
+        mainPane.add(registerButtonMessage, 5, 16, 3, 1);
         
-        carClaimFormView = new CarClaimFormView(this);
         // Initialize local event handlers:
         initializeLocalEventHandlers();
     } // end of sole Constructor
@@ -457,8 +467,8 @@ public class CarClaimRegistration {
      * Sets the select insurance message of this view.
      * @param selectInsuranceMessage the selectInsuranceMessage to set
      */
-    public void setSelectInsuranceMessage(Text selectInsuranceMessage) {
-        this.selectInsuranceMessage = selectInsuranceMessage;
+    public void setSelectInsuranceMessage(String selectInsuranceMessage) {
+        this.selectInsuranceMessage.setText(selectInsuranceMessage);
     }
 
     /**
@@ -480,6 +490,7 @@ public class CarClaimRegistration {
     
     /**
      * Returns the damages selected from the check boxes.
+     * Returns an empty set if no damages are selected.
      * @return a Set of Damages
      */
     public Set<Damage> getSelectedDamages() {
@@ -502,6 +513,7 @@ public class CarClaimRegistration {
      */
     public void clearMessages() {
         selectInsuranceMessage.setText("");
+        registerButtonMessage.setText("");
     }
 
     /**
@@ -534,6 +546,48 @@ public class CarClaimRegistration {
      */
     public void setCarClaimFormView(CarClaimFormView carClaimFormView) {
         this.carClaimFormView = carClaimFormView;
+    }
+
+    /**
+     * @param registerButtonMessage the registerButtonMessage to set
+     */
+    public void setRegisterButtonMessage(String registerButtonMessage) {
+        this.registerButtonMessage.setText(registerButtonMessage);
+    }
+
+    /**
+     * @return the selectedCustomerId
+     */
+    public int getSelectedCustomerId() {
+        return selectedCustomerId;
+    }
+
+    /**
+     * @param selectedCustomerId the selectedCustomerId to set
+     */
+    public void setSelectedCustomerId(int selectedCustomerId) {
+        this.selectedCustomerId = selectedCustomerId;
+    }
+
+    /**
+     * Returns a Calendar object of the selected date for when the damage
+     * happened. Returns null if no date is selected.
+     * @return the dateHappenedPicker
+     */
+    public Calendar getDateHappenedPickerValue() {
+         // Get selected value:
+        if (dateHappenedPicker.getValue() != null) {
+            return  DateUtility.LocalDateToCalendar(dateHappenedPicker.getValue());
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * @param appraisalFieldMessage the appraisalFieldMessage to set
+     */
+    public void setAppraisalFieldMessage(String appraisalFieldMessage) {
+        this.appraisalFieldMessage.setText(appraisalFieldMessage);
     }
 
 } // end of class CarClaimRegistration

@@ -30,13 +30,12 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 import javafx.application.Platform;
 import javafx.beans.value.ObservableValue;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.scene.image.Image;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javax.imageio.ImageIO;
@@ -46,6 +45,9 @@ import javax.imageio.ImageIO;
  * @author André
  */
 public class MainController {
+    
+    /** Constant with a String value equal to the resources file path. */
+    public static final String RES_FILE_PATH = "src/insurancecompany/resources/";
     
     /** Reference to the logged in user.*/
     private Person user;
@@ -108,14 +110,17 @@ public class MainController {
     private ViewController viewController;
     
     // Creates strings to be used in messages to the user:
-    private final static String NO_CUSTOMER_MESSAGE = "Du har ikke valgt noen kunde.";
-    private final static String FORMAT_MESSAGE = "Dette feltet kan kun bestå av tall.";
-    private final static String EMPTY_MESSAGE = "Dette feltet må fylles ut.";
-    private final static String CUSTOMERID_FORMAT_MESSAGE = "Kundenummeret kan kun bestå av tall.";
-    private final static String CUSTOMERID_EMPTY_MESSAGE = "Du må skrive inn et kundenummer.";
-    private final static String CUSTOMERID_NOT_FOUND_MESSAGE = "Fant ingen kunde med kundenummer: ";
-    private final static String PERSONALNUMBER_EMPTY_MESSAGE = "Du må skrive inn et personnummer.";
-    private final static String PERSONALNUMBER_NOT_FOUND_MESSAGE = "Fant ingen kunde med personnummer: ";
+    private static final String NO_CUSTOMER_MESSAGE = "Du har ikke valgt noen kunde.";
+    private static final String FORMAT_MESSAGE = "Dette feltet kan kun bestå av tall.";
+    private static final String EMPTY_MESSAGE = "Dette feltet må fylles ut.";
+    private static final String CUSTOMERID_FORMAT_MESSAGE = "Kundenummeret kan kun bestå av tall.";
+    private static final String CUSTOMERID_EMPTY_MESSAGE = "Du må skrive inn et kundenummer.";
+    private static final String CUSTOMERID_NOT_FOUND_MESSAGE = "Fant ingen kunde med kundenummer: ";
+    private static final String PERSONALNUMBER_EMPTY_MESSAGE = "Du må skrive inn et personnummer.";
+    private static final String PERSONALNUMBER_NOT_FOUND_MESSAGE = "Fant ingen kunde med personnummer: ";
+    private static final String NO_INSURANCE_MESSAGE = "Du har ikke valgt noen forsikring.";
+    private static final String NO_DATE_MESSAGE = "Du har ikke valgt noen dato.";
+    private static final String DESCRIPTION_EMPTY_MESSAGE = "Du må skrive inn en beskrivelse.";
     
     public MainController()  {
         
@@ -515,9 +520,85 @@ public class MainController {
     
     // TODO:zlokex Create this method
     private void carClaimRegisterButtonEventHandler(ActionEvent event) {
-        
+        boolean ok = true;
+        // Clears the previous status messages:
+        carClaimRegistration.clearMessages();
+        int insuranceId = 0;
+        int appraisal = 0;
+        int customerId = carClaimRegistration.getSelectedCustomerId();
+        if (customerId == 0) {
+            ok = false;
+            carClaimRegistration.setRegisterButtonMessage(NO_CUSTOMER_MESSAGE);
+            return;
+        }
+        CarInsurance insurance;
+        // Get the Insurance selected from the table:
+        if (carClaimRegistration.getInsuranceTableValue() instanceof CarInsurance) {
+            insurance = (CarInsurance) carClaimRegistration.getInsuranceTableValue();
+            // Checks if this value is null:
+            if (insurance == null) {
+                ok = false;
+                // If so send a message to the user:
+                carClaimRegistration.setRegisterButtonMessage(NO_INSURANCE_MESSAGE);
+                // Exit the method, as we don't need to check for anything else:
+                return;
+            } else {
+                insuranceId = insurance.getCustomerId();
+            }
+            Calendar dateHappened = carClaimRegistration.getDateHappenedPickerValue();
+            if (dateHappened == null) {
+                ok = false;
+                // If so send a message to the user:
+                carClaimRegistration.setRegisterButtonMessage(NO_DATE_MESSAGE);
+                return; // leave method
+            }
+            String description = carClaimRegistration.getDescriptionTextArea();
+            if (description.equals("")) {
+                ok = false;
+                // If so send a message to the user:
+                carClaimRegistration.setRegisterButtonMessage(DESCRIPTION_EMPTY_MESSAGE);
+                return; // leave method
+            }
+            // Get the selected damages:
+            Set<Damage> damages = carClaimRegistration.getSelectedDamages();
+            // Returns an empty set if no damages are selected:
+            if (damages.isEmpty()) {
+                // This is still allowed.
+            }
+            Image image = carClaimRegistration.getImage();
+            if (image == null) {
+                // This is also allowed.
+            }
+
+            String appraisalString = carClaimRegistration.getAppraisalField();
+            if (appraisalString.equals("")) {
+                ok = false;
+                carClaimRegistration.setAppraisalFieldMessage(EMPTY_MESSAGE);
+            } else {
+                try {
+                    appraisal = Integer.parseInt(appraisalString);
+                } catch (NumberFormatException nfe) {
+                    ok = false;
+                    carClaimRegistration.setAppraisalFieldMessage(FORMAT_MESSAGE);
+                }
+            }
+            // If all fields are filled in correctly according to what we need to create a
+            // claim, we proceed:
+            if (ok) {
+                CarClaimFormView formView = carClaimRegistration.getCarClaimFormView();
+                if (formView == null) {
+                    // Send carclaimform as null if no carclaimformview has been opened.
+                    CarClaim claim = new CarClaim(customerId, insuranceId, description, dateHappened, damages, appraisal, null);
+                } else {
+                    Customer personA = customers.findCustomerById(customerId);
+                    Car carA = insurance.getCar();
+                    //VehicleOwner v = new VehicleOwner(description, description, appraisalString, description, null, description)
+                    //CarClaimForm carClaimForm = new CarClaimForm(null, c, description, insuranceId, image)
+                }
+            }  
+        }   
     }
-    // TODO:zlokex Create this method
+    
     private void carClaimSearchCustomerIdButtonEventHandler(ActionEvent event) {
         String customerIdString = carClaimRegistration.getCustomerId();
         int customerId;
@@ -544,6 +625,8 @@ public class MainController {
         } else {
             // Displays the customer:
             carClaimRegistration.setCustomerArea(customer.toString());
+            // Set this id as the selected one in the view class:
+            carClaimRegistration.setSelectedCustomerId(customerId);
             // Finds the customers insurances:
             List insuranceList = insurances.getAllActiveTypeInsurancesByCustomerId(customerId, CarInsurance.class);
             if (!insuranceList.isEmpty()) {
@@ -571,6 +654,8 @@ public class MainController {
             int customerId = customer.getId();
             // Displays the customer:
             carClaimRegistration.setCustomerArea(customer.toString());
+            // Set this id as the selected one in the view class:
+            carClaimRegistration.setSelectedCustomerId(customerId);
             List insuranceList = insurances.getAllActiveTypeInsurancesByCustomerId(customerId, CarInsurance.class);
             if (!insuranceList.isEmpty()) {
                 // Displays the insurances if there is at least one:
@@ -580,14 +665,16 @@ public class MainController {
     }
     
     private void carClaimSelectInsuranceButtonEventHandler(ActionEvent event) {
+        carClaimRegistration.clearMessages();
         Insurance insurance = carClaimRegistration.getInsuranceTableValue();
-        
+        String message = "";
         if (insurance instanceof CarInsurance) {
             CarInsuranceCoverage coverage = (CarInsuranceCoverage) insurance.getCoverage();
             carClaimRegistration.setDamages(coverage.damages());
+            message = insurance.getName() + " " + coverage.toString() + " er valgt.";
+            carClaimRegistration.setSelectInsuranceMessage(message);
         } else {
-            Text message = new Text();
-            message.setFill(Color.FIREBRICK);
+            message = "Ingen forsikring valgt,";
             carClaimRegistration.setSelectInsuranceMessage(message);
         }
     }

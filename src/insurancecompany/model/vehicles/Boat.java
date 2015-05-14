@@ -3,13 +3,16 @@ package insurancecompany.model.vehicles;
 import java.io.Serializable;
 
 /**
- * The class boat. Sub class of vehicle representing a boat that is insured
+ * The class boat. Sub class of vehicle representing a boat that is insured.
+ * 
  * @author Carl
  * @author Sindre
  */
 public class Boat extends Vehicle implements Serializable {
     /** SerialVersionUID used to identify this class for object IO */
     private static final long serialVersionUID = 1L;
+    /** The effect of the engine of this boat. */
+    private int engineEffect;
     /** The type of the engine of this boat. */
     private String engineType;
     /** The length of this boat in feet. */
@@ -37,9 +40,10 @@ public class Boat extends Vehicle implements Serializable {
     public Boat(boolean alarm, String brand, int engineEffect, 
             String engineType, int length, String model, String personalNumber, 
             String registrationNumber, int registrationYear, int value){
-        super(alarm, brand, engineEffect, model, personalNumber, 
+        super(alarm, brand, model, personalNumber, 
                 registrationNumber, registrationYear);
         this.length = length;
+        this.engineEffect = engineEffect;
         this.engineType = engineType;
         this.value = value;
     }
@@ -58,6 +62,14 @@ public class Boat extends Vehicle implements Serializable {
      */
     public int getLength() {
         return length;
+    }
+    
+    /**
+     * Returns the engine effect of this boat
+     * @return the engineEffect
+     */
+    public int getEngineEffect() {
+        return engineEffect;
     }
     
     /**

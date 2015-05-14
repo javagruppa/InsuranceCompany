@@ -6,6 +6,7 @@
 package insurancecompany.view.register.claims;
 
 import insurancecompany.misc.coverages.Damage;
+import insurancecompany.model.claims.ClaimItem;
 import insurancecompany.model.insurances.Insurance;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -21,7 +22,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.DateCell;
@@ -39,7 +39,7 @@ import javafx.scene.text.Text;
 import javafx.util.Callback;
 
 /**
- * This class represents a boat claim registration view. This view is connected
+ * This class represents a home content claim registration view. This view is connected
  * to the model through a controller. The class creates a GridPane with nodes.
  * The GridPane consists of 2 main parts. 
  * 
@@ -47,7 +47,7 @@ import javafx.util.Callback;
  * search engine finds a customer this customer is displayed and a list of all 
  * this customer's insurances is as well displayed in a table view. The user 
  * is then able to select which insurance he/she wants to use for the claim. 
- * Only boat insurances are allowed to be selected. 
+ * Only home content insurances are allowed to be selected. 
  * 
  * <p>The right side of this pane is used for typing in the fields connected
  * to the damage/claim.
@@ -113,8 +113,26 @@ public class HomeContentClaimRegistration {
     /** Button used to select an image describing the claim. */
     private Button selectImageButton;
     /** Button used to register the claim. */
-    private Button registerButton;  
+    private Button registerButton;
     // Output nodes, Text messages:
+    
+        /** Input field for the description of the item. */
+    private TextArea itemDescriptionTextArea;
+    /** Input field for where the item was acquired. */
+    private TextField acquiredAreaField;
+    /** DatePicker for the date the item was acquired. */
+    private DatePicker acquiredDatePicker;
+    /** Input field for the value of the item. */
+    private TextField valueField;
+    /** Input field for the description of how the item can be documented. */
+    private TextArea descriptionOfDocumentationTextArea;
+
+    /** Button used to register the item from the input fields. */
+    private Button addItemButton;
+    /** Text message used to confirm that an item has been added. */
+    private Text addItemConfirmMessage;
+    /** A list of claim items belonging to this claim.*/
+    private List<ClaimItem> claimItems;
     
     /**
      * Sole constructor. Initializes the main Pane and sets up all its nodes.
@@ -124,21 +142,23 @@ public class HomeContentClaimRegistration {
         
         // Sets up the mainPane
         mainPane = new GridPane();
-        mainPane.setAlignment(Pos.CENTER);
-        mainPane.setHgap(10);
-        mainPane.setVgap(6);
         // Set CSS id:
         mainPane.setId("innerPane");
         // Set up column constraints. Width in pixels:
         ColumnConstraints col1 = new ColumnConstraints(120);
         ColumnConstraints col2 = new ColumnConstraints(100);
         ColumnConstraints col3 = new ColumnConstraints(40);
-        ColumnConstraints col4 = new ColumnConstraints(50);
+        ColumnConstraints col4 = new ColumnConstraints(25); // gap
         ColumnConstraints col5 = new ColumnConstraints(150);
         ColumnConstraints col6 = new ColumnConstraints(100);
-        ColumnConstraints col7 = new ColumnConstraints(150);
+        ColumnConstraints col7 = new ColumnConstraints(100);
+        ColumnConstraints col8 = new ColumnConstraints(25); // gap
+        ColumnConstraints col9 = new ColumnConstraints(100);
+        ColumnConstraints col10 = new ColumnConstraints(100);
+        ColumnConstraints col11 = new ColumnConstraints(100);
         // Add these constraints:
-        mainPane.getColumnConstraints().addAll(col1, col2, col3, col4, col5, col6, col7);
+        mainPane.getColumnConstraints().addAll(col1, col2, col3, col4, col5, 
+                col6, col7, col8, col9, col10, col11);
         
         // Start initializing all nodes that are to be placed in the gridpane:
         // Nodes that are used for customer searching and displaying customer info and insurances:
@@ -157,7 +177,7 @@ public class HomeContentClaimRegistration {
         customerArea.setEditable(false);
         customerArea.setPrefColumnCount(2);
         customerArea.setPrefRowCount(3);
-        Text insurancesTitle = new Text("Velg forsikringen denne skademelding går under:");
+        Text insurancesTitle = new Text("Velg forsikring til denne skaden:");
         insurancesTitle.setId("textTitle");
         insurancesTable = new TableView();
         insurancesTable.setPrefHeight(100);
@@ -166,7 +186,7 @@ public class HomeContentClaimRegistration {
         insuranceIdColumn = new TableColumn<>("Forsikringsid");
         insurancesTable.getColumns().addAll(insuranceTypeColumn, insuranceCoverageColum, insuranceIdColumn);
         insurancesTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-        selectInsuranceButton = new Button("Velg");
+        selectInsuranceButton = new Button("Velg forsikring");
         selectInsuranceMessage = new Text();
         // Nodes that are used for registering claim:
         Text damagesTitle = new Text("Fyll inn informasjon:");
@@ -194,8 +214,29 @@ public class HomeContentClaimRegistration {
         appraisalField = new TextField();
         Label selectImageLabel = new Label("Bilde som beskriver skaden");
         selectImageButton = new Button("Hent bilde");
-        registerButton = new Button("Registrer");
         
+        claimItems = new ArrayList();
+        Text addItemsTitle = new Text("Legg til gjenstander:");
+        addItemsTitle.setId("textTitle");
+        Label acquiredDateLabel = new Label("Tilskaffet dato(Circa):");
+        acquiredDatePicker = new DatePicker();
+        // Sets up a restriction to the DatePicker:
+        restrictDatePickerAllOlder(acquiredDatePicker);
+        Label descriptionItemLabel = new Label("Beskrivelse av gjenstanden:");
+        itemDescriptionTextArea = new TextArea();
+        itemDescriptionTextArea.setWrapText(true);
+        itemDescriptionTextArea.setPrefRowCount(4);
+        Label acquiredAreaLabel = new Label("Sted tilskaffet:");
+        acquiredAreaField = new TextField();
+        Label valueLabel = new Label("Verdi ved ny:");
+        valueField = new TextField();
+        Label descriptionOfDocumentationLabel = new Label("Beskrivelse på hvordan gjenstanden kan dokumenteres:");
+        descriptionOfDocumentationTextArea = new TextArea();
+        descriptionOfDocumentationTextArea.setWrapText(true);
+        addItemButton = new Button("Legg til gjenstand");
+        addItemConfirmMessage = new Text();
+        registerButton = new Button("Registrer skademelding");
+           
         // Add nodes to mainPane:
         // Nodes that are used for registering claim:
         mainPane.add(selectCustomerTitle, 0, 0);
@@ -223,7 +264,24 @@ public class HomeContentClaimRegistration {
         mainPane.add(appraisalField, 5, 13);
         mainPane.add(selectImageLabel, 4, 14);
         mainPane.add(selectImageButton, 5, 14);
-        mainPane.add(registerButton, 4, 16);
+        //mainPane.add(registerButton, 4, 16);
+        
+        // Nodes that are used for adding items:
+        mainPane.add(addItemsTitle, 8, 0, 2, 1);
+        mainPane.add(acquiredDateLabel, 8, 1, 2, 1);
+        mainPane.add(acquiredDatePicker, 10, 1);
+        mainPane.add(descriptionItemLabel, 8, 2, 3, 1);
+        mainPane.add(itemDescriptionTextArea, 8, 3, 3, 2);
+        mainPane.add(acquiredAreaLabel, 8, 6);
+        mainPane.add(acquiredAreaField, 9, 6, 2, 1);
+        mainPane.add(valueLabel, 8, 7);
+        mainPane.add(valueField, 9, 7, 2, 1);
+        mainPane.add(descriptionOfDocumentationLabel, 8, 8, 3, 1);
+        mainPane.add(descriptionOfDocumentationTextArea, 8, 9, 3, 3);
+        mainPane.add(addItemButton, 8, 12, 2, 1);
+        mainPane.add(addItemConfirmMessage, 10, 12, 3, 1);
+        mainPane.add(registerButton, 8, 13, 3, 1);
+
     } // end of sole Constructor
     
     /**
@@ -261,6 +319,8 @@ public class HomeContentClaimRegistration {
     
     /**
      * Sets up date restrictions to the DatePicker in the parameter.
+     * The DatePicker will have a restriction where it can only select 
+     * values ranging from two months old until current date.
      * @param dateHappenedPicker 
      */
     private void restrictDatePicker(DatePicker dateHappenedPicker) {
@@ -274,6 +334,35 @@ public class HomeContentClaimRegistration {
                 super.updateItem(item, empty);
                 // Only allow dates that are up to 2 months old, and not newer than current date:
                 if(item.isBefore(LocalDate.now().minusMonths(2)) || item.isAfter(LocalDate.now()))
+                {   // Sets the background color of the invalid dates to a pink/red color:
+                    setStyle("-fx-background-color: #ffc0cb;");
+                    // Disables them, so they can not be picked:
+                    setDisable(true);
+                }
+            }
+        };
+        // Apply these restrictions to our DatePicker
+        dateHappenedPicker.setDayCellFactory(dayCellFactory);
+        dateHappenedPicker.setPromptText("dd/MM/yyyy");
+    } // end of method restrictDatePicker
+     
+    /**
+     * Sets up date restrictions to the DatePicker in the parameter.
+     * The DatePicker will have a restriction where it can only select 
+     * values older than current date.
+     * @param dateHappenedPicker 
+     */
+    private void restrictDatePickerAllOlder(DatePicker dateHappenedPicker) {
+        dateHappenedPicker.setValue(LocalDate.now());
+        // Sets up a restricton for choosable dates:
+        Callback<DatePicker, DateCell> dayCellFactory = dp -> new DateCell()
+        {
+            @Override
+            public void updateItem(LocalDate item, boolean empty)
+            {
+                super.updateItem(item, empty);
+                // Only allow dates that are older than current date:
+                if(item.isAfter(LocalDate.now()))
                 {   // Sets the background color of the invalid dates to a pink/red color:
                     setStyle("-fx-background-color: #ffc0cb;");
                     // Disables them, so they can not be picked:
@@ -408,6 +497,13 @@ public class HomeContentClaimRegistration {
     public void setSelectImageButtonEventHandler(EventHandler<ActionEvent> value) {
         selectImageButton.setOnAction(value);
     }
+
+     /**
+     * Sets the event handler for the add item button of this view.
+     */
+    private void setAddItemButtonEventHandler(EventHandler<ActionEvent> event) {
+        addItemButton.setOnAction(event);
+    }
     
     /**
      * Sets event handler for the register button of this view.
@@ -492,4 +588,20 @@ public class HomeContentClaimRegistration {
         this.image = image;
     }
 
-} // end of class BoatClaimRegistration
+    /**
+     * Returns a List of ClaimItem.
+     * @return the claimItems
+     */
+    public List<ClaimItem> getClaimItems() {
+        return claimItems;
+    }
+    
+    /**
+     * Adds a claim item to the claim items List of this view.
+     * @param claimItem 
+     */
+    public void addClaimItem(ClaimItem claimItem) {
+        claimItems.add(claimItem);
+    }
+
+} // end of class HomeContentClaimRegistration

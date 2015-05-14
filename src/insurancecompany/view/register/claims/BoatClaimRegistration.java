@@ -133,7 +133,7 @@ public class BoatClaimRegistration {
         ColumnConstraints col4 = new ColumnConstraints(50);
         ColumnConstraints col5 = new ColumnConstraints(150);
         ColumnConstraints col6 = new ColumnConstraints(100);
-        ColumnConstraints col7 = new ColumnConstraints(150);
+        ColumnConstraints col7 = new ColumnConstraints(100);
         // Add these constraints:
         mainPane.getColumnConstraints().addAll(col1, col2, col3, col4, col5, col6, col7);
         
@@ -154,7 +154,7 @@ public class BoatClaimRegistration {
         customerArea.setEditable(false);
         customerArea.setPrefColumnCount(2);
         customerArea.setPrefRowCount(3);
-        Text insurancesTitle = new Text("Velg forsikringen denne skademelding går under:");
+        Text insurancesTitle = new Text("Velg forsikringen til denne skaden:");
         insurancesTitle.setId("textTitle");
         insurancesTable = new TableView();
         insurancesTable.setPrefHeight(100);

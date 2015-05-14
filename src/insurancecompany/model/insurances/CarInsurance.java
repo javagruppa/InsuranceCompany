@@ -84,44 +84,34 @@ public class CarInsurance extends Insurance implements Serializable {
     // CALCULATE PREMIUM METHODS
     
     /**
-     * Calculates and returns the price for the maximum number of kilometers
-     * included in this insurance.
-     * 
-     * @return The maxLengthCost of this insurance.
-     */
-    public int maxlengthCost() {
-	return maxLength / 10;
-    }
-
-    /**
      * Calculates and returns the price drop of this insurance due the chosen
      * excess.
      * 
      * @return The price drop of this insurance based on the excess.
      */
-    public int excessCalculator() {
-	// Finds the excess set for this insurance
+    public int excessDrop() {
+	// Finds the excess set for this insurance.
         int excess = getExcess();
-        // The price drop based on the set excess of this insurance
+        // The price drop based on the set excess of this insurance.
         int excessSaving = 0;
 	if (excess == 0) {
             // If excess is set to 0, the excess saving will be set to -2000, 
-            // and there will be 2000 added to the price
+            // and there will be 2000 added to the price.
             excessSaving = -2000;
         } else if (excess > 0 && excess <= 5000) {
             // With excess set between 0 and 5000, the excess saving will be
-            // calulated to 20% of the excess
+            // calulated to 20% of the excess.
             excessSaving = excess / 5;
         } else if (excess > 5000 && excess <= 10000) {
             // With excess set between 5000 and 10000, the excess saving will 
-            // be calulated to 25% of the excess
+            // be calulated to 25% of the excess.
             excessSaving = excess / 4;
         } else if (excess > 10000) {
             // With excess set above 10000, the excess saving will be
-            // calulated to 33% of the excess
+            // calulated to 33% of the excess.
             excessSaving = excess / 3;
         }
-        // returns the price drop
+        // Returns the price drop.
         return excessSaving;
     }
 
@@ -130,45 +120,46 @@ public class CarInsurance extends Insurance implements Serializable {
      * parameters including whether the customer fullfills certain aspects:
      * youngdriver, garage, alarm.
      */
-    public void premiumCalculator() {
+    public void calculatePremium() {
 	double youngDriverMultiplicator = 1.0;
 	double garageMultiplicator = 1.0;
 	double alarmMultiplicator = 1.0;
         int bonusMultiplicator = bonus / 100;
+        int maxLengthCost = maxLength / 10;
         // If there will be a young driver of this insured car, the
         // multiplicator is set to 1.2
 	if (youngDriver) {
             youngDriverMultiplicator = 1.2;
         }
         // If the car of this insurance has an alam, the alarm multiplicator
-        // is set to 0.8
+        // is set to 0.8.
 	if (car.getAlarm()) {
             alarmMultiplicator = 0.8;
         }
         // If the car of this insurance has a garage, the garage multiplicator
-        // is set to 0.8
+        // is set to 0.8.
 	if (garage) {
             garageMultiplicator = 0.8;
         }
-	// Adds up the total of the multiplicators above
+	// Adds up the total of the multiplicators above.
         double allMultiplicators = garageMultiplicator + alarmMultiplicator +
                 youngDriverMultiplicator;
 	// Divides the sum of the multiplicators by 3, getting an average
         // multiplicator that is used to calculate the total premium.
         double totalMultiplicator = allMultiplicators / 3;
-	// Gets the cost of this type of insurance (Casco, partly casco or
-        // Liability)
+	// Gets the cost of this type of insurance (casco, partly casco or
+        // liability).
         int typeCost = coverage.getPricing();	
 	// Adds up the type cost and the maxlengthCost, and removes the
-        // excess saving to get a basic premium
-        double basicPremium = maxlengthCost() + typeCost - excessCalculator(); 
+        // excess saving to get a basic premium.
+        double basicPremium = maxLengthCost + typeCost - excessDrop(); 
 	// Multiplicates the basic premium by the total multiplicator to get
         // the final premium for this insurance.
         double newPremium = basicPremium * totalMultiplicator;
-        // calculates the decrease in price due to the current bonus
+        // calculates the decrease in price due to the current bonus.
         double bonusDecrease = newPremium * bonusMultiplicator;
         // rounds the final premium to a whole number, converting it to an
-        // int value
+        // int value.
         int setPremium = (int)newPremium - (int)bonusDecrease;
         // Changes the premium of this insurance.
         setPremium(setPremium);
@@ -244,7 +235,7 @@ public class CarInsurance extends Insurance implements Serializable {
      * representation consists of each field with a short description separated
      * by a new line.
      * 
-     * @return a string representation of this insurance
+     * @return A string representation of this insurance.
      */
     @Override
     public String toString() {
@@ -254,11 +245,11 @@ public class CarInsurance extends Insurance implements Serializable {
         // Appends the fields with appropriate sentences.
         result.append("BILFORSIKRING");
         result.append("\n").append(super.toString());
-        result.append("\nType: ").append(coverage.toString());
+        result.append("\nDekning: ").append(coverage.toString());
         result.append("\nGarasje: ").append(garage ? "Ja" : "Nei");
-        result.append("\nKan personer under 25 kjøre bilen: ").
-                append(youngDriver ? "Ja" : "Nei");
-        result.append("\nMaksimum kjørelengde: ").append(maxLength);
+        result.append("\nYngste fører: ").append(youngDriver ? "Under 25" : 
+                "Over 25");
+        result.append("\nKjørelengde: ").append(maxLength);
         result.append("\nBonus: ").append(bonus).append("%");
         result.append("\nBonus sist endret: ").append(DateUtility.
                 NORWEGIAN_DATE_FORMAT.format(lastBonusUpdate));

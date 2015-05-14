@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package insurancecompany.model.insurances;
 
 import insurancecompany.model.properties.Property;
@@ -14,8 +9,9 @@ import java.util.Calendar;
 /**
  *
  * @author Sindre
+ * @author Carl
  */
-public class HomeInsurance extends PropertyInsurance implements Serializable {
+public class HomeInsurance extends Insurance implements Serializable {
     
     /** SerialVersionUID used to identify this class for object IO. */
     private static final long serialVersionUID = 1L;
@@ -29,9 +25,9 @@ public class HomeInsurance extends PropertyInsurance implements Serializable {
     private HomeType type;
     
     /**
-     * Constructs a new home insurance with the specified coverage, customerId, 
-     * excess, property, rental and type. Active is set to true. Date is set to 
-     * the current date. InsuranceId is automatically set to nextInsuranceId.
+     * Constructs a new home insurance with the specified parameters. Active is 
+     * set to true. Date is set to the current date. InsuranceId is 
+     * automatically set to nextInsuranceId.
      * 
      * @param coverage The coverage of this insurance.
      * @param customerId The id of the customer who owns this insurance.
@@ -49,29 +45,103 @@ public class HomeInsurance extends PropertyInsurance implements Serializable {
         this.type = type;
     }
     
-    /**
-     * Returns the type of this insurance in form of a String.
-     * @return 
-     */
+    // GET METHODS
+    
+    /** @return The coverage of this insurance. */
+    @Override
+    public HomeInsuranceCoverage getCoverage() {
+        return coverage;
+    }
+    
+    /** @return The type of insurance in form of a String. */
     @Override
     public String getName() {
         return "Husforsikring";
     }
     
+    // CALCULATE PREMIUM METHODS
+    
     /**
-     * Returns whether or not this insurance covers rentals
-     * @return rental
+     * Calculates and sets the premium for this insurance based on if the house 
+     * is to be rented out, the type of the insured property, the building 
+     * material of the property and the year the property was built.
      */
-    public boolean getRental() {
-        return rental;
+    public void calculatePremium(){
+        double rentalExtra = rental ? 1.15 : 1;
+        // Multiplicator for the homes building material
+	double MaterialMultiplicator = property.getMaterialMultiplicator();
+        // Multiplicator for the homes building year
+        double yearMultiplicator = buildingYearMultiplicator();
+        // Price for what type of property is insured
+	int typePrice = type.getPricing();
+        // Base price. Price after excess drop (incl price for plus or basic)
+	int baseprice = typePrice + coverage.getPricing() - excessDrop();
+        // Total price. Base price including extra if the property is a rental
+	double totalPrice = baseprice * rentalExtra;
+        // Material price. Total price multiplied by material multiplicator
+	double materialPrice = totalPrice * MaterialMultiplicator;
+        // Final price. Material price multiplied by year multiplicator
+        double finalprice = materialPrice * yearMultiplicator;
+        // Converts the final price to an int value
+        int setPremium = (int)finalprice;
+        // Sets this insurances premium to the final price
+	setPremium(setPremium);
     }
+    
+    /**
+     * Calculates the drop in price for this insurance based on the excess.
+     * 
+     * @return The drop in price due to excess.
+     */
+    private int excessDrop() {
+	int excess = getExcess();
+	int result = 0;
+	if (excess == 0) {
+            result = -1000;
+	} else if (excess > 0) {
+            result = excess / 6;
+	}
+	return result;
+    }
+    
+    /**
+     * Sets and returns the price multiplicator for what year the property was
+     * built.
+     * 
+     * @return The multiplicator as a double.
+     */
+    private double buildingYearMultiplicator(){
+        double result = 1;
+        int year = property.getYear();
+        int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+        if (currentYear - year <= 10) {
+            result = 0.85;
+        } else if (currentYear - year > 10 && currentYear - year <= 20) {
+            result = 0.95;
+        } else if (currentYear - year > 20 && currentYear - year <= 30) {
+            result = 1.05;
+        } else if (currentYear - year > 30 && currentYear - year <= 45) {
+            result = 1.1;
+        } else if (currentYear - year > 45 && currentYear - year <= 55) {
+            result = 1.19;
+        } else if (currentYear - year > 55 && currentYear - year <= 80) {
+            result = 1.25;
+        } else if (currentYear - year > 80 && currentYear - year <= 100) {
+            result = 1.5;
+        } else if (currentYear - year > 100) {
+            result = 1.9;
+        }
+        return result;
+    }
+    
+    // TO STRING METHOD
     
     /**
      * Returns a string representation of this insurance. The string
      * representation consists of each field with a short description separated
      * by a new line.
      * 
-     * @return a string representation of this insurance
+     * @return A string representation of this insurance.
      */
     @Override
     public String toString() {
@@ -82,140 +152,9 @@ public class HomeInsurance extends PropertyInsurance implements Serializable {
         result.append("HUSFORSIKRING");
         result.append("\n").append(super.toString());
         result.append("\nDekning: ").append(coverage.toString());
-        result.append("\nUtleiedekning: ").
-                append(rental ? "Ja" : "Nei");
+        result.append("\nUtleiedekning: ").append(rental ? "Ja" : "Nei");
+        result.append("\nEiendomstype: ").append(type.toString());
         // Returns the string.
         return result.toString();
-    }
-    
-    /**
-     * Calculates the drop in price for this insurance based on the
-     * applied excess
-     * @return the drop value as an integer
-     */
-    private int excessDrop(){
-	int excess = getExcess();
-	int drop = 0;
-
-	if (excess == 0){
-            drop = -1000;
-	}
-	else if (excess > 0){
-            drop = excess / 6;
-	}
-
-	return drop;
-    }
-    
-    /**
-     * Creates a multiplier for the extra cost of this insurance if the insured
-     * house is to be rented out.
-     * @return the multiplicator for extra pricing as a double
-     */
-    private double rentalExtra(){
-	double rentalExtra = 1;
-
-	if (rental){
-            rentalExtra = 1.15;
-	}
-
-	return rentalExtra;
-    }
-    
-    /**
-     * Sets and returns the price multiplicator for what year the property was
- built.
-     * @return the multiplicator as a double 
-     */
-    private double buildingYearMultiplicator(){
-        double multiplicator = 1;
-        int year = property.getYear();
-        int currentYear = Calendar.getInstance().get(Calendar.YEAR);
-        if (currentYear - year <= 10){
-            multiplicator = 0.85;
-        }
-        else if (currentYear - year > 10 && currentYear - year <= 20){
-            multiplicator = 0.95;
-        }
-        else if (currentYear - year > 20 && currentYear - year <= 30){
-            multiplicator = 1.05;
-        }
-        else if (currentYear - year > 30 && currentYear - year <= 45){
-            multiplicator = 1.1;
-        }
-        else if (currentYear - year > 45 && currentYear - year <= 55){
-            multiplicator = 1.19;
-        }
-        else if (currentYear - year > 55 && currentYear - year <= 80){
-            multiplicator = 1.25;
-        }
-        else if (currentYear - year > 80 && currentYear - year <= 100){
-            multiplicator = 1.5;
-        }
-        else if (currentYear - year > 100){
-            multiplicator = 1.9;
-        }
-        
-        return multiplicator;
-    }
-    
-    /**
-     * Calculates and sets the premium for this insurance based on:
- If the house is to be rented out
- The type of the insured property
- The building material of the property
- The year the property was built
-     * 
-     */
-    public void insuranceprice(){
-        // Multiplicator for the homes building material
-	double MaterialMultiplicator = property.getMaterialMultiplicator();
-        // Multiplicator for the homes building year
-        double yearMultiplicator = buildingYearMultiplicator();
-        // Price for what type of property is insured
-	int typePrice = type.getPricing();
-        // Base price. Price after excess drop (incl price for plus or basic)
-	int baseprice = typePrice + coverage.getPricing() - excessDrop();
-        // Total price. Base price including extra if the property is a rental
-	double totalPrice = baseprice * rentalExtra();
-        // Material price. Total price multiplied by material multiplicator
-	double materialPrice = totalPrice * MaterialMultiplicator;
-        // Final price. Material price multiplied by year multiplicator
-        double finalprice = materialPrice * yearMultiplicator;
-
-        // Converts the final price to an int value
-        int setPremium = (int)finalprice;
-        // Sets this insurances premium to the final price
-	setPremium(setPremium);
-    }
-    
-    /**
-     * Sets the rental status of this insurance to the received parameter.
-     * Also changes the premium of this insurance based on the new information.
-     * @param rental whether or not this insurance covers rentals
-     */
-    public void setRental(boolean rental) {
-        this.rental = rental;
-        insuranceprice();
-    }
-    
-    
-    
-    /**
-     * Returns the property this insurance is for.
-     * 
-     * @return the property this insurance is for
-     */
-    public Property getProperty() {
-        return property;
-    }
-    
-     /**
-     * Returns the coverage of this insurance.
-     * @return 
-     */
-    @Override
-    public Object getCoverage() {
-        return coverage;
     }
 }

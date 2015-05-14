@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package insurancecompany.model.insurances;
 
 import insurancecompany.misc.DateUtility;
@@ -18,19 +12,18 @@ import java.io.Serializable;
 import java.text.DateFormat;
 import java.util.Calendar;
 
-
 /**
  *
  * @author Sindre
  */
 public abstract class Insurance implements Serializable {
-    /** SerialVersionUID used to identify this class for object IO */
-    private static final long serialVersionUID = 1L;
     
-    /** The insurance id of the insurance created next */
+    /** SerialVersionUID used to identify this class for object IO. */
+    private static final long serialVersionUID = 1L;
+    /** The insurance id of the insurance created next. */
     private static int nextInsuranceId = 1000000;
+    /** The path nextInsuranceId is saved to. */
     private static String insuranceIdFileName = "src/insurancecompany/resources/nextidnumbers/insuranceId.dta"; 
-
     /** Whether this insurance is active or not. */
     private boolean active;
     /** The id of the customer who owns this insurance. */
@@ -44,14 +37,13 @@ public abstract class Insurance implements Serializable {
     /** The yearly insurance premium of this insurance. */
     private int premium;
     
-    
     /**
      * Constructs a new insurance with the specified customerId and excess. 
      * Active is set to true. Date is set to the current date. InsuranceId is 
      * automatically set to nextInsuranceId.
      * 
-     * @param customerId the id of the customer who owns this insurance
-     * @param excess the excess of this insurance
+     * @param customerId The id of the customer who owns this insurance.
+     * @param excess The excess of this insurance.
      */
     public Insurance(int customerId, int excess) {
         this.active = true;
@@ -61,25 +53,73 @@ public abstract class Insurance implements Serializable {
         this.excess = excess;
     }
     
-    /**
-     * Returns the name of the type of insurance of this class's subtypes.
-     * @return 
-     */
+    // GET METHODS
+    
+    /** @return The coverage of this insurance. */
+    public abstract Object getCoverage();
+    
+    /** @return The type of insurance in form of a String. */
     public abstract String getName();
     
+    /** @return Whether this insurance is active or not. */
+    public boolean getActive() {
+        return active;
+    }
+    
+    /** @return The id of the customer who owns this insurance. */
+    public int getCustomerId() {
+        return customerId;
+    }
+    
+    /** @return The date the insurance is signed. */
+    public Calendar getDate() {
+        return date;
+    }
+    
+    /** @return The excess of this insurance. */
+    public int getExcess() {
+        return excess;
+    }
+    
+    /** @return The unique insurance id representing this insurance. */
+    public int getInsuranceId() {
+        return insuranceId;
+    }
+    
+    /** @return The yearly insurance premium of this insurance. */
+    public int getPremium() {
+        return premium;
+    }
+    
+    // SET METHODS
+    
     /**
-     * Returns the coverage of this class's subtypes.
-     * @return 
+     * Sets an activity status to this insurance.
+     * 
+     * @param active The activity status to be set to this insurance.
      */
-    public abstract Object getCoverage();
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+    
+    /**
+     * Sets a yearly insurance premium to this insurance.
+     * 
+     * @param premium The yearly insurance premium to be set to this insurance.
+     */
+    public void setPremium(int premium) {
+        this.premium = premium;
+    }
+    
+    // EQUALS AND HASHCODE METHODS
     
     /**
      * Indicates whether some other insurance is equal to this one. The result 
      * is true if and only if the argument is not null and is an Insurance 
      * object that contains the same insuranceId value as this object.
      * 
-     * @param obj the object to compare with
-     * @return true if the objects are the same; false otherwise
+     * @param obj The object to compare with.
+     * @return True if the objects are the same; false otherwise.
      */
     @Override
     public boolean equals(Object obj) {
@@ -92,9 +132,10 @@ public abstract class Insurance implements Serializable {
     }
     
     /**
-     * Returns a hash code value for this insurance. This method is supported for 
-     * the benefit of hash tables such as those provided by HashMap.
-     * @return the hash code
+     * Returns a hash code value for this insurance. This method is supported 
+     * for the benefit of hash tables such as those provided by HashMap.
+     * 
+     * @return The hash code.
      */
     @Override 
     public int hashCode() {
@@ -103,6 +144,8 @@ public abstract class Insurance implements Serializable {
         result = prime * result + getInsuranceId();
         return result;
     }
+    
+    // SAVE AND READ METHODS
 
     public static void saveNextIdToFile() throws IOException {
         try (DataOutputStream dos = new DataOutputStream(
@@ -119,91 +162,15 @@ public abstract class Insurance implements Serializable {
             nextInsuranceId = dis.readInt();
         }
     }
-    /**
-     * Returns whether this insurance is active or not.
-     * 
-     * @return whether this insurance is active or not
-     */
-    public boolean isActive() {
-        return active;
-    }
     
-    /**
-     * Returns the date of when the insurance is signed.
-     * @return the date the insurance is signed
-     */
-    public Calendar getDate() {
-        return date;
-    }
-    
-    /**
-     * Returns the customer id of this insurance.
-     * 
-     * @return the id of the customer who owns this insurance
-     */
-    public int getCustomerId() {
-        return customerId;
-    }
-    
-    /**
-     * Returns the excess of this insurance.
-     * 
-     * @return the excess of this insurance
-     */
-    public int getExcess() {
-        return excess;
-    }
-    
-    /**
-     * Returns the unique insurance id representing this insurance.
-     * 
-     * @return the unique insurance id representing this insurance
-     */
-    public int getInsuranceId() {
-        return insuranceId;
-    }
-    
-    /**
-     * Returns the yearly insurance premium of this insurance.
-     * 
-     * @return the yearly insurance premium of this insurance
-     */
-    public int getPremium() {
-        return premium;
-    }
-    
-    /**
-     * Sets an activity status to this insurance.
-     * 
-     * @param active the activity status to be set to this insurance
-     */
-    public void setActive(boolean active) {
-        this.active = active;
-    }
-    
-    /**
-     * Sets a yearly insurance premium to this insurance.
-     * 
-     * @param premium the yearly insurance premium to be set to this insurance
-     */
-    public void setPremium(int premium) {
-        this.premium = premium;
-    }
-    
-    /**
-     * Sets the date to when the Insurance is signed.
-     * @param date of when the insurance is signed
-     */
-    public void setDate(Calendar date) {
-        this.date = date;
-    }
+    // TO STRING METHOD
     
     /**
      * Returns a string representation of this insurance. The string
      * representation consists of each field with a short description separated
      * by a new line.
      * 
-     * @return a string representation of this insurance
+     * @return A string representation of this insurance.
      */
     @Override
     public String toString() {
@@ -213,11 +180,12 @@ public abstract class Insurance implements Serializable {
         // Creates a DateFormat to format the field date.
         DateFormat dateFormat = DateFormat.getInstance();
         // Appends the fields with appropriate sentences.
-        result.append("Forsikringen ble tegnet: ").append(DateUtility.NORWEGIAN_DATE_FORMAT.format(date));
-        result.append("\nForsikringen er ").append(active ? "aktiv" : "inaktiv");
+        result.append("Forsikringen er ").
+                append(active ? "aktiv" : "inaktiv");
+        result.append("\n\nForsikringen ble tegnet: ").
+                append(DateUtility.NORWEGIAN_DATE_FORMAT.format(date));
         result.append("\nForsikringsnummer: ").append(insuranceId);
         result.append("\nKundenummer: ").append(customerId);
-        result.append("\n\nDato: ").append(dateFormat.format(date));
         result.append("\nÅrlig forsikringspremie: ").append(premium);
         result.append("\nEgenandel: ").append(excess);
         // Returns the string.

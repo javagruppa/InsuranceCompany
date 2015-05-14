@@ -1941,7 +1941,7 @@ public class MainController {
         }
         
         // Creates TravelInsurance:
-        TravelInsurance insurance = new TravelInsurance(customerId, coverage, excess);
+        TravelInsurance insurance = new TravelInsurance(coverage, customerId, excess);
         
         // Adds insurance to Register:
         insurances.addInsurance(insurance); //returns boolean

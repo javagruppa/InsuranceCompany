@@ -98,7 +98,7 @@ public class ModelController {
         List<Insurance> insuranceList = insurances.getAllInsurancesByCustomerId(customerId);
         // For every insurance that is active, count goes up by one:
         for (Insurance a : insuranceList) {
-            if (a.isActive()) {
+            if (a.getActive()) {
                 count++;
             }
         }

@@ -90,7 +90,7 @@ public class InsuranceRegister {
     public List<Insurance> getAllActiveInsurancesByCustomerId(int customerId) {
         List<Insurance> result = new ArrayList<Insurance>();
         for (Insurance insurance : insurances) {
-            if (insurance.getCustomerId() == customerId && insurance.isActive()) {
+            if (insurance.getCustomerId() == customerId && insurance.getActive()) {
                 result.add(insurance);
             }
         }
@@ -107,7 +107,7 @@ public class InsuranceRegister {
     public List<Insurance> getAllActiveTypeInsurancesByCustomerId(int customerId, Class<?> type) {
         List<Insurance> result = new ArrayList<Insurance>();
         for (Insurance insurance : insurances) {
-            if ((insurance.getCustomerId() == customerId) && insurance.isActive() && type.isInstance(insurance)) {
+            if ((insurance.getCustomerId() == customerId) && insurance.getActive() && type.isInstance(insurance)) {
                 result.add(insurance);
             }
         }

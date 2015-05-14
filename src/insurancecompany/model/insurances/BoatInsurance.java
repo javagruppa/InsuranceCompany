@@ -7,8 +7,8 @@ import java.io.Serializable;
 /**
  * Class BoatInsurance. This is the insurance for boats.
  * 
- * @author Carl
  * @author Sindre
+ * @author Carl
  */
 public class BoatInsurance extends Insurance implements Serializable {
     
@@ -51,65 +51,82 @@ public class BoatInsurance extends Insurance implements Serializable {
     }
     
     // CALCULATE PREMIUM METHODS
+
+    /**
+     * Calculates and sets the total premium of this insurance, based on the 
+     * value, coverage, excess, engine effect and whether the boat insured
+     * has an alarm.
+     */
+    public void calculatePremium() {
+	// Calculates the total price for this insurance:
+	double totalPrice = valueCost() + effectCost() - excessDrop() 
+                + coverage.getPricing();
+	// Drops the price of the insurance if the boat insured has an alarm:
+        if (boat.getAlarm()) {
+            totalPrice = totalPrice * 0.85;
+	}
+        // Sets the premium of this insurance to the calculated price:
+        setPremium((int) totalPrice); 
+    }
     
     /**
-     * Generates and returns the basic cost of this insurance, based on the 
+     * Generates and returns the value cost of this insurance, based on the 
      * value of the boat this insurance is for.
      * 
-     * @return The basic cost of this insurance.
+     * @return The value cost of this insurance.
      */
-    public int basicCost() {
-	// The basic cost of this insurance, initialized at 0:
-        int basic = 0;
+    private int valueCost() {
+	// The basic cost of this insurance:
+        int result = 0;
         // The value of the boat this insurance is for:
         int value = boat.getValue();
         // Sets the basic cost based on the price range the boats value is 
         // within:
 	if (value <= 25000) {
-            basic = 1000;
+            result = 1000;
 	} else if (value > 25000 && value <= 50000) {
-            basic = 1500;
+            result = 1500;
 	} else if (value > 50000 && value <= 100000) {
-            basic = 2000;
+            result = 2000;
 	} else if (value > 100000 && value <= 250000) {
-            basic = 5000;
+            result = 5000;
 	} else if (value > 250000 && value <= 750000) {
-            basic = 7000;
+            result = 7000;
 	} else if (value > 750000 && value <= 1500000) {
-            basic = 10000;
+            result = 10000;
 	} else if (value > 1500000 && value <= 3000000) {
-            basic = 12500;
+            result = 12500;
 	} else if (value > 3000000) {
-            basic = 25000;
+            result = 25000;
 	}
-        // Returns the basic cost of this insurance:
-        return basic;
+        // Returns the value cost of this insurance:
+        return result;
     }
 
     /**
-     * Calculates and returns the extra costs of this insurance due to the
-     * engine effect of the boat insured.
+     * Calculates and returns the engine effect cost of this insurance due to 
+     * the engine effect of the boat insured.
      * 
-     * @return The extra engine cost of this insurance.
+     * @return The engine effect cost of this insurance.
      */
-    public int effectCost() {
-        // The extra cost based on the effect of the boat. Initialized at 0:
-        int effectC = 0;
+    private int effectCost() {
+        // The extra cost based on the effect of the boat:
+        int result = 0;
 	// The engine effect of the boat this insurance is for:
         int effect = boat.getEngineEffect();
 	// Calculates the extra cost of this insurance based on what range
         // the engine effect of the boat insured is within:
         if (effect <= 50) {
-            effectC = 250;
+            result = 250;
 	} else if (effect > 50 && effect <= 100) {
-            effectC = 500;
+            result = 500;
 	} else if (effect > 100 && effect <= 250) {
-            effectC = 1500;
+            result = 1500;
 	} else if (effect > 250) {
-            effectC = 3000;
+            result = 3000;
 	}
-        // Returns the extra engine cost of this insurace:
-        return effectC;
+        // Returns the engine effect cost of this insurace:
+        return result;
 }
 
     /**
@@ -118,54 +135,24 @@ public class BoatInsurance extends Insurance implements Serializable {
      * 
      * @return The drop in price based on the excess of this insurance.
      */
-    public int excessDrop() {
-        // The price drop of this insurance based on the excess. Initialized 
-        // at 0:
-        int excessSaving = 0;
+    private int excessDrop() {
+        // The price drop of this insurance based on the excess:
+        int result = 0;
 	// The excess of this insurance:
         int excess = getExcess();
         // Calculates the price drop of the insurance based on the excess.
         // If excess is set at 0, the price will rise instead of dropping:
 	if (excess == 0) {
-            excessSaving = -2000;
+            result = -2000;
 	} else if (excess > 0 && excess <= 5000) {
-            excessSaving = excess / 5;
+            result = excess / 5;
 	} else if (excess > 5000 && excess <= 10000) {
-            excessSaving = excess / 4;
+            result = excess / 4;
 	} else if (excess > 10000) {
-            excessSaving = excess / 3;
+            result = excess / 3;
 	}
         // Returns the price drop:
-        return excessSaving;
-}
-
-    /**
-     * Calculates and sets the total premium of this insurance, based on the the
-     * coverage of the insurance, whether the boat insured has an alarm, how
-     * high the excess is set, and the engine effect.
-     */
-    public void totalPremium() {
-	// Total price for this insurance:
-        int totalP;
-        // Calculated premium of the insurance after all savings are calculated:
-        double newPremium;
-        // The premium to be set for this insurance, as an integer value:
-        int setPremium;
-        // Whether the boat insured has an alarm or not:
-        boolean alarm = boat.getAlarm();
-        // Calculates total price for this insurance:
-	totalP = basicCost() + effectCost() - excessDrop() 
-                + coverage.getPricing();
-	// Drops the price of the insurance if the boat insured has an alarm:
-        if (alarm) {
-            newPremium = totalP * 0.85;
-	} else {
-            newPremium = totalP;
-	}
-        // Changes the new premium from a double value to an integer value:
-        setPremium = (int) newPremium;
-	// Sets the premium of this insurance to the calculated price:
-        setPremium(setPremium); 
+        return result;
     }
     
     // TO STRING METHOD

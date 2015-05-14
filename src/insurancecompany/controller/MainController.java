@@ -1117,8 +1117,8 @@ public class MainController {
         // Creates Property:
         Property property = new Property(address, material, area, year);
         // Creates HomeInsurance:
-        HomeInsurance insurance = new HomeInsurance(customerId, excess, 
-                property, type, coverage, rental);
+        HomeInsurance insurance = new HomeInsurance(coverage, customerId, 
+                excess, property, rental, type);
         
         // Adds insurance to Register:
         insurances.addInsurance(insurance); //returns boolean
@@ -1313,8 +1313,8 @@ public class MainController {
         // Creates Property:
         Property property = new Property(address, material, area, year);
         // Creates HomeContentInsurance:
-        HomeContentInsurance insurance = new HomeContentInsurance(customerId, excess, 
-                property, type, coverage, amount);
+        HomeContentInsurance insurance = new HomeContentInsurance(amount, 
+                coverage, customerId, excess, property, type);
         
         // Adds insurance to Register:
         insurances.addInsurance(insurance); //returns boolean

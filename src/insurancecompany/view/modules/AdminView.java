@@ -60,7 +60,7 @@ public class AdminView extends Application {
     
     public AdminView() {
         initializeViews();
-        scene = new Scene(mainPane, 1200, 700);
+        scene = new Scene(mainPane, 1280, 700);
         scene.getStylesheets().add("insurancecompany/resources/css/stylesheet.css");       
     }
     

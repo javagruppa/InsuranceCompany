@@ -131,9 +131,6 @@ public class CarClaimRegistration {
         
         // Sets up the mainPane
         mainPane = new GridPane();
-        mainPane.setAlignment(Pos.CENTER);
-        mainPane.setHgap(10);
-        mainPane.setVgap(6);
         // Set CSS id:
         mainPane.setId("innerPane");
         // Set up column constraints. Width in pixels:

@@ -154,7 +154,7 @@ public class BoatClaimRegistration {
         customerArea.setEditable(false);
         customerArea.setPrefColumnCount(2);
         customerArea.setPrefRowCount(3);
-        Text insurancesTitle = new Text("Velg forsikringen denne skademelding går under:");
+        Text insurancesTitle = new Text("Velg forsikringen til denne skaden:");
         insurancesTitle.setId("textTitle");
         insurancesTable = new TableView();
         insurancesTable.setPrefHeight(100);

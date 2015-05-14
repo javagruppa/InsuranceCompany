@@ -154,7 +154,7 @@ public class HomeClaimRegistration {
         customerArea.setEditable(false);
         customerArea.setPrefColumnCount(2);
         customerArea.setPrefRowCount(3);
-        Text insurancesTitle = new Text("Velg forsikringen denne skademelding går under:");
+        Text insurancesTitle = new Text("Velg forsikring til denne skaden:");
         insurancesTitle.setId("textTitle");
         insurancesTable = new TableView();
         insurancesTable.setPrefHeight(100);
@@ -163,7 +163,7 @@ public class HomeClaimRegistration {
         insuranceIdColumn = new TableColumn<>("Forsikringsid");
         insurancesTable.getColumns().addAll(insuranceTypeColumn, insuranceCoverageColum, insuranceIdColumn);
         insurancesTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-        selectInsuranceButton = new Button("Velg");
+        selectInsuranceButton = new Button("Velg forsikring");
         selectInsuranceMessage = new Text();
         // Nodes that are used for registering claim:
         Text damagesTitle = new Text("Fyll inn informasjon:");

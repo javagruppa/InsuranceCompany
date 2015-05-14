@@ -180,7 +180,7 @@ public class HolidayHomeContentClaimRegistration {
         customerArea.setEditable(false);
         customerArea.setPrefColumnCount(2);
         customerArea.setPrefRowCount(3);
-        Text insurancesTitle = new Text("Velg forsikringen til skademelding:");
+        Text insurancesTitle = new Text("Velg forsikringe til denne skaden:");
         insurancesTitle.setId("textTitle");
         insurancesTable = new TableView();
         insurancesTable.setPrefHeight(100);

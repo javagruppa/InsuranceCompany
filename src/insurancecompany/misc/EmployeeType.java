@@ -1,7 +1,7 @@
 package insurancecompany.misc;
 
 /**
- * class EmployeeType. Enums setting the type of an employee object
+ * class EmployeeType. Enum setting the type of an employee object
  * @author André
  */
 public enum EmployeeType {

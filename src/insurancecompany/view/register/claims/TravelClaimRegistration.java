@@ -292,7 +292,7 @@ public class TravelClaimRegistration {
         mainPane.add(creditCardBrandField, 10, 13);
         mainPane.add(countryLabel, 8, 14, 2, 1);
         mainPane.add(countryField, 10, 14);
-        mainPane.add(registerButton, 8, 15, 3, 1);
+        mainPane.add(registerButton, 8, 15, 2, 1);
 
     } // end of sole Constructor
     

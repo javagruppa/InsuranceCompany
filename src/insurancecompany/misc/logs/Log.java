@@ -26,6 +26,12 @@ public class Log {
         this.message = message;
     }
     
+    public Log(String message, Person user) {
+        date = Calendar.getInstance();
+        this.message = message;
+        populateUserInfo(user);
+    }
+    
     public Log(StackTraceElement[] stackTrace) {
         date = Calendar.getInstance();
         this.stackTrace = stackTrace;

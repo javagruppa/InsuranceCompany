@@ -506,4 +506,67 @@ public class CarClaimFormView {
     public CarClaimRegistration getCarClaimRegistration() {
         return carClaimRegistration;
     }
+
+    /**
+     * @return the lastNameA
+     */
+    public String getLastNameA() {
+        return lastNameA.getText();
+    }
+
+    /**
+     * @return the firstNameA
+     */
+    public String getFirstNameA() {
+        return firstNameA.getText();
+    }
+
+    /**
+     * @return the personalNumberA
+     */
+    public String getPersonalNumberA() {
+        return personalNumberA.getText();
+    }
+
+    /**
+     * @return the streetA
+     */
+    public String getStreetA() {
+        return streetA.getText();
+    }
+
+    /**
+     * @return the zipCodeA
+     */
+    public String getZipCodeA() {
+        return zipCodeA.getText();
+    }
+
+    /**
+     * @return the phoneA
+     */
+    public String getPhoneA() {
+        return phoneA.getText();
+    }
+
+    /**
+     * @return the emailA
+     */
+    public String getEmailA() {
+        return emailA.getText();
+    }
+
+    /**
+     * @return the registrationNumberA
+     */
+    public String getRegistrationNumberA() {
+        return registrationNumberA.getText();
+    }
+
+    /**
+     * @return the brandA
+     */
+    public String getBrandA() {
+        return brandA.getText();
+    }
 }

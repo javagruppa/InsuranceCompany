@@ -6,7 +6,9 @@ import insurancecompany.model.properties.Property;
 import java.io.Serializable;
 
 /**
- *
+ * Class HolidayHomeContentInsurance. This is the content insurance for holiday 
+ * homes.
+ * 
  * @author Carl
  * @author Sindre
  */

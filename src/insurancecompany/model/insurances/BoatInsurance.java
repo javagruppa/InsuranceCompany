@@ -7,8 +7,8 @@ import java.io.Serializable;
 /**
  * Class BoatInsurance. This is the insurance for boats.
  * 
- * @author Carl
  * @author Sindre
+ * @author Carl
  */
 public class BoatInsurance extends Insurance implements Serializable {
     

@@ -7,10 +7,10 @@ import java.util.Calendar;
 import java.io.Serializable;
 
 /**
- * CarInsurance class. This is the insurances for cars.
+ * Class CarInsurance. This is the insurance for cars.
  * 
- * @author Carl
  * @author Sindre
+ * @author Carl
  */
 public class CarInsurance extends Insurance implements Serializable {
     

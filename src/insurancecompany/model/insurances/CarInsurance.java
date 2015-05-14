@@ -256,4 +256,60 @@ public class CarInsurance extends Insurance implements Serializable {
         // Returns the string.
         return result.toString();
     }
+
+    /**
+     * @return the bonus
+     */
+    public int getBonus() {
+        return bonus;
+    }
+
+    /**
+     * @return the car
+     */
+    public Car getCar() {
+        return car;
+    }
+
+    /**
+     * @return the garage
+     */
+    public boolean isGarage() {
+        return garage;
+    }
+
+    /**
+     * @return the lastBonusUpdate
+     */
+    public Calendar getLastBonusUpdate() {
+        return lastBonusUpdate;
+    }
+
+    /**
+     * @return the maxLength
+     */
+    public int getMaxLength() {
+        return maxLength;
+    }
+
+    /**
+     * @return the yearsOnSeventy
+     */
+    public int getYearsOnSeventy() {
+        return yearsOnSeventy;
+    }
+
+    /**
+     * @return the yearsOnSeventyFive
+     */
+    public int getYearsOnSeventyFive() {
+        return yearsOnSeventyFive;
+    }
+
+    /**
+     * @return the youngDriver
+     */
+    public boolean isYoungDriver() {
+        return youngDriver;
+    }
 }

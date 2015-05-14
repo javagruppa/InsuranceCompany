@@ -531,68 +531,72 @@ public class MainController {
             carClaimRegistration.setRegisterButtonMessage(NO_CUSTOMER_MESSAGE);
             return;
         }
+        CarInsurance insurance;
         // Get the Insurance selected from the table:
-        Insurance insurance = carClaimRegistration.getInsuranceTableValue();
-
-        // Checks if this value is null:
-        if (insurance == null) {
-            ok = false;
-            // If so send a message to the user:
-            carClaimRegistration.setRegisterButtonMessage(NO_INSURANCE_MESSAGE);
-            // Exit the method, as we don't need to check for anything else:
-            return;
-        } else {
-            insuranceId = insurance.getCustomerId();
-        }
-        Calendar dateHappened = carClaimRegistration.getDateHappenedPickerValue();
-        if (dateHappened == null) {
-            ok = false;
-            // If so send a message to the user:
-            carClaimRegistration.setRegisterButtonMessage(NO_DATE_MESSAGE);
-            return; // leave method
-        }
-        String description = carClaimRegistration.getDescriptionTextArea();
-        if (description.equals("")) {
-            ok = false;
-            // If so send a message to the user:
-            carClaimRegistration.setRegisterButtonMessage(DESCRIPTION_EMPTY_MESSAGE);
-            return; // leave method
-        }
-        // Get the selected damages:
-        Set<Damage> damages = carClaimRegistration.getSelectedDamages();
-        // Returns an empty set if no damages are selected:
-        if (damages.isEmpty()) {
-            // This is still allowed.
-        }
-        Image image = carClaimRegistration.getImage();
-        if (image == null) {
-            // This is also allowed.
-        }
-        
-        String appraisalString = carClaimRegistration.getAppraisalField();
-        if (appraisalString.equals("")) {
-            ok = false;
-            carClaimRegistration.setAppraisalFieldMessage(EMPTY_MESSAGE);
-        } else {
-            try {
-                appraisal = Integer.parseInt(appraisalString);
-            } catch (NumberFormatException nfe) {
+        if (carClaimRegistration.getInsuranceTableValue() instanceof CarInsurance) {
+            insurance = (CarInsurance) carClaimRegistration.getInsuranceTableValue();
+            // Checks if this value is null:
+            if (insurance == null) {
                 ok = false;
-                carClaimRegistration.setAppraisalFieldMessage(FORMAT_MESSAGE);
-            }
-        }
-        // If all fields are filled in correctly according to what we need to create a
-        // claim, we proceed:
-        if (ok) {
-            CarClaimFormView formView = carClaimRegistration.getCarClaimFormView();
-            if (formView == null) {
-                CarClaim claim = new CarClaim(customerId, insuranceId, description, dateHappened, damages, appraisal, null);
+                // If so send a message to the user:
+                carClaimRegistration.setRegisterButtonMessage(NO_INSURANCE_MESSAGE);
+                // Exit the method, as we don't need to check for anything else:
+                return;
             } else {
-                //String 
-                //CarClaimForm carClaimForm
+                insuranceId = insurance.getCustomerId();
             }
-            
-        }
+            Calendar dateHappened = carClaimRegistration.getDateHappenedPickerValue();
+            if (dateHappened == null) {
+                ok = false;
+                // If so send a message to the user:
+                carClaimRegistration.setRegisterButtonMessage(NO_DATE_MESSAGE);
+                return; // leave method
+            }
+            String description = carClaimRegistration.getDescriptionTextArea();
+            if (description.equals("")) {
+                ok = false;
+                // If so send a message to the user:
+                carClaimRegistration.setRegisterButtonMessage(DESCRIPTION_EMPTY_MESSAGE);
+                return; // leave method
+            }
+            // Get the selected damages:
+            Set<Damage> damages = carClaimRegistration.getSelectedDamages();
+            // Returns an empty set if no damages are selected:
+            if (damages.isEmpty()) {
+                // This is still allowed.
+            }
+            Image image = carClaimRegistration.getImage();
+            if (image == null) {
+                // This is also allowed.
+            }
+
+            String appraisalString = carClaimRegistration.getAppraisalField();
+            if (appraisalString.equals("")) {
+                ok = false;
+                carClaimRegistration.setAppraisalFieldMessage(EMPTY_MESSAGE);
+            } else {
+                try {
+                    appraisal = Integer.parseInt(appraisalString);
+                } catch (NumberFormatException nfe) {
+                    ok = false;
+                    carClaimRegistration.setAppraisalFieldMessage(FORMAT_MESSAGE);
+                }
+            }
+            // If all fields are filled in correctly according to what we need to create a
+            // claim, we proceed:
+            if (ok) {
+                CarClaimFormView formView = carClaimRegistration.getCarClaimFormView();
+                if (formView == null) {
+                    // Send carclaimform as null if no carclaimformview has been opened.
+                    CarClaim claim = new CarClaim(customerId, insuranceId, description, dateHappened, damages, appraisal, null);
+                } else {
+                    Customer personA = customers.findCustomerById(customerId);
+                    Car carA = insurance.getCar();
+                    //VehicleOwner v = new VehicleOwner(description, description, appraisalString, description, null, description)
+                    //CarClaimForm carClaimForm = new CarClaimForm(null, c, description, insuranceId, image)
+                }
+            }  
+        }   
     }
     
     private void carClaimSearchCustomerIdButtonEventHandler(ActionEvent event) {

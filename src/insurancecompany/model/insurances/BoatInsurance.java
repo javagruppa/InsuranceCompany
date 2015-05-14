@@ -29,8 +29,8 @@ public class BoatInsurance extends Insurance implements Serializable {
      * @param customerId The id of the customer who owns this insurance.
      * @param excess The excess of this insurance.
      */
-    public BoatInsurance(Boat boat, int customerId, 
-            BoatInsuranceCoverage coverage, int excess) {
+    public BoatInsurance(Boat boat, BoatInsuranceCoverage coverage, 
+            int customerId, int excess) {
         super(customerId, excess);
         this.boat = boat;
         this.coverage = coverage;

@@ -699,7 +699,8 @@ public class MainController {
                 registrationYear, value);
         
         // Creates BoatInsurance:
-        BoatInsurance insurance = new BoatInsurance(boat, customerId, coverage, excess);
+        BoatInsurance insurance = new BoatInsurance(boat, coverage, customerId, 
+                excess);
         
         // Adds insurance to Register:
         insurances.addInsurance(insurance); //returns boolean

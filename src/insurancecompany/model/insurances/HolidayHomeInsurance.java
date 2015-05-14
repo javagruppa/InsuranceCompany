@@ -12,7 +12,7 @@ import java.util.Calendar;
  * @author Sindre
  * @author Carl
  */
-public class HolidayHomeInsurance extends PropertyInsurance 
+public class HolidayHomeInsurance extends Insurance 
         implements Serializable {
     
     /** SerialVersionUID used to identify this class for object IO. */

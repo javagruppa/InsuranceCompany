@@ -10,7 +10,7 @@ import java.io.Serializable;
  * @author Sindre
  * @author Carl
  */
-public class HomeContentInsurance extends PropertyInsurance 
+public class HomeContentInsurance extends Insurance 
         implements Serializable {
     
     /** SerialVersionUID used to identify this class for object IO. */

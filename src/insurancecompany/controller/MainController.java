@@ -358,13 +358,13 @@ public class MainController {
     
     private void carInsuranceSearchCustomerButtonEventHandler(ActionEvent event) {
         
-        String customerId = carInsuranceRegistration.getCustomerIdField();
+        String customerId = carInsuranceRegistration.getCustomerId();
         
        // Customer c = customers.findCustomerById(customerId);
     }
     
     private void carInsuranceSearchPersonalNumberButtonEventHandler(ActionEvent event) {
-        String personalNumber = carInsuranceRegistration.getPersonalNumberField();
+        String personalNumber = carInsuranceRegistration.getPersonalNumber();
         // TODO regex:
         // Search for customer by personal numer:
         Customer c = customers.findCustomerByPersonalNumber(personalNumber);
@@ -383,14 +383,14 @@ public class MainController {
     
     private void carInsuranceSelectCustomerButtonEventHandler(ActionEvent event) {
         
-        String idS = carInsuranceRegistration.getCustomerIdField();
+        String idS = carInsuranceRegistration.getCustomerId();
         int id = Integer.parseInt(idS);
         carInsuranceRegistration.setSelectedCustomerId(id);
     }
     
     private void carInsuranceRegisterButtonEventHandler(ActionEvent event) {
         // get all fields to String, then 
-        CarInsuranceCoverage coverage = carInsuranceRegistration.getCoverageCombo();
+        CarInsuranceCoverage coverage = carInsuranceRegistration.getCoverage();
         int customerId = carInsuranceRegistration.getSelectedCustomerId();
         int excess = 1000;
         int maxLength = 100;
@@ -547,6 +547,66 @@ public class MainController {
             Text message = new Text();
             message.setFill(Color.FIREBRICK);
             carClaimRegistration.setSelectInsuranceMessage(message);
+        }
+    }
+    
+    private void carClaimSelectImageButtonEventHandler(ActionEvent event) {
+        // Initialize a file chooser:
+        FileChooser fileChooser = new FileChooser();
+        // Set the title:
+        fileChooser.setTitle("Velg bilde");
+        // Set the initial directory to the user folder:
+        fileChooser.setInitialDirectory(
+                new File(System.getProperty("user.home"))
+        );
+        // Set selectable file extennsion:
+        fileChooser.getExtensionFilters().addAll(
+            new FileChooser.ExtensionFilter("All Images", "*.*"),
+            new FileChooser.ExtensionFilter("JPG", "*.jpg"),
+            new FileChooser.ExtensionFilter("GIF", "*.gif"),
+            new FileChooser.ExtensionFilter("BMP", "*.bmp"),
+            new FileChooser.ExtensionFilter("PNG", "*.png")
+        );
+        // Get the file:
+        File file = fileChooser.showOpenDialog(primaryStage);
+        if (file != null) {
+            try {
+                BufferedImage bufferedImage = ImageIO.read(file);
+                Image image = SwingFXUtils.toFXImage(bufferedImage, null);
+                carClaimRegistration.setImage(image);
+            } catch (IOException ioe) {
+                logs.add(ioe.getStackTrace(), ioe.getMessage(), user);
+            }
+        }
+    }
+    
+    private void carClaimSelectImageButtonEventHandler(ActionEvent event) {
+        // Initialize a file chooser:
+        FileChooser fileChooser = new FileChooser();
+        // Set the title:
+        fileChooser.setTitle("Velg bilde");
+        // Set the initial directory to the user folder:
+        fileChooser.setInitialDirectory(
+                new File(System.getProperty("user.home"))
+        );
+        // Set selectable file extennsion:
+        fileChooser.getExtensionFilters().addAll(
+            new FileChooser.ExtensionFilter("All Images", "*.*"),
+            new FileChooser.ExtensionFilter("JPG", "*.jpg"),
+            new FileChooser.ExtensionFilter("GIF", "*.gif"),
+            new FileChooser.ExtensionFilter("BMP", "*.bmp"),
+            new FileChooser.ExtensionFilter("PNG", "*.png")
+        );
+        // Get the file:
+        File file = fileChooser.showOpenDialog(primaryStage);
+        if (file != null) {
+            try {
+                BufferedImage bufferedImage = ImageIO.read(file);
+                Image image = SwingFXUtils.toFXImage(bufferedImage, null);
+                carClaimRegistration.setImage(image);
+            } catch (IOException ioe) {
+                logs.add(ioe.getStackTrace(), ioe.getMessage(), user);
+            }
         }
     }
     

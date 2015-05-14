@@ -5,27 +5,26 @@
 package insurancecompany.view.register.claims;
 
 import insurancecompany.misc.DateUtility;
-import insurancecompany.model.people.Customer;
-import insurancecompany.model.people.VehicleOwner;
-import insurancecompany.model.vehicles.Car;
 import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.Scene;
+import javafx.scene.SnapshotParameters;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
@@ -45,6 +44,8 @@ public class CarClaimFormView {
     private ScrollPane scrollPane;
     /** Stack pane used to stack input nodes on top of the car claim form image. */
     private StackPane stackPane;
+    /** Stack pane used to hold the canvas, which opens up for setting a background color to the canvas. */
+    private StackPane canvasHolder;
     /** Grid pane used to lay out the user action nodes. */
     private GridPane gridPane;
     /** Scene used to display this view. */
@@ -97,25 +98,14 @@ public class CarClaimFormView {
     // TODO: Remember to onAction close window when button is clicked. 
     // If not all fields are filled in correctly, show a dialog window:
     private Button registerButton;
-    
-    private Car carA;
-    /** The customer who owns the insurance */
-    private Customer ownerA;
-    /** The owner of another vehicle involved in the accident */
-    private VehicleOwner otherPerson;
-    /** Another car involved in the accident */
-    private Car carB;
-
-
-    
-    /** The Id for the insurance covering this damage */
-    private int insuranceId;
 
     /**
      * Sole constructor.
      */
     public CarClaimFormView() {
         stackPane = new StackPane();
+        canvasHolder = new StackPane();
+        canvasHolder.setId("opacityBackground");
         image = new Image("insurancecompany/resources/images/carclaimform.jpg");
         ImageView imageView = new ImageView(image);
         
@@ -124,6 +114,7 @@ public class CarClaimFormView {
         gridPane.setAlignment(Pos.TOP_LEFT);
         gridPane.setHgap(10);
         gridPane.setVgap(6);
+        // Column constraints for the gridpane
         ColumnConstraints col0 = new ColumnConstraints(60); // gap
         ColumnConstraints col1 = new ColumnConstraints(100); // first field
         ColumnConstraints col2 = new ColumnConstraints(45); // gap
@@ -137,7 +128,7 @@ public class CarClaimFormView {
         ColumnConstraints col10 = new ColumnConstraints(150); // fifth field
         // Add these constraints:
         gridPane.getColumnConstraints().addAll(col0, col1, col2, col3, col4, col5, col6, col7, col8, col9, col10);
-        
+        // Row constraints for the gridpane
         RowConstraints row0 = new RowConstraints(65); // gap
         RowConstraints row1 = new RowConstraints(50); // Skadedato, skadested
         RowConstraints row2 = new RowConstraints(17); // gap
@@ -156,7 +147,7 @@ public class CarClaimFormView {
         RowConstraints row15 = new RowConstraints(38); // empty
         RowConstraints row16 = new RowConstraints(295); // HUGE gap
         RowConstraints row17 = new RowConstraints(20); // Beskrivelse Label
-        RowConstraints row18 = new RowConstraints(365); // Beskrivelse
+        RowConstraints row18 = new RowConstraints(400); // Beskrivelse
         RowConstraints row19 = new RowConstraints(100); // Registrer knapp
         // Add these constraints:
         gridPane.getRowConstraints().addAll(row0, row1, row2, row3, row4, row5, 
@@ -199,7 +190,8 @@ public class CarClaimFormView {
         registerButton = new Button("Registrer");
         registerButton.setId("custom");
         
-        canvas = new Canvas(700, 400);
+        canvas = new Canvas(680, 390);
+        canvas.setCursor(Cursor.CROSSHAIR);
         final GraphicsContext graphicsContext = canvas.getGraphicsContext2D();
         initDraw(graphicsContext);
          
@@ -214,7 +206,7 @@ public class CarClaimFormView {
         });
         canvas.addEventHandler(MouseEvent.MOUSE_RELEASED, (MouseEvent event) -> {
         });
- 
+        canvasHolder.getChildren().add(canvas);
 
         // ADD TO THE GRIDPANE:
         
@@ -245,7 +237,7 @@ public class CarClaimFormView {
         gridPane.add(insuranceCompanyB, 9, 14, 2, 1);
         
         //gridPane.add(courseOfEvents, 3, 18, 6, 1);
-        gridPane.add(canvas, 3, 18, 6, 1);
+        gridPane.add(canvasHolder, 3, 18, 6, 1);
         
         gridPane.add(registerButton, 6, 19, 5, 1);
 
@@ -307,7 +299,20 @@ public class CarClaimFormView {
         date.setPromptText("dd/MM/yyyy");
     } // end of method restrictDatePicker
     
-    public Image getDrawnImage() {
+    /**
+     * Returns a WriteableImage of a snapshot of the complete car claim
+     * form.
+     * @return 
+     */
+    public WritableImage getSnapshotOfCarLcaimForm() {
+        return stackPane.snapshot(new SnapshotParameters(), null);
+    }
+    
+    /**
+     * Returns a WriteableImage of the drawn image in the car claim form.
+     * @return 
+     */
+    public WritableImage getDrawnImage() {
         return canvas.snapshot(null, null);
     }
     
@@ -405,71 +410,71 @@ public class CarClaimFormView {
     /**
      * @return the lastNameB
      */
-    public TextField getLastNameB() {
-        return lastNameB;
+    public String getLastNameB() {
+        return lastNameB.getText();
     }
 
     /**
      * @return the firstNameB
      */
-    public TextField getFirstNameB() {
-        return firstNameB;
+    public String getFirstNameB() {
+        return firstNameB.getText();
     }
 
     /**
      * @return the personalNumberB
      */
-    public TextField getPersonalNumberB() {
-        return personalNumberB;
+    public String getPersonalNumberB() {
+        return personalNumberB.getText();
     }
 
     /**
      * @return the streetB
      */
-    public TextField getStreetB() {
-        return streetB;
+    public String getStreetB() {
+        return streetB.getText();
     }
 
     /**
      * @return the zipCodeB
      */
-    public TextField getZipCodeB() {
-        return zipCodeB;
+    public String getZipCodeB() {
+        return zipCodeB.getText();
     }
 
     /**
      * @return the phoneB
      */
-    public TextField getPhoneB() {
-        return phoneB;
+    public String getPhoneB() {
+        return phoneB.getText();
     }
 
     /**
      * @return the emailB
      */
-    public TextField getEmailB() {
-        return emailB;
+    public String getEmailB() {
+        return emailB.getText();
     }
 
     /**
      * @return the registrationNumberB
      */
-    public TextField getRegistrationNumberB() {
-        return registrationNumberB;
+    public String getRegistrationNumberB() {
+        return registrationNumberB.getText();
     }
 
     /**
      * @return the brandB
      */
-    public TextField getBrandB() {
-        return brandB;
+    public String getBrandB() {
+        return brandB.getText();
     }
 
     /**
      * @return the insuranceCompanyB
      */
-    public TextField getInsuranceCompanyB() {
-        return insuranceCompanyB;
+    public String getInsuranceCompanyB() {
+        return insuranceCompanyB.getText();
     }
 
 

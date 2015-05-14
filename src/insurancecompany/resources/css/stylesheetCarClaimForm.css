@@ -4,7 +4,7 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
 /* 
-    Created on : May 4, 2015, 2:31:17 PM
+    Created on : May 14, 2015, 5:07:21 AM
     Author     : André
 */
 
@@ -23,6 +23,10 @@ and open the template in the editor.
 
 .text-area .content {
     -fx-background-color: #FFF1F1;
+}
+
+#opacityBackground {
+    -fx-background-color: rgba(255, 241, 241, .5); // the last number decides the opacity
 }
 
 #custom.label {

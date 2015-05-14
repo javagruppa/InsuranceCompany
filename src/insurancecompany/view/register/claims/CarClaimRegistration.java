@@ -6,6 +6,7 @@
 package insurancecompany.view.register.claims;
 
 import insurancecompany.misc.coverages.Damage;
+import insurancecompany.model.claims.CarClaimForm;
 import insurancecompany.model.insurances.Insurance;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -115,10 +116,14 @@ public class CarClaimRegistration {
     /** Button used to open up a car claim form. */
     private Button openClaimFormButton;
     /** Button used to register the claim. */
-    private Button registerButton;
-    
+    private Button registerButton;  
     // Output nodes, Text messages:
 
+    /**
+     * Car claim form object which is initialized after the user has filled in
+     * the car claim form view.
+     */
+    private CarClaimForm carClaimForm;
     
     /**
      * Sole constructor. Initializes the main Pane and sets up all its nodes.
@@ -199,7 +204,7 @@ public class CarClaimRegistration {
         Label selectImageLabel = new Label("Bilde som beskriver skaden");
         selectImageButton = new Button("Hent bilde");
         Label openClaimFormLabel = new Label("Bilskademelingsskjema");
-        openClaimFormButton = new Button("Åpne");
+        openClaimFormButton = new Button("Fyll ut");
         registerButton = new Button("Registrer");
         
         // Add nodes to mainPane:
@@ -506,5 +511,21 @@ public class CarClaimRegistration {
      */
     public void setImage(Image image) {
         this.image = image;
+    }
+
+    /**
+     * Returns the car claim form object of this view.
+     * @return the carClaimForm
+     */
+    public CarClaimForm getCarClaimForm() {
+        return carClaimForm;
+    }
+
+    /**
+     * Sets the car claim form object of this view.
+     * @param carClaimForm the carClaimForm to set
+     */
+    public void setCarClaimForm(CarClaimForm carClaimForm) {
+        this.carClaimForm = carClaimForm;
     }
 } // end of class CarClaimRegistration

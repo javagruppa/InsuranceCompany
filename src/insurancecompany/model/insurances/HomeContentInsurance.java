@@ -7,8 +7,8 @@ import java.io.Serializable;
 
 /**
  *
- * @author Carl
  * @author Sindre
+ * @author Carl
  */
 public class HomeContentInsurance extends PropertyInsurance 
         implements Serializable {
@@ -25,10 +25,9 @@ public class HomeContentInsurance extends PropertyInsurance
     private HomeType type;
     
     /**
-     * Constructs a new home content insurance with the specified amount, 
-     * coverage, customerId, excess, property and type. Active is set to true.
-     * Date is set to the current date. InsuranceId is automatically set to 
-     * nextInsuranceId.
+     * Constructs a new home content insurance with the specified parameters. 
+     * Active is set to true. Date is set to the current date. InsuranceId is 
+     * automatically set to nextInsuranceId.
      * 
      * @param amount The insurance amount of this insurance.
      * @param coverage The coverage of this insurance.
@@ -62,39 +61,37 @@ public class HomeContentInsurance extends PropertyInsurance
     }
     
     // CALCULATE PREMIUM METHODS
-    
-    /**
-     * Finds and returns the basic price of this insurance, based on whether
-     * this is a Basic or a Plus insurance type
-     * 
-     * @return The basic price.
-     */
-    private int basicPrice(){
-	int basicP = coverage.getPricing();
-	return basicP;
-    }
 
     /**
-     * Calculates and returns the content pricing of this insurance, based
-     * on the value insured.
-     * 
-     * @return The content price of this insurance.
+     * Calculates the premium of this insurance, and then sets the premium.
      */
-    private double contentPrice(){
-	double cPrice = 0;
-	if (amount <= 150000){
-            cPrice = amount * 0.004;
+    public void calculatePremium() {
+	int newPremium = coverage.getPricing() + (int)amountCost() - 
+                excessDrop();
+	setPremium(newPremium);
+    }
+    
+    /**
+     * Calculates and returns the amount cost of this insurance, based on the 
+     * value.
+     * 
+     * @return The amount cost of this insurance.
+     */
+    private double amountCost() {
+	double result = 0;
+	if (amount <= 150000) {
+            result = amount * 0.004;
 	} else if (amount > 150000 && amount <= 300000) {
-            cPrice = amount * 0.0055;
+            result = amount * 0.0055;
 	} else if (amount > 300000 && amount <= 500000) {
-            cPrice = amount * 0.006;
+            result = amount * 0.006;
 	} else if (amount > 500000 && amount <= 1500000) {
-            cPrice = 3500;
+            result = 3500;
 	} else if (amount > 1500000) {
             double extra = amount * 0.001;
-            cPrice = extra + 3500;
+            result = extra + 3500;
 	}
-	return cPrice;
+	return result;
     }
 
     /**
@@ -103,10 +100,10 @@ public class HomeContentInsurance extends PropertyInsurance
      * 
      * @return The drop in price due to excess.
      */
-    private int excessDrop(){
+    private int excessDrop() {
 	int excess = getExcess();
 	int drop = 0;
-	if (excess == 0){
+	if (excess == 0) {
             drop = -2000;
 	} else if (excess > 0 && excess <= 1000) {
             drop = excess / 10;
@@ -123,14 +120,6 @@ public class HomeContentInsurance extends PropertyInsurance
 	}
 	return drop;
     }
-
-    /**
-     * Calculates the premium of this insurance, and then sets the premium
-     */
-    public void premium(){
-	int newPremium = basicPrice() + (int)contentPrice() - excessDrop();
-	setPremium(newPremium);
-    }
     
     // TO STRING METHOD
     
@@ -139,7 +128,7 @@ public class HomeContentInsurance extends PropertyInsurance
      * representation consists of each field with a short description separated
      * by a new line.
      * 
-     * @return a string representation of this insurance
+     * @return A string representation of this insurance.
      */
     @Override
     public String toString() {
@@ -151,6 +140,7 @@ public class HomeContentInsurance extends PropertyInsurance
         result.append("\n").append(super.toString());
         result.append("\nDekning: ").append(coverage.toString());
         result.append("\nForsikringssum: ").append(amount);
+        result.append("\nEiendomstype: ").append(type.toString());
         
         // Returns the string.
         return result.toString();

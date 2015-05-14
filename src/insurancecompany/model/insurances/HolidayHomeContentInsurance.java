@@ -28,9 +28,8 @@ public class HolidayHomeContentInsurance extends PropertyInsurance
     
     /**
      * Constructs a new holiday home content insurance with the specified
-     * amount, coverage, customerId, excess, property and type. Active is set 
-     * to true. Date is set to the current date. InsuranceId is automatically 
-     * set to nextInsuranceId.
+     * parameters. Active is set to true. Date is set to the current date. 
+     * InsuranceId is automatically set to nextInsuranceId.
      * 
      * @param amount The insurance amount of this insurance.
      * @param coverage The coverage of this insurance.
@@ -68,7 +67,7 @@ public class HolidayHomeContentInsurance extends PropertyInsurance
     /**
      * Calculates the premium of this insurance, and then sets the premium.
      */
-    public void calculatePremium(){
+    public void calculatePremium() {
 	int newPremium = coverage.getPricing() + (int)amountCost() - 
                 excessDrop();
 	setPremium(newPremium);
@@ -103,7 +102,7 @@ public class HolidayHomeContentInsurance extends PropertyInsurance
      * 
      * @return The drop in price due to excess.
      */
-    private int excessDrop(){
+    private int excessDrop() {
 	int excess = getExcess();
 	int result = 0;
 	if (excess == 0) {

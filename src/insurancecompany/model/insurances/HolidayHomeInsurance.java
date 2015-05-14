@@ -27,10 +27,9 @@ public class HolidayHomeInsurance extends PropertyInsurance
     private HolidayHomeType type;
     
     /**
-     * Constructs a new holiday home insurance with the specified coverage, 
-     * customerId, excess, property, rental and type. Active is set to true. 
-     * Date is set to the current date. InsuranceId is automatically set to 
-     * nextInsuranceId.
+     * Constructs a new holiday home insurance with the specified parameters. 
+     * Active is set to true. Date is set to the current date. InsuranceId is 
+     * automatically set to nextInsuranceId.
      * 
      * @param coverage The coverage of this insurance.
      * @param customerId The id of the customer who owns this insurance.
@@ -70,7 +69,7 @@ public class HolidayHomeInsurance extends PropertyInsurance
      * is to be rented out, the type of the insured home, the building material 
      * of the home and the year the home was built.
      */
-    public void calculatePremium(){
+    public void calculatePremium() {
         double rentalExtra = rental ? 1.15 : 1;
         // Multiplicator for the homes building material
 	double MaterialMultiplicator = property.getMaterialMultiplicator();

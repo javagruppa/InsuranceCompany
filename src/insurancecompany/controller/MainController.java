@@ -780,6 +780,7 @@ public class MainController {
         CarInsuranceCoverage coverage = carInsuranceRegistration.getCoverage();
         int customerId = carInsuranceRegistration.getSelectedCustomerId();
         String excessString = carInsuranceRegistration.getExcess();
+        String existingBonusString = carInsuranceRegistration.getExistingBonus();
         String garageString = carInsuranceRegistration.getParkingCondition();
         String maxLengthString = carInsuranceRegistration.getDrivingLength();
         String youngDriverString = carInsuranceRegistration.getYoungestDriver();
@@ -801,6 +802,7 @@ public class MainController {
         boolean garage = false;
         boolean youngDriver = false;
         int excess = 0;
+        int existingBonus = 0;
         int maxLength = 0;
         int registrationYear = 0;
         
@@ -843,6 +845,17 @@ public class MainController {
                 excess = Integer.parseInt(excessString);
             } catch(NumberFormatException nfe) {
                 carInsuranceRegistration.setExcessMessage(FORMAT_MESSAGE);
+                abort = true;
+            }
+        }
+        if(existingBonusString.equals("")) {
+            carInsuranceRegistration.setExistingBonusMessage(EMPTY_MESSAGE);
+            abort = true;
+        } else {
+            try {
+                existingBonus = Integer.parseInt(existingBonusString);
+            } catch(NumberFormatException nfe) {
+                carInsuranceRegistration.setExistingBonusMessage(FORMAT_MESSAGE);
                 abort = true;
             }
         }
@@ -891,7 +904,7 @@ public class MainController {
         
         // Creates CarInsurance:
         CarInsurance insurance = new CarInsurance(car, coverage, customerId, 
-                excess, garage, maxLength, youngDriver);
+                excess, existingBonus, garage, maxLength, youngDriver);
         
         // Adds insurance to Register:
         insurances.addInsurance(insurance); //returns boolean

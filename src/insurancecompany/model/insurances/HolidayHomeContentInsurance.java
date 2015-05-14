@@ -9,8 +9,8 @@ import java.io.Serializable;
  * Class HolidayHomeContentInsurance. This is the content insurance for holiday 
  * homes.
  * 
- * @author Carl
  * @author Sindre
+ * @author Carl
  */
 public class HolidayHomeContentInsurance extends PropertyInsurance
         implements Serializable {

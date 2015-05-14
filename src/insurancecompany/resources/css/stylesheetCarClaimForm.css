@@ -12,10 +12,36 @@ and open the template in the editor.
     -fx-border-style: solid;
     -fx-border-color: #ff0000;
     -fx-border-width: 2px;
+    -fx-background-color: #FFF1F1;
 }
 
 .text-area {
     -fx-border-style: solid;
     -fx-border-color: #ff0000;
     -fx-border-width: 2px;
+}
+
+.text-area .content {
+    -fx-background-color: #FFF1F1;
+}
+
+#custom.label {
+    -fx-font-size: 20pt;
+    -fx-background-color: #ffff33;
+    -fx-border-style: solid;
+    -fx-border-color: #ff0000;
+    -fx-border-width: 2px;
+    -fx-padding: 10;
+}
+
+#custom.button {
+    -fx-border-color: #000000;
+    -fx-border-width: 2px;
+    -fx-background-color: #ff9933;
+    -fx-font-size: 30pt;
+    -fx-padding: 30;
+}
+
+#custom.button:hover {
+    -fx-background-color: #ffcc66;
 }

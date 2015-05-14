@@ -4,14 +4,21 @@
  */
 package insurancecompany.view.register.claims;
 
+import insurancecompany.misc.DateUtility;
 import insurancecompany.model.people.Customer;
 import insurancecompany.model.people.VehicleOwner;
-import insurancecompany.model.properties.Address;
 import insurancecompany.model.vehicles.Car;
+import java.time.LocalDate;
 import java.util.Calendar;
+import java.util.Date;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -22,6 +29,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 /**
  *
@@ -50,7 +58,6 @@ public class CarClaimFormView {
     private TextField personalNumberA;
     private TextField streetA; // Includes street name, number and letter.
     private TextField zipCodeA;
-    private TextField cityA;
     /**the phone number of the person*/
     private TextField phoneA;
     /**the e-mail address for the person*/
@@ -67,16 +74,20 @@ public class CarClaimFormView {
     private TextField personalNumberB;
     private TextField streetB; // Includes street name, number and letter.
     private TextField zipCodeB;
-    private TextField cityB;
     /**the phone number of the person*/
     private TextField phoneB;
     /**the e-mail address for the person*/
     private TextField emailB;
     private TextField registrationNumberB;
     private TextField brandB;
-   
+    /** The name of the insurance company of the other part involved */
+    private TextField insuranceCompanyB;
+    
     /** The course of events */
     private TextArea courseOfEvents;
+    // TODO: Remember to onAction close window when button is clicked. 
+    // If not all fields are filled in correctly, show a dialog window:
+    private Button registerButton;
     
     private Car carA;
     /** The customer who owns the insurance */
@@ -85,8 +96,7 @@ public class CarClaimFormView {
     private VehicleOwner otherPerson;
     /** Another car involved in the accident */
     private Car carB;
-    /** The name of the insurance company of the other part involved */
-    private String insuranceCompanyB;
+
 
     
     /** The Id for the insurance covering this damage */
@@ -118,17 +128,29 @@ public class CarClaimFormView {
         gridPane.getColumnConstraints().addAll(col0, col1, col2, col3, col4, col5, col6, col7, col8, col9, col10);
         
         RowConstraints row0 = new RowConstraints(65); // gap
-        RowConstraints row1 = new RowConstraints(50); // first field
+        RowConstraints row1 = new RowConstraints(50); // Skadedato, skadested
         RowConstraints row2 = new RowConstraints(17); // gap
-        RowConstraints row3 = new RowConstraints(55); // second field
+        RowConstraints row3 = new RowConstraints(55); // Vitner
         RowConstraints row4 = new RowConstraints(27); // gap
-        RowConstraints row5 = new RowConstraints(50); // third field
-        RowConstraints row6 = new RowConstraints(30); // fourth field
-        RowConstraints row7 = new RowConstraints(50);
-        RowConstraints row8 = new RowConstraints(50);
-        RowConstraints row9 = new RowConstraints(50);
+        RowConstraints row5 = new RowConstraints(50); // Etternavn
+        RowConstraints row6 = new RowConstraints(30); // Fornavn, fødselsnummer
+        RowConstraints row7 = new RowConstraints(35); // Adresse
+        RowConstraints row8 = new RowConstraints(38); // Postnr
+        RowConstraints row9 = new RowConstraints(38); // Telefon
+        RowConstraints row10 = new RowConstraints(36); // Epost
+        RowConstraints row11 = new RowConstraints(42); // Regnr
+        RowConstraints row12 = new RowConstraints(38); // Merke
+        RowConstraints row13 = new RowConstraints(38); // empty
+        RowConstraints row14 = new RowConstraints(38); // Forsikringsselskap
+        RowConstraints row15 = new RowConstraints(38); // empty
+        RowConstraints row16 = new RowConstraints(295); // HUGE gap
+        RowConstraints row17 = new RowConstraints(20); // Beskrivelse Label
+        RowConstraints row18 = new RowConstraints(365); // Beskrivelse
+        RowConstraints row19 = new RowConstraints(100); // Registrer knapp
         // Add these constraints:
-        gridPane.getRowConstraints().addAll(row0, row1, row2, row3, row4, row5, row6, row7, row8, row9);
+        gridPane.getRowConstraints().addAll(row0, row1, row2, row3, row4, row5, 
+                row6, row7, row8, row9, row10, row11, row12, row13, row14, row15,
+                row16, row17, row18, row19);
  
         stackPane.getChildren().addAll(imageView, gridPane);
         scrollPane = new ScrollPane();
@@ -136,6 +158,7 @@ public class CarClaimFormView {
         
         
         date = new DatePicker();
+        restrictDatePicker(date);
         location = new TextField();
         witnesses = new TextArea();
         witnesses.setWrapText(true);
@@ -145,7 +168,6 @@ public class CarClaimFormView {
         personalNumberA = new TextField();
         streetA = new TextField();
         zipCodeA = new TextField();
-        cityA = new TextField();
         phoneA = new TextField();
         emailA = new TextField();
         registrationNumberA = new TextField();
@@ -157,57 +179,263 @@ public class CarClaimFormView {
         personalNumberB = new TextField();
         streetB = new TextField();
         zipCodeB = new TextField();
-        cityB = new TextField();
         phoneB = new TextField();
         emailB = new TextField();
         registrationNumberB = new TextField();
         brandB = new TextField();
-
+        insuranceCompanyB = new TextField();
+        
+        Label courseOfEventsLabel = new Label("      Beskriv skaden:      ");
+        courseOfEventsLabel.setId("custom");
         courseOfEvents = new TextArea();
+        courseOfEvents.setWrapText(true);
+        
+        registerButton = new Button("Registrer");
+        registerButton.setId("custom");
         
         // ADD TO THE GRIDPANE:
         
         gridPane.add(date, 1, 1);
 
         gridPane.add(location, 4, 1, 4, 1);
-        gridPane.add(witnesses, 6, 3, 5, 1);              
+        gridPane.add(witnesses, 6, 3, 5, 1);
+        
         gridPane.add(lastNameA, 2, 5, 3, 1);
         gridPane.add(firstNameA, 1, 6, 2, 1);
-        
         gridPane.add(personalNumberA, 4, 6);
-        /*
-        gridPane.add(streetA
-        gridPane.add(zipCodeA
-        gridPane.add(cityA
-        gridPane.add(phoneA
-        gridPane.add(emailA
-        gridPane.add(registrationNumberA
-        gridPane.add(brandA
+        gridPane.add(streetA, 1, 7, 4, 1);
+        gridPane.add(zipCodeA, 1, 8, 3, 1);
+        gridPane.add(phoneA, 1, 9, 2, 1);
+        gridPane.add(emailA, 3, 10, 2, 1);
+        gridPane.add(registrationNumberA, 2, 11, 3, 1);
+        gridPane.add(brandA, 1, 12, 2, 1);
 
-
-        gridPane.add(lastNameB
-        gridPane.add(firstNameB
-        gridPane.add(personalNumberB
-        gridPane.add(streetB
-        gridPane.add(zipCodeB
-        gridPane.add(cityB
-        gridPane.add(phoneB
-        gridPane.add(emailB
-        gridPane.add(registrationNumberB
-        gridPane.add(brandB
+        gridPane.add(lastNameB, 9, 5, 2, 1);
+        gridPane.add(firstNameB, 7, 6, 2, 1);    
+        gridPane.add(personalNumberB, 10, 6);
+        gridPane.add(streetB, 7, 7, 4, 1);
+        gridPane.add(zipCodeB, 7, 8, 3, 1);
+        gridPane.add(phoneB, 7, 9, 2, 1);
+        gridPane.add(emailB, 10, 10, 2, 1);
+        gridPane.add(registrationNumberB, 9, 11, 3, 1);
+        gridPane.add(brandB, 7, 12, 2, 1);
+        gridPane.add(insuranceCompanyB, 9, 14, 2, 1);
         
+        gridPane.add(courseOfEventsLabel, 6, 17, 5, 1);
+        gridPane.add(courseOfEvents, 3, 18, 6, 1);
         
-        gridPane.add(courseOfEvents
-        */
+        gridPane.add(registerButton, 6, 19, 5, 1);
 
         scene = new Scene(scrollPane, 1150, 650);
         scene.getStylesheets().add("insurancecompany/resources/css/stylesheetCarClaimForm.css");
     }
     
     public void show(Stage stage) {
-        stage.setTitle("Innlogging");
-        
+        stage.setTitle("Bilskademeldingsskjema");      
         stage.setScene(scene);
         stage.show();
+    }
+    
+        /**
+     * Sets up date restrictions to the DatePicker in the parameter.
+     * @param date 
+     */
+    private void restrictDatePicker(DatePicker date) {
+        date.setValue(LocalDate.now());
+        // Sets up a restricton for choosable dates:
+        Callback<DatePicker, DateCell> dayCellFactory = dp -> new DateCell()
+        {
+            @Override
+            public void updateItem(LocalDate item, boolean empty)
+            {
+                super.updateItem(item, empty);
+                // Only allow dates that are up to 2 months old, and not newer than current date:
+                if(item.isBefore(LocalDate.now().minusMonths(2)) || item.isAfter(LocalDate.now()))
+                {   // Sets the background color of the invalid dates to a pink/red color:
+                    setStyle("-fx-background-color: #ffc0cb;");
+                    // Disables them, so they can not be picked:
+                    setDisable(true);
+                }
+            }
+        };
+        // Apply these restrictions to our DatePicker
+        date.setDayCellFactory(dayCellFactory);
+        date.setPromptText("dd/MM/yyyy");
+    } // end of method restrictDatePicker
+
+    /**
+     * Returns the selected date as a Calendar object.
+     * @return the date
+     */
+    public Calendar getDate() {
+        // Get selected value:
+        LocalDate localDate = date.getValue();
+        // Convert to date:
+        Date d = DateUtility.localDateToDate(localDate);
+        // Conert to Calendar:
+        Calendar c = DateUtility.dateToCalendar(d);
+        return c;
+    }
+
+    /**
+     * @return the location
+     */
+    public String getLocation() {
+        return location.getText();
+    }
+
+    /**
+     * @return the witnesses
+     */
+    public String getWitnesses() {
+        return witnesses.getText();
+    }
+
+    /**
+     * @param lastNameA the lastNameA to set
+     */
+    public void setLastNameA(String lastNameA) {
+        this.lastNameA.setText(lastNameA);
+    }
+
+    /**
+     * @param firstNameA the firstNameA to set
+     */
+    public void setFirstNameA(String firstNameA) {
+        this.firstNameA.setText(firstNameA);
+    }
+
+    /**
+     * @param personalNumberA the personalNumberA to set
+     */
+    public void setPersonalNumberA(String personalNumberA) {
+        this.personalNumberA.setText(personalNumberA);
+    }
+
+    /**
+     * @param streetA the streetA to set
+     */
+    public void setStreetA(String streetA) {
+        this.streetA.setText(streetA);
+    }
+
+    /**
+     * @param zipCodeA the zipCodeA to set
+     */
+    public void setZipCodeA(String zipCodeA) {
+        this.zipCodeA.setText(zipCodeA);
+    }
+
+    /**
+     * @param phoneA the phoneA to set
+     */
+    public void setPhoneA(String phoneA) {
+        this.phoneA.setText(phoneA);
+    }
+
+    /**
+     * @param emailA the emailA to set
+     */
+    public void setEmailA(String emailA) {
+        this.emailA.setText(emailA);
+    }
+
+    /**
+     * @param registrationNumberA the registrationNumberA to set
+     */
+    public void setRegistrationNumberA(String registrationNumberA) {
+        this.registrationNumberA.setText(registrationNumberA);
+    }
+
+    /**
+     * @param brandA the brandA to set
+     */
+    public void setBrandA(String brandA) {
+        this.brandA.setText(brandA);
+    }
+
+    /**
+     * @return the lastNameB
+     */
+    public TextField getLastNameB() {
+        return lastNameB;
+    }
+
+    /**
+     * @return the firstNameB
+     */
+    public TextField getFirstNameB() {
+        return firstNameB;
+    }
+
+    /**
+     * @return the personalNumberB
+     */
+    public TextField getPersonalNumberB() {
+        return personalNumberB;
+    }
+
+    /**
+     * @return the streetB
+     */
+    public TextField getStreetB() {
+        return streetB;
+    }
+
+    /**
+     * @return the zipCodeB
+     */
+    public TextField getZipCodeB() {
+        return zipCodeB;
+    }
+
+    /**
+     * @return the phoneB
+     */
+    public TextField getPhoneB() {
+        return phoneB;
+    }
+
+    /**
+     * @return the emailB
+     */
+    public TextField getEmailB() {
+        return emailB;
+    }
+
+    /**
+     * @return the registrationNumberB
+     */
+    public TextField getRegistrationNumberB() {
+        return registrationNumberB;
+    }
+
+    /**
+     * @return the brandB
+     */
+    public TextField getBrandB() {
+        return brandB;
+    }
+
+    /**
+     * @return the insuranceCompanyB
+     */
+    public TextField getInsuranceCompanyB() {
+        return insuranceCompanyB;
+    }
+
+    /**
+     * @return the courseOfEvents
+     */
+    public TextArea getCourseOfEvents() {
+        return courseOfEvents;
+    }
+
+    /**
+     * Sets the event handler for the register button of this view.
+     * @param event 
+     */
+    public void setRegisterButtonEventHandler(EventHandler<ActionEvent> event) {
+        registerButton.setOnAction(event);
     }
 }

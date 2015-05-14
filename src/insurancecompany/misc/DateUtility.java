@@ -1,6 +1,8 @@
 package insurancecompany.misc;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -34,7 +36,7 @@ public class DateUtility {
     }
     
     /**
-     * Sets a Calendar object to a certain date
+     * Returns a Calendar object from a Date object.
      * @param date the date to be set
      * @return the calendar object with the specified date
      */
@@ -42,6 +44,10 @@ public class DateUtility {
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
         return cal;
+    }
+    
+    public static Date localDateToDate(LocalDate localDate) {
+        return Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
     }
 
 }

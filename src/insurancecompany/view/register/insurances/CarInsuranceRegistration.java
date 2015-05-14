@@ -483,12 +483,12 @@ public class CarInsuranceRegistration {
     }
 
     /** @return The value of ownerPersonalNumberField. */
-    public String getOwnerPersonalNumberField() {
+    public String getOwnerPersonalNumber() {
         return ownerPersonalNumberField.getText();
     }
 
     /** @return The value of registrationNumberField. */
-    public String getRegistrationNumberField() {
+    public String getRegistrationNumber() {
         return registrationNumberField.getText();
     }
 

@@ -5,6 +5,7 @@ import java.io.Serializable;
 /**
  * Abstract Vehicle class. This is a super class to boat and car, and represents a
  * vehicle that is either insured or a part of an accident.
+ * 
  * @author André
  * @author Sindre
  */
@@ -15,8 +16,6 @@ public abstract class Vehicle implements Serializable {
     private boolean alarm;
     /** The brand of this vehicle. */
     private final String brand;
-    /** The effect of the engine of this vehicle. */
-    private int engineEffect;
     /** The model of this vehicle. */
     private final String model;
     /** The personal number of the owner of this vehicle. */
@@ -39,25 +38,18 @@ public abstract class Vehicle implements Serializable {
      * @param registrationNumber the registration number of this vehicle
      * @param registrationYear the registration year of this vehicle
      */
-    public Vehicle(boolean alarm, String brand, int engineEffect, String model, 
+    public Vehicle(boolean alarm, String brand, String model, 
             String personalNumber, String registrationNumber, 
             int registrationYear){
         this.alarm = alarm;
         this.brand = brand;
-        this.engineEffect = engineEffect;
         this.model = model;
         this.personalNumber = personalNumber;
         this.registrationNumber = registrationNumber;
         this.registrationYear = registrationYear;
     }
 
-    /**
-     * Returns the engine effect of this vehicle
-     * @return the engineEffect
-     */
-    public int getEngineEffect() {
-        return engineEffect;
-    }
+    
 
     /**
      * returns the personal number of the vehicles owner
@@ -89,14 +81,6 @@ public abstract class Vehicle implements Serializable {
      */
     public void setAlarm(boolean alarm) {
         this.alarm = alarm;
-    }
-
-    /**
-     * Sets new engine effect
-     * @param engineEffect the engineEffect to set
-     */
-    public void setEngineEffect(int engineEffect) {
-        this.engineEffect = engineEffect;
     }
 
     /**
@@ -136,7 +120,6 @@ public abstract class Vehicle implements Serializable {
         result.append("\nBilmerke: ").append(brand);
         result.append("\nModell: ").append(model);
         result.append("\nRegistreringsår: ").append(registrationYear);
-        result.append("\nMotorstørrelse: ").append(engineEffect).append(" HK");
         result.append("\nAlarm").append(alarm ? "Ja" : "Nei");
         result.append("\nPersonnummer eier: ").append(personalNumber);
         // Returns the string.

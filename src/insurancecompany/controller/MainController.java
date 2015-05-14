@@ -91,7 +91,6 @@ public class MainController {
     private CustomerRegistration customerRegistration;
     private EmployeeRegistration employeeRegistration;
     
-    
     // Search Views:
     private ClaimSearchView claimSearchView;
     private CustomerSearchView customerSearchView;
@@ -214,7 +213,6 @@ public class MainController {
         initializeEventHandlers();
     }
     
-    
     public void show(Stage stage) {
         this.primaryStage = stage;
         viewController.show(stage);
@@ -228,7 +226,7 @@ public class MainController {
         boatInsuranceRegistration.setSearchCustomerIdButtonEventHandler(this::boatInsuranceSearchCustomerIdButtonEventHandler);
         boatInsuranceRegistration.setSearchPersonalNumberButtonEventHandler(this::boatInsuranceSearchPersonalNumberButtonEventHandler);
         
-        carInsuranceRegistration.setSearchCustomerIdButtonEventHandler(this::carInsuranceSearchCustomerButtonEventHandler);
+        carInsuranceRegistration.setSearchCustomerIdButtonEventHandler(this::carInsuranceSearchCustomerIdButtonEventHandler);
         carInsuranceRegistration.setSearchPersonalNumberButtonEventHandler(this::carInsuranceSearchPersonalNumberButtonEventHandler);
         carInsuranceRegistration.setBrandComboListener(this::brandComboListener);
         carInsuranceRegistration.setYearComboListener(this::yearComboListener);
@@ -386,52 +384,6 @@ public class MainController {
         }
         
         employeeRegistration.setResultText(result);
-    }
-    
-    private void carInsuranceSearchCustomerButtonEventHandler(ActionEvent event) {
-        
-        String customerId = carInsuranceRegistration.getCustomerId();
-        
-       // Customer c = customers.findCustomerById(customerId);
-    }
-    
-    private void carInsuranceSearchPersonalNumberButtonEventHandler(ActionEvent event) {
-        String personalNumber = carInsuranceRegistration.getPersonalNumber();
-        // TODO regex:
-        // Search for customer by personal numer:
-        Customer c = customers.findCustomerByPersonalNumber(personalNumber);
-        // If we find a customer we proceed:
-        if (c != null) {
-            // Show the customer in the text area inside our view:
-            carInsuranceRegistration.setCustomerArea(c.toString());
-            int cId = c.getId();
-            // Search for all insurances by 
-            List inc = insurances.getAllInsurancesByCustomerId(cId);
-            if (!inc.isEmpty()) {
-                carInsuranceRegistration.populateInsurancesTable(inc);
-            }
-        }
-    }
-    
-    private void carInsuranceSelectCustomerButtonEventHandler(ActionEvent event) {
-        
-        String idS = carInsuranceRegistration.getCustomerId();
-        int id = Integer.parseInt(idS);
-        carInsuranceRegistration.setSelectedCustomerId(id);
-    }
-    
-    private void carInsuranceRegisterButtonEventHandler(ActionEvent event) {
-        // get all fields to String, then 
-        CarInsuranceCoverage coverage = carInsuranceRegistration.getCoverage();
-        int customerId = carInsuranceRegistration.getSelectedCustomerId();
-        int excess = 1000;
-        int maxLength = 100;
-        CarInsurance ci = new CarInsurance(null, CarInsuranceCoverage.CASCO, customerId, excess, true, maxLength, true);
-        if (insurances.addInsurance(ci)) {
-            System.err.println("Registret");
-        } else {
-            System.err.println("Ikke reg");
-        }
     }
     
     private void setBrandComboBox() {
@@ -746,7 +698,8 @@ public class MainController {
                 registrationYear, value);
         
         // Creates BoatInsurance:
-        BoatInsurance insurance = new BoatInsurance(boat, customerId, coverage, excess);
+        BoatInsurance insurance = new BoatInsurance(boat, coverage, customerId, 
+                excess);
         
         // Adds insurance to Register:
         insurances.addInsurance(insurance); //returns boolean
@@ -812,6 +765,211 @@ public class MainController {
             if (!insuranceList.isEmpty()) {
                 // Displays the insurances if there is at least one:
                 boatInsuranceRegistration.populateInsurancesTable(insuranceList);
+            }
+        }
+    }
+    
+    // CAR INSURANCE REGISTRATION EVENT HANDLERS
+    
+    private void carInsuranceRegisterButtonEventHandler(ActionEvent e) {
+        
+        // Clears previous messages:
+        carInsuranceRegistration.clearMessages();
+        
+        // Collects information about the customer and the insurance:
+        CarInsuranceCoverage coverage = carInsuranceRegistration.getCoverage();
+        int customerId = carInsuranceRegistration.getSelectedCustomerId();
+        String excessString = carInsuranceRegistration.getExcess();
+        String existingBonusString = carInsuranceRegistration.getExistingBonus();
+        String garageString = carInsuranceRegistration.getParkingCondition();
+        String maxLengthString = carInsuranceRegistration.getDrivingLength();
+        String youngDriverString = carInsuranceRegistration.getYoungestDriver();
+        
+        // Collects information about the car:
+        String alarmString = carInsuranceRegistration.getAlarm();
+        String brand = carInsuranceRegistration.getBrand();
+        String model = carInsuranceRegistration.getModel();
+        String ownerPersonalNumber = carInsuranceRegistration.getOwnerPersonalNumber();
+        String registrationNumber = carInsuranceRegistration.getRegistrationNumber();
+        String registrationYearString = carInsuranceRegistration.getYear();
+        
+        // Creates a boolean which is to be set true if the user has made a 
+        // mistake and the method has to abort:
+        boolean abort = false;
+        
+        // Creates ints and booleans for the converted values:
+        boolean alarm = false;
+        boolean garage = false;
+        boolean youngDriver = false;
+        int excess = 0;
+        int existingBonus = 0;
+        int maxLength = 0;
+        int registrationYear = 0;
+        
+        // Evaluates Input:
+        if(brand.equals("")) {
+            carInsuranceRegistration.setBrandMessage(EMPTY_MESSAGE);
+            abort = true;
+        }
+        if(coverage == null) {
+            carInsuranceRegistration.setCoverageMessage(EMPTY_MESSAGE);
+            abort = true;
+        }
+        if(customerId == 0) {
+            carInsuranceRegistration.setCustomerSelectedMessage(NO_CUSTOMER_MESSAGE);
+            abort = true;
+        }
+        if(model.equals("")) {
+            carInsuranceRegistration.setModelMessage(EMPTY_MESSAGE);
+            abort = true;
+        }
+        if(ownerPersonalNumber.equals("")) {
+            carInsuranceRegistration.setOwnerPersonalNumberMessage(EMPTY_MESSAGE);
+        }
+        if(registrationNumber.equals("")) {
+            carInsuranceRegistration.setRegistrationNumberMessage(EMPTY_MESSAGE);
+        }
+        
+        // Evaluates and converts Input:
+        if(alarmString.equals("")) {
+            carInsuranceRegistration.setAlarmMessage(EMPTY_MESSAGE);
+            abort = true;
+        } else {
+            alarm = alarmString.equals("Ja");
+        }
+        if(excessString.equals("")) {
+            carInsuranceRegistration.setExcessMessage(EMPTY_MESSAGE);
+            abort = true;
+        } else {
+            try {
+                excess = Integer.parseInt(excessString);
+            } catch(NumberFormatException nfe) {
+                carInsuranceRegistration.setExcessMessage(FORMAT_MESSAGE);
+                abort = true;
+            }
+        }
+        if(existingBonusString.equals("")) {
+            carInsuranceRegistration.setExistingBonusMessage(EMPTY_MESSAGE);
+            abort = true;
+        } else {
+            try {
+                existingBonus = Integer.parseInt(existingBonusString);
+            } catch(NumberFormatException nfe) {
+                carInsuranceRegistration.setExistingBonusMessage(FORMAT_MESSAGE);
+                abort = true;
+            }
+        }
+        if(garageString.equals("")) {
+            carInsuranceRegistration.setParkingConditionMessage(EMPTY_MESSAGE);
+            abort = true;
+        } else {
+            garage = garageString.equals("Har garasje");
+        }
+        if(maxLengthString.equals("")) {
+            carInsuranceRegistration.setDrivingLengthMessage(EMPTY_MESSAGE);
+            abort = true;
+        } else {
+            try {
+                maxLength = Integer.parseInt(maxLengthString);
+            } catch(NumberFormatException nfe) {
+                carInsuranceRegistration.setDrivingLengthMessage(FORMAT_MESSAGE);
+                abort = true;
+            }
+        }
+        if(registrationYearString.equals("")) {
+            carInsuranceRegistration.setYearMessage(EMPTY_MESSAGE);
+            abort = true;
+        } else {
+            try {
+                registrationYear = Integer.parseInt(registrationYearString);
+            } catch(NumberFormatException nfe) {
+                carInsuranceRegistration.setYearMessage(FORMAT_MESSAGE);
+                abort = true;
+            }
+        }
+        if(youngDriverString.equals("")) {
+            carInsuranceRegistration.setYoungestDriverMessage(EMPTY_MESSAGE);
+            abort = true;
+        } else {
+            youngDriver = youngDriverString.equals("Under 25");
+        }
+        
+        if(abort) {
+            return;
+        }
+        
+        // Creates car:
+        Car car = new Car(alarm, brand, model, ownerPersonalNumber, 
+                registrationNumber, registrationYear);
+        
+        // Creates CarInsurance:
+        CarInsurance insurance = new CarInsurance(car, coverage, customerId, 
+                excess, existingBonus, garage, maxLength, youngDriver);
+        
+        // Adds insurance to Register:
+        insurances.addInsurance(insurance); //returns boolean
+        // TODO: Give a message to the user whether the insurance was added or not. It would not
+        //       be added if the register already contained such an insurance.
+    }
+    
+    private void carInsuranceSearchCustomerIdButtonEventHandler(ActionEvent event) {
+        String customerIdString = carInsuranceRegistration.getCustomerId();
+        int customerId;
+        if(customerIdString.equals("")) {
+            // Gives the user an appropriate message if the user hasn't put in a customerId:
+            carInsuranceRegistration.setCustomerArea(CUSTOMERID_EMPTY_MESSAGE);
+            return;
+        }
+        try {
+            // Converts the customerId to int:
+            customerId = Integer.parseInt(customerIdString);
+        } catch(NumberFormatException nfe) {
+            // Gives the user an appropriate message if the customerId wasn't formatted correctly:
+            carInsuranceRegistration.setCustomerArea(CUSTOMERID_FORMAT_MESSAGE);
+            return;
+        }
+        // TODO: Regex.
+        // Searches for the customer by customerId:
+        Customer customer = customers.findCustomerById(customerId);
+        if(customer == null) {
+            // Gives the user an appropriate message if the customer wasn't found:
+            carInsuranceRegistration.setCustomerArea(CUSTOMERID_NOT_FOUND_MESSAGE + customerId);
+        } else {
+            // Displays the customer:
+            carInsuranceRegistration.setCustomerArea(customer.toString());
+            carInsuranceRegistration.setSelectedCustomerId(customerId);
+            // Finds the customers insurances:
+            List insuranceList = insurances.getAllInsurancesByCustomerId(customerId);
+            if (!insuranceList.isEmpty()) {
+                // Displays the insurances if there is at least one:
+                carInsuranceRegistration.populateInsurancesTable(insuranceList);
+            }
+        }
+    }
+    
+    private void carInsuranceSearchPersonalNumberButtonEventHandler(ActionEvent event) {
+        String personalNumber = carInsuranceRegistration.getPersonalNumber();
+        if(personalNumber.equals("")) {
+            // Gives the user an appropriate message if the user hasn't put in a personalNumber:
+            carInsuranceRegistration.setCustomerArea(PERSONALNUMBER_EMPTY_MESSAGE);
+            return;
+        }
+        // TODO: Regex.
+        // Searches for the customer by personalNumber:
+        Customer customer = customers.findCustomerByPersonalNumber(personalNumber);
+        if(customer == null) {
+            // Gives the user an appropriate message if the customer wasn't found:
+            carInsuranceRegistration.setCustomerArea(PERSONALNUMBER_NOT_FOUND_MESSAGE + personalNumber);
+        } else {
+            // Finds the customers insurances:
+            int customerId = customer.getId();
+            // Displays the customer:
+            carInsuranceRegistration.setCustomerArea(customer.toString());
+            carInsuranceRegistration.setSelectedCustomerId(customerId);
+            List insuranceList = insurances.getAllInsurancesByCustomerId(customerId);
+            if (!insuranceList.isEmpty()) {
+                // Displays the insurances if there is at least one:
+                carInsuranceRegistration.populateInsurancesTable(insuranceList);
             }
         }
     }

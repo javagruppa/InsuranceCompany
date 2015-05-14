@@ -5,13 +5,16 @@
  */
 package insurancecompany.view.register.claims;
 
+import insurancecompany.misc.DateUtility;
 import insurancecompany.misc.coverages.Damage;
 import insurancecompany.model.claims.ClaimItem;
 import insurancecompany.model.insurances.Insurance;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Set;
@@ -81,9 +84,9 @@ public class HolidayHomeContentClaimRegistration {
     private TableView<Insurance> insurancesTable;
     /** Table column displaying an insurance type. */
     private TableColumn<Insurance, String> insuranceTypeColumn;
-    /** Table column displaying an insurance's coverage. */
+    /** Table column displaying an insurances coverage. */
     private TableColumn<Insurance, String> insuranceCoverageColum;
-    /** Table column displaying an insurance's id. */
+    /** Table column displaying an insurances id. */
     private TableColumn<Insurance, Integer> insuranceIdColumn;
     /** Text used to display information after an insurance is selected. */
     private Text selectInsuranceMessage;
@@ -129,7 +132,8 @@ public class HolidayHomeContentClaimRegistration {
 
     /** Button used to register the item from the input fields. */
     private Button addItemButton;
-    
+    /** Text message used to confirm that an item has been added. */
+    private Text addItemConfirmMessage;
     /** A list of claim items belonging to this claim.*/
     private List<ClaimItem> claimItems;
     
@@ -233,6 +237,7 @@ public class HolidayHomeContentClaimRegistration {
         descriptionOfDocumentationTextArea = new TextArea();
         descriptionOfDocumentationTextArea.setWrapText(true);
         addItemButton = new Button("Legg til gjenstand");
+        addItemConfirmMessage = new Text();
         registerButton = new Button("Registrer skademelding");
            
         // Add nodes to mainPane:
@@ -276,7 +281,8 @@ public class HolidayHomeContentClaimRegistration {
         mainPane.add(valueField, 9, 7, 2, 1);
         mainPane.add(descriptionOfDocumentationLabel, 8, 8, 3, 1);
         mainPane.add(descriptionOfDocumentationTextArea, 8, 9, 3, 3);
-        mainPane.add(addItemButton, 8, 12, 3, 1);
+        mainPane.add(addItemButton, 8, 12, 2, 1);
+        mainPane.add(addItemConfirmMessage, 10, 12, 3, 1);
         mainPane.add(registerButton, 8, 13, 3, 1);
 
     } // end of sole Constructor
@@ -586,14 +592,71 @@ public class HolidayHomeContentClaimRegistration {
     }
 
     /**
+     * Returns a List of ClaimItem.
      * @return the claimItems
      */
     public List<ClaimItem> getClaimItems() {
         return claimItems;
     }
     
+    /**
+     * Adds a claim item to the claim items List of this view.
+     * @param claimItem 
+     */
     public void addClaimItem(ClaimItem claimItem) {
         claimItems.add(claimItem);
+    }
+
+    /**
+     * @return the customerArea
+     */
+    public String getCustomerArea() {
+        return customerArea.getText();
+    }
+
+    /**
+     * @return the itemDescriptionTextArea
+     */
+    public String getItemDescriptionTextArea() {
+        return itemDescriptionTextArea.getText();
+    }
+
+    /**
+     * @return the acquiredAreaField
+     */
+    public String getAcquiredAreaField() {
+        return acquiredAreaField.getText();
+    }
+
+    /**
+     * @return the acquiredDatePicker
+     */
+    public Calendar getAcquiredDatePickerValue() {
+        // Get selected value:
+        if (acquiredDatePicker.getValue() != null) {
+            LocalDate localDate = acquiredDatePicker.getValue();
+            // Convert to date:
+            Date d = DateUtility.localDateToDate(localDate);
+            // Conert to Calendar:
+            Calendar c = DateUtility.dateToCalendar(d);
+            return c;
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * @return the valueField
+     */
+    public String getValueField() {
+        return valueField.getText();
+    }
+
+    /**
+     * @return the descriptionOfDocumentationTextArea
+     */
+    public String getDescriptionOfDocumentationTextArea() {
+        return descriptionOfDocumentationTextArea.getText();
     }
 
 } // end of class HolidayHomeContentClaimRegistration

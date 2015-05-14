@@ -81,6 +81,8 @@ public class CarInsurance extends Insurance implements Serializable {
         return "Bilforsikring";
     }
     
+    // TO STRING METHOD
+    
     /**
      * Returns a string representation of this insurance. The string
      * representation consists of each field with a short description separated

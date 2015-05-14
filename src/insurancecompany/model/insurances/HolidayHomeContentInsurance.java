@@ -52,12 +52,15 @@ public class HolidayHomeContentInsurance extends PropertyInsurance
         this.type = type;
     }
     
+    // CALCULATE PREMIUM METHODS
+    
     /**
      * Finds and returns the basic price of this insurance, based on whether
      * this is a Basic or a Plus insurance type
-     * @return the basic price
+     * 
+     * @return The basic price.
      */
-    private int basicPrice(){
+    private int basicPrice() {
 	int basicP = coverage.getPricing();
 	return basicP;
     }
@@ -65,81 +68,76 @@ public class HolidayHomeContentInsurance extends PropertyInsurance
     /**
      * Calculates and returns the content pricing of this insurance, based
      * on the value insured.
-     * @return the content price of this insurance
+     * 
+     * @return The content price of this insurance.
      */
-    private double contentPrice(){
+    private double contentPrice() {
 	double cPrice = 0;
-	
 	if (amount <= 150000){
-		cPrice = amount * 0.004;
+            cPrice = amount * 0.004;
+	} else if (amount > 150000 && amount <= 300000) {
+            cPrice = amount * 0.0055;
+	} else if (amount > 300000 && amount <= 500000) {
+            cPrice = amount * 0.006;
+	} else if (amount > 500000 && amount <= 1500000) {
+            cPrice = 3500;
+	} else if (amount > 1500000) {
+            double extra = amount * 0.001;
+            cPrice = extra + 3500;
 	}
-	else if (amount > 150000 && amount <= 300000){
-		cPrice = amount * 0.0055;
-	}
-	else if (amount > 300000 && amount <= 500000){
-		cPrice = amount * 0.006;
-	}
-	else if (amount > 500000 && amount <= 1500000){
-		cPrice = 3500;
-	}
-	else if (amount > 1500000){
-		double extra = amount * 0.001;
-		cPrice = extra + 3500;
-	}
-
 	return cPrice;
     }
 
     /**
      * Calculates and returns the drop in price for this insurance based on
-     * the chosen excess
-     * @return the drop in price due to excess
+     * the chosen excess.
+     * 
+     * @return The drop in price due to excess.
      */
     private int excessDrop(){
 	int excess = getExcess();
 	int drop = 0;
-
-	if (excess == 0){
+	if (excess == 0) {
 		drop = -2000;
-	}
-	else if (excess > 0 && excess <= 1000){
+	} else if (excess > 0 && excess <= 1000) {
 		drop = excess / 10;
-	}
-	else if (excess > 1000 && excess <= 2000){
+	} else if (excess > 1000 && excess <= 2000) {
 		drop = excess / 9;
-	}
-	else if (excess > 2000 && excess <= 3500){
+	} else if (excess > 2000 && excess <= 3500) {
 		drop = excess / 8;
-	}
-	else if (excess > 3500 && excess <= 5000){
+	} else if (excess > 3500 && excess <= 5000) {
 		drop = excess / 7;
-	}
-	else if (excess > 5000 && excess <= 10000){
+	} else if (excess > 5000 && excess <= 10000) {
 		drop = 800;
-	}
-	else if (excess > 10000 && excess <= 20000){
+	} else if (excess > 10000 && excess <= 20000) {
 		drop = 1000;
 	}
 	return drop;
     }
 
     /**
-     * Calculates the premium of this insurance, and then sets the premium
+     * Calculates the premium of this insurance, and then sets the premium.
      */
     public void premium(){
 	int newPremium = basicPrice() + (int)contentPrice() - excessDrop();
 	setPremium(newPremium);
     }
     
+    // GET METHODS
     
-    /**
-     * Returns the type of this insurance in form of a String.
-     * @return 
-     */
+    /** @return The coverage of this insurance. */
+    @Override
+    public Object getCoverage() {
+        return coverage;
+    }
+    
+    /** @return The type of insurance in form of a String. */
     @Override
     public String getName() {
         return "Fritidsbolig innboforsikring";
     }
+    
+    // TO STRING METHOD
     
     /**
      * Returns a string representation of this insurance. The string
@@ -158,21 +156,7 @@ public class HolidayHomeContentInsurance extends PropertyInsurance
         result.append("\n").append(super.toString());
         result.append("\nDekning: ").append(coverage.toString());
         result.append("\nForsikringssum: ").append(amount);
-        
         // Returns the string.
         return result.toString();
-    }
-    
-    /**
-     * Returns the coverage of this insurance.
-     * @return 
-     */
-    @Override
-    public Object getCoverage() {
-        return coverage;
-    }
-    
-    public Property getholidayHome(){
-        return property;
     }
 }

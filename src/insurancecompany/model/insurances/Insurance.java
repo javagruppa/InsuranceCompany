@@ -18,6 +18,8 @@ import java.util.Calendar;
  */
 public abstract class Insurance implements Serializable {
     
+    /** SerialVersionUID used to identify this class for object IO. */
+    private static final long serialVersionUID = 1L;
     /** The insurance id of the insurance created next. */
     private static int nextInsuranceId = 1000000;
     /** The path nextInsuranceId is saved to. */

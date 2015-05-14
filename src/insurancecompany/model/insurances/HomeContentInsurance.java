@@ -3,53 +3,54 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package insurancecompany.model.insurances;
 
 import insurancecompany.misc.coverages.HomeContentInsuranceCoverage;
-import insurancecompany.model.properties.Property;
 import insurancecompany.misc.hometypes.HomeType;
-import insurancecompany.misc.coverages.HomeInsuranceCoverage;
+import insurancecompany.model.properties.Property;
 import java.io.Serializable;
 
 
 /**
  *
  * @author Carl
+ * @author Sindre
  */
-public class HomeContentInsurance extends PropertyInsurance implements Serializable {
+public class HomeContentInsurance extends PropertyInsurance 
+        implements Serializable {
+    
     /** SerialVersionUID used to identify this class for object IO */
     private static final long serialVersionUID = 1L;
-    
-    /** the home this insurance is for */
-    private Property home;
-    /** the hometype this insurance is for */
-    private HomeType hometype;
-    /** the coverage of this insurance */
-    private HomeContentInsuranceCoverage coverage;
-    /** The value this insurance covers */
+    /** The insurance amount of this insurance. */
     private int amount;
+    /** The coverage of this insurance. */
+    private HomeContentInsuranceCoverage coverage;
+    /** The property this insurance is for. */
+    private Property property;
+    /** The type of home this insurance is for. */
+    private HomeType type;
     
     /**
-     * Constructs a new home contents insurance with the specified customerId,
-     * excess, home, hometype and coverage. Active is set to true.
-     * Date is set to the current date.
-     * InsuranceId is automatically set to nextInsuranceId.
-     * @param customerId the ID of the customer who owns this insurance
-     * @param excess the excess of this insurance
-     * @param home the home this insurance is for
-     * @param hometype the hometype this insurance is for 
-     * @param coverage the coverage of this insurance
-     * @param amount the value this insurance covers
+     * Constructs a new home content insurance with the specified amount, 
+     * coverage, customerId, excess, property and type. Active is set to true.
+     * Date is set to the current date. InsuranceId is automatically set to 
+     * nextInsuranceId.
+     * 
+     * @param amount The insurance amount of this insurance.
+     * @param coverage The coverage of this insurance.
+     * @param customerId The id of the customer who owns this insurance.
+     * @param excess The excess of this insurance.
+     * @param property The property this insurance is for.
+     * @param type The type of home this insurance is for.
      */
-    public HomeContentInsurance(int customerId, int excess, Property home,
-            HomeType hometype, HomeContentInsuranceCoverage coverage, 
-            int amount){
+    public HomeContentInsurance(int amount, 
+            HomeContentInsuranceCoverage coverage, int customerId, int excess, 
+            Property property, HomeType type){
         super(customerId, excess);
-        this.home = home;
-        this.hometype = hometype;
-        this.coverage = coverage;
         this.amount = amount;
+        this.coverage = coverage;
+        this.property = property;
+        this.type = type;
     }
     
     /**
@@ -170,7 +171,7 @@ public class HomeContentInsurance extends PropertyInsurance implements Serializa
     public Object getCoverage() {
         return coverage;
     }    
-    public Property getHome(){
-        return home;
+    public Property getProperty(){
+        return property;
     }
 }

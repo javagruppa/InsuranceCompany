@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package insurancecompany.model.insurances;
 
 import insurancecompany.misc.coverages.HolidayHomeContentInsuranceCoverage;
@@ -15,11 +14,12 @@ import java.io.Serializable;
 /**
  *
  * @author Carl
+ * @author Sindre
  */
 public class HolidayHomeContentInsurance extends PropertyInsurance
         implements Serializable {
     
-    /** SerialVersionUID used to identify this class for object IO */
+    /** SerialVersionUID used to identify this class for object IO. */
     private static final long serialVersionUID = 1L;
     /** The insurance amount of this insurance. */
     private int amount;

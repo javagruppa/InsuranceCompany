@@ -255,6 +255,7 @@ public class ModelController {
         Customer c = customers.findCustomerById(customerId);
         int count = 0; // Counts the number of active insurances on this customer.
         List<Insurance> insuranceList = insurances.getAllInsurancesByCustomerId(customerId);
+        // For every insurance that is active, count goes up by one:
         for (Insurance a : insuranceList) {
             if (a.isActive()) {
                 count++;

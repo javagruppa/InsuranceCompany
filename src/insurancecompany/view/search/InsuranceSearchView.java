@@ -5,7 +5,17 @@
  */
 package insurancecompany.view.search;
 
+import insurancecompany.misc.DateUtility;
+import insurancecompany.misc.InsuranceType;
 import insurancecompany.model.insurances.Insurance;
+import java.util.Calendar;
+import java.util.List;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -75,9 +85,9 @@ public class InsuranceSearchView {
         rightPane.setId("innerPane");
         
         // Sets up column constraints. Width in pixels:
-        ColumnConstraints col1 = new ColumnConstraints(325);
-        ColumnConstraints col2 = new ColumnConstraints(325);
-        ColumnConstraints col3 = new ColumnConstraints(325);
+        ColumnConstraints col1 = new ColumnConstraints(400);
+        ColumnConstraints col2 = new ColumnConstraints(300);
+        ColumnConstraints col3 = new ColumnConstraints(300);
         
         // Adds these constraints:
         mainPane.getColumnConstraints().addAll(col1, col2, col3);
@@ -87,6 +97,7 @@ public class InsuranceSearchView {
         insuranceIdButton = new Button("Søk");
         personalNumberButton = new Button("Søk");
         insuranceTypeCombo = new ComboBox();
+        populateInsuranceTypeCombo();
         fromDatePicker = new DatePicker();
         toDatePicker = new DatePicker();
         customerIdField = new TextField();
@@ -159,8 +170,109 @@ public class InsuranceSearchView {
         rightPane.add(otherArea, 0, 3);
     }
     
+    // POPULATE METHODS
+    
+    private void populateInsuranceTypeCombo() {
+        ObservableList<InsuranceType> obList;
+        obList = FXCollections.observableArrayList(InsuranceType.values()); 
+        insuranceTypeCombo.getItems().setAll(obList);
+        insuranceTypeCombo.setPrefWidth(150);
+    }
+    
+    public void populateInsurancesTable(List<Insurance> insurances) {
+        ObservableList<Insurance> obList = FXCollections.observableArrayList(insurances);
+        insurancesTable.setItems(obList);
+        
+        insuranceTypeColumn.setCellValueFactory((cellData) -> {
+                if ( cellData.getValue() != null) {
+                    return new SimpleStringProperty(cellData.getValue().getName());
+                } else {
+                    return new SimpleStringProperty("<no name>");
+                }
+        });
+        insuranceIdColumn.setCellValueFactory((cellData) -> {
+                if ( cellData.getValue() != null) {
+                    return new SimpleObjectProperty<>(cellData.getValue().getInsuranceId());
+                } else {
+                    return new SimpleObjectProperty(0);
+                }
+        });   
+        customerIdColumn.setCellValueFactory((cellData) -> {
+                if ( cellData.getValue() != null) {
+                    return new SimpleObjectProperty<>(cellData.getValue().getCustomerId());
+                } else {
+                    return new SimpleObjectProperty(0);
+                }
+        });
+    }
+    
+    // SET EVENTHANDLER METHODS:
+    
+    public void setCustomerIdButtonEventHandler(EventHandler<ActionEvent> value) {
+        customerIdButton.setOnAction(value);
+    }
+
+    public void setPersonalNumberButtonEventHandler(EventHandler<ActionEvent> value) {
+        personalNumberButton.setOnAction(value);
+    }
+    
+    public void setinsuranceIdButtonEventHandler(EventHandler<ActionEvent> value) {
+        insuranceIdButton.setOnAction(value);
+    }
+
+    public void setSelectButtonEventHandler(EventHandler<ActionEvent> value) {
+        selectButton.setOnAction(value);
+    }
+    
+    // GET METHODS
+    
     /** @return The main pane of this class. */
     public GridPane getMainPane() {
         return mainPane;
+    }
+    
+    /** @return The customer id of this class. */
+    public String getCustomerId() {
+        return customerIdField.getText();
+    }
+    
+    /** @return The personal number of this class. */
+    public String getPersonalNumber() {
+        return personalNumberField.getText();
+    }
+    
+    /** @return The insurance id of this class. */
+    public String getInsuranceId() {
+        return insuranceIdField.getText();
+    }
+    
+    /** @return The insurance type of this class. */
+    public String getInsuranceType() {
+        return insuranceTypeCombo.getValue().toString();
+    }
+    
+    /** @return The from date of this class. */
+    public Calendar getFromDate() {
+        if (fromDatePicker.getValue() != null) {
+            return  DateUtility.LocalDateToCalendar(fromDatePicker.getValue());
+        } else {
+            return null;
+        }
+    }
+    
+    /** @return The to date of this class. */
+    public Calendar getToDate() {
+        if (toDatePicker.getValue() != null) {
+            return  DateUtility.LocalDateToCalendar(toDatePicker.getValue());
+        } else {
+            return null;
+        }
+    }
+    
+    // SET METHODS
+    
+    /** @param text The text to set. */
+    public void setRightBottomTitle(String text) {
+        rightBottomTitle.setText(text);
     }
 }

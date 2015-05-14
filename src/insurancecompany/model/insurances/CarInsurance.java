@@ -48,6 +48,7 @@ public class CarInsurance extends Insurance implements Serializable {
      * @param coverage the coverage of this insurance
      * @param customerId the id of the customer who owns this insurance
      * @param excess the excess of this insurance
+     * @param existingBonus The existing bonus of the customer.
      * @param hasGarage whether the car this insurance is for has a garage or 
      * not
      * @param maxLength the maximum driving length for this insurance
@@ -55,9 +56,10 @@ public class CarInsurance extends Insurance implements Serializable {
      * the car this insurance is for
      */
     public CarInsurance(Car car, CarInsuranceCoverage coverage, int customerId, 
-            int excess, boolean hasGarage, int maxLength, boolean youngDriver) {
+            int excess, int existingBonus, boolean hasGarage, int maxLength, 
+            boolean youngDriver) {
         super(customerId, excess);
-        this.bonus = 0;
+        this.bonus = existingBonus;
         this.car = car;
         this.coverage = coverage;
         this.hasGarage = hasGarage;

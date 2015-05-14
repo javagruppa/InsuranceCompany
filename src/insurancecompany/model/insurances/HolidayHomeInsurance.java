@@ -37,13 +37,13 @@ public class HolidayHomeInsurance extends PropertyInsurance
      * @param coverage The coverage of this insurance.
      * @param customerId The id of the customer who owns this insurance.
      * @param excess The excess of this insurance.
-     * @param property The holiday home this insurance is for.
+     * @param property The property this insurance is for.
      * @param rental Whether or not this insurance covers rentals.
-     * @param type The type of house this insurance is for.
+     * @param type The type of home this insurance is for.
      */
     public HolidayHomeInsurance(HolidayHomeInsuranceCoverage coverage, 
-            int customerId, int excess, Property property, 
-            boolean rental, HolidayHomeType type) {
+            int customerId, int excess, Property property, boolean rental, 
+            HolidayHomeType type) {
         super(customerId, excess);
         this.coverage = coverage;
         this.property = property;

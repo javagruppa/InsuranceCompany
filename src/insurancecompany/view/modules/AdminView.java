@@ -61,10 +61,10 @@ public class AdminView extends Application {
     public AdminView() {
         initializeViews();
         scene = new Scene(mainPane, 1200, 700);
-        scene.getStylesheets().add("insurancecompany/resources/css/stylesheet.css");
-        
+        scene.getStylesheets().add("insurancecompany/resources/css/stylesheet.css");       
     }
     
+    @Override
     public void start(Stage stage) throws Exception {
         show(stage);
     }

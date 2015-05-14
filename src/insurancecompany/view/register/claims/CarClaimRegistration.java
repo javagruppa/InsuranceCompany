@@ -236,12 +236,13 @@ public class CarClaimRegistration {
         mainPane.add(openClaimFormButton, 5, 15);
         mainPane.add(registerButton, 4, 16);
         
+        carClaimFormView = new CarClaimFormView(this);
         // Initialize local event handlers:
         initializeLocalEventHandlers();
     } // end of sole Constructor
     
     private void initializeLocalEventHandlers() {
-        initializeOpenClaimFormButtonEventHandler();
+        setOpenClaimFormButtonEventHandler();
     }
     
     /**
@@ -427,12 +428,15 @@ public class CarClaimRegistration {
         selectImageButton.setOnAction(value);
     }
     
-    
-    private void initializeOpenClaimFormButtonEventHandler() {
+    /**
+     * Initializes the event handler for the open claim form button.
+     */
+    private void setOpenClaimFormButtonEventHandler() {
         openClaimFormButton.setOnAction((event) -> {
             Stage stage = new Stage();
-            carClaimFormView = new CarClaimFormView();
-            carClaimFormView.show(stage);
+            CarClaimFormView ccfv = new CarClaimFormView(this);
+            ccfv.setRegisterButtonEventHandler();
+            ccfv.show(stage);
         });
     }
     
@@ -525,6 +529,14 @@ public class CarClaimRegistration {
      */
     public CarClaimFormView getCarClaimFormView() {
         return carClaimFormView;
+    }
+
+    /**
+     * Sets the car claim form view belonging to this car claim view.
+     * @param carClaimFormView the carClaimFormView to set
+     */
+    public void setCarClaimFormView(CarClaimFormView carClaimFormView) {
+        this.carClaimFormView = carClaimFormView;
     }
 
 } // end of class CarClaimRegistration

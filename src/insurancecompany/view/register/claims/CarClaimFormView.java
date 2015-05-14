@@ -48,6 +48,8 @@ public class CarClaimFormView {
     private StackPane canvasHolder;
     /** Grid pane used to lay out the user action nodes. */
     private GridPane gridPane;
+    /** Stage used to display this view. */
+    private Stage stage;
     /** Scene used to display this view. */
     private Scene scene;
     /** Car claim form background image. */
@@ -98,11 +100,15 @@ public class CarClaimFormView {
     // TODO: Remember to onAction close window when button is clicked. 
     // If not all fields are filled in correctly, show a dialog window:
     private Button registerButton;
+    
+    /** Reference to the car claim view that owns this class.*/
+    private CarClaimRegistration carClaimRegistration;
 
     /**
-     * Sole constructor.
+     * Sole constructor. Receives a reference to its car claim.
      */
-    public CarClaimFormView() {
+    public CarClaimFormView(CarClaimRegistration carClaimRegistration) {
+        this.carClaimRegistration = carClaimRegistration;
         stackPane = new StackPane();
         canvasHolder = new StackPane();
         canvasHolder.setId("opacityBackground");
@@ -246,6 +252,7 @@ public class CarClaimFormView {
     }
     
     public void show(Stage stage) {
+        this.stage = stage;
         stage.setTitle("Bilskademeldingsskjema");      
         stage.setScene(scene);
         stage.show();
@@ -322,12 +329,16 @@ public class CarClaimFormView {
      */
     public Calendar getDate() {
         // Get selected value:
-        LocalDate localDate = date.getValue();
-        // Convert to date:
-        Date d = DateUtility.localDateToDate(localDate);
-        // Conert to Calendar:
-        Calendar c = DateUtility.dateToCalendar(d);
-        return c;
+        if (date.getValue() != null) {
+            LocalDate localDate = date.getValue();
+            // Convert to date:
+            Date d = DateUtility.localDateToDate(localDate);
+            // Conert to Calendar:
+            Calendar c = DateUtility.dateToCalendar(d);
+            return c;
+        } else {
+            return null;
+        }
     }
 
     /**
@@ -482,7 +493,17 @@ public class CarClaimFormView {
      * Sets the event handler for the register button of this view.
      * @param event 
      */
-    public void setRegisterButtonEventHandler(EventHandler<ActionEvent> event) {
-        registerButton.setOnAction(event);
+    public void setRegisterButtonEventHandler() {
+        registerButton.setOnAction((event) -> {
+            carClaimRegistration.setCarClaimFormView(this);
+        });
+    }
+
+    /**
+     * Returns the car claim registration object to this view.
+     * @return the carClaimRegistration
+     */
+    public CarClaimRegistration getCarClaimRegistration() {
+        return carClaimRegistration;
     }
 }

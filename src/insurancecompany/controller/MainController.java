@@ -934,7 +934,7 @@ public class MainController {
         insurances.addInsurance(insurance); //returns boolean
         // TODO: Give a message to the user whether the insurance was added or not. It would not
         //       be added if the register already contained such an insurance.
-    } // end of method homeInsuranceRegisterButtonEventHandler
+    } // end of method holidayHomeInsuranceRegisterButtonEventHandler
     
     private void holidayHomeInsuranceSearchCustomerIdButtonEventHandler(ActionEvent event) {
         String customerIdString = holidayHomeInsuranceRegistration.getCustomerId();

@@ -10,6 +10,7 @@ import insurancecompany.misc.hometypes.HolidayHomeType;
 import insurancecompany.model.properties.Property;
 import java.io.Serializable;
 import java.util.Calendar;
+
 /**
  *
  * @author Sindre

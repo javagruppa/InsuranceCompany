@@ -10,7 +10,6 @@ import insurancecompany.misc.hometypes.HolidayHomeType;
 import insurancecompany.model.properties.Property;
 import java.io.Serializable;
 
-
 /**
  *
  * @author Carl

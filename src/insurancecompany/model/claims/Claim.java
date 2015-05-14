@@ -4,8 +4,6 @@ import insurancecompany.misc.DateUtility;
 import insurancecompany.misc.coverages.Damage;
 import java.awt.Image;
 import java.io.*;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Set;
 

@@ -62,12 +62,12 @@ public class InsuranceSearchView {
     private Button searchButton;
     private ComboBox<String> activeCombo;
     private ComboBox<Object> insuranceTypeCombo;
+    private ComboBox<String> numberSelectCombo;
     private DatePicker fromDatePicker;
     private DatePicker toDatePicker;
     private Text idMessage;
-    private TextField customerIdField;
+    private TextField numberField;
     private TextField insuranceIdField;
-    private TextField personalNumberField;
     
     // Declaration of all the nodes in the center part.
     private Button selectButton;
@@ -119,14 +119,15 @@ public class InsuranceSearchView {
         populateActiveCombo();
         insuranceTypeCombo = new ComboBox<>();
         populateInsuranceTypeCombo();
+        numberSelectCombo = new ComboBox<>();
+        populateNumberSelectCombo();
         fromDatePicker = new DatePicker();
         DateUtility.restrictDatePickerToOlder(fromDatePicker);
         toDatePicker = new DatePicker();
         DateUtility.restrictDatePickerToOlder(toDatePicker);
         idMessage = new Text("");
-        customerIdField = new TextField();
+        numberField = new TextField();
         insuranceIdField = new TextField();
-        personalNumberField = new TextField();
 
         // Initialization of all the nodes in the center part.
         selectButton = new Button("Velg forsikring");
@@ -159,8 +160,6 @@ public class InsuranceSearchView {
         Text insuranceTitle = new Text("Forsikring:");
         insuranceTitle.setId("textTitle");
         attachmentTitle.setId("textTitle");
-        Label customerIdLabel = new Label("Kundenummer:");
-        Label personalNumberLabel = new Label("Personnummer:");
         Label insuranceIdLabel = new Label("Forsikringssnummer:");
         Label insuranceTypeLabel = new Label("Type forsikring:");
         Label activeLabel = new Label("Kun aktive:");
@@ -168,25 +167,23 @@ public class InsuranceSearchView {
         Label toDateLabel = new Label("Til dato:");
         
         // Adds the nodes to the left part.
-        leftPane.add(insuranceIdTitle, 0, 0, 3, 1);
+        leftPane.add(insuranceIdTitle, 0, 0, 2, 1);
         leftPane.add(insuranceIdLabel, 0, 1);
         leftPane.add(insuranceIdField, 1, 1);
         leftPane.add(new Text(""), 0, 2); // Creates a blank row.
-        leftPane.add(searchTermsTitle, 0, 3);
-        leftPane.add(customerIdLabel, 0, 4);
-        leftPane.add(customerIdField, 1, 4);
-        leftPane.add(personalNumberLabel, 0, 5);
-        leftPane.add(personalNumberField, 1, 5);
-        leftPane.add(insuranceTypeLabel, 0, 6);
-        leftPane.add(insuranceTypeCombo, 1, 6);
-        leftPane.add(activeLabel, 0, 7);
-        leftPane.add(activeCombo, 1, 7);
-        leftPane.add(fromDateLabel, 0, 8);
-        leftPane.add(fromDatePicker, 1, 8);
-        leftPane.add(toDateLabel, 0, 9);
-        leftPane.add(toDatePicker, 1, 9);
-        leftPane.add(searchButton, 1, 10);
-        leftPane.add(idMessage, 0, 11, 2, 1);
+        leftPane.add(searchTermsTitle, 0, 3, 2, 1);
+        leftPane.add(numberSelectCombo, 0, 4);
+        leftPane.add(numberField, 1, 4);
+        leftPane.add(insuranceTypeLabel, 0, 5);
+        leftPane.add(insuranceTypeCombo, 1, 5);
+        leftPane.add(activeLabel, 0, 6);
+        leftPane.add(activeCombo, 1, 6);
+        leftPane.add(fromDateLabel, 0, 7);
+        leftPane.add(fromDatePicker, 1, 7);
+        leftPane.add(toDateLabel, 0, 8);
+        leftPane.add(toDatePicker, 1, 8);
+        leftPane.add(searchButton, 1, 9);
+        leftPane.add(idMessage, 0, 10, 2, 1);
         
         // Adds the nodes to the center part.
         centerPane.add(insurancesTitle, 0, 0);
@@ -205,9 +202,9 @@ public class InsuranceSearchView {
     
     /** Sets the content of the ComboBox activeCombo. */
     private void populateActiveCombo() {
-        ObservableList<String> active = FXCollections.observableArrayList();  
-        active.addAll("Ja", "Nei");
-        activeCombo.getItems().setAll(active);
+        ObservableList<String> obList = FXCollections.observableArrayList();  
+        obList.addAll("Ja", "Nei");
+        activeCombo.getItems().setAll(obList);
         activeCombo.setValue("Nei");
         activeCombo.setPrefWidth(150);
     }
@@ -219,6 +216,15 @@ public class InsuranceSearchView {
         insuranceTypeCombo.getItems().add("");
         insuranceTypeCombo.getItems().addAll(obList);
         insuranceTypeCombo.setPrefWidth(150);
+    }
+    
+    /** Sets the content of the ComboBox selectNumberCombo. */
+    private void populateNumberSelectCombo() {
+        ObservableList<String> obList = FXCollections.observableArrayList();  
+        obList.addAll("Kundenummer", "Personnummer");
+        numberSelectCombo.getItems().setAll(obList);
+        numberSelectCombo.setValue("Kundenummer");
+        numberSelectCombo.setPrefWidth(150);
     }
     
     /**
@@ -312,17 +318,17 @@ public class InsuranceSearchView {
         return activeCombo.getValue().equals("Ja");
     }
     
-    /** @return The customer ID of this class as a String. */
-    public String getCustomerId() {
-        return customerIdField.getText();
+    /** @return The number of this class as a String. */
+    public String getNumber() {
+        return numberField.getText();
     }
     
-    /** @return The personal number of this class as a String. */
-    public String getPersonalNumber() {
-        return personalNumberField.getText();
+    /** @return True if customer ID is selected in numberSelectCombo. */
+    public boolean isCustomerIdSelected() {
+        return numberSelectCombo.getValue().equals("Kundenummer");
     }
     
-    /** @return The insurance ID of this class as a String. */
+   /** @return The insurance ID of this class as a String. */
     public String getInsuranceId() {
         return insuranceIdField.getText();
     }

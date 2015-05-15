@@ -134,7 +134,7 @@ public abstract class Vehicle implements Serializable {
         result.append("\nBilmerke: ").append(brand);
         result.append("\nModell: ").append(model);
         result.append("\nRegistreringsår: ").append(registrationYear);
-        result.append("\nAlarm").append(alarm ? "Ja" : "Nei");
+        result.append("\nAlarm: ").append(alarm ? "Ja" : "Nei");
         result.append("\nPersonnummer eier: ").append(personalNumber);
         // Returns the string.
         return result.toString();

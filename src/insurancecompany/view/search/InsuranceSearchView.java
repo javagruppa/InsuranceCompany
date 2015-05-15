@@ -157,7 +157,7 @@ public class InsuranceSearchView {
         searchTermsTitle.setId("textTitle");
         Text insurancesTitle = new Text("Forsikringer:");
         insurancesTitle.setId("textTitle");
-        Text insuranceTitle = new Text("Forsikring:");
+        Text insuranceTitle = new Text("Valgt forsikring:");
         insuranceTitle.setId("textTitle");
         attachmentTitle.setId("textTitle");
         Label insuranceIdLabel = new Label("Forsikringssnummer:");
@@ -328,16 +328,16 @@ public class InsuranceSearchView {
         return numberSelectCombo.getValue().equals("Kundenummer");
     }
     
-   /** @return The insurance ID of this class as a String. */
+    /** @return The insurance ID of this class as a String. */
     public String getInsuranceId() {
         return insuranceIdField.getText();
     }
     
     /** 
-     * @return The selected value of insuranceTable as an Insurance. Null if 
+     * @return The selected value of insurancesTable as an Insurance. Null if 
      * no insurance is selected.
      */
-    public Insurance getInsuranceTableValue() {
+    public Insurance getInsurancesTableValue() {
         return insurancesTable.getSelectionModel() == null ? null : 
                 insurancesTable.getSelectionModel().getSelectedItem();
     }

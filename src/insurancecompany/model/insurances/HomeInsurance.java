@@ -59,6 +59,11 @@ public class HomeInsurance extends Insurance implements Serializable {
         return "Husforsikring";
     }
     
+    /** @return The property this insurance is for. */
+    public Property getProperty() {
+        return property;
+    }
+    
     // CALCULATE PREMIUM METHODS
     
     /**

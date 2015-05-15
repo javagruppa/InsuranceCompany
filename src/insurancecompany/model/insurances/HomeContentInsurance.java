@@ -60,6 +60,11 @@ public class HomeContentInsurance extends Insurance
         return "Innboforsikring";
     }
     
+    /** @return The property this insurance is for. */
+    public Property getProperty() {
+        return property;
+    }
+    
     // CALCULATE PREMIUM METHODS
 
     /**

@@ -50,6 +50,11 @@ public class BoatInsurance extends Insurance implements Serializable {
         return "Båtforsikring";
     }
     
+    /** @return The boat this insurance is for. */
+    public Boat getBoat() {
+        return boat;
+    }
+    
     // CALCULATE PREMIUM METHODS
 
     /**

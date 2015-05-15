@@ -270,6 +270,7 @@ public class MainController {
         travelInsuranceRegistration.setSearchPersonalNumberButtonEventHandler(this::travelInsuranceSearchPersonalNumberButtonEventHandler);
         
         insuranceSearchView.setSearchButtonEventHandler(this::insuranceSearchViewSearchEventHandler);
+        insuranceSearchView.setSelectButtonEventHandler(this::insuranceSearchViewSelectEventHandler);
     } // end of class initializeRegisterInsuranceEventHandlers
  
     private void initializeRegisterClaimEventHandlers() {
@@ -2097,6 +2098,7 @@ public class MainController {
         
         // Collects information about the search terms:
         InsuranceType insuranceType = insuranceSearchView.getInsuranceType();
+        boolean active = insuranceSearchView.getActive();
         Calendar fromDate = insuranceSearchView.getFromDate();
         Calendar toDate = insuranceSearchView.getToDate();
         
@@ -2143,27 +2145,45 @@ public class MainController {
         }
         
         List<Insurance> insuranceList;
-        
         if (insuranceId != 0) {
             insuranceList = insurances.getInsuranceById(insuranceId);
         } else if (customerId != 0) {
-            insuranceList = insurances.getInsurancesByCustomerId(customerId, type, fromDate, toDate);
+            insuranceList = insurances.getInsurancesByCustomerId(customerId, type, fromDate, toDate, active);
         } else if (!personalNumber.equals("")) {
             customerId = customers.findCustomerIdByPersonalNumber(personalNumber);
-            insuranceList = insurances.getInsurancesByCustomerId(customerId, type, fromDate, toDate);
+            insuranceList = insurances.getInsurancesByCustomerId(customerId, type, fromDate, toDate, active);
         } else {
-            insuranceList = insurances.getInsurances(type, fromDate, toDate);
+            insuranceList = insurances.getInsurances(type, fromDate, toDate, active);
         }
-        
-        //if (!insuranceList.isEmpty()) {
-            insuranceSearchView.populateInsurancesTable(insuranceList);
-        //}
+        insuranceSearchView.populateInsurancesTable(insuranceList);
     }
     
     private void insuranceSearchViewSelectEventHandler(ActionEvent event) {
-        
+       Insurance insurance = insuranceSearchView.getInsuranceTableValue();
+       
+       if (insurance == null) {
+           //TODO: Give appropriate message.
+           return;
+       }
+       
+       insuranceSearchView.setInsuranceArea(insurance.toString());
+       
+       if (insurance instanceof BoatInsurance) {
+           insuranceSearchView.setAccessoryArea("Båt:", ((BoatInsurance)insurance).getBoat().toString());
+       } else if (insurance instanceof CarInsurance) {
+           insuranceSearchView.setAccessoryArea("Bil:", ((CarInsurance) insurance).getCar().toString());
+       } else if (insurance instanceof HolidayHomeInsurance) {
+           insuranceSearchView.setAccessoryArea("Eiendom:", ((HolidayHomeInsurance) insurance).getProperty().toString());
+       } else if (insurance instanceof HolidayHomeContentInsurance) {
+           insuranceSearchView.setAccessoryArea("Eiendom:", ((HolidayHomeContentInsurance) insurance).getProperty().toString());
+       } else if (insurance instanceof HomeInsurance) {
+           insuranceSearchView.setAccessoryArea("Eiendom:", ((HomeInsurance) insurance).getProperty().toString());
+       } else if (insurance instanceof HomeContentInsurance) {
+           insuranceSearchView.setAccessoryArea("Eiendom:", ((HomeContentInsurance) insurance).getProperty().toString());
+       } else if (insurance instanceof TravelInsurance) {
+           insuranceSearchView.removeAccessoryArea();
+       }
     }
-    
     
     // READ AND WRITE IDS FROM/TO FILE:
     

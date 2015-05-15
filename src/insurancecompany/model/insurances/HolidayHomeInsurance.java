@@ -62,6 +62,11 @@ public class HolidayHomeInsurance extends Insurance
         return "Fritidsboligforsikring";
     }
     
+    /** @return The property this insurance is for. */
+    public Property getProperty() {
+        return property;
+    }
+    
     // CALCULATE PREMIUM METHODS
     
     /**

@@ -90,14 +90,16 @@ public class InsuranceRegister {
     }
     
     public List<Insurance> getInsurancesByCustomerId(int customerId, 
-            Class<?> type, Calendar fromDate, Calendar toDate) {
+            Class<?> type, Calendar fromDate, Calendar toDate, boolean active) {
         List<Insurance> result = new ArrayList<>();
         for (Insurance insurance : insurances) {
             if (insurance.getCustomerId() == customerId) {
                 if(type == null || type.isInstance(insurance)) {
                     if(fromDate == null || fromDate.compareTo(insurance.getDate()) <= 0) {
                         if(toDate == null || toDate.compareTo(insurance.getDate()) >= 0) {
-                            result.add(insurance);
+                            if(!active || insurance.getActive()) {
+                                result.add(insurance);
+                            }
                         }
                     }
                 }
@@ -107,13 +109,15 @@ public class InsuranceRegister {
     }
     
     public List<Insurance> getInsurances(Class<?> type, Calendar fromDate, 
-            Calendar toDate) {
+            Calendar toDate, boolean active) {
         List<Insurance> result = new ArrayList<>();
         for (Insurance insurance : insurances) {
             if(type == null || type.isInstance(insurance)) {
                 if(fromDate == null || fromDate.compareTo(insurance.getDate()) <= 0) {
                     if(toDate == null || toDate.compareTo(insurance.getDate()) >= 0) {
-                        result.add(insurance);
+                        if(!active || insurance.getActive()) {
+                            result.add(insurance);
+                        }
                     }
                 }
             }

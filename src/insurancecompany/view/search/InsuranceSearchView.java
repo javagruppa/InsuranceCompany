@@ -122,8 +122,10 @@ public class InsuranceSearchView {
         numberSelectCombo = new ComboBox<>();
         populateNumberSelectCombo();
         fromDatePicker = new DatePicker();
+        fromDatePicker.setPrefWidth(150);
         DateUtility.restrictDatePickerToOlder(fromDatePicker);
         toDatePicker = new DatePicker();
+        toDatePicker.setPrefWidth(150);
         DateUtility.restrictDatePickerToOlder(toDatePicker);
         idMessage = new Text("");
         numberField = new TextField();

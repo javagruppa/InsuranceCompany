@@ -120,7 +120,9 @@ public class InsuranceSearchView {
         insuranceTypeCombo = new ComboBox<>();
         populateInsuranceTypeCombo();
         fromDatePicker = new DatePicker();
+        DateUtility.restrictDatePickerToOlder(fromDatePicker);
         toDatePicker = new DatePicker();
+        DateUtility.restrictDatePickerToOlder(toDatePicker);
         idMessage = new Text("");
         customerIdField = new TextField();
         insuranceIdField = new TextField();

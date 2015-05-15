@@ -77,6 +77,7 @@ public class BoatInsuranceRegistration {
     private Text registrationNumberMessage;
     private Text registrationYearMessage;
     private Text valueMessage;
+    private Text registerButtonMessage;
     // Buttons:
     private Button calculateButton;
     private Button registerButton;
@@ -183,6 +184,7 @@ public class BoatInsuranceRegistration {
         Label registrationNumberLabel = new Label("Registreringsnummer:");
         Label registrationYearLabel = new Label("År:");
         Label valueLabel = new Label("Verdi:");
+        registerButtonMessage = new Text();
         
         // Adds nodes to mainPane:
         mainPane.add(selectCustomerTitle, 0, 0);
@@ -243,6 +245,7 @@ public class BoatInsuranceRegistration {
         mainPane.add(premiumField, 5, 14);
         mainPane.add(calculateButton, 6, 14);
         mainPane.add(registerButton, 5, 15);
+        mainPane.add(registerButtonMessage, 5, 16);
     }
     
     // POPULATE METHODS:
@@ -510,5 +513,12 @@ public class BoatInsuranceRegistration {
     public void setValueMessage(String message) {
         this.valueMessage.setFill(Color.FIREBRICK);
         this.valueMessage.setText(message);
+    }
+
+    /**
+     * @param registerButtonMessage the registerButtonMessage to set
+     */
+    public void setRegisterButtonMessage(String registerButtonMessage) {
+        this.registerButtonMessage.setText(registerButtonMessage);
     }
 }

@@ -112,6 +112,7 @@ public class MainController {
     
     // Creates strings to be used in messages to the user:
     private static final String REGISTER_SUCCESS = "Registrering vellykket.";
+    private static final String REGISTER_NO_SUCCESS = "Registrering ikke vellykket.";
     private static final String NO_CUSTOMER_MESSAGE = "Du har ikke valgt noen kunde.";
     private static final String FORMAT_MESSAGE = "Dette feltet kan kun bestå av tall.";
     private static final String EMPTY_MESSAGE = "Dette feltet må fylles ut.";
@@ -259,7 +260,7 @@ public class MainController {
         
         holidayHomeInsuranceRegistration.setRegisterButtonEventHandler(this::holidayHomeInsuranceRegisterButtonEventHandler);
         holidayHomeInsuranceRegistration.setSearchCustomerIdButtonEventHandler(this::holidayHomeInsuranceSearchCustomerIdButtonEventHandler);
-        holidayHomeInsuranceRegistration.setSearchPersonalNumberButtonEventHandler(this::holidayHomeContentInsuranceSearchPersonalNumberButtonEventHandler);
+        holidayHomeInsuranceRegistration.setSearchPersonalNumberButtonEventHandler(this::holidayHomeInsuranceSearchPersonalNumberButtonEventHandler);
         
         holidayHomeContentInsuranceRegistration.setRegisterButtonEventHandler(this::holidayHomeContentInsuranceRegisterButtonEventHandler);
         holidayHomeContentInsuranceRegistration.setSearchCustomerIdButtonEventHandler(this::holidayHomeContentInsuranceSearchCustomerIdButtonEventHandler);
@@ -924,9 +925,11 @@ public class MainController {
                 excess);
         
         // Adds insurance to Register:
-        insurances.addInsurance(insurance); //returns boolean
-        // TODO: Give a message to the user whether the insurance was added or not. It would not
-        //       be added if the register already contained such an insurance.
+        if (insurances.addInsurance(insurance)) {
+            boatInsuranceRegistration.setRegisterButtonMessage(REGISTER_SUCCESS);
+        } else {
+            boatInsuranceRegistration.setRegisterButtonMessage(REGISTER_NO_SUCCESS);
+        }
     }
     
     private void boatInsuranceSearchCustomerIdButtonEventHandler(ActionEvent event) {
@@ -1129,9 +1132,11 @@ public class MainController {
                 excess, existingBonus, garage, maxLength, youngDriver);
         
         // Adds insurance to Register:
-        insurances.addInsurance(insurance); //returns boolean
-        // TODO: Give a message to the user whether the insurance was added or not. It would not
-        //       be added if the register already contained such an insurance.
+        if (insurances.addInsurance(insurance)) {
+            carInsuranceRegistration.setRegisterButtonMessage(REGISTER_SUCCESS);
+        } else {
+            carInsuranceRegistration.setRegisterButtonMessage(REGISTER_NO_SUCCESS);
+        }
     }
     
     private void carInsuranceSearchCustomerIdButtonEventHandler(ActionEvent event) {
@@ -1320,10 +1325,12 @@ public class MainController {
                 customerId, excess, property, rental, type);
         
         // Adds insurance to Register:
-        insurances.addInsurance(insurance); //returns boolean
-        // TODO: Give a message to the user whether the insurance was added or not. It would not
-        //       be added if the register already contained such an insurance.
-    } // end of method holidayHomeInsuranceRegisterButtonEventHandler
+        if (insurances.addInsurance(insurance)) {
+            holidayHomeInsuranceRegistration.setRegisterButtonMessage(REGISTER_SUCCESS);
+        } else {
+            holidayHomeInsuranceRegistration.setRegisterButtonMessage(REGISTER_NO_SUCCESS);
+        }
+    }
     
     private void holidayHomeInsuranceSearchCustomerIdButtonEventHandler(ActionEvent event) {
         String customerIdString = holidayHomeInsuranceRegistration.getCustomerId();
@@ -1516,9 +1523,11 @@ public class MainController {
                 amount, coverage, customerId, excess, property, type);
         
         // Adds insurance to Register:
-        insurances.addInsurance(insurance); //returns boolean
-        // TODO: Give a message to the user whether the insurance was added or not. It would not
-        //       be added if the register already contained such an insurance.
+        if (insurances.addInsurance(insurance)) {
+            holidayHomeContentInsuranceRegistration.setRegisterButtonMessage(REGISTER_SUCCESS);
+        } else {
+            holidayHomeContentInsuranceRegistration.setRegisterButtonMessage(REGISTER_NO_SUCCESS);
+        }
     } // end of method holidayHomeContentInsuranceRegisterButtonEventHandler
     
     private void holidayHomeContentInsuranceSearchCustomerIdButtonEventHandler(ActionEvent event) {
@@ -1708,9 +1717,11 @@ public class MainController {
                 excess, property, rental, type);
         
         // Adds insurance to Register:
-        insurances.addInsurance(insurance); //returns boolean
-        // TODO: Give a message to the user whether the insurance was added or not. It would not
-        //       be added if the register already contained such an insurance.
+        if (insurances.addInsurance(insurance)) {
+            homeInsuranceRegistration.setRegisterButtonMessage(REGISTER_SUCCESS);
+        } else {
+            homeInsuranceRegistration.setRegisterButtonMessage(REGISTER_NO_SUCCESS);
+        }
     } // end of method homeInsuranceRegisterButtonEventHandler
     
     private void homeInsuranceSearchCustomerIdButtonEventHandler(ActionEvent event) {
@@ -1904,9 +1915,11 @@ public class MainController {
                 coverage, customerId, excess, property, type);
         
         // Adds insurance to Register:
-        insurances.addInsurance(insurance); //returns boolean
-        // TODO: Give a message to the user whether the insurance was added or not. It would not
-        //       be added if the register already contained such an insurance.
+        if (insurances.addInsurance(insurance)) {
+            homeContentInsuranceRegistration.setRegisterButtonMessage(REGISTER_SUCCESS);
+        } else {
+            homeContentInsuranceRegistration.setRegisterButtonMessage(REGISTER_NO_SUCCESS);
+        }
     } // end of method homeContentInsuranceRegisterButtonEventHandler
     
     private void homeContentInsuranceSearchCustomerIdButtonEventHandler(ActionEvent event) {
@@ -2021,9 +2034,11 @@ public class MainController {
         TravelInsurance insurance = new TravelInsurance(coverage, customerId, excess);
         
         // Adds insurance to Register:
-        insurances.addInsurance(insurance); //returns boolean
-        // TODO: Give a message to the user whether the insurance was added or not. It would not
-        //       be added if the register already contained such an insurance.
+        if (insurances.addInsurance(insurance)) {
+            travelInsuranceRegistration.setRegisterButtonMessage(REGISTER_SUCCESS);
+        } else {
+            travelInsuranceRegistration.setRegisterButtonMessage(REGISTER_NO_SUCCESS);
+        }
     } // end of method travelInsuranceRegisterButtonEventHandler
     
     private void travelInsuranceSearchCustomerIdButtonEventHandler(ActionEvent event) {

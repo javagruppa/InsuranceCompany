@@ -75,6 +75,7 @@ public class HolidayHomeContentInsuranceRegistration {
     private Text typeMessage;
     private Text yearMessage;
     private Text zipCodeMessage;
+    private Text registerButtonMessage;
     // Buttons:
     private Button calculateButton;
     private Button registerButton;
@@ -155,6 +156,7 @@ public class HolidayHomeContentInsuranceRegistration {
         typeMessage = new Text();
         yearMessage = new Text();
         zipCodeMessage = new Text();
+        registerButtonMessage = new Text();
         // Initializes Buttons:
         calculateButton = new Button("Regn ut");
         registerButton = new Button("Registrer");
@@ -233,6 +235,7 @@ public class HolidayHomeContentInsuranceRegistration {
         mainPane.add(premiumField, 5, 13);
         mainPane.add(calculateButton, 6, 13);
         mainPane.add(registerButton, 5, 14);
+        mainPane.add(registerButtonMessage, 5, 15);
     }
     
     // POPULATE METHODS:
@@ -493,5 +496,12 @@ public class HolidayHomeContentInsuranceRegistration {
     public void setZipCodeMessage(String message) {
         this.zipCodeMessage.setFill(Color.FIREBRICK);
         this.zipCodeMessage.setText(message);
+    }
+
+    /**
+     * @param registerButtonMessage the registerButtonMessage to set
+     */
+    public void setRegisterButtonMessage(String registerButtonMessage) {
+        this.registerButtonMessage.setText(registerButtonMessage);
     }
 }

@@ -79,6 +79,7 @@ public class CarInsuranceRegistration {
     private Text registrationNumberMessage;
     private Text yearMessage;
     private Text youngestDriverMessage;
+    private Text registerButtonMessage;
     // Buttons:
     private Button calculateButton;
     private Button registerButton;
@@ -170,6 +171,7 @@ public class CarInsuranceRegistration {
         registrationNumberMessage = new Text();
         yearMessage = new Text();
         youngestDriverMessage = new Text();
+        registerButtonMessage = new Text();
         // Initializes Buttons:
         calculateButton = new Button("Regn ut");
         registerButton = new Button("Registrer");
@@ -253,6 +255,7 @@ public class CarInsuranceRegistration {
         mainPane.add(premiumField, 5, 14);
         mainPane.add(calculateButton, 6, 14);
         mainPane.add(registerButton, 5, 15);
+        mainPane.add(registerButtonMessage, 5, 16);
       
     }
     
@@ -427,7 +430,7 @@ public class CarInsuranceRegistration {
 
     /** @return The value of brandCombo. */
     public String getBrand() {
-        return brandCombo.getValue() == null ? "" : brandCombo.getValue();
+        return brandCombo.getValue() == null ? "" : brandCombo.getValue().toString();
     }
 
     /** @return The value of coverageCombo. */
@@ -593,5 +596,12 @@ public class CarInsuranceRegistration {
     public void setYoungestDriverMessage(String message) {
         this.youngestDriverMessage.setFill(Color.FIREBRICK);
         this.youngestDriverMessage.setText(message);
+    }
+
+    /**
+     * @param registerButtonMessage the registerButtonMessage to set
+     */
+    public void setRegisterButtonMessage(String registerButtonMessage) {
+        this.registerButtonMessage.setText(registerButtonMessage);
     }
 }

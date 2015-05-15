@@ -57,6 +57,7 @@ public class TravelInsuranceRegistration {
     // Output nodes, Text messages:
     private Text coverageMessage;
     private Text excessMessage;
+    private Text registerButtonMessage;
     // Buttons:
     private Button calculateButton;
     private Button registerButton;
@@ -120,6 +121,7 @@ public class TravelInsuranceRegistration {
         // Initializes Output:
         coverageMessage = new Text();
         excessMessage = new Text();
+        registerButtonMessage = new Text();
         // Initializes Buttons:
         calculateButton = new Button("Regn ut");
         registerButton = new Button("Registrer");
@@ -158,6 +160,7 @@ public class TravelInsuranceRegistration {
         mainPane.add(premiumField, 5, 3);
         mainPane.add(calculateButton, 6, 3);
         mainPane.add(registerButton, 5, 4);
+        mainPane.add(registerButtonMessage, 5, 5);
     }
     
     // POPULATE METHODS:
@@ -298,5 +301,12 @@ public class TravelInsuranceRegistration {
     /** @param selectedCustomerId The selectedCustomerId to set. */
     public void setSelectedCustomerId(int selectedCustomerId) {
         this.selectedCustomerId = selectedCustomerId;
+    }
+
+    /**
+     * @param registerButtonMessage the registerButtonMessage to set
+     */
+    public void setRegisterButtonMessage(String registerButtonMessage) {
+        this.registerButtonMessage.setText(registerButtonMessage);
     }
 }

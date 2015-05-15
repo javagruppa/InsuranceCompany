@@ -234,6 +234,7 @@ public class TravelInsuranceRegistration {
     public void clearMessages() {
         coverageMessage.setText("");
         excessMessage.setText("");
+        registerButtonMessage.setText("");
     }
     
     // GET METHODS:

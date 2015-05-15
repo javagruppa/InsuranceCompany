@@ -503,6 +503,7 @@ public class CarClaimFormView {
     public void setRegisterButtonEventHandler() {
         registerButton.setOnAction((event) -> {
             carClaimRegistration.setCarClaimFormView(this);
+            carClaimRegistration.setClaimFormMessage("Skademeldingsskjema er fyllt inn.");
             // Hide the stage:
             stage.hide(); 
         });

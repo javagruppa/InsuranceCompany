@@ -336,6 +336,7 @@ public class BoatInsuranceRegistration {
         registrationNumberMessage.setText("");
         registrationYearMessage.setText("");
         valueMessage.setText("");
+        registerButtonMessage.setText("");
     }
     
     // GET METHODS:

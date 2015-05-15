@@ -339,6 +339,7 @@ public class HomeInsuranceRegistration {
         typeMessage.setText("");
         yearMessage.setText("");
         zipCodeMessage.setText("");
+        registerButtonMessage.setText("");
     }
     
     // GET METHODS:

@@ -119,6 +119,7 @@ public class MainController {
     private static final String CUSTOMERID_FORMAT_MESSAGE = "Kundenummeret kan kun bestå av tall.";
     private static final String CUSTOMERID_EMPTY_MESSAGE = "Du må skrive inn et kundenummer.";
     private static final String CUSTOMERID_NOT_FOUND_MESSAGE = "Fant ingen kunde med kundenummer: ";
+    private static final String INSURANCEID_FORMAT_MESSAGE = "Forsikringsnummeret kan kun bestå av tall.";
     private static final String PERSONALNUMBER_EMPTY_MESSAGE = "Du må skrive inn et personnummer.";
     private static final String PERSONALNUMBER_INCORRECT_MESSAGE = "Et personnummer må bestå av 11 siffer.";
     private static final String PERSONALNUMBER_NOT_FOUND_MESSAGE = "Fant ingen kunde med personnummer: ";
@@ -2765,7 +2766,10 @@ public class MainController {
     // INSURANCE SEARCH EVENT HANDLERS
     
     private void insuranceSearchViewSearchEventHandler(ActionEvent event) {
-        // Collect information about the customer or insurance:
+        
+        insuranceSearchView.clearMessages();
+        
+        // Collects information about the customer or insurance:
         String customerIdString = insuranceSearchView.getCustomerId();
         String personalNumber = insuranceSearchView.getPersonalNumber();
         String insuranceIdString = insuranceSearchView.getInsuranceId();
@@ -2776,25 +2780,25 @@ public class MainController {
         Calendar fromDate = insuranceSearchView.getFromDate();
         Calendar toDate = insuranceSearchView.getToDate();
         
-        // Declares ints and classesto be converted to:
+        // Declares ints and classes to be converted to:
         int customerId = 0;
         int insuranceId = 0;
         Class type = null;
         
         // Evaluates and converts input:
-        if (!customerIdString.equals("")) {
-            try {
-                customerId = Integer.parseInt(customerIdString);
-            } catch(NumberFormatException nfe) {
-                // TODO: Give appropriate message.
-                return;
-            }
-        }
         if (!insuranceIdString.equals("")) {
             try {
                 insuranceId = Integer.parseInt(insuranceIdString);
             } catch(NumberFormatException nfe) {
-                // TODO: Give appropriate message.
+                insuranceSearchView.setIdMessage(INSURANCEID_FORMAT_MESSAGE);
+                return;
+            }
+        }
+        if (!customerIdString.equals("")) {
+            try {
+                customerId = Integer.parseInt(customerIdString);
+            } catch(NumberFormatException nfe) {
+                insuranceSearchView.setIdMessage(CUSTOMERID_FORMAT_MESSAGE);
                 return;
             }
         }
@@ -2833,10 +2837,13 @@ public class MainController {
     }
     
     private void insuranceSearchViewSelectEventHandler(ActionEvent event) {
+        
+        insuranceSearchView.clearMessages();
+        
        Insurance insurance = insuranceSearchView.getInsuranceTableValue();
        
        if (insurance == null) {
-           //TODO: Give appropriate message.
+           insuranceSearchView.setSelectMessage(NO_INSURANCE_MESSAGE);
            return;
        }
        
@@ -2860,12 +2867,15 @@ public class MainController {
     }
     
     private void insuranceSearchViewDeactivateEventHandler(ActionEvent event) {
+        
+        insuranceSearchView.clearMessages();
+        
        Insurance insurance = insuranceSearchView.getInsuranceTableValue();
        
        if (insurance == null) {
-           //TODO: Give appropriate message.
+           insuranceSearchView.setDeactivateMessage(NO_INSURANCE_MESSAGE);
        } else {
-           insurance.setActive(false);
+           insurance.setActive(!insurance.getActive());
            insuranceSearchView.clearView();
        }
     }

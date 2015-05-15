@@ -61,8 +61,8 @@ public class InsuranceSearchView {
     // Nodes in rightPane:
     private Button deactivateButton;
     private Text rightBottomTitle;
-    private TextArea selectedInsuranceArea;
-    private TextArea otherArea;
+    private TextArea insuranceArea;
+    private TextArea accessoryArea;
     
     public InsuranceSearchView() {
         // Sets up the paned:
@@ -117,8 +117,8 @@ public class InsuranceSearchView {
         // Initializes rightPane:
         deactivateButton = new Button("Gjør inaktiv");
         rightBottomTitle = new Text("");
-        selectedInsuranceArea = new TextArea();
-        otherArea = new TextArea();
+        insuranceArea = new TextArea();
+        accessoryArea = new TextArea();
         
         // Initializes Texts and Labels:
         Text leftUpperTitle = new Text("Velg en forsikring i registeret:");
@@ -166,9 +166,7 @@ public class InsuranceSearchView {
         
         // Adds nodes to rightPane:
         rightPane.add(rightUpperTitle, 0, 0);
-        rightPane.add(selectedInsuranceArea, 0, 1);
-        rightPane.add(rightBottomTitle, 0, 2);
-        rightPane.add(otherArea, 0, 3);
+        rightPane.add(insuranceArea, 0, 1);
         rightPane.add(deactivateButton, 0, 4);
     }
     
@@ -264,6 +262,11 @@ public class InsuranceSearchView {
         return insuranceIdField.getText();
     }
     
+    /** @return The selected value of insuranceTable. */
+    public Insurance getInsuranceTableValue() {
+        return insurancesTable.getSelectionModel() == null ? null : insurancesTable.getSelectionModel().getSelectedItem();
+    }
+    
     /** @return The insurance type of this class. */
     public InsuranceType getInsuranceType() {
         if(String.class.isInstance(insuranceTypeCombo.getValue())) {
@@ -293,8 +296,24 @@ public class InsuranceSearchView {
     
     // SET METHODS
     
-    /** @param text The text to set. */
-    public void setRightBottomTitle(String text) {
-        rightBottomTitle.setText(text);
+    /** @param info The information to set in insuranceArea. */
+    public void setInsuranceArea(String info) {
+        insuranceArea.setText(info);
+    }
+    
+    /** 
+     * @param title The title to set in rightBottomTitle.
+     * @param info The information to set in insuranceArea.
+     */
+    public void setAccessoryArea(String title, String info) {
+        rightBottomTitle.setText(title);
+        accessoryArea.setText(info);
+        rightPane.add(rightBottomTitle, 0, 2);
+        rightPane.add(accessoryArea, 0, 3);
+    }
+    
+    public void removeAccessoryArea() {
+        rightPane.add(null, 0, 2);
+        rightPane.add(null, 0, 3);
     }
 }

@@ -8,6 +8,7 @@ package insurancecompany.view.search;
 import insurancecompany.misc.DateUtility;
 import insurancecompany.misc.InsuranceType;
 import insurancecompany.model.insurances.Insurance;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import javafx.beans.property.SimpleObjectProperty;
@@ -117,8 +118,10 @@ public class InsuranceSearchView {
         // Initializes rightPane:
         deactivateButton = new Button("Gjør inaktiv");
         rightBottomTitle = new Text("");
+        rightBottomTitle.setVisible(false);
         insuranceArea = new TextArea();
         accessoryArea = new TextArea();
+        accessoryArea.setVisible(false);
         
         // Initializes Texts and Labels:
         Text leftUpperTitle = new Text("Velg en forsikring i registeret:");
@@ -140,15 +143,15 @@ public class InsuranceSearchView {
         
         // Adds nodes to leftPane:
         leftPane.add(leftUpperTitle, 0, 0, 3, 1);
-        leftPane.add(customerIdLabel, 0, 1);
-        leftPane.add(customerIdField, 1, 1);
+        leftPane.add(insuranceIdLabel, 0, 1);
+        leftPane.add(insuranceIdField, 1, 1);
         leftPane.add(new Text(""), 0, 2);
         
         leftPane.add(leftBottomTitle, 0, 3);
-        leftPane.add(personalNumberLabel, 0, 4);
-        leftPane.add(personalNumberField, 1, 4);
-        leftPane.add(insuranceIdLabel, 0, 5);
-        leftPane.add(insuranceIdField, 1, 5);
+        leftPane.add(customerIdLabel, 0, 4);
+        leftPane.add(customerIdField, 1, 4);
+        leftPane.add(personalNumberLabel, 0, 5);
+        leftPane.add(personalNumberField, 1, 5);
         leftPane.add(insuranceTypeLabel, 0, 6);
         leftPane.add(insuranceTypeCombo, 1, 6);
         leftPane.add(activeLabel, 0, 7);
@@ -167,6 +170,8 @@ public class InsuranceSearchView {
         // Adds nodes to rightPane:
         rightPane.add(rightUpperTitle, 0, 0);
         rightPane.add(insuranceArea, 0, 1);
+        rightPane.add(rightBottomTitle, 0, 2);
+        rightPane.add(accessoryArea, 0, 3);
         rightPane.add(deactivateButton, 0, 4);
     }
     
@@ -306,14 +311,22 @@ public class InsuranceSearchView {
      * @param info The information to set in insuranceArea.
      */
     public void setAccessoryArea(String title, String info) {
+        rightBottomTitle.setVisible(true);
+        accessoryArea.setVisible(true);
         rightBottomTitle.setText(title);
         accessoryArea.setText(info);
-        rightPane.add(rightBottomTitle, 0, 2);
-        rightPane.add(accessoryArea, 0, 3);
     }
     
     public void removeAccessoryArea() {
-        rightPane.add(null, 0, 2);
-        rightPane.add(null, 0, 3);
+        setAccessoryArea("", "");
+        rightBottomTitle.setVisible(false);
+        accessoryArea.setVisible(false);
+        insurancesTable.getSelectionModel().clearSelection();
+    }
+    
+    public void clearView() {
+        setInsuranceArea("");
+        removeAccessoryArea();
+        populateInsurancesTable(new ArrayList<>());
     }
 }

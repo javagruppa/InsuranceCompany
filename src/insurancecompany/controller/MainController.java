@@ -2866,7 +2866,7 @@ public class MainController {
         
         insuranceSearchView.clearMessages();
         
-       Insurance insurance = insuranceSearchView.getInsuranceTableValue();
+       Insurance insurance = insuranceSearchView.getInsurancesTableValue();
        
        if (insurance == null) {
            insuranceSearchView.setSelectMessage(NO_INSURANCE_MESSAGE);
@@ -2896,7 +2896,7 @@ public class MainController {
         
         insuranceSearchView.clearMessages();
         
-       Insurance insurance = insuranceSearchView.getInsuranceTableValue();
+       Insurance insurance = insuranceSearchView.getInsurancesTableValue();
        
        if (insurance == null) {
            insuranceSearchView.setDeactivateMessage(NO_INSURANCE_MESSAGE);

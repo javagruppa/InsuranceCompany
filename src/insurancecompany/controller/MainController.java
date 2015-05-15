@@ -2793,10 +2793,28 @@ public class MainController {
         
         insuranceSearchView.clearMessages();
         
+        // Declares ints and classes to be converted to:
+        int customerId = -1;
+        int insuranceId = -1;
+        Class type = null;
+        
         // Collects information about the customer or insurance:
-        String customerIdString = insuranceSearchView.getCustomerId();
-        String personalNumber = insuranceSearchView.getPersonalNumber();
         String insuranceIdString = insuranceSearchView.getInsuranceId();
+        String number = insuranceSearchView.getNumber();
+        
+        // 
+        if(!number.equals("")) {
+            if(insuranceSearchView.isCustomerIdSelected()) {
+                try {
+                    customerId = Integer.parseInt(number);
+                } catch(NumberFormatException nfe) {
+                    insuranceSearchView.setIdMessage(CUSTOMERID_FORMAT_MESSAGE);
+                    return;
+                }
+            } else {
+                customerId = customers.findCustomerIdByPersonalNumber(number);
+            }
+        }
         
         // Collects information about the search terms:
         InsuranceType insuranceType = insuranceSearchView.getInsuranceType();
@@ -2804,25 +2822,12 @@ public class MainController {
         Calendar fromDate = insuranceSearchView.getFromDate();
         Calendar toDate = insuranceSearchView.getToDate();
         
-        // Declares ints and classes to be converted to:
-        int customerId = 0;
-        int insuranceId = 0;
-        Class type = null;
-        
         // Evaluates and converts input:
         if (!insuranceIdString.equals("")) {
             try {
                 insuranceId = Integer.parseInt(insuranceIdString);
             } catch(NumberFormatException nfe) {
                 insuranceSearchView.setIdMessage(INSURANCEID_FORMAT_MESSAGE);
-                return;
-            }
-        }
-        if (!customerIdString.equals("")) {
-            try {
-                customerId = Integer.parseInt(customerIdString);
-            } catch(NumberFormatException nfe) {
-                insuranceSearchView.setIdMessage(CUSTOMERID_FORMAT_MESSAGE);
                 return;
             }
         }
@@ -2847,12 +2852,9 @@ public class MainController {
         }
         
         List<Insurance> insuranceList;
-        if (insuranceId != 0) {
+        if (insuranceId != -1) {
             insuranceList = insurances.getInsuranceById(insuranceId);
-        } else if (customerId != 0) {
-            insuranceList = insurances.getInsurancesByCustomerId(customerId, type, fromDate, toDate, active);
-        } else if (!personalNumber.equals("")) {
-            customerId = customers.findCustomerIdByPersonalNumber(personalNumber);
+        } else if (customerId != -1) {
             insuranceList = insurances.getInsurancesByCustomerId(customerId, type, fromDate, toDate, active);
         } else {
             insuranceList = insurances.getInsurances(type, fromDate, toDate, active);

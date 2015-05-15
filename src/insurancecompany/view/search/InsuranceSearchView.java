@@ -16,7 +16,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -25,10 +24,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
 /**
@@ -47,7 +44,7 @@ public class InsuranceSearchView {
     private Button customerIdButton;
     private Button insuranceIdButton;
     private Button personalNumberButton;
-    private ComboBox insuranceTypeCombo;
+    private ComboBox<InsuranceType> insuranceTypeCombo;
     private DatePicker fromDatePicker;
     private DatePicker toDatePicker;
     private TextField customerIdField;
@@ -96,7 +93,7 @@ public class InsuranceSearchView {
         customerIdButton = new Button("Søk");
         insuranceIdButton = new Button("Søk");
         personalNumberButton = new Button("Søk");
-        insuranceTypeCombo = new ComboBox();
+        insuranceTypeCombo = new ComboBox<>();
         populateInsuranceTypeCombo();
         fromDatePicker = new DatePicker();
         toDatePicker = new DatePicker();
@@ -247,8 +244,12 @@ public class InsuranceSearchView {
     }
     
     /** @return The insurance type of this class. */
-    public String getInsuranceType() {
-        return insuranceTypeCombo.getValue().toString();
+    public InsuranceType getInsuranceType() {
+        if (insuranceTypeCombo.getValue() instanceof InsuranceType) {
+            return insuranceTypeCombo.getValue();
+        } else {
+            return null;
+        } 
     }
     
     /** @return The from date of this class. */

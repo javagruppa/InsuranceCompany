@@ -250,13 +250,7 @@ public class CarClaimRegistration {
         mainPane.add(registerButton, 4, 16);
         mainPane.add(registerButtonMessage, 5, 16, 3, 1);
         
-        // Initialize local event handlers:
-        initializeLocalEventHandlers();
     } // end of sole Constructor
-    
-    private void initializeLocalEventHandlers() {
-        setOpenClaimFormButtonEventHandler();
-    }
     
     /**
      * Places list of damages inside a list of combo boxes and places
@@ -444,13 +438,8 @@ public class CarClaimRegistration {
     /**
      * Initializes the event handler for the open claim form button.
      */
-    private void setOpenClaimFormButtonEventHandler() {
-        openClaimFormButton.setOnAction((event) -> {
-            Stage stage = new Stage();
-            CarClaimFormView ccfv = new CarClaimFormView(this);
-            ccfv.setRegisterButtonEventHandler();
-            ccfv.show(stage);
-        });
+    public void setOpenClaimFormButtonEventHandler(EventHandler<ActionEvent> event ) {
+        openClaimFormButton.setOnAction(event);
     }
     
     /**

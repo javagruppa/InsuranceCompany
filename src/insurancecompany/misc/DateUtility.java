@@ -5,6 +5,9 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
+import javafx.scene.control.DateCell;
+import javafx.scene.control.DatePicker;
+import javafx.util.Callback;
 
 /**
  * The DateUtility contains tools used to calculate and write dates with
@@ -64,5 +67,31 @@ public class DateUtility {
         Date date = localDateToDate(localDate);
         return dateToCalendar(date);
     }
-
+    /**
+     * Sets up date restrictions to a DatePicker so that only dates older that
+     * the current date are pickable.
+     * 
+     * @param datePicker 
+     */
+    public static void restrictDatePickerToOlder(DatePicker datePicker) {
+        // Sets up a restricton for choosable dates:
+        Callback<DatePicker, DateCell> dayCellFactory = dp -> new DateCell()
+        {
+            @Override
+            public void updateItem(LocalDate item, boolean empty)
+            {
+                super.updateItem(item, empty);
+                // Only allow dates that are older than current dates:
+                if(item.isAfter(LocalDate.now()))
+                {   // Sets the background color of the invalid dates to a pink/red color:
+                    setStyle("-fx-background-color: #ffc0cb;");
+                    // Disables them, so they can not be picked:
+                    setDisable(true);
+                }
+            }
+        };
+        // Apply these restrictions to our DatePicker
+        datePicker.setDayCellFactory(dayCellFactory);
+        datePicker.setPromptText("dd/MM/yyyy");
+    } // end of method restrictDatePickerToOlder
 }

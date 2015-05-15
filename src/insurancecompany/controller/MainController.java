@@ -271,9 +271,9 @@ public class MainController {
         travelInsuranceRegistration.setSearchCustomerIdButtonEventHandler(this::travelInsuranceSearchCustomerIdButtonEventHandler);
         travelInsuranceRegistration.setSearchPersonalNumberButtonEventHandler(this::travelInsuranceSearchPersonalNumberButtonEventHandler);
         
-        insuranceSearchView.setSearchButtonEventHandler(this::insuranceSearchViewSearchEventHandler);
-        insuranceSearchView.setSelectButtonEventHandler(this::insuranceSearchViewSelectEventHandler);
-        insuranceSearchView.setDeactivateButtonEventHandler(this::insuranceSearchViewDeactivateEventHandler);
+        insuranceSearchView.setSearchEventHandler(this::insuranceSearchViewSearchEventHandler);
+        insuranceSearchView.setSelectEventHandler(this::insuranceSearchViewSelectEventHandler);
+        insuranceSearchView.setDeactivateEventHandler(this::insuranceSearchViewDeactivateEventHandler);
     } // end of class initializeRegisterInsuranceEventHandlers
  
     private void initializeRegisterClaimEventHandlers() {
@@ -282,6 +282,7 @@ public class MainController {
         carClaimRegistration.setSearchPersonalNumberButtonEventHandler(this::carClaimSearchPersonalNumberButtonEventHandler);
         carClaimRegistration.setSelectInsuranceButtonEventHandler(this::carClaimSelectInsuranceButtonEventHandler);
         carClaimRegistration.setSelectImageButtonEventHandler(this::carClaimSelectImageButtonEventHandler);
+        carClaimRegistration.setOpenClaimFormButtonEventHandler(this::carClaimOpenClaimFormButtonEventHandler);
         
         boatClaimRegistration.setRegisterButtonEventHandler(this::boatClaimRegisterButtonEventHandler);
         boatClaimRegistration.setSearchCustomerIdButtonEventHandler(this::boatClaimSearchCustomerIdButtonEventHandler);
@@ -561,6 +562,33 @@ public class MainController {
     }
     
     // CAR CLAIM REGISTRATION EVENT HANDLERS
+    
+    private void carClaimOpenClaimFormButtonEventHandler(ActionEvent event) {
+        
+        // Create a new stage:
+        Stage formStage = new Stage();
+        // Create a new CarClaimFormView and send the carClaimRegistration view as a reference:
+        CarClaimFormView ccfv = new CarClaimFormView(carClaimRegistration);
+        // initialize the carClaimFormViews register button event handler:
+        ccfv.setRegisterButtonEventHandler();
+        // BEFORE WE SHOW THE FORM; WE WANT TO POPULATE SOME OF ITS TEXT FIELDS WITH OUR
+        // SELECTED CUSTOMER:
+        
+        int customerId = carClaimRegistration.getSelectedCustomerId();
+        CarInsurance insuranceA = (CarInsurance) carClaimRegistration.getInsuranceTableValue();
+        Customer personA = customers.findCustomerById(customerId);
+        String lastNameA = personA.getLastName();
+        String firstNameA = personA.getFirstName();
+        String personalNumberA = personA.getPersonalNumber();
+        Address addressA = personA.getAddress();
+        String streetA = addressA.getStreet();
+        int zipCodeA = addressA.getZipCode();
+        String emailA = personA.getEmail();
+        //Car carA = 
+        
+        // Show the Car claim form:
+        //ccfv.show(formStage);
+    }
     
     private void carClaimRegisterButtonEventHandler(ActionEvent event) {
         boolean ok = true;
@@ -2815,19 +2843,19 @@ public class MainController {
        insuranceSearchView.setInsuranceArea(insurance.toString());
        
        if (insurance instanceof BoatInsurance) {
-           insuranceSearchView.setAccessoryArea("Båt:", ((BoatInsurance)insurance).getBoat().toString());
+           insuranceSearchView.setAttachmentArea("Båt:", ((BoatInsurance)insurance).getBoat().toString());
        } else if (insurance instanceof CarInsurance) {
-           insuranceSearchView.setAccessoryArea("Bil:", ((CarInsurance) insurance).getCar().toString());
+           insuranceSearchView.setAttachmentArea("Bil:", ((CarInsurance) insurance).getCar().toString());
        } else if (insurance instanceof HolidayHomeInsurance) {
-           insuranceSearchView.setAccessoryArea("Eiendom:", ((HolidayHomeInsurance) insurance).getProperty().toString());
+           insuranceSearchView.setAttachmentArea("Eiendom:", ((HolidayHomeInsurance) insurance).getProperty().toString());
        } else if (insurance instanceof HolidayHomeContentInsurance) {
-           insuranceSearchView.setAccessoryArea("Eiendom:", ((HolidayHomeContentInsurance) insurance).getProperty().toString());
+           insuranceSearchView.setAttachmentArea("Eiendom:", ((HolidayHomeContentInsurance) insurance).getProperty().toString());
        } else if (insurance instanceof HomeInsurance) {
-           insuranceSearchView.setAccessoryArea("Eiendom:", ((HomeInsurance) insurance).getProperty().toString());
+           insuranceSearchView.setAttachmentArea("Eiendom:", ((HomeInsurance) insurance).getProperty().toString());
        } else if (insurance instanceof HomeContentInsurance) {
-           insuranceSearchView.setAccessoryArea("Eiendom:", ((HomeContentInsurance) insurance).getProperty().toString());
+           insuranceSearchView.setAttachmentArea("Eiendom:", ((HomeContentInsurance) insurance).getProperty().toString());
        } else if (insurance instanceof TravelInsurance) {
-           insuranceSearchView.removeAccessoryArea();
+           insuranceSearchView.removeAttachmentArea();
        }
     }
     

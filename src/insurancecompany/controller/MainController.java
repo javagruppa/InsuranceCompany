@@ -6,6 +6,7 @@
 package insurancecompany.controller;
 
 import insurancecompany.misc.EmployeeType;
+import insurancecompany.misc.InsuranceType;
 import insurancecompany.misc.coverages.*;
 import insurancecompany.misc.hometypes.HolidayHomeType;
 import insurancecompany.misc.hometypes.HomeType;
@@ -2014,6 +2015,81 @@ public class MainController {
             }
         }
     } // end of method travelInsuranceSearchPersonalNumberButtonEventHandler
+    
+    // INSURANCE SEARCH EVENT HANDLERS
+    
+    private void insuranceSearchViewSearchEventHandler(ActionEvent event) {
+        // Collect information about the customer or insurance:
+        String customerIdString = insuranceSearchView.getCustomerId();
+        String personalNumber = insuranceSearchView.getPersonalNumber();
+        String insuranceIdString = insuranceSearchView.getInsuranceId();
+        
+        // Collects information about the search terms:
+        InsuranceType insuranceType = insuranceSearchView.getInsuranceType();
+        Calendar fromDate = insuranceSearchView.getFromDate();
+        Calendar toDate = insuranceSearchView.getToDate();
+        
+        // Declares ints and classesto be converted to:
+        int customerId = 0;
+        int insuranceId = 0;
+        Class type;
+        
+        // Evaluates input:
+        if (fromDate == null) {
+            // TODO: Give appropriate message.
+        }
+        if (toDate == null) {
+            // TODO: Give appropriate message.
+        }
+        
+        // Evaluates and converts input:
+        if (!customerIdString.equals("")) {
+            try {
+                customerId = Integer.parseInt(customerIdString);
+            } catch(NumberFormatException nfe) {
+                // TODO: Give appropriate message.
+                return;
+            }
+        }
+        if (!insuranceIdString.equals("")) {
+            try {
+                insuranceId = Integer.parseInt(insuranceIdString);
+            } catch(NumberFormatException nfe) {
+                // TODO: Give appropriate message.
+                return;
+            }
+        }
+        if (insuranceType == null) {
+            // TODO: Give appropriate message.
+        } else {
+            switch (insuranceType) {
+                case BOAT_INSURANCE: type = BoatInsurance.class;
+                case CAR_INSURANCE: type = CarInsurance.class;
+                case HOME_INSURANCE: type = HomeInsurance.class;
+                case HOME_CONTENT_INSURANCE: type = HomeContentInsurance.class;
+                case HOLIDAY_HOME_INSURANCE: type = HolidayHomeInsurance.class;
+                case HOLIDAY_HOME_CONTENT_INSURANCE: type = HolidayHomeContentInsurance.class;
+                case TRAVEL_INSURANCE: type = TravelInsurance.class;
+                default: type = null;
+            }
+        }
+        
+        List<Insurance> insuranceList;
+        
+        /*if (insuranceId != 0) {
+            insuranceList = insurances.getInsurancesById(insuranceId, type, fromDate, toDate);
+        } else if (customerId != 0) {
+            insuranceList = insurances.getInsurancesByCustomerId(insuranceId, type, fromDate, toDate);
+        } else if (personalNumber.equals("")) {
+            insuranceList = insurances.getInsurancesByPersonalNumber(insuranceId, type, fromDate, toDate);
+        } else {
+            insuranceList = insurances.getInsurances(insuranceId, type, fromDate, toDate);
+        }*/
+    }
+    
+    private void insuranceSearchViewSelectEventHandler(ActionEvent event) {
+        
+    }
     
     
     // READ AND WRITE IDS FROM/TO FILE:

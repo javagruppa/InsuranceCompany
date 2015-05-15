@@ -5,7 +5,8 @@ package insurancecompany.misc;
  * @author André
  */
 public enum InsuranceType {
-    BOAT_INSURANCE, CAR_INSURANCE, HOME_INSURANCE, HOLIDAY_HOME_INSURANCE, TRAVEL_INSURANCE;
+    BOAT_INSURANCE, CAR_INSURANCE, HOME_INSURANCE, HOME_CONTENT_INSURANCE, 
+    HOLIDAY_HOME_INSURANCE, HOLIDAY_HOME_CONTENT_INSURANCE, TRAVEL_INSURANCE;
     
     /**
      * Returns a string representation of the type of an insurance
@@ -16,8 +17,10 @@ public enum InsuranceType {
         switch(this) {
             case BOAT_INSURANCE: return "Båtforsikring";
             case CAR_INSURANCE: return "Bilforsikring";
-            case HOME_INSURANCE: return "Hus- og innboforsikring";
+            case HOME_INSURANCE: return "Husforsikring";
+            case HOME_CONTENT_INSURANCE: return "Innboforsikring";
             case HOLIDAY_HOME_INSURANCE: return "Fritidsboligforsikring";
+            case HOLIDAY_HOME_CONTENT_INSURANCE: return "Fritidsbolig innboforsikring";
             case TRAVEL_INSURANCE: return "Reiseforsikring";
             default: throw new IllegalArgumentException();
         }

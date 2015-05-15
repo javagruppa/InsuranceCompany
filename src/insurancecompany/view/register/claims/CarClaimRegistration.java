@@ -122,6 +122,8 @@ public class CarClaimRegistration {
     // Output nodes, Text messages:
     /** Text used to display a status/help message when the user presses the register button. */
     private Text registerButtonMessage;
+    private Text selectImageStatus;
+    private Text claimFormStatus;
     /** Text used to display a help message if the user types in an invalid value for the appraisal. */
     private Text appraisalFieldMessage;
     
@@ -209,7 +211,10 @@ public class CarClaimRegistration {
         Label openClaimFormLabel = new Label("Bilskademelingsskjema");
         openClaimFormButton = new Button("Fyll ut");
         registerButton = new Button("Registrer");
+        
         registerButtonMessage = new Text();
+        selectImageStatus = new Text();
+        claimFormStatus = new Text();
         
         // Add nodes to mainPane:
         // Nodes that are used for registering claim:
@@ -239,8 +244,10 @@ public class CarClaimRegistration {
         mainPane.add(appraisalFieldMessage, 6, 13, 2, 1);
         mainPane.add(selectImageLabel, 4, 14);
         mainPane.add(selectImageButton, 5, 14);
+        mainPane.add(selectImageStatus, 6, 14, 2, 1);
         mainPane.add(openClaimFormLabel, 4, 15);
         mainPane.add(openClaimFormButton, 5, 15);
+        mainPane.add(claimFormStatus, 6, 15, 2, 1);
         mainPane.add(registerButton, 4, 16);
         mainPane.add(registerButtonMessage, 5, 16, 3, 1);
         
@@ -515,6 +522,19 @@ public class CarClaimRegistration {
         selectInsuranceMessage.setText("");
         registerButtonMessage.setText("");
     }
+    
+    /**
+     * Clears the uploaded data as well as clearing their status text.
+     */
+    public void clearUploads() {
+        // Clear the image:
+        image = null;
+        // Clear the claim form:
+        carClaimFormView = null;
+        // Clear the status messages:
+        selectImageStatus.setText("");
+        claimFormStatus.setText("");
+    }
 
     /**
      * Get the image of the damage from this view.
@@ -588,6 +608,20 @@ public class CarClaimRegistration {
      */
     public void setAppraisalFieldMessage(String appraisalFieldMessage) {
         this.appraisalFieldMessage.setText(appraisalFieldMessage);
+    }
+
+    /**
+     * @param selectImageMessage the selectImageStatus to set
+     */
+    public void setSelectImageMessage(String selectImageMessage) {
+        this.selectImageStatus.setText(selectImageMessage);
+    }
+
+    /**
+     * @param claimFormMessage the claimFormStatus to set
+     */
+    public void setClaimFormMessage(String claimFormMessage) {
+        this.claimFormStatus.setText(claimFormMessage);
     }
 
 } // end of class CarClaimRegistration

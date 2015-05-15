@@ -665,6 +665,8 @@ public class MainController {
                         CarClaim claim = new CarClaim(customerId, insuranceId, description, dateHappened, damages, appraisal, carClaimForm);
                         // Add this car claim to the claim register:
                         if (claims.addClaim(claim)) {
+                            // Clear uploads(image and claim form:
+                            carClaimRegistration.clearUploads();
                             carClaimRegistration.setRegisterButtonMessage(REGISTER_SUCCESS);
                         }
                     }

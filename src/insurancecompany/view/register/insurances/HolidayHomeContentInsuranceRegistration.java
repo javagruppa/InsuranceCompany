@@ -331,6 +331,7 @@ public class HolidayHomeContentInsuranceRegistration {
         typeMessage.setText("");
         yearMessage.setText("");
         zipCodeMessage.setText("");
+        registerButtonMessage.setText("");
     }
     
     // GET METHODS:

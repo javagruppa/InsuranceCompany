@@ -331,6 +331,7 @@ public class HomeContentInsuranceRegistration {
         typeMessage.setText("");
         yearMessage.setText("");
         zipCodeMessage.setText("");
+        registerButtonMessage.setText("");
     }
     
     // GET METHODS:

@@ -414,6 +414,7 @@ public class CarInsuranceRegistration {
         registrationNumberMessage.setText("");
         yearMessage.setText("");
         youngestDriverMessage.setText("");
+        registerButtonMessage.setText("");
     }
     
     // GET METHODS:

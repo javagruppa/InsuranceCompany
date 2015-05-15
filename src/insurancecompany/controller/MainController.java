@@ -2028,6 +2028,7 @@ public class MainController {
         
         // Collects information about the search terms:
         InsuranceType insuranceType = insuranceSearchView.getInsuranceType();
+        boolean active = insuranceSearchView.getActive();
         Calendar fromDate = insuranceSearchView.getFromDate();
         Calendar toDate = insuranceSearchView.getToDate();
         
@@ -2074,21 +2075,17 @@ public class MainController {
         }
         
         List<Insurance> insuranceList;
-        
         if (insuranceId != 0) {
             insuranceList = insurances.getInsuranceById(insuranceId);
         } else if (customerId != 0) {
-            insuranceList = insurances.getInsurancesByCustomerId(customerId, type, fromDate, toDate);
+            insuranceList = insurances.getInsurancesByCustomerId(customerId, type, fromDate, toDate, active);
         } else if (!personalNumber.equals("")) {
             customerId = customers.findCustomerIdByPersonalNumber(personalNumber);
-            insuranceList = insurances.getInsurancesByCustomerId(customerId, type, fromDate, toDate);
+            insuranceList = insurances.getInsurancesByCustomerId(customerId, type, fromDate, toDate, active);
         } else {
-            insuranceList = insurances.getInsurances(type, fromDate, toDate);
+            insuranceList = insurances.getInsurances(type, fromDate, toDate, active);
         }
-        
-        //if (!insuranceList.isEmpty()) {
-            insuranceSearchView.populateInsurancesTable(insuranceList);
-        //}
+        insuranceSearchView.populateInsurancesTable(insuranceList);
     }
     
     private void insuranceSearchViewSelectEventHandler(ActionEvent event) {

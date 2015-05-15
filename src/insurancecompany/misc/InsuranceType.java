@@ -1,7 +1,8 @@
 package insurancecompany.misc;
 
 /**
- * class InsuranceType. Enums showing the type of an insurance
+ * This enum represents the types of insurances used by the company.
+ * 
  * @author André
  */
 public enum InsuranceType {

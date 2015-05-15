@@ -57,6 +57,7 @@ public class Customer extends Person implements Serializable {
     
     /**
      * Returns the customerId for this customer
+     * 
      * @return the customer ID
      */
     @Override
@@ -68,6 +69,7 @@ public class Customer extends Person implements Serializable {
      * Returns a string representation of this Customer. The string
      * representation consists of each field with a short description separated
      * by a new line.
+     * 
      * @return a string representation of this customer
      */
     @Override
@@ -98,6 +100,7 @@ public class Customer extends Person implements Serializable {
     
     /**
      * Reads next customer ID from file
+     * 
      * @throws IOException 
      */
     public static void readNextIdFromFile() throws IOException {
@@ -111,6 +114,7 @@ public class Customer extends Person implements Serializable {
     /**
      * Returns whether or not this customer is a total customer (3 or more
      * different insurances)
+     * 
      * @return the boolean totalCustomer
      */
     public boolean isTotalCustomer() {
@@ -127,6 +131,7 @@ public class Customer extends Person implements Serializable {
 
     /**
      * Returns whether or not the customer is active
+     * 
      * @return the boolean active
      */
     public boolean isActive() {
@@ -135,6 +140,7 @@ public class Customer extends Person implements Serializable {
 
     /**
      * Sets whether or not this customer is active
+     * 
      * @param active the active to set
      */
     public void setActive(boolean active) {

@@ -1,7 +1,8 @@
 package insurancecompany.misc;
 
 /**
- * class UserType. Enums showing what kind of user a person object is
+ * This enum represents the types of users that can log in to the program.
+ * 
  * @author André
  */
 public enum UserType {

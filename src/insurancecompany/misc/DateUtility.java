@@ -7,8 +7,8 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * class DateUtility contains tools used to calculate and write dates with
- * specific formats
+ * The DateUtility contains tools used to calculate and write dates with
+ * specific formats.
  * 
  * @author André
  */

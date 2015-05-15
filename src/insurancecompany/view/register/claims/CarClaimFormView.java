@@ -8,7 +8,6 @@ import insurancecompany.misc.DateUtility;
 import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
-import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.Scene;
@@ -40,61 +39,61 @@ import javafx.util.Callback;
  */
 public class CarClaimFormView {
     
-    /** Scroll pane used to show the whole car claim form. */
+    // Scroll pane used to show the whole car claim form.
     private ScrollPane scrollPane;
-    /** Stack pane used to stack input nodes on top of the car claim form image. */
+    // Stack pane used to stack input nodes on top of the car claim form image.
     private StackPane stackPane;
-    /** Stack pane used to hold the canvas, which opens up for setting a background color to the canvas. */
+    // Stack pane used to hold the canvas, which opens up for setting a background color to the canvas.
     private StackPane canvasHolder;
-    /** Grid pane used to lay out the user action nodes. */
+    // Grid pane used to lay out the user action nodes.
     private GridPane gridPane;
-    /** Stage used to display this view. */
+    // Stage used to display this view.
     private Stage stage;
-    /** Scene used to display this view. */
+    // Scene used to display this view.
     private Scene scene;
-    /** Car claim form background image. */
+    // Car claim form background image.
     private Image image;
-    /** Canvas used to draw an image of the accident. */
+    // Canvas used to draw an image of the accident.
     private Canvas canvas;
     
-    /** The date of the accident. */
+    // The date of the accident.
     private DatePicker date;
-    /** The location of the accident. */
+    // The location of the accident.
     private TextField location;
-    /** if there is any witnesses to the accident */
+    // if there is any witnesses to the accident
     private TextArea witnesses;
     
-    /**the last name of the person.*/
+    //the last name of the person.
     private TextField lastNameA;
-    /**the first name of the person.*/
+    //the first name of the person.
     private TextField firstNameA;
-    /**the personal number of the person.*/
+    //the personal number of the person.
     private TextField personalNumberA;
     private TextField streetA; // Includes street name, number and letter.
     private TextField zipCodeA;
-    /**the phone number of the person.*/
+    //the phone number of the person.
     private TextField phoneA;
-    /**the e-mail address for the person.*/
+    //the e-mail address for the person.
     private TextField emailA;
     private TextField registrationNumberA;
     private TextField brandA;
     
     
-    /**the last name of the person*/
+    //the last name of the person
     private TextField lastNameB;
-    /**the first name of the person*/
+    //the first name of the person
     private TextField firstNameB;
-    /**the personal number of the person*/
+    //the personal number of the person
     private TextField personalNumberB;
     private TextField streetB; // Includes street name, number and letter.
     private TextField zipCodeB;
-    /**The phone number of the person. */
+    //The phone number of the person.
     private TextField phoneB;
-    /**The e-mail address for the person.*/
+    //The e-mail address for the person.
     private TextField emailB;
     private TextField registrationNumberB;
     private TextField brandB;
-    /** The name of the insurance company of the other part involved */
+    // The name of the insurance company of the other part involved 
     private TextField insuranceCompanyB;
     
     // TODO: Remember to onAction close window when button is clicked. 
@@ -102,7 +101,7 @@ public class CarClaimFormView {
     private Button registerButton;
     private Button clearCanvasButton;
     
-    /** Reference to the car claim view that owns this class.*/
+    // Reference to the car claim view that owns this class.
     private CarClaimRegistration carClaimRegistration;
 
     /**
@@ -261,7 +260,8 @@ public class CarClaimFormView {
         stage.show();
     }
     
-    public void initializeEventHandlers() {
+    // Initializes local event handlers:
+    private void initializeEventHandlers() {
         setclearCanvasButtonEventHandler();
         setRegisterButtonEventHandler();
     }

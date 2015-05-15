@@ -149,7 +149,7 @@ and open the template in the editor.
 }
 
 #customPane1 {
-    -fx-background-color: #ccffff;
+    -fx-background-color: white;
     -fx-border-style: solid;
     -fx-border-color: #395cab;
 }

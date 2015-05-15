@@ -33,7 +33,7 @@ public class Bill implements Serializable {
     private Calendar dueDate;
     /** Date of when the dunning is due to payed.*/
     private Calendar dunningDate;
-    /** Date of when the payment was recieved.*/
+    /** Date of when the payment was received.*/
     private Calendar payedDate;
     /** Sum of the fee for this bill.*/
     private int fee; // NOR: Gebyr

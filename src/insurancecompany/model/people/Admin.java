@@ -27,9 +27,10 @@ public class Admin extends Employee implements Serializable {
     }
 
     /**
-    * Returns a string representation of this Admin. The string
+     * Returns a string representation of this Admin. The string
      * representation consists of each field with a short description separated
      * by a new line.
+     * 
      * @return a string representation of this admin
      */
     @Override

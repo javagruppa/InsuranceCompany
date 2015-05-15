@@ -19,9 +19,14 @@ public class Main extends Application {
     
     private MainController controller;
     
+    /**
+     * Main method. Launch the application.
+     * @param args 
+     */
     public static void main(String[] args) {
         launch(args);
     }
+    
     
     @Override
     public void start(Stage stage) {

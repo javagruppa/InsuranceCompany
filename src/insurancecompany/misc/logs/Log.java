@@ -6,8 +6,6 @@
 package insurancecompany.misc.logs;
 
 import insurancecompany.model.people.*;
-import java.io.PrintWriter;
-import java.io.StringWriter;
 import java.util.Calendar;
 
 /**
@@ -59,22 +57,22 @@ public class Log {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Time: " + date.getTime());
+        sb.append("Time: ").append(date.getTime());
         sb.append("\n");
         if (userType != null) {
-            sb.append("Logged in user: " + userType);
+            sb.append("Logged in user: ").append(userType);
             sb.append("\n");
         }
         if (userId != 0) {
-            sb.append("User id: " + userId);
+            sb.append("User id: ").append(userId);
             sb.append("\n");
         }
         if (stackTrace != null) {
-            sb.append("Stack Trace: "+ stackTraceToString(stackTrace));
+            sb.append("Stack Trace: ").append(stackTraceToString(stackTrace));
             sb.append("\n");
         }
         if (message != null) {
-            sb.append("Description: " + message);
+            sb.append("Description: ").append(message);
         }        
         return sb.toString();
     }

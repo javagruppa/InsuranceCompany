@@ -13,6 +13,7 @@ package insurancecompany.misc.hometypes;
 public enum HomeType {
     APARTMENT, VILLA, LINKED_HOUSE, DETACHED_HOUSE, SEMI_DETACHED_HOUSE;
     
+    @Override
     public String toString() {
         switch(this) {
             case APARTMENT: return "Leilighet";

@@ -272,6 +272,7 @@ public class MainController {
         
         insuranceSearchView.setSearchButtonEventHandler(this::insuranceSearchViewSearchEventHandler);
         insuranceSearchView.setSelectButtonEventHandler(this::insuranceSearchViewSelectEventHandler);
+        insuranceSearchView.setDeactivateButtonEventHandler(this::insuranceSearchViewDeactivateEventHandler);
     } // end of class initializeRegisterInsuranceEventHandlers
  
     private void initializeRegisterClaimEventHandlers() {
@@ -2197,6 +2198,17 @@ public class MainController {
            insuranceSearchView.setAccessoryArea("Eiendom:", ((HomeContentInsurance) insurance).getProperty().toString());
        } else if (insurance instanceof TravelInsurance) {
            insuranceSearchView.removeAccessoryArea();
+       }
+    }
+    
+    private void insuranceSearchViewDeactivateEventHandler(ActionEvent event) {
+       Insurance insurance = insuranceSearchView.getInsuranceTableValue();
+       
+       if (insurance == null) {
+           //TODO: Give appropriate message.
+       } else {
+           insurance.setActive(false);
+           insuranceSearchView.clearView();
        }
     }
     

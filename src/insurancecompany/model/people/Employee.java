@@ -15,7 +15,7 @@ public abstract class Employee extends Person implements Serializable {
     private static final long serialVersionUID = 1L;
     /** The next employee ID */
     private static int nextEmployeeId = 1000000;
-    /** The filepath of the file the customer IDs are saved to */
+    /** The file path of the file the customer IDs are saved to */
     private static String employeeIdFileName = "src/insurancecompany/resources/nextidnumbers/employeeId.dta";
     
     /** passwords */
@@ -68,6 +68,7 @@ public abstract class Employee extends Person implements Serializable {
     
     /**
      * Saves next ID to file
+     * 
      * @throws IOException 
      */
     public static void saveNextIdToFile() throws IOException {
@@ -80,6 +81,7 @@ public abstract class Employee extends Person implements Serializable {
     
     /**
      * Reads the next ID from file
+     * 
      * @throws IOException 
      */
     public static void readNextIdFromFile() throws IOException {
@@ -101,6 +103,7 @@ public abstract class Employee extends Person implements Serializable {
 
     /**
      * Returns whether or not this employee is active
+     * 
      * @return the boolean active
      */
     public boolean isActive() {
@@ -109,6 +112,7 @@ public abstract class Employee extends Person implements Serializable {
 
     /**
      * Sets whether or not this employee is active
+     * 
      * @param active the active to set
      */
     public void setActive(boolean active) {
@@ -117,6 +121,7 @@ public abstract class Employee extends Person implements Serializable {
 
     /**
      * Returns the employeeId of this employee
+     * 
      * @return the employeeId
      */
     public int getEmployeeId() {

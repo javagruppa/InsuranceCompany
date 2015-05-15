@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
-import java.util.Date;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Set;
@@ -68,68 +67,68 @@ import javafx.util.Callback;
  */
 public class CarClaimRegistration {
     
-    /** The main pane of this class.*/
+    // The main pane of this class.
     private GridPane mainPane;
     
     // SEARCH FOR CUSTOMER NODES:
     // Input nodes, TextFields:
-    /** Text field where user can input a customer id. */
+    // Text field where user can input a customer id. 
     private TextField customerIdField;
-    /** Text field where user can input a personal number. */
+    // Text field where user can input a personal number. 
     private TextField personalNumberField;
     // Output nodes, TextArea and TableView and Text
-    /** Text area where customer information is displayed. */
+    // Text area where customer information is displayed. 
     private TextArea customerArea;
-    /** Table view where a list of a customers insurances are displayed. */
+    // Table view where a list of a customers insurances are displayed. 
     private TableView<Insurance> insurancesTable;
-    /** Table column displaying an insurance type. */
+    // Table column displaying an insurance type. 
     private TableColumn<Insurance, String> insuranceTypeColumn;
-    /** Table column displaying an insurance's coverage. */
+    // Table column displaying an insurance's coverage. 
     private TableColumn<Insurance, String> insuranceCoverageColum;
-    /** Table column displaying an insurance's id. */
+    // Table column displaying an insurance's id. 
     private TableColumn<Insurance, Integer> insuranceIdColumn;
-    /** Text used to display information after an insurance is selected. */
+    // Text used to display information after an insurance is selected. 
     private Text selectInsuranceMessage;
     // Buttons:
-    /** Button used to search for a customer through a customer id. */
+    // Button used to search for a customer through a customer id. 
     private Button searchCustomerIdButton;
-    /** Button used to search for a customer through a personal number. */
+    // Button used to search for a customer through a personal number. 
     private Button searchPersonalNumberButton;
-    /** Button used to select an insurance to use for the claim. */
+    // Button used to select an insurance to use for the claim. 
     private Button selectInsuranceButton;
 
-    /** Image uploaded by the user. */
+    // Image uploaded by the user. 
     private Image image;
-    /** The date of when the damage happened. */
+    // The date of when the damage happened. 
     private DatePicker dateHappenedPicker;
-    /** Textual description of the claim. */
+    // Textual description of the claim. 
     private TextArea descriptionTextArea;
-    /** Text field where the user can type in an appraisal for the claim. */
+    // Text field where the user can type in an appraisal for the claim. 
     private TextField appraisalField;
-    /** GridPane used to display the damages available for the customers coverage. */
+    // GridPane used to display the damages available for the customers coverage. 
     private GridPane damagesPane;
-    /** List of check boxes used in conjuction with the damages. */
+    // List of check boxes used in conjuction with the damages. 
     private List<CheckBox> damageCheckBoxes;
-    /** List of damages available for the customers coverage. */
+    // List of damages available for the customers coverage. 
     private ArrayList<Damage> damages;
     // Buttons:
-    /** Button used to select an image describing the claim. */
+    // Button used to select an image describing the claim. 
     private Button selectImageButton;
-    /** Button used to open up a car claim form. */
+    // Button used to open up a car claim form. 
     private Button openClaimFormButton;
-    /** Button used to register the claim. */
+    // Button used to register the claim. 
     private Button registerButton;  
     // Output nodes, Text messages:
-    /** Text used to display a status/help message when the user presses the register button. */
+    // Text used to display a status/help message when the user presses the register button. 
     private Text registerButtonMessage;
     private Text selectImageStatus;
     private Text claimFormStatus;
-    /** Text used to display a help message if the user types in an invalid value for the appraisal. */
+    // Text used to display a help message if the user types in an invalid value for the appraisal. 
     private Text appraisalFieldMessage;
     
-    /** The customerId used in the claim registration. */
+    // The customerId used in the claim registration. 
     private int selectedCustomerId;
-    /** The car claim form view belonging to this claim view. */
+    // The car claim form view belonging to this claim view. 
     private CarClaimFormView carClaimFormView;
     
     /**

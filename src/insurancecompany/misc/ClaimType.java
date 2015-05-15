@@ -1,13 +1,13 @@
 package insurancecompany.misc;
 
 /**
- * Class ClaimType. Enum setting the type of a claim - what type of
- * insurance covers the claim
+ * This enum represents the types of claims that can be registered.
  * 
  * @author André
  */
 public enum ClaimType {
-    BOAT_CLAIM, CAR_CLAIM, HOME_CLAIM, HOLIDAY_HOME_CLAIM, TRAVEL_CLAIM;
+    BOAT_CLAIM, CAR_CLAIM, HOME_CLAIM, HOME_CONTENT_CLAIM, 
+    HOLIDAY_HOME_CONTENT_CLAIM, HOLIDAY_HOME_CLAIM, TRAVEL_CLAIM;
     
     /**
      * Returns a string representation of the type of claim
@@ -18,8 +18,10 @@ public enum ClaimType {
         switch(this) {
             case BOAT_CLAIM: return "Båtskademelding";
             case CAR_CLAIM: return "Bilskademelding";
-            case HOME_CLAIM: return "Hus- og innboskademelding";
+            case HOME_CLAIM: return "Husskademelding";
+            case HOME_CONTENT_CLAIM: return "Innboskademelding";
             case HOLIDAY_HOME_CLAIM: return "Fritidsboligskademelding";
+            case HOLIDAY_HOME_CONTENT_CLAIM: return "Fritidsbolig innboskademelding";
             case TRAVEL_CLAIM: return "Reiseskademelding";
             default: throw new IllegalArgumentException();
         }

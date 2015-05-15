@@ -5,11 +5,13 @@
  */
 package insurancecompany.view.register.claims;
 
+import insurancecompany.misc.DateUtility;
 import insurancecompany.misc.coverages.Damage;
 import insurancecompany.model.insurances.Insurance;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.EnumSet;
 import java.util.List;
@@ -21,7 +23,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.DateCell;
@@ -65,56 +66,64 @@ import javafx.util.Callback;
  */
 public class BoatClaimRegistration {
     
-    /** The main pane of this class.*/
+    // The main pane of this class.
     private GridPane mainPane;
     
     // SEARCH FOR CUSTOMER NODES:
     // Input nodes, TextFields:
-    /** Text field where user can input a customer id. */
+    // Text field where user can input a customer id. 
     private TextField customerIdField;
-    /** Text field where user can input a personal number. */
+    // Text field where user can input a personal number. 
     private TextField personalNumberField;
     // Output nodes, TextArea and TableView and Text
-    /** Text area where customer information is displayed. */
+    // Text area where customer information is displayed. 
     private TextArea customerArea;
-    /** Table view where a list of a customers insurances are displayed. */
+    // Table view where a list of a customers insurances are displayed. 
     private TableView<Insurance> insurancesTable;
-    /** Table column displaying an insurance type. */
+    // Table column displaying an insurance type. 
     private TableColumn<Insurance, String> insuranceTypeColumn;
-    /** Table column displaying an insurance's coverage. */
+    // Table column displaying an insurance's coverage. 
     private TableColumn<Insurance, String> insuranceCoverageColum;
-    /** Table column displaying an insurance's id. */
+    // Table column displaying an insurance's id. 
     private TableColumn<Insurance, Integer> insuranceIdColumn;
-    /** Text used to display information after an insurance is selected. */
+    // Text used to display information after an insurance is selected. 
     private Text selectInsuranceMessage;
     // Buttons:
-    /** Button used to search for a customer through a customer id. */
+    // Button used to search for a customer through a customer id. 
     private Button searchCustomerIdButton;
-    /** Button used to search for a customer through a personal number. */
+    // Button used to search for a customer through a personal number. 
     private Button searchPersonalNumberButton;
-    /** Button used to select an insurance to use for the claim. */
+    // Button used to select an insurance to use for the claim. 
     private Button selectInsuranceButton;
 
-    /** Image uploaded by the user. */
+    // Image uploaded by the user. 
     private Image image;
-    /** The date of when the damage happened. */
+    // The date of when the damage happened. 
     private DatePicker dateHappenedPicker;
-    /** Textual description of the claim. */
+    // Textual description of the claim. 
     private TextArea descriptionTextArea;
-    /** Text field where the user can type in an appraisal for the claim. */
+    // Text field where the user can type in an appraisal for the claim. 
     private TextField appraisalField;
-    /** GridPane used to display the damages available for the customers coverage. */
+    // GridPane used to display the damages available for the customers coverage. 
     private GridPane damagesPane;
-    /** List of check boxes used in conjuction with the damages. */
+    // List of check boxes used in conjuction with the damages. 
     private List<CheckBox> damageCheckBoxes;
-    /** List of damages available for the customers coverage. */
+    // List of damages available for the customers coverage. 
     private ArrayList<Damage> damages;
     // Buttons:
-    /** Button used to select an image describing the claim. */
+    // Button used to select an image describing the claim. 
     private Button selectImageButton;
-    /** Button used to register the claim. */
+    // Button used to register the claim. 
     private Button registerButton;  
     // Output nodes, Text messages:
+    // Text used to display a status/help message when the user presses the register button. 
+    private Text registerButtonMessage;
+    private Text selectImageStatus;
+    // Text used to display a help message if the user types in an invalid value for the appraisal. 
+    private Text appraisalFieldMessage;
+    
+    // The customerId used in the claim registration. 
+    private int selectedCustomerId;
     
     /**
      * Sole constructor. Initializes the main Pane and sets up all its nodes.
@@ -154,7 +163,7 @@ public class BoatClaimRegistration {
         customerArea.setEditable(false);
         customerArea.setPrefColumnCount(2);
         customerArea.setPrefRowCount(3);
-        Text insurancesTitle = new Text("Velg forsikring til denne skaden:");
+        Text insurancesTitle = new Text("Velg forsikringen til denne skaden:");
         insurancesTitle.setId("textTitle");
         insurancesTable = new TableView();
         insurancesTable.setPrefHeight(100);
@@ -189,9 +198,13 @@ public class BoatClaimRegistration {
         damagesPane.setId("customPane1");
         Label appraisalLbel = new Label("Takseringsbeløp:");
         appraisalField = new TextField();
+        appraisalFieldMessage = new Text();
         Label selectImageLabel = new Label("Bilde som beskriver skaden");
         selectImageButton = new Button("Hent bilde");
         registerButton = new Button("Registrer");
+        
+        registerButtonMessage = new Text();
+        selectImageStatus = new Text();
         
         // Add nodes to mainPane:
         // Nodes that are used for registering claim:
@@ -218,10 +231,15 @@ public class BoatClaimRegistration {
         mainPane.add(damagesPane, 4, 7, 3, 5);
         mainPane.add(appraisalLbel, 4, 13);
         mainPane.add(appraisalField, 5, 13);
+        mainPane.add(appraisalFieldMessage, 6, 13, 2, 1);
         mainPane.add(selectImageLabel, 4, 14);
         mainPane.add(selectImageButton, 5, 14);
+        mainPane.add(selectImageStatus, 6, 14, 2, 1);
         mainPane.add(registerButton, 4, 16);
+        mainPane.add(registerButtonMessage, 5, 16, 3, 1);
+        
     } // end of sole Constructor
+    
     
     /**
      * Places list of damages inside a list of combo boxes and places
@@ -229,7 +247,7 @@ public class BoatClaimRegistration {
      * @param damages 
      */
     public void populateDamagesPane(ArrayList<Damage> damages) {
-        damageCheckBoxes = new ArrayList<CheckBox>();
+        damageCheckBoxes = new ArrayList<>();
         // Decides number of columns of damages:
         int columns = 3 ;
         // Start at first column:
@@ -287,7 +305,7 @@ public class BoatClaimRegistration {
      * Returns the customer id field as a String.
      * @return the customerIdField
      */
-    public String getCustomerIdField() {
+    public String getCustomerId() {
         return customerIdField.getText();
     }
 
@@ -295,7 +313,7 @@ public class BoatClaimRegistration {
      * Returns the personal number field as a String.
      * @return the personalNumberField
      */
-    public String getPersonalNumberField() {
+    public String getPersonalNumber() {
         return personalNumberField.getText();
     }
 
@@ -426,8 +444,8 @@ public class BoatClaimRegistration {
      * Sets the select insurance message of this view.
      * @param selectInsuranceMessage the selectInsuranceMessage to set
      */
-    public void setSelectInsuranceMessage(Text selectInsuranceMessage) {
-        this.selectInsuranceMessage = selectInsuranceMessage;
+    public void setSelectInsuranceMessage(String selectInsuranceMessage) {
+        this.selectInsuranceMessage.setText(selectInsuranceMessage);
     }
 
     /**
@@ -449,6 +467,7 @@ public class BoatClaimRegistration {
     
     /**
      * Returns the damages selected from the check boxes.
+     * Returns an empty set if no damages are selected.
      * @return a Set of Damages
      */
     public Set<Damage> getSelectedDamages() {
@@ -471,6 +490,17 @@ public class BoatClaimRegistration {
      */
     public void clearMessages() {
         selectInsuranceMessage.setText("");
+        registerButtonMessage.setText("");
+    }
+    
+    /**
+     * Clears the uploaded data as well as clearing their status text.
+     */
+    public void clearUploads() {
+        // Clear the image:
+        image = null;
+        // Clear the status messages:
+        selectImageStatus.setText("");
     }
 
     /**
@@ -487,6 +517,55 @@ public class BoatClaimRegistration {
      */
     public void setImage(Image image) {
         this.image = image;
+    }
+
+    /**
+     * @param registerButtonMessage the registerButtonMessage to set
+     */
+    public void setRegisterButtonMessage(String registerButtonMessage) {
+        this.registerButtonMessage.setText(registerButtonMessage);
+    }
+
+    /**
+     * @return the selectedCustomerId
+     */
+    public int getSelectedCustomerId() {
+        return selectedCustomerId;
+    }
+
+    /**
+     * @param selectedCustomerId the selectedCustomerId to set
+     */
+    public void setSelectedCustomerId(int selectedCustomerId) {
+        this.selectedCustomerId = selectedCustomerId;
+    }
+
+    /**
+     * Returns a Calendar object of the selected date for when the damage
+     * happened. Returns null if no date is selected.
+     * @return the dateHappenedPicker
+     */
+    public Calendar getDateHappenedPickerValue() {
+         // Get selected value:
+        if (dateHappenedPicker.getValue() != null) {
+            return  DateUtility.LocalDateToCalendar(dateHappenedPicker.getValue());
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * @param appraisalFieldMessage the appraisalFieldMessage to set
+     */
+    public void setAppraisalFieldMessage(String appraisalFieldMessage) {
+        this.appraisalFieldMessage.setText(appraisalFieldMessage);
+    }
+
+    /**
+     * @param selectImageMessage the selectImageStatus to set
+     */
+    public void setSelectImageMessage(String selectImageMessage) {
+        this.selectImageStatus.setText(selectImageMessage);
     }
 
 } // end of class BoatClaimRegistration

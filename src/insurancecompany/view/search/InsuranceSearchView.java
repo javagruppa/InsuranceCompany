@@ -59,6 +59,7 @@ public class InsuranceSearchView {
     private TableColumn<Insurance, String> activeColumn;
     
     // Nodes in rightPane:
+    private Button deactivateButton;
     private Text rightBottomTitle;
     private TextArea selectedInsuranceArea;
     private TextArea otherArea;
@@ -114,6 +115,7 @@ public class InsuranceSearchView {
                 TableView.CONSTRAINED_RESIZE_POLICY);
 
         // Initializes rightPane:
+        deactivateButton = new Button("Gjør inaktiv");
         rightBottomTitle = new Text("");
         selectedInsuranceArea = new TextArea();
         otherArea = new TextArea();
@@ -167,6 +169,7 @@ public class InsuranceSearchView {
         rightPane.add(selectedInsuranceArea, 0, 1);
         rightPane.add(rightBottomTitle, 0, 2);
         rightPane.add(otherArea, 0, 3);
+        rightPane.add(deactivateButton, 0, 4);
     }
     
     // POPULATE METHODS
@@ -222,6 +225,10 @@ public class InsuranceSearchView {
     }
     
     // SET EVENTHANDLER METHODS:
+
+    public void setDeactivateButtonEventHandler(EventHandler<ActionEvent> value) {
+        deactivateButton.setOnAction(value);
+    }
     
     public void setSearchButtonEventHandler(EventHandler<ActionEvent> value) {
         searchButton.setOnAction(value);

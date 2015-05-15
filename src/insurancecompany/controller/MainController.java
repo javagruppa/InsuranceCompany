@@ -565,7 +565,8 @@ public class MainController {
     // CAR CLAIM REGISTRATION EVENT HANDLERS
     
     private void carClaimOpenClaimFormButtonEventHandler(ActionEvent event) {
-        
+        // Clear the previous claim form message:
+        carClaimRegistration.setClaimFormMessage("");
         // Create a new stage:
         Stage formStage = new Stage();
         // Create a new CarClaimFormView and send the carClaimRegistration view as a reference:
@@ -575,20 +576,43 @@ public class MainController {
         // BEFORE WE SHOW THE FORM; WE WANT TO POPULATE SOME OF ITS TEXT FIELDS WITH OUR
         // SELECTED CUSTOMER:
         
-        int customerId = carClaimRegistration.getSelectedCustomerId();
-        CarInsurance insuranceA = (CarInsurance) carClaimRegistration.getInsuranceTableValue();
-        Customer personA = customers.findCustomerById(customerId);
-        String lastNameA = personA.getLastName();
-        String firstNameA = personA.getFirstName();
-        String personalNumberA = personA.getPersonalNumber();
-        Address addressA = personA.getAddress();
-        String streetA = addressA.getStreet();
-        int zipCodeA = addressA.getZipCode();
-        String emailA = personA.getEmail();
-        //Car carA = 
-        
-        // Show the Car claim form:
-        //ccfv.show(formStage);
+        // Get information on our customer and its car insurances car:
+        try {
+            int customerId = carClaimRegistration.getSelectedCustomerId();
+            Customer personA = customers.findCustomerById(customerId);
+            if (personA == null) {
+                carClaimRegistration.setClaimFormMessage(NO_INSURANCE_MESSAGE);
+            } else {
+                CarInsurance insuranceA = (CarInsurance) carClaimRegistration.getInsuranceTableValue();
+                String lastNameA = personA.getLastName();
+                String firstNameA = personA.getFirstName();
+                String personalNumberA = personA.getPersonalNumber();
+                Address addressA = personA.getAddress();
+                String streetA = addressA.getStreet();
+                int zipCodeA = addressA.getZipCode();
+                String phoneA = personA.getPhone();
+                String emailA = personA.getEmail();
+                Car carA = insuranceA.getCar();
+                String regA = carA.getRegistrationNumber();
+                String brandA = carA.getBrand();
+
+                // Apply this information to the car claim form view:
+                ccfv.setLastNameA(lastNameA);
+                ccfv.setFirstNameA(firstNameA);
+                ccfv.setPersonalNumberA(personalNumberA);
+                ccfv.setStreetA(streetA);
+                ccfv.setZipCodeA(String.valueOf(zipCodeA));
+                ccfv.setPhoneA(phoneA);
+                ccfv.setEmailA(emailA);
+                ccfv.setRegistrationNumberA(regA);
+                ccfv.setBrandA(brandA);
+
+                // Show the Car claim form:
+                ccfv.show(formStage);
+            }
+        } catch (ClassCastException cce) {
+            carClaimRegistration.setClaimFormMessage(NO_INSURANCE_MESSAGE);
+        }
     }
     
     private void carClaimRegisterButtonEventHandler(ActionEvent event) {

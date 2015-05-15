@@ -10,8 +10,9 @@ import javafx.scene.control.DatePicker;
 import javafx.util.Callback;
 
 /**
- * The DateUtility contains tools used to calculate and write dates with
- * specific formats.
+ * The DateUtility contains tools used to calculate between Calendar objects,
+ * restrict DatePickers, set DateFormat and convert between various date type
+ * Objects.
  * 
  * @author André
  */
@@ -68,8 +69,8 @@ public class DateUtility {
         return dateToCalendar(date);
     }
     /**
-     * Sets up date restrictions to a DatePicker so that only dates older that
-     * the current date are pickable.
+     * Sets up date restrictions to a DatePicker so that only dates at or older
+     * than the current date are pickable.
      * 
      * @param datePicker 
      */
@@ -92,6 +93,7 @@ public class DateUtility {
         };
         // Apply these restrictions to our DatePicker
         datePicker.setDayCellFactory(dayCellFactory);
+        // Set prompt text:
         datePicker.setPromptText("dd/MM/yyyy");
     } // end of method restrictDatePickerToOlder
 }

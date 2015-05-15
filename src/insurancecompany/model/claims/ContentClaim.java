@@ -2,9 +2,7 @@ package insurancecompany.model.claims;
 
 import insurancecompany.misc.coverages.Damage;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.Set;
 import javafx.scene.image.Image;

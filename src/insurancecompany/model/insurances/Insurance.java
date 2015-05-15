@@ -51,7 +51,11 @@ public abstract class Insurance implements Serializable {
         this.date = Calendar.getInstance();
         this.insuranceId = nextInsuranceId++;
         this.excess = excess;
+        calculatePremium();
     }
+    
+    /** Calculate the premium. */
+    public abstract void calculatePremium();
     
     // GET METHODS
     

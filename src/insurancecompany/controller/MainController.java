@@ -1680,7 +1680,11 @@ public class MainController {
     
     // CAR INSURANCE REGISTRATION EVENT HANDLERS
     
-    private void carInsuranceRegisterButtonEventHandler(ActionEvent e) {
+    private void carInsuranceCalculateButtonEventHander(ActionEvent event) {
+        
+    }
+    
+    private void carInsuranceRegisterButtonEventHandler(ActionEvent event) {
         
         // Clears previous messages:
         carInsuranceRegistration.clearMessages();
@@ -1814,6 +1818,8 @@ public class MainController {
         // Creates CarInsurance:
         CarInsurance insurance = new CarInsurance(car, coverage, customerId, 
                 excess, existingBonus, garage, maxLength, youngDriver);
+        // Calculate and set the premium:
+        insurance.calculatePremium();
         
         // Adds insurance to Register:
         if (insurances.addInsurance(insurance)) {

@@ -191,9 +191,7 @@ public class CarInsurance extends Insurance implements Serializable {
         lastBonusUpdate = Calendar.getInstance();
     }
     
-    /**
-     * Increases the bonus from one year to the next.
-     */
+    // Increases the bonus from one damage free year to the next.
     private void yearlyBonusIncrease() {
         // Increases the bonus by 10 points a year up to a maximum of 70 points.
         if (bonus <= 60 ) {
@@ -220,11 +218,20 @@ public class CarInsurance extends Insurance implements Serializable {
      * Increases the bonus depending on how many years has past since the
      * last bonus increase.
      */
-    public void increaseBonus() {
+    public boolean increaseBonus() {
+        // Find number of years since last bonus update:
         int years = DateUtility.getDifferenceInYears(lastBonusUpdate,
                 Calendar.getInstance());
-        for (int i = 0; i < years; i++) {
-            yearlyBonusIncrease();
+        // If one year has not yet passed return false:
+        if (years == 0) {
+            return false;
+        // Else increase the bonus accordingly, and return true:
+        } else {
+            for (int i = 0; i < years; i++) {
+                // Increase the bonus for each year:
+                yearlyBonusIncrease();
+            }
+            return true;    
         }
     }
     

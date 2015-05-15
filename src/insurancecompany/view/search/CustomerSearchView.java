@@ -308,7 +308,7 @@ public class CustomerSearchView {
     
     /** 
      * @return The selected value of customersTable as a Customer. Null if 
-     * no insurance is selected.
+     * no customer is selected.
      */
     public Customer getCustomersTableValue() {
         return customersTable.getSelectionModel() == null ? null : 

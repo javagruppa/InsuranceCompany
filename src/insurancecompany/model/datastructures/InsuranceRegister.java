@@ -8,6 +8,7 @@ package insurancecompany.model.datastructures;
 import insurancecompany.model.insurances.Insurance;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -77,6 +78,49 @@ public class InsuranceRegister {
         return result;
     }
     
+    public List<Insurance> getInsuranceById(int insuranceId) {
+        List<Insurance> result = new ArrayList<>();
+        for (Insurance insurance : insurances) {
+            if (insurance.getInsuranceId() == insuranceId) {
+                result.add(insurance);
+                return result;
+            }
+        }
+        return result;
+    }
+    
+    public List<Insurance> getInsurancesByCustomerId(int customerId, 
+            Class<?> type, Calendar fromDate, Calendar toDate) {
+        List<Insurance> result = new ArrayList<>();
+        for (Insurance insurance : insurances) {
+            if (insurance.getCustomerId() == customerId) {
+                if(type == null || type.isInstance(insurance)) {
+                    if(fromDate == null || fromDate.compareTo(insurance.getDate()) <= 0) {
+                        if(toDate == null || toDate.compareTo(insurance.getDate()) >= 0) {
+                            result.add(insurance);
+                        }
+                    }
+                }
+            }
+        }
+        return result;
+    }
+    
+    public List<Insurance> getInsurances(Class<?> type, Calendar fromDate, 
+            Calendar toDate) {
+        List<Insurance> result = new ArrayList<>();
+        for (Insurance insurance : insurances) {
+            if(type == null || type.isInstance(insurance)) {
+                if(fromDate == null || fromDate.compareTo(insurance.getDate()) <= 0) {
+                    if(toDate == null || toDate.compareTo(insurance.getDate()) >= 0) {
+                        result.add(insurance);
+                    }
+                }
+            }
+        }
+        return result;
+    }
+      
     public List<Insurance> getAllInsurancesByCustomerId(int customerId) {
         List<Insurance> result = new ArrayList<Insurance>();
         for (Insurance insurance : insurances) {

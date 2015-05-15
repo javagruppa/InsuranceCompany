@@ -267,6 +267,8 @@ public class MainController {
         travelInsuranceRegistration.setRegisterButtonEventHandler(this::travelInsuranceRegisterButtonEventHandler);
         travelInsuranceRegistration.setSearchCustomerIdButtonEventHandler(this::travelInsuranceSearchCustomerIdButtonEventHandler);
         travelInsuranceRegistration.setSearchPersonalNumberButtonEventHandler(this::travelInsuranceSearchPersonalNumberButtonEventHandler);
+        
+        insuranceSearchView.setSearchButtonEventHandler(this::insuranceSearchViewSearchEventHandler);
     } // end of class initializeRegisterInsuranceEventHandlers
  
     private void initializeRegisterClaimEventHandlers() {
@@ -2032,15 +2034,7 @@ public class MainController {
         // Declares ints and classesto be converted to:
         int customerId = 0;
         int insuranceId = 0;
-        Class type;
-        
-        // Evaluates input:
-        if (fromDate == null) {
-            // TODO: Give appropriate message.
-        }
-        if (toDate == null) {
-            // TODO: Give appropriate message.
-        }
+        Class type = null;
         
         // Evaluates and converts input:
         if (!customerIdString.equals("")) {
@@ -2059,32 +2053,42 @@ public class MainController {
                 return;
             }
         }
-        if (insuranceType == null) {
-            // TODO: Give appropriate message.
-        } else {
+        if (!(insuranceType == null)) {
             switch (insuranceType) {
                 case BOAT_INSURANCE: type = BoatInsurance.class;
+                    break;
                 case CAR_INSURANCE: type = CarInsurance.class;
+                    break;
                 case HOME_INSURANCE: type = HomeInsurance.class;
+                    break;
                 case HOME_CONTENT_INSURANCE: type = HomeContentInsurance.class;
+                    break;
                 case HOLIDAY_HOME_INSURANCE: type = HolidayHomeInsurance.class;
+                    break;
                 case HOLIDAY_HOME_CONTENT_INSURANCE: type = HolidayHomeContentInsurance.class;
+                    break;
                 case TRAVEL_INSURANCE: type = TravelInsurance.class;
+                    break;
                 default: type = null;
             }
         }
         
         List<Insurance> insuranceList;
         
-        /*if (insuranceId != 0) {
-            insuranceList = insurances.getInsurancesById(insuranceId, type, fromDate, toDate);
+        if (insuranceId != 0) {
+            insuranceList = insurances.getInsuranceById(insuranceId);
         } else if (customerId != 0) {
-            insuranceList = insurances.getInsurancesByCustomerId(insuranceId, type, fromDate, toDate);
-        } else if (personalNumber.equals("")) {
-            insuranceList = insurances.getInsurancesByPersonalNumber(insuranceId, type, fromDate, toDate);
+            insuranceList = insurances.getInsurancesByCustomerId(customerId, type, fromDate, toDate);
+        } else if (!personalNumber.equals("")) {
+            customerId = customers.findCustomerIdByPersonalNumber(personalNumber);
+            insuranceList = insurances.getInsurancesByCustomerId(customerId, type, fromDate, toDate);
         } else {
-            insuranceList = insurances.getInsurances(insuranceId, type, fromDate, toDate);
-        }*/
+            insuranceList = insurances.getInsurances(type, fromDate, toDate);
+        }
+        
+        //if (!insuranceList.isEmpty()) {
+            insuranceSearchView.populateInsurancesTable(insuranceList);
+        //}
     }
     
     private void insuranceSearchViewSelectEventHandler(ActionEvent event) {

@@ -99,6 +99,21 @@ public class CustomerRegister {
             return result;
         }
     }
+    
+    /**
+     * Returns the first customer id matching the given personal number.
+     * @param personalNumber
+     * @return 
+     */
+    public int findCustomerIdByPersonalNumber(String personalNumber) {
+        for (Customer customer : customers) {
+            if (customer.getPersonalNumber().equals(personalNumber)) {
+                return customer.getId();
+            }
+        }
+        return 0;
+    }
+    
     /**
      * Writes this registers set of customers to file.
      * @throws IOException 

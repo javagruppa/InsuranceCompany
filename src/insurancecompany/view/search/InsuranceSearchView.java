@@ -41,9 +41,7 @@ public class InsuranceSearchView {
     private GridPane rightPane;
     
     // Nodes in leftPane:
-    private Button customerIdButton;
-    private Button insuranceIdButton;
-    private Button personalNumberButton;
+    private Button searchButton;
     private ComboBox<InsuranceType> insuranceTypeCombo;
     private DatePicker fromDatePicker;
     private DatePicker toDatePicker;
@@ -90,9 +88,7 @@ public class InsuranceSearchView {
         mainPane.getColumnConstraints().addAll(col1, col2, col3);
         
         // Initializes leftPane:
-        customerIdButton = new Button("Søk");
-        insuranceIdButton = new Button("Søk");
-        personalNumberButton = new Button("Søk");
+        searchButton = new Button("Søk");
         insuranceTypeCombo = new ComboBox<>();
         populateInsuranceTypeCombo();
         fromDatePicker = new DatePicker();
@@ -105,8 +101,8 @@ public class InsuranceSearchView {
         selectButton = new Button("Velg forsikring");
         insurancesTable = new TableView();
         insuranceTypeColumn = new TableColumn<>("Forsikring");
-        customerIdColumn = new TableColumn<>("Forsikring ID");
-        insuranceIdColumn = new TableColumn<>("Kunde ID");
+        customerIdColumn = new TableColumn<>("Kunde ID");
+        insuranceIdColumn = new TableColumn<>("Forsikring ID");
         insurancesTable.getColumns().addAll(insuranceTypeColumn, 
                 insuranceIdColumn, customerIdColumn);
         insurancesTable.setColumnResizePolicy(
@@ -118,10 +114,9 @@ public class InsuranceSearchView {
         otherArea = new TextArea();
         
         // Initializes Texts and Labels:
-        Text leftUpperTitle = new Text("Velg først en kunde eller forsikring "
-                + "i registeret:");
+        Text leftUpperTitle = new Text("Velg en forsikring i registeret:");
         leftUpperTitle.setId("textTitle");
-        Text leftBottomTitle = new Text("Betingelser:");
+        Text leftBottomTitle = new Text("Eller bruk søkebetingelser:");
         leftBottomTitle.setId("textTitle");
         Text centerTitle = new Text("Forsikringer:");
         centerTitle.setId("textTitle");
@@ -139,21 +134,19 @@ public class InsuranceSearchView {
         leftPane.add(leftUpperTitle, 0, 0, 3, 1);
         leftPane.add(customerIdLabel, 0, 1);
         leftPane.add(customerIdField, 1, 1);
-        leftPane.add(customerIdButton, 2, 1);
-        leftPane.add(personalNumberLabel, 0, 2);
-        leftPane.add(personalNumberField, 1, 2);
-        leftPane.add(personalNumberButton, 2, 2);
-        leftPane.add(insuranceIdLabel, 0, 3);
-        leftPane.add(insuranceIdField, 1, 3);
-        leftPane.add(insuranceIdButton, 2, 3);
         
-        leftPane.add(leftBottomTitle, 0, 4);
+        leftPane.add(leftBottomTitle, 0, 2);
+        leftPane.add(personalNumberLabel, 0, 3);
+        leftPane.add(personalNumberField, 1, 3);
+        leftPane.add(insuranceIdLabel, 0, 4);
+        leftPane.add(insuranceIdField, 1, 4);
         leftPane.add(insuranceTypeLabel, 0, 5);
         leftPane.add(insuranceTypeCombo, 1, 5);
         leftPane.add(fromDateLabel, 0, 6);
-        leftPane.add(fromDatePicker, 1, 6, 2, 1);
+        leftPane.add(fromDatePicker, 1, 6);
         leftPane.add(toDateLabel, 0, 7);
-        leftPane.add(toDatePicker, 1, 7, 2, 1);
+        leftPane.add(toDatePicker, 1, 7);
+        leftPane.add(searchButton, 1, 8);
         
         // Adds nodes to centerPane:
         centerPane.add(centerTitle, 0, 0);
@@ -171,7 +164,8 @@ public class InsuranceSearchView {
     
     private void populateInsuranceTypeCombo() {
         ObservableList<InsuranceType> obList;
-        obList = FXCollections.observableArrayList(InsuranceType.values()); 
+        obList = FXCollections.observableArrayList(InsuranceType.values());
+        obList.add(0, null);
         insuranceTypeCombo.getItems().setAll(obList);
         insuranceTypeCombo.setPrefWidth(150);
     }
@@ -205,16 +199,8 @@ public class InsuranceSearchView {
     
     // SET EVENTHANDLER METHODS:
     
-    public void setCustomerIdButtonEventHandler(EventHandler<ActionEvent> value) {
-        customerIdButton.setOnAction(value);
-    }
-
-    public void setPersonalNumberButtonEventHandler(EventHandler<ActionEvent> value) {
-        personalNumberButton.setOnAction(value);
-    }
-    
-    public void setinsuranceIdButtonEventHandler(EventHandler<ActionEvent> value) {
-        insuranceIdButton.setOnAction(value);
+    public void setSearchButtonEventHandler(EventHandler<ActionEvent> value) {
+        searchButton.setOnAction(value);
     }
 
     public void setSelectButtonEventHandler(EventHandler<ActionEvent> value) {
@@ -245,11 +231,11 @@ public class InsuranceSearchView {
     
     /** @return The insurance type of this class. */
     public InsuranceType getInsuranceType() {
-        if (insuranceTypeCombo.getValue() instanceof InsuranceType) {
+        //if (InsuranceType.class.isInstance(insuranceTypeCombo.getValue())) {
             return insuranceTypeCombo.getValue();
-        } else {
-            return null;
-        } 
+        //} else {
+            //return null;
+        //} 
     }
     
     /** @return The from date of this class. */

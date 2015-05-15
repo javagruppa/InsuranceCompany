@@ -136,6 +136,7 @@ public class CustomerSearchView {
 
         // Initialization of all the nodes in the right part.
         customerArea = new TextArea();
+        customerArea.setPrefHeight(400);
         
         // Initialization of all the texts and labels which are used in the 
         // view. Many of them aren't fields.

@@ -31,8 +31,22 @@ public class Car extends Vehicle implements Serializable {
             int registrationYear){
         super(alarm, brand, model, personalNumber, 
                 registrationNumber, registrationYear);
-        }
+    }
 
+    /**
+     * Constructs a new vehicle of the specified brand and model and registration 
+     * number. The owner of this vehicle has the specified personal number.
+     * 
+     * @param brand the brand of this vehicle
+     * @param model the model of this vehicle
+     * @param personalNumber the personal number of the owner of this vehicle
+     * @param registrationNumber the registration number of this vehicle
+     */
+    public Car(String brand, String model, 
+            String personalNumber, String registrationNumber) {
+        super(brand, model, personalNumber, registrationNumber);
+    }
+    
     /**
      * Returns a string representation of this car
      * @return a string representation of this car

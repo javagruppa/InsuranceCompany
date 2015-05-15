@@ -8,8 +8,7 @@ import insurancecompany.misc.DateUtility;
 import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.Scene;
@@ -100,6 +99,7 @@ public class CarClaimFormView {
     // TODO: Remember to onAction close window when button is clicked. 
     // If not all fields are filled in correctly, show a dialog window:
     private Button registerButton;
+    private Button clearCanvasButton;
     
     /** Reference to the car claim view that owns this class.*/
     private CarClaimRegistration carClaimRegistration;
@@ -195,7 +195,8 @@ public class CarClaimFormView {
         
         registerButton = new Button("Registrer");
         registerButton.setId("custom");
-        
+        clearCanvasButton = new Button("Fjern tegning");
+        clearCanvasButton.setId("custom1");
         canvas = new Canvas(680, 390);
         canvas.setCursor(Cursor.CROSSHAIR);
         final GraphicsContext graphicsContext = canvas.getGraphicsContext2D();
@@ -244,11 +245,12 @@ public class CarClaimFormView {
         
         //gridPane.add(courseOfEvents, 3, 18, 6, 1);
         gridPane.add(canvasHolder, 3, 18, 6, 1);
-        
+        gridPane.add(clearCanvasButton, 9, 18, 2, 1);
         gridPane.add(registerButton, 6, 19, 5, 1);
 
         scene = new Scene(scrollPane, 1150, 650);
         scene.getStylesheets().add("insurancecompany/resources/css/stylesheetCarClaimForm.css");
+        initializeEventHandlers();
     }
     
     public void show(Stage stage) {
@@ -256,6 +258,11 @@ public class CarClaimFormView {
         stage.setTitle("Bilskademeldingsskjema");      
         stage.setScene(scene);
         stage.show();
+    }
+    
+    public void initializeEventHandlers() {
+        setclearCanvasButtonEventHandler();
+        setRegisterButtonEventHandler();
     }
 
      
@@ -491,13 +498,27 @@ public class CarClaimFormView {
 
     /**
      * Sets the event handler for the register button of this view.
-     * @param event 
      */
     public void setRegisterButtonEventHandler() {
         registerButton.setOnAction((event) -> {
             carClaimRegistration.setCarClaimFormView(this);
+            // Hide the stage:
+            stage.hide(); 
         });
     }
+    
+    /**
+     * Sets the event handler for the clear canvas button of this view
+     * to clear the canvas when pressed.
+     */
+    public void setclearCanvasButtonEventHandler() {
+        clearCanvasButton.setOnAction((event) -> {
+            GraphicsContext graphicsContext = canvas.getGraphicsContext2D();
+            // Clear everything but the border:
+            graphicsContext.clearRect(3, 3, 674, 384);
+        });
+    }
+    
 
     /**
      * Returns the car claim registration object to this view.

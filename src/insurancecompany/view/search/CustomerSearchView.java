@@ -1,11 +1,7 @@
 package insurancecompany.view.search;
 
-import insurancecompany.misc.DateUtility;
 import insurancecompany.misc.InsuranceType;
-import insurancecompany.model.insurances.Insurance;
 import insurancecompany.model.people.Customer;
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -15,7 +11,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -320,6 +315,16 @@ public class CustomerSearchView {
                 customersTable.getSelectionModel().getSelectedItem();
     }
     
+    /** @return The first name of this class as a String. */
+    public String getFirstName() {
+        return firstNameField.getText();
+    }
+    
+    /** @return The last name of this class as a String. */
+    public String getLastName() {
+        return lastNameField.getText();
+    }
+    
     /** 
      * @return The insurance type of this class as an InsuranceType. Null if
      * no insurance type is selected.
@@ -327,6 +332,11 @@ public class CustomerSearchView {
     public InsuranceType getInsuranceType() {
         return String.class.isInstance(insuranceTypeCombo.getValue()) ?
                 null : (InsuranceType) insuranceTypeCombo.getValue();
+    }
+    
+    /** @return True if totalCustomerCombo equals "Ja". */
+    public boolean getTotalCustomer() {
+        return totalCustomerCombo.getValue().equals("Ja");
     }
     
     /** @param text The text to set in insuranceArea. */

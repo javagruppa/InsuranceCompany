@@ -34,7 +34,8 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 
 /**
- *
+ * Only the fields related to person B will be registered. The other fields are pulled
+ * from the car insurance owner.
  * @author André
  */
 public class CarClaimFormView {

@@ -14,7 +14,7 @@ public class Customer extends Person implements Serializable {
     private static final long serialVersionUID = 1L;
     /** The next customer ID */
     private static int nextCustomerId = 1000000;
-    /** The filepath of the file the customer IDs are saved to */
+    /** The file path of the file the customer IDs are saved to */
     private static String customerIdFileName = "src/insurancecompany/resources/nextidnumbers/customerId.dta";
     /** 10% off for total customers (3 or more different insurance types */
     public static final double totalCustomerDiscount = 0.1;
@@ -45,6 +45,14 @@ public class Customer extends Person implements Serializable {
         super(firstname, lastname, personalNumber, email, address, phone);
         customerId = nextCustomerId++;
         active = true;
+    }
+    
+    /**
+     * Adds a vehicle to the customer.
+     * @param vehicle 
+     */
+    public void addVehicle(Vehicle vehicle) {
+        vehicles.add(vehicle);
     }
     
     /**

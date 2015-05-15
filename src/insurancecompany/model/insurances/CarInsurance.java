@@ -252,7 +252,7 @@ public class CarInsurance extends Insurance implements Serializable {
         result.append("\nKjørelengde: ").append(maxLength);
         result.append("\nBonus: ").append(bonus).append("%");
         result.append("\nBonus sist endret: ").append(DateUtility.
-                NORWEGIAN_DATE_FORMAT.format(lastBonusUpdate));
+                NORWEGIAN_DATE_FORMAT.format(lastBonusUpdate.getTime()));
         // Returns the string.
         return result.toString();
     }

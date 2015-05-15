@@ -1,4 +1,5 @@
 package insurancecompany.model.people;
+import insurancecompany.misc.DateUtility;
 import insurancecompany.model.properties.Address;
 import java.io.Serializable;
 import java.util.Calendar;
@@ -15,11 +16,6 @@ public abstract class Person implements Serializable {
     /** SerialVersionUID used to identify this class for object IO */
     private static final long serialVersionUID = 1L;
     
-    /** The norwegian standard for showing dates */
-    java.util.Locale norway = new java.util.Locale("no");
-    /** The date format to be shown in toString */
-    SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy", norway );
-    
     /**the personal number of the person*/
     private String personalNumber;
     /**the first name of the person*/
@@ -33,13 +29,13 @@ public abstract class Person implements Serializable {
     /**the phone number of the person*/
     private String phone;
     /**The date this person is registered.*/
-    private Date registeredDate;
+    private Calendar registeredDate;
     
     
     /**
      * Constructs a person-object with specified parameters
-     * @param firstname the first name of the person
-     * @param lastname the last name of the person
+     * @param firstName the first name of the person
+     * @param lastName the last name of the person
      * @param personalNumber the persons personal number
      * @param email the email address of the person
      * @param address the address of the person, as an object
@@ -52,7 +48,7 @@ public abstract class Person implements Serializable {
         this.email = email;
         this.address = address;
         this.phone = phone;
-        registeredDate = Calendar.getInstance().getTime();
+        registeredDate = Calendar.getInstance();
     }
     
     /**
@@ -120,14 +116,14 @@ public abstract class Person implements Serializable {
         // method.
         StringBuilder result = new StringBuilder();
         // Appends the fields with appropriate sentences.
-        result.append("Navn: ").append(firstName + " " + lastName);
+        result.append("Navn: ").append(firstName).append(" ").append(lastName);
         result.append("\nPersonnummer: ").append(personalNumber);
         result.append("\nAdresse: ").append(address.toString());
         if (email != null) {
             result.append("\nE-post adresse: ").append(email);
         }
         result.append("\nTelefonnummer: ").append(phone);
-        result.append("\nRegistrert dato: ").append(sdf.format(registeredDate));
+        result.append("\nRegistrert dato: ").append(DateUtility.NORWEGIAN_DATE_FORMAT.format(registeredDate.getTime()));
         // Returns the string.
         return result.toString();
     }
@@ -182,7 +178,7 @@ public abstract class Person implements Serializable {
     /**
      * @return the registeredDate
      */
-    public Date getRegisteredDate() {
+    public Calendar getRegisteredDate() {
         return registeredDate;
     }
 }

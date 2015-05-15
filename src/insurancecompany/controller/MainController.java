@@ -111,6 +111,7 @@ public class MainController {
     private ViewController viewController;
     
     // Creates strings to be used in messages to the user:
+    private static final String REGISTER_SUCCESS = "Registrering vellykket.";
     private static final String NO_CUSTOMER_MESSAGE = "Du har ikke valgt noen kunde.";
     private static final String FORMAT_MESSAGE = "Dette feltet kan kun bestå av tall.";
     private static final String EMPTY_MESSAGE = "Dette feltet må fylles ut.";
@@ -592,11 +593,79 @@ public class MainController {
                 if (formView == null) {
                     // Send carclaimform as null if no carclaimformview has been opened.
                     CarClaim claim = new CarClaim(customerId, insuranceId, description, dateHappened, damages, appraisal, null);
+                    // Add this car claim to the claim register:
+                    if (claims.addClaim(claim)) {
+                            carClaimRegistration.setRegisterButtonMessage(REGISTER_SUCCESS);
+                        }
                 } else {
                     Customer personA = customers.findCustomerById(customerId);
                     Car carA = insurance.getCar();
-                    //VehicleOwner v = new VehicleOwner(description, description, appraisalString, description, null, description)
-                    //CarClaimForm carClaimForm = new CarClaimForm(null, c, description, insuranceId, image)
+                    String brandB = formView.getBrandB();
+                    String regB = formView.getRegistrationNumberB();
+                    String firstNameB = formView.getFirstNameA();
+                    String lastNameB = formView.getLastNameB();
+                    String personalNumberB = formView.getPersonalNumberB();
+                    String steetB = formView.getStreetB();
+                    String zipCodeStringB = formView.getZipCodeB();
+                    int zipCodeB = 0;
+                    try {
+                        zipCodeB = Integer.parseInt(zipCodeStringB);
+                    } catch (NumberFormatException nfe) {
+                        logs.add("Problem med parsing av zipcode til ClarClaimFormView i CarClaimRegistration", user);
+                    }
+                    String CityB = "";
+                    String emailB = formView.getEmailB();
+                    String phoneB = formView.getPhoneB();
+                    String insuranceCompanyB = formView.getInsuranceCompanyB();
+                    String location = formView.getLocation();
+                    Calendar date = formView.getDate();
+                    String witnesses = formView.getWitnesses();
+                    Image drawnImage = formView.getDrawnImage();
+                    Image snapshot = formView.getSnapshotOfCarLcaimForm();
+                    // If none of the fields for Person B are filled in, 
+                    // create a car claim form consisting only of person B/the customer
+                    if (brandB.equals("") && regB.equals("") &&
+                            firstNameB.equals("") &&
+                            lastNameB.equals("") &&
+                            personalNumberB.equals("") &&
+                            steetB.equals("") &&
+                            zipCodeStringB.equals("") &&
+                            zipCodeB == 0 &&
+                            CityB.equals("") &&
+                            emailB.equals("") &&
+                            phoneB.equals("") &&
+                            insuranceCompanyB.equals("")) {
+                        // Create a new car claim form:
+                        CarClaimForm carClaimForm = new CarClaimForm(carA, personA, location, insuranceId, drawnImage);
+                        // Set a snapshot:
+                        carClaimForm.setCarClaimFormSnapshot(snapshot);
+                        // Create a new car claim with this claim form:
+                        CarClaim claim = new CarClaim(customerId, insuranceId, description, dateHappened, damages, appraisal, carClaimForm);
+                        // Add this car claim to the claim register:
+                        if (claims.addClaim(claim)) {
+                            carClaimRegistration.setRegisterButtonMessage(REGISTER_SUCCESS);
+                        }
+                    } else { // If not we create a fuller car claim form:
+                        // Creates a new car for person B with model as empty:
+                        Car carB = new Car(brandB, "", personalNumberB, regB);
+                        // Create a new address for person B
+                        Address addressB = new Address(steetB, zipCodeB);
+                        // Create a new vehicle owner representing person B
+                        VehicleOwner personB = new VehicleOwner(firstNameB, lastNameB, 
+                                personalNumberB, emailB, addressB, phoneB);
+                        // Create a new car claim form with customer and person B
+                        CarClaimForm carClaimForm = new CarClaimForm(carA, personA, 
+                                personB, carB, insuranceCompanyB, location, insuranceId, 
+                                witnesses, drawnImage);
+                        // Set a snapshot to this claim form:
+                        carClaimForm.setCarClaimFormSnapshot(snapshot);
+                        // Create a new car claim with these data:
+                        CarClaim claim = new CarClaim(customerId, insuranceId, description, dateHappened, damages, appraisal, carClaimForm);
+                        // Add this car claim to the claim register:
+                        if (claims.addClaim(claim)) {
+                            carClaimRegistration.setRegisterButtonMessage(REGISTER_SUCCESS);
+                        }
+                    }
                 }
             }  
         }   

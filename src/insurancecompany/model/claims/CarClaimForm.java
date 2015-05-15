@@ -32,6 +32,8 @@ public class CarClaimForm implements Serializable {
     private String location;
     /** A user drawn image of the accident. */
     private Image drawnImage;
+    /** A snapshot of the car claim form. */
+    private Image carClaimFormSnapshot;
     /** The date of the accident */
     private Calendar date;
     /** The Id for the insurance covering this damage */
@@ -191,6 +193,22 @@ public class CarClaimForm implements Serializable {
      */
     public Image getDrawnImage() {
         return drawnImage;
+    }
+
+    /**
+     * Sets a snapshot of the complete car claim form.
+     * @param carClaimFormSnapshot the carClaimFormSnapshot to set
+     */
+    public void setCarClaimFormSnapshot(Image carClaimFormSnapshot) {
+        this.carClaimFormSnapshot = carClaimFormSnapshot;
+    }
+
+    /**
+     * Returns a snapshot of the complete car claim form.
+     * @return the carClaimFormSnapshot
+     */
+    public Image getCarClaimFormSnapshot() {
+        return carClaimFormSnapshot;
     }
     
 }

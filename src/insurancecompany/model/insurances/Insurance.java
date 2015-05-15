@@ -177,13 +177,11 @@ public abstract class Insurance implements Serializable {
         // Creates a StringBuilder which will be returned at the end of the 
         // method.
         StringBuilder result = new StringBuilder();
-        // Creates a DateFormat to format the field date.
-        DateFormat dateFormat = DateFormat.getInstance();
         // Appends the fields with appropriate sentences.
         result.append("Forsikringen er ").
                 append(active ? "aktiv" : "inaktiv");
         result.append("\n\nForsikringen ble tegnet: ").
-                append(DateUtility.NORWEGIAN_DATE_FORMAT.format(date));
+                append(DateUtility.NORWEGIAN_DATE_FORMAT.format(date.getTime()));
         result.append("\nForsikringsnummer: ").append(insuranceId);
         result.append("\nKundenummer: ").append(customerId);
         result.append("\nÅrlig forsikringspremie: ").append(premium);

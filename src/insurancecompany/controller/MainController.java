@@ -119,6 +119,7 @@ public class MainController {
     private static final String CUSTOMERID_FORMAT_MESSAGE = "Kundenummeret kan kun bestå av tall.";
     private static final String CUSTOMERID_EMPTY_MESSAGE = "Du må skrive inn et kundenummer.";
     private static final String CUSTOMERID_NOT_FOUND_MESSAGE = "Fant ingen kunde med kundenummer: ";
+    private static final String INSURANCEID_FORMAT_MESSAGE = "Forsikringsnummeret kan kun bestå av tall.";
     private static final String PERSONALNUMBER_EMPTY_MESSAGE = "Du må skrive inn et personnummer.";
     private static final String PERSONALNUMBER_NOT_FOUND_MESSAGE = "Fant ingen kunde med personnummer: ";
     private static final String NO_INSURANCE_MESSAGE = "Du har ikke valgt noen forsikring.";
@@ -270,9 +271,9 @@ public class MainController {
         travelInsuranceRegistration.setSearchCustomerIdButtonEventHandler(this::travelInsuranceSearchCustomerIdButtonEventHandler);
         travelInsuranceRegistration.setSearchPersonalNumberButtonEventHandler(this::travelInsuranceSearchPersonalNumberButtonEventHandler);
         
-        insuranceSearchView.setSearchButtonEventHandler(this::insuranceSearchViewSearchEventHandler);
-        insuranceSearchView.setSelectButtonEventHandler(this::insuranceSearchViewSelectEventHandler);
-        insuranceSearchView.setDeactivateButtonEventHandler(this::insuranceSearchViewDeactivateEventHandler);
+        insuranceSearchView.setSearchEventHandler(this::insuranceSearchViewSearchEventHandler);
+        insuranceSearchView.setSelectEventHandler(this::insuranceSearchViewSelectEventHandler);
+        insuranceSearchView.setDeactivateEventHandler(this::insuranceSearchViewDeactivateEventHandler);
     } // end of class initializeRegisterInsuranceEventHandlers
  
     private void initializeRegisterClaimEventHandlers() {
@@ -2109,7 +2110,10 @@ public class MainController {
     // INSURANCE SEARCH EVENT HANDLERS
     
     private void insuranceSearchViewSearchEventHandler(ActionEvent event) {
-        // Collect information about the customer or insurance:
+        
+        insuranceSearchView.clearMessages();
+        
+        // Collects information about the customer or insurance:
         String customerIdString = insuranceSearchView.getCustomerId();
         String personalNumber = insuranceSearchView.getPersonalNumber();
         String insuranceIdString = insuranceSearchView.getInsuranceId();
@@ -2120,25 +2124,25 @@ public class MainController {
         Calendar fromDate = insuranceSearchView.getFromDate();
         Calendar toDate = insuranceSearchView.getToDate();
         
-        // Declares ints and classesto be converted to:
+        // Declares ints and classes to be converted to:
         int customerId = 0;
         int insuranceId = 0;
         Class type = null;
         
         // Evaluates and converts input:
-        if (!customerIdString.equals("")) {
-            try {
-                customerId = Integer.parseInt(customerIdString);
-            } catch(NumberFormatException nfe) {
-                // TODO: Give appropriate message.
-                return;
-            }
-        }
         if (!insuranceIdString.equals("")) {
             try {
                 insuranceId = Integer.parseInt(insuranceIdString);
             } catch(NumberFormatException nfe) {
-                // TODO: Give appropriate message.
+                insuranceSearchView.setIdMessage(INSURANCEID_FORMAT_MESSAGE);
+                return;
+            }
+        }
+        if (!customerIdString.equals("")) {
+            try {
+                customerId = Integer.parseInt(customerIdString);
+            } catch(NumberFormatException nfe) {
+                insuranceSearchView.setIdMessage(CUSTOMERID_FORMAT_MESSAGE);
                 return;
             }
         }
@@ -2177,39 +2181,45 @@ public class MainController {
     }
     
     private void insuranceSearchViewSelectEventHandler(ActionEvent event) {
+        
+        insuranceSearchView.clearMessages();
+        
        Insurance insurance = insuranceSearchView.getInsuranceTableValue();
        
        if (insurance == null) {
-           //TODO: Give appropriate message.
+           insuranceSearchView.setSelectMessage(NO_INSURANCE_MESSAGE);
            return;
        }
        
        insuranceSearchView.setInsuranceArea(insurance.toString());
        
        if (insurance instanceof BoatInsurance) {
-           insuranceSearchView.setAccessoryArea("Båt:", ((BoatInsurance)insurance).getBoat().toString());
+           insuranceSearchView.setAttachmentArea("Båt:", ((BoatInsurance)insurance).getBoat().toString());
        } else if (insurance instanceof CarInsurance) {
-           insuranceSearchView.setAccessoryArea("Bil:", ((CarInsurance) insurance).getCar().toString());
+           insuranceSearchView.setAttachmentArea("Bil:", ((CarInsurance) insurance).getCar().toString());
        } else if (insurance instanceof HolidayHomeInsurance) {
-           insuranceSearchView.setAccessoryArea("Eiendom:", ((HolidayHomeInsurance) insurance).getProperty().toString());
+           insuranceSearchView.setAttachmentArea("Eiendom:", ((HolidayHomeInsurance) insurance).getProperty().toString());
        } else if (insurance instanceof HolidayHomeContentInsurance) {
-           insuranceSearchView.setAccessoryArea("Eiendom:", ((HolidayHomeContentInsurance) insurance).getProperty().toString());
+           insuranceSearchView.setAttachmentArea("Eiendom:", ((HolidayHomeContentInsurance) insurance).getProperty().toString());
        } else if (insurance instanceof HomeInsurance) {
-           insuranceSearchView.setAccessoryArea("Eiendom:", ((HomeInsurance) insurance).getProperty().toString());
+           insuranceSearchView.setAttachmentArea("Eiendom:", ((HomeInsurance) insurance).getProperty().toString());
        } else if (insurance instanceof HomeContentInsurance) {
-           insuranceSearchView.setAccessoryArea("Eiendom:", ((HomeContentInsurance) insurance).getProperty().toString());
+           insuranceSearchView.setAttachmentArea("Eiendom:", ((HomeContentInsurance) insurance).getProperty().toString());
        } else if (insurance instanceof TravelInsurance) {
-           insuranceSearchView.removeAccessoryArea();
+           insuranceSearchView.removeAttachmentArea();
        }
     }
     
     private void insuranceSearchViewDeactivateEventHandler(ActionEvent event) {
+        
+        insuranceSearchView.clearMessages();
+        
        Insurance insurance = insuranceSearchView.getInsuranceTableValue();
        
        if (insurance == null) {
-           //TODO: Give appropriate message.
+           insuranceSearchView.setDeactivateMessage(NO_INSURANCE_MESSAGE);
        } else {
-           insurance.setActive(false);
+           insurance.setActive(!insurance.getActive());
            insuranceSearchView.clearView();
        }
     }

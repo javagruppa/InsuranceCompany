@@ -142,11 +142,9 @@ public class InsuranceSearchView {
         // Initialization of all the nodes in the right part.
         deactivateButton = new Button("Gjør forsikringen aktiv/inaktiv");
         deactivateMessage = new Text("");
-        attachmentTitle = new Text("");
-        attachmentTitle.setVisible(false);
+        attachmentTitle = new Text("Vedlegg:");
         insuranceArea = new TextArea();
         attachmentArea = new TextArea();
-        attachmentArea.setVisible(false);
         
         // Initialization of all the texts and labels which are used in the 
         // view. Many of them aren't fields.
@@ -392,7 +390,7 @@ public class InsuranceSearchView {
     /** Clears the areas, the table and removes the selected table option. */
     public void clearView() {
         setInsuranceArea("");
-        removeAttachmentArea();
+        setAttachmentArea("Vedlegg:", "");
         populateInsurancesTable(new ArrayList<>());
         insurancesTable.getSelectionModel().clearSelection();
     }

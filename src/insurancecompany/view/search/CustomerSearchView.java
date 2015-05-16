@@ -133,7 +133,7 @@ public class CustomerSearchView {
         selectMessage = new Text("");
 
         // Initialization of all the nodes in the right part.
-        deactivateButton = new Button("Gjør forsikringen aktiv/inaktiv");
+        deactivateButton = new Button("Gjør kunden aktiv/inaktiv");
         deactivateMessage = new Text("");
         customerArea = new TextArea();
         customerArea.setPrefHeight(400);
@@ -276,6 +276,15 @@ public class CustomerSearchView {
     }
     
     /**
+     * Sets the event handler for the deactivateButton.
+     * 
+     * @param value The event handler to set.
+     */
+    public void setDeactivateEventHandler(EventHandler<ActionEvent> value) {
+        deactivateButton.setOnAction(value);
+    }
+    
+    /**
      * Sets the event handler for the searchButton.
      * 
      * @param value The event handler to set.
@@ -346,8 +355,8 @@ public class CustomerSearchView {
         return totalCustomerCombo.getValue().equals("Ja");
     }
     
-    /** @param text The text to set in insuranceArea. */
-    public void setInsuranceArea(String text) {
+    /** @param text The text to set in customerArea. */
+    public void setCustomerArea(String text) {
         customerArea.setText(text);
     }
     

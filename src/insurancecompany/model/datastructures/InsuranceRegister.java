@@ -80,15 +80,13 @@ public class InsuranceRegister {
         return result;
     }
     
-    public List<Insurance> getInsuranceById(int insuranceId) {
-        List<Insurance> result = new ArrayList<>();
+    public Insurance getInsuranceById(int insuranceId) {
         for (Insurance insurance : insurances) {
             if (insurance.getInsuranceId() == insuranceId) {
-                result.add(insurance);
-                return result;
+                return insurance;
             }
         }
-        return result;
+        return null;
     }
     
     public List<Insurance> getInsurances(int customerId, String type, 

@@ -5,7 +5,6 @@
  */
 package insurancecompany.model.datastructures;
 
-
 import insurancecompany.model.claims.Claim;
 import java.io.*;
 import java.util.ArrayList;
@@ -71,7 +70,7 @@ public class ClaimRegister {
      * @param claimId claim id of a claim in the list
      * @return 
      */
-    public Claim getClaim(int claimId) {
+    public Claim getClaimById(int claimId) {
         // Creates an iterator for the list:
         Iterator<Claim> iterator = claims.iterator();
         // Runs through the whole list:

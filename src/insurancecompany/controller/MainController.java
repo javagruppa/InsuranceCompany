@@ -222,10 +222,16 @@ public class MainController {
         setBrandComboBox();
         initializeEventHandlers();
         
+        // Update all total customer statuses:
         modelController.updateTotalCustomers();
+        // Update all insurance payments:
         modelController.updatePayments();
-        modelController.setAllBillsPaid();
+        // Update dunning on all unpaid bills:
         modelController.updateUnpaidBills();
+        // Automatically pay all bills that are at due date or older:
+        // modelController.autoPayAllBills(); // automaticall pay all unpaid bills:
+        modelController.autoPayAllBillsDue();
+
     }
     
     public void show(Stage stage) {

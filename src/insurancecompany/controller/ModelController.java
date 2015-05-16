@@ -236,12 +236,51 @@ public class ModelController {
     }
     
     /**
-     * Runs through all bills and sets them to paid.
+     * Automatically pay all unpaid bills.
      */
-    public void setAllBillsPaid() {
+    public void autoPayAllBills() {
         for (Bill bill : bills) {
             if (bills != null) {
-                bill.setPaid(true);
+                if (!bill.isPaid())
+                    bill.setPaid(true);
+            }
+        }
+    }
+    
+    /**
+     * Automatically pays all bills that has reached its due date or is past 
+     * its due date.
+     */
+    public void autoPayAllBillsDue() {
+        // Get the current day of the year:
+        int dayOfYearNow = Calendar.getInstance().get(Calendar.DAY_OF_YEAR);
+        // For all bills:
+        for (Bill bill : bills) {
+            // That are not null:
+            if (bills != null) {
+                // And is not paid:
+                if (!bill.isPaid()) {
+                    // Get the dunning date:
+                    Calendar dunningDate = bill.getDunningDate();
+                    // Check if it has been set or not:
+                    if (dunningDate != null) {
+                        // If it has get its day of year value:
+                        int dayOfYearDunning = dunningDate.get(Calendar.DAY_OF_YEAR);
+                        // And compare it to current day:
+                        if (dayOfYearNow >= dayOfYearDunning) {
+                            // Set bill to paid:
+                            bill.setPaid(true);
+                        }
+                    } else {
+                        // If not, then due date is the one with prominence(is set by default)
+                        int dayOfYearDue = bill.getDueDate().get(Calendar.DAY_OF_YEAR);
+                        // Compare it to current day:
+                        if (dayOfYearNow >= dayOfYearDue) {
+                            // Set bill to paid:
+                            bill.setPaid(true);
+                        }
+                    }
+                }
             }
         }
     }

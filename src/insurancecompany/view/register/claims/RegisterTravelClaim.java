@@ -42,7 +42,7 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 
 /**
- * This class represents a holiday home content claim registration view. This view is connected
+ * This class represents a travel claim registration view. This view is connected
  * to the model through a controller. The class creates a GridPane with nodes.
  * The mainPane consists of 3 main parts. 
  * 
@@ -50,13 +50,14 @@ import javafx.util.Callback;
  * search engine finds a customer this customer is displayed and a list of all 
  * this customer's insurances is as well displayed in a table view. The user 
  * is then able to select which insurance he/she wants to use for the claim. 
- * Only holiday home content insurances are allowed to be selected. 
+ * Only travel insurances are allowed to be selected. 
  * 
  * <p>The center side of this pane is used for typing in the fields connected
  * to the damage/claim.
  * 
  * <p>The right side of this pane is used for adding items lost/damaged to the 
- * claim.
+ * claim, as well as filling in the fields unique for a travel claim, being
+ * credit card brand and country of where the damage happened.
  * 
  * <p>After typing in all fields the user is able to register this as a claim
  * as long as all fields are selected and typed in properly.
@@ -69,7 +70,7 @@ import javafx.util.Callback;
  * 
  * @author André
  */
-public class HolidayHomeContentClaimRegistration {
+public class RegisterTravelClaim {
     
     // The main pane of this class.
     private GridPane mainPane;
@@ -147,14 +148,18 @@ public class HolidayHomeContentClaimRegistration {
     private Button addItemButton;
     // Text message used to confirm that an item has been added. 
     private Text addItemConfirmMessage;
+    // 2 Fields unique for travel claim:
+    private TextField creditCardBrandField;
+    private TextField countryField;
     // A list of claim items belonging to this claim.
     private List<ClaimItem> claimItems;
+
     
     /**
      * Sole constructor. Initializes the main Pane and sets up all its nodes.
      * Each node is then added to the Pane.
      */
-    public HolidayHomeContentClaimRegistration() {
+    public RegisterTravelClaim() {
         
         // Sets up the mainPane
         mainPane = new GridPane();
@@ -257,6 +262,10 @@ public class HolidayHomeContentClaimRegistration {
         descriptionOfDocumentationTextArea.setWrapText(true);
         addItemButton = new Button("Legg til gjenstand");
         addItemConfirmMessage = new Text();
+        Label creditCardBrandLabel = new Label("Merke på kredittkort:");
+        creditCardBrandField = new TextField();
+        Label countryLabel = new Label("Land hvor skaden inntraff:");
+        countryField = new TextField();
         registerButton = new Button("Registrer skademelding");
         registerButtonMessage = new Text();
         
@@ -290,7 +299,7 @@ public class HolidayHomeContentClaimRegistration {
         centerPane.add(selectImageLabel, 4, 14);
         centerPane.add(selectImageButton, 5, 14);
         centerPane.add(selectImageStatus, 6, 14, 2, 1);
-        
+      
         // Nodes that are used for adding items:
         rightPane.add(addItemsTitle, 0, 0, 2, 1);
         rightPane.add(acquiredDateLabel, 0, 1, 2, 1);
@@ -305,8 +314,13 @@ public class HolidayHomeContentClaimRegistration {
         rightPane.add(descriptionOfDocumentationTextArea, 0, 9, 3, 3);
         rightPane.add(addItemButton, 0, 12, 2, 1);
         rightPane.add(addItemConfirmMessage, 2, 12, 3, 1);
-        rightPane.add(registerButton, 0, 13, 3, 1);   
-        rightPane.add(registerButtonMessage, 0, 14, 3, 1); 
+        
+        rightPane.add(creditCardBrandLabel, 0, 13, 2, 1);
+        rightPane.add(creditCardBrandField, 2, 13);
+        rightPane.add(countryLabel, 0, 14, 2, 1);
+        rightPane.add(countryField, 2, 14);
+        rightPane.add(registerButton, 0, 15, 3, 1);     
+        rightPane.add(registerButtonMessage, 0, 16, 3, 1); 
         
         mainPane.add(centerPane, 0, 0);
         mainPane.add(rightPane, 2, 0);
@@ -715,4 +729,18 @@ public class HolidayHomeContentClaimRegistration {
         this.addItemConfirmMessage.setText(addItemConfirmMessage);
     }
 
-} // end of class HolidaHomeContentClaimRegistration
+    /**
+     * @return the creditCardBrandField
+     */
+    public String getCreditCardBrandField() {
+        return creditCardBrandField.getText();
+    }
+
+    /**
+     * @return the countryField
+     */
+    public String getCountryField() {
+        return countryField.getText();
+    }
+
+} // end of class HomeContentClaimRegistration

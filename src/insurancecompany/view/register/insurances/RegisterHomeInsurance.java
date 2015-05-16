@@ -1,6 +1,6 @@
 package insurancecompany.view.register.insurances;
 
-import insurancecompany.misc.coverages.HomeContentInsuranceCoverage;
+import insurancecompany.misc.coverages.HomeInsuranceCoverage;
 import insurancecompany.misc.hometypes.HomeType;
 import insurancecompany.model.insurances.Insurance;
 import insurancecompany.model.properties.PropertyMaterial;
@@ -27,7 +27,7 @@ import javafx.scene.text.Text;
  *
  * @author Sindre
  */
-public class HomeContentInsuranceRegistration {
+public class RegisterHomeInsurance {
     
     /** The main pane of this class. */
     private GridPane mainPane;
@@ -53,11 +53,11 @@ public class HomeContentInsuranceRegistration {
     // REGISTER INSURANCE NODES:
     
     // Input nodes, ComboBoxes and TextFields:
-    private ComboBox<HomeContentInsuranceCoverage> coverageCombo;
+    private ComboBox<HomeInsuranceCoverage> coverageCombo;
     private ComboBox<String> excessCombo;
     private ComboBox<PropertyMaterial> materialCombo;
+    private ComboBox<String> rentalCombo;
     private ComboBox<HomeType> typeCombo;
-    private TextField amountField;
     private TextField areaField;
     private TextField cityField;
     private TextField premiumField;
@@ -65,12 +65,12 @@ public class HomeContentInsuranceRegistration {
     private TextField yearField;
     private TextField zipCodeField;
     // Output nodes, Text messages:
-    private Text amountMessage;
     private Text areaMessage;
     private Text cityMessage;
     private Text coverageMessage;
     private Text excessMessage;
     private Text materialMessage;
+    private Text rentalMessage;
     private Text streetMessage;
     private Text typeMessage;
     private Text yearMessage;
@@ -80,7 +80,7 @@ public class HomeContentInsuranceRegistration {
     private Button calculateButton;
     private Button registerButton;
     
-    public HomeContentInsuranceRegistration() {
+    public RegisterHomeInsurance() {
         
         // Sets up the mainPane:
         mainPane = new GridPane();
@@ -136,9 +136,10 @@ public class HomeContentInsuranceRegistration {
         populateExcessCombo();
         materialCombo = new ComboBox<>();
         populateMaterialCombo();
+        rentalCombo = new ComboBox<>();
+        populateRentalCombo();
         typeCombo = new ComboBox<>();
         populateTypeCombo();
-        amountField = new TextField();
         areaField = new TextField();
         cityField = new TextField();
         premiumField = new TextField();
@@ -146,12 +147,12 @@ public class HomeContentInsuranceRegistration {
         yearField = new TextField();
         zipCodeField = new TextField();
         // Initializes Output:
-        amountMessage = new Text();
         areaMessage = new Text();
         cityMessage = new Text();
         coverageMessage = new Text();
         excessMessage = new Text();
         materialMessage = new Text();
+        rentalMessage = new Text();
         streetMessage = new Text();
         typeMessage = new Text();
         yearMessage = new Text();
@@ -168,13 +169,13 @@ public class HomeContentInsuranceRegistration {
         houseTitle.setId("textTitle");
         Text addressTitle = new Text("Adresse:");
         addressTitle.setId("textTitle");
-        Label amountLabel = new Label("Forsikringsbeløp:");
         Label areaLabel = new Label("Areal:");
         Label cityLabel = new Label("By:");
         Label coverageLabel = new Label("Dekning:");
         Label excessLabel = new Label("Egenandel:");
         Label materialLabel = new Label("Materiale:");
         Label premiumLabel = new Label("Beregnet forsikringspremie:");
+        Label rentalLabel = new Label("For leie:");
         Label streetLabel = new Label("Gate:");
         Label typeLabel = new Label("Type:");
         Label yearLabel = new Label("Byggeår:");
@@ -203,9 +204,9 @@ public class HomeContentInsuranceRegistration {
         mainPane.add(excessLabel, 4, 2);
         mainPane.add(excessCombo, 5, 2);
         mainPane.add(excessMessage, 6, 2);
-        mainPane.add(amountLabel, 4, 3);
-        mainPane.add(amountField, 5, 3);
-        mainPane.add(amountMessage, 6, 3);
+        mainPane.add(rentalLabel, 4, 3);
+        mainPane.add(rentalCombo, 5, 3);
+        mainPane.add(rentalMessage, 6, 3);
         
         mainPane.add(houseTitle, 4, 4);
         mainPane.add(areaLabel, 4, 5);
@@ -241,8 +242,8 @@ public class HomeContentInsuranceRegistration {
     // POPULATE METHODS:
     
     private void populateCoverageCombo() {
-        ObservableList<HomeContentInsuranceCoverage> obList;
-        obList = FXCollections.observableArrayList(HomeContentInsuranceCoverage.values()); 
+        ObservableList<HomeInsuranceCoverage> obList;
+        obList = FXCollections.observableArrayList(HomeInsuranceCoverage.values()); 
         coverageCombo.getItems().setAll(obList);
         coverageCombo.setPrefWidth(150);
     }
@@ -260,6 +261,13 @@ public class HomeContentInsuranceRegistration {
         obList = FXCollections.observableArrayList(PropertyMaterial.values()); 
         materialCombo.getItems().setAll(obList);
         materialCombo.setPrefWidth(150);
+    }
+    
+    private void populateRentalCombo() {
+        ObservableList<String> rental = FXCollections.observableArrayList();  
+        rental.addAll("Ja", "Nei");
+        rentalCombo.getItems().setAll(rental);
+        rentalCombo.setPrefWidth(150);
     }
     
     private void populateTypeCombo() {
@@ -321,12 +329,12 @@ public class HomeContentInsuranceRegistration {
     // CLEAR MESSAGES METHOD
     
     public void clearMessages() {
-        amountMessage.setText("");
         areaMessage.setText("");
         cityMessage.setText("");
         coverageMessage.setText("");
         excessMessage.setText("");
         materialMessage.setText("");
+        rentalMessage.setText("");
         streetMessage.setText("");
         typeMessage.setText("");
         yearMessage.setText("");
@@ -341,11 +349,6 @@ public class HomeContentInsuranceRegistration {
         return mainPane;
     }
 
-    /** @return The value of amountField. */
-    public String getAmount() {
-        return amountField.getText();
-    }
-
     /** @return The value of areaField. */
     public String getArea() {
         return areaField.getText();
@@ -357,12 +360,12 @@ public class HomeContentInsuranceRegistration {
     }
 
     /** @return The value of coverageCombo. */
-    public HomeContentInsuranceCoverage getCoverage() {
-        if (coverageCombo.getValue() instanceof HomeContentInsuranceCoverage) {
-            // Casts the ComboBox value to HomeContentInsuranceCoverage and returns this value.
-            HomeContentInsuranceCoverage coverage = (HomeContentInsuranceCoverage) coverageCombo.getValue();
+    public HomeInsuranceCoverage getCoverage() {
+        if (coverageCombo.getValue() instanceof HomeInsuranceCoverage) {
+            // Casts the ComboBox value to HomeInsuranceCoverage and returns this value.
+            HomeInsuranceCoverage coverage = (HomeInsuranceCoverage) coverageCombo.getValue();
             return coverage;
-            // If for instance no value is selected, the value will not equal a HomeContentInsuranceCoverage, in this case return null.
+            // If for instance no value is selected, the value will not equal a HomeInsuranceCoverage, in this case return null.
         } else return null; 
     }
     
@@ -389,6 +392,11 @@ public class HomeContentInsuranceRegistration {
     /** @return The value of personalNumberField. */
     public String getPersonalNumber() {
         return personalNumberField.getText();
+    }
+
+    /** @return The value of rentalCombo. */
+    public String getRental() {
+        return rentalCombo.getValue() == null ? "" : rentalCombo.getValue();
     }
 
     /** @return The value of selectedCustomerId. */
@@ -430,12 +438,6 @@ public class HomeContentInsuranceRegistration {
     }
 
     /** @param message The message to set. */
-    public void setAmountMessage(String message) {
-        this.amountMessage.setFill(Color.FIREBRICK);
-        this.amountMessage.setText(message);
-    }
-
-    /** @param message The message to set. */
     public void setCityMessage(String message) {
         this.cityMessage.setFill(Color.FIREBRICK);
         this.cityMessage.setText(message);
@@ -470,6 +472,12 @@ public class HomeContentInsuranceRegistration {
         this.materialMessage.setText(message);
     }
 
+    /** @param message The message to set. */
+    public void setRentalMessage(String message) {
+        this.rentalMessage.setFill(Color.FIREBRICK);
+        this.rentalMessage.setText(message);
+    }
+    
     /** @param selectedCustomerId The selectedCustomerId to set. */
     public void setSelectedCustomerId(int selectedCustomerId) {
         this.selectedCustomerId = selectedCustomerId;

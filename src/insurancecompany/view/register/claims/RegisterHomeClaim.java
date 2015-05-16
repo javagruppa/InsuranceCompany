@@ -41,7 +41,7 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 
 /**
- * This class represents a car claim registration view. This view is connected
+ * This class represents a boat claim registration view. This view is connected
  * to the model through a controller. The class creates a GridPane with nodes.
  * The GridPane consists of 2 main parts. 
  * 
@@ -49,7 +49,7 @@ import javafx.util.Callback;
  * search engine finds a customer this customer is displayed and a list of all 
  * this customer's insurances is as well displayed in a table view. The user 
  * is then able to select which insurance he/she wants to use for the claim. 
- * Only car insurances are allowed to be selected. 
+ * Only boat insurances are allowed to be selected. 
  * 
  * <p>The right side of this pane is used for typing in the fields connected
  * to the damage/claim.
@@ -65,7 +65,7 @@ import javafx.util.Callback;
  * 
  * @author André
  */
-public class CarClaimRegistration {
+public class RegisterHomeClaim {
     
     // The main pane of this class.
     private GridPane mainPane;
@@ -114,28 +114,23 @@ public class CarClaimRegistration {
     // Buttons:
     // Button used to select an image describing the claim. 
     private Button selectImageButton;
-    // Button used to open up a car claim form. 
-    private Button openClaimFormButton;
     // Button used to register the claim. 
     private Button registerButton;  
     // Output nodes, Text messages:
     // Text used to display a status/help message when the user presses the register button. 
     private Text registerButtonMessage;
     private Text selectImageStatus;
-    private Text claimFormStatus;
     // Text used to display a help message if the user types in an invalid value for the appraisal. 
     private Text appraisalFieldMessage;
     
     // The customerId used in the claim registration. 
     private int selectedCustomerId;
-    // The car claim form view belonging to this claim view. 
-    private CarClaimFormView carClaimFormView;
     
     /**
      * Sole constructor. Initializes the main Pane and sets up all its nodes.
      * Each node is then added to the Pane.
      */
-    public CarClaimRegistration() {
+    public RegisterHomeClaim() {
         
         // Sets up the mainPane
         mainPane = new GridPane();
@@ -207,13 +202,10 @@ public class CarClaimRegistration {
         appraisalFieldMessage = new Text();
         Label selectImageLabel = new Label("Bilde som beskriver skaden");
         selectImageButton = new Button("Hent bilde");
-        Label openClaimFormLabel = new Label("Bilskademelingsskjema");
-        openClaimFormButton = new Button("Fyll ut");
         registerButton = new Button("Registrer");
         
         registerButtonMessage = new Text();
         selectImageStatus = new Text();
-        claimFormStatus = new Text();
         
         // Add nodes to mainPane:
         // Nodes that are used for registering claim:
@@ -244,13 +236,11 @@ public class CarClaimRegistration {
         mainPane.add(selectImageLabel, 4, 14);
         mainPane.add(selectImageButton, 5, 14);
         mainPane.add(selectImageStatus, 6, 14, 2, 1);
-        mainPane.add(openClaimFormLabel, 4, 15);
-        mainPane.add(openClaimFormButton, 5, 15);
-        mainPane.add(claimFormStatus, 6, 15, 2, 1);
         mainPane.add(registerButton, 4, 16);
         mainPane.add(registerButtonMessage, 5, 16, 3, 1);
         
     } // end of sole Constructor
+    
     
     /**
      * Places list of damages inside a list of combo boxes and places
@@ -436,13 +426,6 @@ public class CarClaimRegistration {
     }
     
     /**
-     * Initializes the event handler for the open claim form button.
-     */
-    public void setOpenClaimFormButtonEventHandler(EventHandler<ActionEvent> event ) {
-        openClaimFormButton.setOnAction(event);
-    }
-    
-    /**
      * Sets event handler for the register button of this view.
      * @param value 
      */
@@ -517,11 +500,8 @@ public class CarClaimRegistration {
     public void clearUploads() {
         // Clear the image:
         image = null;
-        // Clear the claim form:
-        carClaimFormView = null;
         // Clear the status messages:
         selectImageStatus.setText("");
-        claimFormStatus.setText("");
     }
 
     /**
@@ -538,22 +518,6 @@ public class CarClaimRegistration {
      */
     public void setImage(Image image) {
         this.image = image;
-    }
-
-    /**
-     * Returns the car claim form view belonging to this car claim view.
-     * @return the carClaimFormView
-     */
-    public CarClaimFormView getCarClaimFormView() {
-        return carClaimFormView;
-    }
-
-    /**
-     * Sets the car claim form view belonging to this car claim view.
-     * @param carClaimFormView the carClaimFormView to set
-     */
-    public void setCarClaimFormView(CarClaimFormView carClaimFormView) {
-        this.carClaimFormView = carClaimFormView;
     }
 
     /**
@@ -605,11 +569,4 @@ public class CarClaimRegistration {
         this.selectImageStatus.setText(selectImageMessage);
     }
 
-    /**
-     * @param claimFormMessage the claimFormStatus to set
-     */
-    public void setClaimFormMessage(String claimFormMessage) {
-        this.claimFormStatus.setText(claimFormMessage);
-    }
-
-} // end of class CarClaimRegistration
+} // end of class HomeClaimRegistration

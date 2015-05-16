@@ -5,6 +5,7 @@
  */
 package insurancecompany.controller;
 
+import insurancecompany.view.MainView;
 import insurancecompany.misc.ClaimType;
 import insurancecompany.misc.EmployeeType;
 import insurancecompany.misc.InsuranceType;
@@ -19,7 +20,6 @@ import insurancecompany.model.insurances.*;
 import insurancecompany.model.people.*;
 import insurancecompany.model.properties.*;
 import insurancecompany.model.vehicles.*;
-import insurancecompany.view.modules.*;
 import insurancecompany.view.register.claims.*;
 import insurancecompany.view.register.insurances.*;
 import insurancecompany.view.register.persons.*;
@@ -65,41 +65,40 @@ public class MainController {
     private LogRegister logs;
     
     // Modules:
-    private AdminView adminView;
+    private MainView adminView;
     
     // Claim Registration Views:
-    private BoatClaimRegistration boatClaimRegistration;
-    private CarClaimRegistration carClaimRegistration;
-    private HolidayHomeClaimRegistration holidayHomeClaimRegistration;
-    private HolidayHomeContentClaimRegistration holidayHomeContentClaimRegistration;
-    private HomeClaimRegistration homeClaimRegistration;
-    private HomeContentClaimRegistration homeContentClaimRegistration;
-    private TravelClaimRegistration travelClaimRegistration;
+    private RegisterBoatClaim boatClaimRegistration;
+    private RegisterCarClaim carClaimRegistration;
+    private RegisterHolidayHomeClaim holidayHomeClaimRegistration;
+    private RegisterHolidayHomeContentClaim holidayHomeContentClaimRegistration;
+    private RegisterHomeClaim homeClaimRegistration;
+    private RegisterHomeContentClaim homeContentClaimRegistration;
+    private RegisterTravelClaim travelClaimRegistration;
     
     // Insurance Registration Views:
-    private BoatInsuranceRegistration boatInsuranceRegistration;
-    private CarInsuranceRegistration carInsuranceRegistration;
-    private HolidayHomeInsuranceRegistration holidayHomeInsuranceRegistration;
-    private HolidayHomeContentInsuranceRegistration holidayHomeContentInsuranceRegistration;
-    private HomeInsuranceRegistration homeInsuranceRegistration;
-    private HomeContentInsuranceRegistration homeContentInsuranceRegistration;
-    private TravelInsuranceRegistration travelInsuranceRegistration;
+    private RegisterBoatInsurance boatInsuranceRegistration;
+    private RegisterCarInsurance carInsuranceRegistration;
+    private RegisterHolidayHomeInsurance holidayHomeInsuranceRegistration;
+    private RegisterHolidayHomeContentInsurance holidayHomeContentInsuranceRegistration;
+    private RegisterHomeInsurance homeInsuranceRegistration;
+    private RegisterHomeContentInsurance homeContentInsuranceRegistration;
+    private RegisterTravelInsurance travelInsuranceRegistration;
     
     // Person Registration Views:
-    private CustomerRegistration customerRegistration;
-    private EmployeeRegistration employeeRegistration;
+    private RegisterCustomer customerRegistration;
+    private RegisterEmployee employeeRegistration;
     
     // Search Views:
-    private ClaimSearchView claimSearchView;
-    private CustomerSearchView customerSearchView;
-    private EmployeeSearchView employeeSearchView;
-    private InsuranceSearchView insuranceSearchView;
+    private SearchClaims claimSearchView;
+    private SearchCustomers customerSearchView;
+    private SearchEmployees employeeSearchView;
+    private SearchInsurances insuranceSearchView;
     
     // Statistics Views:
-    private ClaimStatisticsView claimStatisticsView;
-    private CustomerStatisticsView customerStatisticsView;
-    private EmployeeStatisticsView employeeStatisticsView;
-    private InsuranceStatisticsView insuranceStatisticsView;
+    private StatisticsClaims claimStatisticsView;
+    private StatisticsIncome customerStatisticsView;
+    private StatisticsDisbursements employeeStatisticsView;
     
     // Controllers:
     private ModelController modelController;
@@ -135,41 +134,40 @@ public class MainController {
         this.logs = new LogRegister();
         
         // Modules:
-        this.adminView = new AdminView();
+        this.adminView = new MainView();
     
         // Claim Registration Views:
-        this.boatClaimRegistration = new BoatClaimRegistration();
-        this.carClaimRegistration = new CarClaimRegistration();
-        this.holidayHomeClaimRegistration = new HolidayHomeClaimRegistration();
-        this.holidayHomeContentClaimRegistration = new HolidayHomeContentClaimRegistration();
-        this.homeClaimRegistration = new HomeClaimRegistration();
-        this.homeContentClaimRegistration = new HomeContentClaimRegistration();
-        this.travelClaimRegistration = new TravelClaimRegistration();
+        this.boatClaimRegistration = new RegisterBoatClaim();
+        this.carClaimRegistration = new RegisterCarClaim();
+        this.holidayHomeClaimRegistration = new RegisterHolidayHomeClaim();
+        this.holidayHomeContentClaimRegistration = new RegisterHolidayHomeContentClaim();
+        this.homeClaimRegistration = new RegisterHomeClaim();
+        this.homeContentClaimRegistration = new RegisterHomeContentClaim();
+        this.travelClaimRegistration = new RegisterTravelClaim();
         
         // Insurance Registration Views:
-        this.boatInsuranceRegistration = new BoatInsuranceRegistration();
-        this.carInsuranceRegistration = new CarInsuranceRegistration();
-        this.holidayHomeInsuranceRegistration = new HolidayHomeInsuranceRegistration();
-        this.holidayHomeContentInsuranceRegistration = new HolidayHomeContentInsuranceRegistration();
-        this.homeInsuranceRegistration = new HomeInsuranceRegistration();
-        this.homeContentInsuranceRegistration = new HomeContentInsuranceRegistration();
-        this.travelInsuranceRegistration = new TravelInsuranceRegistration();
+        this.boatInsuranceRegistration = new RegisterBoatInsurance();
+        this.carInsuranceRegistration = new RegisterCarInsurance();
+        this.holidayHomeInsuranceRegistration = new RegisterHolidayHomeInsurance();
+        this.holidayHomeContentInsuranceRegistration = new RegisterHolidayHomeContentInsurance();
+        this.homeInsuranceRegistration = new RegisterHomeInsurance();
+        this.homeContentInsuranceRegistration = new RegisterHomeContentInsurance();
+        this.travelInsuranceRegistration = new RegisterTravelInsurance();
         
         // Person Registration Views:
-        this.customerRegistration = new CustomerRegistration();
-        this.employeeRegistration = new EmployeeRegistration();
+        this.customerRegistration = new RegisterCustomer();
+        this.employeeRegistration = new RegisterEmployee();
     
         // Search Views:
-        this.claimSearchView = new ClaimSearchView();
-        this.customerSearchView = new CustomerSearchView();
-        this.employeeSearchView = new EmployeeSearchView();
-        this.insuranceSearchView = new InsuranceSearchView();
+        this.claimSearchView = new SearchClaims();
+        this.customerSearchView = new SearchCustomers();
+        this.employeeSearchView = new SearchEmployees();
+        this.insuranceSearchView = new SearchInsurances();
 
         // Statistics Views:
-        this.claimStatisticsView = new ClaimStatisticsView();
-        this.customerStatisticsView = new CustomerStatisticsView();
-        this.employeeStatisticsView = new EmployeeStatisticsView();
-        this.insuranceStatisticsView = new InsuranceStatisticsView();
+        this.claimStatisticsView = new StatisticsClaims();
+        this.customerStatisticsView = new StatisticsIncome();
+        this.employeeStatisticsView = new StatisticsDisbursements();
         
         // Create an ArrayList with all views to be sent as a parameter to the 
         // controllers. This is done to make the constructor of the controllers
@@ -198,7 +196,6 @@ public class MainController {
         views.add(23, claimStatisticsView);
         views.add(24, customerStatisticsView);
         views.add(25, employeeStatisticsView);
-        views.add(26, insuranceStatisticsView);
                 
         // Controllers:
         this.modelController = new ModelController(bills, claims, customers, 
@@ -573,7 +570,7 @@ public class MainController {
         // Create a new stage:
         Stage formStage = new Stage();
         // Create a new CarClaimFormView and send the carClaimRegistration view as a reference:
-        CarClaimFormView ccfv = new CarClaimFormView(carClaimRegistration);
+        RegisterCarClaimForm ccfv = new RegisterCarClaimForm(carClaimRegistration);
         // initialize the carClaimFormViews register button event handler:
         ccfv.setRegisterButtonEventHandler();
         // BEFORE WE SHOW THE FORM; WE WANT TO POPULATE SOME OF ITS TEXT FIELDS WITH OUR
@@ -684,7 +681,7 @@ public class MainController {
             // If all fields are filled in correctly according to what we need to create a
             // claim, we proceed:
             if (ok) {
-                CarClaimFormView formView = carClaimRegistration.getCarClaimFormView();
+                RegisterCarClaimForm formView = carClaimRegistration.getCarClaimFormView();
                 if (formView == null) {
                     // Send carclaimform as null if no carclaimformview has been opened.
                     CarClaim claim = new CarClaim(customerId, insuranceId, description, dateHappened, damages, appraisal, null);

@@ -37,7 +37,7 @@ import javafx.util.Callback;
  * from the car insurance owner.
  * @author André
  */
-public class CarClaimFormView {
+public class RegisterCarClaimForm {
     
     // Scroll pane used to show the whole car claim form.
     private ScrollPane scrollPane;
@@ -102,12 +102,12 @@ public class CarClaimFormView {
     private Button clearCanvasButton;
     
     // Reference to the car claim view that owns this class.
-    private CarClaimRegistration carClaimRegistration;
+    private RegisterCarClaim carClaimRegistration;
 
     /**
      * Sole constructor. Receives a reference to its car claim.
      */
-    public CarClaimFormView(CarClaimRegistration carClaimRegistration) {
+    public RegisterCarClaimForm(RegisterCarClaim carClaimRegistration) {
         this.carClaimRegistration = carClaimRegistration;
         stackPane = new StackPane();
         canvasHolder = new StackPane();
@@ -526,7 +526,7 @@ public class CarClaimFormView {
      * Returns the car claim registration object to this view.
      * @return the carClaimRegistration
      */
-    public CarClaimRegistration getCarClaimRegistration() {
+    public RegisterCarClaim getCarClaimRegistration() {
         return carClaimRegistration;
     }
 

@@ -7,7 +7,6 @@ package insurancecompany.view.register.claims;
 
 import insurancecompany.misc.DateUtility;
 import insurancecompany.misc.coverages.Damage;
-import insurancecompany.model.claims.ClaimItem;
 import insurancecompany.model.insurances.Insurance;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -42,21 +41,18 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 
 /**
- * This class represents a home content claim registration view. This view is connected
+ * This class represents a car claim registration view. This view is connected
  * to the model through a controller. The class creates a GridPane with nodes.
- * The mainPane consists of 3 main parts. 
+ * The GridPane consists of 2 main parts. 
  * 
  * <p>The left side of this pane is used for searching for customers. If the 
  * search engine finds a customer this customer is displayed and a list of all 
  * this customer's insurances is as well displayed in a table view. The user 
  * is then able to select which insurance he/she wants to use for the claim. 
- * Only home content insurances are allowed to be selected. 
+ * Only car insurances are allowed to be selected. 
  * 
- * <p>The center side of this pane is used for typing in the fields connected
+ * <p>The right side of this pane is used for typing in the fields connected
  * to the damage/claim.
- * 
- * <p>The right side of this pane is used for adding items lost/damaged to the 
- * claim.
  * 
  * <p>After typing in all fields the user is able to register this as a claim
  * as long as all fields are selected and typed in properly.
@@ -69,12 +65,10 @@ import javafx.util.Callback;
  * 
  * @author André
  */
-public class HomeContentClaimRegistration {
+public class RegisterCarClaim {
     
     // The main pane of this class.
     private GridPane mainPane;
-    private GridPane centerPane;
-    private GridPane rightPane;
     
     // SEARCH FOR CUSTOMER NODES:
     // Input nodes, TextFields:
@@ -120,52 +114,33 @@ public class HomeContentClaimRegistration {
     // Buttons:
     // Button used to select an image describing the claim. 
     private Button selectImageButton;
+    // Button used to open up a car claim form. 
+    private Button openClaimFormButton;
     // Button used to register the claim. 
     private Button registerButton;  
     // Output nodes, Text messages:
     // Text used to display a status/help message when the user presses the register button. 
     private Text registerButtonMessage;
     private Text selectImageStatus;
+    private Text claimFormStatus;
     // Text used to display a help message if the user types in an invalid value for the appraisal. 
     private Text appraisalFieldMessage;
     
     // The customerId used in the claim registration. 
     private int selectedCustomerId;
-    
-    // Input field for the description of the item. 
-    private TextArea itemDescriptionTextArea;
-    // Input field for where the item was acquired. 
-    private TextField acquiredAreaField;
-    // DatePicker for the date the item was acquired. 
-    private DatePicker acquiredDatePicker;
-    // Input field for the value of the item. 
-    private TextField valueField;
-    // Input field for the description of how the item can be documented. 
-    private TextArea descriptionOfDocumentationTextArea;
-
-    // Button used to register the item from the input fields. 
-    private Button addItemButton;
-    // Text message used to confirm that an item has been added. 
-    private Text addItemConfirmMessage;
-    // A list of claim items belonging to this claim.
-    private List<ClaimItem> claimItems;
+    // The car claim form view belonging to this claim view. 
+    private RegisterCarClaimForm carClaimFormView;
     
     /**
      * Sole constructor. Initializes the main Pane and sets up all its nodes.
      * Each node is then added to the Pane.
      */
-    public HomeContentClaimRegistration() {
+    public RegisterCarClaim() {
         
         // Sets up the mainPane
         mainPane = new GridPane();
         // Set CSS id:
         mainPane.setId("innerPane");
-        // Set up the left pane:
-        centerPane = new GridPane();
-        centerPane.setId("innerSubPane");
-        rightPane = new GridPane();
-        rightPane.setId("innerSubPane");
-        
         // Set up column constraints. Width in pixels:
         ColumnConstraints col1 = new ColumnConstraints(120);
         ColumnConstraints col2 = new ColumnConstraints(100);
@@ -175,7 +150,7 @@ public class HomeContentClaimRegistration {
         ColumnConstraints col6 = new ColumnConstraints(100);
         ColumnConstraints col7 = new ColumnConstraints(100);
         // Add these constraints:
-        centerPane.getColumnConstraints().addAll(col1, col2, col3, col4, col5, col6, col7);
+        mainPane.getColumnConstraints().addAll(col1, col2, col3, col4, col5, col6, col7);
         
         // Start initializing all nodes that are to be placed in the gridpane:
         // Nodes that are used for customer searching and displaying customer info and insurances:
@@ -232,87 +207,50 @@ public class HomeContentClaimRegistration {
         appraisalFieldMessage = new Text();
         Label selectImageLabel = new Label("Bilde som beskriver skaden");
         selectImageButton = new Button("Hent bilde");
-
-        selectImageStatus = new Text();
+        Label openClaimFormLabel = new Label("Bilskademelingsskjema");
+        openClaimFormButton = new Button("Fyll ut");
+        registerButton = new Button("Registrer");
         
-        // Initialize the ClaimItem list:
-        claimItems = new ArrayList();
-        Text addItemsTitle = new Text("Legg til gjenstander:");
-        addItemsTitle.setId("textTitle");
-        Label acquiredDateLabel = new Label("Tilskaffet dato(Circa):");
-        acquiredDatePicker = new DatePicker();
-        // Sets up a restriction to the DatePicker:
-        DateUtility.restrictDatePickerToOlder(acquiredDatePicker);
-        Label descriptionItemLabel = new Label("Beskrivelse av gjenstanden:");
-        itemDescriptionTextArea = new TextArea();
-        itemDescriptionTextArea.setWrapText(true);
-        itemDescriptionTextArea.setPrefRowCount(4);
-        Label acquiredAreaLabel = new Label("Sted tilskaffet:");
-        acquiredAreaField = new TextField();
-        Label valueLabel = new Label("Verdi ved ny:");
-        valueField = new TextField();
-        Label descriptionOfDocumentationLabel = new Label("Beskrivelse på hvordan gjenstanden kan dokumenteres:");
-        descriptionOfDocumentationTextArea = new TextArea();
-        descriptionOfDocumentationTextArea.setPrefRowCount(4);
-        descriptionOfDocumentationTextArea.setWrapText(true);
-        addItemButton = new Button("Legg til gjenstand");
-        addItemConfirmMessage = new Text();
-        registerButton = new Button("Registrer skademelding");
         registerButtonMessage = new Text();
+        selectImageStatus = new Text();
+        claimFormStatus = new Text();
         
         // Add nodes to mainPane:
         // Nodes that are used for registering claim:
-        centerPane.add(selectCustomerTitle, 0, 0);
-        centerPane.add(customerIdLabel, 0, 1);
-        centerPane.add(customerIdField, 1, 1);
-        centerPane.add(searchCustomerIdButton, 2, 1);      
-        centerPane.add(personalNumberLabel, 0, 2);
-        centerPane.add(personalNumberField, 1, 2);
-        centerPane.add(searchPersonalNumberButton, 2, 2);
-        centerPane.add(resultTitle, 0, 3);
-        centerPane.add(customerArea, 0, 4, 3, 4);
-        centerPane.add(insurancesTitle, 0, 8);
-        centerPane.add(insurancesTable, 0, 9, 3, 7);
-        centerPane.add(selectInsuranceButton, 0, 16);
-        centerPane.add(selectInsuranceMessage, 1, 16);
-        
+        mainPane.add(selectCustomerTitle, 0, 0);
+        mainPane.add(customerIdLabel, 0, 1);
+        mainPane.add(customerIdField, 1, 1);
+        mainPane.add(searchCustomerIdButton, 2, 1);      
+        mainPane.add(personalNumberLabel, 0, 2);
+        mainPane.add(personalNumberField, 1, 2);
+        mainPane.add(searchPersonalNumberButton, 2, 2);
+        mainPane.add(resultTitle, 0, 3);
+        mainPane.add(customerArea, 0, 4, 3, 4);
+        mainPane.add(insurancesTitle, 0, 8);
+        mainPane.add(insurancesTable, 0, 9, 3, 7);
+        mainPane.add(selectInsuranceButton, 0, 16);
+        mainPane.add(selectInsuranceMessage, 1, 16);
         // Nodes that are used for registering claim:
-        centerPane.add(damagesTitle, 4, 0);
-        centerPane.add(dateHappenedLabel, 4, 1);
-        centerPane.add(dateHappenedPicker, 5, 1);
-        centerPane.add(descriptionLabel, 4, 2);
-        centerPane.add(descriptionTextArea,4, 3, 3, 4);
-        centerPane.add(damagesLabel, 4, 7);
-        centerPane.add(damagesPane, 4, 7, 3, 5);
-        centerPane.add(appraisalLbel, 4, 13);
-        centerPane.add(appraisalField, 5, 13);
-        centerPane.add(appraisalFieldMessage, 6, 13, 2, 1);
-        centerPane.add(selectImageLabel, 4, 14);
-        centerPane.add(selectImageButton, 5, 14);
-        centerPane.add(selectImageStatus, 6, 14, 2, 1);
-        
-        // Nodes that are used for adding items:
-        rightPane.add(addItemsTitle, 0, 0, 2, 1);
-        rightPane.add(acquiredDateLabel, 0, 1, 2, 1);
-        rightPane.add(acquiredDatePicker, 2, 1);
-        rightPane.add(descriptionItemLabel, 0, 2, 3, 1);
-        rightPane.add(itemDescriptionTextArea, 0, 3, 3, 2);
-        rightPane.add(acquiredAreaLabel, 0, 6);
-        rightPane.add(acquiredAreaField, 1, 6, 2, 1);
-        rightPane.add(valueLabel, 0, 7);
-        rightPane.add(valueField, 1, 7, 2, 1);
-        rightPane.add(descriptionOfDocumentationLabel, 0, 8, 3, 1);
-        rightPane.add(descriptionOfDocumentationTextArea, 0, 9, 3, 3);
-        rightPane.add(addItemButton, 0, 12, 2, 1);
-        rightPane.add(addItemConfirmMessage, 2, 12, 3, 1);
-        rightPane.add(registerButton, 0, 13, 3, 1);
-        rightPane.add(registerButtonMessage, 0, 14, 3, 1); 
-        
-        mainPane.add(centerPane, 0, 0);
-        mainPane.add(rightPane, 2, 0);
+        mainPane.add(damagesTitle, 4, 0);
+        mainPane.add(dateHappenedLabel, 4, 1);
+        mainPane.add(dateHappenedPicker, 5, 1);
+        mainPane.add(descriptionLabel, 4, 2);
+        mainPane.add(descriptionTextArea,4, 3, 3, 4);
+        mainPane.add(damagesLabel, 4, 7);
+        mainPane.add(damagesPane, 4, 7, 3, 5);
+        mainPane.add(appraisalLbel, 4, 13);
+        mainPane.add(appraisalField, 5, 13);
+        mainPane.add(appraisalFieldMessage, 6, 13, 2, 1);
+        mainPane.add(selectImageLabel, 4, 14);
+        mainPane.add(selectImageButton, 5, 14);
+        mainPane.add(selectImageStatus, 6, 14, 2, 1);
+        mainPane.add(openClaimFormLabel, 4, 15);
+        mainPane.add(openClaimFormButton, 5, 15);
+        mainPane.add(claimFormStatus, 6, 15, 2, 1);
+        mainPane.add(registerButton, 4, 16);
+        mainPane.add(registerButtonMessage, 5, 16, 3, 1);
         
     } // end of sole Constructor
-    
     
     /**
      * Places list of damages inside a list of combo boxes and places
@@ -498,19 +436,18 @@ public class HomeContentClaimRegistration {
     }
     
     /**
+     * Initializes the event handler for the open claim form button.
+     */
+    public void setOpenClaimFormButtonEventHandler(EventHandler<ActionEvent> event ) {
+        openClaimFormButton.setOnAction(event);
+    }
+    
+    /**
      * Sets event handler for the register button of this view.
      * @param value 
      */
     public void setRegisterButtonEventHandler(EventHandler<ActionEvent> value) {
         registerButton.setOnAction(value);
-    }
-    
-    /**
-     * Sets the event handler for the add item button of this view.
-     * @param event
-     */
-    public void setAddItemButtonEventHandler(EventHandler<ActionEvent> event) {
-        addItemButton.setOnAction(event);
     }
     
     /**
@@ -580,11 +517,11 @@ public class HomeContentClaimRegistration {
     public void clearUploads() {
         // Clear the image:
         image = null;
-        // Clear the items:
-        claimItems.clear();
+        // Clear the claim form:
+        carClaimFormView = null;
         // Clear the status messages:
         selectImageStatus.setText("");
-        addItemConfirmMessage.setText("");
+        claimFormStatus.setText("");
     }
 
     /**
@@ -601,6 +538,22 @@ public class HomeContentClaimRegistration {
      */
     public void setImage(Image image) {
         this.image = image;
+    }
+
+    /**
+     * Returns the car claim form view belonging to this car claim view.
+     * @return the carClaimFormView
+     */
+    public RegisterCarClaimForm getCarClaimFormView() {
+        return carClaimFormView;
+    }
+
+    /**
+     * Sets the car claim form view belonging to this car claim view.
+     * @param carClaimFormView the carClaimFormView to set
+     */
+    public void setCarClaimFormView(RegisterCarClaimForm carClaimFormView) {
+        this.carClaimFormView = carClaimFormView;
     }
 
     /**
@@ -651,68 +604,12 @@ public class HomeContentClaimRegistration {
     public void setSelectImageMessage(String selectImageMessage) {
         this.selectImageStatus.setText(selectImageMessage);
     }
-    
-    /**
-     * Returns a List of ClaimItem.
-     * @return the claimItems
-     */
-    public List<ClaimItem> getClaimItems() {
-        return claimItems;
-    }
-    
-    /**
-     * Adds a claim item to the claim items List of this view.
-     * @param claimItem 
-     */
-    public void addClaimItem(ClaimItem claimItem) {
-        claimItems.add(claimItem);
-    }
 
     /**
-     * @return the itemDescriptionTextArea
+     * @param claimFormMessage the claimFormStatus to set
      */
-    public String getItemDescriptionTextArea() {
-        return itemDescriptionTextArea.getText();
+    public void setClaimFormMessage(String claimFormMessage) {
+        this.claimFormStatus.setText(claimFormMessage);
     }
 
-    /**
-     * @return the acquiredAreaField
-     */
-    public String getAcquiredAreaField() {
-        return acquiredAreaField.getText();
-    }
-
-    /**
-     * @return the acquiredDatePicker
-     */
-    public Calendar getAcquiredDatePickerValue() {
-        // Get selected value:
-        if (acquiredDatePicker.getValue() != null) {
-            return  DateUtility.LocalDateToCalendar(acquiredDatePicker.getValue());
-        } else {
-            return null;
-        }
-    }
-
-    /**
-     * @return the valueField
-     */
-    public String getValueField() {
-        return valueField.getText();
-    }
-
-    /**
-     * @return the descriptionOfDocumentationTextArea
-     */
-    public String getDescriptionOfDocumentationTextArea() {
-        return descriptionOfDocumentationTextArea.getText();
-    }
-
-    /**
-     * @param addItemConfirmMessage the addItemConfirmMessage to set
-     */
-    public void setAddItemConfirmMessage(String addItemConfirmMessage) {
-        this.addItemConfirmMessage.setText(addItemConfirmMessage);
-    }
-
-} // end of class HomeContentClaimRegistration
+} // end of class CarClaimRegistration

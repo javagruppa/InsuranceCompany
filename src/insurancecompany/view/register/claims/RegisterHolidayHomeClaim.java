@@ -65,7 +65,7 @@ import javafx.util.Callback;
  * 
  * @author André
  */
-public class HolidayHomeClaimRegistration {
+public class RegisterHolidayHomeClaim {
     
     // The main pane of this class.
     private GridPane mainPane;
@@ -130,7 +130,7 @@ public class HolidayHomeClaimRegistration {
      * Sole constructor. Initializes the main Pane and sets up all its nodes.
      * Each node is then added to the Pane.
      */
-    public HolidayHomeClaimRegistration() {
+    public RegisterHolidayHomeClaim() {
         
         // Sets up the mainPane
         mainPane = new GridPane();

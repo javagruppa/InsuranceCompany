@@ -5,7 +5,6 @@
  */
 package insurancecompany.view.statistics;
 
-import insurancecompany.view.search.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
@@ -13,11 +12,11 @@ import javafx.scene.layout.Pane;
  *
  * @author André
  */
-public class InsuranceStatisticsView {
+public class StatisticsIncome {
     // Decalaration of the Gridpane and Scene.
     private GridPane mainPane;
     
-    public InsuranceStatisticsView() {
+    public StatisticsIncome() {
         mainPane = new GridPane();
     }
     

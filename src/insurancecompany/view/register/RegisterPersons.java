@@ -5,7 +5,7 @@
  */
 package insurancecompany.view.register;
 
-import insurancecompany.view.register.persons.CustomerRegistration;
+import insurancecompany.view.register.persons.RegisterCustomer;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.collections.FXCollections;
@@ -30,9 +30,9 @@ import javafx.stage.Stage;
  *
  * @author André
  */
-public class PersonsView {
+public class RegisterPersons {
     
-    private CustomerRegistration customerRegistration;
+    private RegisterCustomer customerRegistration;
     
     private Pane customerRegistrationPane;
     
@@ -59,7 +59,7 @@ public class PersonsView {
         stage.show();
     }
     
-    public PersonsView() {
+    public RegisterPersons() {
         mainPane = new BorderPane();
         sideToolBarPane = createSideToolBar();
         mainPane.setLeft(sideToolBarPane);

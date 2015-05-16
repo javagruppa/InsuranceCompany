@@ -1,9 +1,7 @@
 package insurancecompany.view.search;
 
-import insurancecompany.misc.EmployeeType;
 import insurancecompany.misc.InsuranceType;
 import insurancecompany.model.people.Customer;
-import insurancecompany.model.people.Employee;
 import java.util.List;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -25,7 +23,7 @@ import javafx.scene.text.Text;
 
 /**
  * This class creates the graphical user interface (GUI) for searching after 
- * employees. It creates a pane which is sent to the controller and thereafter
+ * customers. It creates a pane which is sent to the controller and thereafter
  * displayed.
  * 
  * <p> The pane consists of three parts; one to the left, one in the center and
@@ -36,13 +34,13 @@ import javafx.scene.text.Text;
  * executes the search.
  * 
  * <p> In the center a table with the result is shown. The user can select one 
- * of these employees for further examination.
+ * of these customers for further examination.
  * 
- * <p> On the right the employee selected in the table is shown.
+ * <p> On the right the customer selected in the table is shown.
  * 
  * @author Sindre
  */
-public class EmployeeSearchView {
+public class SearchCustomers {
     
     // Declaration of the main pane which is sent to the controller.
     private GridPane mainPane;
@@ -55,31 +53,32 @@ public class EmployeeSearchView {
     // Declaration of all the nodes in the left part.
     private Button searchButton;
     private ComboBox<String> activeCombo;
-    private ComboBox<Object> employeeTypeCombo;
+    private ComboBox<Object> insuranceTypeCombo;
     private ComboBox<String> numberSelectCombo;
+    private ComboBox<String> totalCustomerCombo;
     private Text idMessage;
     private TextField firstNameField;
     private TextField lastNameField;
     private TextField numberField;
     
     // Declaration of all the nodes in the center part.
-    private Button deactivateButton;
     private Button selectButton;
-    private TableView<Employee> employeesTable;
-    private TableColumn<Employee, String> firstNameColumn;
-    private TableColumn<Employee, String> lastNameColumn;
-    private TableColumn<Employee, Integer> employeeIdColumn;
-    private TableColumn<Employee, String> employeeTypeColumn;
+    private TableView<Customer> customersTable;
+    private TableColumn<Customer, String> firstNameColumn;
+    private TableColumn<Customer, String> lastNameColumn;
+    private TableColumn<Customer, String> activeColumn;
+    private TableColumn<Customer, Integer> customerIdColumn;
+    private Text selectMessage;
     
     // Declaration of all the nodes in the right part.
-    private TextArea customerArea;
+    private Button deactivateButton;
     private Text deactivateMessage;
-    private Text selectMessage;
+    private TextArea customerArea;
     
     /**
      * Default constructor. Initializes all field and sets up the view.
      */
-    public EmployeeSearchView() {
+    public SearchCustomers() {
         
         // Initialization of the panes.
         mainPane = new GridPane();
@@ -108,52 +107,55 @@ public class EmployeeSearchView {
         searchButton = new Button("Søk");
         activeCombo = new ComboBox<>();
         populateActiveCombo();
-        employeeTypeCombo = new ComboBox<>();
-        populateEmployeeTypeCombo();
+        insuranceTypeCombo = new ComboBox<>();
+        populateInsuranceTypeCombo();
         numberSelectCombo = new ComboBox<>();
         populateNumberSelectCombo();
+        totalCustomerCombo = new ComboBox<>();
+        populateTotalCustomerCombo();
         idMessage = new Text("");
         firstNameField = new TextField();
         lastNameField = new TextField();
         numberField = new TextField();
 
         // Initialization of all the nodes in the center part.
-        selectButton = new Button("Velg ansatt");
-        employeesTable = new TableView();
-        employeesTable.setPrefWidth(400);
+        selectButton = new Button("Velg kunde");
+        customersTable = new TableView();
+        customersTable.setPrefWidth(400);
         firstNameColumn = new TableColumn<>("Fornavn");
         lastNameColumn = new TableColumn<>("Etternavn");
-        employeeIdColumn = new TableColumn<>("Kunde ID");
-        employeeTypeColumn = new TableColumn<>("Jobbtittel");
-        employeesTable.getColumns().addAll(firstNameColumn, 
-                lastNameColumn, employeeIdColumn, employeeTypeColumn);
-        employeesTable.setColumnResizePolicy(
+        customerIdColumn = new TableColumn<>("Kunde ID");
+        activeColumn = new TableColumn<>("Aktiv");
+        customersTable.getColumns().addAll(firstNameColumn, 
+                lastNameColumn, customerIdColumn, activeColumn);
+        customersTable.setColumnResizePolicy(
                 TableView.CONSTRAINED_RESIZE_POLICY);
         selectMessage = new Text("");
 
         // Initialization of all the nodes in the right part.
-        deactivateButton = new Button("Gjør forsikringen aktiv/inaktiv");
+        deactivateButton = new Button("Gjør kunden aktiv/inaktiv");
         deactivateMessage = new Text("");
         customerArea = new TextArea();
         customerArea.setPrefHeight(400);
         
         // Initialization of all the texts and labels which are used in the 
         // view. Many of them aren't fields.
-        Text employeeIdTitle = new Text("Velg en ansatt i registeret:");
-        employeeIdTitle.setId("textTitle");
+        Text customerIdTitle = new Text("Velg en kunde i registeret:");
+        customerIdTitle.setId("textTitle");
         Text searchTermsTitle = new Text("Eller bruk søkebetingelser:");
         searchTermsTitle.setId("textTitle");
-        Text employeesTitle = new Text("Ansatte:");
-        employeesTitle.setId("textTitle");
-        Text employeeTitle = new Text("Valgt ansatt:");
-        employeeTitle.setId("textTitle");
+        Text customersTitle = new Text("Kunder:");
+        customersTitle.setId("textTitle");
+        Text customerTitle = new Text("Valgt kunde:");
+        customerTitle.setId("textTitle");
         Label firstNameLabel = new Label("Fornavn:");
         Label lastNameLabel = new Label("Etternavn:");
-        Label employeeTypeLabel = new Label("Jobbtittel:");
-        Label activeLabel = new Label("Kun nåværende ansatte:");
+        Label totalCustomerLabel = new Label("Kun totalkunder:");
+        Label activeField = new Label("Kun aktive kunder:");
+        Label insuranceTypeLabel = new Label("Eier forsikring:");
         
         // Adds the nodes to the left part.
-        leftPane.add(employeeIdTitle, 0, 0, 2, 1);
+        leftPane.add(customerIdTitle, 0, 0, 2, 1);
         leftPane.add(numberSelectCombo, 0, 1);
         leftPane.add(numberField, 1, 1);
         leftPane.add(new Text(""), 0, 2); // Creates a blank row.
@@ -162,21 +164,23 @@ public class EmployeeSearchView {
         leftPane.add(firstNameField, 1, 4);
         leftPane.add(lastNameLabel, 0, 5);
         leftPane.add(lastNameField, 1, 5);
-        leftPane.add(employeeTypeLabel, 0, 6);
-        leftPane.add(employeeTypeCombo, 1, 6);
-        leftPane.add(activeLabel, 0, 7);
+        leftPane.add(totalCustomerLabel, 0, 6);
+        leftPane.add(totalCustomerCombo, 1, 6);
+        leftPane.add(activeField, 0, 7);
         leftPane.add(activeCombo, 1, 7);
-        leftPane.add(searchButton, 1, 8);
-        leftPane.add(idMessage, 0, 9, 2, 1);
+        leftPane.add(insuranceTypeLabel, 0, 8);
+        leftPane.add(insuranceTypeCombo, 1, 8);
+        leftPane.add(searchButton, 1, 9);
+        leftPane.add(idMessage, 0, 10, 2, 1);
         
         // Adds the nodes to the center part.
-        centerPane.add(employeesTitle, 0, 0);
-        centerPane.add(employeesTable, 0, 1);
+        centerPane.add(customersTitle, 0, 0);
+        centerPane.add(customersTable, 0, 1);
         centerPane.add(selectButton, 0, 2);
         centerPane.add(selectMessage, 0, 3);
         
         // Adds the nodes to the right part.
-        rightPane.add(employeeTitle, 0, 0);
+        rightPane.add(customerTitle, 0, 0);
         rightPane.add(customerArea, 0, 1);
         rightPane.add(deactivateButton, 0, 2);
         rightPane.add(deactivateMessage, 0, 3);
@@ -191,37 +195,46 @@ public class EmployeeSearchView {
         activeCombo.setPrefWidth(150);
     }
     
-    /** Sets the content of the ComboBox employeeTypeCombo. */
-    private void populateEmployeeTypeCombo() {
-        ObservableList<EmployeeType> obList;
-        obList = FXCollections.observableArrayList(EmployeeType.values());
-        employeeTypeCombo.getItems().add("");
-        employeeTypeCombo.getItems().addAll(obList);
-        employeeTypeCombo.setPrefWidth(150);
+    /** Sets the content of the ComboBox insuranceTypeCombo. */
+    private void populateInsuranceTypeCombo() {
+        ObservableList<InsuranceType> obList;
+        obList = FXCollections.observableArrayList(InsuranceType.values());
+        insuranceTypeCombo.getItems().add("");
+        insuranceTypeCombo.getItems().addAll(obList);
+        insuranceTypeCombo.setPrefWidth(150);
     }
     
     /** Sets the content of the ComboBox numberSelectCombo. */
     private void populateNumberSelectCombo() {
         ObservableList<String> obList = FXCollections.observableArrayList();  
-        obList.addAll("Ansattnummer", "Personnummer");
+        obList.addAll("Kundenummer", "Personnummer");
         numberSelectCombo.getItems().setAll(obList);
-        numberSelectCombo.setValue("Ansattnummer");
+        numberSelectCombo.setValue("Kundenummer");
         numberSelectCombo.setPrefWidth(150);
     }
     
+    /** Sets the content of the ComboBox totalCustomerCombo. */
+    private void populateTotalCustomerCombo() {
+        ObservableList<String> obList = FXCollections.observableArrayList();  
+        obList.addAll("Ja", "Nei");
+        totalCustomerCombo.getItems().setAll(obList);
+        totalCustomerCombo.setValue("Nei");
+        totalCustomerCombo.setPrefWidth(150);
+    }
+    
     /**
-     * Sets the content of the TableView employeesTable. The table will 
-     * consist of the employees in the parameter list.
+     * Sets the content of the TableView customersTable. The table will 
+     * consist of the customers in the parameter list.
      * 
-     * @param employees The list of employees which will be displayed in the 
+     * @param customers The list of customers which will be displayed in the 
      * table.
      */
-    public void populateEmployeesTable(List<Employee> employees) {
-        // Creates an observable list from the recieved employee list.
-        ObservableList<Employee> obList 
-                = FXCollections.observableArrayList(employees);
-        // Places this list in the employee table view.
-        employeesTable.setItems(obList);
+    public void populateCustomersTable(List<Customer> customers) {
+        // Creates an observable list from the recieved customer list.
+        ObservableList<Customer> obList 
+                = FXCollections.observableArrayList(customers);
+        // Places this list in the customer table view.
+        customersTable.setItems(obList);
         // Places a SimpleStringProperty version of the first name in the 
         // first column.
         firstNameColumn.setCellValueFactory(cellData -> {
@@ -242,24 +255,33 @@ public class EmployeeSearchView {
                 return new SimpleObjectProperty(0);
             }
         });
-        // Places a SimpleStringProperty version of the employee ID in the 
+        // Places a SimpleStringProperty version of the customer ID in the 
         // third column.
-        employeeIdColumn.setCellValueFactory(cellData -> {
+        customerIdColumn.setCellValueFactory(cellData -> {
             if ( cellData.getValue() != null) {
                 return new SimpleObjectProperty<>(cellData.getValue().getId());
             } else {
                 return new SimpleObjectProperty(0);
             }
         });
-        // Places a SimpleStringProperty version of the employee type in the 
+        // Places a SimpleStringProperty version of the activity status in the 
         // fourth column.
-        employeeTypeColumn.setCellValueFactory(cellData -> {
-            if ( cellData.getValue() != null) {
-                return new SimpleStringProperty(cellData.getValue().getName());
+        activeColumn.setCellValueFactory(cellData -> {
+            if (cellData.getValue() != null && cellData.getValue().isActive()) {
+                return new SimpleObjectProperty<>("Ja");
             } else {
-                return new SimpleStringProperty("<no name>");
+                return new SimpleObjectProperty("Nei");
             }
         });
+    }
+    
+    /**
+     * Sets the event handler for the deactivateButton.
+     * 
+     * @param value The event handler to set.
+     */
+    public void setDeactivateEventHandler(EventHandler<ActionEvent> value) {
+        deactivateButton.setOnAction(value);
     }
     
     /**
@@ -295,18 +317,18 @@ public class EmployeeSearchView {
         return numberField.getText();
     }
     
-    /** @return True if employee ID is selected in numberSelectCombo. */
-    public boolean isEmployeeIdSelected() {
-        return numberSelectCombo.getValue().equals("Ansattnummer");
+    /** @return True if customer ID is selected in numberSelectCombo. */
+    public boolean isCustomerIdSelected() {
+        return numberSelectCombo.getValue().equals("Kundenummer");
     }
     
     /** 
-     * @return The selected value of employeesTable as an Employee. Null if 
-     * no employee is selected.
+     * @return The selected value of customersTable as a Customer. Null if 
+     * no customer is selected.
      */
-    public Employee getEmployeesTableValue() {
-        return employeesTable.getSelectionModel() == null ? null : 
-                employeesTable.getSelectionModel().getSelectedItem();
+    public Customer getCustomersTableValue() {
+        return customersTable.getSelectionModel() == null ? null : 
+                customersTable.getSelectionModel().getSelectedItem();
     }
     
     /** @return The first name of this class as a String. */
@@ -320,16 +342,21 @@ public class EmployeeSearchView {
     }
     
     /** 
-     * @return The employee type of this class as an EmployeeType. Null if
-     * no employee type is selected.
+     * @return The insurance type of this class as an InsuranceType. Null if
+     * no insurance type is selected.
      */
-    public EmployeeType getEmployeeType() {
-        return String.class.isInstance(employeeTypeCombo.getValue()) ?
-                null : (EmployeeType) employeeTypeCombo.getValue();
+    public InsuranceType getInsuranceType() {
+        return String.class.isInstance(insuranceTypeCombo.getValue()) ?
+                null : (InsuranceType) insuranceTypeCombo.getValue();
     }
     
-    /** @param text The text to set in insuranceArea. */
-    public void setInsuranceArea(String text) {
+    /** @return True if totalCustomerCombo equals "Ja". */
+    public boolean getTotalCustomer() {
+        return totalCustomerCombo.getValue().equals("Ja");
+    }
+    
+    /** @param text The text to set in customerArea. */
+    public void setCustomerArea(String text) {
         customerArea.setText(text);
     }
     

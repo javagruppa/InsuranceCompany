@@ -27,7 +27,7 @@ import javafx.scene.text.Text;
  *
  * @author Sindre
  */
-public class HolidayHomeInsuranceRegistration {
+public class RegisterHolidayHomeInsurance {
     
     /** The main pane of this class. */
     private GridPane mainPane;
@@ -80,7 +80,7 @@ public class HolidayHomeInsuranceRegistration {
     private Button calculateButton;
     private Button registerButton;
     
-    public HolidayHomeInsuranceRegistration() {
+    public RegisterHolidayHomeInsurance() {
         
         // Sets up the mainPane:
         mainPane = new GridPane();

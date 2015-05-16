@@ -37,7 +37,6 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import javafx.util.Callback;
 
 /**
@@ -65,7 +64,7 @@ import javafx.util.Callback;
  * 
  * @author André
  */
-public class HomeClaimRegistration {
+public class RegisterBoatClaim {
     
     // The main pane of this class.
     private GridPane mainPane;
@@ -130,7 +129,7 @@ public class HomeClaimRegistration {
      * Sole constructor. Initializes the main Pane and sets up all its nodes.
      * Each node is then added to the Pane.
      */
-    public HomeClaimRegistration() {
+    public RegisterBoatClaim() {
         
         // Sets up the mainPane
         mainPane = new GridPane();
@@ -569,4 +568,4 @@ public class HomeClaimRegistration {
         this.selectImageStatus.setText(selectImageMessage);
     }
 
-} // end of class HomeClaimRegistration
+} // end of class BoatClaimRegistration

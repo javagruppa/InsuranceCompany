@@ -24,7 +24,7 @@ import javafx.stage.Stage;
  *
  * @author André
  */
-public class ClaimsView {
+public class RegisterClaims {
     
     private Scene scene;
     private BorderPane mainPane;
@@ -51,7 +51,7 @@ public class ClaimsView {
         stage.show();
     }
     
-    public ClaimsView() {
+    public RegisterClaims() {
         mainPane = new BorderPane();
         sideToolBarPane = createSideToolBar();
         mainPane.setLeft(sideToolBarPane);

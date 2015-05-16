@@ -31,7 +31,7 @@ import javafx.stage.Stage;
  *
  * @author André
  */
-public class ClaimSearchView {
+public class SearchClaims {
     
     // Decalaration of the Gridpane and Scene.
     private GridPane gridPane;
@@ -58,7 +58,7 @@ public class ClaimSearchView {
     private TextArea textArea;
     
     // Constrcutor
-    public ClaimSearchView() {
+    public SearchClaims() {
         
         // Sets up the mainPane and scene.
         buildMainPane();

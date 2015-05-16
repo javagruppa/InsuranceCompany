@@ -5,7 +5,6 @@
  */
 package insurancecompany.view.statistics;
 
-import insurancecompany.view.search.*;
 import insurancecompany.misc.ClaimType;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,14 +21,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /**
  *
  * @author André
  */
-public class ClaimStatisticsView {
+public class StatisticsClaims {
     
     // Decalaration of the Gridpane and Scene.
     private GridPane mainPane;
@@ -58,7 +56,7 @@ public class ClaimStatisticsView {
     private TextArea textArea;
     
     // Constrcutor
-    public ClaimStatisticsView() {
+    public StatisticsClaims() {
         
         // Sets up the mainPane and scene.
         buildMainPane();

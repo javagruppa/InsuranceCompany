@@ -25,7 +25,7 @@ import javafx.stage.Stage;
  * @author André
  * @author Sindre
  */
-public class InsurancesView {
+public class RegisterInsurances {
     
     private Scene scene;
     private BorderPane mainPane;
@@ -46,7 +46,7 @@ public class InsurancesView {
         stage.show();
     }
     
-    public InsurancesView() {
+    public RegisterInsurances() {
         mainPane = new BorderPane();
         sideToolBarPane = createSideToolBar();
         //ScrollPane sp = new ScrollPane();

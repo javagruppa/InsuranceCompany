@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package insurancecompany.view.modules;
+package insurancecompany.view;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -31,7 +31,7 @@ import javafx.stage.StageStyle;
  * @author André
  * @author Sindre
  */
-public class AdminView extends Application {
+public class MainView extends Application {
     
     private Stage primaryStage;
     
@@ -57,7 +57,7 @@ public class AdminView extends Application {
     private Button exitButton;
     private Text userStatusText;
     
-    public AdminView() {
+    public MainView() {
         initializeViews();
         scene = new Scene(mainPane, 1280, 700);
         scene.getStylesheets().add("insurancecompany/resources/css/stylesheet.css");       

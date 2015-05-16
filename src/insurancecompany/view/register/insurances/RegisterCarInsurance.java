@@ -27,7 +27,7 @@ import javafx.scene.text.Text;
  * @author André
  * @author Sindre
  */
-public class CarInsuranceRegistration {
+public class RegisterCarInsurance {
     
     /** String value of the ComboCox option for unlimited max length. */
     public static final String MAX_LENGTH_UNLIMITED = "Ubegrenset";
@@ -87,7 +87,7 @@ public class CarInsuranceRegistration {
     private Button calculateButton;
     private Button registerButton;
     
-    public CarInsuranceRegistration() {
+    public RegisterCarInsurance() {
         
         // Sets up the mainPane:
         mainPane = new GridPane();

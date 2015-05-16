@@ -5,8 +5,9 @@
  */
 package insurancecompany.controller;
 
+import insurancecompany.view.MainView;
+import insurancecompany.view.LoginView;
 import insurancecompany.view.*;
-import insurancecompany.view.modules.*;
 import insurancecompany.view.register.*;
 import insurancecompany.view.register.claims.*;
 import insurancecompany.view.register.insurances.*;
@@ -29,57 +30,55 @@ public class ViewController {
     private Stage primaryStage;
     
     // Module Views
-    private AdminView adminView;
+    private MainView adminView;
     private LoginView loginView;
     
     // Tab Views
     private RegisterView registerView;
-    private ProcessView processView;
     private SearchView searchView;
     private StatisticsView statisticsView;
     
     // Sub-Tab Views for RegisterView
-    private ClaimsView claimsView;
-    private InsurancesView insurancesView;
-    private PersonsView personsView;
+    private RegisterClaims claimsView;
+    private RegisterInsurances insurancesView;
+    private RegisterPersons personsView;
   
     // Claim Registration Views:
-    private BoatClaimRegistration boatClaimRegistration;
-    private CarClaimRegistration carClaimRegistration;
-    private HolidayHomeClaimRegistration holidayHomeClaimRegistration;
-    private HolidayHomeContentClaimRegistration holidayHomeContentClaimRegistration;
-    private HomeClaimRegistration homeClaimRegistration;
-    private HomeContentClaimRegistration homeContentClaimRegistration;
-    private TravelClaimRegistration travelClaimRegistration;
+    private RegisterBoatClaim boatClaimRegistration;
+    private RegisterCarClaim carClaimRegistration;
+    private RegisterHolidayHomeClaim holidayHomeClaimRegistration;
+    private RegisterHolidayHomeContentClaim holidayHomeContentClaimRegistration;
+    private RegisterHomeClaim homeClaimRegistration;
+    private RegisterHomeContentClaim homeContentClaimRegistration;
+    private RegisterTravelClaim travelClaimRegistration;
     
     // Insurance Registration Views:
-    private BoatInsuranceRegistration boatInsuranceRegistration;
-    private CarInsuranceRegistration carInsuranceRegistration;
-    private HolidayHomeInsuranceRegistration holidayHomeInsuranceRegistration;
-    private HolidayHomeContentInsuranceRegistration holidayHomeContentInsuranceRegistration;
-    private HomeInsuranceRegistration homeInsuranceRegistration;
-    private HomeContentInsuranceRegistration homeContentInsuranceRegistration;
-    private TravelInsuranceRegistration travelInsuranceRegistration;
+    private RegisterBoatInsurance boatInsuranceRegistration;
+    private RegisterCarInsurance carInsuranceRegistration;
+    private RegisterHolidayHomeInsurance holidayHomeInsuranceRegistration;
+    private RegisterHolidayHomeContentInsurance holidayHomeContentInsuranceRegistration;
+    private RegisterHomeInsurance homeInsuranceRegistration;
+    private RegisterHomeContentInsurance homeContentInsuranceRegistration;
+    private RegisterTravelInsurance travelInsuranceRegistration;
     
     // Person Registration Views:
-    private CustomerRegistration customerRegistration;
-    private EmployeeRegistration employeeRegistration;
+    private RegisterCustomer customerRegistration;
+    private RegisterEmployee employeeRegistration;
     
     // Search Views:
-    private ClaimSearchView claimSearchView;
-    private CustomerSearchView customerSearchView;
-    private EmployeeSearchView employeeSearchView;
-    private InsuranceSearchView insuranceSearchView;
+    private SearchClaims claimSearchView;
+    private SearchCustomers customerSearchView;
+    private SearchEmployees employeeSearchView;
+    private SearchInsurances insuranceSearchView;
     
     // Statistics Views:
-    private ClaimStatisticsView claimStatisticsView;
-    private CustomerStatisticsView customerStatisticsView;
-    private EmployeeStatisticsView employeeStatisticsView;
-    private InsuranceStatisticsView insuranceStatisticsView;
+    private StatisticsClaims claimStatisticsView;
+    private StatisticsIncome customerStatisticsView;
+    private StatisticsDisbursements employeeStatisticsView;
     
     
     // Constructor
-    public ViewController(AdminView adminView, ArrayList<Object> views) {
+    public ViewController(MainView adminView, ArrayList<Object> views) {
         
         // Initializes Module Views
         this.adminView = adminView;
@@ -87,48 +86,46 @@ public class ViewController {
         
         // Initializes Tab Views
         this.registerView = new RegisterView();
-        this.processView = new ProcessView();
         this.searchView = new SearchView();
         this.statisticsView = new StatisticsView();
         
         // Initializes Sub-Tab Views for ProcessView
-        this.claimsView = new ClaimsView();
-        this.insurancesView = new InsurancesView();
-        this.personsView = new PersonsView();
+        this.claimsView = new RegisterClaims();
+        this.insurancesView = new RegisterInsurances();
+        this.personsView = new RegisterPersons();
         
         // Claim Registration Views:
-        this.boatClaimRegistration = (BoatClaimRegistration) views.get(3);
-        this.carClaimRegistration = (CarClaimRegistration) views.get(4);
-        this.holidayHomeClaimRegistration = (HolidayHomeClaimRegistration) views.get(5);
-        this.holidayHomeContentClaimRegistration = (HolidayHomeContentClaimRegistration) views.get(6);
-        this.homeClaimRegistration = (HomeClaimRegistration) views.get(7);
-        this.homeContentClaimRegistration = (HomeContentClaimRegistration) views.get(8);
-        this.travelClaimRegistration = (TravelClaimRegistration) views.get(9);
+        this.boatClaimRegistration = (RegisterBoatClaim) views.get(3);
+        this.carClaimRegistration = (RegisterCarClaim) views.get(4);
+        this.holidayHomeClaimRegistration = (RegisterHolidayHomeClaim) views.get(5);
+        this.holidayHomeContentClaimRegistration = (RegisterHolidayHomeContentClaim) views.get(6);
+        this.homeClaimRegistration = (RegisterHomeClaim) views.get(7);
+        this.homeContentClaimRegistration = (RegisterHomeContentClaim) views.get(8);
+        this.travelClaimRegistration = (RegisterTravelClaim) views.get(9);
         
         // Insurance Registration Views:
-        this.boatInsuranceRegistration = (BoatInsuranceRegistration) views.get(10);
-        this.carInsuranceRegistration = (CarInsuranceRegistration) views.get(11);
-        this.holidayHomeInsuranceRegistration = (HolidayHomeInsuranceRegistration) views.get(12);
-        this.holidayHomeContentInsuranceRegistration = (HolidayHomeContentInsuranceRegistration) views.get(13);
-        this.homeInsuranceRegistration = (HomeInsuranceRegistration) views.get(14);
-        this.homeContentInsuranceRegistration = (HomeContentInsuranceRegistration) views.get(15);
-        this.travelInsuranceRegistration = (TravelInsuranceRegistration) views.get(16);
+        this.boatInsuranceRegistration = (RegisterBoatInsurance) views.get(10);
+        this.carInsuranceRegistration = (RegisterCarInsurance) views.get(11);
+        this.holidayHomeInsuranceRegistration = (RegisterHolidayHomeInsurance) views.get(12);
+        this.holidayHomeContentInsuranceRegistration = (RegisterHolidayHomeContentInsurance) views.get(13);
+        this.homeInsuranceRegistration = (RegisterHomeInsurance) views.get(14);
+        this.homeContentInsuranceRegistration = (RegisterHomeContentInsurance) views.get(15);
+        this.travelInsuranceRegistration = (RegisterTravelInsurance) views.get(16);
         
         // Person Registration Views:
-        this.customerRegistration = (CustomerRegistration) views.get(17);
-        this.employeeRegistration = (EmployeeRegistration) views.get(18);
+        this.customerRegistration = (RegisterCustomer) views.get(17);
+        this.employeeRegistration = (RegisterEmployee) views.get(18);
     
         // Search Views:
-        this.claimSearchView = (ClaimSearchView) views.get(19);
-        this.customerSearchView = (CustomerSearchView) views.get(20);
-        this.employeeSearchView = (EmployeeSearchView) views.get(21);
-        this.insuranceSearchView = (InsuranceSearchView) views.get(22);
+        this.claimSearchView = (SearchClaims) views.get(19);
+        this.customerSearchView = (SearchCustomers) views.get(20);
+        this.employeeSearchView = (SearchEmployees) views.get(21);
+        this.insuranceSearchView = (SearchInsurances) views.get(22);
 
         // Statistics Views:
-        this.claimStatisticsView = (ClaimStatisticsView) views.get(23);
-        this.customerStatisticsView = (CustomerStatisticsView) views.get(24);
-        this.employeeStatisticsView = (EmployeeStatisticsView) views.get(25);
-        this.insuranceStatisticsView = (InsuranceStatisticsView) views.get(26);
+        this.claimStatisticsView = (StatisticsClaims) views.get(23);
+        this.customerStatisticsView = (StatisticsIncome) views.get(24);
+        this.employeeStatisticsView = (StatisticsDisbursements) views.get(25);
         
         initializeEventHandlers();
     } // end of sole constructor
@@ -143,7 +140,6 @@ public class ViewController {
     
     public void initializeEventHandlers() {
         adminView.setRegisterButtonEventHandler(this::adminViewRegisterTabButtonEventHandler);
-        adminView.setProcessButtonEventHandler(this::adminViewProcessTabButtonEventHandler);
         adminView.setSearchButtonEventHandler(this::adminViewSearchTabButtonEventHandler);
         adminView.setStatisticsButtonEventHandler(this::adminViewStatisticsTabButtonEventHandler);
         adminView.setToolbarOnMouseClickedEventHandler(this::adminViewToolbarMouseClickedEventHandler);
@@ -152,9 +148,6 @@ public class ViewController {
         registerView.setInsurancesButtonEventHandler(this::registerViewInsurancesButtonEventHandler);
         registerView.setPersonsButtonEventHandler(this::registerViewPersonsButtonEventHandler);
         registerView.setClaimsButtonEventHandler(this::registerViewClaimsButtonEventHandler);
-        processView.setBillsButtonEventHandler(null);
-        processView.setClaimsButtonEventHandler(null);
-        processView.setSubscriptionsButtonEventHandler(null);
        
         // REGISTER SUB TAB CONTENT EVENT HANDLERS:
         personsView.setCustomerButtonEventHandler(this::personsViewCustomerRegistrationButtonEventHandler);
@@ -174,11 +167,6 @@ public class ViewController {
         claimsView.setHomeContentClaimButtonEventHandler(this::claimsViewHomeContentClaimButtonEventHandler);
         claimsView.setTravelClaimButtonEventHandler(this::claimsViewTravelClaimButtonEventHandler);
         
-        // PROCESS SUB TAB EVENT HANDLERS:
-        processView.setClaimsButtonEventHandler(null);
-        processView.setBillsButtonEventHandler(null);
-        processView.setSubscriptionsButtonEventHandler(null);
-        
         // SEARCH SUB TAB EVENT HANDLERS:
         searchView.setClaimsButtonEventHandler(this::searchViewClaimsButtonEventHandler);
         searchView.setCustomersButtonEventHandler(this::searchViewCustomersButtonEventHandler);
@@ -197,10 +185,6 @@ public class ViewController {
     
     private void adminViewRegisterTabButtonEventHandler(ActionEvent event) {
         adminView.getMainPane().setCenter(registerView.getMainPane());
-    }
-    
-    private void adminViewProcessTabButtonEventHandler(ActionEvent event) {
-        adminView.getMainPane().setCenter(processView.getMainPane());
     }
     
     private void adminViewSearchTabButtonEventHandler(ActionEvent event) {

@@ -58,10 +58,10 @@ public class InsuranceRegister {
      * Returns an ArrayList of customer ids belonging to customers who has an 
      * insurances of the specified type.
      * 
-     * @param type the specified type of insurance
+     * @param insuranceName the specified type of insurance
      * @return an ArrayList of customer ids
      */
-    public List<Integer> getCustomerIds(Class<?> type) {
+    public List<Integer> getCustomerIds(String insuranceName) {
         // Creates an ArrayList which will be returned at the end of the 
         // method.
         List<Integer> result = new ArrayList<>();
@@ -72,7 +72,7 @@ public class InsuranceRegister {
             Insurance insurance = iterator.next();
             // Appends the customer id of the insurance to the list if the 
             // insurance is of the specified type.
-            if(type.isInstance(insurance)) {
+            if(insurance.getName().equals(insuranceName)) {
                 result.add(insurance.getCustomerId());
             }
         }

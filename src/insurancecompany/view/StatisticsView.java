@@ -27,10 +27,9 @@ public class StatisticsView {
     private Scene scene;
     private BorderPane mainPane;
     
-    private ToggleButton customersButton;
-    private ToggleButton employeesButton;
-    private ToggleButton insurancesButton;
     private ToggleButton claimsButton;
+    private ToggleButton disbursementsButton;
+    private ToggleButton incomeButton;
     private ToggleGroup toggleGroup;
             
     public void show(Stage stage) {
@@ -51,21 +50,18 @@ public class StatisticsView {
         hbox.getStyleClass().add("insurancecompany/resources/css/stylesheet.css");
         hbox.setStyle("-fx-background-color: #6577A1;");
         hbox.setPrefSize(640, 20);
-        customersButton = new ToggleButton("Kunder");
-        customersButton.setId("subToolbarButton");
-        employeesButton = new ToggleButton("Ansatte");
-        employeesButton.setId("subToolbarButton");
-        insurancesButton = new ToggleButton("Forsikringer");
-        insurancesButton.setId("subToolbarButton");
         claimsButton = new ToggleButton("Skademeldinger");
         claimsButton.setId("subToolbarButton");
+        disbursementsButton = new ToggleButton("Utbetalinger");
+        disbursementsButton.setId("subToolbarButton");
+        incomeButton = new ToggleButton("Inntekter");
+        incomeButton.setId("subToolbarButton");
         toggleGroup = new ToggleGroup();
-        customersButton.setToggleGroup(toggleGroup);
-        employeesButton.setToggleGroup(toggleGroup);
-        insurancesButton.setToggleGroup(toggleGroup);
         claimsButton.setToggleGroup(toggleGroup);
+        disbursementsButton.setToggleGroup(toggleGroup);
+        incomeButton.setToggleGroup(toggleGroup);
         ObservableList<ToggleButton> buttons = FXCollections.observableArrayList ();
-        buttons.addAll(customersButton, employeesButton, insurancesButton, claimsButton);        
+        buttons.addAll(claimsButton, disbursementsButton, incomeButton);        
         hbox.getChildren().addAll(buttons);
        
         return hbox;
@@ -80,15 +76,15 @@ public class StatisticsView {
     // SET EVENT HANDLERS
     
     public void setCustomersButtonEventHandler(EventHandler<ActionEvent> value) {
-        customersButton.setOnAction(value);
+        claimsButton.setOnAction(value);
     }
     
     public void setEmployeesButtonEventHandler(EventHandler<ActionEvent> value) {
-        employeesButton.setOnAction(value);
+        disbursementsButton.setOnAction(value);
     }
     
     public void setInsurancesButtonEventHandler(EventHandler<ActionEvent> value) {
-        insurancesButton.setOnAction(value);
+        incomeButton.setOnAction(value);
     }
     
     public void setClaimsButtonEventHandler(EventHandler<ActionEvent> value) {

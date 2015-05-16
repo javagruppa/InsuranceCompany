@@ -324,8 +324,8 @@ public class SearchEmployees {
      * no employee type is selected.
      */
     public String getEmployeeType() {
-        return String.class.isInstance(employeeTypeCombo.getValue()) ?
-                null : employeeTypeCombo.getValue().toString();
+        return (EmployeeType.class.isInstance(employeeTypeCombo.getValue())) ?
+            ((EmployeeType)employeeTypeCombo.getValue()).toString() : null;
     }
     
     /** @param text The text to set in insuranceArea. */

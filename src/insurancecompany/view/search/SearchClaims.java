@@ -360,8 +360,8 @@ public class SearchClaims {
      * no claim type is selected.
      */
     public String getClaimType() {
-        return String.class.isInstance(claimTypeCombo.getValue()) ?
-                null : claimTypeCombo.getValue().toString();
+        return (ClaimType.class.isInstance(claimTypeCombo.getValue())) ?
+            ((ClaimType)claimTypeCombo.getValue()).toString() : null;
     }
     
     /** 

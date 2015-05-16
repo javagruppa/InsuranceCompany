@@ -346,8 +346,8 @@ public class SearchCustomers {
      * no insurance type is selected.
      */
     public String getInsuranceType() {
-        return String.class.isInstance(insuranceTypeCombo.getValue()) ?
-                null : insuranceTypeCombo.getValue().toString();
+        return (InsuranceType.class.isInstance(insuranceTypeCombo.getValue())) ?
+            ((InsuranceType)insuranceTypeCombo.getValue()).toString() : null;
     }
     
     /** @return True if totalCustomerCombo equals "Ja". */

@@ -173,29 +173,29 @@ public class MainController {
         // view controller. This is done to make the constructor of the 
         // controller cleaner.
         ArrayList<Object> views = new ArrayList<>();
-        views.add(0, registerBoatClaim);
-        views.add(1, registerCarClaim);
-        views.add(2, registerHolidayHomeClaim);
-        views.add(3, registerHolidayHomeContentClaim);
-        views.add(4, registerHomeClaim);
-        views.add(5, registerHomeContentClaim);
-        views.add(6, registerTravelClaim);
-        views.add(7, registerBoatInsurance);
-        views.add(8, registerCarInsurance);
-        views.add(9, registerHolidayHomeInsurance);
-        views.add(10, registerHolidayHomeContentInsurance);
-        views.add(11, registerHomeInsurance);
-        views.add(12, registerHomeContentInsurance);
-        views.add(13, registerTravelInsurance);
-        views.add(14, registerCustomer);
-        views.add(15, registerEmployee);
-        views.add(16, searchClaims);
-        views.add(17, searchCustomers);
-        views.add(18, searchEmployees);
-        views.add(19, searchInsurances);
-        views.add(20, statisticsClaims);
-        views.add(21, statisticsIncome);
-        views.add(22, statisticsDisbursements);
+        views.add(0, boatClaimRegistration);
+        views.add(1, carClaimRegistration);
+        views.add(2, holidayHomeClaimRegistration);
+        views.add(3, holidayHomeContentClaimRegistration);
+        views.add(4, homeClaimRegistration);
+        views.add(5, homeContentClaimRegistration);
+        views.add(6, travelClaimRegistration);
+        views.add(7, boatInsuranceRegistration);
+        views.add(8, carInsuranceRegistration);
+        views.add(9, holidayHomeInsuranceRegistration);
+        views.add(10, holidayHomeContentInsuranceRegistration);
+        views.add(11, homeInsuranceRegistration);
+        views.add(12, homeContentInsuranceRegistration);
+        views.add(13, travelInsuranceRegistration);
+        views.add(14, customerRegistration);
+        views.add(15, employeeRegistration);
+        views.add(16, claimSearchView);
+        views.add(17, customerSearchView);
+        views.add(18, employeeSearchView);
+        views.add(19, insuranceSearchView);
+        views.add(20, claimStatisticsView);
+        views.add(21, customerStatisticsView);
+        views.add(22, employeeStatisticsView);
                 
         // Controllers:
         this.modelController = new ModelController(bills, claims, customers, 
@@ -206,6 +206,8 @@ public class MainController {
         setBrandComboBox();
         initializeEventHandlers();
         
+        // Update all car insurance bonuses:
+        insurances.updateAllCarInusranceBonuses();
         // Update all total customer statuses:
         modelController.updateTotalCustomers();
         // Update all insurance payments:

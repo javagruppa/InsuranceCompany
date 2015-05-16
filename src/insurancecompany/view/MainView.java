@@ -48,7 +48,6 @@ public class MainView extends Application {
     private Pane statusBarPane;
     
     private ToggleButton registerTabButton;
-    private ToggleButton processTabButton;
     private ToggleButton searchTabButton;
     private ToggleButton statisticsTabButton;
     private ToggleGroup toggleGroup;
@@ -91,15 +90,12 @@ public class MainView extends Application {
         hbox.setStyle("-fx-background-color: #6577A1;");
         registerTabButton = new ToggleButton("Registrer");
         registerTabButton.setId("mainToolbarButton");
-        processTabButton = new ToggleButton("Behandle");
-        processTabButton.setId("mainToolbarButton");
         searchTabButton = new ToggleButton("Søk");
         searchTabButton.setId("mainToolbarButton");
         statisticsTabButton = new ToggleButton("Statistikk");
         statisticsTabButton.setId("mainToolbarButton");
         toggleGroup = new ToggleGroup();
         registerTabButton.setToggleGroup(toggleGroup);
-        processTabButton.setToggleGroup(toggleGroup);
         searchTabButton.setToggleGroup(toggleGroup);
         statisticsTabButton.setToggleGroup(toggleGroup);
         
@@ -116,7 +112,7 @@ public class MainView extends Application {
         HBox.setHgrow(hbox1, Priority.ALWAYS);
         
         Image ifLogo = new Image("insurancecompany/resources/images/if.png");
-        hbox.getChildren().addAll(new ImageView(ifLogo), registerTabButton, processTabButton, 
+        hbox.getChildren().addAll(new ImageView(ifLogo), registerTabButton, 
                 searchTabButton, statisticsTabButton);
         hbox.getChildren().add(hbox1);
         
@@ -143,10 +139,6 @@ public class MainView extends Application {
 
     public void setRegisterButtonEventHandler(EventHandler<ActionEvent> value) {
         registerTabButton.setOnAction(value);
-    }
-    
-    public void setProcessButtonEventHandler(EventHandler<ActionEvent> value) {
-        processTabButton.setOnAction(value);
     }
     
     public void setSearchButtonEventHandler(EventHandler<ActionEvent> value) {

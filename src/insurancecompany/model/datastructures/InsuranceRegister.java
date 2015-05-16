@@ -5,6 +5,7 @@
  */
 package insurancecompany.model.datastructures;
 
+import insurancecompany.model.insurances.CarInsurance;
 import insurancecompany.model.insurances.Insurance;
 import java.io.*;
 import java.util.ArrayList;
@@ -270,6 +271,21 @@ public class InsuranceRegister {
         }
         // Returns the result.
         return result;
+    }
+    
+    /***
+     * Updates all car insurance bonuses, where a year or more has gone since
+     * last update or damage.
+     */
+    public void updateAllCarInusranceBonuses() {
+        for (Insurance insurance : insurances) {
+            // Find all car insurances:
+            if (insurance instanceof CarInsurance) {
+                CarInsurance carInsurance = (CarInsurance) insurance;
+                // Increase the bonus (if one year has passed since last increase/damage
+                carInsurance.increaseBonus();
+            }
+        }
     }
     /**
      * Writes this registers set of insurances to file.

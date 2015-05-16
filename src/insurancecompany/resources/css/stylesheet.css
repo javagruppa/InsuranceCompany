@@ -142,9 +142,14 @@ and open the template in the editor.
 // eventually leads to.
 #innerPane {
     -fx-background-color: #E7E7FF;
-    -fx-padding: 25.0 10.0 5.0 10.0;
+    -fx-padding: 25.0 10.0 5.0 25.0; // 25 pixels padding from the top and right
     -fx-alignment: TOP_CENTER;
     -fx-hgap: 10;
+    -fx-vgap: 6;
+}
+
+#innerSubPane {
+    -fx-hgap: 5;
     -fx-vgap: 6;
 }
 

@@ -44,6 +44,7 @@ public class HomeContentInsurance extends Insurance
         this.coverage = coverage;
         this.property = property;
         this.type = type;
+        calculatePremium();
     }
     
     // GET METHODS

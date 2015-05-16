@@ -28,6 +28,7 @@ public class TravelInsurance extends Insurance implements Serializable {
             int excess) {
         super(customerId, excess);
         this.coverage = coverage;
+        calculatePremium();
     }
     
     // GET METHODS

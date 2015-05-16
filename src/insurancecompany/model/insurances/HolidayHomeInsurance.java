@@ -46,6 +46,7 @@ public class HolidayHomeInsurance extends Insurance
         this.property = property;
         this.rental = rental;
         this.type = type;
+        calculatePremium();
     }
     
     // GET METHODS

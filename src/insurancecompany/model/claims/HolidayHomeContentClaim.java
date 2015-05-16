@@ -54,7 +54,7 @@ public class HolidayHomeContentClaim extends Claim implements Serializable {
      */
     public HolidayHomeContentClaim(int customerId, int insuranceId, String description, 
             Calendar dateHappened, Set<Damage> damages, int appraisal, 
-            Image image, List<ClaimItem> items) {
+            List<ClaimItem> items, Image image) {
         super(customerId, insuranceId, description, dateHappened, damages, 
                 appraisal, image);
         this.items = items;

@@ -501,7 +501,7 @@ public class HomeContentClaimRegistration {
      /**
      * Sets the event handler for the add item button of this view.
      */
-    private void setAddItemButtonEventHandler(EventHandler<ActionEvent> event) {
+    public void setAddItemButtonEventHandler(EventHandler<ActionEvent> event) {
         addItemButton.setOnAction(event);
     }
     

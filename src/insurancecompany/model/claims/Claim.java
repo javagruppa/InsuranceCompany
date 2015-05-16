@@ -184,6 +184,14 @@ public abstract class Claim implements Serializable {
         return disbursement;
     }
     
+    /** @return The set of damages of this claim. */
+    public Set<Damage> getDamages() {
+        return damages;
+    }
+    
+    /** @return The type of claim in form of a String. */
+    public abstract String getName();
+    
     /**
      * Saves the next id to file
      * @throws IOException 

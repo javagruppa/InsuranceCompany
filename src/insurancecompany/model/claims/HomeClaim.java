@@ -1,5 +1,6 @@
 package insurancecompany.model.claims;
 
+import insurancecompany.misc.ClaimType;
 import insurancecompany.misc.coverages.Damage;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -52,6 +53,12 @@ public class HomeClaim extends Claim implements Serializable {
             Image image) {
         super(customerId, insuranceId, description, dateHappened, damages, 
                 appraisal, image);
+    }
+    
+    /** @return The type of claim in form of a String. */
+    @Override
+    public String getName() {
+        return ClaimType.HOME_CLAIM.toString();
     }
     
     

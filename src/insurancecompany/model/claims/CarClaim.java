@@ -1,5 +1,6 @@
 package insurancecompany.model.claims;
 
+import insurancecompany.misc.ClaimType;
 import insurancecompany.misc.coverages.Damage;
 import java.io.Serializable;
 import java.util.Calendar;
@@ -56,6 +57,12 @@ public class CarClaim extends Claim implements Serializable {
         super(customerId, insuranceId, description, dateHappened, damages, 
                 appraisal, image);
         this.claimForm = claimForm;
+    }
+    
+    /** @return The type of claim in form of a String. */
+    @Override
+    public String getName() {
+        return ClaimType.CAR_CLAIM.toString();
     }
     
     /**

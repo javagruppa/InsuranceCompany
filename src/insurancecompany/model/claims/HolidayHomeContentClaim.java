@@ -1,5 +1,6 @@
 package insurancecompany.model.claims;
 
+import insurancecompany.misc.ClaimType;
 import insurancecompany.misc.coverages.Damage;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -58,6 +59,12 @@ public class HolidayHomeContentClaim extends Claim implements Serializable {
         super(customerId, insuranceId, description, dateHappened, damages, 
                 appraisal, image);
         this.items = items;
+    }
+    
+    /** @return The type of claim in form of a String. */
+    @Override
+    public String getName() {
+        return ClaimType.HOLIDAY_HOME_CONTENT_CLAIM.toString();
     }
     
     /**

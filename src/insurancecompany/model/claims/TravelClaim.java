@@ -1,5 +1,6 @@
 package insurancecompany.model.claims;
 
+import insurancecompany.misc.ClaimType;
 import insurancecompany.misc.coverages.Damage;
 import java.io.Serializable;
 import java.util.Calendar;
@@ -69,6 +70,12 @@ public class TravelClaim extends Claim implements Serializable {
         this.creditCardBrand = creditCardBrand;
         this.country = country;
         this.items = items;
+    }
+    
+    /** @return The type of claim in form of a String. */
+    @Override
+    public String getName() {
+        return ClaimType.TRAVEL_CLAIM.toString();
     }
 
     /**

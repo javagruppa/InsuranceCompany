@@ -75,19 +75,15 @@ public class StatisticsView {
     
     // SET EVENT HANDLERS
     
-    public void setCustomersButtonEventHandler(EventHandler<ActionEvent> value) {
+    public void setClaimsButtonEventHandler(EventHandler<ActionEvent> value) {
         claimsButton.setOnAction(value);
     }
     
-    public void setEmployeesButtonEventHandler(EventHandler<ActionEvent> value) {
+    public void setDisbursementsButtonEventHandler(EventHandler<ActionEvent> value) {
         disbursementsButton.setOnAction(value);
     }
     
-    public void setInsurancesButtonEventHandler(EventHandler<ActionEvent> value) {
+    public void setIncomeButtonEventHandler(EventHandler<ActionEvent> value) {
         incomeButton.setOnAction(value);
-    }
-    
-    public void setClaimsButtonEventHandler(EventHandler<ActionEvent> value) {
-        claimsButton.setOnAction(value);
     }
 }

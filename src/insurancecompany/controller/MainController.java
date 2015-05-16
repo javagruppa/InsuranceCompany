@@ -3810,7 +3810,46 @@ public class MainController {
     }
     
     private void searchEmployeesSearchEventHandler(ActionEvent event ) {
+        // Clears all messages:
+        searchEmployees.clearMessages();
         
+        // Declares variables to be converted to:
+        int employeeId = 0;
+        
+        // Collects information about the search terms:
+        String number = searchEmployees.getNumber();
+        String firstName = searchEmployees.getFirstName();
+        String lastName = searchEmployees.getLastName();
+        String type = searchEmployees.getEmployeeType();
+        boolean active = searchEmployees.getActive();
+        
+        // Validates and converts input:
+        if(!number.equals("")) {
+            if(searchEmployees.isEmployeeIdSelected()) {
+                try {
+                    employeeId = Integer.parseInt(number);
+                } catch(NumberFormatException nfe) {
+                    searchEmployees.setIdMessage(CUSTOMERID_FORMAT_MESSAGE);
+                    return;
+                }
+            } else {
+                employeeId = employees.findEmployeeIdByPersonalNumber(number);
+            }
+        }
+        
+        // Searches through the register:
+        List<Employee> employeeList;
+        if (employeeId != 0) {
+            employeeList = new ArrayList<>();
+            employeeList.add(employees.getEmployeeById(employeeId));
+        } else {
+            // Finds the customers who pass the other search terms:
+            employeeList = employees.getEmployees(employeeId, firstName, 
+                    lastName, type, active);
+        }
+        
+        // Populates the table:
+        searchEmployees.populateEmployeesTable(employeeList);
     }
     
     private void searchEmployeesSelectEventHandler(ActionEvent event ) {

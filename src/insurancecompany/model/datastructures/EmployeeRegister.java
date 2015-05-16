@@ -113,12 +113,12 @@ public class EmployeeRegister {
         return result;
     }
     
-    public Employee findEmployeeByPersonalNumber(String personalNumber) {
+    public int findEmployeeIdByPersonalNumber(String personalNumber) {
         for (Employee employee : employees) {
             if (employee.getPersonalNumber().equals(personalNumber)) {
-                return employee;
+                return employee.getId();
             }
         }
-        return null;
+        return 0;
     }
 }

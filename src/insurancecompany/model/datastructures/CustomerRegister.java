@@ -122,8 +122,8 @@ public class CustomerRegister {
             if ((customerId == 0 || customerId == customer.getId())
                     && (firstName.equals("") || 
                             firstName.equals(customer.getFirstName()))
-                    && (lastName.equals("")) ||
-                            lastName.equals(customer.getLastName())
+                    && ((lastName.equals("")) ||
+                            lastName.equals(customer.getLastName()))
                     && (!total || customer.isTotalCustomer())
                     && (!active || customer.isActive())) {
                 result.add(customer);

@@ -61,10 +61,10 @@ public class InsuranceRegister {
      * @param insuranceName the specified type of insurance
      * @return an ArrayList of customer ids
      */
-    public List<Integer> getCustomerIds(String insuranceName) {
+    public List<Object> getCustomerIds(String insuranceName) {
         // Creates an ArrayList which will be returned at the end of the 
         // method.
-        List<Integer> result = new ArrayList<>();
+        List<Object> result = new ArrayList<>();
         // Creates an iterator for the list.
         Iterator<Insurance> iterator = insurances.iterator();
         // Runs through the whole list.

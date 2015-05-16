@@ -95,37 +95,37 @@ public class ViewController {
         this.personsView = new RegisterPersons();
         
         // Claim Registration Views:
-        this.boatClaimRegistration = (RegisterBoatClaim) views.get(3);
-        this.carClaimRegistration = (RegisterCarClaim) views.get(4);
-        this.holidayHomeClaimRegistration = (RegisterHolidayHomeClaim) views.get(5);
-        this.holidayHomeContentClaimRegistration = (RegisterHolidayHomeContentClaim) views.get(6);
-        this.homeClaimRegistration = (RegisterHomeClaim) views.get(7);
-        this.homeContentClaimRegistration = (RegisterHomeContentClaim) views.get(8);
-        this.travelClaimRegistration = (RegisterTravelClaim) views.get(9);
+        this.boatClaimRegistration = (RegisterBoatClaim) views.get(0);
+        this.carClaimRegistration = (RegisterCarClaim) views.get(1);
+        this.holidayHomeClaimRegistration = (RegisterHolidayHomeClaim) views.get(2);
+        this.holidayHomeContentClaimRegistration = (RegisterHolidayHomeContentClaim) views.get(3);
+        this.homeClaimRegistration = (RegisterHomeClaim) views.get(4);
+        this.homeContentClaimRegistration = (RegisterHomeContentClaim) views.get(5);
+        this.travelClaimRegistration = (RegisterTravelClaim) views.get(6);
         
         // Insurance Registration Views:
-        this.boatInsuranceRegistration = (RegisterBoatInsurance) views.get(10);
-        this.carInsuranceRegistration = (RegisterCarInsurance) views.get(11);
-        this.holidayHomeInsuranceRegistration = (RegisterHolidayHomeInsurance) views.get(12);
-        this.holidayHomeContentInsuranceRegistration = (RegisterHolidayHomeContentInsurance) views.get(13);
-        this.homeInsuranceRegistration = (RegisterHomeInsurance) views.get(14);
-        this.homeContentInsuranceRegistration = (RegisterHomeContentInsurance) views.get(15);
-        this.travelInsuranceRegistration = (RegisterTravelInsurance) views.get(16);
+        this.boatInsuranceRegistration = (RegisterBoatInsurance) views.get(7);
+        this.carInsuranceRegistration = (RegisterCarInsurance) views.get(8);
+        this.holidayHomeInsuranceRegistration = (RegisterHolidayHomeInsurance) views.get(9);
+        this.holidayHomeContentInsuranceRegistration = (RegisterHolidayHomeContentInsurance) views.get(10);
+        this.homeInsuranceRegistration = (RegisterHomeInsurance) views.get(11);
+        this.homeContentInsuranceRegistration = (RegisterHomeContentInsurance) views.get(12);
+        this.travelInsuranceRegistration = (RegisterTravelInsurance) views.get(13);
         
         // Person Registration Views:
-        this.customerRegistration = (RegisterCustomer) views.get(17);
-        this.employeeRegistration = (RegisterEmployee) views.get(18);
+        this.customerRegistration = (RegisterCustomer) views.get(14);
+        this.employeeRegistration = (RegisterEmployee) views.get(15);
     
         // Search Views:
-        this.claimSearchView = (SearchClaims) views.get(19);
-        this.customerSearchView = (SearchCustomers) views.get(20);
-        this.employeeSearchView = (SearchEmployees) views.get(21);
-        this.insuranceSearchView = (SearchInsurances) views.get(22);
+        this.claimSearchView = (SearchClaims) views.get(16);
+        this.customerSearchView = (SearchCustomers) views.get(17);
+        this.employeeSearchView = (SearchEmployees) views.get(18);
+        this.insuranceSearchView = (SearchInsurances) views.get(19);
 
         // Statistics Views:
-        this.claimStatisticsView = (StatisticsClaims) views.get(23);
-        this.customerStatisticsView = (StatisticsIncome) views.get(24);
-        this.employeeStatisticsView = (StatisticsDisbursements) views.get(25);
+        this.claimStatisticsView = (StatisticsClaims) views.get(20);
+        this.customerStatisticsView = (StatisticsIncome) views.get(21);
+        this.employeeStatisticsView = (StatisticsDisbursements) views.get(22);
         
         initializeEventHandlers();
     } // end of sole constructor

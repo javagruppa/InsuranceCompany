@@ -173,29 +173,29 @@ public class MainController {
         // controllers. This is done to make the constructor of the controllers
         // cleaner.
         ArrayList<Object> views = new ArrayList<>();
-        views.add(3, boatClaimRegistration);
-        views.add(4, carClaimRegistration);
-        views.add(5, holidayHomeClaimRegistration);
-        views.add(6, holidayHomeContentClaimRegistration);
-        views.add(7, homeClaimRegistration);
-        views.add(8, homeContentClaimRegistration);
-        views.add(9, travelClaimRegistration);
-        views.add(10, boatInsuranceRegistration);
-        views.add(11, carInsuranceRegistration);
-        views.add(12, holidayHomeInsuranceRegistration);
-        views.add(13, holidayHomeContentInsuranceRegistration);
-        views.add(14, homeInsuranceRegistration);
-        views.add(15, homeContentInsuranceRegistration);
-        views.add(16, travelInsuranceRegistration);
-        views.add(17, customerRegistration);
-        views.add(18, employeeRegistration);
-        views.add(19, claimSearchView);
-        views.add(20, customerSearchView);
-        views.add(21, employeeSearchView);
-        views.add(22, insuranceSearchView);
-        views.add(23, claimStatisticsView);
-        views.add(24, customerStatisticsView);
-        views.add(25, employeeStatisticsView);
+        views.add(0, boatClaimRegistration);
+        views.add(1, carClaimRegistration);
+        views.add(2, holidayHomeClaimRegistration);
+        views.add(3, holidayHomeContentClaimRegistration);
+        views.add(4, homeClaimRegistration);
+        views.add(5, homeContentClaimRegistration);
+        views.add(6, travelClaimRegistration);
+        views.add(7, boatInsuranceRegistration);
+        views.add(8, carInsuranceRegistration);
+        views.add(9, holidayHomeInsuranceRegistration);
+        views.add(10, holidayHomeContentInsuranceRegistration);
+        views.add(11, homeInsuranceRegistration);
+        views.add(12, homeContentInsuranceRegistration);
+        views.add(13, travelInsuranceRegistration);
+        views.add(14, customerRegistration);
+        views.add(15, employeeRegistration);
+        views.add(16, claimSearchView);
+        views.add(17, customerSearchView);
+        views.add(18, employeeSearchView);
+        views.add(19, insuranceSearchView);
+        views.add(20, claimStatisticsView);
+        views.add(21, customerStatisticsView);
+        views.add(22, employeeStatisticsView);
                 
         // Controllers:
         this.modelController = new ModelController(bills, claims, customers, 

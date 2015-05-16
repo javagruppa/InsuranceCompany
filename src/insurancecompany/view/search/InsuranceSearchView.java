@@ -220,7 +220,7 @@ public class InsuranceSearchView {
         insuranceTypeCombo.setPrefWidth(150);
     }
     
-    /** Sets the content of the ComboBox selectNumberCombo. */
+    /** Sets the content of the ComboBox numberSelectCombo. */
     private void populateNumberSelectCombo() {
         ObservableList<String> obList = FXCollections.observableArrayList();  
         obList.addAll("Kundenummer", "Personnummer");

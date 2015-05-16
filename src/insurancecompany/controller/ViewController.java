@@ -46,11 +46,6 @@ public class ViewController {
     private InsurancesView insurancesView;
     private PersonsView personsView;
   
-    // Process Views:
-    private BillsProcessView billsProcessView;
-    private ClaimsProcessView claimsProcessView;
-    private SubscriptionsProcessView subscriptionsProcessView;
-    
     // Claim Registration Views:
     private BoatClaimRegistration boatClaimRegistration;
     private CarClaimRegistration carClaimRegistration;
@@ -101,20 +96,10 @@ public class ViewController {
         this.searchView = new SearchView();
         this.statisticsView = new StatisticsView();
         
-        // Initializes Sub-Tab Views for RegisterView
-        this.billsProcessView = new BillsProcessView();
-        this.claimsProcessView = new ClaimsProcessView();
-        this.subscriptionsProcessView = new SubscriptionsProcessView();
-        
         // Initializes Sub-Tab Views for ProcessView
         this.claimsView = new ClaimsView();
         this.insurancesView = new InsurancesView();
         this.personsView = new PersonsView();
-        
-        // Process Views:
-        this.billsProcessView = (BillsProcessView) views.get(0);
-        this.claimsProcessView = (ClaimsProcessView) views.get(1);
-        this.subscriptionsProcessView = (SubscriptionsProcessView) views.get(2);
         
         // Claim Registration Views:
         this.boatClaimRegistration = (BoatClaimRegistration) views.get(3);

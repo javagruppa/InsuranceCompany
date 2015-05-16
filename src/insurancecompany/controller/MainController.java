@@ -20,7 +20,6 @@ import insurancecompany.model.people.*;
 import insurancecompany.model.properties.*;
 import insurancecompany.model.vehicles.*;
 import insurancecompany.view.modules.*;
-import insurancecompany.view.process.*;
 import insurancecompany.view.register.claims.*;
 import insurancecompany.view.register.insurances.*;
 import insurancecompany.view.register.persons.*;
@@ -67,11 +66,6 @@ public class MainController {
     
     // Modules:
     private AdminView adminView;
-    
-    // Process Views:
-    private BillsProcessView billsProcessView;
-    private ClaimsProcessView claimsProcessView;
-    private SubscriptionsProcessView subscriptionsProcessView;
     
     // Claim Registration Views:
     private BoatClaimRegistration boatClaimRegistration;
@@ -143,11 +137,6 @@ public class MainController {
         // Modules:
         this.adminView = new AdminView();
     
-        // Process Views:
-        this.billsProcessView = new BillsProcessView();
-        this.claimsProcessView = new ClaimsProcessView();
-        this.subscriptionsProcessView = new SubscriptionsProcessView();
-        
         // Claim Registration Views:
         this.boatClaimRegistration = new BoatClaimRegistration();
         this.carClaimRegistration = new CarClaimRegistration();
@@ -186,9 +175,6 @@ public class MainController {
         // controllers. This is done to make the constructor of the controllers
         // cleaner.
         ArrayList<Object> views = new ArrayList<>();
-        views.add(0, billsProcessView);
-        views.add(1, claimsProcessView);
-        views.add(2, subscriptionsProcessView);
         views.add(3, boatClaimRegistration);
         views.add(4, carClaimRegistration);
         views.add(5, holidayHomeClaimRegistration);

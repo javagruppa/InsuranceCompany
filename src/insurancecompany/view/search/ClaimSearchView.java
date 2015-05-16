@@ -1,173 +1,407 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package insurancecompany.view.search;
 
 import insurancecompany.misc.ClaimType;
+import insurancecompany.misc.DateUtility;
+import insurancecompany.misc.InsuranceType;
+import insurancecompany.misc.coverages.Damage;
+import insurancecompany.model.claims.Claim;
+import insurancecompany.model.insurances.Insurance;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.RowConstraints;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
 /**
- *
- * @author André
+ * This class creates the graphical user interface (GUI) for searching after 
+ * claims. It creates a pane which is sent to the controller and thereafter
+ * displayed.
+ * 
+ * <p> The pane consists of three parts; one to the left, one in the center and
+ * one to the right.
+ * 
+ * <p> On the left the user inputs the search terms or criteria. These are
+ * sent through get methods to the controller, which validates them and 
+ * executes the search.
+ * 
+ * <p> In the center a table with the result is shown. The user can select one 
+ * of these claims for further examination. There are also buttons for showing
+ * image attachments and the claim form.
+ * 
+ * <p> On the right the claim selected in the table is shown. It consists of
+ * two parts. The upper part shows the information about the claim itself, 
+ * while the bottom part shows information about the insurance that covers the 
+ * claim.
+ * 
+ * @author Sindre
  */
 public class ClaimSearchView {
     
-    // Decalaration of the Gridpane and Scene.
-    private GridPane gridPane;
-    private BorderPane mainPane;
-    private Scene scene;
+    // Declaration of the main pane which is sent to the controller.
+    private GridPane mainPane;
     
-    private DatePicker dateFromDatePicker;
-    private DatePicker dateToDatePicker;
+    // Declaration of the three parts of the main pane.
+    private GridPane leftPane;
+    private GridPane centerPane;
+    private GridPane rightPane;
     
-    // Declaration of all TextField and ComboBoxes
+    // Declaration of all the nodes in the left part.
+    private Button searchButton;
+    private ComboBox<Object> claimTypeCombo;
+    private ComboBox<Object> damageCombo;
+    private ComboBox<String> numberSelectCombo;
+    private DatePicker fromDatePicker;
+    private DatePicker toDatePicker;
+    private Text idMessage;
     private TextField claimIdField;
-    private TextField customerIdField;
+    private TextField numberField;
     private TextField insuranceIdField;
-    private ComboBox claimTypeCombo;
     
-    // Decalaration all Buttons.
-    private Button searchClaimIdButton;
-    private Button searchCustomerIdButton;
-    private Button searchInsuranceIdButton;
-    private Button searchClaimTypeButton;
+    // Declaration of all the nodes in the center part.
+    private Button formButton;
+    private Button imageButton;
+    private Button selectButton;
+    private TableView<Claim> claimsTable;
+    private TableColumn<Claim, String> claimTypeColumn;
+    private TableColumn<Claim, Integer> claimIdColumn;
+    private TableColumn<Claim, Integer> customerIdColumn;
+    private Text selectMessage;
     
-    private TableView table;
+    // Declaration of all the nodes in the right part.
+    private Button disbursementButton;
+    private TextArea claimArea;
+    private TextArea insuranceArea;
+    private TextField disbursementField;
     
-    private TextArea textArea;
-    
-    // Constrcutor
+    /**
+     * Default constructor. Initializes all field and sets up the view.
+     */
     public ClaimSearchView() {
         
-        // Sets up the mainPane and scene.
-        buildMainPane();
-
-    }
-    
-    public void buildMainPane() {
-        // Sets up the mainPane
-        gridPane = new GridPane();
-        mainPane = new BorderPane();
+        // Initialization of the panes.
+        mainPane = new GridPane();
+        leftPane = new GridPane();
+        centerPane = new GridPane();
+        rightPane = new GridPane();
+        
+        // Adds the three parts to the main pane.
+        mainPane.add(leftPane, 0, 0);
+        mainPane.add(centerPane, 1, 0);
+        mainPane.add(rightPane, 2, 0);
+        
+        // Sets the CSS ID to the panes.
         mainPane.setId("innerPane");
-                // Column constraints for the gridpane
-        ColumnConstraints col0 = new ColumnConstraints(140); // gap
-        ColumnConstraints col1 = new ColumnConstraints(200); // first field
-        ColumnConstraints col2 = new ColumnConstraints(100); // gap
-        ColumnConstraints col3 = new ColumnConstraints(100); // gap
-        ColumnConstraints col4 = new ColumnConstraints(100); // second field
-        ColumnConstraints col5 = new ColumnConstraints(10); // gap
-        ColumnConstraints col6 = new ColumnConstraints(100); // third field
-        ColumnConstraints col7 = new ColumnConstraints(10); // gap
-        ColumnConstraints col8 = new ColumnConstraints(100); // fourth field
-        ColumnConstraints col9 = new ColumnConstraints(5); // gap
-        ColumnConstraints col10 = new ColumnConstraints(100); // fifth field
-        // Add these constraints:
-        gridPane.getColumnConstraints().addAll(col0, col1, col2, col3, col4, col5, col6, col7, col8, col9, col10);
-        // Row constraints for the gridpane
-        RowConstraints row0 = new RowConstraints(65); // gap
-        RowConstraints row1 = new RowConstraints(50); // Skadedato, skadested
-        RowConstraints row2 = new RowConstraints(17); // gap
-        RowConstraints row3 = new RowConstraints(55); // Vitner
-        RowConstraints row4 = new RowConstraints(27); // gap
-        RowConstraints row5 = new RowConstraints(50); // Etternavn
-        RowConstraints row6 = new RowConstraints(30); // Fornavn, fødselsnummer
-        RowConstraints row7 = new RowConstraints(35); // Adresse
-        RowConstraints row8 = new RowConstraints(38); // Postnr
-        RowConstraints row9 = new RowConstraints(38); // Telefon
-        RowConstraints row10 = new RowConstraints(36); // Epost
-        RowConstraints row11 = new RowConstraints(42); // Regnr
-        RowConstraints row12 = new RowConstraints(38); // Merke
-        RowConstraints row13 = new RowConstraints(38); // empty
-        // Add these constraints:
-        gridPane.getRowConstraints().addAll(row0, row1, row2, row3, row4, row5, 
-                row6, row7, row8, row9, row10, row11, row12, row13);
+        leftPane.setId("innerPane");
+        centerPane.setId("innerPane");
+        rightPane.setId("innerPane");
         
-        Text searchClaimTitle = new Text("Søk etter skade:");
+        // Sets up column constraints. The width is in pixels.
+        ColumnConstraints col1 = new ColumnConstraints(400);
+        ColumnConstraints col2 = new ColumnConstraints(400);
+        ColumnConstraints col3 = new ColumnConstraints(400);
+        mainPane.getColumnConstraints().addAll(col1, col2, col3);
         
-        // Initialize all Label messages:
-        Label claimIdLabel = new Label("Skademeldingsnummer:");
-        Label customerIdLabel = new Label("Kundenummer:");
-        Label insuranceIdLabel = new Label("Forsikringsnummer:");
-        Label claimTypeLabel = new Label("Skademelding type:");
-        
-        // Initialize all ComboBoxes and TextFields:
+        // Initialization of all the nodes in the left part.
+        searchButton = new Button("Søk");
+        claimTypeCombo = new ComboBox<>();
+        populateClaimTypeCombo();
+        damageCombo = new ComboBox<>();
+        damageCombo.setPrefWidth(150);
+        numberSelectCombo = new ComboBox<>();
+        populateNumberSelectCombo();
+        fromDatePicker = new DatePicker();
+        fromDatePicker.setPrefWidth(150);
+        DateUtility.restrictDatePickerToOlder(fromDatePicker);
+        toDatePicker = new DatePicker();
+        toDatePicker.setPrefWidth(150);
+        DateUtility.restrictDatePickerToOlder(toDatePicker);
+        idMessage = new Text("");
         claimIdField = new TextField();
-        customerIdField = new TextField();
+        numberField = new TextField();
         insuranceIdField = new TextField();
-        claimTypeCombo = createClaimTypeCombo();
+
+        // Initialization of all the nodes in the center part.
+        formButton = new Button("Skademeldingsskjema");
+        imageButton = new Button("Bilder");
+        selectButton = new Button("Velg skademelding");
+        claimsTable = new TableView();
+        claimsTable.setPrefWidth(400);
+        claimTypeColumn = new TableColumn<>("Skademelding");
+        claimIdColumn = new TableColumn<>("Skademelding ID");
+        customerIdColumn = new TableColumn<>("Kunde ID");
+        claimsTable.getColumns().addAll(claimTypeColumn, 
+                claimIdColumn, customerIdColumn);
+        claimsTable.setColumnResizePolicy(
+                TableView.CONSTRAINED_RESIZE_POLICY);
+        selectMessage = new Text("");
+
+        // Initialization of all the nodes in the right part.
+        disbursementButton = new Button("Sett erstatningsbeløp");
+        claimArea = new TextArea();
+        insuranceArea = new TextArea();
+        disbursementField = new TextField();
         
-        // Initialize all Buttons:
-        searchClaimIdButton = new Button("Søk");
-        searchCustomerIdButton = new Button("Søk");
-        searchInsuranceIdButton = new Button("Søk");
-        searchClaimTypeButton = new Button("Søk");
+        // Initialization of all the texts and labels which are used in the 
+        // view. Many of them aren't fields.
+        Text claimIdTitle = new Text("Velg en skademelding i registeret:");
+        claimIdTitle.setId("textTitle");
+        Text searchTermsTitle = new Text("Eller bruk søkebetingelser:");
+        searchTermsTitle.setId("textTitle");
+        Text claimsTitle = new Text("Skademeldinger:");
+        claimsTitle.setId("textTitle");
+        Text claimTitle = new Text("Valgt skademelding:");
+        claimTitle.setId("textTitle");
+        Text insuranceTitle = new Text("Forsikring:");
+        insuranceTitle.setId("textTitle");
+        Label claimIdLabel = new Label("Skademeldingsnummer:");
+        Label claimTypeLabel = new Label("Skadetype:");
+        Label damageLabel = new Label("Skade:");
+        Label insuranceIdLabel = new Label("Forsikringsnummer:");
+        Label fromDateLabel = new Label("Fra skadedato:");
+        Label toDateLabel = new Label("Til skadedato:");
         
-        // Initialize tableview:
-        table = new TableView();
+        // Adds the nodes to the left part.
+        leftPane.add(claimIdTitle, 0, 0, 2, 1);
+        leftPane.add(claimIdLabel, 0, 1);
+        leftPane.add(claimIdField, 1, 1);
+        leftPane.add(new Text(""), 0, 2); // Creates a blank row.
+        leftPane.add(searchTermsTitle, 0, 3, 2, 1);
+        leftPane.add(numberSelectCombo, 0, 4);
+        leftPane.add(numberField, 1, 4);
+        leftPane.add(claimTypeLabel, 0, 5);
+        leftPane.add(claimTypeCombo, 1, 5);
+        leftPane.add(damageLabel, 0, 6);
+        leftPane.add(damageCombo, 1, 6);
+        leftPane.add(insuranceIdLabel, 0, 7);
+        leftPane.add(insuranceIdField, 1, 7);
+        leftPane.add(fromDateLabel, 0, 8);
+        leftPane.add(fromDatePicker, 1, 8);
+        leftPane.add(toDateLabel, 0, 9);
+        leftPane.add(toDatePicker, 1, 9);
+        leftPane.add(searchButton, 1, 10);
+        leftPane.add(idMessage, 0, 11, 2, 1);
         
+        // Adds the nodes to the center part.
+        centerPane.add(claimsTitle, 0, 0, 2, 1);
+        centerPane.add(claimsTable, 0, 1, 2, 1);
+        centerPane.add(formButton, 0, 2);
+        centerPane.add(imageButton, 1, 2);
+        centerPane.add(selectButton, 0, 3, 2, 1);
+        centerPane.add(selectMessage, 0, 4, 2, 1);
         
-        // Adds all elements to the mainPane:
-       // gridPane.add()
-        gridPane.add(customerIdLabel, 0, 0);
-        gridPane.add(customerIdField, 1, 0);
-        gridPane.add(searchCustomerIdButton, 2, 0);
-        
-        gridPane.add(insuranceIdLabel, 0, 1);
-        gridPane.add(insuranceIdField, 1, 1);
-        gridPane.add(searchInsuranceIdButton, 2, 1);
-        
-        gridPane.add(claimTypeLabel, 0, 2);
-        gridPane.add(claimTypeCombo, 1, 2);
-        gridPane.add(searchClaimTypeButton, 2, 2);
+        // Adds the nodes to the right part.
+        rightPane.add(claimTitle, 0, 0, 2, 1);
+        rightPane.add(claimArea, 0, 1, 2, 1);
+        rightPane.add(insuranceTitle, 0, 2, 2, 1);
+        rightPane.add(insuranceArea, 0, 3, 2, 1);
+        rightPane.add(disbursementField, 0, 4);
+        rightPane.add(disbursementButton, 1, 4);
     }
     
-    public ComboBox createClaimTypeCombo() {
-        ComboBox cb = new ComboBox();
+    /** Sets the content of the ComboBox claimTypeCombo. */
+    private void populateClaimTypeCombo() {
         ObservableList<ClaimType> obList;
-        obList = FXCollections.observableArrayList(ClaimType.values()); 
-        // Default value to all claims:
-        final String allDamages = "Alle skademeldinger";
-        cb.setValue(allDamages);
-        // Set this String as a selectable option:
-        cb.getItems().addAll(allDamages);
-        cb.getItems().addAll(obList);
-        
-        return cb;
+        obList = FXCollections.observableArrayList(ClaimType.values());
+        claimTypeCombo.getItems().add("");
+        claimTypeCombo.getItems().addAll(obList);
+        claimTypeCombo.setPrefWidth(150);
     }
     
-    public Pane getMainPane() {
+    /** Sets the content of the ComboBox damageCombo. */
+    public void populateDamageCombo(Damage[] damages) {
+        damageCombo.setValue("");
+        damageCombo.setPrefWidth(150);
+        if (damages == null) {
+            damageCombo.getItems().setAll("");
+        } else {
+            ObservableList<Damage> obList;
+            obList = FXCollections.observableArrayList(damages);
+            damageCombo.getItems().setAll("");
+            damageCombo.getItems().addAll(obList);
+        }
+    }
+    
+    /** Sets the content of the ComboBox numberSelectCombo. */
+    private void populateNumberSelectCombo() {
+        ObservableList<String> obList = FXCollections.observableArrayList();  
+        obList.addAll("Kundenummer", "Personnummer");
+        numberSelectCombo.getItems().setAll(obList);
+        numberSelectCombo.setValue("Kundenummer");
+        numberSelectCombo.setPrefWidth(150);
+    }
+    
+    /**
+     * Sets the content of the TableView claimssTable. The table will 
+     * consist of the claims in the parameter list.
+     * 
+     * @param claims The list of claims which will be displayed in the 
+     * table.
+     */
+    public void populateClaimsTable(List<Claim> claims) {
+        // Creates an observable list from the recieved claim list.
+        ObservableList<Claim> obList 
+                = FXCollections.observableArrayList(claims);
+        // Places this list in the claim table view.
+        claimsTable.setItems(obList);
+        // Places a SimpleStringProperty version of the claim type in the 
+        // first column.
+        /*claimTypeColumn.setCellValueFactory(cellData -> {
+            if ( cellData.getValue() != null) {
+                return new SimpleStringProperty(cellData.getValue().getName());
+            } else {
+                return new SimpleStringProperty("<no name>");
+            }
+        });*/
+        // Places a SimpleStringProperty version of the insurance ID in the 
+        // second column.
+        claimIdColumn.setCellValueFactory(cellData -> {
+            if ( cellData.getValue() != null) {
+                return new SimpleObjectProperty<>(cellData.getValue()
+                        .getInsuranceId());
+            } else {
+                return new SimpleObjectProperty(0);
+            }
+        });
+        // Places a SimpleStringProperty version of the customer ID in the 
+        // third column.
+        customerIdColumn.setCellValueFactory(cellData -> {
+            if ( cellData.getValue() != null) {
+                return new SimpleObjectProperty<>(cellData.getValue()
+                        .getCustomerId());
+            } else {
+                return new SimpleObjectProperty(0);
+            }
+        });
+    }
+    
+    
+    /**
+     * Sets the event handler for the damageCombo.
+     * 
+     * @param value The event handler to set.
+     */
+    public void setClaimTypeEventHandler(EventHandler<ActionEvent> value) {
+        claimTypeCombo.setOnAction(value);
+    }
+    
+    
+    /**
+     * Sets the event handler for the searchButton.
+     * 
+     * @param value The event handler to set.
+     */
+    public void setSearchEventHandler(EventHandler<ActionEvent> value) {
+        searchButton.setOnAction(value);
+    }
+
+    /**
+     * Sets the event handler for the selectButton.
+     * 
+     * @param value The event handler to set.
+     */
+    public void setSelectEventHandler(EventHandler<ActionEvent> value) {
+        selectButton.setOnAction(value);
+    }
+    
+    /** @return The main pane of this class as a GridPane. */
+    public GridPane getMainPane() {
         return mainPane;
     }
     
-    public void show(Stage stage) {
-        stage.setTitle("Registrering av båtforsikring.");
-        stage.setScene(scene);
-        stage.show();
+    /** @return The number of this class as a String. */
+    public String getNumber() {
+        return numberField.getText();
     }
-
-    public void setCalculateButtonEventHandler(EventHandler<ActionEvent> value) {
-        //calculateButton.setOnAction(value);
+    
+    /** @return True if customer ID is selected in numberSelectCombo. */
+    public boolean isCustomerIdSelected() {
+        return numberSelectCombo.getValue().equals("Kundenummer");
     }
-
+    
+    /** @return The insurance ID of this class as a String. */
+    public String getInsuranceId() {
+        return insuranceIdField.getText();
+    }
+    
+    /** 
+     * @return The selected value of insurancesTable as an Insurance. Null if 
+     * no insurance is selected.
+     */
+    public Claim getInsurancesTableValue() {
+        return claimsTable.getSelectionModel() == null ? null : 
+                claimsTable.getSelectionModel().getSelectedItem();
+    }
+    
+    /** 
+     * @return The claim type of this class as a ClaimType. Null if
+     * no claim type is selected.
+     */
+    public ClaimType getClaimType() {
+        return String.class.isInstance(claimTypeCombo.getValue()) ?
+                null : (ClaimType) claimTypeCombo.getValue();
+    }
+    
+    /**
+     * @return The from date of this class as a Calendar. Null if no from date
+     * is selected.
+     */
+    public Calendar getFromDate() {
+        return fromDatePicker.getValue() != null ? 
+        DateUtility.LocalDateToCalendar(fromDatePicker.getValue()) : null;
+    }
+    
+    /**
+     * @return The to date of this class as a Calendar. Null if no to date
+     * is selected.
+     */
+    public Calendar getToDate() {
+        return toDatePicker.getValue() != null ? 
+        DateUtility.LocalDateToCalendar(toDatePicker.getValue()) : null;
+    }
+    
+    /** @param text The text to set in insuranceArea. */
+    public void setInsuranceArea(String text) {
+        claimArea.setText(text);
+    }
+    
+    /** Clears the areas, the table and removes the selected table option. */
+    public void clearView() {
+        setInsuranceArea("");
+        populateClaimsTable(new ArrayList<>());
+        claimsTable.getSelectionModel().clearSelection();
+    }
+    
+    /** @param message The message to set. */
+    public void setIdMessage(String message) {
+        this.idMessage.setFill(Color.FIREBRICK);
+        this.idMessage.setText(message);
+    }
+    
+    /** @param message The message to set. */
+    public void setSelectMessage(String message) {
+        this.selectMessage.setFill(Color.FIREBRICK);
+        this.selectMessage.setText(message);
+    }
+    
+    /** Clears all messages. */
+    public void clearMessages() {
+        this.idMessage.setText("");
+        this.selectMessage.setText("");
+    }
 }

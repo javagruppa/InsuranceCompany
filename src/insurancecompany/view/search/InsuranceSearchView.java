@@ -134,6 +134,7 @@ public class InsuranceSearchView {
         // Initialization of all the nodes in the center part.
         selectButton = new Button("Velg forsikring");
         insurancesTable = new TableView();
+        insurancesTable.setPrefWidth(400);
         insuranceTypeColumn = new TableColumn<>("Forsikring");
         customerIdColumn = new TableColumn<>("Kunde ID");
         insuranceIdColumn = new TableColumn<>("Forsikring ID");

@@ -119,6 +119,7 @@ public class CustomerSearchView {
         // Initialization of all the nodes in the center part.
         selectButton = new Button("Velg kunde");
         customersTable = new TableView();
+        customersTable.setPrefWidth(400);
         firstNameColumn = new TableColumn<>("Fornavn");
         lastNameColumn = new TableColumn<>("Etternavn");
         customerIdColumn = new TableColumn<>("Kunde ID");

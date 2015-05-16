@@ -118,6 +118,7 @@ public class EmployeeSearchView {
         // Initialization of all the nodes in the center part.
         selectButton = new Button("Velg kunde");
         employeesTable = new TableView();
+        employeesTable.setPrefWidth(400);
         firstNameColumn = new TableColumn<>("Fornavn");
         lastNameColumn = new TableColumn<>("Etternavn");
         employeeIdColumn = new TableColumn<>("Kunde ID");

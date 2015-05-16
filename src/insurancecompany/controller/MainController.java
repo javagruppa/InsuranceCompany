@@ -5,6 +5,7 @@
  */
 package insurancecompany.controller;
 
+import insurancecompany.misc.ClaimType;
 import insurancecompany.misc.EmployeeType;
 import insurancecompany.misc.InsuranceType;
 import insurancecompany.misc.coverages.*;
@@ -328,6 +329,8 @@ public class MainController {
         travelClaimRegistration.setSelectImageButtonEventHandler(this::travelClaimSelectImageButtonEventHandler);
         travelClaimRegistration.setSelectInsuranceButtonEventHandler(this::travelClaimSelectInsuranceButtonEventHandler);
         travelClaimRegistration.setAddItemButtonEventHandler(this::travelClaimAddItemButtonEventHandler);
+        
+        claimSearchView.setClaimTypeEventHandler(this::claimSearchViewClaimTypeEventHandler);
         
     } // end of class initializeRegisterClaimEventHandlers
     
@@ -3629,7 +3632,7 @@ public class MainController {
     
     private void insuranceSearchViewDeactivateEventHandler(ActionEvent event) {
         
-        insuranceSearchView.clearMessages();
+       insuranceSearchView.clearMessages();
         
        Insurance insurance = insuranceSearchView.getInsurancesTableValue();
        
@@ -3639,6 +3642,30 @@ public class MainController {
            insurance.setActive(!insurance.getActive());
            insuranceSearchView.clearView();
        }
+    }
+    
+    private void claimSearchViewClaimTypeEventHandler(ActionEvent event) {
+        ClaimType type = claimSearchView.getClaimType();
+        if (type == null) {
+            claimSearchView.populateDamageCombo(null);
+        } else {
+            switch (type) {
+                case BOAT_CLAIM: claimSearchView.populateDamageCombo(BoatInsuranceCoverage.BOAT_PLUS.damages());
+                    break;
+                case CAR_CLAIM: claimSearchView.populateDamageCombo(CarInsuranceCoverage.CASCO.damages());
+                    break;
+                case HOLIDAY_HOME_CLAIM: claimSearchView.populateDamageCombo(HolidayHomeInsuranceCoverage.PLUS.damages());
+                    break;
+                case HOLIDAY_HOME_CONTENT_CLAIM: claimSearchView.populateDamageCombo(HolidayHomeContentInsuranceCoverage.PLUS.damages());
+                    break;
+                case HOME_CLAIM: claimSearchView.populateDamageCombo(HomeInsuranceCoverage.PLUS.damages());
+                    break;
+                case HOME_CONTENT_CLAIM: claimSearchView.populateDamageCombo(HomeContentInsuranceCoverage.PLUS.damages());
+                    break;
+                case TRAVEL_CLAIM: claimSearchView.populateDamageCombo(TravelInsuranceCoverage.STANDARD.damages());
+                    break;
+            }
+        }
     }
     
     // READ AND WRITE IDS FROM/TO FILE:

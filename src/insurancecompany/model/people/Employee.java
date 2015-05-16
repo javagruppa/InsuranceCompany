@@ -25,6 +25,8 @@ public abstract class Employee extends Person implements Serializable {
     /** The employee ID */
     private final int employeeId;
     
+    public abstract String getType();
+    
     /**
      * Constructs an employee with the specified parameters
      * 

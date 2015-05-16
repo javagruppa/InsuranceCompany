@@ -1,4 +1,5 @@
 package insurancecompany.model.people;
+import insurancecompany.misc.EmployeeType;
 import insurancecompany.model.properties.Address;
 import java.io.Serializable;
 /**
@@ -22,6 +23,10 @@ public class ServiceWorker extends Employee implements Serializable {
      */
     public ServiceWorker(String firstname, String lastname, String personalNumber, String email, Address address, String phone) {
         super(firstname, lastname, personalNumber, email, address, phone);
+    }
+    
+    public String getType() {
+        return EmployeeType.SERVICE_WORKER.toString();
     }
 
     /**

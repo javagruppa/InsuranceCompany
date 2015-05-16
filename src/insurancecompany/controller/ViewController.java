@@ -7,7 +7,6 @@ package insurancecompany.controller;
 
 import insurancecompany.view.*;
 import insurancecompany.view.modules.*;
-import insurancecompany.view.process.*;
 import insurancecompany.view.register.*;
 import insurancecompany.view.register.claims.*;
 import insurancecompany.view.register.insurances.*;
@@ -31,8 +30,6 @@ public class ViewController {
     
     // Module Views
     private AdminView adminView;
-    private CaseWorkerView caseWorkerView;
-    private CustomerView customerView;
     private LoginView loginView;
     
     // Tab Views
@@ -86,8 +83,6 @@ public class ViewController {
         
         // Initializes Module Views
         this.adminView = adminView;
-        this.caseWorkerView = new CaseWorkerView();
-        this.customerView = new CustomerView();
         this.loginView = new LoginView();
         
         // Initializes Tab Views

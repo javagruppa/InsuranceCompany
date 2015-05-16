@@ -269,9 +269,20 @@ public class MainController {
         registerTravelInsurance.setSearchCustomerIdButtonEventHandler(this::travelInsuranceSearchCustomerIdButtonEventHandler);
         registerTravelInsurance.setSearchPersonalNumberButtonEventHandler(this::travelInsuranceSearchPersonalNumberButtonEventHandler);
         
+        searchClaims.setClaimTypeEventHandler(this::searchClaimsTypeEventHandler);
+        searchClaims.setSearchEventHandler(this::searchClaimsSearchEventHandler);
+        searchClaims.setSelectEventHandler(this::searchClaimsSelectEventHandler);
+        
+        searchCustomers.setDeactivateEventHandler(this::searchCustomersDeactivateEventHandler);
+        searchCustomers.setSearchEventHandler(this::searchCustomersSearchEventHandler);
+        searchCustomers.setSelectEventHandler(this::searchCustomersSelectEventHandler);
+        
+        searchEmployees.setSearchEventHandler(this::searchEmployeesSearchEventHandler);
+        searchEmployees.setSelectEventHandler(this::searchEmployeesSelectEventHandler);
+        
+        searchInsurances.setDeactivateEventHandler(this::searchInsuranceDeactivateEventHandler);
         searchInsurances.setSearchEventHandler(this::searchInsuranceSearchEventHandler);
         searchInsurances.setSelectEventHandler(this::searchInsuranceSelectEventHandler);
-        searchInsurances.setDeactivateEventHandler(this::searchInsuranceDeactivateEventHandler);
     } // end of class initializeRegisterInsuranceEventHandlers
  
     private void initializeRegisterClaimEventHandlers() {
@@ -320,8 +331,6 @@ public class MainController {
         registerTravelClaim.setSelectImageButtonEventHandler(this::travelClaimSelectImageButtonEventHandler);
         registerTravelClaim.setSelectInsuranceButtonEventHandler(this::travelClaimSelectInsuranceButtonEventHandler);
         registerTravelClaim.setAddItemButtonEventHandler(this::travelClaimAddItemButtonEventHandler);
-        
-        searchClaims.setClaimTypeEventHandler(this::searchClaimsTypeEventHandler);
         
     } // end of class initializeRegisterClaimEventHandlers
     
@@ -3775,15 +3784,17 @@ public class MainController {
             customerList = new ArrayList<>();
             customerList.add(customers.findCustomerById(customerId));
         } else {
-            // Finds all customer IDs of customers with the insurance type:
-            List<Object> c = insurances.getCustomerIds(insurance);
-            // Finds the customer objects for the IDs:
-            c.replaceAll(id -> customers.findCustomerById((Integer)id));
             // Finds the customers who pass the other search terms:
             customerList = customers.getCustomers(customerId, firstName, 
                     lastName, total, active);
-            // Finds the customers who are in both lists.
-            customerList.retainAll(c);
+            if (insurance != null) {
+                // Finds all customer IDs of customers with the insurance type:
+                List<Object> c = insurances.getCustomerIds(insurance);
+                // Finds the customer objects for the IDs:
+                c.replaceAll(id -> customers.findCustomerById((Integer)id));
+                // Finds the customers who are in both lists.
+                customerList.retainAll(c);
+            }
         }
         
         // Populates the table:

@@ -206,6 +206,8 @@ public class MainController {
         setBrandComboBox();
         initializeEventHandlers();
         
+        // Update all car insurance bonuses:
+        insurances.updateAllCarInusranceBonuses();
         // Update all total customer statuses:
         modelController.updateTotalCustomers();
         // Update all insurance payments:

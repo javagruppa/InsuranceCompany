@@ -326,6 +326,11 @@ public class SearchClaims {
         return mainPane;
     }
     
+    /** @return The claim ID of this class as a String. */
+    public String getClaimId() {
+        return claimIdField.getText();
+    }
+    
     /** @return The number of this class as a String. */
     public String getNumber() {
         return numberField.getText();
@@ -357,6 +362,15 @@ public class SearchClaims {
     public ClaimType getClaimType() {
         return String.class.isInstance(claimTypeCombo.getValue()) ?
                 null : (ClaimType) claimTypeCombo.getValue();
+    }
+    
+    /** 
+     * @return The damage of this class as a Damage. Null if
+     * no damage is selected.
+     */
+    public Damage getDamage() {
+        return String.class.isInstance(damageCombo.getValue()) ?
+                null : (Damage) damageCombo.getValue();
     }
     
     /**

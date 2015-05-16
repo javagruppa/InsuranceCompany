@@ -81,7 +81,7 @@ public class SearchClaims {
     private TableColumn<Claim, String> claimTypeColumn;
     private TableColumn<Claim, Integer> claimIdColumn;
     private TableColumn<Claim, Integer> customerIdColumn;
-    private TableColumn<Claim, Calendar> dateColumn;
+    private TableColumn<Claim, String> dateColumn;
     private Text selectMessage;
     
     // Declaration of all the nodes in the right part.
@@ -263,13 +263,13 @@ public class SearchClaims {
         claimsTable.setItems(obList);
         // Places a SimpleStringProperty version of the claim type in the 
         // first column.
-        /*claimTypeColumn.setCellValueFactory(cellData -> {
+        claimTypeColumn.setCellValueFactory(cellData -> {
             if ( cellData.getValue() != null) {
                 return new SimpleStringProperty(cellData.getValue().getName());
             } else {
                 return new SimpleStringProperty("<no name>");
             }
-        });*/
+        });
         // Places a SimpleStringProperty version of the insurance ID in the 
         // second column.
         claimIdColumn.setCellValueFactory(cellData -> {
@@ -286,6 +286,17 @@ public class SearchClaims {
             if ( cellData.getValue() != null) {
                 return new SimpleObjectProperty<>(cellData.getValue()
                         .getCustomerId());
+            } else {
+                return new SimpleObjectProperty(0);
+            }
+        });
+        // Places a SimpleStringProperty version of the date happened in the 
+        // fourth column.
+        dateColumn.setCellValueFactory(cellData -> {
+            if ( cellData.getValue() != null) {
+                return new SimpleObjectProperty<>(DateUtility
+                        .NORWEGIAN_DATE_FORMAT.format(cellData.getValue()
+                        .getDateHappened().getTime()));
             } else {
                 return new SimpleObjectProperty(0);
             }

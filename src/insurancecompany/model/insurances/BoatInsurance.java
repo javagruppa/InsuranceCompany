@@ -73,6 +73,7 @@ public class BoatInsurance extends Insurance implements Serializable {
 	}
         // Sets the premium of this insurance to the calculated price:
         setPremium((int) totalPrice); 
+        calculateMonthlyPremium();
     }
     
     /**

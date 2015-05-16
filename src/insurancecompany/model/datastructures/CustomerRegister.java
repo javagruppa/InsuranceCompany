@@ -135,4 +135,11 @@ public class CustomerRegister {
             customers = (HashSet<Customer>) ois.readObject();        
         }
     }    
+
+    /**
+     * @return the customers
+     */
+    public Set<Customer> getCustomers() {
+        return customers;
+    }
 }

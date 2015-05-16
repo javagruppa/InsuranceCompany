@@ -54,6 +54,7 @@ public class TravelInsurance extends Insurance implements Serializable {
     public void calculatePremium(){
 	int newPremium = coverage.getPricing() - excessDrop();
 	setPremium(newPremium);
+        calculateMonthlyPremium();
     }
     
     /**

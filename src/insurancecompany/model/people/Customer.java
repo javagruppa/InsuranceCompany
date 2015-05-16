@@ -17,7 +17,7 @@ public class Customer extends Person implements Serializable {
     /** The file path of the file the customer IDs are saved to */
     private static String customerIdFileName = "src/insurancecompany/resources/nextidnumbers/customerId.dta";
     /** 10% off for total customers (3 or more different insurance types */
-    public static final double totalCustomerDiscount = 0.1;
+    public static final double TOTAL_CUSTOMER_DISCOUNT = 0.1;
     /** whether or not this customer is a total customer */
     private boolean totalCustomer;
     

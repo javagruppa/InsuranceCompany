@@ -75,6 +75,7 @@ public class HomeContentInsurance extends Insurance
 	int newPremium = coverage.getPricing() + (int)amountCost() - 
                 excessDrop();
 	setPremium(newPremium);
+        calculateMonthlyPremium();
     }
     
     /**

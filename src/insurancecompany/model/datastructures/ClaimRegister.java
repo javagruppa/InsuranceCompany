@@ -168,4 +168,11 @@ public class ClaimRegister {
             claims = (HashSet<Claim>) ois.readObject();        
         }
     }
+
+    /**
+     * @return the claims
+     */
+    public Set<Claim> getClaims() {
+        return claims;
+    }
 }

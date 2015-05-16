@@ -95,6 +95,7 @@ public class HolidayHomeInsurance extends Insurance
         int setPremium = (int)finalprice;
         // Sets this insurances premium to the final price
 	setPremium(setPremium);
+        calculateMonthlyPremium();
     }
     
     /**

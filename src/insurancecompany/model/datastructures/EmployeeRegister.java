@@ -87,5 +87,12 @@ public class EmployeeRegister {
             employees = (HashSet<Employee>) ois.readObject();        
         }
     }    
+
+    /**
+     * @return the employees
+     */
+    public Set<Employee> getEmployees() {
+        return employees;
+    }
     
 }

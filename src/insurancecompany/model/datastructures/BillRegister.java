@@ -14,7 +14,7 @@ import java.util.Set;
  * @author André
  */
 public class BillRegister {
-    /** the filapath of the file where the bills are saved */
+    /** the file path of the file where the bills are saved */
     private static String billsFilePath = "src/insurancecompany/resources/datastructures/billSet.dta";
     /** the list of bills */
     private Set<Bill> bills;
@@ -42,7 +42,7 @@ public class BillRegister {
      */
     public List<Bill> findBillsByCustomerId(int customerId) {
         // Creates an ArrayList which will be returned at the end of the method.
-        List<Bill> result = new ArrayList<Bill>();
+        List<Bill> result = new ArrayList<>();
         // Creates an iterator for the list:
         Iterator<Bill> iterator = bills.iterator();
         // Runs through the whole list:
@@ -52,6 +52,22 @@ public class BillRegister {
                 result.add(bill);
             }
         }
+        // Returns null if no matches are found:
+        if (result.isEmpty()) {
+            return null;
+        } else {
+            // Returns the newly created list otherwise:
+            return result;
+        }
+    }
+    
+    public List<Bill> findBillsByInsuranceId(int insuranceId) {
+        // Creates an ArrayList which will be returned at the end of the method.
+        List<Bill> result = new ArrayList<>();
+        // Runs through the whole list and add each match to the result list:
+        bills.stream().filter((bill) -> (bill.getInsuranceId() == insuranceId)).forEach((bill) -> {
+            result.add(bill);
+        });
         // Returns null if no matches are found:
         if (result.isEmpty()) {
             return null;
@@ -91,9 +107,9 @@ public class BillRegister {
      * @return 
      */
     public List<Bill> billsIssuedBetweenDates(Calendar from, Calendar to) {
-        List<Bill> result = new ArrayList<Bill>();
+        List<Bill> result = new ArrayList<>();
         // Checks for every bill in this register:
-        for (Bill bill : bills) {
+        bills.stream().forEach((bill) -> {
             // The date of when the bill is issued.
             Calendar date = bill.getIsuedDate();
             // Checks if the bills date is inbetween the 2 dates specified in the parameter.
@@ -101,13 +117,13 @@ public class BillRegister {
                 // Adds this bill to the return set:
                 result.add(bill);
             }
-        }
+        });
         // Returns a list containing all bills between correct dates:
         return result;
     }
     
     public List<Bill> billsDueBetweenDates(Calendar from, Calendar to) {
-        List<Bill> result = new ArrayList<Bill>();
+        List<Bill> result = new ArrayList<>();
         // Checks for every bill in this register:
         for (Bill bill : bills) {
             // The date of when the bill is due:
@@ -162,5 +178,12 @@ public class BillRegister {
                 new FileInputStream(billsFilePath))) {
             bills = (HashSet<Bill>) ois.readObject();        
         }
+    }
+
+    /**
+     * @return the bills
+     */
+    public Set<Bill> getBills() {
+        return bills;
     }
 }

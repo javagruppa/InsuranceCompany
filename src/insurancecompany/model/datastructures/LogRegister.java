@@ -89,4 +89,11 @@ public class LogRegister {
             }
         }
     }
+
+    /**
+     * @return the logs
+     */
+    public List<Log> getLogs() {
+        return logs;
+    }
 }

@@ -138,6 +138,7 @@ public class CarInsurance extends Insurance implements Serializable {
         int setPremium = (int)newPremium - (int)bonusDecrease;
         // Changes the premium of this insurance.
         setPremium(setPremium);
+        calculateMonthlyPremium();
     }
     
     /**

@@ -34,6 +34,7 @@ public class BoatInsurance extends Insurance implements Serializable {
         super(customerId, excess);
         this.boat = boat;
         this.coverage = coverage;
+        calculatePremium();
     }
     
     // GET METHODS
@@ -72,6 +73,7 @@ public class BoatInsurance extends Insurance implements Serializable {
 	}
         // Sets the premium of this insurance to the calculated price:
         setPremium((int) totalPrice); 
+        calculateMonthlyPremium();
     }
     
     /**

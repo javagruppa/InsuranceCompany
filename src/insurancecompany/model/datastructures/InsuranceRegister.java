@@ -162,13 +162,27 @@ public class InsuranceRegister {
         return result;
     }
     
+    
+    public int getNumberOfActiveInsurances(int customerId) {
+        int result = 0;
+        // Goes through all insurances
+        for (Insurance insurance : insurances) {
+            // Adds a count for every active insurance matching the customer id:
+            if (insurance.getCustomerId() == customerId && insurance.getActive()) {
+                result++;
+            }
+        }
+        // Returns the number of active insurances for the specified customer:
+        return result;
+    }
+    
     /**
      * Returns the number of insurances of the specified type.
      * 
      * @param type the specified type of insurance
      * @return the number of insurances of the specified type
      */
-    public int getNumberOfInsurance(Class<?> type) {
+    public int getNumberOfInsuranceByType(Class<?> type) {
         // Creates an integer which will be returned at the end of the method.
         int result = 0;
         // Creates an iterator for the list.
@@ -193,7 +207,7 @@ public class InsuranceRegister {
      * @param customerId the specified customer id
      * @return the yearly insurance premium of a customer
      */
-    public int getPremium(int customerId) {
+    public int getTotalPremium(int customerId) {
         // Creates an integer which will be returned at the end of the method.
         int result = 0;
         // Creates an iterator for the list.
@@ -217,7 +231,7 @@ public class InsuranceRegister {
      * 
      * @return the total yearly insurance premium
      */
-    public int getTotalPremium() {
+    public int getTotalPremiumOfAll() {
         // Creates an integer which will be returned at the end of the method.
         int result = 0;
         // Creates an iterator for the list.
@@ -240,7 +254,7 @@ public class InsuranceRegister {
      * @param type the specified type of insurances
      * @return the total yearly insurance premium of the type
      */
-    public int getTotalPremium(Class<?> type) {
+    public int getTotalPremiumOfAllByType(Class<?> type) {
         // Creates an integer which will be returned at the end of the method.
         int result = 0;
         // Creates an iterator for the list.
@@ -278,4 +292,11 @@ public class InsuranceRegister {
             insurances = (HashSet<Insurance>) ois.readObject();        
         }
     }    
+
+    /**
+     * @return the insurances
+     */
+    public Set<Insurance> getInsurances() {
+        return insurances;
+    }
 }

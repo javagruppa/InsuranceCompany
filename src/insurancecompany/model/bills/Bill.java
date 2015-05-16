@@ -17,32 +17,33 @@ public class Bill implements Serializable {
     
     /** Constant representing the number of days until each due date from issue, as well as days to dunningDate */
     public static final int FIXED_DUE_DAYS = 14;
+    public static final double FIXED_DUNNING_CHARGE = 20.00;
     private static int nextBillingId = 1000000;
-    private static String billingIdFileName = "src/insurancecompany/resources/nextidnumbers/billingId.dta";
+    private static String billIdFileName = "src/insurancecompany/resources/nextidnumbers/billId.dta";
     
     
     /** Unique billing id used to identify a specific bill.*/
     private int billId;
     /** Customer id used to identify the customer this bill belongs to.*/
     private int customerId;
-    /** Insurance id used to identify the insurance that payed out this bill.*/
+    /** Insurance id used to identify the insurance that paid out this bill.*/
     private int insuranceId;
     /** Date of when the bill is issued. */
     private Calendar isuedDate;
-    /** Date of when the bill is due to be payed.*/
+    /** Date of when the bill is due to be paid.*/
     private Calendar dueDate;
-    /** Date of when the dunning is due to payed.*/
+    /** Date of when the dunning is due to paid.*/
     private Calendar dunningDate;
     /** Date of when the payment was received.*/
     private Calendar payedDate;
     /** Sum of the fee for this bill.*/
-    private int fee; // NOR: Gebyr
+    private double fee; // NOR: Gebyr
     /** Total sum of the dunning charge for this bill.*/
-    private int dunningCharge; // NOR: Purregebyr
-    /** Boolean representing whether the bill is payed or not.*/
-    private boolean payed;
+    private double dunningCharge; // NOR: Purregebyr
+    /** Boolean representing whether the bill is paid or not.*/
+    private boolean paid;
     
-    public Bill(int fee, int customerId, int insuranceId) {
+    public Bill(double fee, int customerId, int insuranceId) {
         billId = nextBillingId++;
         this.fee = fee;
         this.customerId = customerId;
@@ -51,22 +52,22 @@ public class Bill implements Serializable {
         dueDate = Calendar.getInstance();
         dueDate.add(Calendar.DAY_OF_YEAR, FIXED_DUE_DAYS);
         dunningCharge = 0;
-        payed = false;
+        paid = false;
     }
     
-    public void increaseDunningFee(int sum) {
+    public void increaseDunningFee(double sum) {
         setDunningCharge(getDunningCharge() + sum);
     }
     
     public void payBill() {
         setPayedDate(Calendar.getInstance());
-        setPayed(true);
+        setPaid(true);
     }
     
     public static void saveNextIdToFile() throws IOException {
         try (DataOutputStream dos = new DataOutputStream(
                 new BufferedOutputStream(
-                        new FileOutputStream(billingIdFileName)))) {
+                        new FileOutputStream(billIdFileName)))) {
             dos.writeInt(nextBillingId);
         }
     }
@@ -74,7 +75,7 @@ public class Bill implements Serializable {
     public static void readNextIdFromFile() throws IOException {
         try (DataInputStream dis = new DataInputStream(
                 new BufferedInputStream(
-                        new FileInputStream(billingIdFileName)))) {
+                        new FileInputStream(billIdFileName)))) {
                 nextBillingId = dis.readInt();
         }
     }
@@ -124,43 +125,43 @@ public class Bill implements Serializable {
     /**
      * @return the fee
      */
-    public int getFee() {
+    public double getFee() {
         return fee;
     }
 
     /**
      * @param fee the fee to set
      */
-    public void setFee(int fee) {
+    public void setFee(double fee) {
         this.fee = fee;
     }
 
     /**
      * @return the dunningCharge
      */
-    public int getDunningCharge() {
+    public double getDunningCharge() {
         return dunningCharge;
     }
 
     /**
      * @param dunningCharge the dunningCharge to set
      */
-    public void setDunningCharge(int dunningCharge) {
+    public void setDunningCharge(double dunningCharge) {
         this.dunningCharge = dunningCharge;
     }
 
     /**
-     * @return the payed
+     * @return the paid
      */
-    public boolean isPayed() {
-        return payed;
+    public boolean isPaid() {
+        return paid;
     }
 
     /**
-     * @param payed the payed to set
+     * @param paid the paid to set
      */
-    public void setPayed(boolean payed) {
-        this.payed = payed;
+    public void setPaid(boolean paid) {
+        this.paid = paid;
     }
 
     /**
@@ -175,6 +176,13 @@ public class Bill implements Serializable {
      */
     public int getCustomerId() {
         return customerId;
+    }
+
+    /**
+     * @return the insuranceId
+     */
+    public int getInsuranceId() {
+        return insuranceId;
     }
     
 }

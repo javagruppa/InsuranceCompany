@@ -43,6 +43,7 @@ public class HomeInsurance extends Insurance implements Serializable {
         this.property = property;
         this.rental = rental;
         this.type = type;
+        calculatePremium();
     }
     
     // GET METHODS
@@ -91,6 +92,7 @@ public class HomeInsurance extends Insurance implements Serializable {
         int setPremium = (int)finalprice;
         // Sets this insurances premium to the final price
 	setPremium(setPremium);
+        calculateMonthlyPremium();
     }
     
     /**

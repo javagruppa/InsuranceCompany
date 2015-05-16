@@ -9,7 +9,6 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.Serializable;
-import java.text.DateFormat;
 import java.util.Calendar;
 
 /**
@@ -30,12 +29,16 @@ public abstract class Insurance implements Serializable {
     private int customerId;
     /** The date this insurance was created. */
     private Calendar date;
+    /** The next pay date for this insurance. */
+    private Calendar nextPayDate;
     /** The excess of this insurance. */
     private int excess;
     /** Unique insurance id representing this insurance. */
     private final int insuranceId;
     /** The yearly insurance premium of this insurance. */
     private int premium;
+    /** The monthly insurance premium of this insurance. */
+    private int monthlyPremium;
     
     /**
      * Constructs a new insurance with the specified customerId and excess. 
@@ -51,11 +54,17 @@ public abstract class Insurance implements Serializable {
         this.date = Calendar.getInstance();
         this.insuranceId = nextInsuranceId++;
         this.excess = excess;
-        calculatePremium();
+        nextPayDate = date;
+        nextPayDate.add(Calendar.MONTH, 1);
     }
     
     /** Calculate the premium. */
     public abstract void calculatePremium();
+    
+    /** Calculate the monthly premium. */
+    public void calculateMonthlyPremium() {
+        monthlyPremium = premium / 12;
+    }
     
     // GET METHODS
     
@@ -192,5 +201,42 @@ public abstract class Insurance implements Serializable {
         result.append("\nEgenandel: ").append(excess);
         // Returns the string.
         return result.toString();
+    }
+
+    /**
+     * TEST METHOD. TO BE REMOVED. This method sets the date of the insurance. 
+     * Useful for testing functionality that depends on older insurances.
+     * @param date the date to set
+     */
+    public void setDate(Calendar date) {
+        this.date = date;
+    }
+
+    /**
+     * @return the nextPayDate
+     */
+    public Calendar getNextPayDate() {
+        return nextPayDate;
+    }
+
+    /**
+     * @param nextPayDate the nextPayDate to set
+     */
+    public void setNextPayDate(Calendar nextPayDate) {
+        this.nextPayDate = nextPayDate;
+    }
+
+    /**
+     * @return the monthlyPremium
+     */
+    public int getMonthlyPremium() {
+        return monthlyPremium;
+    }
+
+    /**
+     * @param monthlyPremium the monthlyPremium to set
+     */
+    public void setMonthlyPremium(int monthlyPremium) {
+        this.monthlyPremium = monthlyPremium;
     }
 }

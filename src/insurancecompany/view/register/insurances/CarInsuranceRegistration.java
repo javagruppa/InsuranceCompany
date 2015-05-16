@@ -29,6 +29,9 @@ import javafx.scene.text.Text;
  */
 public class CarInsuranceRegistration {
     
+    /** String value of the ComboCox option for unlimited max length. */
+    public static final String MAX_LENGTH_UNLIMITED = "Ubegrenset";
+    
     /** The main pane of this class.*/
     private GridPane mainPane;
     
@@ -287,7 +290,7 @@ public class CarInsuranceRegistration {
         ObservableList<String> drivingLength = FXCollections.observableArrayList();
         drivingLength.addAll("6000", "8000", "10000", "15000", "14000", 
                 "16000", "18000", "20000", "25000", "30000", "40000", "50000", 
-                "Ubegrenset");
+                MAX_LENGTH_UNLIMITED);
         drivingLengthCombo.getItems().setAll(drivingLength);
         drivingLengthCombo.setPrefWidth(150);
     }

@@ -46,6 +46,7 @@ public class HolidayHomeContentInsurance extends Insurance
         this.coverage = coverage;
         this.property = property;
         this.type = type;
+        calculatePremium();
     }
     
     // GET METHODS
@@ -76,6 +77,7 @@ public class HolidayHomeContentInsurance extends Insurance
 	int newPremium = coverage.getPricing() + (int)amountCost() - 
                 excessDrop();
 	setPremium(newPremium);
+        calculateMonthlyPremium();
     }
     
     /**

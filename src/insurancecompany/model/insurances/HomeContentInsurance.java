@@ -44,6 +44,7 @@ public class HomeContentInsurance extends Insurance
         this.coverage = coverage;
         this.property = property;
         this.type = type;
+        calculatePremium();
     }
     
     // GET METHODS
@@ -74,6 +75,7 @@ public class HomeContentInsurance extends Insurance
 	int newPremium = coverage.getPricing() + (int)amountCost() - 
                 excessDrop();
 	setPremium(newPremium);
+        calculateMonthlyPremium();
     }
     
     /**

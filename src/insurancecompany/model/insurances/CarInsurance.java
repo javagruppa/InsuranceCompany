@@ -65,6 +65,7 @@ public class CarInsurance extends Insurance implements Serializable {
         // Initializes last bonus update to the date of when the insurance
         // was created, using the super class getDate().
         lastBonusUpdate = super.getDate();
+        calculatePremium();
     }
     
     // GET METHODS
@@ -85,7 +86,7 @@ public class CarInsurance extends Insurance implements Serializable {
 
     /**
      * Calculates and sets the total premium of this insurance, using different
-     * parameters including whether the customer fullfills certain aspects:
+     * parameters including whether the customer fulfills certain aspects:
      * youngdriver, garage, alarm.
      */
     public void calculatePremium() {
@@ -93,7 +94,13 @@ public class CarInsurance extends Insurance implements Serializable {
 	double garageMultiplicator = 1.0;
 	double alarmMultiplicator = 1.0;
         int bonusMultiplicator = bonus / 100;
-        int maxLengthCost = maxLength / 10;
+        int maxLengthCost = 0;
+        // maxLength value of -1 represents unlimited max length:
+        if (maxLength == -1) {
+            maxLengthCost = 7000;
+        } else {
+            maxLengthCost = maxLength / 10;
+        }
         // If there will be a young driver of this insured car, the
         // multiplicator is set to 1.2
 	if (youngDriver) {
@@ -131,6 +138,7 @@ public class CarInsurance extends Insurance implements Serializable {
         int setPremium = (int)newPremium - (int)bonusDecrease;
         // Changes the premium of this insurance.
         setPremium(setPremium);
+        calculateMonthlyPremium();
     }
     
     /**

@@ -44,7 +44,7 @@ public class ContentClaim extends Claim implements Serializable {
      * @param customerId the Id of the customer who owns this insurance
      * @param insuranceId the Id of the insurance covering this claim
      * @param description description of what has happened
-     * @param dateHappened the date the event occured
+     * @param dateHappened the date the event occurred
      * @param damages the damage(s) this claim is for
      * @param appraisal the appraisal of this claim
      * @param items the items this claim is for
@@ -52,7 +52,7 @@ public class ContentClaim extends Claim implements Serializable {
      */
     public ContentClaim(int customerId, int insuranceId, String description, 
             Calendar dateHappened, Set<Damage> damages, int appraisal, 
-            Image image, List<ClaimItem> items) {
+            List<ClaimItem> items, Image image) {
         super(customerId, insuranceId, description, dateHappened, damages, 
                 appraisal, image);
         this.items = items;

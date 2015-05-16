@@ -30,7 +30,7 @@ public class ViewController {
     private Stage primaryStage;
     
     // Module Views
-    private MainView adminView;
+    private MainView mainView;
     private LoginView loginView;
     
     // Tab Views
@@ -39,49 +39,49 @@ public class ViewController {
     private StatisticsView statisticsView;
     
     // Sub-Tab Views for RegisterView
-    private RegisterClaims claimsView;
-    private RegisterInsurances insurancesView;
-    private RegisterPersons personsView;
+    private RegisterClaims registerClaims;
+    private RegisterInsurances registerInsurances;
+    private RegisterPersons registerPersons;
   
     // Claim Registration Views:
-    private RegisterBoatClaim boatClaimRegistration;
-    private RegisterCarClaim carClaimRegistration;
-    private RegisterHolidayHomeClaim holidayHomeClaimRegistration;
-    private RegisterHolidayHomeContentClaim holidayHomeContentClaimRegistration;
-    private RegisterHomeClaim homeClaimRegistration;
-    private RegisterHomeContentClaim homeContentClaimRegistration;
-    private RegisterTravelClaim travelClaimRegistration;
+    private RegisterBoatClaim registerBoatClaim;
+    private RegisterCarClaim registerCarClaim;
+    private RegisterHolidayHomeClaim registerHolidayHomeClaim;
+    private RegisterHolidayHomeContentClaim registerHolidayHomeContentClaim;
+    private RegisterHomeClaim registerHomeClaim;
+    private RegisterHomeContentClaim registerHomeContentClaim;
+    private RegisterTravelClaim registerTravelClaim;
     
     // Insurance Registration Views:
-    private RegisterBoatInsurance boatInsuranceRegistration;
-    private RegisterCarInsurance carInsuranceRegistration;
-    private RegisterHolidayHomeInsurance holidayHomeInsuranceRegistration;
-    private RegisterHolidayHomeContentInsurance holidayHomeContentInsuranceRegistration;
-    private RegisterHomeInsurance homeInsuranceRegistration;
-    private RegisterHomeContentInsurance homeContentInsuranceRegistration;
-    private RegisterTravelInsurance travelInsuranceRegistration;
+    private RegisterBoatInsurance registerBoatInsurance;
+    private RegisterCarInsurance registerCarInsurance;
+    private RegisterHolidayHomeInsurance registerHolidayHomeInsurance;
+    private RegisterHolidayHomeContentInsurance registerHolidayHomeContentInsurance;
+    private RegisterHomeInsurance registerHomeInsurance;
+    private RegisterHomeContentInsurance registerHomeContentInsurance;
+    private RegisterTravelInsurance registerTravelInsurance;
     
     // Person Registration Views:
-    private RegisterCustomer customerRegistration;
-    private RegisterEmployee employeeRegistration;
+    private RegisterCustomer registerCustomer;
+    private RegisterEmployee registerEmployee;
     
     // Search Views:
-    private SearchClaims claimSearchView;
-    private SearchCustomers customerSearchView;
-    private SearchEmployees employeeSearchView;
-    private SearchInsurances insuranceSearchView;
+    private SearchClaims searchClaims;
+    private SearchCustomers searchCustomers;
+    private SearchEmployees searchEmployees;
+    private SearchInsurances searchInsurances;
     
     // Statistics Views:
-    private StatisticsClaims claimStatisticsView;
-    private StatisticsIncome customerStatisticsView;
-    private StatisticsDisbursements employeeStatisticsView;
+    private StatisticsClaims statisticsClaims;
+    private StatisticsIncome statisticsIncome;
+    private StatisticsDisbursements statisticsDisbursements;
     
     
     // Constructor
-    public ViewController(MainView adminView, ArrayList<Object> views) {
+    public ViewController(MainView mainView, ArrayList<Object> views) {
         
         // Initializes Module Views
-        this.adminView = adminView;
+        this.mainView = mainView;
         this.loginView = new LoginView();
         
         // Initializes Tab Views
@@ -90,42 +90,42 @@ public class ViewController {
         this.statisticsView = new StatisticsView();
         
         // Initializes Sub-Tab Views for ProcessView
-        this.claimsView = new RegisterClaims();
-        this.insurancesView = new RegisterInsurances();
-        this.personsView = new RegisterPersons();
+        this.registerClaims = new RegisterClaims();
+        this.registerInsurances = new RegisterInsurances();
+        this.registerPersons = new RegisterPersons();
         
         // Claim Registration Views:
-        this.boatClaimRegistration = (RegisterBoatClaim) views.get(3);
-        this.carClaimRegistration = (RegisterCarClaim) views.get(4);
-        this.holidayHomeClaimRegistration = (RegisterHolidayHomeClaim) views.get(5);
-        this.holidayHomeContentClaimRegistration = (RegisterHolidayHomeContentClaim) views.get(6);
-        this.homeClaimRegistration = (RegisterHomeClaim) views.get(7);
-        this.homeContentClaimRegistration = (RegisterHomeContentClaim) views.get(8);
-        this.travelClaimRegistration = (RegisterTravelClaim) views.get(9);
+        this.registerBoatClaim = (RegisterBoatClaim) views.get(0);
+        this.registerCarClaim = (RegisterCarClaim) views.get(1);
+        this.registerHolidayHomeClaim = (RegisterHolidayHomeClaim) views.get(2);
+        this.registerHolidayHomeContentClaim = (RegisterHolidayHomeContentClaim) views.get(3);
+        this.registerHomeClaim = (RegisterHomeClaim) views.get(4);
+        this.registerHomeContentClaim = (RegisterHomeContentClaim) views.get(5);
+        this.registerTravelClaim = (RegisterTravelClaim) views.get(6);
         
         // Insurance Registration Views:
-        this.boatInsuranceRegistration = (RegisterBoatInsurance) views.get(10);
-        this.carInsuranceRegistration = (RegisterCarInsurance) views.get(11);
-        this.holidayHomeInsuranceRegistration = (RegisterHolidayHomeInsurance) views.get(12);
-        this.holidayHomeContentInsuranceRegistration = (RegisterHolidayHomeContentInsurance) views.get(13);
-        this.homeInsuranceRegistration = (RegisterHomeInsurance) views.get(14);
-        this.homeContentInsuranceRegistration = (RegisterHomeContentInsurance) views.get(15);
-        this.travelInsuranceRegistration = (RegisterTravelInsurance) views.get(16);
+        this.registerBoatInsurance = (RegisterBoatInsurance) views.get(7);
+        this.registerCarInsurance = (RegisterCarInsurance) views.get(8);
+        this.registerHolidayHomeInsurance = (RegisterHolidayHomeInsurance) views.get(9);
+        this.registerHolidayHomeContentInsurance = (RegisterHolidayHomeContentInsurance) views.get(10);
+        this.registerHomeInsurance = (RegisterHomeInsurance) views.get(11);
+        this.registerHomeContentInsurance = (RegisterHomeContentInsurance) views.get(12);
+        this.registerTravelInsurance = (RegisterTravelInsurance) views.get(13);
         
         // Person Registration Views:
-        this.customerRegistration = (RegisterCustomer) views.get(17);
-        this.employeeRegistration = (RegisterEmployee) views.get(18);
+        this.registerCustomer = (RegisterCustomer) views.get(14);
+        this.registerEmployee = (RegisterEmployee) views.get(15);
     
         // Search Views:
-        this.claimSearchView = (SearchClaims) views.get(19);
-        this.customerSearchView = (SearchCustomers) views.get(20);
-        this.employeeSearchView = (SearchEmployees) views.get(21);
-        this.insuranceSearchView = (SearchInsurances) views.get(22);
+        this.searchClaims = (SearchClaims) views.get(16);
+        this.searchCustomers = (SearchCustomers) views.get(17);
+        this.searchEmployees = (SearchEmployees) views.get(18);
+        this.searchInsurances = (SearchInsurances) views.get(19);
 
         // Statistics Views:
-        this.claimStatisticsView = (StatisticsClaims) views.get(23);
-        this.customerStatisticsView = (StatisticsIncome) views.get(24);
-        this.employeeStatisticsView = (StatisticsDisbursements) views.get(25);
+        this.statisticsClaims = (StatisticsClaims) views.get(20);
+        this.statisticsIncome = (StatisticsIncome) views.get(21);
+        this.statisticsDisbursements = (StatisticsDisbursements) views.get(22);
         
         initializeEventHandlers();
     } // end of sole constructor
@@ -135,37 +135,37 @@ public class ViewController {
         //login.show(stage);
         //CarClaimFormView car = new CarClaimFormView();
         //car.show(stage);
-        adminView.show(primaryStage);
+        mainView.show(primaryStage);
     }
     
     public void initializeEventHandlers() {
-        adminView.setRegisterButtonEventHandler(this::adminViewRegisterTabButtonEventHandler);
-        adminView.setSearchButtonEventHandler(this::adminViewSearchTabButtonEventHandler);
-        adminView.setStatisticsButtonEventHandler(this::adminViewStatisticsTabButtonEventHandler);
-        adminView.setToolbarOnMouseClickedEventHandler(this::adminViewToolbarMouseClickedEventHandler);
-        adminView.setToolbarOnMouseDraggedEventHandler(this::adminViewToolbarMouseDraggedEventHandler);
-        adminView.setToolbarOnMousePressedEventHandler(this::adminViewToolbarMousePressedEventHandler);
+        mainView.setRegisterButtonEventHandler(this::adminViewRegisterTabButtonEventHandler);
+        mainView.setSearchButtonEventHandler(this::adminViewSearchTabButtonEventHandler);
+        mainView.setStatisticsButtonEventHandler(this::adminViewStatisticsTabButtonEventHandler);
+        mainView.setToolbarOnMouseClickedEventHandler(this::adminViewToolbarMouseClickedEventHandler);
+        mainView.setToolbarOnMouseDraggedEventHandler(this::adminViewToolbarMouseDraggedEventHandler);
+        mainView.setToolbarOnMousePressedEventHandler(this::adminViewToolbarMousePressedEventHandler);
         registerView.setInsurancesButtonEventHandler(this::registerViewInsurancesButtonEventHandler);
         registerView.setPersonsButtonEventHandler(this::registerViewPersonsButtonEventHandler);
         registerView.setClaimsButtonEventHandler(this::registerViewClaimsButtonEventHandler);
        
         // REGISTER SUB TAB CONTENT EVENT HANDLERS:
-        personsView.setCustomerButtonEventHandler(this::personsViewCustomerRegistrationButtonEventHandler);
-        personsView.setEmployeeButtonEventHandler(this::personsViewEmployeeRegistrationButtonEventHandler);
-        insurancesView.setBoatInsuranceButtonEventHandler(this::insurancesViewBoatInsuranceButtonEventHandler);
-        insurancesView.setCarInsuranceButtonEventHandler(this::insurancesViewCarInsuranceButtonEventHandler);
-        insurancesView.setHolidayHomeInsuranceButtonEventHandler(this::insurancesViewHolidayHomeInsuranceButtonEventHandler);
-        insurancesView.setHolidayHomeContentInsuranceButtonEventHandler(this::insurancesViewHolidayHomeContentInsuranceButtonEventHandler);
-        insurancesView.setHomeInsuranceButtonEventHandler(this::insurancesViewHomeInsuranceButtonEventHandler);
-        insurancesView.setHomeContentInsuranceButtonEventHandler(this::insurancesViewHomeContentInsuranceButtonEventHandler);
-        insurancesView.setTravelInsuranceButtonEventHandler(this::insurancesViewTravelInsuranceButtonEventHandler);
-        claimsView.setBoatClaimButtonEventHandler(this::claimsViewBoatClaimButtonEventHandler);
-        claimsView.setCarClaimButtonEventHandler(this::claimsViewCarClaimButtonEventHandler);
-        claimsView.setHolidayHomeClaimButtonEventHandler(this::claimsViewHolidayHomeClaimButtonEventHandler);
-        claimsView.setHolidayHomeContentClaimButtonEventHandler(this::claimsViewHolidayHomeContentClaimButtonEventHandler);
-        claimsView.setHomeClaimButtonEventHandler(this::claimsViewHomeClaimButtonEventHandler);
-        claimsView.setHomeContentClaimButtonEventHandler(this::claimsViewHomeContentClaimButtonEventHandler);
-        claimsView.setTravelClaimButtonEventHandler(this::claimsViewTravelClaimButtonEventHandler);
+        registerPersons.setCustomerButtonEventHandler(this::personsViewCustomerRegistrationButtonEventHandler);
+        registerPersons.setEmployeeButtonEventHandler(this::personsViewEmployeeRegistrationButtonEventHandler);
+        registerInsurances.setBoatInsuranceButtonEventHandler(this::insurancesViewBoatInsuranceButtonEventHandler);
+        registerInsurances.setCarInsuranceButtonEventHandler(this::insurancesViewCarInsuranceButtonEventHandler);
+        registerInsurances.setHolidayHomeInsuranceButtonEventHandler(this::insurancesViewHolidayHomeInsuranceButtonEventHandler);
+        registerInsurances.setHolidayHomeContentInsuranceButtonEventHandler(this::insurancesViewHolidayHomeContentInsuranceButtonEventHandler);
+        registerInsurances.setHomeInsuranceButtonEventHandler(this::insurancesViewHomeInsuranceButtonEventHandler);
+        registerInsurances.setHomeContentInsuranceButtonEventHandler(this::insurancesViewHomeContentInsuranceButtonEventHandler);
+        registerInsurances.setTravelInsuranceButtonEventHandler(this::insurancesViewTravelInsuranceButtonEventHandler);
+        registerClaims.setBoatClaimButtonEventHandler(this::claimsViewBoatClaimButtonEventHandler);
+        registerClaims.setCarClaimButtonEventHandler(this::claimsViewCarClaimButtonEventHandler);
+        registerClaims.setHolidayHomeClaimButtonEventHandler(this::claimsViewHolidayHomeClaimButtonEventHandler);
+        registerClaims.setHolidayHomeContentClaimButtonEventHandler(this::claimsViewHolidayHomeContentClaimButtonEventHandler);
+        registerClaims.setHomeClaimButtonEventHandler(this::claimsViewHomeClaimButtonEventHandler);
+        registerClaims.setHomeContentClaimButtonEventHandler(this::claimsViewHomeContentClaimButtonEventHandler);
+        registerClaims.setTravelClaimButtonEventHandler(this::claimsViewTravelClaimButtonEventHandler);
         
         // SEARCH SUB TAB EVENT HANDLERS:
         searchView.setClaimsButtonEventHandler(this::searchViewClaimsButtonEventHandler);
@@ -184,15 +184,15 @@ public class ViewController {
     // ADMIN VIEW EVENT HANDLERS
     
     private void adminViewRegisterTabButtonEventHandler(ActionEvent event) {
-        adminView.getMainPane().setCenter(registerView.getMainPane());
+        mainView.getMainPane().setCenter(registerView.getMainPane());
     }
     
     private void adminViewSearchTabButtonEventHandler(ActionEvent event) {
-        adminView.getMainPane().setCenter(searchView.getMainPane());
+        mainView.getMainPane().setCenter(searchView.getMainPane());
     }
     
     private void adminViewStatisticsTabButtonEventHandler(ActionEvent event) {
-        adminView.getMainPane().setCenter(statisticsView.getMainPane());
+        mainView.getMainPane().setCenter(statisticsView.getMainPane());
     }
     
     private void adminViewToolbarMouseClickedEventHandler(MouseEvent event) {
@@ -211,101 +211,101 @@ public class ViewController {
     private void adminViewToolbarMousePressedEventHandler(MouseEvent event) {
         // Used to move the window around:
         if (!primaryStage.isFullScreen()) {
-            adminView.setxOffset(event.getSceneX());
-            adminView.setyOffset(event.getSceneY());
+            mainView.setxOffset(event.getSceneX());
+            mainView.setyOffset(event.getSceneY());
         }       
     }
     
     private void adminViewToolbarMouseDraggedEventHandler(MouseEvent event) {
         // Used to move the window around:
         if (!primaryStage.isFullScreen()) {
-            primaryStage.setX(event.getScreenX() - adminView.getxOffset());
-            primaryStage.setY(event.getScreenY() - adminView.getyOffset());
+            primaryStage.setX(event.getScreenX() - mainView.getxOffset());
+            primaryStage.setY(event.getScreenY() - mainView.getyOffset());
         }
     }
     
     // REGISTER VIEW EVENT HANDLERS
     
     private void registerViewPersonsButtonEventHandler(ActionEvent event) {
-        registerView.getMainPane().setCenter(personsView.getMainPane());
+        registerView.getMainPane().setCenter(registerPersons.getMainPane());
     }
     
     private void registerViewInsurancesButtonEventHandler(ActionEvent event) {
-        registerView.getMainPane().setCenter(insurancesView.getMainPane());
+        registerView.getMainPane().setCenter(registerInsurances.getMainPane());
     }
     
     private void registerViewClaimsButtonEventHandler(ActionEvent event) {
-        registerView.getMainPane().setCenter(claimsView.getMainPane());
+        registerView.getMainPane().setCenter(registerClaims.getMainPane());
     }
     
     // REGISTER CLAIMS VIEW EVENT HANDLERS
     
     private void claimsViewBoatClaimButtonEventHandler(ActionEvent event) {
-        claimsView.getMainPane().setCenter(boatClaimRegistration.getMainPane());
+        registerClaims.getMainPane().setCenter(registerBoatClaim.getMainPane());
     }
     
     private void claimsViewCarClaimButtonEventHandler(ActionEvent event) {
-        claimsView.getMainPane().setCenter(carClaimRegistration.getMainPane());
+        registerClaims.getMainPane().setCenter(registerCarClaim.getMainPane());
     }
     
     private void claimsViewHomeClaimButtonEventHandler(ActionEvent event) {
-        claimsView.getMainPane().setCenter(homeClaimRegistration.getMainPane());
+        registerClaims.getMainPane().setCenter(registerHomeClaim.getMainPane());
     }
     
     private void claimsViewHomeContentClaimButtonEventHandler(ActionEvent event) {
-        claimsView.getMainPane().setCenter(homeContentClaimRegistration.getMainPane());
+        registerClaims.getMainPane().setCenter(registerHomeContentClaim.getMainPane());
     }
 
     private void claimsViewHolidayHomeClaimButtonEventHandler(ActionEvent event) {
-        claimsView.getMainPane().setCenter(holidayHomeClaimRegistration.getMainPane());
+        registerClaims.getMainPane().setCenter(registerHolidayHomeClaim.getMainPane());
     }
         
     private void claimsViewHolidayHomeContentClaimButtonEventHandler(ActionEvent event) {
-        claimsView.getMainPane().setCenter(holidayHomeContentClaimRegistration.getMainPane());
+        registerClaims.getMainPane().setCenter(registerHolidayHomeContentClaim.getMainPane());
     }
     
     private void claimsViewTravelClaimButtonEventHandler(ActionEvent event) {
-        claimsView.getMainPane().setCenter(travelClaimRegistration.getMainPane());
+        registerClaims.getMainPane().setCenter(registerTravelClaim.getMainPane());
     }
     
     // REGISTER INSURANCES VIEW EVENT HANDLERS
     
     private void insurancesViewBoatInsuranceButtonEventHandler(ActionEvent event) {
-        insurancesView.getMainPane().setCenter(boatInsuranceRegistration.getMainPane());
+        registerInsurances.getMainPane().setCenter(registerBoatInsurance.getMainPane());
     }
     
     private void insurancesViewCarInsuranceButtonEventHandler(ActionEvent event) {
-        insurancesView.getMainPane().setCenter(carInsuranceRegistration.getMainPane());
+        registerInsurances.getMainPane().setCenter(registerCarInsurance.getMainPane());
     }
     
     private void insurancesViewHomeInsuranceButtonEventHandler(ActionEvent event) {
-        insurancesView.getMainPane().setCenter(homeInsuranceRegistration.getMainPane());
+        registerInsurances.getMainPane().setCenter(registerHomeInsurance.getMainPane());
     }
     
     private void insurancesViewHomeContentInsuranceButtonEventHandler(ActionEvent event) {
-        insurancesView.getMainPane().setCenter(homeContentInsuranceRegistration.getMainPane());
+        registerInsurances.getMainPane().setCenter(registerHomeContentInsurance.getMainPane());
     }
     
     private void insurancesViewHolidayHomeInsuranceButtonEventHandler(ActionEvent event) {
-        insurancesView.getMainPane().setCenter(holidayHomeInsuranceRegistration.getMainPane());
+        registerInsurances.getMainPane().setCenter(registerHolidayHomeInsurance.getMainPane());
     }
     
     private void insurancesViewHolidayHomeContentInsuranceButtonEventHandler(ActionEvent event) {
-        insurancesView.getMainPane().setCenter(holidayHomeContentInsuranceRegistration.getMainPane());
+        registerInsurances.getMainPane().setCenter(registerHolidayHomeContentInsurance.getMainPane());
     }
  
     private void insurancesViewTravelInsuranceButtonEventHandler(ActionEvent event) {
-        insurancesView.getMainPane().setCenter(travelInsuranceRegistration.getMainPane());
+        registerInsurances.getMainPane().setCenter(registerTravelInsurance.getMainPane());
     }
     
     // REGISTER PERSONS VIEW INSURANCEHANDLERS
     
     private void personsViewCustomerRegistrationButtonEventHandler(ActionEvent event) {
-        personsView.getMainPane().setCenter(customerRegistration.getMainPane());
+        registerPersons.getMainPane().setCenter(registerCustomer.getMainPane());
     }
     
     private void personsViewEmployeeRegistrationButtonEventHandler(ActionEvent event) {
-        personsView.getMainPane().setCenter(employeeRegistration.getMainPane());
+        registerPersons.getMainPane().setCenter(registerEmployee.getMainPane());
     }
     
     // PROCESS VIEW EVENT HANDLERS
@@ -317,18 +317,18 @@ public class ViewController {
     // SEARCH VIEW EVENT HANDLERS
     
     private void searchViewClaimsButtonEventHandler(ActionEvent event) {
-        searchView.getMainPane().setCenter(claimSearchView.getMainPane());
+        searchView.getMainPane().setCenter(registerClaims.getMainPane());
     }
     
     private void searchViewInsurancesButtonEventHandler(ActionEvent event) {
-        searchView.getMainPane().setCenter(insuranceSearchView.getMainPane());
+        searchView.getMainPane().setCenter(searchInsurances.getMainPane());
     }
     
     private void searchViewCustomersButtonEventHandler(ActionEvent event) {
-        searchView.getMainPane().setCenter(customerSearchView.getMainPane());
+        searchView.getMainPane().setCenter(searchCustomers.getMainPane());
     }
     
     private void searchViewEmployeesButtonEventHandler(ActionEvent event) {
-        searchView.getMainPane().setCenter(employeeSearchView.getMainPane());
+        searchView.getMainPane().setCenter(searchEmployees.getMainPane());
     }
 }

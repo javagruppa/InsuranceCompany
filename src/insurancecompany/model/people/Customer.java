@@ -29,8 +29,6 @@ public class Customer extends Person implements Serializable {
     private final int customerId;
     /** this customers Vehicles */
     private List<Vehicle> vehicles;
-    /** Decides if this customers subscription is active.*/
-    private boolean active;
     
     /**
      * Constructs a customer with the specified parameters
@@ -44,7 +42,6 @@ public class Customer extends Person implements Serializable {
     public Customer(String firstname, String lastname, String personalNumber, String email, Address address, String phone) {
         super(firstname, lastname, personalNumber, email, address, phone);
         customerId = nextCustomerId++;
-        active = true;
     }
     
     /**
@@ -80,8 +77,6 @@ public class Customer extends Person implements Serializable {
         // Appends the fields with appropriate sentences.
         result.append("Kundenummer: ").append(customerId);
         result.append("\n").append(super.toString());
-        result.append("\nAktiv kunde: ").
-                append(active ? "Ja" : "Nei");
         // Returns the string.
         return result.toString();
     }
@@ -128,23 +123,4 @@ public class Customer extends Person implements Serializable {
     public void setTotalCustomer(boolean totalCustomer) {
         this.totalCustomer = totalCustomer;
     }
-
-    /**
-     * Returns whether or not the customer is active
-     * 
-     * @return the boolean active
-     */
-    public boolean isActive() {
-        return active;
-    }
-
-    /**
-     * Sets whether or not this customer is active
-     * 
-     * @param active the active to set
-     */
-    public void setActive(boolean active) {
-        this.active = active;
-    }
-    
 }

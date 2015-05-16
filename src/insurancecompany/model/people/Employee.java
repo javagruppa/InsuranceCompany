@@ -24,8 +24,6 @@ public abstract class Employee extends Person implements Serializable {
     
     /** The employee ID */
     private final int employeeId;
-    /** Whether or not this employees position/hire is active.*/
-    private boolean active;
     
     /**
      * Constructs an employee with the specified parameters
@@ -42,8 +40,6 @@ public abstract class Employee extends Person implements Serializable {
         super(firstname, lastname, personalNumber, email, address, phone);
         // Sets the employee ID to nextEmployeeId, and adds 1 to nextEmployeeId
         employeeId = nextEmployeeId++;
-        // Sets that the employee is active
-        active = true;
     }
     
        /**
@@ -61,7 +57,6 @@ public abstract class Employee extends Person implements Serializable {
         // Appends the fields with appropriate sentences.
         result.append(getEmployeeId());
         result.append("\n").append(super.toString());
-        result.append("\nAktiv: ").append(active ? "Ja" : "Nei");
         // Returns the string.
         return result.toString();
     }
@@ -99,24 +94,6 @@ public abstract class Employee extends Person implements Serializable {
     @Override
     public int getId() {
         return getEmployeeId();
-    }
-
-    /**
-     * Returns whether or not this employee is active
-     * 
-     * @return the boolean active
-     */
-    public boolean isActive() {
-        return active;
-    }
-
-    /**
-     * Sets whether or not this employee is active
-     * 
-     * @param active the active to set
-     */
-    public void setActive(boolean active) {
-        this.active = active;
     }
 
     /**

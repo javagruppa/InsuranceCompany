@@ -30,6 +30,8 @@ public abstract class Person implements Serializable {
     private String phone;
     /**The date this person is registered.*/
     private Calendar registeredDate;
+    /** Wheter this person is active. */
+    private boolean active;
     
     
     /**
@@ -49,6 +51,7 @@ public abstract class Person implements Serializable {
         this.address = address;
         this.phone = phone;
         registeredDate = Calendar.getInstance();
+        active = true;
     }
     
     /**
@@ -124,6 +127,7 @@ public abstract class Person implements Serializable {
         }
         result.append("\nTelefonnummer: ").append(phone);
         result.append("\nRegistrert dato: ").append(DateUtility.NORWEGIAN_DATE_FORMAT.format(registeredDate.getTime()));
+        result.append("\nAktiv: ").append(active ? "Ja" : "Nei");
         // Returns the string.
         return result.toString();
     }
@@ -180,5 +184,23 @@ public abstract class Person implements Serializable {
      */
     public Calendar getRegisteredDate() {
         return registeredDate;
+    }
+
+    /**
+     * Returns whether or not the person is active
+     * 
+     * @return the boolean active
+     */
+    public boolean isActive() {
+        return active;
+    }
+
+    /**
+     * Sets whether or not this person is active
+     * 
+     * @param active the active to set
+     */
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }

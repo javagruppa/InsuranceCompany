@@ -65,40 +65,40 @@ public class MainController {
     private LogRegister logs;
     
     // Modules:
-    private MainView adminView;
+    private MainView mainView;
     
     // Claim Registration Views:
-    private RegisterBoatClaim boatClaimRegistration;
-    private RegisterCarClaim carClaimRegistration;
-    private RegisterHolidayHomeClaim holidayHomeClaimRegistration;
-    private RegisterHolidayHomeContentClaim holidayHomeContentClaimRegistration;
-    private RegisterHomeClaim homeClaimRegistration;
-    private RegisterHomeContentClaim homeContentClaimRegistration;
-    private RegisterTravelClaim travelClaimRegistration;
+    private RegisterBoatClaim registerBoatClaim;
+    private RegisterCarClaim registerCarClaim;
+    private RegisterHolidayHomeClaim registerHolidayHomeClaim;
+    private RegisterHolidayHomeContentClaim registerHolidayHomeContentClaim;
+    private RegisterHomeClaim registerHomeClaim;
+    private RegisterHomeContentClaim registerHomeContentClaim;
+    private RegisterTravelClaim registerTravelClaim;
     
     // Insurance Registration Views:
-    private RegisterBoatInsurance boatInsuranceRegistration;
-    private RegisterCarInsurance carInsuranceRegistration;
-    private RegisterHolidayHomeInsurance holidayHomeInsuranceRegistration;
-    private RegisterHolidayHomeContentInsurance holidayHomeContentInsuranceRegistration;
-    private RegisterHomeInsurance homeInsuranceRegistration;
-    private RegisterHomeContentInsurance homeContentInsuranceRegistration;
-    private RegisterTravelInsurance travelInsuranceRegistration;
+    private RegisterBoatInsurance registerBoatInsurance;
+    private RegisterCarInsurance registerCarInsurance;
+    private RegisterHolidayHomeInsurance registerHolidayHomeInsurance;
+    private RegisterHolidayHomeContentInsurance registerHolidayHomeContentInsurance;
+    private RegisterHomeInsurance registerHomeInsurance;
+    private RegisterHomeContentInsurance registerHomeContentInsurance;
+    private RegisterTravelInsurance registerTravelInsurance;
     
     // Person Registration Views:
-    private RegisterCustomer customerRegistration;
-    private RegisterEmployee employeeRegistration;
+    private RegisterCustomer registerCustomer;
+    private RegisterEmployee registerEmployee;
     
     // Search Views:
-    private SearchClaims claimSearchView;
-    private SearchCustomers customerSearchView;
-    private SearchEmployees employeeSearchView;
-    private SearchInsurances insuranceSearchView;
+    private SearchClaims searchClaims;
+    private SearchCustomers searchCustomers;
+    private SearchEmployees searchEmployees;
+    private SearchInsurances searchInsurances;
     
     // Statistics Views:
-    private StatisticsClaims claimStatisticsView;
-    private StatisticsIncome customerStatisticsView;
-    private StatisticsDisbursements employeeStatisticsView;
+    private StatisticsClaims statisticsClaims;
+    private StatisticsIncome statisticsIncome;
+    private StatisticsDisbursements statisticsDisbursements;
     
     // Controllers:
     private ModelController modelController;
@@ -134,73 +134,73 @@ public class MainController {
         this.logs = new LogRegister();
         
         // Modules:
-        this.adminView = new MainView();
+        this.mainView = new MainView();
     
         // Claim Registration Views:
-        this.boatClaimRegistration = new RegisterBoatClaim();
-        this.carClaimRegistration = new RegisterCarClaim();
-        this.holidayHomeClaimRegistration = new RegisterHolidayHomeClaim();
-        this.holidayHomeContentClaimRegistration = new RegisterHolidayHomeContentClaim();
-        this.homeClaimRegistration = new RegisterHomeClaim();
-        this.homeContentClaimRegistration = new RegisterHomeContentClaim();
-        this.travelClaimRegistration = new RegisterTravelClaim();
+        this.registerBoatClaim = new RegisterBoatClaim();
+        this.registerCarClaim = new RegisterCarClaim();
+        this.registerHolidayHomeClaim = new RegisterHolidayHomeClaim();
+        this.registerHolidayHomeContentClaim = new RegisterHolidayHomeContentClaim();
+        this.registerHomeClaim = new RegisterHomeClaim();
+        this.registerHomeContentClaim = new RegisterHomeContentClaim();
+        this.registerTravelClaim = new RegisterTravelClaim();
         
         // Insurance Registration Views:
-        this.boatInsuranceRegistration = new RegisterBoatInsurance();
-        this.carInsuranceRegistration = new RegisterCarInsurance();
-        this.holidayHomeInsuranceRegistration = new RegisterHolidayHomeInsurance();
-        this.holidayHomeContentInsuranceRegistration = new RegisterHolidayHomeContentInsurance();
-        this.homeInsuranceRegistration = new RegisterHomeInsurance();
-        this.homeContentInsuranceRegistration = new RegisterHomeContentInsurance();
-        this.travelInsuranceRegistration = new RegisterTravelInsurance();
+        this.registerBoatInsurance = new RegisterBoatInsurance();
+        this.registerCarInsurance = new RegisterCarInsurance();
+        this.registerHolidayHomeInsurance = new RegisterHolidayHomeInsurance();
+        this.registerHolidayHomeContentInsurance = new RegisterHolidayHomeContentInsurance();
+        this.registerHomeInsurance = new RegisterHomeInsurance();
+        this.registerHomeContentInsurance = new RegisterHomeContentInsurance();
+        this.registerTravelInsurance = new RegisterTravelInsurance();
         
         // Person Registration Views:
-        this.customerRegistration = new RegisterCustomer();
-        this.employeeRegistration = new RegisterEmployee();
+        this.registerCustomer = new RegisterCustomer();
+        this.registerEmployee = new RegisterEmployee();
     
         // Search Views:
-        this.claimSearchView = new SearchClaims();
-        this.customerSearchView = new SearchCustomers();
-        this.employeeSearchView = new SearchEmployees();
-        this.insuranceSearchView = new SearchInsurances();
+        this.searchClaims = new SearchClaims();
+        this.searchCustomers = new SearchCustomers();
+        this.searchEmployees = new SearchEmployees();
+        this.searchInsurances = new SearchInsurances();
 
         // Statistics Views:
-        this.claimStatisticsView = new StatisticsClaims();
-        this.customerStatisticsView = new StatisticsIncome();
-        this.employeeStatisticsView = new StatisticsDisbursements();
+        this.statisticsClaims = new StatisticsClaims();
+        this.statisticsIncome = new StatisticsIncome();
+        this.statisticsDisbursements = new StatisticsDisbursements();
         
-        // Create an ArrayList with all views to be sent as a parameter to the 
-        // controllers. This is done to make the constructor of the controllers
-        // cleaner.
+        // Creates an ArrayList with all views to be sent as a parameter to the 
+        // view controller. This is done to make the constructor of the 
+        // controller cleaner.
         ArrayList<Object> views = new ArrayList<>();
-        views.add(3, boatClaimRegistration);
-        views.add(4, carClaimRegistration);
-        views.add(5, holidayHomeClaimRegistration);
-        views.add(6, holidayHomeContentClaimRegistration);
-        views.add(7, homeClaimRegistration);
-        views.add(8, homeContentClaimRegistration);
-        views.add(9, travelClaimRegistration);
-        views.add(10, boatInsuranceRegistration);
-        views.add(11, carInsuranceRegistration);
-        views.add(12, holidayHomeInsuranceRegistration);
-        views.add(13, holidayHomeContentInsuranceRegistration);
-        views.add(14, homeInsuranceRegistration);
-        views.add(15, homeContentInsuranceRegistration);
-        views.add(16, travelInsuranceRegistration);
-        views.add(17, customerRegistration);
-        views.add(18, employeeRegistration);
-        views.add(19, claimSearchView);
-        views.add(20, customerSearchView);
-        views.add(21, employeeSearchView);
-        views.add(22, insuranceSearchView);
-        views.add(23, claimStatisticsView);
-        views.add(24, customerStatisticsView);
-        views.add(25, employeeStatisticsView);
+        views.add(0, registerBoatClaim);
+        views.add(1, registerCarClaim);
+        views.add(2, registerHolidayHomeClaim);
+        views.add(3, registerHolidayHomeContentClaim);
+        views.add(4, registerHomeClaim);
+        views.add(5, registerHomeContentClaim);
+        views.add(6, registerTravelClaim);
+        views.add(7, registerBoatInsurance);
+        views.add(8, registerCarInsurance);
+        views.add(9, registerHolidayHomeInsurance);
+        views.add(10, registerHolidayHomeContentInsurance);
+        views.add(11, registerHomeInsurance);
+        views.add(12, registerHomeContentInsurance);
+        views.add(13, registerTravelInsurance);
+        views.add(14, registerCustomer);
+        views.add(15, registerEmployee);
+        views.add(16, searchClaims);
+        views.add(17, searchCustomers);
+        views.add(18, searchEmployees);
+        views.add(19, searchInsurances);
+        views.add(20, statisticsClaims);
+        views.add(21, statisticsIncome);
+        views.add(22, statisticsDisbursements);
                 
         // Controllers:
         this.modelController = new ModelController(bills, claims, customers, 
                 employees, insurances, logs);
-        this.viewController = new ViewController(adminView, views);
+        this.viewController = new ViewController(mainView, views);
         
         readAllDataFromFile();
         setBrandComboBox();
@@ -226,100 +226,100 @@ public class MainController {
     private void initializeEventHandlers() {
         initializeRegisterInsuranceEventHandlers();
         initializeRegisterClaimEventHandlers();
-        adminView.setSaveDataButtonEventHandler(this::adminViewSaveDataButtonEventHandler);
-        adminView.setExitButtonEventHandler(this::adminViewExitButtonEventHandler);
+        mainView.setSaveDataButtonEventHandler(this::adminViewSaveDataButtonEventHandler);
+        mainView.setExitButtonEventHandler(this::adminViewExitButtonEventHandler);
         
         
-        customerRegistration.setRegisterButtonEventHandler(this::registerCustomerButtonEventHandler);
-        employeeRegistration.setRegisterButtonEventHandler(this::registerEmployeeButtonEventHandler);
+        registerCustomer.setRegisterButtonEventHandler(this::registerCustomerButtonEventHandler);
+        registerEmployee.setRegisterButtonEventHandler(this::registerEmployeeButtonEventHandler);
 
     }
     
     private void initializeRegisterInsuranceEventHandlers() {
-        boatInsuranceRegistration.setRegisterButtonEventHandler(this::boatInsuranceRegisterButtonEventHandler);
-        boatInsuranceRegistration.setSearchCustomerIdButtonEventHandler(this::boatInsuranceSearchCustomerIdButtonEventHandler);
-        boatInsuranceRegistration.setSearchPersonalNumberButtonEventHandler(this::boatInsuranceSearchPersonalNumberButtonEventHandler);
+        registerBoatInsurance.setRegisterButtonEventHandler(this::boatInsuranceRegisterButtonEventHandler);
+        registerBoatInsurance.setSearchCustomerIdButtonEventHandler(this::boatInsuranceSearchCustomerIdButtonEventHandler);
+        registerBoatInsurance.setSearchPersonalNumberButtonEventHandler(this::boatInsuranceSearchPersonalNumberButtonEventHandler);
         
-        carInsuranceRegistration.setSearchCustomerIdButtonEventHandler(this::carInsuranceSearchCustomerIdButtonEventHandler);
-        carInsuranceRegistration.setSearchPersonalNumberButtonEventHandler(this::carInsuranceSearchPersonalNumberButtonEventHandler);
-        carInsuranceRegistration.setBrandComboListener(this::brandComboListener);
-        carInsuranceRegistration.setYearComboListener(this::yearComboListener);
-        carInsuranceRegistration.setCalculateButtonEventHandler(null);
-        carInsuranceRegistration.setRegisterButtonEventHandler(this::carInsuranceRegisterButtonEventHandler);
+        registerCarInsurance.setSearchCustomerIdButtonEventHandler(this::carInsuranceSearchCustomerIdButtonEventHandler);
+        registerCarInsurance.setSearchPersonalNumberButtonEventHandler(this::carInsuranceSearchPersonalNumberButtonEventHandler);
+        registerCarInsurance.setBrandComboListener(this::brandComboListener);
+        registerCarInsurance.setYearComboListener(this::yearComboListener);
+        registerCarInsurance.setCalculateButtonEventHandler(null);
+        registerCarInsurance.setRegisterButtonEventHandler(this::carInsuranceRegisterButtonEventHandler);
         
-        homeInsuranceRegistration.setRegisterButtonEventHandler(this::homeInsuranceRegisterButtonEventHandler);
-        homeInsuranceRegistration.setSearchCustomerIdButtonEventHandler(this::homeInsuranceSearchCustomerIdButtonEventHandler);
-        homeInsuranceRegistration.setSearchPersonalNumberButtonEventHandler(this::homeInsuranceSearchPersonalNumberButtonEventHandler);
+        registerHomeInsurance.setRegisterButtonEventHandler(this::homeInsuranceRegisterButtonEventHandler);
+        registerHomeInsurance.setSearchCustomerIdButtonEventHandler(this::homeInsuranceSearchCustomerIdButtonEventHandler);
+        registerHomeInsurance.setSearchPersonalNumberButtonEventHandler(this::homeInsuranceSearchPersonalNumberButtonEventHandler);
         
-        homeContentInsuranceRegistration.setRegisterButtonEventHandler(this::homeContentInsuranceRegisterButtonEventHandler);
-        homeContentInsuranceRegistration.setSearchCustomerIdButtonEventHandler(this::homeContentInsuranceSearchCustomerIdButtonEventHandler);
-        homeContentInsuranceRegistration.setSearchPersonalNumberButtonEventHandler(this::homeContentInsuranceSearchPersonalNumberButtonEventHandler);
+        registerHomeContentInsurance.setRegisterButtonEventHandler(this::homeContentInsuranceRegisterButtonEventHandler);
+        registerHomeContentInsurance.setSearchCustomerIdButtonEventHandler(this::homeContentInsuranceSearchCustomerIdButtonEventHandler);
+        registerHomeContentInsurance.setSearchPersonalNumberButtonEventHandler(this::homeContentInsuranceSearchPersonalNumberButtonEventHandler);
         
-        holidayHomeInsuranceRegistration.setRegisterButtonEventHandler(this::holidayHomeInsuranceRegisterButtonEventHandler);
-        holidayHomeInsuranceRegistration.setSearchCustomerIdButtonEventHandler(this::holidayHomeInsuranceSearchCustomerIdButtonEventHandler);
-        holidayHomeInsuranceRegistration.setSearchPersonalNumberButtonEventHandler(this::holidayHomeInsuranceSearchPersonalNumberButtonEventHandler);
+        registerHolidayHomeInsurance.setRegisterButtonEventHandler(this::holidayHomeInsuranceRegisterButtonEventHandler);
+        registerHolidayHomeInsurance.setSearchCustomerIdButtonEventHandler(this::holidayHomeInsuranceSearchCustomerIdButtonEventHandler);
+        registerHolidayHomeInsurance.setSearchPersonalNumberButtonEventHandler(this::holidayHomeInsuranceSearchPersonalNumberButtonEventHandler);
         
-        holidayHomeContentInsuranceRegistration.setRegisterButtonEventHandler(this::holidayHomeContentInsuranceRegisterButtonEventHandler);
-        holidayHomeContentInsuranceRegistration.setSearchCustomerIdButtonEventHandler(this::holidayHomeContentInsuranceSearchCustomerIdButtonEventHandler);
-        holidayHomeContentInsuranceRegistration.setSearchPersonalNumberButtonEventHandler(this::holidayHomeContentInsuranceSearchPersonalNumberButtonEventHandler);
+        registerHolidayHomeContentInsurance.setRegisterButtonEventHandler(this::holidayHomeContentInsuranceRegisterButtonEventHandler);
+        registerHolidayHomeContentInsurance.setSearchCustomerIdButtonEventHandler(this::holidayHomeContentInsuranceSearchCustomerIdButtonEventHandler);
+        registerHolidayHomeContentInsurance.setSearchPersonalNumberButtonEventHandler(this::holidayHomeContentInsuranceSearchPersonalNumberButtonEventHandler);
         
-        travelInsuranceRegistration.setRegisterButtonEventHandler(this::travelInsuranceRegisterButtonEventHandler);
-        travelInsuranceRegistration.setSearchCustomerIdButtonEventHandler(this::travelInsuranceSearchCustomerIdButtonEventHandler);
-        travelInsuranceRegistration.setSearchPersonalNumberButtonEventHandler(this::travelInsuranceSearchPersonalNumberButtonEventHandler);
+        registerTravelInsurance.setRegisterButtonEventHandler(this::travelInsuranceRegisterButtonEventHandler);
+        registerTravelInsurance.setSearchCustomerIdButtonEventHandler(this::travelInsuranceSearchCustomerIdButtonEventHandler);
+        registerTravelInsurance.setSearchPersonalNumberButtonEventHandler(this::travelInsuranceSearchPersonalNumberButtonEventHandler);
         
-        insuranceSearchView.setSearchEventHandler(this::insuranceSearchViewSearchEventHandler);
-        insuranceSearchView.setSelectEventHandler(this::insuranceSearchViewSelectEventHandler);
-        insuranceSearchView.setDeactivateEventHandler(this::insuranceSearchViewDeactivateEventHandler);
+        searchInsurances.setSearchEventHandler(this::insuranceSearchViewSearchEventHandler);
+        searchInsurances.setSelectEventHandler(this::insuranceSearchViewSelectEventHandler);
+        searchInsurances.setDeactivateEventHandler(this::insuranceSearchViewDeactivateEventHandler);
     } // end of class initializeRegisterInsuranceEventHandlers
  
     private void initializeRegisterClaimEventHandlers() {
-        carClaimRegistration.setRegisterButtonEventHandler(this::carClaimRegisterButtonEventHandler);
-        carClaimRegistration.setSearchCustomerIdButtonEventHandler(this::carClaimSearchCustomerIdButtonEventHandler);
-        carClaimRegistration.setSearchPersonalNumberButtonEventHandler(this::carClaimSearchPersonalNumberButtonEventHandler);
-        carClaimRegistration.setSelectInsuranceButtonEventHandler(this::carClaimSelectInsuranceButtonEventHandler);
-        carClaimRegistration.setSelectImageButtonEventHandler(this::carClaimSelectImageButtonEventHandler);
-        carClaimRegistration.setOpenClaimFormButtonEventHandler(this::carClaimOpenClaimFormButtonEventHandler);
+        registerCarClaim.setRegisterButtonEventHandler(this::carClaimRegisterButtonEventHandler);
+        registerCarClaim.setSearchCustomerIdButtonEventHandler(this::carClaimSearchCustomerIdButtonEventHandler);
+        registerCarClaim.setSearchPersonalNumberButtonEventHandler(this::carClaimSearchPersonalNumberButtonEventHandler);
+        registerCarClaim.setSelectInsuranceButtonEventHandler(this::carClaimSelectInsuranceButtonEventHandler);
+        registerCarClaim.setSelectImageButtonEventHandler(this::carClaimSelectImageButtonEventHandler);
+        registerCarClaim.setOpenClaimFormButtonEventHandler(this::carClaimOpenClaimFormButtonEventHandler);
         
-        boatClaimRegistration.setRegisterButtonEventHandler(this::boatClaimRegisterButtonEventHandler);
-        boatClaimRegistration.setSearchCustomerIdButtonEventHandler(this::boatClaimSearchCustomerIdButtonEventHandler);
-        boatClaimRegistration.setSearchPersonalNumberButtonEventHandler(this::boatClaimSearchPersonalNumberButtonEventHandler);
-        boatClaimRegistration.setSelectImageButtonEventHandler(this::boatClaimSelectImageButtonEventHandler);
-        boatClaimRegistration.setSelectInsuranceButtonEventHandler(this::boatClaimSelectInsuranceButtonEventHandler);
+        registerBoatClaim.setRegisterButtonEventHandler(this::boatClaimRegisterButtonEventHandler);
+        registerBoatClaim.setSearchCustomerIdButtonEventHandler(this::boatClaimSearchCustomerIdButtonEventHandler);
+        registerBoatClaim.setSearchPersonalNumberButtonEventHandler(this::boatClaimSearchPersonalNumberButtonEventHandler);
+        registerBoatClaim.setSelectImageButtonEventHandler(this::boatClaimSelectImageButtonEventHandler);
+        registerBoatClaim.setSelectInsuranceButtonEventHandler(this::boatClaimSelectInsuranceButtonEventHandler);
         
-        homeClaimRegistration.setRegisterButtonEventHandler(this::homeClaimRegisterButtonEventHandler);
-        homeClaimRegistration.setSearchCustomerIdButtonEventHandler(this::homeClaimSearchCustomerIdButtonEventHandler);
-        homeClaimRegistration.setSearchPersonalNumberButtonEventHandler(this::homeClaimSearchPersonalNumberButtonEventHandler);
-        homeClaimRegistration.setSelectImageButtonEventHandler(this::homeClaimSelectImageButtonEventHandler);
-        homeClaimRegistration.setSelectInsuranceButtonEventHandler(this::homeClaimSelectInsuranceButtonEventHandler);
+        registerHomeClaim.setRegisterButtonEventHandler(this::homeClaimRegisterButtonEventHandler);
+        registerHomeClaim.setSearchCustomerIdButtonEventHandler(this::homeClaimSearchCustomerIdButtonEventHandler);
+        registerHomeClaim.setSearchPersonalNumberButtonEventHandler(this::homeClaimSearchPersonalNumberButtonEventHandler);
+        registerHomeClaim.setSelectImageButtonEventHandler(this::homeClaimSelectImageButtonEventHandler);
+        registerHomeClaim.setSelectInsuranceButtonEventHandler(this::homeClaimSelectInsuranceButtonEventHandler);
         
-        homeContentClaimRegistration.setRegisterButtonEventHandler(this::homeContentClaimRegisterButtonEventHandler);
-        homeContentClaimRegistration.setSearchCustomerIdButtonEventHandler(this::homeContentClaimSearchCustomerIdButtonEventHandler);
-        homeContentClaimRegistration.setSearchPersonalNumberButtonEventHandler(this::homeContentClaimSearchPersonalNumberButtonEventHandler);
-        homeContentClaimRegistration.setSelectImageButtonEventHandler(this::homeContentClaimSelectImageButtonEventHandler);
-        homeContentClaimRegistration.setSelectInsuranceButtonEventHandler(this::homeContentClaimSelectInsuranceButtonEventHandler);
-        homeContentClaimRegistration.setAddItemButtonEventHandler(this::homeContentClaimAddItemButtonEventHandler);
+        registerHomeContentClaim.setRegisterButtonEventHandler(this::homeContentClaimRegisterButtonEventHandler);
+        registerHomeContentClaim.setSearchCustomerIdButtonEventHandler(this::homeContentClaimSearchCustomerIdButtonEventHandler);
+        registerHomeContentClaim.setSearchPersonalNumberButtonEventHandler(this::homeContentClaimSearchPersonalNumberButtonEventHandler);
+        registerHomeContentClaim.setSelectImageButtonEventHandler(this::homeContentClaimSelectImageButtonEventHandler);
+        registerHomeContentClaim.setSelectInsuranceButtonEventHandler(this::homeContentClaimSelectInsuranceButtonEventHandler);
+        registerHomeContentClaim.setAddItemButtonEventHandler(this::homeContentClaimAddItemButtonEventHandler);
         
-        holidayHomeClaimRegistration.setRegisterButtonEventHandler(this::holidayHomeClaimRegisterButtonEventHandler);
-        holidayHomeClaimRegistration.setSearchCustomerIdButtonEventHandler(this::holidayHomeClaimSearchCustomerIdButtonEventHandler);
-        holidayHomeClaimRegistration.setSearchPersonalNumberButtonEventHandler(this::holidayHomeClaimSearchPersonalNumberButtonEventHandler);
-        holidayHomeClaimRegistration.setSelectImageButtonEventHandler(this::holidayHomeClaimSelectImageButtonEventHandler);
-        holidayHomeClaimRegistration.setSelectInsuranceButtonEventHandler(this::holidayHomeClaimSelectInsuranceButtonEventHandler);
+        registerHolidayHomeClaim.setRegisterButtonEventHandler(this::holidayHomeClaimRegisterButtonEventHandler);
+        registerHolidayHomeClaim.setSearchCustomerIdButtonEventHandler(this::holidayHomeClaimSearchCustomerIdButtonEventHandler);
+        registerHolidayHomeClaim.setSearchPersonalNumberButtonEventHandler(this::holidayHomeClaimSearchPersonalNumberButtonEventHandler);
+        registerHolidayHomeClaim.setSelectImageButtonEventHandler(this::holidayHomeClaimSelectImageButtonEventHandler);
+        registerHolidayHomeClaim.setSelectInsuranceButtonEventHandler(this::holidayHomeClaimSelectInsuranceButtonEventHandler);
         
-        holidayHomeContentClaimRegistration.setRegisterButtonEventHandler(this::holidayHomeContentClaimRegisterButtonEventHandler);
-        holidayHomeContentClaimRegistration.setSearchCustomerIdButtonEventHandler(this::holidayHomeContentClaimSearchCustomerIdButtonEventHandler);
-        holidayHomeContentClaimRegistration.setSearchPersonalNumberButtonEventHandler(this::holidayHomeContentClaimSearchPersonalNumberButtonEventHandler);
-        holidayHomeContentClaimRegistration.setSelectImageButtonEventHandler(this::holidayHomeContentClaimSelectImageButtonEventHandler);
-        holidayHomeContentClaimRegistration.setSelectInsuranceButtonEventHandler(this::holidayHomeContentClaimSelectInsuranceButtonEventHandler);
-        holidayHomeContentClaimRegistration.setAddItemButtonEventHandler(this::holidayHomeContentClaimAddItemButtonEventHandler);
+        registerHolidayHomeContentClaim.setRegisterButtonEventHandler(this::holidayHomeContentClaimRegisterButtonEventHandler);
+        registerHolidayHomeContentClaim.setSearchCustomerIdButtonEventHandler(this::holidayHomeContentClaimSearchCustomerIdButtonEventHandler);
+        registerHolidayHomeContentClaim.setSearchPersonalNumberButtonEventHandler(this::holidayHomeContentClaimSearchPersonalNumberButtonEventHandler);
+        registerHolidayHomeContentClaim.setSelectImageButtonEventHandler(this::holidayHomeContentClaimSelectImageButtonEventHandler);
+        registerHolidayHomeContentClaim.setSelectInsuranceButtonEventHandler(this::holidayHomeContentClaimSelectInsuranceButtonEventHandler);
+        registerHolidayHomeContentClaim.setAddItemButtonEventHandler(this::holidayHomeContentClaimAddItemButtonEventHandler);
         
-        travelClaimRegistration.setRegisterButtonEventHandler(this::travelClaimRegisterButtonEventHandler);
-        travelClaimRegistration.setSearchCustomerIdButtonEventHandler(this::travelClaimSearchCustomerIdButtonEventHandler);
-        travelClaimRegistration.setSearchPersonalNumberButtonEventHandler(this::travelClaimSearchPersonalNumberButtonEventHandler);    
-        travelClaimRegistration.setSelectImageButtonEventHandler(this::travelClaimSelectImageButtonEventHandler);
-        travelClaimRegistration.setSelectInsuranceButtonEventHandler(this::travelClaimSelectInsuranceButtonEventHandler);
-        travelClaimRegistration.setAddItemButtonEventHandler(this::travelClaimAddItemButtonEventHandler);
+        registerTravelClaim.setRegisterButtonEventHandler(this::travelClaimRegisterButtonEventHandler);
+        registerTravelClaim.setSearchCustomerIdButtonEventHandler(this::travelClaimSearchCustomerIdButtonEventHandler);
+        registerTravelClaim.setSearchPersonalNumberButtonEventHandler(this::travelClaimSearchPersonalNumberButtonEventHandler);    
+        registerTravelClaim.setSelectImageButtonEventHandler(this::travelClaimSelectImageButtonEventHandler);
+        registerTravelClaim.setSelectInsuranceButtonEventHandler(this::travelClaimSelectInsuranceButtonEventHandler);
+        registerTravelClaim.setAddItemButtonEventHandler(this::travelClaimAddItemButtonEventHandler);
         
-        claimSearchView.setClaimTypeEventHandler(this::claimSearchViewClaimTypeEventHandler);
+        searchClaims.setClaimTypeEventHandler(this::claimSearchViewClaimTypeEventHandler);
         
     } // end of class initializeRegisterClaimEventHandlers
     
@@ -360,18 +360,18 @@ public class MainController {
     private void registerCustomerButtonEventHandler(ActionEvent event) {
         boolean ok = true;
         
-        String personalNumber = customerRegistration.getPersonalNumberField();
-        String firstName = customerRegistration.getFirstNameField();
-        String lastName = customerRegistration.getLastNameField();
-        String street = customerRegistration.getStreetField();
-        String zipCodeS = customerRegistration.getZipCodeField();
-        String city = customerRegistration.getCityField();
-        String email = customerRegistration.getEmailField();
-        String phone = customerRegistration.getPhoneField();
+        String personalNumber = registerCustomer.getPersonalNumberField();
+        String firstName = registerCustomer.getFirstNameField();
+        String lastName = registerCustomer.getLastNameField();
+        String street = registerCustomer.getStreetField();
+        String zipCodeS = registerCustomer.getZipCodeField();
+        String city = registerCustomer.getCityField();
+        String email = registerCustomer.getEmailField();
+        String phone = registerCustomer.getPhoneField();
         
         if (personalNumber.equals("")) {
             String message = "Fyll inn dette feltet.";
-            customerRegistration.setPersonalNumberMessage(message);
+            registerCustomer.setPersonalNumberMessage(message);
             ok = false;
         }
         
@@ -396,27 +396,27 @@ public class MainController {
             } else {
                 result = "Kunden kunne ikke registreres. Kunde med likt personnummer eksisterer allerede.";
             }
-            customerRegistration.setResultText(result);
+            registerCustomer.setResultText(result);
         }
     }
     
     // TODO: Trenger regex og validering
     private void registerEmployeeButtonEventHandler(ActionEvent event) {
         
-        EmployeeType position = employeeRegistration.getPositionComboValue();
-        String personalNumber = employeeRegistration.getPersonalNumberField();
-        String firstName = employeeRegistration.getFirstNameField();
-        String lastName = employeeRegistration.getLastNameField();
-        String street = employeeRegistration.getStreetField();
-        String zipCodeS = employeeRegistration.getZipCodeField();
-        String city = employeeRegistration.getCityField();
-        String email = employeeRegistration.getEmailField();
-        String phone = employeeRegistration.getPhoneField();
+        EmployeeType position = registerEmployee.getPositionComboValue();
+        String personalNumber = registerEmployee.getPersonalNumberField();
+        String firstName = registerEmployee.getFirstNameField();
+        String lastName = registerEmployee.getLastNameField();
+        String street = registerEmployee.getStreetField();
+        String zipCodeS = registerEmployee.getZipCodeField();
+        String city = registerEmployee.getCityField();
+        String email = registerEmployee.getEmailField();
+        String phone = registerEmployee.getPhoneField();
 
         System.out.println(position.toString());
         if (personalNumber.equals("")) {
             String message = "Fyll inn dette feltet.";
-            employeeRegistration.setPersonalNumberMessage(message);
+            registerEmployee.setPersonalNumberMessage(message);
         } 
  
         int zipCode = 0;
@@ -445,12 +445,12 @@ public class MainController {
             result = "Ansatt kunne ikke registreres. Ansatt med likt personnummer eksisterer allerede.";
         }
         
-        employeeRegistration.setResultText(result);
+        registerEmployee.setResultText(result);
     }
     
     private void setBrandComboBox() {
         List cars = modelController.getCarInfos();
-        carInsuranceRegistration.populateBrandCombo(cars);
+        registerCarInsurance.populateBrandCombo(cars);
     }
     
     private void setYearComboBox() {
@@ -461,7 +461,7 @@ public class MainController {
             years.add(i + "");
         }
         
-        carInsuranceRegistration.populateYearCombo(years);
+        registerCarInsurance.populateYearCombo(years);
     }
     
     // BUG: method gets called twice for every change, but this is resolved by an if statement at the end of the method:
@@ -509,7 +509,7 @@ public class MainController {
         // Whenever a change in the combox is done, this method gets called twice, hence this check to
         // avoid creating a complete list, for so to replace it with an empty list.
         if (!years.isEmpty()) {
-            carInsuranceRegistration.populateYearCombo(years);
+            registerCarInsurance.populateYearCombo(years);
         }
         
     }
@@ -520,7 +520,7 @@ public class MainController {
         int year;
         CarInfo car = new CarInfo(); // new initialization will be set in one of the 2 next if statements
         String brandName;
-        Object brandValue = carInsuranceRegistration.getBrandComboValue();
+        Object brandValue = registerCarInsurance.getBrandComboValue();
         if (brandValue instanceof CarInfo) {
             car = (CarInfo) brandValue;
         } else if (brandValue instanceof String) { // Custom/user defined car brand entered:
@@ -553,7 +553,7 @@ public class MainController {
                         }
                     }
                 }
-                carInsuranceRegistration.populateModelCombo(modelsResult);
+                registerCarInsurance.populateModelCombo(modelsResult);
   
             } catch (NumberFormatException nfe) {
                 //setSomeMessage
@@ -566,11 +566,11 @@ public class MainController {
     
     private void carClaimOpenClaimFormButtonEventHandler(ActionEvent event) {
         // Clear the previous claim form message:
-        carClaimRegistration.setClaimFormMessage("");
+        registerCarClaim.setClaimFormMessage("");
         // Create a new stage:
         Stage formStage = new Stage();
         // Create a new CarClaimFormView and send the carClaimRegistration view as a reference:
-        RegisterCarClaimForm ccfv = new RegisterCarClaimForm(carClaimRegistration);
+        RegisterCarClaimForm ccfv = new RegisterCarClaimForm(registerCarClaim);
         // initialize the carClaimFormViews register button event handler:
         ccfv.setRegisterButtonEventHandler();
         // BEFORE WE SHOW THE FORM; WE WANT TO POPULATE SOME OF ITS TEXT FIELDS WITH OUR
@@ -578,12 +578,12 @@ public class MainController {
         
         // Get information on our customer and its car insurances car:
         try {
-            int customerId = carClaimRegistration.getSelectedCustomerId();
+            int customerId = registerCarClaim.getSelectedCustomerId();
             Customer personA = customers.findCustomerById(customerId);
             if (personA == null) {
-                carClaimRegistration.setClaimFormMessage(NO_INSURANCE_MESSAGE);
+                registerCarClaim.setClaimFormMessage(NO_INSURANCE_MESSAGE);
             } else {
-                CarInsurance insuranceA = (CarInsurance) carClaimRegistration.getInsuranceTableValue();
+                CarInsurance insuranceA = (CarInsurance) registerCarClaim.getInsuranceTableValue();
                 String lastNameA = personA.getLastName();
                 String firstNameA = personA.getFirstName();
                 String personalNumberA = personA.getPersonalNumber();
@@ -611,85 +611,85 @@ public class MainController {
                 ccfv.show(formStage);
             }
         } catch (ClassCastException cce) {
-            carClaimRegistration.setClaimFormMessage(NO_INSURANCE_MESSAGE);
+            registerCarClaim.setClaimFormMessage(NO_INSURANCE_MESSAGE);
         }
     }
     
     private void carClaimRegisterButtonEventHandler(ActionEvent event) {
         boolean ok = true;
         // Clears the previous status messages:
-        carClaimRegistration.clearMessages();
+        registerCarClaim.clearMessages();
         int insuranceId = 0;
         int appraisal = 0;
-        int customerId = carClaimRegistration.getSelectedCustomerId();
+        int customerId = registerCarClaim.getSelectedCustomerId();
         if (customerId == 0) {
             ok = false;
-            carClaimRegistration.setRegisterButtonMessage(NO_CUSTOMER_MESSAGE);
+            registerCarClaim.setRegisterButtonMessage(NO_CUSTOMER_MESSAGE);
             return;
         }
         CarInsurance insurance;
         // Get the Insurance selected from the table:
-        if (carClaimRegistration.getInsuranceTableValue() instanceof CarInsurance) {
-            insurance = (CarInsurance) carClaimRegistration.getInsuranceTableValue();
+        if (registerCarClaim.getInsuranceTableValue() instanceof CarInsurance) {
+            insurance = (CarInsurance) registerCarClaim.getInsuranceTableValue();
             // Checks if this value is null:
             if (insurance == null) {
                 ok = false;
                 // If so send a message to the user:
-                carClaimRegistration.setRegisterButtonMessage(NO_INSURANCE_MESSAGE);
+                registerCarClaim.setRegisterButtonMessage(NO_INSURANCE_MESSAGE);
                 // Exit the method, as we don't need to check for anything else:
                 return;
             } else {
                 insuranceId = insurance.getCustomerId();
             }
-            Calendar dateHappened = carClaimRegistration.getDateHappenedPickerValue();
+            Calendar dateHappened = registerCarClaim.getDateHappenedPickerValue();
             if (dateHappened == null) {
                 ok = false;
                 // If so send a message to the user:
-                carClaimRegistration.setRegisterButtonMessage(NO_DATE_MESSAGE);
+                registerCarClaim.setRegisterButtonMessage(NO_DATE_MESSAGE);
                 return; // leave method
             }
-            String description = carClaimRegistration.getDescriptionTextArea();
+            String description = registerCarClaim.getDescriptionTextArea();
             if (description.equals("")) {
                 ok = false;
                 // If so send a message to the user:
-                carClaimRegistration.setRegisterButtonMessage(DESCRIPTION_EMPTY_MESSAGE);
+                registerCarClaim.setRegisterButtonMessage(DESCRIPTION_EMPTY_MESSAGE);
                 return; // leave method
             }
             // Get the selected damages:
-            Set<Damage> damages = carClaimRegistration.getSelectedDamages();
+            Set<Damage> damages = registerCarClaim.getSelectedDamages();
             // Returns an empty set if no damages are selected:
             if (damages.isEmpty()) {
                 // This is still allowed.
             }
-            Image image = carClaimRegistration.getImage();
+            Image image = registerCarClaim.getImage();
             if (image == null) {
                 // This is also allowed.
             }
 
-            String appraisalString = carClaimRegistration.getAppraisalField();
+            String appraisalString = registerCarClaim.getAppraisalField();
             if (appraisalString.equals("")) {
                 ok = false;
-                carClaimRegistration.setAppraisalFieldMessage(EMPTY_MESSAGE);
+                registerCarClaim.setAppraisalFieldMessage(EMPTY_MESSAGE);
             } else {
                 try {
                     appraisal = Integer.parseInt(appraisalString);
                 } catch (NumberFormatException nfe) {
                     ok = false;
-                    carClaimRegistration.setAppraisalFieldMessage(FORMAT_MESSAGE);
+                    registerCarClaim.setAppraisalFieldMessage(FORMAT_MESSAGE);
                 }
             }
             // If all fields are filled in correctly according to what we need to create a
             // claim, we proceed:
             if (ok) {
-                RegisterCarClaimForm formView = carClaimRegistration.getCarClaimFormView();
+                RegisterCarClaimForm formView = registerCarClaim.getCarClaimFormView();
                 if (formView == null) {
                     // Send carclaimform as null if no carclaimformview has been opened.
                     CarClaim claim = new CarClaim(customerId, insuranceId, description, dateHappened, damages, appraisal, null);
                     // Add this car claim to the claim register:
                     if (claims.addClaim(claim)) {
-                            carClaimRegistration.setRegisterButtonMessage(REGISTER_SUCCESS);
+                            registerCarClaim.setRegisterButtonMessage(REGISTER_SUCCESS);
                     } else {
-                        carClaimRegistration.setRegisterButtonMessage(REGISTER_NO_SUCCESS);
+                        registerCarClaim.setRegisterButtonMessage(REGISTER_NO_SUCCESS);
                     }
                 } else {
                     Customer personA = customers.findCustomerById(customerId);
@@ -737,7 +737,7 @@ public class MainController {
                         CarClaim claim = new CarClaim(customerId, insuranceId, description, dateHappened, damages, appraisal, carClaimForm);
                         // Add this car claim to the claim register:
                         if (claims.addClaim(claim)) {
-                            carClaimRegistration.setRegisterButtonMessage(REGISTER_SUCCESS);
+                            registerCarClaim.setRegisterButtonMessage(REGISTER_SUCCESS);
                         }
                     } else { // If not we create a fuller car claim form:
                         // Creates a new car for person B with model as empty:
@@ -758,8 +758,8 @@ public class MainController {
                         // Add this car claim to the claim register:
                         if (claims.addClaim(claim)) {
                             // Clear uploads(image and claim form):
-                            carClaimRegistration.clearUploads();
-                            carClaimRegistration.setRegisterButtonMessage(REGISTER_SUCCESS);
+                            registerCarClaim.clearUploads();
+                            registerCarClaim.setRegisterButtonMessage(REGISTER_SUCCESS);
                         }
                     }
                 }
@@ -768,11 +768,11 @@ public class MainController {
     }
     
     private void carClaimSearchCustomerIdButtonEventHandler(ActionEvent event) {
-        String customerIdString = carClaimRegistration.getCustomerId();
+        String customerIdString = registerCarClaim.getCustomerId();
         int customerId;
         if(customerIdString.equals("")) {
             // Gives the user an appropriate message if the user hasn't put in a customerId:
-            carClaimRegistration.setCustomerArea(CUSTOMERID_EMPTY_MESSAGE);
+            registerCarClaim.setCustomerArea(CUSTOMERID_EMPTY_MESSAGE);
             return;
         }
         try {
@@ -781,7 +781,7 @@ public class MainController {
         } catch(NumberFormatException nfe) {
             logs.add(nfe.getStackTrace(), nfe.getMessage(), user);
             // Gives the user an appropriate message if the customerId wasn't formatted correctly:
-            carClaimRegistration.setCustomerArea(CUSTOMERID_FORMAT_MESSAGE);
+            registerCarClaim.setCustomerArea(CUSTOMERID_FORMAT_MESSAGE);
             return;
         }
         // TODO: Regex.
@@ -789,63 +789,63 @@ public class MainController {
         Customer customer = customers.findCustomerById(customerId);
         if(customer == null) {
             // Gives the user an appropriate message if the customer wasn't found:
-            carClaimRegistration.setCustomerArea(CUSTOMERID_NOT_FOUND_MESSAGE + customerId);
+            registerCarClaim.setCustomerArea(CUSTOMERID_NOT_FOUND_MESSAGE + customerId);
         } else {
             // Displays the customer:
-            carClaimRegistration.setCustomerArea(customer.toString());
+            registerCarClaim.setCustomerArea(customer.toString());
             // Set this id as the selected one in the view class:
-            carClaimRegistration.setSelectedCustomerId(customerId);
+            registerCarClaim.setSelectedCustomerId(customerId);
             // Finds the customers insurances:
             List insuranceList = insurances.getAllActiveTypeInsurancesByCustomerId(customerId, CarInsurance.class);
             if (!insuranceList.isEmpty()) {
                 // Displays the insurances if there is at least one:
-                carClaimRegistration.populateInsurancesTable(insuranceList);
+                registerCarClaim.populateInsurancesTable(insuranceList);
             }
         }
     }
     
     private void carClaimSearchPersonalNumberButtonEventHandler(ActionEvent event) {
-        String personalNumber = carClaimRegistration.getPersonalNumber();
+        String personalNumber = registerCarClaim.getPersonalNumber();
         if(personalNumber.equals("")) {
             // Gives the user an appropriate message if the user hasn't put in a personalNumber:
-            carClaimRegistration.setCustomerArea(PERSONALNUMBER_EMPTY_MESSAGE);
+            registerCarClaim.setCustomerArea(PERSONALNUMBER_EMPTY_MESSAGE);
         } else if (!personalNumber.matches("\\d{11}")) {
             // Gives the user an appropriate message:
-            carClaimRegistration.setCustomerArea(PERSONALNUMBER_INCORRECT_MESSAGE);
+            registerCarClaim.setCustomerArea(PERSONALNUMBER_INCORRECT_MESSAGE);
         } else {
             // Searches for the customer by personalNumber:
             Customer customer = customers.findCustomerByPersonalNumber(personalNumber);
             if(customer == null) {
                 // Gives the user an appropriate message if the customer wasn't found:
-                carClaimRegistration.setCustomerArea(PERSONALNUMBER_NOT_FOUND_MESSAGE + personalNumber);
+                registerCarClaim.setCustomerArea(PERSONALNUMBER_NOT_FOUND_MESSAGE + personalNumber);
             } else {
                 // Finds the customers insurances:
                 int customerId = customer.getId();
                 // Displays the customer:
-                carClaimRegistration.setCustomerArea(customer.toString());
+                registerCarClaim.setCustomerArea(customer.toString());
                 // Set this id as the selected one in the view class:
-                carClaimRegistration.setSelectedCustomerId(customerId);
+                registerCarClaim.setSelectedCustomerId(customerId);
                 List insuranceList = insurances.getAllActiveTypeInsurancesByCustomerId(customerId, CarInsurance.class);
                 if (!insuranceList.isEmpty()) {
                     // Displays the insurances if there is at least one:
-                    carClaimRegistration.populateInsurancesTable(insuranceList);
+                    registerCarClaim.populateInsurancesTable(insuranceList);
                 }
             }
         }
     }
     
     private void carClaimSelectInsuranceButtonEventHandler(ActionEvent event) {
-        carClaimRegistration.clearMessages();
-        Insurance insurance = carClaimRegistration.getInsuranceTableValue();
+        registerCarClaim.clearMessages();
+        Insurance insurance = registerCarClaim.getInsuranceTableValue();
         String message = "";
         if (insurance instanceof CarInsurance) {
             CarInsuranceCoverage coverage = (CarInsuranceCoverage) insurance.getCoverage();
-            carClaimRegistration.setDamages(coverage.damages());
+            registerCarClaim.setDamages(coverage.damages());
             message = insurance.getName() + " " + coverage.toString() + " er valgt.";
-            carClaimRegistration.setSelectInsuranceMessage(message);
+            registerCarClaim.setSelectInsuranceMessage(message);
         } else {
             message = "Ingen forsikring valgt,";
-            carClaimRegistration.setSelectInsuranceMessage(message);
+            registerCarClaim.setSelectInsuranceMessage(message);
         }
     }
     
@@ -873,7 +873,7 @@ public class MainController {
                 BufferedImage bufferedImage = ImageIO.read(file);
                 Image image = SwingFXUtils.toFXImage(bufferedImage, null);
                 // ! Sets this image to the image in field in the carClaimRegistration view:
-                carClaimRegistration.setImage(image);
+                registerCarClaim.setImage(image);
             } catch (IOException ioe) {
                 logs.add(ioe.getStackTrace(), ioe.getMessage(), user);
             }
@@ -885,64 +885,64 @@ public class MainController {
     private void boatClaimRegisterButtonEventHandler(ActionEvent event) {
         boolean ok = true;
         // Clears the previous status messages:
-        boatClaimRegistration.clearMessages();
+        registerBoatClaim.clearMessages();
         int insuranceId = 0;
         int appraisal = 0;
-        int customerId = boatClaimRegistration.getSelectedCustomerId();
+        int customerId = registerBoatClaim.getSelectedCustomerId();
         if (customerId == 0) {
             ok = false;
-            boatClaimRegistration.setRegisterButtonMessage(NO_CUSTOMER_MESSAGE);
+            registerBoatClaim.setRegisterButtonMessage(NO_CUSTOMER_MESSAGE);
             return;
         }
         BoatInsurance insurance;
         // Get the Insurance selected from the table:
-        if (boatClaimRegistration.getInsuranceTableValue() instanceof BoatInsurance) {
-            insurance = (BoatInsurance) boatClaimRegistration.getInsuranceTableValue();
+        if (registerBoatClaim.getInsuranceTableValue() instanceof BoatInsurance) {
+            insurance = (BoatInsurance) registerBoatClaim.getInsuranceTableValue();
             // Checks if this value is null:
             if (insurance == null) {
                 ok = false;
                 // If so send a message to the user:
-                boatClaimRegistration.setRegisterButtonMessage(NO_INSURANCE_MESSAGE);
+                registerBoatClaim.setRegisterButtonMessage(NO_INSURANCE_MESSAGE);
                 // Exit the method, as we don't need to check for anything else:
                 return;
             } else {
                 insuranceId = insurance.getCustomerId();
             }
-            Calendar dateHappened = boatClaimRegistration.getDateHappenedPickerValue();
+            Calendar dateHappened = registerBoatClaim.getDateHappenedPickerValue();
             if (dateHappened == null) {
                 ok = false;
                 // If so send a message to the user:
-                boatClaimRegistration.setRegisterButtonMessage(NO_DATE_MESSAGE);
+                registerBoatClaim.setRegisterButtonMessage(NO_DATE_MESSAGE);
                 return; // leave method
             }
-            String description = boatClaimRegistration.getDescriptionTextArea();
+            String description = registerBoatClaim.getDescriptionTextArea();
             if (description.equals("")) {
                 ok = false;
                 // If so send a message to the user:
-                boatClaimRegistration.setRegisterButtonMessage(DESCRIPTION_EMPTY_MESSAGE);
+                registerBoatClaim.setRegisterButtonMessage(DESCRIPTION_EMPTY_MESSAGE);
                 return; // leave method
             }
             // Get the selected damages:
-            Set<Damage> damages = boatClaimRegistration.getSelectedDamages();
+            Set<Damage> damages = registerBoatClaim.getSelectedDamages();
             // Returns an empty set if no damages are selected:
             if (damages.isEmpty()) {
                 // This is still allowed.
             }
-            Image image = boatClaimRegistration.getImage();
+            Image image = registerBoatClaim.getImage();
             if (image == null) {
                 // This is also allowed.
             }
 
-            String appraisalString = boatClaimRegistration.getAppraisalField();
+            String appraisalString = registerBoatClaim.getAppraisalField();
             if (appraisalString.equals("")) {
                 ok = false;
-                boatClaimRegistration.setAppraisalFieldMessage(EMPTY_MESSAGE);
+                registerBoatClaim.setAppraisalFieldMessage(EMPTY_MESSAGE);
             } else {
                 try {
                     appraisal = Integer.parseInt(appraisalString);
                 } catch (NumberFormatException nfe) {
                     ok = false;
-                    boatClaimRegistration.setAppraisalFieldMessage(FORMAT_MESSAGE);
+                    registerBoatClaim.setAppraisalFieldMessage(FORMAT_MESSAGE);
                 }
             }
             // If all fields are filled in correctly according to what we need to create a
@@ -953,21 +953,21 @@ public class MainController {
                 // Add this claim to the claim register:
                 if (claims.addClaim(claim)) {
                     // Clear uploads(image):
-                    boatClaimRegistration.clearUploads();
-                    boatClaimRegistration.setRegisterButtonMessage(REGISTER_SUCCESS);
+                    registerBoatClaim.clearUploads();
+                    registerBoatClaim.setRegisterButtonMessage(REGISTER_SUCCESS);
                 } else {
-                    boatClaimRegistration.setRegisterButtonMessage(REGISTER_NO_SUCCESS);
+                    registerBoatClaim.setRegisterButtonMessage(REGISTER_NO_SUCCESS);
                 }
             }
         }
     }
     
     private void boatClaimSearchCustomerIdButtonEventHandler(ActionEvent event) {
-        String customerIdString = boatClaimRegistration.getCustomerId();
+        String customerIdString = registerBoatClaim.getCustomerId();
         int customerId;
         if(customerIdString.equals("")) {
             // Gives the user an appropriate message if the user hasn't put in a customerId:
-            boatClaimRegistration.setCustomerArea(CUSTOMERID_EMPTY_MESSAGE);
+            registerBoatClaim.setCustomerArea(CUSTOMERID_EMPTY_MESSAGE);
             return;
         }
         try {
@@ -976,7 +976,7 @@ public class MainController {
         } catch(NumberFormatException nfe) {
             logs.add(nfe.getStackTrace(), nfe.getMessage(), user);
             // Gives the user an appropriate message if the customerId wasn't formatted correctly:
-            boatClaimRegistration.setCustomerArea(CUSTOMERID_FORMAT_MESSAGE);
+            registerBoatClaim.setCustomerArea(CUSTOMERID_FORMAT_MESSAGE);
             return;
         }
         // TODO: Regex.
@@ -984,63 +984,63 @@ public class MainController {
         Customer customer = customers.findCustomerById(customerId);
         if(customer == null) {
             // Gives the user an appropriate message if the customer wasn't found:
-            boatClaimRegistration.setCustomerArea(CUSTOMERID_NOT_FOUND_MESSAGE + customerId);
+            registerBoatClaim.setCustomerArea(CUSTOMERID_NOT_FOUND_MESSAGE + customerId);
         } else {
             // Displays the customer:
-            boatClaimRegistration.setCustomerArea(customer.toString());
+            registerBoatClaim.setCustomerArea(customer.toString());
             // Set this id as the selected one in the view class:
-            boatClaimRegistration.setSelectedCustomerId(customerId);
+            registerBoatClaim.setSelectedCustomerId(customerId);
             // Finds the customers insurances:
             List insuranceList = insurances.getAllActiveTypeInsurancesByCustomerId(customerId, BoatInsurance.class);
             if (!insuranceList.isEmpty()) {
                 // Displays the insurances if there is at least one:
-                boatClaimRegistration.populateInsurancesTable(insuranceList);
+                registerBoatClaim.populateInsurancesTable(insuranceList);
             }
         }
     }
     
     private void boatClaimSearchPersonalNumberButtonEventHandler(ActionEvent event) {
-        String personalNumber = boatClaimRegistration.getPersonalNumber();
+        String personalNumber = registerBoatClaim.getPersonalNumber();
         if(personalNumber.equals("")) {
             // Gives the user an appropriate message if the user hasn't put in a personalNumber:
-            boatClaimRegistration.setCustomerArea(PERSONALNUMBER_EMPTY_MESSAGE);
+            registerBoatClaim.setCustomerArea(PERSONALNUMBER_EMPTY_MESSAGE);
         } else if (!personalNumber.matches("\\d{11}")) {
             // Gives the user an appropriate message:
-            boatClaimRegistration.setCustomerArea(PERSONALNUMBER_INCORRECT_MESSAGE);
+            registerBoatClaim.setCustomerArea(PERSONALNUMBER_INCORRECT_MESSAGE);
         } else {
             // Searches for the customer by personalNumber:
             Customer customer = customers.findCustomerByPersonalNumber(personalNumber);
             if(customer == null) {
                 // Gives the user an appropriate message if the customer wasn't found:
-                boatClaimRegistration.setCustomerArea(PERSONALNUMBER_NOT_FOUND_MESSAGE + personalNumber);
+                registerBoatClaim.setCustomerArea(PERSONALNUMBER_NOT_FOUND_MESSAGE + personalNumber);
             } else {
                 // Finds the customers insurances:
                 int customerId = customer.getId();
                 // Displays the customer:
-                boatClaimRegistration.setCustomerArea(customer.toString());
+                registerBoatClaim.setCustomerArea(customer.toString());
                 // Set this id as the selected one in the view class:
-                boatClaimRegistration.setSelectedCustomerId(customerId);
+                registerBoatClaim.setSelectedCustomerId(customerId);
                 List insuranceList = insurances.getAllActiveTypeInsurancesByCustomerId(customerId, BoatInsurance.class);
                 if (!insuranceList.isEmpty()) {
                     // Displays the insurances if there is at least one:
-                    boatClaimRegistration.populateInsurancesTable(insuranceList);
+                    registerBoatClaim.populateInsurancesTable(insuranceList);
                 }
             }
         }
     }
     
     private void boatClaimSelectInsuranceButtonEventHandler(ActionEvent event) {
-        boatClaimRegistration.clearMessages();
-        Insurance insurance = boatClaimRegistration.getInsuranceTableValue();
+        registerBoatClaim.clearMessages();
+        Insurance insurance = registerBoatClaim.getInsuranceTableValue();
         String message = "";
         if (insurance instanceof BoatInsurance) {
             BoatInsuranceCoverage coverage = (BoatInsuranceCoverage) insurance.getCoverage();
-            boatClaimRegistration.setDamages(coverage.damages());
+            registerBoatClaim.setDamages(coverage.damages());
             message = insurance.getName() + " " + coverage.toString() + " er valgt.";
-            boatClaimRegistration.setSelectInsuranceMessage(message);
+            registerBoatClaim.setSelectInsuranceMessage(message);
         } else {
             message = "Ingen forsikring valgt,";
-            boatClaimRegistration.setSelectInsuranceMessage(message);
+            registerBoatClaim.setSelectInsuranceMessage(message);
         }
     }
     
@@ -1068,7 +1068,7 @@ public class MainController {
                 BufferedImage bufferedImage = ImageIO.read(file);
                 Image image = SwingFXUtils.toFXImage(bufferedImage, null);
                 // ! Sets this image to the image in field in the boat claim view:
-                boatClaimRegistration.setImage(image);
+                registerBoatClaim.setImage(image);
             } catch (IOException ioe) {
                 logs.add(ioe.getStackTrace(), ioe.getMessage(), user);
             }
@@ -1080,64 +1080,64 @@ public class MainController {
     private void homeClaimRegisterButtonEventHandler(ActionEvent event) {
         boolean ok = true;
         // Clears the previous status messages:
-        homeClaimRegistration.clearMessages();
+        registerHomeClaim.clearMessages();
         int insuranceId = 0;
         int appraisal = 0;
-        int customerId = homeClaimRegistration.getSelectedCustomerId();
+        int customerId = registerHomeClaim.getSelectedCustomerId();
         if (customerId == 0) {
             ok = false;
-            homeClaimRegistration.setRegisterButtonMessage(NO_CUSTOMER_MESSAGE);
+            registerHomeClaim.setRegisterButtonMessage(NO_CUSTOMER_MESSAGE);
             return;
         }
         HomeInsurance insurance;
         // Get the Insurance selected from the table:
-        if (homeClaimRegistration.getInsuranceTableValue() instanceof HomeInsurance) {
-            insurance = (HomeInsurance) homeClaimRegistration.getInsuranceTableValue();
+        if (registerHomeClaim.getInsuranceTableValue() instanceof HomeInsurance) {
+            insurance = (HomeInsurance) registerHomeClaim.getInsuranceTableValue();
             // Checks if this value is null:
             if (insurance == null) {
                 ok = false;
                 // If so send a message to the user:
-                homeClaimRegistration.setRegisterButtonMessage(NO_INSURANCE_MESSAGE);
+                registerHomeClaim.setRegisterButtonMessage(NO_INSURANCE_MESSAGE);
                 // Exit the method, as we don't need to check for anything else:
                 return;
             } else {
                 insuranceId = insurance.getCustomerId();
             }
-            Calendar dateHappened = homeClaimRegistration.getDateHappenedPickerValue();
+            Calendar dateHappened = registerHomeClaim.getDateHappenedPickerValue();
             if (dateHappened == null) {
                 ok = false;
                 // If so send a message to the user:
-                homeClaimRegistration.setRegisterButtonMessage(NO_DATE_MESSAGE);
+                registerHomeClaim.setRegisterButtonMessage(NO_DATE_MESSAGE);
                 return; // leave method
             }
-            String description = homeClaimRegistration.getDescriptionTextArea();
+            String description = registerHomeClaim.getDescriptionTextArea();
             if (description.equals("")) {
                 ok = false;
                 // If so send a message to the user:
-                homeClaimRegistration.setRegisterButtonMessage(DESCRIPTION_EMPTY_MESSAGE);
+                registerHomeClaim.setRegisterButtonMessage(DESCRIPTION_EMPTY_MESSAGE);
                 return; // leave method
             }
             // Get the selected damages:
-            Set<Damage> damages = homeClaimRegistration.getSelectedDamages();
+            Set<Damage> damages = registerHomeClaim.getSelectedDamages();
             // Returns an empty set if no damages are selected:
             if (damages.isEmpty()) {
                 // This is still allowed.
             }
-            Image image = homeClaimRegistration.getImage();
+            Image image = registerHomeClaim.getImage();
             if (image == null) {
                 // This is also allowed.
             }
 
-            String appraisalString = homeClaimRegistration.getAppraisalField();
+            String appraisalString = registerHomeClaim.getAppraisalField();
             if (appraisalString.equals("")) {
                 ok = false;
-                homeClaimRegistration.setAppraisalFieldMessage(EMPTY_MESSAGE);
+                registerHomeClaim.setAppraisalFieldMessage(EMPTY_MESSAGE);
             } else {
                 try {
                     appraisal = Integer.parseInt(appraisalString);
                 } catch (NumberFormatException nfe) {
                     ok = false;
-                    boatClaimRegistration.setAppraisalFieldMessage(FORMAT_MESSAGE);
+                    registerBoatClaim.setAppraisalFieldMessage(FORMAT_MESSAGE);
                 }
             }
             // If all fields are filled in correctly according to what we need to create a
@@ -1148,21 +1148,21 @@ public class MainController {
                 // Add this claim to the claim register:
                 if (claims.addClaim(claim)) {
                     // Clear uploads(image):
-                    homeClaimRegistration.clearUploads();
-                    homeClaimRegistration.setRegisterButtonMessage(REGISTER_SUCCESS);
+                    registerHomeClaim.clearUploads();
+                    registerHomeClaim.setRegisterButtonMessage(REGISTER_SUCCESS);
                 } else {
-                    homeClaimRegistration.setRegisterButtonMessage(REGISTER_NO_SUCCESS);
+                    registerHomeClaim.setRegisterButtonMessage(REGISTER_NO_SUCCESS);
                 }
             }
         }
     }
     
     private void homeClaimSearchCustomerIdButtonEventHandler(ActionEvent event) {
-        String customerIdString = homeClaimRegistration.getCustomerId();
+        String customerIdString = registerHomeClaim.getCustomerId();
         int customerId;
         if(customerIdString.equals("")) {
             // Gives the user an appropriate message if the user hasn't put in a customerId:
-            homeClaimRegistration.setCustomerArea(CUSTOMERID_EMPTY_MESSAGE);
+            registerHomeClaim.setCustomerArea(CUSTOMERID_EMPTY_MESSAGE);
             return;
         }
         try {
@@ -1171,7 +1171,7 @@ public class MainController {
         } catch(NumberFormatException nfe) {
             logs.add(nfe.getStackTrace(), nfe.getMessage(), user);
             // Gives the user an appropriate message if the customerId wasn't formatted correctly:
-            homeClaimRegistration.setCustomerArea(CUSTOMERID_FORMAT_MESSAGE);
+            registerHomeClaim.setCustomerArea(CUSTOMERID_FORMAT_MESSAGE);
             return;
         }
         // TODO: Regex.
@@ -1179,63 +1179,63 @@ public class MainController {
         Customer customer = customers.findCustomerById(customerId);
         if(customer == null) {
             // Gives the user an appropriate message if the customer wasn't found:
-            homeClaimRegistration.setCustomerArea(CUSTOMERID_NOT_FOUND_MESSAGE + customerId);
+            registerHomeClaim.setCustomerArea(CUSTOMERID_NOT_FOUND_MESSAGE + customerId);
         } else {
             // Displays the customer:
-            homeClaimRegistration.setCustomerArea(customer.toString());
+            registerHomeClaim.setCustomerArea(customer.toString());
             // Set this id as the selected one in the view class:
-            homeClaimRegistration.setSelectedCustomerId(customerId);
+            registerHomeClaim.setSelectedCustomerId(customerId);
             // Finds the customers insurances:
             List insuranceList = insurances.getAllActiveTypeInsurancesByCustomerId(customerId, HomeInsurance.class);
             if (!insuranceList.isEmpty()) {
                 // Displays the insurances if there is at least one:
-                homeClaimRegistration.populateInsurancesTable(insuranceList);
+                registerHomeClaim.populateInsurancesTable(insuranceList);
             }
         }
     }
     
     private void homeClaimSearchPersonalNumberButtonEventHandler(ActionEvent event) {
-        String personalNumber = homeClaimRegistration.getPersonalNumber();
+        String personalNumber = registerHomeClaim.getPersonalNumber();
         if(personalNumber.equals("")) {
             // Gives the user an appropriate message if the user hasn't put in a personalNumber:
-            homeClaimRegistration.setCustomerArea(PERSONALNUMBER_EMPTY_MESSAGE);
+            registerHomeClaim.setCustomerArea(PERSONALNUMBER_EMPTY_MESSAGE);
         } else if (!personalNumber.matches("\\d{11}")) {
             // Gives the user an appropriate message:
-            homeClaimRegistration.setCustomerArea(PERSONALNUMBER_INCORRECT_MESSAGE);
+            registerHomeClaim.setCustomerArea(PERSONALNUMBER_INCORRECT_MESSAGE);
         } else {
             // Searches for the customer by personalNumber:
             Customer customer = customers.findCustomerByPersonalNumber(personalNumber);
             if(customer == null) {
                 // Gives the user an appropriate message if the customer wasn't found:
-                homeClaimRegistration.setCustomerArea(PERSONALNUMBER_NOT_FOUND_MESSAGE + personalNumber);
+                registerHomeClaim.setCustomerArea(PERSONALNUMBER_NOT_FOUND_MESSAGE + personalNumber);
             } else {
                 // Finds the customers insurances:
                 int customerId = customer.getId();
                 // Displays the customer:
-                homeClaimRegistration.setCustomerArea(customer.toString());
+                registerHomeClaim.setCustomerArea(customer.toString());
                 // Set this id as the selected one in the view class:
-                homeClaimRegistration.setSelectedCustomerId(customerId);
+                registerHomeClaim.setSelectedCustomerId(customerId);
                 List insuranceList = insurances.getAllActiveTypeInsurancesByCustomerId(customerId, HomeInsurance.class);
                 if (!insuranceList.isEmpty()) {
                     // Displays the insurances if there is at least one:
-                    homeClaimRegistration.populateInsurancesTable(insuranceList);
+                    registerHomeClaim.populateInsurancesTable(insuranceList);
                 }
             }
         }
     }
     
     private void homeClaimSelectInsuranceButtonEventHandler(ActionEvent event) {
-        homeClaimRegistration.clearMessages();
-        Insurance insurance = homeClaimRegistration.getInsuranceTableValue();
+        registerHomeClaim.clearMessages();
+        Insurance insurance = registerHomeClaim.getInsuranceTableValue();
         String message = "";
         if (insurance instanceof HomeInsurance) {
             HomeInsuranceCoverage coverage = (HomeInsuranceCoverage) insurance.getCoverage();
-            homeClaimRegistration.setDamages(coverage.damages());
+            registerHomeClaim.setDamages(coverage.damages());
             message = insurance.getName() + " " + coverage.toString() + " er valgt.";
-            homeClaimRegistration.setSelectInsuranceMessage(message);
+            registerHomeClaim.setSelectInsuranceMessage(message);
         } else {
             message = "Ingen forsikring valgt,";
-            homeClaimRegistration.setSelectInsuranceMessage(message);
+            registerHomeClaim.setSelectInsuranceMessage(message);
         }
     }
     
@@ -1263,7 +1263,7 @@ public class MainController {
                 BufferedImage bufferedImage = ImageIO.read(file);
                 Image image = SwingFXUtils.toFXImage(bufferedImage, null);
                 // ! Sets this image to the image in field in the home claim view:
-                homeClaimRegistration.setImage(image);
+                registerHomeClaim.setImage(image);
             } catch (IOException ioe) {
                 logs.add(ioe.getStackTrace(), ioe.getMessage(), user);
             }
@@ -1275,68 +1275,68 @@ public class MainController {
     private void homeContentClaimRegisterButtonEventHandler(ActionEvent event) {
         boolean ok = true;
         // Clears the previous status messages:
-        homeContentClaimRegistration.clearMessages();
+        registerHomeContentClaim.clearMessages();
         int insuranceId = 0;
         int appraisal = 0;
-        int customerId = homeContentClaimRegistration.getSelectedCustomerId();
+        int customerId = registerHomeContentClaim.getSelectedCustomerId();
         if (customerId == 0) {
             ok = false;
-            homeContentClaimRegistration.setRegisterButtonMessage(NO_CUSTOMER_MESSAGE);
+            registerHomeContentClaim.setRegisterButtonMessage(NO_CUSTOMER_MESSAGE);
             return;
         }
         HomeContentInsurance insurance;
         // Get the Insurance selected from the table:
-        if (homeContentClaimRegistration.getInsuranceTableValue() instanceof HomeContentInsurance) {
-            insurance = (HomeContentInsurance) homeContentClaimRegistration.getInsuranceTableValue();
+        if (registerHomeContentClaim.getInsuranceTableValue() instanceof HomeContentInsurance) {
+            insurance = (HomeContentInsurance) registerHomeContentClaim.getInsuranceTableValue();
             // Checks if this value is null:
             if (insurance == null) {
                 ok = false;
                 // If so send a message to the user:
-                homeContentClaimRegistration.setRegisterButtonMessage(NO_INSURANCE_MESSAGE);
+                registerHomeContentClaim.setRegisterButtonMessage(NO_INSURANCE_MESSAGE);
                 // Exit the method, as we don't need to check for anything else:
                 return;
             } else {
                 insuranceId = insurance.getCustomerId();
             }
-            Calendar dateHappened = homeContentClaimRegistration.getDateHappenedPickerValue();
+            Calendar dateHappened = registerHomeContentClaim.getDateHappenedPickerValue();
             if (dateHappened == null) {
                 ok = false;
                 // If so send a message to the user:
-                homeContentClaimRegistration.setRegisterButtonMessage(NO_DATE_MESSAGE);
+                registerHomeContentClaim.setRegisterButtonMessage(NO_DATE_MESSAGE);
                 return; // leave method
             }
-            String description = homeContentClaimRegistration.getDescriptionTextArea();
+            String description = registerHomeContentClaim.getDescriptionTextArea();
             if (description.equals("")) {
                 ok = false;
                 // If so send a message to the user:
-                homeContentClaimRegistration.setRegisterButtonMessage(DESCRIPTION_EMPTY_MESSAGE);
+                registerHomeContentClaim.setRegisterButtonMessage(DESCRIPTION_EMPTY_MESSAGE);
                 return; // leave method
             }
             // Get the selected damages:
-            Set<Damage> damages = homeContentClaimRegistration.getSelectedDamages();
+            Set<Damage> damages = registerHomeContentClaim.getSelectedDamages();
             // Returns an empty set if no damages are selected:
             if (damages.isEmpty()) {
                 // This is still allowed.
             }
-            Image image = homeContentClaimRegistration.getImage();
+            Image image = registerHomeContentClaim.getImage();
             if (image == null) {
                 // This is also allowed.
             }
 
-            String appraisalString = homeContentClaimRegistration.getAppraisalField();
+            String appraisalString = registerHomeContentClaim.getAppraisalField();
             if (appraisalString.equals("")) {
                 ok = false;
-                homeContentClaimRegistration.setAppraisalFieldMessage(EMPTY_MESSAGE);
+                registerHomeContentClaim.setAppraisalFieldMessage(EMPTY_MESSAGE);
             } else {
                 try {
                     appraisal = Integer.parseInt(appraisalString);
                 } catch (NumberFormatException nfe) {
                     ok = false;
-                    homeContentClaimRegistration.setAppraisalFieldMessage(FORMAT_MESSAGE);
+                    registerHomeContentClaim.setAppraisalFieldMessage(FORMAT_MESSAGE);
                 }
             }
             // Get the list of claim items stored in the registration view.(empty or not)
-            List<ClaimItem> claimItems = homeContentClaimRegistration.getClaimItems();
+            List<ClaimItem> claimItems = registerHomeContentClaim.getClaimItems();
             
             // If all fields are filled in correctly according to what we need to create a
             // claim, we proceed:
@@ -1347,10 +1347,10 @@ public class MainController {
                 // Add this claim to the claim register:
                 if (claims.addClaim(claim)) {
                     // Clear uploads(image):
-                    homeContentClaimRegistration.clearUploads();
-                    homeContentClaimRegistration.setRegisterButtonMessage(REGISTER_SUCCESS);
+                    registerHomeContentClaim.clearUploads();
+                    registerHomeContentClaim.setRegisterButtonMessage(REGISTER_SUCCESS);
                 } else {
-                    homeContentClaimRegistration.setRegisterButtonMessage(REGISTER_NO_SUCCESS);
+                    registerHomeContentClaim.setRegisterButtonMessage(REGISTER_NO_SUCCESS);
                 }
             }
         }
@@ -1358,24 +1358,24 @@ public class MainController {
     
     private void homeContentClaimAddItemButtonEventHandler(ActionEvent event) {
         // Clear the message:
-        homeContentClaimRegistration.setAddItemConfirmMessage("");
+        registerHomeContentClaim.setAddItemConfirmMessage("");
         boolean ok = true;
         String message; // Message used to display confirm status to the user:
         // We get the values needed to create a ClaimItem form the view:
-        String itemDescription = homeContentClaimRegistration.getItemDescriptionTextArea();
-        String acquiredArea = homeContentClaimRegistration.getAcquiredAreaField();
-        Calendar acquiredDate = homeContentClaimRegistration.getAcquiredDatePickerValue();
-        String valueString = homeContentClaimRegistration.getValueField();
+        String itemDescription = registerHomeContentClaim.getItemDescriptionTextArea();
+        String acquiredArea = registerHomeContentClaim.getAcquiredAreaField();
+        Calendar acquiredDate = registerHomeContentClaim.getAcquiredDatePickerValue();
+        String valueString = registerHomeContentClaim.getValueField();
         int value = 0;
-        String descriptionOfDocumentation = homeContentClaimRegistration.getDescriptionOfDocumentationTextArea();
+        String descriptionOfDocumentation = registerHomeContentClaim.getDescriptionOfDocumentationTextArea();
         
         // Simple Validation: // We only care about item description and value:
         if (itemDescription.equals("")) {
             ok = false;
-            homeContentClaimRegistration.setAddItemConfirmMessage("Fyll inn beskrivelse og verdi.");
+            registerHomeContentClaim.setAddItemConfirmMessage("Fyll inn beskrivelse og verdi.");
         } else if (valueString.equals("")) {
             ok = false;
-            homeContentClaimRegistration.setAddItemConfirmMessage("Fyll inn beskrivelse og verdi.");
+            registerHomeContentClaim.setAddItemConfirmMessage("Fyll inn beskrivelse og verdi.");
             
         } else {
             try {
@@ -1384,21 +1384,21 @@ public class MainController {
                 // We create a new claim item:
                 ClaimItem claimItem = new ClaimItem(itemDescription, acquiredArea, acquiredDate, value, descriptionOfDocumentation);
                 // We then add this item to a list in the claim view: (will be recieved when claim is registered)
-                homeContentClaimRegistration.addClaimItem(claimItem);
-                homeContentClaimRegistration.setAddItemConfirmMessage("Gjenstand lagt til.");
+                registerHomeContentClaim.addClaimItem(claimItem);
+                registerHomeContentClaim.setAddItemConfirmMessage("Gjenstand lagt til.");
             } catch (NumberFormatException nfe) {
-                homeContentClaimRegistration.setAddItemConfirmMessage("Kun tallverdier er gyldig i verdifelt.");
+                registerHomeContentClaim.setAddItemConfirmMessage("Kun tallverdier er gyldig i verdifelt.");
                 return;
             }
         }
     }
     
     private void homeContentClaimSearchCustomerIdButtonEventHandler(ActionEvent event) {
-        String customerIdString = homeContentClaimRegistration.getCustomerId();
+        String customerIdString = registerHomeContentClaim.getCustomerId();
         int customerId;
         if(customerIdString.equals("")) {
             // Gives the user an appropriate message if the user hasn't put in a customerId:
-            homeContentClaimRegistration.setCustomerArea(CUSTOMERID_EMPTY_MESSAGE);
+            registerHomeContentClaim.setCustomerArea(CUSTOMERID_EMPTY_MESSAGE);
             return;
         }
         try {
@@ -1407,7 +1407,7 @@ public class MainController {
         } catch(NumberFormatException nfe) {
             logs.add(nfe.getStackTrace(), nfe.getMessage(), user);
             // Gives the user an appropriate message if the customerId wasn't formatted correctly:
-            homeContentClaimRegistration.setCustomerArea(CUSTOMERID_FORMAT_MESSAGE);
+            registerHomeContentClaim.setCustomerArea(CUSTOMERID_FORMAT_MESSAGE);
             return;
         }
         // TODO: Regex.
@@ -1415,66 +1415,66 @@ public class MainController {
         Customer customer = customers.findCustomerById(customerId);
         if(customer == null) {
             // Gives the user an appropriate message if the customer wasn't found:
-            homeContentClaimRegistration.setCustomerArea(CUSTOMERID_NOT_FOUND_MESSAGE + customerId);
+            registerHomeContentClaim.setCustomerArea(CUSTOMERID_NOT_FOUND_MESSAGE + customerId);
         } else {
             // Displays the customer:
-            homeContentClaimRegistration.setCustomerArea(customer.toString());
+            registerHomeContentClaim.setCustomerArea(customer.toString());
             // Set this id as the selected one in the view class:
-            homeContentClaimRegistration.setSelectedCustomerId(customerId);
+            registerHomeContentClaim.setSelectedCustomerId(customerId);
             // Finds the customers holiday home content insurances:
             List insuranceList = insurances.getAllActiveTypeInsurancesByCustomerId(customerId, 
                     HomeContentInsurance.class);
             if (!insuranceList.isEmpty()) {
                 // Displays the insurances if there is at least one:
-                homeContentClaimRegistration.populateInsurancesTable(insuranceList);
+                registerHomeContentClaim.populateInsurancesTable(insuranceList);
             }
         }
     }
     
     private void homeContentClaimSearchPersonalNumberButtonEventHandler(ActionEvent event) {
-        String personalNumber = homeContentClaimRegistration.getPersonalNumber();
+        String personalNumber = registerHomeContentClaim.getPersonalNumber();
         if(personalNumber.equals("")) {
             // Gives the user an appropriate message if the user hasn't put in a personalNumber:
-            homeContentClaimRegistration.setCustomerArea(PERSONALNUMBER_EMPTY_MESSAGE);
+            registerHomeContentClaim.setCustomerArea(PERSONALNUMBER_EMPTY_MESSAGE);
         } else if (!personalNumber.matches("\\d{11}")) {
             // Gives the user an appropriate message:
-            homeContentClaimRegistration.setCustomerArea(PERSONALNUMBER_INCORRECT_MESSAGE);
+            registerHomeContentClaim.setCustomerArea(PERSONALNUMBER_INCORRECT_MESSAGE);
         } else {
             // Searches for the customer by personalNumber:
             Customer customer = customers.findCustomerByPersonalNumber(personalNumber);
             if(customer == null) {
                 // Gives the user an appropriate message if the customer wasn't found:
-                homeContentClaimRegistration.setCustomerArea(PERSONALNUMBER_NOT_FOUND_MESSAGE + personalNumber);
+                registerHomeContentClaim.setCustomerArea(PERSONALNUMBER_NOT_FOUND_MESSAGE + personalNumber);
             } else {
                 // Finds the customers insurances:
                 int customerId = customer.getId();
                 // Displays the customer:
-                homeContentClaimRegistration.setCustomerArea(customer.toString());
+                registerHomeContentClaim.setCustomerArea(customer.toString());
                 // Set this id as the selected one in the view class:
-                homeContentClaimRegistration.setSelectedCustomerId(customerId);
+                registerHomeContentClaim.setSelectedCustomerId(customerId);
                 // Finds the customers holiday home content insurances:
                 List insuranceList = insurances.getAllActiveTypeInsurancesByCustomerId(customerId, 
                         HomeContentInsurance.class);
                 if (!insuranceList.isEmpty()) {
                     // Displays the insurances if there is at least one:
-                    homeContentClaimRegistration.populateInsurancesTable(insuranceList);
+                    registerHomeContentClaim.populateInsurancesTable(insuranceList);
                 }
             }
         }
     }
     
     private void homeContentClaimSelectInsuranceButtonEventHandler(ActionEvent event) {
-        homeContentClaimRegistration.clearMessages();
-        Insurance insurance = homeContentClaimRegistration.getInsuranceTableValue();
+        registerHomeContentClaim.clearMessages();
+        Insurance insurance = registerHomeContentClaim.getInsuranceTableValue();
         String message = "";
         if (insurance instanceof HomeContentInsurance) {
             HomeContentInsuranceCoverage coverage = (HomeContentInsuranceCoverage) insurance.getCoverage();
-            homeContentClaimRegistration.setDamages(coverage.damages());
+            registerHomeContentClaim.setDamages(coverage.damages());
             message = insurance.getName() + " " + coverage.toString() + " er valgt.";
-            homeContentClaimRegistration.setSelectInsuranceMessage(message);
+            registerHomeContentClaim.setSelectInsuranceMessage(message);
         } else {
             message = "Ingen forsikring valgt,";
-            homeContentClaimRegistration.setSelectInsuranceMessage(message);
+            registerHomeContentClaim.setSelectInsuranceMessage(message);
         }
     }
     
@@ -1502,7 +1502,7 @@ public class MainController {
                 BufferedImage bufferedImage = ImageIO.read(file);
                 Image image = SwingFXUtils.toFXImage(bufferedImage, null);
                 // ! Sets this image to the image in field in the view:
-                homeContentClaimRegistration.setImage(image);
+                registerHomeContentClaim.setImage(image);
             } catch (IOException ioe) {
                 logs.add(ioe.getStackTrace(), ioe.getMessage(), user);
             }
@@ -1514,64 +1514,64 @@ public class MainController {
     private void holidayHomeClaimRegisterButtonEventHandler(ActionEvent event) {
         boolean ok = true;
         // Clears the previous status messages:
-        holidayHomeClaimRegistration.clearMessages();
+        registerHolidayHomeClaim.clearMessages();
         int insuranceId = 0;
         int appraisal = 0;
-        int customerId = holidayHomeClaimRegistration.getSelectedCustomerId();
+        int customerId = registerHolidayHomeClaim.getSelectedCustomerId();
         if (customerId == 0) {
             ok = false;
-            holidayHomeClaimRegistration.setRegisterButtonMessage(NO_CUSTOMER_MESSAGE);
+            registerHolidayHomeClaim.setRegisterButtonMessage(NO_CUSTOMER_MESSAGE);
             return;
         }
         HolidayHomeInsurance insurance;
         // Get the Insurance selected from the table:
-        if (homeClaimRegistration.getInsuranceTableValue() instanceof HolidayHomeInsurance) {
-            insurance = (HolidayHomeInsurance) holidayHomeClaimRegistration.getInsuranceTableValue();
+        if (registerHomeClaim.getInsuranceTableValue() instanceof HolidayHomeInsurance) {
+            insurance = (HolidayHomeInsurance) registerHolidayHomeClaim.getInsuranceTableValue();
             // Checks if this value is null:
             if (insurance == null) {
                 ok = false;
                 // If so send a message to the user:
-                holidayHomeClaimRegistration.setRegisterButtonMessage(NO_INSURANCE_MESSAGE);
+                registerHolidayHomeClaim.setRegisterButtonMessage(NO_INSURANCE_MESSAGE);
                 // Exit the method, as we don't need to check for anything else:
                 return;
             } else {
                 insuranceId = insurance.getCustomerId();
             }
-            Calendar dateHappened = holidayHomeClaimRegistration.getDateHappenedPickerValue();
+            Calendar dateHappened = registerHolidayHomeClaim.getDateHappenedPickerValue();
             if (dateHappened == null) {
                 ok = false;
                 // If so send a message to the user:
-                holidayHomeClaimRegistration.setRegisterButtonMessage(NO_DATE_MESSAGE);
+                registerHolidayHomeClaim.setRegisterButtonMessage(NO_DATE_MESSAGE);
                 return; // leave method
             }
-            String description = holidayHomeClaimRegistration.getDescriptionTextArea();
+            String description = registerHolidayHomeClaim.getDescriptionTextArea();
             if (description.equals("")) {
                 ok = false;
                 // If so send a message to the user:
-                holidayHomeClaimRegistration.setRegisterButtonMessage(DESCRIPTION_EMPTY_MESSAGE);
+                registerHolidayHomeClaim.setRegisterButtonMessage(DESCRIPTION_EMPTY_MESSAGE);
                 return; // leave method
             }
             // Get the selected damages:
-            Set<Damage> damages = holidayHomeClaimRegistration.getSelectedDamages();
+            Set<Damage> damages = registerHolidayHomeClaim.getSelectedDamages();
             // Returns an empty set if no damages are selected:
             if (damages.isEmpty()) {
                 // This is still allowed.
             }
-            Image image = holidayHomeClaimRegistration.getImage();
+            Image image = registerHolidayHomeClaim.getImage();
             if (image == null) {
                 // This is also allowed.
             }
 
-            String appraisalString = holidayHomeClaimRegistration.getAppraisalField();
+            String appraisalString = registerHolidayHomeClaim.getAppraisalField();
             if (appraisalString.equals("")) {
                 ok = false;
-                holidayHomeClaimRegistration.setAppraisalFieldMessage(EMPTY_MESSAGE);
+                registerHolidayHomeClaim.setAppraisalFieldMessage(EMPTY_MESSAGE);
             } else {
                 try {
                     appraisal = Integer.parseInt(appraisalString);
                 } catch (NumberFormatException nfe) {
                     ok = false;
-                    holidayHomeClaimRegistration.setAppraisalFieldMessage(FORMAT_MESSAGE);
+                    registerHolidayHomeClaim.setAppraisalFieldMessage(FORMAT_MESSAGE);
                 }
             }
             // If all fields are filled in correctly according to what we need to create a
@@ -1583,21 +1583,21 @@ public class MainController {
                 // Add this claim to the claim register:
                 if (claims.addClaim(claim)) {
                     // Clear uploads(image):
-                    holidayHomeClaimRegistration.clearUploads();
-                    holidayHomeClaimRegistration.setRegisterButtonMessage(REGISTER_SUCCESS);
+                    registerHolidayHomeClaim.clearUploads();
+                    registerHolidayHomeClaim.setRegisterButtonMessage(REGISTER_SUCCESS);
                 } else {
-                    holidayHomeClaimRegistration.setRegisterButtonMessage(REGISTER_NO_SUCCESS);
+                    registerHolidayHomeClaim.setRegisterButtonMessage(REGISTER_NO_SUCCESS);
                 }
             }
         }
     }
     
     private void holidayHomeClaimSearchCustomerIdButtonEventHandler(ActionEvent event) {
-        String customerIdString = holidayHomeClaimRegistration.getCustomerId();
+        String customerIdString = registerHolidayHomeClaim.getCustomerId();
         int customerId;
         if(customerIdString.equals("")) {
             // Gives the user an appropriate message if the user hasn't put in a customerId:
-            holidayHomeClaimRegistration.setCustomerArea(CUSTOMERID_EMPTY_MESSAGE);
+            registerHolidayHomeClaim.setCustomerArea(CUSTOMERID_EMPTY_MESSAGE);
             return;
         }
         try {
@@ -1606,7 +1606,7 @@ public class MainController {
         } catch(NumberFormatException nfe) {
             logs.add(nfe.getStackTrace(), nfe.getMessage(), user);
             // Gives the user an appropriate message if the customerId wasn't formatted correctly:
-            holidayHomeClaimRegistration.setCustomerArea(CUSTOMERID_FORMAT_MESSAGE);
+            registerHolidayHomeClaim.setCustomerArea(CUSTOMERID_FORMAT_MESSAGE);
             return;
         }
         // TODO: Regex.
@@ -1614,64 +1614,64 @@ public class MainController {
         Customer customer = customers.findCustomerById(customerId);
         if(customer == null) {
             // Gives the user an appropriate message if the customer wasn't found:
-            holidayHomeClaimRegistration.setCustomerArea(CUSTOMERID_NOT_FOUND_MESSAGE + customerId);
+            registerHolidayHomeClaim.setCustomerArea(CUSTOMERID_NOT_FOUND_MESSAGE + customerId);
         } else {
             // Displays the customer:
-            holidayHomeClaimRegistration.setCustomerArea(customer.toString());
+            registerHolidayHomeClaim.setCustomerArea(customer.toString());
             // Set this id as the selected one in the view class:
-            holidayHomeClaimRegistration.setSelectedCustomerId(customerId);
+            registerHolidayHomeClaim.setSelectedCustomerId(customerId);
             // Finds the customers holiday home insurances:
             List insuranceList = insurances.getAllActiveTypeInsurancesByCustomerId(customerId, HolidayHomeInsurance.class);
             if (!insuranceList.isEmpty()) {
                 // Displays the insurances if there is at least one:
-                holidayHomeClaimRegistration.populateInsurancesTable(insuranceList);
+                registerHolidayHomeClaim.populateInsurancesTable(insuranceList);
             }
         }
     }
     
     private void holidayHomeClaimSearchPersonalNumberButtonEventHandler(ActionEvent event) {
-        String personalNumber = holidayHomeClaimRegistration.getPersonalNumber();
+        String personalNumber = registerHolidayHomeClaim.getPersonalNumber();
         if(personalNumber.equals("")) {
             // Gives the user an appropriate message if the user hasn't put in a personalNumber:
-            holidayHomeClaimRegistration.setCustomerArea(PERSONALNUMBER_EMPTY_MESSAGE);
+            registerHolidayHomeClaim.setCustomerArea(PERSONALNUMBER_EMPTY_MESSAGE);
         } else if (!personalNumber.matches("\\d{11}")) {
             // Gives the user an appropriate message:
-            holidayHomeClaimRegistration.setCustomerArea(PERSONALNUMBER_INCORRECT_MESSAGE);
+            registerHolidayHomeClaim.setCustomerArea(PERSONALNUMBER_INCORRECT_MESSAGE);
         } else {
             // Searches for the customer by personalNumber:
             Customer customer = customers.findCustomerByPersonalNumber(personalNumber);
             if(customer == null) {
                 // Gives the user an appropriate message if the customer wasn't found:
-                holidayHomeClaimRegistration.setCustomerArea(PERSONALNUMBER_NOT_FOUND_MESSAGE + personalNumber);
+                registerHolidayHomeClaim.setCustomerArea(PERSONALNUMBER_NOT_FOUND_MESSAGE + personalNumber);
             } else {
                 // Finds the customers insurances:
                 int customerId = customer.getId();
                 // Displays the customer:
-                holidayHomeClaimRegistration.setCustomerArea(customer.toString());
+                registerHolidayHomeClaim.setCustomerArea(customer.toString());
                 // Set this id as the selected one in the view class:
-                holidayHomeClaimRegistration.setSelectedCustomerId(customerId);
+                registerHolidayHomeClaim.setSelectedCustomerId(customerId);
                 // Finds the customers holiday home insurances:
                 List insuranceList = insurances.getAllActiveTypeInsurancesByCustomerId(customerId, HolidayHomeInsurance.class);
                 if (!insuranceList.isEmpty()) {
                     // Displays the insurances if there is at least one:
-                    holidayHomeClaimRegistration.populateInsurancesTable(insuranceList);
+                    registerHolidayHomeClaim.populateInsurancesTable(insuranceList);
                 }
             }
         }
     }
     
     private void holidayHomeClaimSelectInsuranceButtonEventHandler(ActionEvent event) {
-        holidayHomeClaimRegistration.clearMessages();
-        Insurance insurance = holidayHomeClaimRegistration.getInsuranceTableValue();
+        registerHolidayHomeClaim.clearMessages();
+        Insurance insurance = registerHolidayHomeClaim.getInsuranceTableValue();
         String message = "";
         if (insurance instanceof HolidayHomeInsurance) {
             HolidayHomeInsuranceCoverage coverage = (HolidayHomeInsuranceCoverage) insurance.getCoverage();
-            holidayHomeClaimRegistration.setDamages(coverage.damages());
+            registerHolidayHomeClaim.setDamages(coverage.damages());
             message = insurance.getName() + " " + coverage.toString() + " er valgt.";
-            holidayHomeClaimRegistration.setSelectInsuranceMessage(message);
+            registerHolidayHomeClaim.setSelectInsuranceMessage(message);
         } else {
             message = "Ingen forsikring valgt,";
-            holidayHomeClaimRegistration.setSelectInsuranceMessage(message);
+            registerHolidayHomeClaim.setSelectInsuranceMessage(message);
         }
     }
     
@@ -1699,7 +1699,7 @@ public class MainController {
                 BufferedImage bufferedImage = ImageIO.read(file);
                 Image image = SwingFXUtils.toFXImage(bufferedImage, null);
                 // ! Sets this image to the image in field in the view:
-                holidayHomeClaimRegistration.setImage(image);
+                registerHolidayHomeClaim.setImage(image);
             } catch (IOException ioe) {
                 logs.add(ioe.getStackTrace(), ioe.getMessage(), user);
             }
@@ -1711,68 +1711,68 @@ public class MainController {
     private void holidayHomeContentClaimRegisterButtonEventHandler(ActionEvent event) {
         boolean ok = true;
         // Clears the previous status messages:
-        holidayHomeContentClaimRegistration.clearMessages();
+        registerHolidayHomeContentClaim.clearMessages();
         int insuranceId = 0;
         int appraisal = 0;
-        int customerId = holidayHomeContentClaimRegistration.getSelectedCustomerId();
+        int customerId = registerHolidayHomeContentClaim.getSelectedCustomerId();
         if (customerId == 0) {
             ok = false;
-            holidayHomeContentClaimRegistration.setRegisterButtonMessage(NO_CUSTOMER_MESSAGE);
+            registerHolidayHomeContentClaim.setRegisterButtonMessage(NO_CUSTOMER_MESSAGE);
             return;
         }
         HolidayHomeContentInsurance insurance;
         // Get the Insurance selected from the table:
-        if (holidayHomeContentClaimRegistration.getInsuranceTableValue() instanceof HolidayHomeContentInsurance) {
-            insurance = (HolidayHomeContentInsurance) holidayHomeContentClaimRegistration.getInsuranceTableValue();
+        if (registerHolidayHomeContentClaim.getInsuranceTableValue() instanceof HolidayHomeContentInsurance) {
+            insurance = (HolidayHomeContentInsurance) registerHolidayHomeContentClaim.getInsuranceTableValue();
             // Checks if this value is null:
             if (insurance == null) {
                 ok = false;
                 // If so send a message to the user:
-                holidayHomeContentClaimRegistration.setRegisterButtonMessage(NO_INSURANCE_MESSAGE);
+                registerHolidayHomeContentClaim.setRegisterButtonMessage(NO_INSURANCE_MESSAGE);
                 // Exit the method, as we don't need to check for anything else:
                 return;
             } else {
                 insuranceId = insurance.getCustomerId();
             }
-            Calendar dateHappened = holidayHomeContentClaimRegistration.getDateHappenedPickerValue();
+            Calendar dateHappened = registerHolidayHomeContentClaim.getDateHappenedPickerValue();
             if (dateHappened == null) {
                 ok = false;
                 // If so send a message to the user:
-                holidayHomeContentClaimRegistration.setRegisterButtonMessage(NO_DATE_MESSAGE);
+                registerHolidayHomeContentClaim.setRegisterButtonMessage(NO_DATE_MESSAGE);
                 return; // leave method
             }
-            String description = holidayHomeContentClaimRegistration.getDescriptionTextArea();
+            String description = registerHolidayHomeContentClaim.getDescriptionTextArea();
             if (description.equals("")) {
                 ok = false;
                 // If so send a message to the user:
-                holidayHomeContentClaimRegistration.setRegisterButtonMessage(DESCRIPTION_EMPTY_MESSAGE);
+                registerHolidayHomeContentClaim.setRegisterButtonMessage(DESCRIPTION_EMPTY_MESSAGE);
                 return; // leave method
             }
             // Get the selected damages:
-            Set<Damage> damages = holidayHomeContentClaimRegistration.getSelectedDamages();
+            Set<Damage> damages = registerHolidayHomeContentClaim.getSelectedDamages();
             // Returns an empty set if no damages are selected:
             if (damages.isEmpty()) {
                 // This is still allowed.
             }
-            Image image = holidayHomeContentClaimRegistration.getImage();
+            Image image = registerHolidayHomeContentClaim.getImage();
             if (image == null) {
                 // This is also allowed.
             }
 
-            String appraisalString = holidayHomeContentClaimRegistration.getAppraisalField();
+            String appraisalString = registerHolidayHomeContentClaim.getAppraisalField();
             if (appraisalString.equals("")) {
                 ok = false;
-                holidayHomeContentClaimRegistration.setAppraisalFieldMessage(EMPTY_MESSAGE);
+                registerHolidayHomeContentClaim.setAppraisalFieldMessage(EMPTY_MESSAGE);
             } else {
                 try {
                     appraisal = Integer.parseInt(appraisalString);
                 } catch (NumberFormatException nfe) {
                     ok = false;
-                    holidayHomeContentClaimRegistration.setAppraisalFieldMessage(FORMAT_MESSAGE);
+                    registerHolidayHomeContentClaim.setAppraisalFieldMessage(FORMAT_MESSAGE);
                 }
             }
             // Get the list of claim items stored in the registration view.(empty or not)
-            List<ClaimItem> claimItems = holidayHomeContentClaimRegistration.getClaimItems();
+            List<ClaimItem> claimItems = registerHolidayHomeContentClaim.getClaimItems();
             
             // If all fields are filled in correctly according to what we need to create a
             // claim, we proceed:
@@ -1783,10 +1783,10 @@ public class MainController {
                 // Add this claim to the claim register:
                 if (claims.addClaim(claim)) {
                     // Clear uploads(image):
-                    holidayHomeContentClaimRegistration.clearUploads();
-                    holidayHomeContentClaimRegistration.setRegisterButtonMessage(REGISTER_SUCCESS);
+                    registerHolidayHomeContentClaim.clearUploads();
+                    registerHolidayHomeContentClaim.setRegisterButtonMessage(REGISTER_SUCCESS);
                 } else {
-                    holidayHomeContentClaimRegistration.setRegisterButtonMessage(REGISTER_NO_SUCCESS);
+                    registerHolidayHomeContentClaim.setRegisterButtonMessage(REGISTER_NO_SUCCESS);
                 }
             }
         }
@@ -1794,24 +1794,24 @@ public class MainController {
     
     private void holidayHomeContentClaimAddItemButtonEventHandler(ActionEvent event) {
         // Clear the message:
-        holidayHomeContentClaimRegistration.setAddItemConfirmMessage("");
+        registerHolidayHomeContentClaim.setAddItemConfirmMessage("");
         boolean ok = true;
         String message; // Message used to display confirm status to the user:
         // We get the values needed to create a ClaimItem form the view:
-        String itemDescription = holidayHomeContentClaimRegistration.getItemDescriptionTextArea();
-        String acquiredArea = holidayHomeContentClaimRegistration.getAcquiredAreaField();
-        Calendar acquiredDate = holidayHomeContentClaimRegistration.getAcquiredDatePickerValue();
-        String valueString = holidayHomeContentClaimRegistration.getValueField();
+        String itemDescription = registerHolidayHomeContentClaim.getItemDescriptionTextArea();
+        String acquiredArea = registerHolidayHomeContentClaim.getAcquiredAreaField();
+        Calendar acquiredDate = registerHolidayHomeContentClaim.getAcquiredDatePickerValue();
+        String valueString = registerHolidayHomeContentClaim.getValueField();
         int value = 0;
-        String descriptionOfDocumentation = holidayHomeContentClaimRegistration.getDescriptionOfDocumentationTextArea();
+        String descriptionOfDocumentation = registerHolidayHomeContentClaim.getDescriptionOfDocumentationTextArea();
         
         // Simple Validation: // We only care about item description and value:
         if (itemDescription.equals("")) {
             ok = false;
-            holidayHomeContentClaimRegistration.setAddItemConfirmMessage("Fyll inn beskrivelse og verdi.");
+            registerHolidayHomeContentClaim.setAddItemConfirmMessage("Fyll inn beskrivelse og verdi.");
         } else if (valueString.equals("")) {
             ok = false;
-            holidayHomeContentClaimRegistration.setAddItemConfirmMessage("Fyll inn beskrivelse og verdi.");
+            registerHolidayHomeContentClaim.setAddItemConfirmMessage("Fyll inn beskrivelse og verdi.");
             
         } else {
             try {
@@ -1820,21 +1820,21 @@ public class MainController {
                 // We create a new claim item:
                 ClaimItem claimItem = new ClaimItem(itemDescription, acquiredArea, acquiredDate, value, descriptionOfDocumentation);
                 // We then add this item to a list in the claim view: (will be recieved when claim is registered)
-                holidayHomeContentClaimRegistration.addClaimItem(claimItem);
-                holidayHomeContentClaimRegistration.setAddItemConfirmMessage("Gjenstand lagt til.");
+                registerHolidayHomeContentClaim.addClaimItem(claimItem);
+                registerHolidayHomeContentClaim.setAddItemConfirmMessage("Gjenstand lagt til.");
             } catch (NumberFormatException nfe) {
-                holidayHomeContentClaimRegistration.setAddItemConfirmMessage("Kun tallverdier er gyldig i verdifelt.");
+                registerHolidayHomeContentClaim.setAddItemConfirmMessage("Kun tallverdier er gyldig i verdifelt.");
                 return;
             }
         }
     }
     
     private void holidayHomeContentClaimSearchCustomerIdButtonEventHandler(ActionEvent event) {
-        String customerIdString = holidayHomeContentClaimRegistration.getCustomerId();
+        String customerIdString = registerHolidayHomeContentClaim.getCustomerId();
         int customerId;
         if(customerIdString.equals("")) {
             // Gives the user an appropriate message if the user hasn't put in a customerId:
-            holidayHomeContentClaimRegistration.setCustomerArea(CUSTOMERID_EMPTY_MESSAGE);
+            registerHolidayHomeContentClaim.setCustomerArea(CUSTOMERID_EMPTY_MESSAGE);
             return;
         }
         try {
@@ -1843,7 +1843,7 @@ public class MainController {
         } catch(NumberFormatException nfe) {
             logs.add(nfe.getStackTrace(), nfe.getMessage(), user);
             // Gives the user an appropriate message if the customerId wasn't formatted correctly:
-            holidayHomeContentClaimRegistration.setCustomerArea(CUSTOMERID_FORMAT_MESSAGE);
+            registerHolidayHomeContentClaim.setCustomerArea(CUSTOMERID_FORMAT_MESSAGE);
             return;
         }
         // TODO: Regex.
@@ -1851,66 +1851,66 @@ public class MainController {
         Customer customer = customers.findCustomerById(customerId);
         if(customer == null) {
             // Gives the user an appropriate message if the customer wasn't found:
-            holidayHomeContentClaimRegistration.setCustomerArea(CUSTOMERID_NOT_FOUND_MESSAGE + customerId);
+            registerHolidayHomeContentClaim.setCustomerArea(CUSTOMERID_NOT_FOUND_MESSAGE + customerId);
         } else {
             // Displays the customer:
-            holidayHomeContentClaimRegistration.setCustomerArea(customer.toString());
+            registerHolidayHomeContentClaim.setCustomerArea(customer.toString());
             // Set this id as the selected one in the view class:
-            holidayHomeContentClaimRegistration.setSelectedCustomerId(customerId);
+            registerHolidayHomeContentClaim.setSelectedCustomerId(customerId);
             // Finds the customers holiday home content insurances:
             List insuranceList = insurances.getAllActiveTypeInsurancesByCustomerId(customerId, 
                     HolidayHomeContentInsurance.class);
             if (!insuranceList.isEmpty()) {
                 // Displays the insurances if there is at least one:
-                holidayHomeContentClaimRegistration.populateInsurancesTable(insuranceList);
+                registerHolidayHomeContentClaim.populateInsurancesTable(insuranceList);
             }
         }
     }
     
     private void holidayHomeContentClaimSearchPersonalNumberButtonEventHandler(ActionEvent event) {
-        String personalNumber = holidayHomeContentClaimRegistration.getPersonalNumber();
+        String personalNumber = registerHolidayHomeContentClaim.getPersonalNumber();
         if(personalNumber.equals("")) {
             // Gives the user an appropriate message if the user hasn't put in a personalNumber:
-            holidayHomeContentClaimRegistration.setCustomerArea(PERSONALNUMBER_EMPTY_MESSAGE);
+            registerHolidayHomeContentClaim.setCustomerArea(PERSONALNUMBER_EMPTY_MESSAGE);
         } else if (!personalNumber.matches("\\d{11}")) {
             // Gives the user an appropriate message:
-            holidayHomeContentClaimRegistration.setCustomerArea(PERSONALNUMBER_INCORRECT_MESSAGE);
+            registerHolidayHomeContentClaim.setCustomerArea(PERSONALNUMBER_INCORRECT_MESSAGE);
         } else {
             // Searches for the customer by personalNumber:
             Customer customer = customers.findCustomerByPersonalNumber(personalNumber);
             if(customer == null) {
                 // Gives the user an appropriate message if the customer wasn't found:
-                holidayHomeContentClaimRegistration.setCustomerArea(PERSONALNUMBER_NOT_FOUND_MESSAGE + personalNumber);
+                registerHolidayHomeContentClaim.setCustomerArea(PERSONALNUMBER_NOT_FOUND_MESSAGE + personalNumber);
             } else {
                 // Finds the customers insurances:
                 int customerId = customer.getId();
                 // Displays the customer:
-                holidayHomeContentClaimRegistration.setCustomerArea(customer.toString());
+                registerHolidayHomeContentClaim.setCustomerArea(customer.toString());
                 // Set this id as the selected one in the view class:
-                holidayHomeContentClaimRegistration.setSelectedCustomerId(customerId);
+                registerHolidayHomeContentClaim.setSelectedCustomerId(customerId);
                 // Finds the customers holiday home content insurances:
                 List insuranceList = insurances.getAllActiveTypeInsurancesByCustomerId(customerId, 
                         HolidayHomeContentInsurance.class);
                 if (!insuranceList.isEmpty()) {
                     // Displays the insurances if there is at least one:
-                    holidayHomeContentClaimRegistration.populateInsurancesTable(insuranceList);
+                    registerHolidayHomeContentClaim.populateInsurancesTable(insuranceList);
                 }
             }
         }
     }
     
     private void holidayHomeContentClaimSelectInsuranceButtonEventHandler(ActionEvent event) {
-        holidayHomeContentClaimRegistration.clearMessages();
-        Insurance insurance = holidayHomeContentClaimRegistration.getInsuranceTableValue();
+        registerHolidayHomeContentClaim.clearMessages();
+        Insurance insurance = registerHolidayHomeContentClaim.getInsuranceTableValue();
         String message = "";
         if (insurance instanceof HolidayHomeContentInsurance) {
             HolidayHomeContentInsuranceCoverage coverage = (HolidayHomeContentInsuranceCoverage) insurance.getCoverage();
-            holidayHomeContentClaimRegistration.setDamages(coverage.damages());
+            registerHolidayHomeContentClaim.setDamages(coverage.damages());
             message = insurance.getName() + " " + coverage.toString() + " er valgt.";
-            holidayHomeContentClaimRegistration.setSelectInsuranceMessage(message);
+            registerHolidayHomeContentClaim.setSelectInsuranceMessage(message);
         } else {
             message = "Ingen forsikring valgt,";
-            holidayHomeContentClaimRegistration.setSelectInsuranceMessage(message);
+            registerHolidayHomeContentClaim.setSelectInsuranceMessage(message);
         }
     }
     
@@ -1938,7 +1938,7 @@ public class MainController {
                 BufferedImage bufferedImage = ImageIO.read(file);
                 Image image = SwingFXUtils.toFXImage(bufferedImage, null);
                 // ! Sets this image to the image in field in the view:
-                holidayHomeContentClaimRegistration.setImage(image);
+                registerHolidayHomeContentClaim.setImage(image);
             } catch (IOException ioe) {
                 logs.add(ioe.getStackTrace(), ioe.getMessage(), user);
             }
@@ -1950,71 +1950,71 @@ public class MainController {
     private void travelClaimRegisterButtonEventHandler(ActionEvent event) {
         boolean ok = true;
         // Clears the previous status messages:
-        travelClaimRegistration.clearMessages();
+        registerTravelClaim.clearMessages();
         int insuranceId = 0;
         int appraisal = 0;
-        int customerId = travelClaimRegistration.getSelectedCustomerId();
+        int customerId = registerTravelClaim.getSelectedCustomerId();
         if (customerId == 0) {
             ok = false;
-            travelClaimRegistration.setRegisterButtonMessage(NO_CUSTOMER_MESSAGE);
+            registerTravelClaim.setRegisterButtonMessage(NO_CUSTOMER_MESSAGE);
             return;
         }
         TravelInsurance insurance;
         // Get the Insurance selected from the table:
-        if (travelClaimRegistration.getInsuranceTableValue() instanceof TravelInsurance) {
-            insurance = (TravelInsurance) travelClaimRegistration.getInsuranceTableValue();
+        if (registerTravelClaim.getInsuranceTableValue() instanceof TravelInsurance) {
+            insurance = (TravelInsurance) registerTravelClaim.getInsuranceTableValue();
             // Checks if this value is null:
             if (insurance == null) {
                 ok = false;
                 // If so send a message to the user:
-                travelClaimRegistration.setRegisterButtonMessage(NO_INSURANCE_MESSAGE);
+                registerTravelClaim.setRegisterButtonMessage(NO_INSURANCE_MESSAGE);
                 // Exit the method, as we don't need to check for anything else:
                 return;
             } else {
                 insuranceId = insurance.getCustomerId();
             }
-            Calendar dateHappened = travelClaimRegistration.getDateHappenedPickerValue();
+            Calendar dateHappened = registerTravelClaim.getDateHappenedPickerValue();
             if (dateHappened == null) {
                 ok = false;
                 // If so send a message to the user:
-                travelClaimRegistration.setRegisterButtonMessage(NO_DATE_MESSAGE);
+                registerTravelClaim.setRegisterButtonMessage(NO_DATE_MESSAGE);
                 return; // leave method
             }
-            String description = travelClaimRegistration.getDescriptionTextArea();
+            String description = registerTravelClaim.getDescriptionTextArea();
             if (description.equals("")) {
                 ok = false;
                 // If so send a message to the user:
-                travelClaimRegistration.setRegisterButtonMessage(DESCRIPTION_EMPTY_MESSAGE);
+                registerTravelClaim.setRegisterButtonMessage(DESCRIPTION_EMPTY_MESSAGE);
                 return; // leave method
             }
             // Get the selected damages:
-            Set<Damage> damages = travelClaimRegistration.getSelectedDamages();
+            Set<Damage> damages = registerTravelClaim.getSelectedDamages();
             // Returns an empty set if no damages are selected:
             if (damages.isEmpty()) {
                 // This is still allowed.
             }
-            Image image = travelClaimRegistration.getImage();
+            Image image = registerTravelClaim.getImage();
             if (image == null) {
                 // This is also allowed.
             }
 
-            String appraisalString = travelClaimRegistration.getAppraisalField();
+            String appraisalString = registerTravelClaim.getAppraisalField();
             if (appraisalString.equals("")) {
                 ok = false;
-                travelClaimRegistration.setAppraisalFieldMessage(EMPTY_MESSAGE);
+                registerTravelClaim.setAppraisalFieldMessage(EMPTY_MESSAGE);
             } else {
                 try {
                     appraisal = Integer.parseInt(appraisalString);
                 } catch (NumberFormatException nfe) {
                     ok = false;
-                    travelClaimRegistration.setAppraisalFieldMessage(FORMAT_MESSAGE);
+                    registerTravelClaim.setAppraisalFieldMessage(FORMAT_MESSAGE);
                 }
             }
             // Get the list of claim items stored in the registration view.(empty or not)
-            List<ClaimItem> claimItems = travelClaimRegistration.getClaimItems();
+            List<ClaimItem> claimItems = registerTravelClaim.getClaimItems();
             // Get the credit card brand and country. TODO: validation
-            String creditCardBrand = travelClaimRegistration.getCreditCardBrandField();
-            String country = travelClaimRegistration.getCountryField();
+            String creditCardBrand = registerTravelClaim.getCreditCardBrandField();
+            String country = registerTravelClaim.getCountryField();
             // If all fields are filled in correctly according to what we need to create a
             // claim, we proceed:
             if (ok) {
@@ -2024,10 +2024,10 @@ public class MainController {
                 // Add this claim to the claim register:
                 if (claims.addClaim(claim)) {
                     // Clear uploads(image):
-                    travelClaimRegistration.clearUploads();
-                    travelClaimRegistration.setRegisterButtonMessage(REGISTER_SUCCESS);
+                    registerTravelClaim.clearUploads();
+                    registerTravelClaim.setRegisterButtonMessage(REGISTER_SUCCESS);
                 } else {
-                    travelClaimRegistration.setRegisterButtonMessage(REGISTER_NO_SUCCESS);
+                    registerTravelClaim.setRegisterButtonMessage(REGISTER_NO_SUCCESS);
                 }
             }
         }
@@ -2035,24 +2035,24 @@ public class MainController {
     
     private void travelClaimAddItemButtonEventHandler(ActionEvent event) {
         // Clear the message:
-        travelClaimRegistration.setAddItemConfirmMessage("");
+        registerTravelClaim.setAddItemConfirmMessage("");
         boolean ok = true;
         String message; // Message used to display confirm status to the user:
         // We get the values needed to create a ClaimItem form the view:
-        String itemDescription = travelClaimRegistration.getItemDescriptionTextArea();
-        String acquiredArea = travelClaimRegistration.getAcquiredAreaField();
-        Calendar acquiredDate = travelClaimRegistration.getAcquiredDatePickerValue();
-        String valueString = travelClaimRegistration.getValueField();
+        String itemDescription = registerTravelClaim.getItemDescriptionTextArea();
+        String acquiredArea = registerTravelClaim.getAcquiredAreaField();
+        Calendar acquiredDate = registerTravelClaim.getAcquiredDatePickerValue();
+        String valueString = registerTravelClaim.getValueField();
         int value = 0;
-        String descriptionOfDocumentation = travelClaimRegistration.getDescriptionOfDocumentationTextArea();
+        String descriptionOfDocumentation = registerTravelClaim.getDescriptionOfDocumentationTextArea();
         
         // Simple Validation: // We only care about item description and value:
         if (itemDescription.equals("")) {
             ok = false;
-            travelClaimRegistration.setAddItemConfirmMessage("Fyll inn beskrivelse og verdi.");
+            registerTravelClaim.setAddItemConfirmMessage("Fyll inn beskrivelse og verdi.");
         } else if (valueString.equals("")) {
             ok = false;
-            travelClaimRegistration.setAddItemConfirmMessage("Fyll inn beskrivelse og verdi.");
+            registerTravelClaim.setAddItemConfirmMessage("Fyll inn beskrivelse og verdi.");
             
         } else {
             try {
@@ -2061,21 +2061,21 @@ public class MainController {
                 // We create a new claim item:
                 ClaimItem claimItem = new ClaimItem(itemDescription, acquiredArea, acquiredDate, value, descriptionOfDocumentation);
                 // We then add this item to a list in the claim view: (will be recieved when claim is registered)
-                travelClaimRegistration.addClaimItem(claimItem);
-                travelClaimRegistration.setAddItemConfirmMessage("Gjenstand lagt til.");
+                registerTravelClaim.addClaimItem(claimItem);
+                registerTravelClaim.setAddItemConfirmMessage("Gjenstand lagt til.");
             } catch (NumberFormatException nfe) {
-                travelClaimRegistration.setAddItemConfirmMessage("Kun tallverdier er gyldig i verdifelt.");
+                registerTravelClaim.setAddItemConfirmMessage("Kun tallverdier er gyldig i verdifelt.");
                 return;
             }
         }
     }
     
     private void travelClaimSearchCustomerIdButtonEventHandler(ActionEvent event) {
-        String customerIdString = travelClaimRegistration.getCustomerId();
+        String customerIdString = registerTravelClaim.getCustomerId();
         int customerId;
         if(customerIdString.equals("")) {
             // Gives the user an appropriate message if the user hasn't put in a customerId:
-            travelClaimRegistration.setCustomerArea(CUSTOMERID_EMPTY_MESSAGE);
+            registerTravelClaim.setCustomerArea(CUSTOMERID_EMPTY_MESSAGE);
             return;
         }
         try {
@@ -2084,7 +2084,7 @@ public class MainController {
         } catch(NumberFormatException nfe) {
             logs.add(nfe.getStackTrace(), nfe.getMessage(), user);
             // Gives the user an appropriate message if the customerId wasn't formatted correctly:
-            travelClaimRegistration.setCustomerArea(CUSTOMERID_FORMAT_MESSAGE);
+            registerTravelClaim.setCustomerArea(CUSTOMERID_FORMAT_MESSAGE);
             return;
         }
         // TODO: Regex.
@@ -2092,66 +2092,66 @@ public class MainController {
         Customer customer = customers.findCustomerById(customerId);
         if(customer == null) {
             // Gives the user an appropriate message if the customer wasn't found:
-            travelClaimRegistration.setCustomerArea(CUSTOMERID_NOT_FOUND_MESSAGE + customerId);
+            registerTravelClaim.setCustomerArea(CUSTOMERID_NOT_FOUND_MESSAGE + customerId);
         } else {
             // Displays the customer:
-            travelClaimRegistration.setCustomerArea(customer.toString());
+            registerTravelClaim.setCustomerArea(customer.toString());
             // Set this id as the selected one in the view class:
-            travelClaimRegistration.setSelectedCustomerId(customerId);
+            registerTravelClaim.setSelectedCustomerId(customerId);
             // Finds the customers holiday home content insurances:
             List insuranceList = insurances.getAllActiveTypeInsurancesByCustomerId(customerId, 
                     TravelInsurance.class);
             if (!insuranceList.isEmpty()) {
                 // Displays the insurances if there is at least one:
-                travelClaimRegistration.populateInsurancesTable(insuranceList);
+                registerTravelClaim.populateInsurancesTable(insuranceList);
             }
         }
     }
     
     private void travelClaimSearchPersonalNumberButtonEventHandler(ActionEvent event) {
-        String personalNumber = travelClaimRegistration.getPersonalNumber();
+        String personalNumber = registerTravelClaim.getPersonalNumber();
         if(personalNumber.equals("")) {
             // Gives the user an appropriate message if the user hasn't put in a personalNumber:
-            travelClaimRegistration.setCustomerArea(PERSONALNUMBER_EMPTY_MESSAGE);
+            registerTravelClaim.setCustomerArea(PERSONALNUMBER_EMPTY_MESSAGE);
         } else if (!personalNumber.matches("\\d{11}")) {
             // Gives the user an appropriate message:
-            travelClaimRegistration.setCustomerArea(PERSONALNUMBER_INCORRECT_MESSAGE);
+            registerTravelClaim.setCustomerArea(PERSONALNUMBER_INCORRECT_MESSAGE);
         } else {
             // Searches for the customer by personalNumber:
             Customer customer = customers.findCustomerByPersonalNumber(personalNumber);
             if(customer == null) {
                 // Gives the user an appropriate message if the customer wasn't found:
-                travelClaimRegistration.setCustomerArea(PERSONALNUMBER_NOT_FOUND_MESSAGE + personalNumber);
+                registerTravelClaim.setCustomerArea(PERSONALNUMBER_NOT_FOUND_MESSAGE + personalNumber);
             } else {
                 // Finds the customers insurances:
                 int customerId = customer.getId();
                 // Displays the customer:
-                travelClaimRegistration.setCustomerArea(customer.toString());
+                registerTravelClaim.setCustomerArea(customer.toString());
                 // Set this id as the selected one in the view class:
-                travelClaimRegistration.setSelectedCustomerId(customerId);
+                registerTravelClaim.setSelectedCustomerId(customerId);
                 // Finds the customers holiday home content insurances:
                 List insuranceList = insurances.getAllActiveTypeInsurancesByCustomerId(customerId, 
                         TravelInsurance.class);
                 if (!insuranceList.isEmpty()) {
                     // Displays the insurances if there is at least one:
-                    travelClaimRegistration.populateInsurancesTable(insuranceList);
+                    registerTravelClaim.populateInsurancesTable(insuranceList);
                 }
             }
         }
     }
     
     private void travelClaimSelectInsuranceButtonEventHandler(ActionEvent event) {
-        travelClaimRegistration.clearMessages();
-        Insurance insurance = travelClaimRegistration.getInsuranceTableValue();
+        registerTravelClaim.clearMessages();
+        Insurance insurance = registerTravelClaim.getInsuranceTableValue();
         String message = "";
         if (insurance instanceof TravelInsurance) {
             TravelInsuranceCoverage coverage = (TravelInsuranceCoverage) insurance.getCoverage();
-            travelClaimRegistration.setDamages(coverage.damages());
+            registerTravelClaim.setDamages(coverage.damages());
             message = insurance.getName() + " " + coverage.toString() + " er valgt.";
-            travelClaimRegistration.setSelectInsuranceMessage(message);
+            registerTravelClaim.setSelectInsuranceMessage(message);
         } else {
             message = "Ingen forsikring valgt,";
-            travelClaimRegistration.setSelectInsuranceMessage(message);
+            registerTravelClaim.setSelectInsuranceMessage(message);
         }
     }
     
@@ -2179,7 +2179,7 @@ public class MainController {
                 BufferedImage bufferedImage = ImageIO.read(file);
                 Image image = SwingFXUtils.toFXImage(bufferedImage, null);
                 // ! Sets this image to the image in field in the view:
-                travelClaimRegistration.setImage(image);
+                registerTravelClaim.setImage(image);
             } catch (IOException ioe) {
                 logs.add(ioe.getStackTrace(), ioe.getMessage(), user);
             }
@@ -2191,24 +2191,24 @@ public class MainController {
     private void boatInsuranceRegisterButtonEventHandler(ActionEvent e) {
         
         // Clears previous messages:
-        boatInsuranceRegistration.clearMessages();
+        registerBoatInsurance.clearMessages();
         
         // Collects information about the customer and the insurance:
-        BoatInsuranceCoverage coverage = boatInsuranceRegistration.getCoverage();
-        int customerId = boatInsuranceRegistration.getSelectedCustomerId();
-        String excessString = boatInsuranceRegistration.getExcess();
+        BoatInsuranceCoverage coverage = registerBoatInsurance.getCoverage();
+        int customerId = registerBoatInsurance.getSelectedCustomerId();
+        String excessString = registerBoatInsurance.getExcess();
         
         // Collects information about the boat:
-        String alarmString = boatInsuranceRegistration.getAlarm();
-        String brand = boatInsuranceRegistration.getBrand();
-        String engineEffectString = boatInsuranceRegistration.getEngineEffect();
-        String engineType = boatInsuranceRegistration.getEngineType();
-        String lengthString = boatInsuranceRegistration.getLength();
-        String model = boatInsuranceRegistration.getModel();
-        String ownerPersonalNumber = boatInsuranceRegistration.getOwnerPersonalNumber();
-        String registrationNumber = boatInsuranceRegistration.getRegistrationNumber();
-        String registrationYearString = boatInsuranceRegistration.getRegistrationYear();
-        String valueString = boatInsuranceRegistration.getValue();
+        String alarmString = registerBoatInsurance.getAlarm();
+        String brand = registerBoatInsurance.getBrand();
+        String engineEffectString = registerBoatInsurance.getEngineEffect();
+        String engineType = registerBoatInsurance.getEngineType();
+        String lengthString = registerBoatInsurance.getLength();
+        String model = registerBoatInsurance.getModel();
+        String ownerPersonalNumber = registerBoatInsurance.getOwnerPersonalNumber();
+        String registrationNumber = registerBoatInsurance.getRegistrationNumber();
+        String registrationYearString = registerBoatInsurance.getRegistrationYear();
+        String valueString = registerBoatInsurance.getValue();
         
         // Creates a boolean which is to be set true if the user has made a 
         // mistake and the method has to abort:
@@ -2224,91 +2224,91 @@ public class MainController {
         
         // Evaluates Input:
         if(brand.equals("")) {
-            boatInsuranceRegistration.setBrandMessage(EMPTY_MESSAGE);
+            registerBoatInsurance.setBrandMessage(EMPTY_MESSAGE);
             abort = true;
         }
         if(coverage == null) {
-            boatInsuranceRegistration.setCoverageMessage(EMPTY_MESSAGE);
+            registerBoatInsurance.setCoverageMessage(EMPTY_MESSAGE);
             abort = true;
         }
         if(customerId == 0) {
-            boatInsuranceRegistration.setCustomerSelectedMessage(NO_CUSTOMER_MESSAGE);
+            registerBoatInsurance.setCustomerSelectedMessage(NO_CUSTOMER_MESSAGE);
             abort = true;
         }
         if(engineType.equals("")) {
-            boatInsuranceRegistration.setEngineTypeMessage(EMPTY_MESSAGE);
+            registerBoatInsurance.setEngineTypeMessage(EMPTY_MESSAGE);
             abort = true;
         }
         if(model.equals("")) {
-            boatInsuranceRegistration.setModelMessage(EMPTY_MESSAGE);
+            registerBoatInsurance.setModelMessage(EMPTY_MESSAGE);
             abort = true;
         }
         if(ownerPersonalNumber.equals("")) {
-            boatInsuranceRegistration.setOwnerPersonalNumberMessage(EMPTY_MESSAGE);
+            registerBoatInsurance.setOwnerPersonalNumberMessage(EMPTY_MESSAGE);
         }
         if(registrationNumber.equals("")) {
-            boatInsuranceRegistration.setRegistrationNumberMessage(EMPTY_MESSAGE);
+            registerBoatInsurance.setRegistrationNumberMessage(EMPTY_MESSAGE);
         }
         
         // Evaluates and converts Input:
         if(alarmString.equals("")) {
-            boatInsuranceRegistration.setAlarmMessage(EMPTY_MESSAGE);
+            registerBoatInsurance.setAlarmMessage(EMPTY_MESSAGE);
             abort = true;
         } else {
             alarm = alarmString.equals("Ja");
         }
         if(engineEffectString.equals("")) {
-            boatInsuranceRegistration.setEngineEffectMessage(EMPTY_MESSAGE);
+            registerBoatInsurance.setEngineEffectMessage(EMPTY_MESSAGE);
             abort = true;
         } else {
             try {
                 engineEffect = Integer.parseInt(engineEffectString);
             } catch(NumberFormatException nfe) {
-                boatInsuranceRegistration.setEngineEffectMessage(FORMAT_MESSAGE);
+                registerBoatInsurance.setEngineEffectMessage(FORMAT_MESSAGE);
                 abort = true;
             }
         }
         if(excessString.equals("")) {
-            boatInsuranceRegistration.setExcessMessage(EMPTY_MESSAGE);
+            registerBoatInsurance.setExcessMessage(EMPTY_MESSAGE);
             abort = true;
         } else {
             try {
                 excess = Integer.parseInt(excessString);
             } catch(NumberFormatException nfe) {
-                boatInsuranceRegistration.setExcessMessage(FORMAT_MESSAGE);
+                registerBoatInsurance.setExcessMessage(FORMAT_MESSAGE);
                 abort = true;
             }
         }
         if(lengthString.equals("")) {
-            boatInsuranceRegistration.setLengthMessage(EMPTY_MESSAGE);
+            registerBoatInsurance.setLengthMessage(EMPTY_MESSAGE);
             abort = true;
         } else {
             try {
                 length = Integer.parseInt(lengthString);
             } catch(NumberFormatException nfe) {
-                boatInsuranceRegistration.setLengthMessage(FORMAT_MESSAGE);
+                registerBoatInsurance.setLengthMessage(FORMAT_MESSAGE);
                 abort = true;
             }
         }
         if(registrationYearString.equals("")) {
-            boatInsuranceRegistration.setRegistrationYearMessage(EMPTY_MESSAGE);
+            registerBoatInsurance.setRegistrationYearMessage(EMPTY_MESSAGE);
             abort = true;
         } else {
             try {
                 registrationYear = Integer.parseInt(registrationYearString);
             } catch(NumberFormatException nfe) {
-                boatInsuranceRegistration.setRegistrationYearMessage(FORMAT_MESSAGE);
+                registerBoatInsurance.setRegistrationYearMessage(FORMAT_MESSAGE);
                 abort = true;
             }
         }
         if(valueString.equals("")) {
-            boatInsuranceRegistration.setValueMessage(EMPTY_MESSAGE);
+            registerBoatInsurance.setValueMessage(EMPTY_MESSAGE);
             abort = true;
         } else {
             try {
                 value = Integer.parseInt(valueString);
             } catch(NumberFormatException nfe) {
-                boatInsuranceRegistration.setValueMessage(FORMAT_MESSAGE);
+                registerBoatInsurance.setValueMessage(FORMAT_MESSAGE);
                 abort = true;
             }
         }
@@ -2328,18 +2328,18 @@ public class MainController {
         
         // Adds insurance to Register:
         if (insurances.addInsurance(insurance)) {
-            boatInsuranceRegistration.setRegisterButtonMessage(REGISTER_SUCCESS);
+            registerBoatInsurance.setRegisterButtonMessage(REGISTER_SUCCESS);
         } else {
-            boatInsuranceRegistration.setRegisterButtonMessage(REGISTER_NO_SUCCESS);
+            registerBoatInsurance.setRegisterButtonMessage(REGISTER_NO_SUCCESS);
         }
     }
     
     private void boatInsuranceSearchCustomerIdButtonEventHandler(ActionEvent event) {
-        String customerIdString = boatInsuranceRegistration.getCustomerId();
+        String customerIdString = registerBoatInsurance.getCustomerId();
         int customerId;
         if(customerIdString.equals("")) {
             // Gives the user an appropriate message if the user hasn't put in a customerId:
-            boatInsuranceRegistration.setCustomerArea(CUSTOMERID_EMPTY_MESSAGE);
+            registerBoatInsurance.setCustomerArea(CUSTOMERID_EMPTY_MESSAGE);
             return;
         }
         try {
@@ -2347,7 +2347,7 @@ public class MainController {
             customerId = Integer.parseInt(customerIdString);
         } catch(NumberFormatException nfe) {
             // Gives the user an appropriate message if the customerId wasn't formatted correctly:
-            boatInsuranceRegistration.setCustomerArea(CUSTOMERID_FORMAT_MESSAGE);
+            registerBoatInsurance.setCustomerArea(CUSTOMERID_FORMAT_MESSAGE);
             return;
         }
         // TODO: Regex.
@@ -2355,25 +2355,25 @@ public class MainController {
         Customer customer = customers.findCustomerById(customerId);
         if(customer == null) {
             // Gives the user an appropriate message if the customer wasn't found:
-            boatInsuranceRegistration.setCustomerArea(CUSTOMERID_NOT_FOUND_MESSAGE + customerId);
+            registerBoatInsurance.setCustomerArea(CUSTOMERID_NOT_FOUND_MESSAGE + customerId);
         } else {
             // Displays the customer:
-            boatInsuranceRegistration.setCustomerArea(customer.toString());
-            boatInsuranceRegistration.setSelectedCustomerId(customerId);
+            registerBoatInsurance.setCustomerArea(customer.toString());
+            registerBoatInsurance.setSelectedCustomerId(customerId);
             // Finds the customers insurances:
             List insuranceList = insurances.getAllInsurancesByCustomerId(customerId);
             if (!insuranceList.isEmpty()) {
                 // Displays the insurances if there is at least one:
-                boatInsuranceRegistration.populateInsurancesTable(insuranceList);
+                registerBoatInsurance.populateInsurancesTable(insuranceList);
             }
         }
     }
     
     private void boatInsuranceSearchPersonalNumberButtonEventHandler(ActionEvent event) {
-        String personalNumber = boatInsuranceRegistration.getPersonalNumber();
+        String personalNumber = registerBoatInsurance.getPersonalNumber();
         if(personalNumber.equals("")) {
             // Gives the user an appropriate message if the user hasn't put in a personalNumber:
-            boatInsuranceRegistration.setCustomerArea(PERSONALNUMBER_EMPTY_MESSAGE);
+            registerBoatInsurance.setCustomerArea(PERSONALNUMBER_EMPTY_MESSAGE);
             return;
         }
         // TODO: Regex.
@@ -2381,17 +2381,17 @@ public class MainController {
         Customer customer = customers.findCustomerByPersonalNumber(personalNumber);
         if(customer == null) {
             // Gives the user an appropriate message if the customer wasn't found:
-            boatInsuranceRegistration.setCustomerArea(PERSONALNUMBER_NOT_FOUND_MESSAGE + personalNumber);
+            registerBoatInsurance.setCustomerArea(PERSONALNUMBER_NOT_FOUND_MESSAGE + personalNumber);
         } else {
             // Finds the customers insurances:
             int customerId = customer.getId();
             // Displays the customer:
-            boatInsuranceRegistration.setCustomerArea(customer.toString());
-            boatInsuranceRegistration.setSelectedCustomerId(customerId);
+            registerBoatInsurance.setCustomerArea(customer.toString());
+            registerBoatInsurance.setSelectedCustomerId(customerId);
             List insuranceList = insurances.getAllInsurancesByCustomerId(customerId);
             if (!insuranceList.isEmpty()) {
                 // Displays the insurances if there is at least one:
-                boatInsuranceRegistration.populateInsurancesTable(insuranceList);
+                registerBoatInsurance.populateInsurancesTable(insuranceList);
             }
         }
     }
@@ -2406,24 +2406,24 @@ public class MainController {
     private void carInsuranceRegisterButtonEventHandler(ActionEvent event) {
         
         // Clears previous messages:
-        carInsuranceRegistration.clearMessages();
+        registerCarInsurance.clearMessages();
         
         // Collects information about the customer and the insurance:
-        CarInsuranceCoverage coverage = carInsuranceRegistration.getCoverage();
-        int customerId = carInsuranceRegistration.getSelectedCustomerId();
-        String excessString = carInsuranceRegistration.getExcess();
-        String existingBonusString = carInsuranceRegistration.getExistingBonus();
-        String garageString = carInsuranceRegistration.getParkingCondition();
-        String maxLengthString = carInsuranceRegistration.getDrivingLength();
-        String youngDriverString = carInsuranceRegistration.getYoungestDriver();
+        CarInsuranceCoverage coverage = registerCarInsurance.getCoverage();
+        int customerId = registerCarInsurance.getSelectedCustomerId();
+        String excessString = registerCarInsurance.getExcess();
+        String existingBonusString = registerCarInsurance.getExistingBonus();
+        String garageString = registerCarInsurance.getParkingCondition();
+        String maxLengthString = registerCarInsurance.getDrivingLength();
+        String youngDriverString = registerCarInsurance.getYoungestDriver();
         
         // Collects information about the car:
-        String alarmString = carInsuranceRegistration.getAlarm();
-        String brand = carInsuranceRegistration.getBrand();
-        String model = carInsuranceRegistration.getModel();
-        String ownerPersonalNumber = carInsuranceRegistration.getOwnerPersonalNumber();
-        String registrationNumber = carInsuranceRegistration.getRegistrationNumber();
-        String registrationYearString = carInsuranceRegistration.getYear();
+        String alarmString = registerCarInsurance.getAlarm();
+        String brand = registerCarInsurance.getBrand();
+        String model = registerCarInsurance.getModel();
+        String ownerPersonalNumber = registerCarInsurance.getOwnerPersonalNumber();
+        String registrationNumber = registerCarInsurance.getRegistrationNumber();
+        String registrationYearString = registerCarInsurance.getYear();
         
         // Creates a boolean which is to be set true if the user has made a 
         // mistake and the method has to abort:
@@ -2440,89 +2440,89 @@ public class MainController {
         
         // Evaluates Input:
         if(brand.equals("")) {
-            carInsuranceRegistration.setBrandMessage(EMPTY_MESSAGE);
+            registerCarInsurance.setBrandMessage(EMPTY_MESSAGE);
             abort = true;
         }
         if(coverage == null) {
-            carInsuranceRegistration.setCoverageMessage(EMPTY_MESSAGE);
+            registerCarInsurance.setCoverageMessage(EMPTY_MESSAGE);
             abort = true;
         }
         if(customerId == 0) {
-            carInsuranceRegistration.setCustomerSelectedMessage(NO_CUSTOMER_MESSAGE);
+            registerCarInsurance.setCustomerSelectedMessage(NO_CUSTOMER_MESSAGE);
             abort = true;
         }
         if(model.equals("")) {
-            carInsuranceRegistration.setModelMessage(EMPTY_MESSAGE);
+            registerCarInsurance.setModelMessage(EMPTY_MESSAGE);
             abort = true;
         }
         if(ownerPersonalNumber.equals("")) {
-            carInsuranceRegistration.setOwnerPersonalNumberMessage(EMPTY_MESSAGE);
+            registerCarInsurance.setOwnerPersonalNumberMessage(EMPTY_MESSAGE);
         }
         if(registrationNumber.equals("")) {
-            carInsuranceRegistration.setRegistrationNumberMessage(EMPTY_MESSAGE);
+            registerCarInsurance.setRegistrationNumberMessage(EMPTY_MESSAGE);
         }
         
         // Evaluates and converts Input:
         if(alarmString.equals("")) {
-            carInsuranceRegistration.setAlarmMessage(EMPTY_MESSAGE);
+            registerCarInsurance.setAlarmMessage(EMPTY_MESSAGE);
             abort = true;
         } else {
             alarm = alarmString.equals("Ja");
         }
         if(excessString.equals("")) {
-            carInsuranceRegistration.setExcessMessage(EMPTY_MESSAGE);
+            registerCarInsurance.setExcessMessage(EMPTY_MESSAGE);
             abort = true;
         } else {
             try {
                 excess = Integer.parseInt(excessString);
             } catch(NumberFormatException nfe) {
-                carInsuranceRegistration.setExcessMessage(FORMAT_MESSAGE);
+                registerCarInsurance.setExcessMessage(FORMAT_MESSAGE);
                 abort = true;
             }
         }
         if(existingBonusString.equals("")) {
-            carInsuranceRegistration.setExistingBonusMessage(EMPTY_MESSAGE);
+            registerCarInsurance.setExistingBonusMessage(EMPTY_MESSAGE);
             abort = true;
         } else {
             try {
                 existingBonus = Integer.parseInt(existingBonusString);
             } catch(NumberFormatException nfe) {
-                carInsuranceRegistration.setExistingBonusMessage(FORMAT_MESSAGE);
+                registerCarInsurance.setExistingBonusMessage(FORMAT_MESSAGE);
                 abort = true;
             }
         }
         if(garageString.equals("")) {
-            carInsuranceRegistration.setParkingConditionMessage(EMPTY_MESSAGE);
+            registerCarInsurance.setParkingConditionMessage(EMPTY_MESSAGE);
             abort = true;
         } else {
             garage = garageString.equals("Har garasje");
         }
         if(maxLengthString.equals("")) {
-            carInsuranceRegistration.setDrivingLengthMessage(EMPTY_MESSAGE);
+            registerCarInsurance.setDrivingLengthMessage(EMPTY_MESSAGE);
             abort = true;
-        } else if (maxLengthString.equals(carInsuranceRegistration.MAX_LENGTH_UNLIMITED)){
+        } else if (maxLengthString.equals(registerCarInsurance.MAX_LENGTH_UNLIMITED)){
             maxLength = -1; // Set max length value to -1 (equals unlimited)
         } else {
             try {
                 maxLength = Integer.parseInt(maxLengthString);
             } catch(NumberFormatException nfe) {
-                carInsuranceRegistration.setDrivingLengthMessage(FORMAT_MESSAGE);
+                registerCarInsurance.setDrivingLengthMessage(FORMAT_MESSAGE);
                 abort = true;
             }
         }
         if(registrationYearString.equals("")) {
-            carInsuranceRegistration.setYearMessage(EMPTY_MESSAGE);
+            registerCarInsurance.setYearMessage(EMPTY_MESSAGE);
             abort = true;
         } else {
             try {
                 registrationYear = Integer.parseInt(registrationYearString);
             } catch(NumberFormatException nfe) {
-                carInsuranceRegistration.setYearMessage(FORMAT_MESSAGE);
+                registerCarInsurance.setYearMessage(FORMAT_MESSAGE);
                 abort = true;
             }
         }
         if(youngDriverString.equals("")) {
-            carInsuranceRegistration.setYoungestDriverMessage(EMPTY_MESSAGE);
+            registerCarInsurance.setYoungestDriverMessage(EMPTY_MESSAGE);
             abort = true;
         } else {
             youngDriver = youngDriverString.equals("Under 25");
@@ -2544,18 +2544,18 @@ public class MainController {
         
         // Adds insurance to Register:
         if (insurances.addInsurance(insurance)) {
-            carInsuranceRegistration.setRegisterButtonMessage(REGISTER_SUCCESS);
+            registerCarInsurance.setRegisterButtonMessage(REGISTER_SUCCESS);
         } else {
-            carInsuranceRegistration.setRegisterButtonMessage(REGISTER_NO_SUCCESS);
+            registerCarInsurance.setRegisterButtonMessage(REGISTER_NO_SUCCESS);
         }
     }
     
     private void carInsuranceSearchCustomerIdButtonEventHandler(ActionEvent event) {
-        String customerIdString = carInsuranceRegistration.getCustomerId();
+        String customerIdString = registerCarInsurance.getCustomerId();
         int customerId;
         if(customerIdString.equals("")) {
             // Gives the user an appropriate message if the user hasn't put in a customerId:
-            carInsuranceRegistration.setCustomerArea(CUSTOMERID_EMPTY_MESSAGE);
+            registerCarInsurance.setCustomerArea(CUSTOMERID_EMPTY_MESSAGE);
             return;
         }
         try {
@@ -2563,7 +2563,7 @@ public class MainController {
             customerId = Integer.parseInt(customerIdString);
         } catch(NumberFormatException nfe) {
             // Gives the user an appropriate message if the customerId wasn't formatted correctly:
-            carInsuranceRegistration.setCustomerArea(CUSTOMERID_FORMAT_MESSAGE);
+            registerCarInsurance.setCustomerArea(CUSTOMERID_FORMAT_MESSAGE);
             return;
         }
         // TODO: Regex.
@@ -2571,25 +2571,25 @@ public class MainController {
         Customer customer = customers.findCustomerById(customerId);
         if(customer == null) {
             // Gives the user an appropriate message if the customer wasn't found:
-            carInsuranceRegistration.setCustomerArea(CUSTOMERID_NOT_FOUND_MESSAGE + customerId);
+            registerCarInsurance.setCustomerArea(CUSTOMERID_NOT_FOUND_MESSAGE + customerId);
         } else {
             // Displays the customer:
-            carInsuranceRegistration.setCustomerArea(customer.toString());
-            carInsuranceRegistration.setSelectedCustomerId(customerId);
+            registerCarInsurance.setCustomerArea(customer.toString());
+            registerCarInsurance.setSelectedCustomerId(customerId);
             // Finds the customers insurances:
             List insuranceList = insurances.getAllInsurancesByCustomerId(customerId);
             if (!insuranceList.isEmpty()) {
                 // Displays the insurances if there is at least one:
-                carInsuranceRegistration.populateInsurancesTable(insuranceList);
+                registerCarInsurance.populateInsurancesTable(insuranceList);
             }
         }
     }
     
     private void carInsuranceSearchPersonalNumberButtonEventHandler(ActionEvent event) {
-        String personalNumber = carInsuranceRegistration.getPersonalNumber();
+        String personalNumber = registerCarInsurance.getPersonalNumber();
         if(personalNumber.equals("")) {
             // Gives the user an appropriate message if the user hasn't put in a personalNumber:
-            carInsuranceRegistration.setCustomerArea(PERSONALNUMBER_EMPTY_MESSAGE);
+            registerCarInsurance.setCustomerArea(PERSONALNUMBER_EMPTY_MESSAGE);
             return;
         }
         // TODO: Regex.
@@ -2597,17 +2597,17 @@ public class MainController {
         Customer customer = customers.findCustomerByPersonalNumber(personalNumber);
         if(customer == null) {
             // Gives the user an appropriate message if the customer wasn't found:
-            carInsuranceRegistration.setCustomerArea(PERSONALNUMBER_NOT_FOUND_MESSAGE + personalNumber);
+            registerCarInsurance.setCustomerArea(PERSONALNUMBER_NOT_FOUND_MESSAGE + personalNumber);
         } else {
             // Finds the customers insurances:
             int customerId = customer.getId();
             // Displays the customer:
-            carInsuranceRegistration.setCustomerArea(customer.toString());
-            carInsuranceRegistration.setSelectedCustomerId(customerId);
+            registerCarInsurance.setCustomerArea(customer.toString());
+            registerCarInsurance.setSelectedCustomerId(customerId);
             List insuranceList = insurances.getAllInsurancesByCustomerId(customerId);
             if (!insuranceList.isEmpty()) {
                 // Displays the insurances if there is at least one:
-                carInsuranceRegistration.populateInsurancesTable(insuranceList);
+                registerCarInsurance.populateInsurancesTable(insuranceList);
             }
         }
     }
@@ -2617,22 +2617,22 @@ public class MainController {
     private void holidayHomeInsuranceRegisterButtonEventHandler(ActionEvent e) {
         
         // Clears previous messages:
-        holidayHomeInsuranceRegistration.clearMessages();
+        registerHolidayHomeInsurance.clearMessages();
         
         // Collects information about the customer and the insurance:
-        HolidayHomeInsuranceCoverage coverage = holidayHomeInsuranceRegistration.getCoverage();
-        int customerId = holidayHomeInsuranceRegistration.getSelectedCustomerId();
-        String excessString = holidayHomeInsuranceRegistration.getExcess();
+        HolidayHomeInsuranceCoverage coverage = registerHolidayHomeInsurance.getCoverage();
+        int customerId = registerHolidayHomeInsurance.getSelectedCustomerId();
+        String excessString = registerHolidayHomeInsurance.getExcess();
         
         // Collects information about the property:
-        HolidayHomeType type = holidayHomeInsuranceRegistration.getType();
-        PropertyMaterial material = holidayHomeInsuranceRegistration.getMaterial();
-        String areaString = holidayHomeInsuranceRegistration.getArea();
-        String city = holidayHomeInsuranceRegistration.getCity();
-        String rentalString = holidayHomeInsuranceRegistration.getRental();
-        String street = holidayHomeInsuranceRegistration.getStreet();
-        String yearString = holidayHomeInsuranceRegistration.getYear();
-        String zipCodeString = holidayHomeInsuranceRegistration.getZipCode();
+        HolidayHomeType type = registerHolidayHomeInsurance.getType();
+        PropertyMaterial material = registerHolidayHomeInsurance.getMaterial();
+        String areaString = registerHolidayHomeInsurance.getArea();
+        String city = registerHolidayHomeInsurance.getCity();
+        String rentalString = registerHolidayHomeInsurance.getRental();
+        String street = registerHolidayHomeInsurance.getStreet();
+        String yearString = registerHolidayHomeInsurance.getYear();
+        String zipCodeString = registerHolidayHomeInsurance.getZipCode();
         
         // Creates a boolean which is to be set true if the user has made a 
         // mistake and the method has to abort:
@@ -2647,78 +2647,78 @@ public class MainController {
         
         // Evaluates Input:
         if(city.equals("")) {
-            holidayHomeInsuranceRegistration.setCityMessage(EMPTY_MESSAGE);
+            registerHolidayHomeInsurance.setCityMessage(EMPTY_MESSAGE);
             abort = true;
         }
         if(coverage == null) {
-            holidayHomeInsuranceRegistration.setCoverageMessage(EMPTY_MESSAGE);
+            registerHolidayHomeInsurance.setCoverageMessage(EMPTY_MESSAGE);
             abort = true;
         }
         if(customerId == 0) {
-            holidayHomeInsuranceRegistration.setCustomerSelectedMessage(NO_CUSTOMER_MESSAGE);
+            registerHolidayHomeInsurance.setCustomerSelectedMessage(NO_CUSTOMER_MESSAGE);
             abort = true;
         }
         if(material == null) {
-            holidayHomeInsuranceRegistration.setMaterialMessage(EMPTY_MESSAGE);
+            registerHolidayHomeInsurance.setMaterialMessage(EMPTY_MESSAGE);
             abort = true;
         }
         if(street.equals("")) {
-            holidayHomeInsuranceRegistration.setStreetMessage(EMPTY_MESSAGE);
+            registerHolidayHomeInsurance.setStreetMessage(EMPTY_MESSAGE);
             abort = true;
         }
         if(type == null) {
-            holidayHomeInsuranceRegistration.setTypeMessage(EMPTY_MESSAGE);
+            registerHolidayHomeInsurance.setTypeMessage(EMPTY_MESSAGE);
             abort = true;
         }
         
         // Evaluates and converts Input:
         if(areaString.equals("")) {
-            holidayHomeInsuranceRegistration.setAreaMessage(EMPTY_MESSAGE);
+            registerHolidayHomeInsurance.setAreaMessage(EMPTY_MESSAGE);
             abort = true;
         } else {
             try {
                 area = Integer.parseInt(areaString);
             } catch(NumberFormatException nfe) {
-                holidayHomeInsuranceRegistration.setAreaMessage(FORMAT_MESSAGE);
+                registerHolidayHomeInsurance.setAreaMessage(FORMAT_MESSAGE);
                 abort = true;
             }
         }
         if(excessString.equals("")) {
-            holidayHomeInsuranceRegistration.setExcessMessage(EMPTY_MESSAGE);
+            registerHolidayHomeInsurance.setExcessMessage(EMPTY_MESSAGE);
             abort = true;
         } else {
             try {
                 excess = Integer.parseInt(excessString);
             } catch(NumberFormatException nfe) {
-                holidayHomeInsuranceRegistration.setExcessMessage(FORMAT_MESSAGE);
+                registerHolidayHomeInsurance.setExcessMessage(FORMAT_MESSAGE);
                 abort = true;
             }
         }
         if(rentalString.equals("")) {
-            holidayHomeInsuranceRegistration.setRentalMessage(EMPTY_MESSAGE);
+            registerHolidayHomeInsurance.setRentalMessage(EMPTY_MESSAGE);
             abort = true;
         } else {
             rental = rentalString.equals("Ja");
         }
         if(yearString.equals("")) {
-            holidayHomeInsuranceRegistration.setYearMessage(EMPTY_MESSAGE);
+            registerHolidayHomeInsurance.setYearMessage(EMPTY_MESSAGE);
             abort = true;
         } else {
             try {
                 year = Integer.parseInt(yearString);
             } catch(NumberFormatException nfe) {
-                holidayHomeInsuranceRegistration.setYearMessage(FORMAT_MESSAGE);
+                registerHolidayHomeInsurance.setYearMessage(FORMAT_MESSAGE);
                 abort = true;
             }
         }
         if(zipCodeString.equals("")) {
-            holidayHomeInsuranceRegistration.setZipCodeMessage(EMPTY_MESSAGE);
+            registerHolidayHomeInsurance.setZipCodeMessage(EMPTY_MESSAGE);
             abort = true;
         } else {
             try {
                 zipCode = Integer.parseInt(zipCodeString);
             } catch(NumberFormatException nfe) {
-                holidayHomeInsuranceRegistration.setZipCodeMessage(FORMAT_MESSAGE);
+                registerHolidayHomeInsurance.setZipCodeMessage(FORMAT_MESSAGE);
                 abort = true;
             }
         }
@@ -2737,18 +2737,18 @@ public class MainController {
         
         // Adds insurance to Register:
         if (insurances.addInsurance(insurance)) {
-            holidayHomeInsuranceRegistration.setRegisterButtonMessage(REGISTER_SUCCESS);
+            registerHolidayHomeInsurance.setRegisterButtonMessage(REGISTER_SUCCESS);
         } else {
-            holidayHomeInsuranceRegistration.setRegisterButtonMessage(REGISTER_NO_SUCCESS);
+            registerHolidayHomeInsurance.setRegisterButtonMessage(REGISTER_NO_SUCCESS);
         }
     }
     
     private void holidayHomeInsuranceSearchCustomerIdButtonEventHandler(ActionEvent event) {
-        String customerIdString = holidayHomeInsuranceRegistration.getCustomerId();
+        String customerIdString = registerHolidayHomeInsurance.getCustomerId();
         int customerId;
         if(customerIdString.equals("")) {
             // Gives the user an appropriate message if the user hasn't put in a customerId:
-            holidayHomeInsuranceRegistration.setCustomerArea(CUSTOMERID_EMPTY_MESSAGE);
+            registerHolidayHomeInsurance.setCustomerArea(CUSTOMERID_EMPTY_MESSAGE);
             return;
         }
         try {
@@ -2756,7 +2756,7 @@ public class MainController {
             customerId = Integer.parseInt(customerIdString);
         } catch(NumberFormatException nfe) {
             // Gives the user an appropriate message if the customerId wasn't formatted correctly:
-            holidayHomeInsuranceRegistration.setCustomerArea(CUSTOMERID_FORMAT_MESSAGE);
+            registerHolidayHomeInsurance.setCustomerArea(CUSTOMERID_FORMAT_MESSAGE);
             return;
         }
         // TODO: Regex.
@@ -2764,25 +2764,25 @@ public class MainController {
         Customer customer = customers.findCustomerById(customerId);
         if(customer == null) {
             // Gives the user an appropriate message if the customer wasn't found:
-            holidayHomeInsuranceRegistration.setCustomerArea(CUSTOMERID_NOT_FOUND_MESSAGE + customerId);
+            registerHolidayHomeInsurance.setCustomerArea(CUSTOMERID_NOT_FOUND_MESSAGE + customerId);
         } else {
             // Displays the customer:
-            holidayHomeInsuranceRegistration.setCustomerArea(customer.toString());
-            holidayHomeInsuranceRegistration.setSelectedCustomerId(customerId);
+            registerHolidayHomeInsurance.setCustomerArea(customer.toString());
+            registerHolidayHomeInsurance.setSelectedCustomerId(customerId);
             // Finds the customers insurances:
             List insuranceList = insurances.getAllInsurancesByCustomerId(customerId);
             if (!insuranceList.isEmpty()) {
                 // Displays the insurances if there is at least one:
-                holidayHomeInsuranceRegistration.populateInsurancesTable(insuranceList);
+                registerHolidayHomeInsurance.populateInsurancesTable(insuranceList);
             }
         }
     } // end of method holidayHomeInsuranceSearchCustomerIdButtonEventHandler
     
     private void holidayHomeInsuranceSearchPersonalNumberButtonEventHandler(ActionEvent event) {
-        String personalNumber = holidayHomeInsuranceRegistration.getPersonalNumber();
+        String personalNumber = registerHolidayHomeInsurance.getPersonalNumber();
         if(personalNumber.equals("")) {
             // Gives the user an appropriate message if the user hasn't put in a personalNumber:
-            holidayHomeInsuranceRegistration.setCustomerArea(PERSONALNUMBER_EMPTY_MESSAGE);
+            registerHolidayHomeInsurance.setCustomerArea(PERSONALNUMBER_EMPTY_MESSAGE);
             return;
         }
         // TODO: Regex.
@@ -2790,17 +2790,17 @@ public class MainController {
         Customer customer = customers.findCustomerByPersonalNumber(personalNumber);
         if(customer == null) {
             // Gives the user an appropriate message if the customer wasn't found:
-            holidayHomeInsuranceRegistration.setCustomerArea(PERSONALNUMBER_NOT_FOUND_MESSAGE + personalNumber);
+            registerHolidayHomeInsurance.setCustomerArea(PERSONALNUMBER_NOT_FOUND_MESSAGE + personalNumber);
         } else {
             // Finds the customers insurances:
             int customerId = customer.getId();
             // Displays the customer:
-            holidayHomeInsuranceRegistration.setCustomerArea(customer.toString());
-            holidayHomeInsuranceRegistration.setSelectedCustomerId(customerId);
+            registerHolidayHomeInsurance.setCustomerArea(customer.toString());
+            registerHolidayHomeInsurance.setSelectedCustomerId(customerId);
             List insuranceList = insurances.getAllInsurancesByCustomerId(customerId);
             if (!insuranceList.isEmpty()) {
                 // Displays the insurances if there is at least one:
-                holidayHomeInsuranceRegistration.populateInsurancesTable(insuranceList);
+                registerHolidayHomeInsurance.populateInsurancesTable(insuranceList);
             }
         }
     } // end of method holidayHomeInsuranceSearchPersonalNumberButtonEventHandler
@@ -2810,22 +2810,22 @@ public class MainController {
     private void holidayHomeContentInsuranceRegisterButtonEventHandler(ActionEvent e) {
         
         // Clears previous messages:
-        holidayHomeContentInsuranceRegistration.clearMessages();
+        registerHolidayHomeContentInsurance.clearMessages();
         
         // Collects information about the customer and the insurance:
-        HolidayHomeContentInsuranceCoverage coverage = holidayHomeContentInsuranceRegistration.getCoverage();
-        int customerId = holidayHomeContentInsuranceRegistration.getSelectedCustomerId();
-        String excessString = holidayHomeContentInsuranceRegistration.getExcess();
+        HolidayHomeContentInsuranceCoverage coverage = registerHolidayHomeContentInsurance.getCoverage();
+        int customerId = registerHolidayHomeContentInsurance.getSelectedCustomerId();
+        String excessString = registerHolidayHomeContentInsurance.getExcess();
         
         // Collects information about the property:
-        HolidayHomeType type = holidayHomeContentInsuranceRegistration.getType();
-        PropertyMaterial material = holidayHomeContentInsuranceRegistration.getMaterial();
-        String amountString = holidayHomeContentInsuranceRegistration.getAmount();
-        String areaString = holidayHomeContentInsuranceRegistration.getArea();
-        String city = holidayHomeContentInsuranceRegistration.getCity();
-        String street = holidayHomeContentInsuranceRegistration.getStreet();
-        String yearString = holidayHomeContentInsuranceRegistration.getYear();
-        String zipCodeString = holidayHomeContentInsuranceRegistration.getZipCode();
+        HolidayHomeType type = registerHolidayHomeContentInsurance.getType();
+        PropertyMaterial material = registerHolidayHomeContentInsurance.getMaterial();
+        String amountString = registerHolidayHomeContentInsurance.getAmount();
+        String areaString = registerHolidayHomeContentInsurance.getArea();
+        String city = registerHolidayHomeContentInsurance.getCity();
+        String street = registerHolidayHomeContentInsurance.getStreet();
+        String yearString = registerHolidayHomeContentInsurance.getYear();
+        String zipCodeString = registerHolidayHomeContentInsurance.getZipCode();
         
         // Creates a boolean which is to be set true if the user has made a 
         // mistake and the method has to abort:
@@ -2840,83 +2840,83 @@ public class MainController {
         
         // Evaluates Input:
         if(city.equals("")) {
-            holidayHomeContentInsuranceRegistration.setCityMessage(EMPTY_MESSAGE);
+            registerHolidayHomeContentInsurance.setCityMessage(EMPTY_MESSAGE);
             abort = true;
         }
         if(coverage == null) {
-            holidayHomeContentInsuranceRegistration.setCoverageMessage(EMPTY_MESSAGE);
+            registerHolidayHomeContentInsurance.setCoverageMessage(EMPTY_MESSAGE);
             abort = true;
         }
         if(customerId == 0) {
-            holidayHomeContentInsuranceRegistration.setCustomerSelectedMessage(NO_CUSTOMER_MESSAGE);
+            registerHolidayHomeContentInsurance.setCustomerSelectedMessage(NO_CUSTOMER_MESSAGE);
             abort = true;
         }
         if(material == null) {
-            holidayHomeContentInsuranceRegistration.setMaterialMessage(EMPTY_MESSAGE);
+            registerHolidayHomeContentInsurance.setMaterialMessage(EMPTY_MESSAGE);
             abort = true;
         }
         if(street.equals("")) {
-            holidayHomeContentInsuranceRegistration.setStreetMessage(EMPTY_MESSAGE);
+            registerHolidayHomeContentInsurance.setStreetMessage(EMPTY_MESSAGE);
             abort = true;
         }
         if(type == null) {
-            holidayHomeContentInsuranceRegistration.setTypeMessage(EMPTY_MESSAGE);
+            registerHolidayHomeContentInsurance.setTypeMessage(EMPTY_MESSAGE);
             abort = true;
         }
         
         // Evaluates and converts Input:
         if(areaString.equals("")) {
-            holidayHomeContentInsuranceRegistration.setAreaMessage(EMPTY_MESSAGE);
+            registerHolidayHomeContentInsurance.setAreaMessage(EMPTY_MESSAGE);
             abort = true;
         } else {
             try {
                 area = Integer.parseInt(areaString);
             } catch(NumberFormatException nfe) {
-                holidayHomeContentInsuranceRegistration.setAreaMessage(FORMAT_MESSAGE);
+                registerHolidayHomeContentInsurance.setAreaMessage(FORMAT_MESSAGE);
                 abort = true;
             }
         }
         if(amountString.equals("")) {
-            homeContentInsuranceRegistration.setAmountMessage(EMPTY_MESSAGE);
+            registerHomeContentInsurance.setAmountMessage(EMPTY_MESSAGE);
             abort = true;
         } else {
             try {
                 amount = Integer.parseInt(amountString);
             } catch(NumberFormatException nfe) {
-                homeContentInsuranceRegistration.setAmountMessage(FORMAT_MESSAGE);
+                registerHomeContentInsurance.setAmountMessage(FORMAT_MESSAGE);
                 abort = true;
             }
         }
         if(excessString.equals("")) {
-            holidayHomeContentInsuranceRegistration.setExcessMessage(EMPTY_MESSAGE);
+            registerHolidayHomeContentInsurance.setExcessMessage(EMPTY_MESSAGE);
             abort = true;
         } else {
             try {
                 excess = Integer.parseInt(excessString);
             } catch(NumberFormatException nfe) {
-                holidayHomeContentInsuranceRegistration.setExcessMessage(FORMAT_MESSAGE);
+                registerHolidayHomeContentInsurance.setExcessMessage(FORMAT_MESSAGE);
                 abort = true;
             }
         }
         if(yearString.equals("")) {
-            holidayHomeContentInsuranceRegistration.setYearMessage(EMPTY_MESSAGE);
+            registerHolidayHomeContentInsurance.setYearMessage(EMPTY_MESSAGE);
             abort = true;
         } else {
             try {
                 year = Integer.parseInt(yearString);
             } catch(NumberFormatException nfe) {
-                holidayHomeContentInsuranceRegistration.setYearMessage(FORMAT_MESSAGE);
+                registerHolidayHomeContentInsurance.setYearMessage(FORMAT_MESSAGE);
                 abort = true;
             }
         }
         if(zipCodeString.equals("")) {
-            holidayHomeContentInsuranceRegistration.setZipCodeMessage(EMPTY_MESSAGE);
+            registerHolidayHomeContentInsurance.setZipCodeMessage(EMPTY_MESSAGE);
             abort = true;
         } else {
             try {
                 zipCode = Integer.parseInt(zipCodeString);
             } catch(NumberFormatException nfe) {
-                holidayHomeContentInsuranceRegistration.setZipCodeMessage(FORMAT_MESSAGE);
+                registerHolidayHomeContentInsurance.setZipCodeMessage(FORMAT_MESSAGE);
                 abort = true;
             }
         }
@@ -2935,18 +2935,18 @@ public class MainController {
         
         // Adds insurance to Register:
         if (insurances.addInsurance(insurance)) {
-            holidayHomeContentInsuranceRegistration.setRegisterButtonMessage(REGISTER_SUCCESS);
+            registerHolidayHomeContentInsurance.setRegisterButtonMessage(REGISTER_SUCCESS);
         } else {
-            holidayHomeContentInsuranceRegistration.setRegisterButtonMessage(REGISTER_NO_SUCCESS);
+            registerHolidayHomeContentInsurance.setRegisterButtonMessage(REGISTER_NO_SUCCESS);
         }
     } // end of method holidayHomeContentInsuranceRegisterButtonEventHandler
     
     private void holidayHomeContentInsuranceSearchCustomerIdButtonEventHandler(ActionEvent event) {
-        String customerIdString = holidayHomeContentInsuranceRegistration.getCustomerId();
+        String customerIdString = registerHolidayHomeContentInsurance.getCustomerId();
         int customerId;
         if(customerIdString.equals("")) {
             // Gives the user an appropriate message if the user hasn't put in a customerId:
-            holidayHomeContentInsuranceRegistration.setCustomerArea(CUSTOMERID_EMPTY_MESSAGE);
+            registerHolidayHomeContentInsurance.setCustomerArea(CUSTOMERID_EMPTY_MESSAGE);
             return;
         }
         try {
@@ -2954,7 +2954,7 @@ public class MainController {
             customerId = Integer.parseInt(customerIdString);
         } catch(NumberFormatException nfe) {
             // Gives the user an appropriate message if the customerId wasn't formatted correctly:
-            holidayHomeContentInsuranceRegistration.setCustomerArea(CUSTOMERID_FORMAT_MESSAGE);
+            registerHolidayHomeContentInsurance.setCustomerArea(CUSTOMERID_FORMAT_MESSAGE);
             return;
         }
         // TODO: Regex.
@@ -2962,25 +2962,25 @@ public class MainController {
         Customer customer = customers.findCustomerById(customerId);
         if(customer == null) {
             // Gives the user an appropriate message if the customer wasn't found:
-            holidayHomeContentInsuranceRegistration.setCustomerArea(CUSTOMERID_NOT_FOUND_MESSAGE + customerId);
+            registerHolidayHomeContentInsurance.setCustomerArea(CUSTOMERID_NOT_FOUND_MESSAGE + customerId);
         } else {
             // Displays the customer:
-            holidayHomeContentInsuranceRegistration.setCustomerArea(customer.toString());
-            holidayHomeContentInsuranceRegistration.setSelectedCustomerId(customerId);
+            registerHolidayHomeContentInsurance.setCustomerArea(customer.toString());
+            registerHolidayHomeContentInsurance.setSelectedCustomerId(customerId);
             // Finds the customers insurances:
             List insuranceList = insurances.getAllInsurancesByCustomerId(customerId);
             if (!insuranceList.isEmpty()) {
                 // Displays the insurances if there is at least one:
-                holidayHomeContentInsuranceRegistration.populateInsurancesTable(insuranceList);
+                registerHolidayHomeContentInsurance.populateInsurancesTable(insuranceList);
             }
         }
     } // end of method holidayHomeContentInsuranceSearchCustomerIdButtonEventHandler
     
     private void holidayHomeContentInsuranceSearchPersonalNumberButtonEventHandler(ActionEvent event) {
-        String personalNumber = holidayHomeContentInsuranceRegistration.getPersonalNumber();
+        String personalNumber = registerHolidayHomeContentInsurance.getPersonalNumber();
         if(personalNumber.equals("")) {
             // Gives the user an appropriate message if the user hasn't put in a personalNumber:
-            holidayHomeContentInsuranceRegistration.setCustomerArea(PERSONALNUMBER_EMPTY_MESSAGE);
+            registerHolidayHomeContentInsurance.setCustomerArea(PERSONALNUMBER_EMPTY_MESSAGE);
             return;
         }
         // TODO: Regex.
@@ -2988,17 +2988,17 @@ public class MainController {
         Customer customer = customers.findCustomerByPersonalNumber(personalNumber);
         if(customer == null) {
             // Gives the user an appropriate message if the customer wasn't found:
-            holidayHomeContentInsuranceRegistration.setCustomerArea(PERSONALNUMBER_NOT_FOUND_MESSAGE + personalNumber);
+            registerHolidayHomeContentInsurance.setCustomerArea(PERSONALNUMBER_NOT_FOUND_MESSAGE + personalNumber);
         } else {
             // Finds the customers insurances:
             int customerId = customer.getId();
             // Displays the customer:
-            holidayHomeContentInsuranceRegistration.setCustomerArea(customer.toString());
-            holidayHomeContentInsuranceRegistration.setSelectedCustomerId(customerId);
+            registerHolidayHomeContentInsurance.setCustomerArea(customer.toString());
+            registerHolidayHomeContentInsurance.setSelectedCustomerId(customerId);
             List insuranceList = insurances.getAllInsurancesByCustomerId(customerId);
             if (!insuranceList.isEmpty()) {
                 // Displays the insurances if there is at least one:
-                holidayHomeContentInsuranceRegistration.populateInsurancesTable(insuranceList);
+                registerHolidayHomeContentInsurance.populateInsurancesTable(insuranceList);
             }
         }
     } // end of method holidayHomeContentInsuranceSearchPersonalNumberButtonEventHandler
@@ -3008,22 +3008,22 @@ public class MainController {
     private void homeInsuranceRegisterButtonEventHandler(ActionEvent e) {
         
         // Clears previous messages:
-        homeInsuranceRegistration.clearMessages();
+        registerHomeInsurance.clearMessages();
         
         // Collects information about the customer and the insurance:
-        HomeInsuranceCoverage coverage = homeInsuranceRegistration.getCoverage();
-        int customerId = homeInsuranceRegistration.getSelectedCustomerId();
-        String excessString = homeInsuranceRegistration.getExcess();
+        HomeInsuranceCoverage coverage = registerHomeInsurance.getCoverage();
+        int customerId = registerHomeInsurance.getSelectedCustomerId();
+        String excessString = registerHomeInsurance.getExcess();
         
         // Collects information about the property:
-        HomeType type = homeInsuranceRegistration.getType();
-        PropertyMaterial material = homeInsuranceRegistration.getMaterial();
-        String areaString = homeInsuranceRegistration.getArea();
-        String city = homeInsuranceRegistration.getCity();
-        String rentalString = homeInsuranceRegistration.getRental();
-        String street = homeInsuranceRegistration.getStreet();
-        String yearString = homeInsuranceRegistration.getYear();
-        String zipCodeString = homeInsuranceRegistration.getZipCode();
+        HomeType type = registerHomeInsurance.getType();
+        PropertyMaterial material = registerHomeInsurance.getMaterial();
+        String areaString = registerHomeInsurance.getArea();
+        String city = registerHomeInsurance.getCity();
+        String rentalString = registerHomeInsurance.getRental();
+        String street = registerHomeInsurance.getStreet();
+        String yearString = registerHomeInsurance.getYear();
+        String zipCodeString = registerHomeInsurance.getZipCode();
         
         // Creates a boolean which is to be set true if the user has made a 
         // mistake and the method has to abort:
@@ -3038,79 +3038,79 @@ public class MainController {
         
         // Evaluates Input:
         if(city.equals("")) {
-            homeInsuranceRegistration.setCityMessage(EMPTY_MESSAGE);
+            registerHomeInsurance.setCityMessage(EMPTY_MESSAGE);
             abort = true;
         }
         if(coverage == null) {
-            homeInsuranceRegistration.setCoverageMessage(EMPTY_MESSAGE);
+            registerHomeInsurance.setCoverageMessage(EMPTY_MESSAGE);
             abort = true;
         }
         if(customerId == 0) {
-            homeInsuranceRegistration.setCustomerSelectedMessage(NO_CUSTOMER_MESSAGE);
+            registerHomeInsurance.setCustomerSelectedMessage(NO_CUSTOMER_MESSAGE);
             abort = true;
         }
         if(material == null) {
-            homeInsuranceRegistration.setMaterialMessage(EMPTY_MESSAGE);
+            registerHomeInsurance.setMaterialMessage(EMPTY_MESSAGE);
             abort = true;
         }
         if(street.equals("")) {
-            homeInsuranceRegistration.setStreetMessage(EMPTY_MESSAGE);
+            registerHomeInsurance.setStreetMessage(EMPTY_MESSAGE);
             abort = true;
         }
         if(type == null) {
-            homeInsuranceRegistration.setTypeMessage(EMPTY_MESSAGE);
+            registerHomeInsurance.setTypeMessage(EMPTY_MESSAGE);
             abort = true;
         }
         
         // Evaluates and converts Input:
         if(areaString.equals("")) {
-            homeInsuranceRegistration.setAreaMessage(EMPTY_MESSAGE);
+            registerHomeInsurance.setAreaMessage(EMPTY_MESSAGE);
             abort = true;
         } else {
             try {
                 area = Integer.parseInt(areaString);
             } catch(NumberFormatException nfe) {
-                homeInsuranceRegistration.setAreaMessage(FORMAT_MESSAGE);
+                registerHomeInsurance.setAreaMessage(FORMAT_MESSAGE);
 
                 abort = true;
             }
         }
         if(excessString.equals("")) {
-            homeInsuranceRegistration.setExcessMessage(EMPTY_MESSAGE);
+            registerHomeInsurance.setExcessMessage(EMPTY_MESSAGE);
             abort = true;
         } else {
             try {
                 excess = Integer.parseInt(excessString);
             } catch(NumberFormatException nfe) {
-                homeInsuranceRegistration.setExcessMessage(FORMAT_MESSAGE);
+                registerHomeInsurance.setExcessMessage(FORMAT_MESSAGE);
                 abort = true;
             }
         }
         if(rentalString.equals("")) {
-            homeInsuranceRegistration.setRentalMessage(EMPTY_MESSAGE);
+            registerHomeInsurance.setRentalMessage(EMPTY_MESSAGE);
             abort = true;
         } else {
             rental = rentalString.equals("Ja");
         }
         if(yearString.equals("")) {
-            homeInsuranceRegistration.setYearMessage(EMPTY_MESSAGE);
+            registerHomeInsurance.setYearMessage(EMPTY_MESSAGE);
             abort = true;
         } else {
             try {
                 year = Integer.parseInt(yearString);
             } catch(NumberFormatException nfe) {
-                homeInsuranceRegistration.setYearMessage(FORMAT_MESSAGE);
+                registerHomeInsurance.setYearMessage(FORMAT_MESSAGE);
                 abort = true;
             }
         }
         if(zipCodeString.equals("")) {
-            homeInsuranceRegistration.setZipCodeMessage(EMPTY_MESSAGE);
+            registerHomeInsurance.setZipCodeMessage(EMPTY_MESSAGE);
             abort = true;
         } else {
             try {
                 zipCode = Integer.parseInt(zipCodeString);
             } catch(NumberFormatException nfe) {
-                homeInsuranceRegistration.setZipCodeMessage(FORMAT_MESSAGE);
+                registerHomeInsurance.setZipCodeMessage(FORMAT_MESSAGE);
                 abort = true;
             }
         }
@@ -3129,18 +3129,18 @@ public class MainController {
         
         // Adds insurance to Register:
         if (insurances.addInsurance(insurance)) {
-            homeInsuranceRegistration.setRegisterButtonMessage(REGISTER_SUCCESS);
+            registerHomeInsurance.setRegisterButtonMessage(REGISTER_SUCCESS);
         } else {
-            homeInsuranceRegistration.setRegisterButtonMessage(REGISTER_NO_SUCCESS);
+            registerHomeInsurance.setRegisterButtonMessage(REGISTER_NO_SUCCESS);
         }
     } // end of method homeInsuranceRegisterButtonEventHandler
     
     private void homeInsuranceSearchCustomerIdButtonEventHandler(ActionEvent event) {
-        String customerIdString = homeInsuranceRegistration.getCustomerId();
+        String customerIdString = registerHomeInsurance.getCustomerId();
         int customerId;
         if(customerIdString.equals("")) {
             // Gives the user an appropriate message if the user hasn't put in a customerId:
-            homeInsuranceRegistration.setCustomerArea(CUSTOMERID_EMPTY_MESSAGE);
+            registerHomeInsurance.setCustomerArea(CUSTOMERID_EMPTY_MESSAGE);
             return;
         }
         try {
@@ -3148,7 +3148,7 @@ public class MainController {
             customerId = Integer.parseInt(customerIdString);
         } catch(NumberFormatException nfe) {
             // Gives the user an appropriate message if the customerId wasn't formatted correctly:
-            homeInsuranceRegistration.setCustomerArea(CUSTOMERID_FORMAT_MESSAGE);
+            registerHomeInsurance.setCustomerArea(CUSTOMERID_FORMAT_MESSAGE);
             return;
         }
         // TODO: Regex.
@@ -3156,25 +3156,25 @@ public class MainController {
         Customer customer = customers.findCustomerById(customerId);
         if(customer == null) {
             // Gives the user an appropriate message if the customer wasn't found:
-            homeInsuranceRegistration.setCustomerArea(CUSTOMERID_NOT_FOUND_MESSAGE + customerId);
+            registerHomeInsurance.setCustomerArea(CUSTOMERID_NOT_FOUND_MESSAGE + customerId);
         } else {
             // Displays the customer:
-            homeInsuranceRegistration.setCustomerArea(customer.toString());
-            homeInsuranceRegistration.setSelectedCustomerId(customerId);
+            registerHomeInsurance.setCustomerArea(customer.toString());
+            registerHomeInsurance.setSelectedCustomerId(customerId);
             // Finds the customers insurances:
             List insuranceList = insurances.getAllInsurancesByCustomerId(customerId);
             if (!insuranceList.isEmpty()) {
                 // Displays the insurances if there is at least one:
-                homeInsuranceRegistration.populateInsurancesTable(insuranceList);
+                registerHomeInsurance.populateInsurancesTable(insuranceList);
             }
         }
     } // end of method homeInsuranceSearchCustomerIdButtonEventHandler
     
     private void homeInsuranceSearchPersonalNumberButtonEventHandler(ActionEvent event) {
-        String personalNumber = homeInsuranceRegistration.getPersonalNumber();
+        String personalNumber = registerHomeInsurance.getPersonalNumber();
         if(personalNumber.equals("")) {
             // Gives the user an appropriate message if the user hasn't put in a personalNumber:
-            homeInsuranceRegistration.setCustomerArea(PERSONALNUMBER_EMPTY_MESSAGE);
+            registerHomeInsurance.setCustomerArea(PERSONALNUMBER_EMPTY_MESSAGE);
             return;
         }
         // TODO: Regex.
@@ -3182,17 +3182,17 @@ public class MainController {
         Customer customer = customers.findCustomerByPersonalNumber(personalNumber);
         if(customer == null) {
             // Gives the user an appropriate message if the customer wasn't found:
-            homeInsuranceRegistration.setCustomerArea(PERSONALNUMBER_NOT_FOUND_MESSAGE + personalNumber);
+            registerHomeInsurance.setCustomerArea(PERSONALNUMBER_NOT_FOUND_MESSAGE + personalNumber);
         } else {
             // Finds the customers insurances:
             int customerId = customer.getId();
             // Displays the customer:
-            homeInsuranceRegistration.setCustomerArea(customer.toString());
-            homeInsuranceRegistration.setSelectedCustomerId(customerId);
+            registerHomeInsurance.setCustomerArea(customer.toString());
+            registerHomeInsurance.setSelectedCustomerId(customerId);
             List insuranceList = insurances.getAllInsurancesByCustomerId(customerId);
             if (!insuranceList.isEmpty()) {
                 // Displays the insurances if there is at least one:
-                homeInsuranceRegistration.populateInsurancesTable(insuranceList);
+                registerHomeInsurance.populateInsurancesTable(insuranceList);
             }
         }
     } // end of method homeInsuranceSearchPersonalNumberButtonEventHandler
@@ -3202,22 +3202,22 @@ public class MainController {
     private void homeContentInsuranceRegisterButtonEventHandler(ActionEvent e) {
         
         // Clears previous messages:
-        homeContentInsuranceRegistration.clearMessages();
+        registerHomeContentInsurance.clearMessages();
         
         // Collects information about the customer and the insurance:
-        HomeContentInsuranceCoverage coverage = homeContentInsuranceRegistration.getCoverage();
-        int customerId = homeContentInsuranceRegistration.getSelectedCustomerId();
-        String amountString = homeContentInsuranceRegistration.getAmount();
-        String excessString = homeContentInsuranceRegistration.getExcess();
+        HomeContentInsuranceCoverage coverage = registerHomeContentInsurance.getCoverage();
+        int customerId = registerHomeContentInsurance.getSelectedCustomerId();
+        String amountString = registerHomeContentInsurance.getAmount();
+        String excessString = registerHomeContentInsurance.getExcess();
         
         // Collects information about the property:
-        HomeType type = homeContentInsuranceRegistration.getType();
-        PropertyMaterial material = homeContentInsuranceRegistration.getMaterial();
-        String areaString = homeContentInsuranceRegistration.getArea();
-        String city = homeContentInsuranceRegistration.getCity();
-        String street = homeContentInsuranceRegistration.getStreet();
-        String yearString = homeContentInsuranceRegistration.getYear();
-        String zipCodeString = homeContentInsuranceRegistration.getZipCode();
+        HomeType type = registerHomeContentInsurance.getType();
+        PropertyMaterial material = registerHomeContentInsurance.getMaterial();
+        String areaString = registerHomeContentInsurance.getArea();
+        String city = registerHomeContentInsurance.getCity();
+        String street = registerHomeContentInsurance.getStreet();
+        String yearString = registerHomeContentInsurance.getYear();
+        String zipCodeString = registerHomeContentInsurance.getZipCode();
         
         // Creates a boolean which is to be set true if the user has made a 
         // mistake and the method has to abort:
@@ -3232,83 +3232,83 @@ public class MainController {
         
         // Evaluates Input:
         if(city.equals("")) {
-            homeContentInsuranceRegistration.setCityMessage(EMPTY_MESSAGE);
+            registerHomeContentInsurance.setCityMessage(EMPTY_MESSAGE);
             abort = true;
         }
         if(coverage == null) {
-            homeContentInsuranceRegistration.setCoverageMessage(EMPTY_MESSAGE);
+            registerHomeContentInsurance.setCoverageMessage(EMPTY_MESSAGE);
             abort = true;
         }
         if(customerId == 0) {
-            homeContentInsuranceRegistration.setCustomerSelectedMessage(NO_CUSTOMER_MESSAGE);
+            registerHomeContentInsurance.setCustomerSelectedMessage(NO_CUSTOMER_MESSAGE);
             abort = true;
         }
         if(material == null) {
-            homeContentInsuranceRegistration.setMaterialMessage(EMPTY_MESSAGE);
+            registerHomeContentInsurance.setMaterialMessage(EMPTY_MESSAGE);
             abort = true;
         }
         if(street.equals("")) {
-            homeContentInsuranceRegistration.setStreetMessage(EMPTY_MESSAGE);
+            registerHomeContentInsurance.setStreetMessage(EMPTY_MESSAGE);
             abort = true;
         }
         if(type == null) {
-            homeContentInsuranceRegistration.setTypeMessage(EMPTY_MESSAGE);
+            registerHomeContentInsurance.setTypeMessage(EMPTY_MESSAGE);
             abort = true;
         }
         
         // Evaluates and converts Input:
         if(areaString.equals("")) {
-            homeContentInsuranceRegistration.setAreaMessage(EMPTY_MESSAGE);
+            registerHomeContentInsurance.setAreaMessage(EMPTY_MESSAGE);
             abort = true;
         } else {
             try {
                 area = Integer.parseInt(areaString);
             } catch(NumberFormatException nfe) {
-                homeContentInsuranceRegistration.setAreaMessage(FORMAT_MESSAGE);
+                registerHomeContentInsurance.setAreaMessage(FORMAT_MESSAGE);
                 abort = true;
             }
         }
         if(amountString.equals("")) {
-            homeContentInsuranceRegistration.setAmountMessage(EMPTY_MESSAGE);
+            registerHomeContentInsurance.setAmountMessage(EMPTY_MESSAGE);
             abort = true;
         } else {
             try {
                 amount = Integer.parseInt(amountString);
             } catch(NumberFormatException nfe) {
-                homeContentInsuranceRegistration.setAmountMessage(FORMAT_MESSAGE);
+                registerHomeContentInsurance.setAmountMessage(FORMAT_MESSAGE);
                 abort = true;
             }
         }
         if(excessString.equals("")) {
-            homeContentInsuranceRegistration.setExcessMessage(EMPTY_MESSAGE);
+            registerHomeContentInsurance.setExcessMessage(EMPTY_MESSAGE);
             abort = true;
         } else {
             try {
                 excess = Integer.parseInt(excessString);
             } catch(NumberFormatException nfe) {
-                homeContentInsuranceRegistration.setExcessMessage(FORMAT_MESSAGE);
+                registerHomeContentInsurance.setExcessMessage(FORMAT_MESSAGE);
                 abort = true;
             }
         }
         if(yearString.equals("")) {
-            homeContentInsuranceRegistration.setYearMessage(EMPTY_MESSAGE);
+            registerHomeContentInsurance.setYearMessage(EMPTY_MESSAGE);
             abort = true;
         } else {
             try {
                 year = Integer.parseInt(yearString);
             } catch(NumberFormatException nfe) {
-                homeContentInsuranceRegistration.setYearMessage(FORMAT_MESSAGE);
+                registerHomeContentInsurance.setYearMessage(FORMAT_MESSAGE);
                 abort = true;
             }
         }
         if(zipCodeString.equals("")) {
-            homeContentInsuranceRegistration.setZipCodeMessage(EMPTY_MESSAGE);
+            registerHomeContentInsurance.setZipCodeMessage(EMPTY_MESSAGE);
             abort = true;
         } else {
             try {
                 zipCode = Integer.parseInt(zipCodeString);
             } catch(NumberFormatException nfe) {
-                homeContentInsuranceRegistration.setZipCodeMessage(FORMAT_MESSAGE);
+                registerHomeContentInsurance.setZipCodeMessage(FORMAT_MESSAGE);
                 abort = true;
             }
         }
@@ -3327,18 +3327,18 @@ public class MainController {
         
         // Adds insurance to Register:
         if (insurances.addInsurance(insurance)) {
-            homeContentInsuranceRegistration.setRegisterButtonMessage(REGISTER_SUCCESS);
+            registerHomeContentInsurance.setRegisterButtonMessage(REGISTER_SUCCESS);
         } else {
-            homeContentInsuranceRegistration.setRegisterButtonMessage(REGISTER_NO_SUCCESS);
+            registerHomeContentInsurance.setRegisterButtonMessage(REGISTER_NO_SUCCESS);
         }
     } // end of method homeContentInsuranceRegisterButtonEventHandler
     
     private void homeContentInsuranceSearchCustomerIdButtonEventHandler(ActionEvent event) {
-        String customerIdString = homeContentInsuranceRegistration.getCustomerId();
+        String customerIdString = registerHomeContentInsurance.getCustomerId();
         int customerId;
         if(customerIdString.equals("")) {
             // Gives the user an appropriate message if the user hasn't put in a customerId:
-            homeContentInsuranceRegistration.setCustomerArea(CUSTOMERID_EMPTY_MESSAGE);
+            registerHomeContentInsurance.setCustomerArea(CUSTOMERID_EMPTY_MESSAGE);
             return;
         }
         try {
@@ -3346,7 +3346,7 @@ public class MainController {
             customerId = Integer.parseInt(customerIdString);
         } catch(NumberFormatException nfe) {
             // Gives the user an appropriate message if the customerId wasn't formatted correctly:
-            homeContentInsuranceRegistration.setCustomerArea(CUSTOMERID_FORMAT_MESSAGE);
+            registerHomeContentInsurance.setCustomerArea(CUSTOMERID_FORMAT_MESSAGE);
             return;
         }
         // TODO: Regex.
@@ -3354,25 +3354,25 @@ public class MainController {
         Customer customer = customers.findCustomerById(customerId);
         if(customer == null) {
             // Gives the user an appropriate message if the customer wasn't found:
-            homeContentInsuranceRegistration.setCustomerArea(CUSTOMERID_NOT_FOUND_MESSAGE + customerId);
+            registerHomeContentInsurance.setCustomerArea(CUSTOMERID_NOT_FOUND_MESSAGE + customerId);
         } else {
             // Displays the customer:
-            homeContentInsuranceRegistration.setCustomerArea(customer.toString());
-            homeContentInsuranceRegistration.setSelectedCustomerId(customerId);
+            registerHomeContentInsurance.setCustomerArea(customer.toString());
+            registerHomeContentInsurance.setSelectedCustomerId(customerId);
             // Finds the customers insurances:
             List insuranceList = insurances.getAllInsurancesByCustomerId(customerId);
             if (!insuranceList.isEmpty()) {
                 // Displays the insurances if there is at least one:
-                homeContentInsuranceRegistration.populateInsurancesTable(insuranceList);
+                registerHomeContentInsurance.populateInsurancesTable(insuranceList);
             }
         }
     } // end of method homeContentInsuranceSearchCustomerIdButtonEventHandler
     
     private void homeContentInsuranceSearchPersonalNumberButtonEventHandler(ActionEvent event) {
-        String personalNumber = homeContentInsuranceRegistration.getPersonalNumber();
+        String personalNumber = registerHomeContentInsurance.getPersonalNumber();
         if(personalNumber.equals("")) {
             // Gives the user an appropriate message if the user hasn't put in a personalNumber:
-            homeContentInsuranceRegistration.setCustomerArea(PERSONALNUMBER_EMPTY_MESSAGE);
+            registerHomeContentInsurance.setCustomerArea(PERSONALNUMBER_EMPTY_MESSAGE);
             return;
         }
         // TODO: Regex.
@@ -3380,17 +3380,17 @@ public class MainController {
         Customer customer = customers.findCustomerByPersonalNumber(personalNumber);
         if(customer == null) {
             // Gives the user an appropriate message if the customer wasn't found:
-            homeContentInsuranceRegistration.setCustomerArea(PERSONALNUMBER_NOT_FOUND_MESSAGE + personalNumber);
+            registerHomeContentInsurance.setCustomerArea(PERSONALNUMBER_NOT_FOUND_MESSAGE + personalNumber);
         } else {
             // Finds the customers insurances:
             int customerId = customer.getId();
             // Displays the customer:
-            homeContentInsuranceRegistration.setCustomerArea(customer.toString());
-            homeContentInsuranceRegistration.setSelectedCustomerId(customerId);
+            registerHomeContentInsurance.setCustomerArea(customer.toString());
+            registerHomeContentInsurance.setSelectedCustomerId(customerId);
             List insuranceList = insurances.getAllInsurancesByCustomerId(customerId);
             if (!insuranceList.isEmpty()) {
                 // Displays the insurances if there is at least one:
-                homeContentInsuranceRegistration.populateInsurancesTable(insuranceList);
+                registerHomeContentInsurance.populateInsurancesTable(insuranceList);
             }
         }
     } // end of method homeContentInsuranceSearchPersonalNumberButtonEventHandler
@@ -3400,12 +3400,12 @@ public class MainController {
     private void travelInsuranceRegisterButtonEventHandler(ActionEvent e) {
         
         // Clears previous messages:
-        travelInsuranceRegistration.clearMessages();
+        registerTravelInsurance.clearMessages();
         
         // Collects information about the customer and the insurance:
-        TravelInsuranceCoverage coverage = travelInsuranceRegistration.getCoverage();
-        int customerId = travelInsuranceRegistration.getSelectedCustomerId();
-        String excessString = travelInsuranceRegistration.getExcess();
+        TravelInsuranceCoverage coverage = registerTravelInsurance.getCoverage();
+        int customerId = registerTravelInsurance.getSelectedCustomerId();
+        String excessString = registerTravelInsurance.getExcess();
         
         // Creates a boolean which is to be set true if the user has made a 
         // mistake and the method has to abort:
@@ -3416,23 +3416,23 @@ public class MainController {
         
         // Evaluates Input:
         if(coverage == null) {
-            travelInsuranceRegistration.setCoverageMessage(EMPTY_MESSAGE);
+            registerTravelInsurance.setCoverageMessage(EMPTY_MESSAGE);
             abort = true;
         }
         if(customerId == 0) {
-            travelInsuranceRegistration.setCustomerSelectedMessage(NO_CUSTOMER_MESSAGE);
+            registerTravelInsurance.setCustomerSelectedMessage(NO_CUSTOMER_MESSAGE);
             abort = true;
         }
         
         // Evaluates and converts Input:
         if(excessString.equals("")) {
-            travelInsuranceRegistration.setExcessMessage(EMPTY_MESSAGE);
+            registerTravelInsurance.setExcessMessage(EMPTY_MESSAGE);
             abort = true;
         } else {
             try {
                 excess = Integer.parseInt(excessString);
             } catch(NumberFormatException nfe) {
-                travelInsuranceRegistration.setExcessMessage(FORMAT_MESSAGE);
+                registerTravelInsurance.setExcessMessage(FORMAT_MESSAGE);
                 abort = true;
             }
         }
@@ -3446,18 +3446,18 @@ public class MainController {
         
         // Adds insurance to Register:
         if (insurances.addInsurance(insurance)) {
-            travelInsuranceRegistration.setRegisterButtonMessage(REGISTER_SUCCESS);
+            registerTravelInsurance.setRegisterButtonMessage(REGISTER_SUCCESS);
         } else {
-            travelInsuranceRegistration.setRegisterButtonMessage(REGISTER_NO_SUCCESS);
+            registerTravelInsurance.setRegisterButtonMessage(REGISTER_NO_SUCCESS);
         }
     } // end of method travelInsuranceRegisterButtonEventHandler
     
     private void travelInsuranceSearchCustomerIdButtonEventHandler(ActionEvent event) {
-        String customerIdString = travelInsuranceRegistration.getCustomerId();
+        String customerIdString = registerTravelInsurance.getCustomerId();
         int customerId;
         if(customerIdString.equals("")) {
             // Gives the user an appropriate message if the user hasn't put in a customerId:
-            travelInsuranceRegistration.setCustomerArea(CUSTOMERID_EMPTY_MESSAGE);
+            registerTravelInsurance.setCustomerArea(CUSTOMERID_EMPTY_MESSAGE);
             return;
         }
         try {
@@ -3465,7 +3465,7 @@ public class MainController {
             customerId = Integer.parseInt(customerIdString);
         } catch(NumberFormatException nfe) {
             // Gives the user an appropriate message if the customerId wasn't formatted correctly:
-            travelInsuranceRegistration.setCustomerArea(CUSTOMERID_FORMAT_MESSAGE);
+            registerTravelInsurance.setCustomerArea(CUSTOMERID_FORMAT_MESSAGE);
             return;
         }
         // TODO: Regex.
@@ -3473,25 +3473,25 @@ public class MainController {
         Customer customer = customers.findCustomerById(customerId);
         if(customer == null) {
             // Gives the user an appropriate message if the customer wasn't found:
-            travelInsuranceRegistration.setCustomerArea(CUSTOMERID_NOT_FOUND_MESSAGE + customerId);
+            registerTravelInsurance.setCustomerArea(CUSTOMERID_NOT_FOUND_MESSAGE + customerId);
         } else {
             // Displays the customer:
-            travelInsuranceRegistration.setCustomerArea(customer.toString());
-            travelInsuranceRegistration.setSelectedCustomerId(customerId);
+            registerTravelInsurance.setCustomerArea(customer.toString());
+            registerTravelInsurance.setSelectedCustomerId(customerId);
             // Finds the customers insurances:
             List insuranceList = insurances.getAllInsurancesByCustomerId(customerId);
             if (!insuranceList.isEmpty()) {
                 // Displays the insurances if there is at least one:
-                travelInsuranceRegistration.populateInsurancesTable(insuranceList);
+                registerTravelInsurance.populateInsurancesTable(insuranceList);
             }
         }
     } // end of method travelInsuranceSearchCustomerIdButtonEventHandler
     
     private void travelInsuranceSearchPersonalNumberButtonEventHandler(ActionEvent event) {
-        String personalNumber = travelInsuranceRegistration.getPersonalNumber();
+        String personalNumber = registerTravelInsurance.getPersonalNumber();
         if(personalNumber.equals("")) {
             // Gives the user an appropriate message if the user hasn't put in a personalNumber:
-            travelInsuranceRegistration.setCustomerArea(PERSONALNUMBER_EMPTY_MESSAGE);
+            registerTravelInsurance.setCustomerArea(PERSONALNUMBER_EMPTY_MESSAGE);
             return;
         }
         // TODO: Regex.
@@ -3499,17 +3499,17 @@ public class MainController {
         Customer customer = customers.findCustomerByPersonalNumber(personalNumber);
         if(customer == null) {
             // Gives the user an appropriate message if the customer wasn't found:
-            travelInsuranceRegistration.setCustomerArea(PERSONALNUMBER_NOT_FOUND_MESSAGE + personalNumber);
+            registerTravelInsurance.setCustomerArea(PERSONALNUMBER_NOT_FOUND_MESSAGE + personalNumber);
         } else {
             // Finds the customers insurances:
             int customerId = customer.getId();
             // Displays the customer:
-            travelInsuranceRegistration.setCustomerArea(customer.toString());
-            travelInsuranceRegistration.setSelectedCustomerId(customerId);
+            registerTravelInsurance.setCustomerArea(customer.toString());
+            registerTravelInsurance.setSelectedCustomerId(customerId);
             List insuranceList = insurances.getAllInsurancesByCustomerId(customerId);
             if (!insuranceList.isEmpty()) {
                 // Displays the insurances if there is at least one:
-                travelInsuranceRegistration.populateInsurancesTable(insuranceList);
+                registerTravelInsurance.populateInsurancesTable(insuranceList);
             }
         }
     } // end of method travelInsuranceSearchPersonalNumberButtonEventHandler
@@ -3518,7 +3518,7 @@ public class MainController {
     
     private void insuranceSearchViewSearchEventHandler(ActionEvent event) {
         
-        insuranceSearchView.clearMessages();
+        searchInsurances.clearMessages();
         
         // Declares ints and classes to be converted to:
         int customerId = -1;
@@ -3526,16 +3526,16 @@ public class MainController {
         Class type = null;
         
         // Collects information about the customer or insurance:
-        String insuranceIdString = insuranceSearchView.getInsuranceId();
-        String number = insuranceSearchView.getNumber();
+        String insuranceIdString = searchInsurances.getInsuranceId();
+        String number = searchInsurances.getNumber();
         
         // 
         if(!number.equals("")) {
-            if(insuranceSearchView.isCustomerIdSelected()) {
+            if(searchInsurances.isCustomerIdSelected()) {
                 try {
                     customerId = Integer.parseInt(number);
                 } catch(NumberFormatException nfe) {
-                    insuranceSearchView.setIdMessage(CUSTOMERID_FORMAT_MESSAGE);
+                    searchInsurances.setIdMessage(CUSTOMERID_FORMAT_MESSAGE);
                     return;
                 }
             } else {
@@ -3544,17 +3544,17 @@ public class MainController {
         }
         
         // Collects information about the search terms:
-        InsuranceType insuranceType = insuranceSearchView.getInsuranceType();
-        boolean active = insuranceSearchView.getActive();
-        Calendar fromDate = insuranceSearchView.getFromDate();
-        Calendar toDate = insuranceSearchView.getToDate();
+        InsuranceType insuranceType = searchInsurances.getInsuranceType();
+        boolean active = searchInsurances.getActive();
+        Calendar fromDate = searchInsurances.getFromDate();
+        Calendar toDate = searchInsurances.getToDate();
         
         // Evaluates and converts input:
         if (!insuranceIdString.equals("")) {
             try {
                 insuranceId = Integer.parseInt(insuranceIdString);
             } catch(NumberFormatException nfe) {
-                insuranceSearchView.setIdMessage(INSURANCEID_FORMAT_MESSAGE);
+                searchInsurances.setIdMessage(INSURANCEID_FORMAT_MESSAGE);
                 return;
             }
         }
@@ -3586,72 +3586,72 @@ public class MainController {
         } else {
             insuranceList = insurances.getInsurances(type, fromDate, toDate, active);
         }
-        insuranceSearchView.populateInsurancesTable(insuranceList);
+        searchInsurances.populateInsurancesTable(insuranceList);
     }
     
     private void insuranceSearchViewSelectEventHandler(ActionEvent event) {
         
-        insuranceSearchView.clearMessages();
+        searchInsurances.clearMessages();
         
-       Insurance insurance = insuranceSearchView.getInsurancesTableValue();
+       Insurance insurance = searchInsurances.getInsurancesTableValue();
        
        if (insurance == null) {
-           insuranceSearchView.setSelectMessage(NO_INSURANCE_MESSAGE);
+           searchInsurances.setSelectMessage(NO_INSURANCE_MESSAGE);
            return;
        }
        
-       insuranceSearchView.setInsuranceArea(insurance.toString());
+       searchInsurances.setInsuranceArea(insurance.toString());
        
        if (insurance instanceof BoatInsurance) {
-           insuranceSearchView.setAttachmentArea("Båt:", ((BoatInsurance)insurance).getBoat().toString());
+           searchInsurances.setAttachmentArea("Båt:", ((BoatInsurance)insurance).getBoat().toString());
        } else if (insurance instanceof CarInsurance) {
-           insuranceSearchView.setAttachmentArea("Bil:", ((CarInsurance) insurance).getCar().toString());
+           searchInsurances.setAttachmentArea("Bil:", ((CarInsurance) insurance).getCar().toString());
        } else if (insurance instanceof HolidayHomeInsurance) {
-           insuranceSearchView.setAttachmentArea("Eiendom:", ((HolidayHomeInsurance) insurance).getProperty().toString());
+           searchInsurances.setAttachmentArea("Eiendom:", ((HolidayHomeInsurance) insurance).getProperty().toString());
        } else if (insurance instanceof HolidayHomeContentInsurance) {
-           insuranceSearchView.setAttachmentArea("Eiendom:", ((HolidayHomeContentInsurance) insurance).getProperty().toString());
+           searchInsurances.setAttachmentArea("Eiendom:", ((HolidayHomeContentInsurance) insurance).getProperty().toString());
        } else if (insurance instanceof HomeInsurance) {
-           insuranceSearchView.setAttachmentArea("Eiendom:", ((HomeInsurance) insurance).getProperty().toString());
+           searchInsurances.setAttachmentArea("Eiendom:", ((HomeInsurance) insurance).getProperty().toString());
        } else if (insurance instanceof HomeContentInsurance) {
-           insuranceSearchView.setAttachmentArea("Eiendom:", ((HomeContentInsurance) insurance).getProperty().toString());
+           searchInsurances.setAttachmentArea("Eiendom:", ((HomeContentInsurance) insurance).getProperty().toString());
        } else if (insurance instanceof TravelInsurance) {
-           insuranceSearchView.removeAttachmentArea();
+           searchInsurances.removeAttachmentArea();
        }
     }
     
     private void insuranceSearchViewDeactivateEventHandler(ActionEvent event) {
         
-       insuranceSearchView.clearMessages();
+       searchInsurances.clearMessages();
         
-       Insurance insurance = insuranceSearchView.getInsurancesTableValue();
+       Insurance insurance = searchInsurances.getInsurancesTableValue();
        
        if (insurance == null) {
-           insuranceSearchView.setDeactivateMessage(NO_INSURANCE_MESSAGE);
+           searchInsurances.setDeactivateMessage(NO_INSURANCE_MESSAGE);
        } else {
            insurance.setActive(!insurance.getActive());
-           insuranceSearchView.clearView();
+           searchInsurances.clearView();
        }
     }
     
     private void claimSearchViewClaimTypeEventHandler(ActionEvent event) {
-        ClaimType type = claimSearchView.getClaimType();
+        ClaimType type = searchClaims.getClaimType();
         if (type == null) {
-            claimSearchView.populateDamageCombo(null);
+            searchClaims.populateDamageCombo(null);
         } else {
             switch (type) {
-                case BOAT_CLAIM: claimSearchView.populateDamageCombo(BoatInsuranceCoverage.BOAT_PLUS.damages());
+                case BOAT_CLAIM: searchClaims.populateDamageCombo(BoatInsuranceCoverage.BOAT_PLUS.damages());
                     break;
-                case CAR_CLAIM: claimSearchView.populateDamageCombo(CarInsuranceCoverage.CASCO.damages());
+                case CAR_CLAIM: searchClaims.populateDamageCombo(CarInsuranceCoverage.CASCO.damages());
                     break;
-                case HOLIDAY_HOME_CLAIM: claimSearchView.populateDamageCombo(HolidayHomeInsuranceCoverage.PLUS.damages());
+                case HOLIDAY_HOME_CLAIM: searchClaims.populateDamageCombo(HolidayHomeInsuranceCoverage.PLUS.damages());
                     break;
-                case HOLIDAY_HOME_CONTENT_CLAIM: claimSearchView.populateDamageCombo(HolidayHomeContentInsuranceCoverage.PLUS.damages());
+                case HOLIDAY_HOME_CONTENT_CLAIM: searchClaims.populateDamageCombo(HolidayHomeContentInsuranceCoverage.PLUS.damages());
                     break;
-                case HOME_CLAIM: claimSearchView.populateDamageCombo(HomeInsuranceCoverage.PLUS.damages());
+                case HOME_CLAIM: searchClaims.populateDamageCombo(HomeInsuranceCoverage.PLUS.damages());
                     break;
-                case HOME_CONTENT_CLAIM: claimSearchView.populateDamageCombo(HomeContentInsuranceCoverage.PLUS.damages());
+                case HOME_CONTENT_CLAIM: searchClaims.populateDamageCombo(HomeContentInsuranceCoverage.PLUS.damages());
                     break;
-                case TRAVEL_CLAIM: claimSearchView.populateDamageCombo(TravelInsuranceCoverage.STANDARD.damages());
+                case TRAVEL_CLAIM: searchClaims.populateDamageCombo(TravelInsuranceCoverage.STANDARD.damages());
                     break;
             }
         }

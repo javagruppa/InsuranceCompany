@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package insurancecompany.controller;
 
 import insurancecompany.view.MainView;
@@ -139,33 +134,33 @@ public class ViewController {
     }
     
     public void initializeEventHandlers() {
-        mainView.setRegisterButtonEventHandler(this::adminViewRegisterTabButtonEventHandler);
-        mainView.setSearchButtonEventHandler(this::adminViewSearchTabButtonEventHandler);
+        mainView.setRegisterButtonEventHandler(this::mainViewRegisterTabButtonEventHandler);
+        mainView.setSearchButtonEventHandler(this::mainViewSearchTabButtonEventHandler);
         mainView.setStatisticsButtonEventHandler(this::adminViewStatisticsTabButtonEventHandler);
-        mainView.setToolbarOnMouseClickedEventHandler(this::adminViewToolbarMouseClickedEventHandler);
+        mainView.setToolbarOnMouseClickedEventHandler(this::mainViewToolbarMouseClickedEventHandler);
         mainView.setToolbarOnMouseDraggedEventHandler(this::adminViewToolbarMouseDraggedEventHandler);
-        mainView.setToolbarOnMousePressedEventHandler(this::adminViewToolbarMousePressedEventHandler);
+        mainView.setToolbarOnMousePressedEventHandler(this::mainViewToolbarMousePressedEventHandler);
         registerView.setInsurancesButtonEventHandler(this::registerViewInsurancesButtonEventHandler);
         registerView.setPersonsButtonEventHandler(this::registerViewPersonsButtonEventHandler);
         registerView.setClaimsButtonEventHandler(this::registerViewClaimsButtonEventHandler);
        
         // REGISTER SUB TAB CONTENT EVENT HANDLERS:
-        registerPersons.setCustomerButtonEventHandler(this::personsViewCustomerRegistrationButtonEventHandler);
-        registerPersons.setEmployeeButtonEventHandler(this::personsViewEmployeeRegistrationButtonEventHandler);
-        registerInsurances.setBoatInsuranceButtonEventHandler(this::insurancesViewBoatInsuranceButtonEventHandler);
-        registerInsurances.setCarInsuranceButtonEventHandler(this::insurancesViewCarInsuranceButtonEventHandler);
-        registerInsurances.setHolidayHomeInsuranceButtonEventHandler(this::insurancesViewHolidayHomeInsuranceButtonEventHandler);
-        registerInsurances.setHolidayHomeContentInsuranceButtonEventHandler(this::insurancesViewHolidayHomeContentInsuranceButtonEventHandler);
-        registerInsurances.setHomeInsuranceButtonEventHandler(this::insurancesViewHomeInsuranceButtonEventHandler);
-        registerInsurances.setHomeContentInsuranceButtonEventHandler(this::insurancesViewHomeContentInsuranceButtonEventHandler);
-        registerInsurances.setTravelInsuranceButtonEventHandler(this::insurancesViewTravelInsuranceButtonEventHandler);
-        registerClaims.setBoatClaimButtonEventHandler(this::claimsViewBoatClaimButtonEventHandler);
-        registerClaims.setCarClaimButtonEventHandler(this::claimsViewCarClaimButtonEventHandler);
-        registerClaims.setHolidayHomeClaimButtonEventHandler(this::claimsViewHolidayHomeClaimButtonEventHandler);
-        registerClaims.setHolidayHomeContentClaimButtonEventHandler(this::claimsViewHolidayHomeContentClaimButtonEventHandler);
-        registerClaims.setHomeClaimButtonEventHandler(this::claimsViewHomeClaimButtonEventHandler);
-        registerClaims.setHomeContentClaimButtonEventHandler(this::claimsViewHomeContentClaimButtonEventHandler);
-        registerClaims.setTravelClaimButtonEventHandler(this::claimsViewTravelClaimButtonEventHandler);
+        registerPersons.setCustomerButtonEventHandler(this::registerPersonsCustomerButtonEventHandler);
+        registerPersons.setEmployeeButtonEventHandler(this::registerPersonsEmployeeButtonEventHandler);
+        registerInsurances.setBoatInsuranceButtonEventHandler(this::registerInsurancesBoatInsuranceButtonEventHandler);
+        registerInsurances.setCarInsuranceButtonEventHandler(this::registerInsurancesCarInsuranceButtonEventHandler);
+        registerInsurances.setHolidayHomeInsuranceButtonEventHandler(this::registerInsurancesHolidayHomeInsuranceButtonEventHandler);
+        registerInsurances.setHolidayHomeContentInsuranceButtonEventHandler(this::registerInsurancesHolidayHomeContentInsuranceButtonEventHandler);
+        registerInsurances.setHomeInsuranceButtonEventHandler(this::registerInsurancesHomeInsuranceButtonEventHandler);
+        registerInsurances.setHomeContentInsuranceButtonEventHandler(this::registerInsurancesHomeContentInsuranceButtonEventHandler);
+        registerInsurances.setTravelInsuranceButtonEventHandler(this::registerInsurancesTravelInsuranceButtonEventHandler);
+        registerClaims.setBoatClaimButtonEventHandler(this::registerClaimsBoatClaimButtonEventHandler);
+        registerClaims.setCarClaimButtonEventHandler(this::registerClaimsCarClaimButtonEventHandler);
+        registerClaims.setHolidayHomeClaimButtonEventHandler(this::registerClaimsHolidayHomeClaimButtonEventHandler);
+        registerClaims.setHolidayHomeContentClaimButtonEventHandler(this::registerClaimsHolidayHomeContentClaimButtonEventHandler);
+        registerClaims.setHomeClaimButtonEventHandler(this::registerClaimsHomeClaimButtonEventHandler);
+        registerClaims.setHomeContentClaimButtonEventHandler(this::registerClaimsHomeContentClaimButtonEventHandler);
+        registerClaims.setTravelClaimButtonEventHandler(this::registerClaimsTravelClaimButtonEventHandler);
         
         // SEARCH SUB TAB EVENT HANDLERS:
         searchView.setClaimsButtonEventHandler(this::searchViewClaimsButtonEventHandler);
@@ -180,23 +175,13 @@ public class ViewController {
         statisticsView.setInsurancesButtonEventHandler(null);
         
     } // end of method initializeEventHandlers
-   
-    // ADMIN VIEW EVENT HANDLERS
     
-    private void adminViewRegisterTabButtonEventHandler(ActionEvent event) {
-        mainView.getMainPane().setCenter(registerView.getMainPane());
-    }
-    
-    private void adminViewSearchTabButtonEventHandler(ActionEvent event) {
-        mainView.getMainPane().setCenter(searchView.getMainPane());
-    }
-    
-    private void adminViewStatisticsTabButtonEventHandler(ActionEvent event) {
-        mainView.getMainPane().setCenter(statisticsView.getMainPane());
-    }
-    
-    private void adminViewToolbarMouseClickedEventHandler(MouseEvent event) {
-        // Switches the view between window mode and fullscreen by double clicks:
+    /** 
+     * Switches the view between window mode and fullscreen by double clicking.
+     * 
+     * @param event 
+     */
+    private void mainViewToolbarMouseClickedEventHandler(MouseEvent event) {
         if(event.getButton().equals(MouseButton.PRIMARY)){
             if(event.getClickCount() == 2){
                 if (primaryStage.isFullScreen()) {
@@ -206,129 +191,174 @@ public class ViewController {
                 }
             }
         }  
-    } // end of method adminViewToolbarMouseClickedEventHandler
+    } // end of method mainViewToolbarMouseClickedEventHandler
     
-    private void adminViewToolbarMousePressedEventHandler(MouseEvent event) {
-        // Used to move the window around:
+    /**
+     * Moves the window around.
+     * 
+     * @param event 
+     */
+    private void mainViewToolbarMousePressedEventHandler(MouseEvent event) {
         if (!primaryStage.isFullScreen()) {
             mainView.setxOffset(event.getSceneX());
             mainView.setyOffset(event.getSceneY());
         }       
-    }
+    } // end of method mainViewToolbarMousePressedEventHandler
     
+    /**
+     * Moves the window around.
+     * 
+     * @param event 
+     */
     private void adminViewToolbarMouseDraggedEventHandler(MouseEvent event) {
-        // Used to move the window around:
         if (!primaryStage.isFullScreen()) {
             primaryStage.setX(event.getScreenX() - mainView.getxOffset());
             primaryStage.setY(event.getScreenY() - mainView.getyOffset());
         }
+    } // end of method adminViewToolbarMouseDraggedEventHandler
+   
+    /** EventHandler for registerTabButton in MainView. */
+    private void mainViewRegisterTabButtonEventHandler(ActionEvent event) {
+        mainView.getMainPane().setCenter(registerView.getMainPane());
     }
     
-    // REGISTER VIEW EVENT HANDLERS
+    /** EventHandler for searchTabButton in MainView. */
+    private void mainViewSearchTabButtonEventHandler(ActionEvent event) {
+        mainView.getMainPane().setCenter(searchView.getMainPane());
+    }
     
+    /** EventHandler for statisticsTabButton in MainView. */
+    private void adminViewStatisticsTabButtonEventHandler(ActionEvent event) {
+        mainView.getMainPane().setCenter(statisticsView.getMainPane());
+    }
+    
+    /** EventHandler for personsButton in RegisterView. */
     private void registerViewPersonsButtonEventHandler(ActionEvent event) {
         registerView.getMainPane().setCenter(registerPersons.getMainPane());
     }
     
+    /** EventHandler for insurancesButton in RegisterView. */
     private void registerViewInsurancesButtonEventHandler(ActionEvent event) {
         registerView.getMainPane().setCenter(registerInsurances.getMainPane());
     }
     
+    /** EventHandler for claimsButton in RegisterView. */
     private void registerViewClaimsButtonEventHandler(ActionEvent event) {
         registerView.getMainPane().setCenter(registerClaims.getMainPane());
     }
     
-    // REGISTER CLAIMS VIEW EVENT HANDLERS
-    
-    private void claimsViewBoatClaimButtonEventHandler(ActionEvent event) {
+    /** EventHandler for boatClaimButton in RegisterClaims. */
+    private void registerClaimsBoatClaimButtonEventHandler(ActionEvent event) {
         registerClaims.getMainPane().setCenter(registerBoatClaim.getMainPane());
     }
     
-    private void claimsViewCarClaimButtonEventHandler(ActionEvent event) {
+    /** EventHandler for carClaimButton in RegisterClaims. */
+    private void registerClaimsCarClaimButtonEventHandler(ActionEvent event) {
         registerClaims.getMainPane().setCenter(registerCarClaim.getMainPane());
     }
     
-    private void claimsViewHomeClaimButtonEventHandler(ActionEvent event) {
-        registerClaims.getMainPane().setCenter(registerHomeClaim.getMainPane());
-    }
-    
-    private void claimsViewHomeContentClaimButtonEventHandler(ActionEvent event) {
-        registerClaims.getMainPane().setCenter(registerHomeContentClaim.getMainPane());
-    }
-
-    private void claimsViewHolidayHomeClaimButtonEventHandler(ActionEvent event) {
+    /** EventHandler for holidayHomeClaimButton in RegisterClaims. */
+    private void registerClaimsHolidayHomeClaimButtonEventHandler(ActionEvent event) {
         registerClaims.getMainPane().setCenter(registerHolidayHomeClaim.getMainPane());
     }
-        
-    private void claimsViewHolidayHomeContentClaimButtonEventHandler(ActionEvent event) {
+    
+    /** EventHandler for holidayHomeContentClaimButton in RegisterClaims. */
+    private void registerClaimsHolidayHomeContentClaimButtonEventHandler(ActionEvent event) {
         registerClaims.getMainPane().setCenter(registerHolidayHomeContentClaim.getMainPane());
     }
     
-    private void claimsViewTravelClaimButtonEventHandler(ActionEvent event) {
+    /** EventHandler for homeClaimButton in RegisterClaims. */
+    private void registerClaimsHomeClaimButtonEventHandler(ActionEvent event) {
+        registerClaims.getMainPane().setCenter(registerHomeClaim.getMainPane());
+    }
+    
+    /** EventHandler for homeContentClaimButton in RegisterClaims. */
+    private void registerClaimsHomeContentClaimButtonEventHandler(ActionEvent event) {
+        registerClaims.getMainPane().setCenter(registerHomeContentClaim.getMainPane());
+    }
+    
+    /** EventHandler for travelClaimButton in RegisterClaims. */
+    private void registerClaimsTravelClaimButtonEventHandler(ActionEvent event) {
         registerClaims.getMainPane().setCenter(registerTravelClaim.getMainPane());
     }
     
-    // REGISTER INSURANCES VIEW EVENT HANDLERS
-    
-    private void insurancesViewBoatInsuranceButtonEventHandler(ActionEvent event) {
+    /** EventHandler for boatInsuranceButton in RegisterInsurances. */
+    private void registerInsurancesBoatInsuranceButtonEventHandler(ActionEvent event) {
         registerInsurances.getMainPane().setCenter(registerBoatInsurance.getMainPane());
     }
     
-    private void insurancesViewCarInsuranceButtonEventHandler(ActionEvent event) {
+    /** EventHandler for carInsuranceButton in RegisterInsurances. */
+    private void registerInsurancesCarInsuranceButtonEventHandler(ActionEvent event) {
         registerInsurances.getMainPane().setCenter(registerCarInsurance.getMainPane());
     }
     
-    private void insurancesViewHomeInsuranceButtonEventHandler(ActionEvent event) {
-        registerInsurances.getMainPane().setCenter(registerHomeInsurance.getMainPane());
-    }
-    
-    private void insurancesViewHomeContentInsuranceButtonEventHandler(ActionEvent event) {
-        registerInsurances.getMainPane().setCenter(registerHomeContentInsurance.getMainPane());
-    }
-    
-    private void insurancesViewHolidayHomeInsuranceButtonEventHandler(ActionEvent event) {
+    /** EventHandler for holidayHomeInsuranceButton in RegisterInsurances. */
+    private void registerInsurancesHolidayHomeInsuranceButtonEventHandler(ActionEvent event) {
         registerInsurances.getMainPane().setCenter(registerHolidayHomeInsurance.getMainPane());
     }
     
-    private void insurancesViewHolidayHomeContentInsuranceButtonEventHandler(ActionEvent event) {
+    /** EventHandler for holidayHomeContentInsuranceButton in RegisterInsurances. */
+    private void registerInsurancesHolidayHomeContentInsuranceButtonEventHandler(ActionEvent event) {
         registerInsurances.getMainPane().setCenter(registerHolidayHomeContentInsurance.getMainPane());
     }
- 
-    private void insurancesViewTravelInsuranceButtonEventHandler(ActionEvent event) {
+    
+    /** EventHandler for homeInsuranceButton in RegisterInsurances. */
+    private void registerInsurancesHomeInsuranceButtonEventHandler(ActionEvent event) {
+        registerInsurances.getMainPane().setCenter(registerHomeInsurance.getMainPane());
+    }
+    
+    /** EventHandler for homeContentInsuranceButton in RegisterInsurances. */
+    private void registerInsurancesHomeContentInsuranceButtonEventHandler(ActionEvent event) {
+        registerInsurances.getMainPane().setCenter(registerHomeContentInsurance.getMainPane());
+    }
+    
+    /** EventHandler for travelInsuranceButton in RegisterInsurances. */
+    private void registerInsurancesTravelInsuranceButtonEventHandler(ActionEvent event) {
         registerInsurances.getMainPane().setCenter(registerTravelInsurance.getMainPane());
     }
     
-    // REGISTER PERSONS VIEW INSURANCEHANDLERS
-    
-    private void personsViewCustomerRegistrationButtonEventHandler(ActionEvent event) {
+    /** EventHandler for customerButton in RegisterPersons. */
+    private void registerPersonsCustomerButtonEventHandler(ActionEvent event) {
         registerPersons.getMainPane().setCenter(registerCustomer.getMainPane());
     }
     
-    private void personsViewEmployeeRegistrationButtonEventHandler(ActionEvent event) {
+    /** EventHandler for employeeButton in RegisterPersons. */
+    private void registerPersonsEmployeeButtonEventHandler(ActionEvent event) {
         registerPersons.getMainPane().setCenter(registerEmployee.getMainPane());
     }
     
-    // PROCESS VIEW EVENT HANDLERS
-    
-    private void processViewSubscriptionsButtonEventHandler(ActionEvent event) {
-        
-    }
-    
-    // SEARCH VIEW EVENT HANDLERS
-    
+    /** EventHandler for claimsButton in SearchView. */
     private void searchViewClaimsButtonEventHandler(ActionEvent event) {
         searchView.getMainPane().setCenter(registerClaims.getMainPane());
     }
     
+    /** EventHandler for insurancesButton in SearchView. */
     private void searchViewInsurancesButtonEventHandler(ActionEvent event) {
         searchView.getMainPane().setCenter(searchInsurances.getMainPane());
     }
     
+    /** EventHandler for customersButton in SearchView. */
     private void searchViewCustomersButtonEventHandler(ActionEvent event) {
         searchView.getMainPane().setCenter(searchCustomers.getMainPane());
     }
     
+    /** EventHandler for employeesButton in SearchView. */
     private void searchViewEmployeesButtonEventHandler(ActionEvent event) {
         searchView.getMainPane().setCenter(searchEmployees.getMainPane());
+    }
+    
+    /** EventHandler for claimsButton in StatisticsView. */
+    private void statisticsViewClaimsButtonEventHandler(ActionEvent event) {
+        statisticsView.getMainPane().setCenter(statisticsClaims.getMainPane());
+    }
+    
+    /** EventHandler for disbursementsButton in StatisticsView. */
+    private void statisticsViewDisbursementsButtonEventHandler(ActionEvent event) {
+        statisticsView.getMainPane().setCenter(statisticsDisbursements.getMainPane());
+    }
+    
+    /** EventHandler for incomeButton in StatisticsView. */
+    private void statisticsViewIncomeButtonEventHandler(ActionEvent event) {
+        statisticsView.getMainPane().setCenter(statisticsIncome.getMainPane());
     }
 }

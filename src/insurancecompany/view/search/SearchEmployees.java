@@ -320,12 +320,12 @@ public class SearchEmployees {
     }
     
     /** 
-     * @return The employee type of this class as an EmployeeType. Null if
+     * @return The employee type of this class as a String. Null if
      * no employee type is selected.
      */
-    public EmployeeType getEmployeeType() {
+    public String getEmployeeType() {
         return String.class.isInstance(employeeTypeCombo.getValue()) ?
-                null : (EmployeeType) employeeTypeCombo.getValue();
+                null : employeeTypeCombo.getValue().toString();
     }
     
     /** @param text The text to set in insuranceArea. */

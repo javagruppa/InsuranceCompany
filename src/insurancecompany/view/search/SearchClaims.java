@@ -356,12 +356,12 @@ public class SearchClaims {
     }
     
     /** 
-     * @return The claim type of this class as a ClaimType. Null if
+     * @return The claim type of this class as a String. Null if
      * no claim type is selected.
      */
-    public ClaimType getClaimType() {
+    public String getClaimType() {
         return String.class.isInstance(claimTypeCombo.getValue()) ?
-                null : (ClaimType) claimTypeCombo.getValue();
+                null : claimTypeCombo.getValue().toString();
     }
     
     /** 

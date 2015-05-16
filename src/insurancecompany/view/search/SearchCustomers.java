@@ -342,12 +342,12 @@ public class SearchCustomers {
     }
     
     /** 
-     * @return The insurance type of this class as an InsuranceType. Null if
+     * @return The insurance type of this class as a String. Null if
      * no insurance type is selected.
      */
-    public InsuranceType getInsuranceType() {
+    public String getInsuranceType() {
         return String.class.isInstance(insuranceTypeCombo.getValue()) ?
-                null : (InsuranceType) insuranceTypeCombo.getValue();
+                null : insuranceTypeCombo.getValue().toString();
     }
     
     /** @return True if totalCustomerCombo equals "Ja". */

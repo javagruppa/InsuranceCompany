@@ -76,9 +76,9 @@ public class ModelController {
         //this.employees;
         this.customers = customerRegister.getCustomers();
         this.insurances = insuranceRegister.getInsurances();
-        //this.claims;
-        //this.logs;
-        //this.bills;
+        this.claims = claimRegister.getClaims();
+        this.logs = logRegister.getLogs();
+        this.bills = billRegister.getBills();
         
         // Calls methods:
         unmarshalCarInfoRegister();
@@ -143,28 +143,30 @@ public class ModelController {
      */
     public void updatePayments() {
         for (Insurance insurance : insurances) {
-            // Get the next pay date for each insurance:
-            Calendar nextPayDate = insurance.getNextPayDate();
-            // If Current date has reached or passed the next payed date:
-            if (nextPayDate.before(Calendar.getInstance())) {
-                int customerId = insurance.getCustomerId();
-                int insuranceId = insurance.getInsuranceId();
-                double fee = insurance.getMonthlyPremium();
-                // Find the customer for the insurance:
-                Customer c = customerRegister.findCustomerById(customerId);
-                // Check if that customer is a totalCustomer:
-                boolean totalCustomer = c.isTotalCustomer();
-                if (totalCustomer) {
-                    // If so, adjust fee accordingly:
-                    fee = fee * (1 - Customer.TOTAL_CUSTOMER_DISCOUNT);
+            if (insurance != null) {
+                // Get the next pay date for each insurance:
+                Calendar nextPayDate = insurance.getNextPayDate();
+                // If Current date has reached or passed the next payed date:
+                if (nextPayDate.before(Calendar.getInstance())) {
+                    int customerId = insurance.getCustomerId();
+                    int insuranceId = insurance.getInsuranceId();
+                    double fee = insurance.getMonthlyPremium();
+                    // Find the customer for the insurance:
+                    Customer c = customerRegister.findCustomerById(customerId);
+                    // Check if that customer is a totalCustomer:
+                    boolean totalCustomer = c.isTotalCustomer();
+                    if (totalCustomer) {
+                        // If so, adjust fee accordingly:
+                        fee = fee * (1 - Customer.TOTAL_CUSTOMER_DISCOUNT);
+                    }
+                    // Create a new bill assigned to the customer and insurance:
+                    Bill bill = new Bill(fee, customerId, insuranceId);
+                    // Add this bill to the bill register:
+                    billRegister.addBill(bill);
+                    // Update next pay date to 1 month forward:
+                    nextPayDate.add(Calendar.MONTH, 1);
+                    insurance.setNextPayDate(nextPayDate); // redundant
                 }
-                // Create a new bill assigned to the customer and insurance:
-                Bill bill = new Bill(fee, customerId, insuranceId);
-                // Add this bill to the bill register:
-                billRegister.addBill(bill);
-                // Update next pay date to 1 month forward:
-                nextPayDate.add(Calendar.MONTH, 1);
-                insurance.setNextPayDate(nextPayDate); // redundant
             }
         }
     }
@@ -178,15 +180,17 @@ public class ModelController {
     public void updateTotalCustomers() {
         // Loop through all customers
         for (Customer customer : customers) {
-            int customerId = customer.getId();
-            // Get the number of active insurances for each:
-            int numberOfInsurances = insuranceRegister.getNumberOfActiveInsurances(customerId);
-            if (numberOfInsurances >= 3) {
-                // If this is at 3 or above change total customer to true:
-                customer.setTotalCustomer(true);
-            } else {
-                // If not change total customer to false:
-                customer.setTotalCustomer(false);
+            if (customer != null) {
+                int customerId = customer.getId();
+                // Get the number of active insurances for each:
+                int numberOfInsurances = insuranceRegister.getNumberOfActiveInsurances(customerId);
+                if (numberOfInsurances >= 3) {
+                    // If this is at 3 or above change total customer to true:
+                    customer.setTotalCustomer(true);
+                } else {
+                    // If not change total customer to false:
+                    customer.setTotalCustomer(false);
+                }
             }
         }
     }
@@ -200,7 +204,7 @@ public class ModelController {
         // Loop through all bills:
         for (Bill bill : bills) {
             // Check for each bill that is not payed:
-            if (!bill.isPayed()) {
+            if (!bill.isPaid()) {
                 Calendar dunningDate = bill.getDunningDate();
                 Calendar dueDate = bill.getDueDate();
                 // First check if it has allready reached dunning date status:
@@ -227,6 +231,17 @@ public class ModelController {
                         bill.setDunningDate(newDunningDate);
                     }
                 }
+            }
+        }
+    }
+    
+    /**
+     * Runs through all bills and sets them to paid.
+     */
+    public void setAllBillsPaid() {
+        for (Bill bill : bills) {
+            if (bills != null) {
+                bill.setPaid(true);
             }
         }
     }

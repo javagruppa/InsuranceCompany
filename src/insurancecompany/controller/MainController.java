@@ -221,6 +221,11 @@ public class MainController {
         readAllDataFromFile();
         setBrandComboBox();
         initializeEventHandlers();
+        
+        modelController.updateTotalCustomers();
+        modelController.updatePayments();
+        modelController.setAllBillsPaid();
+        modelController.updateUnpaidBills();
     }
     
     public void show(Stage stage) {

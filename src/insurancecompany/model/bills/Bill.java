@@ -61,7 +61,7 @@ public class Bill implements Serializable {
     
     public void payBill() {
         setPayedDate(Calendar.getInstance());
-        setPayed(true);
+        setPaid(true);
     }
     
     public static void saveNextIdToFile() throws IOException {
@@ -153,15 +153,15 @@ public class Bill implements Serializable {
     /**
      * @return the paid
      */
-    public boolean isPayed() {
+    public boolean isPaid() {
         return paid;
     }
 
     /**
-     * @param payed the paid to set
+     * @param paid the paid to set
      */
-    public void setPayed(boolean payed) {
-        this.paid = payed;
+    public void setPaid(boolean paid) {
+        this.paid = paid;
     }
 
     /**

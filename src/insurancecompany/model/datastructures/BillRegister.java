@@ -148,7 +148,7 @@ public class BillRegister {
             // The current date:
             Calendar current = Calendar.getInstance();
             // Checks if the current date has passed the due date and the bill is not payed:
-            if (current.after(date) && !bill.isPayed()) {
+            if (current.after(date) && !bill.isPaid()) {
                 // Adds this bill to the return set:
                 result.add(bill);
             }
@@ -157,6 +157,16 @@ public class BillRegister {
         return result;
     }
     
+    
+    public double getTotalPayed() {
+        double result = 0.0;
+        for (Bill bill : bills) {
+            if (bill != null && bill.isPaid()) {
+                result += bill.getFee() + bill.getDunningCharge();
+            }
+        }
+        return result;
+    }
     
     /**
      * Writes this registers set of bills to file.

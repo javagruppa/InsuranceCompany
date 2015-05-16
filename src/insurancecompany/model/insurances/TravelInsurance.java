@@ -1,5 +1,6 @@
 package insurancecompany.model.insurances;
 
+import insurancecompany.misc.InsuranceType;
 import insurancecompany.misc.coverages.TravelInsuranceCoverage;
 import java.io.Serializable;
 
@@ -42,7 +43,7 @@ public class TravelInsurance extends Insurance implements Serializable {
     /** @return The type of insurance in form of a String. */
     @Override
     public String getName() {
-        return "Reiseforsikring";
+        return InsuranceType.TRAVEL_INSURANCE.toString();
     }
     
     // CALCULATE PREMIUM METHODS

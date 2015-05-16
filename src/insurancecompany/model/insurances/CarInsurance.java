@@ -2,6 +2,7 @@ package insurancecompany.model.insurances;
 
 import insurancecompany.model.vehicles.Car;
 import insurancecompany.misc.DateUtility;
+import insurancecompany.misc.InsuranceType;
 import insurancecompany.misc.coverages.CarInsuranceCoverage;
 import java.util.Calendar;
 import java.io.Serializable;
@@ -79,7 +80,7 @@ public class CarInsurance extends Insurance implements Serializable {
     /** @return The type of insurance in form of a String. */
     @Override
     public String getName() {
-        return "Bilforsikring";
+        return InsuranceType.CAR_INSURANCE.toString();
     }
     
     // CALCULATE PREMIUM METHODS

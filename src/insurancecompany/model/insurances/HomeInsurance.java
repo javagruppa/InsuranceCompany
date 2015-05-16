@@ -1,5 +1,6 @@
 package insurancecompany.model.insurances;
 
+import insurancecompany.misc.InsuranceType;
 import insurancecompany.model.properties.Property;
 import insurancecompany.misc.hometypes.HomeType;
 import insurancecompany.misc.coverages.HomeInsuranceCoverage;
@@ -57,7 +58,7 @@ public class HomeInsurance extends Insurance implements Serializable {
     /** @return The type of insurance in form of a String. */
     @Override
     public String getName() {
-        return "Husforsikring";
+        return InsuranceType.HOME_INSURANCE.toString();
     }
     
     /** @return The property this insurance is for. */

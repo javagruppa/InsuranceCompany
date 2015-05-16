@@ -1,5 +1,6 @@
 package insurancecompany.model.insurances;
 
+import insurancecompany.misc.InsuranceType;
 import insurancecompany.misc.coverages.HolidayHomeContentInsuranceCoverage;
 import insurancecompany.misc.hometypes.HolidayHomeType;
 import insurancecompany.model.properties.Property;
@@ -60,7 +61,7 @@ public class HolidayHomeContentInsurance extends Insurance
     /** @return The type of insurance in form of a String. */
     @Override
     public String getName() {
-        return "Fritidsbolig innboforsikring";
+        return InsuranceType.HOLIDAY_HOME_CONTENT_INSURANCE.toString();
     }
     
     /** @return The property this insurance is for. */

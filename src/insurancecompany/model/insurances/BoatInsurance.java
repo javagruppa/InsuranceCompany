@@ -1,5 +1,6 @@
 package insurancecompany.model.insurances;
 
+import insurancecompany.misc.InsuranceType;
 import insurancecompany.misc.coverages.BoatInsuranceCoverage;
 import insurancecompany.model.vehicles.Boat;
 import java.io.Serializable;
@@ -48,7 +49,7 @@ public class BoatInsurance extends Insurance implements Serializable {
     /** @return The type of insurance in form of a String. */
     @Override
     public String getName() {
-        return "Båtforsikring";
+        return InsuranceType.BOAT_INSURANCE.toString();
     }
     
     /** @return The boat this insurance is for. */

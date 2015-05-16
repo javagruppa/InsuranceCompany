@@ -122,8 +122,10 @@ public class InsuranceSearchView {
         numberSelectCombo = new ComboBox<>();
         populateNumberSelectCombo();
         fromDatePicker = new DatePicker();
+        fromDatePicker.setPrefWidth(150);
         DateUtility.restrictDatePickerToOlder(fromDatePicker);
         toDatePicker = new DatePicker();
+        toDatePicker.setPrefWidth(150);
         DateUtility.restrictDatePickerToOlder(toDatePicker);
         idMessage = new Text("");
         numberField = new TextField();
@@ -218,7 +220,7 @@ public class InsuranceSearchView {
         insuranceTypeCombo.setPrefWidth(150);
     }
     
-    /** Sets the content of the ComboBox selectNumberCombo. */
+    /** Sets the content of the ComboBox numberSelectCombo. */
     private void populateNumberSelectCombo() {
         ObservableList<String> obList = FXCollections.observableArrayList();  
         obList.addAll("Kundenummer", "Personnummer");

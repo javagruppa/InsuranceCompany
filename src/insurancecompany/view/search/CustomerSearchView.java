@@ -197,7 +197,7 @@ public class CustomerSearchView {
         insuranceTypeCombo.setPrefWidth(150);
     }
     
-    /** Sets the content of the ComboBox selectNumberCombo. */
+    /** Sets the content of the ComboBox numberSelectCombo. */
     private void populateNumberSelectCombo() {
         ObservableList<String> obList = FXCollections.observableArrayList();  
         obList.addAll("Kundenummer", "Personnummer");
@@ -308,7 +308,7 @@ public class CustomerSearchView {
     
     /** 
      * @return The selected value of customersTable as a Customer. Null if 
-     * no insurance is selected.
+     * no customer is selected.
      */
     public Customer getCustomersTableValue() {
         return customersTable.getSelectionModel() == null ? null : 

@@ -90,37 +90,37 @@ public class ViewController {
         this.registerPersons = new RegisterPersons();
         
         // Claim Registration Views:
-        this.boatClaimRegistration = (RegisterBoatClaim) views.get(0);
-        this.carClaimRegistration = (RegisterCarClaim) views.get(1);
-        this.holidayHomeClaimRegistration = (RegisterHolidayHomeClaim) views.get(2);
-        this.holidayHomeContentClaimRegistration = (RegisterHolidayHomeContentClaim) views.get(3);
-        this.homeClaimRegistration = (RegisterHomeClaim) views.get(4);
-        this.homeContentClaimRegistration = (RegisterHomeContentClaim) views.get(5);
-        this.travelClaimRegistration = (RegisterTravelClaim) views.get(6);
+        this.registerBoatClaim = (RegisterBoatClaim) views.get(0);
+        this.registerCarClaim = (RegisterCarClaim) views.get(1);
+        this.registerHolidayHomeClaim = (RegisterHolidayHomeClaim) views.get(2);
+        this.registerHolidayHomeContentClaim = (RegisterHolidayHomeContentClaim) views.get(3);
+        this.registerHomeClaim = (RegisterHomeClaim) views.get(4);
+        this.registerHomeContentClaim = (RegisterHomeContentClaim) views.get(5);
+        this.registerTravelClaim = (RegisterTravelClaim) views.get(6);
         
         // Insurance Registration Views:
-        this.boatInsuranceRegistration = (RegisterBoatInsurance) views.get(7);
-        this.carInsuranceRegistration = (RegisterCarInsurance) views.get(8);
-        this.holidayHomeInsuranceRegistration = (RegisterHolidayHomeInsurance) views.get(9);
-        this.holidayHomeContentInsuranceRegistration = (RegisterHolidayHomeContentInsurance) views.get(10);
-        this.homeInsuranceRegistration = (RegisterHomeInsurance) views.get(11);
-        this.homeContentInsuranceRegistration = (RegisterHomeContentInsurance) views.get(12);
-        this.travelInsuranceRegistration = (RegisterTravelInsurance) views.get(13);
+        this.registerBoatInsurance = (RegisterBoatInsurance) views.get(7);
+        this.registerCarInsurance = (RegisterCarInsurance) views.get(8);
+        this.registerHolidayHomeInsurance = (RegisterHolidayHomeInsurance) views.get(9);
+        this.registerHolidayHomeContentInsurance = (RegisterHolidayHomeContentInsurance) views.get(10);
+        this.registerHomeInsurance = (RegisterHomeInsurance) views.get(11);
+        this.registerHomeContentInsurance = (RegisterHomeContentInsurance) views.get(12);
+        this.registerTravelInsurance = (RegisterTravelInsurance) views.get(13);
         
         // Person Registration Views:
-        this.customerRegistration = (RegisterCustomer) views.get(14);
-        this.employeeRegistration = (RegisterEmployee) views.get(15);
+        this.registerCustomer = (RegisterCustomer) views.get(14);
+        this.registerEmployee = (RegisterEmployee) views.get(15);
     
         // Search Views:
-        this.claimSearchView = (SearchClaims) views.get(16);
-        this.customerSearchView = (SearchCustomers) views.get(17);
-        this.employeeSearchView = (SearchEmployees) views.get(18);
-        this.insuranceSearchView = (SearchInsurances) views.get(19);
+        this.searchClaims = (SearchClaims) views.get(16);
+        this.searchCustomers = (SearchCustomers) views.get(17);
+        this.searchEmployees = (SearchEmployees) views.get(18);
+        this.searchInsurances = (SearchInsurances) views.get(19);
 
         // Statistics Views:
-        this.claimStatisticsView = (StatisticsClaims) views.get(20);
-        this.customerStatisticsView = (StatisticsIncome) views.get(21);
-        this.employeeStatisticsView = (StatisticsDisbursements) views.get(22);
+        this.statisticsClaims = (StatisticsClaims) views.get(20);
+        this.statisticsDisbursements = (StatisticsDisbursements) views.get(21);
+        this.statisticsIncome = (StatisticsIncome) views.get(22);
         
         initializeEventHandlers();
     } // end of sole constructor
@@ -169,10 +169,9 @@ public class ViewController {
         searchView.setInsurancesButtonEventHandler(this::searchViewInsurancesButtonEventHandler);
         
         // STATISTCS SUB TAB EVENT HANDLERS:
-        statisticsView.setClaimsButtonEventHandler(null);
-        statisticsView.setCustomersButtonEventHandler(null);
-        statisticsView.setEmployeesButtonEventHandler(null);
-        statisticsView.setInsurancesButtonEventHandler(null);
+        statisticsView.setClaimsButtonEventHandler(this::statisticsViewClaimsButtonEventHandler);
+        statisticsView.setDisbursementsButtonEventHandler(this::statisticsViewDisbursementsButtonEventHandler);
+        statisticsView.setIncomeButtonEventHandler(this::statisticsViewIncomeButtonEventHandler);
         
     } // end of method initializeEventHandlers
     
@@ -329,7 +328,7 @@ public class ViewController {
     
     /** EventHandler for claimsButton in SearchView. */
     private void searchViewClaimsButtonEventHandler(ActionEvent event) {
-        searchView.getMainPane().setCenter(registerClaims.getMainPane());
+        searchView.getMainPane().setCenter(searchClaims.getMainPane());
     }
     
     /** EventHandler for insurancesButton in SearchView. */

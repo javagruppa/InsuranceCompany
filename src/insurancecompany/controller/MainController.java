@@ -10,8 +10,7 @@ import insurancecompany.misc.ClaimType;
 import insurancecompany.misc.EmployeeType;
 import insurancecompany.misc.InsuranceType;
 import insurancecompany.misc.coverages.*;
-import insurancecompany.misc.hometypes.HolidayHomeType;
-import insurancecompany.misc.hometypes.HomeType;
+import insurancecompany.misc.hometypes.*;
 import insurancecompany.model.bills.*;
 import insurancecompany.model.claims.*;
 import insurancecompany.model.datastructures.*;
@@ -110,6 +109,7 @@ public class MainController {
     private static final String NO_CUSTOMER_MESSAGE = "Du har ikke valgt noen kunde.";
     private static final String FORMAT_MESSAGE = "Dette feltet kan kun bestå av tall.";
     private static final String EMPTY_MESSAGE = "Dette feltet må fylles ut.";
+    private static final String CLAIMID_FORMAT_MESSAGE = "Skademeldingsnummeret kan kun bestå av tall.";
     private static final String CUSTOMERID_FORMAT_MESSAGE = "Kundenummeret kan kun bestå av tall.";
     private static final String CUSTOMERID_EMPTY_MESSAGE = "Du må skrive inn et kundenummer.";
     private static final String CUSTOMERID_NOT_FOUND_MESSAGE = "Fant ingen kunde med kundenummer: ";
@@ -321,7 +321,7 @@ public class MainController {
         registerTravelClaim.setSelectInsuranceButtonEventHandler(this::travelClaimSelectInsuranceButtonEventHandler);
         registerTravelClaim.setAddItemButtonEventHandler(this::travelClaimAddItemButtonEventHandler);
         
-        searchClaims.setClaimTypeEventHandler(this::claimSearchViewClaimTypeEventHandler);
+        searchClaims.setClaimTypeEventHandler(this::searchClaimTypeEventHandler);
         
     } // end of class initializeRegisterClaimEventHandlers
     
@@ -3519,19 +3519,30 @@ public class MainController {
     // INSURANCE SEARCH EVENT HANDLERS
     
     private void insuranceSearchViewSearchEventHandler(ActionEvent event) {
-        
+        // Clears all messages:
         searchInsurances.clearMessages();
         
-        // Declares ints and classes to be converted to:
-        int customerId = -1;
-        int insuranceId = -1;
-        Class type = null;
+        // Declares variables to be converted to:
+        int customerId = 0;
+        int insuranceId = 0;
         
-        // Collects information about the customer or insurance:
+        // Collects information about the search terms:
         String insuranceIdString = searchInsurances.getInsuranceId();
         String number = searchInsurances.getNumber();
+        String type = searchInsurances.getInsuranceType().toString();
+        boolean active = searchInsurances.getActive();
+        Calendar fromDate = searchInsurances.getFromDate();
+        Calendar toDate = searchInsurances.getToDate();
         
-        // 
+        // Validates and converts input:
+        if (!insuranceIdString.equals("")) {
+            try {
+                insuranceId = Integer.parseInt(insuranceIdString);
+            } catch(NumberFormatException nfe) {
+                searchInsurances.setIdMessage(INSURANCEID_FORMAT_MESSAGE);
+                return;
+            }
+        }
         if(!number.equals("")) {
             if(searchInsurances.isCustomerIdSelected()) {
                 try {
@@ -3545,49 +3556,17 @@ public class MainController {
             }
         }
         
-        // Collects information about the search terms:
-        InsuranceType insuranceType = searchInsurances.getInsuranceType();
-        boolean active = searchInsurances.getActive();
-        Calendar fromDate = searchInsurances.getFromDate();
-        Calendar toDate = searchInsurances.getToDate();
-        
-        // Evaluates and converts input:
-        if (!insuranceIdString.equals("")) {
-            try {
-                insuranceId = Integer.parseInt(insuranceIdString);
-            } catch(NumberFormatException nfe) {
-                searchInsurances.setIdMessage(INSURANCEID_FORMAT_MESSAGE);
-                return;
-            }
-        }
-        if (!(insuranceType == null)) {
-            switch (insuranceType) {
-                case BOAT_INSURANCE: type = BoatInsurance.class;
-                    break;
-                case CAR_INSURANCE: type = CarInsurance.class;
-                    break;
-                case HOME_INSURANCE: type = HomeInsurance.class;
-                    break;
-                case HOME_CONTENT_INSURANCE: type = HomeContentInsurance.class;
-                    break;
-                case HOLIDAY_HOME_INSURANCE: type = HolidayHomeInsurance.class;
-                    break;
-                case HOLIDAY_HOME_CONTENT_INSURANCE: type = HolidayHomeContentInsurance.class;
-                    break;
-                case TRAVEL_INSURANCE: type = TravelInsurance.class;
-                    break;
-                default: type = null;
-            }
-        }
-        
+        // Searches through the register:
         List<Insurance> insuranceList;
-        if (insuranceId != -1) {
-            insuranceList = insurances.getInsuranceById(insuranceId);
-        } else if (customerId != -1) {
-            insuranceList = insurances.getInsurancesByCustomerId(customerId, type, fromDate, toDate, active);
+        if (insuranceId != 0) {
+            insuranceList = new ArrayList<>();
+            insuranceList.add(insurances.getInsuranceById(insuranceId));
         } else {
-            insuranceList = insurances.getInsurances(type, fromDate, toDate, active);
+            insuranceList = insurances.getInsurances(customerId, type, fromDate, 
+                    toDate, active);
         }
+        
+        // Populates the table:
         searchInsurances.populateInsurancesTable(insuranceList);
     }
     
@@ -3635,7 +3614,7 @@ public class MainController {
        }
     }
     
-    private void claimSearchViewClaimTypeEventHandler(ActionEvent event) {
+    private void searchClaimTypeEventHandler(ActionEvent event) {
         ClaimType type = searchClaims.getClaimType();
         if (type == null) {
             searchClaims.populateDamageCombo(null);
@@ -3657,6 +3636,108 @@ public class MainController {
                     break;
             }
         }
+    }
+    
+    private void searchClaimsSearchEventHandler(ActionEvent event ) {
+        // Clears all messages:
+        searchClaims.clearMessages();
+        
+        // Declares variables to be converted to:
+        int claimId = 0;
+        int customerId = 0;
+        int insuranceId = 0;
+        
+        // Collects information about the search terms:
+        String claimIdString = searchClaims.getClaimId();
+        String number = searchInsurances.getNumber();
+        String type = searchClaims.getClaimType().toString();
+        Damage damage = searchClaims.getDamage();
+        String insuranceIdString = searchInsurances.getInsuranceId();
+        Calendar fromDate = searchInsurances.getFromDate();
+        Calendar toDate = searchInsurances.getToDate();
+        
+        // Validates and converts input:
+        if (!claimIdString.equals("")) {
+            try {
+                claimId = Integer.parseInt(claimIdString);
+            } catch(NumberFormatException nfe) {
+                searchClaims.setIdMessage(CLAIMID_FORMAT_MESSAGE);
+                return;
+            }
+        }
+        if(!number.equals("")) {
+            if(searchClaims.isCustomerIdSelected()) {
+                try {
+                    customerId = Integer.parseInt(number);
+                } catch(NumberFormatException nfe) {
+                    searchClaims.setIdMessage(CUSTOMERID_FORMAT_MESSAGE);
+                    return;
+                }
+            } else {
+                customerId = customers.findCustomerIdByPersonalNumber(number);
+            }
+        }
+        if (!insuranceIdString.equals("")) {
+            try {
+                insuranceId = Integer.parseInt(insuranceIdString);
+            } catch(NumberFormatException nfe) {
+                searchClaims.setIdMessage(INSURANCEID_FORMAT_MESSAGE);
+                return;
+            }
+        }
+        
+        // Searches through the register:
+        List<Claim> claimList;
+        if (claimId != 0) {
+            claimList = new ArrayList<>();
+            claimList.add(claims.getClaimById(claimId));
+        } else {
+            claimList = claims.getClaims(customerId, type, damage, insuranceId, 
+                    fromDate, toDate);
+        }
+        
+        // Populates the table:
+        searchClaims.populateClaimsTable(claimList);
+    }
+    
+    private void searchClaimsSelectEventHandler(ActionEvent event ) {
+        
+    }
+    
+    private void searchClaimsFormEventHandler(ActionEvent event ) {
+        
+    }
+    
+    private void searchClaimsImagesEventHandler(ActionEvent event ) {
+        
+    }
+    
+    private void searchClaimsCompensationEventHandler(ActionEvent event ) {
+        
+    }
+    
+    private void searchCustomersSearchEventHandler(ActionEvent event ) {
+        
+    }
+    
+    private void searchCustomersSelectEventHandler(ActionEvent event ) {
+        
+    }
+    
+    private void searchCustomersDeactivateEventHandler(ActionEvent event ) {
+        
+    }
+    
+    private void searchEmployeesSearchEventHandler(ActionEvent event ) {
+        
+    }
+    
+    private void searchEmployeesSelectEventHandler(ActionEvent event ) {
+        
+    }
+    
+    private void searchEmployeesDeactivateEventHandler(ActionEvent event ) {
+        
     }
     
     // READ AND WRITE IDS FROM/TO FILE:

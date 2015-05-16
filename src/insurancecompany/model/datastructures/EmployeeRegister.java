@@ -112,4 +112,13 @@ public class EmployeeRegister {
         }
         return result;
     }
+    
+    public Employee findEmployeeByPersonalNumber(String personalNumber) {
+        for (Employee employee : employees) {
+            if (employee.getPersonalNumber().equals(personalNumber)) {
+                return employee;
+            }
+        }
+        return null;
+    }
 }

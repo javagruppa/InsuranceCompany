@@ -12,6 +12,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -112,6 +113,23 @@ public class CustomerRegister {
             }
         }
         return 0;
+    }
+    
+    public List<Customer> getCustomers(int customerId, String firstName, 
+            String lastName, boolean total, boolean active) {
+        List<Customer> result = new ArrayList<>();
+        for (Customer customer : customers) {
+            if ((customerId == 0 || customerId == customer.getId())
+                    && (firstName.equals("") || 
+                            firstName.equals(customer.getFirstName()))
+                    && (lastName.equals("")) ||
+                            lastName.equals(customer.getLastName())
+                    && (!total || customer.isTotalCustomer())
+                    && (!active || customer.isActive())) {
+                result.add(customer);
+            }
+        }
+        return result;
     }
     
     /**

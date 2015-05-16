@@ -100,7 +100,7 @@ public class InsuranceRegister {
                     && (toDate == null || 
                             toDate.compareTo(insurance.getDate()) >= 0)
                     && (!active || insurance.getActive())) {
-                                result.add(insurance);
+                result.add(insurance);
             }
         }
         return result;

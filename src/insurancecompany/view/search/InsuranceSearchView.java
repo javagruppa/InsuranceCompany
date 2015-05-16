@@ -163,7 +163,7 @@ public class InsuranceSearchView {
         Text insuranceTitle = new Text("Valgt forsikring:");
         insuranceTitle.setId("textTitle");
         attachmentTitle.setId("textTitle");
-        Label insuranceIdLabel = new Label("Forsikringssnummer:");
+        Label insuranceIdLabel = new Label("Forsikringsnummer:");
         Label insuranceTypeLabel = new Label("Type forsikring:");
         Label activeLabel = new Label("Kun aktive:");
         Label fromDateLabel = new Label("Fra dato:");

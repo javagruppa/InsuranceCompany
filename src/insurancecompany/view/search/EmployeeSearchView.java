@@ -63,16 +63,18 @@ public class EmployeeSearchView {
     private TextField numberField;
     
     // Declaration of all the nodes in the center part.
+    private Button deactivateButton;
     private Button selectButton;
     private TableView<Employee> employeesTable;
     private TableColumn<Employee, String> firstNameColumn;
     private TableColumn<Employee, String> lastNameColumn;
     private TableColumn<Employee, Integer> employeeIdColumn;
     private TableColumn<Employee, String> employeeTypeColumn;
-    private Text selectMessage;
     
     // Declaration of all the nodes in the right part.
     private TextArea customerArea;
+    private Text deactivateMessage;
+    private Text selectMessage;
     
     /**
      * Default constructor. Initializes all field and sets up the view.
@@ -116,7 +118,7 @@ public class EmployeeSearchView {
         numberField = new TextField();
 
         // Initialization of all the nodes in the center part.
-        selectButton = new Button("Velg kunde");
+        selectButton = new Button("Velg ansatt");
         employeesTable = new TableView();
         employeesTable.setPrefWidth(400);
         firstNameColumn = new TableColumn<>("Fornavn");
@@ -130,6 +132,8 @@ public class EmployeeSearchView {
         selectMessage = new Text("");
 
         // Initialization of all the nodes in the right part.
+        deactivateButton = new Button("Gjør forsikringen aktiv/inaktiv");
+        deactivateMessage = new Text("");
         customerArea = new TextArea();
         customerArea.setPrefHeight(400);
         
@@ -174,6 +178,8 @@ public class EmployeeSearchView {
         // Adds the nodes to the right part.
         rightPane.add(employeeTitle, 0, 0);
         rightPane.add(customerArea, 0, 1);
+        rightPane.add(deactivateButton, 0, 2);
+        rightPane.add(deactivateMessage, 0, 3);
     }
     
     /** Sets the content of the ComboBox activeCombo. */

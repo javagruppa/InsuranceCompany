@@ -81,6 +81,7 @@ public class ClaimSearchView {
     private TableColumn<Claim, String> claimTypeColumn;
     private TableColumn<Claim, Integer> claimIdColumn;
     private TableColumn<Claim, Integer> customerIdColumn;
+    private TableColumn<Claim, Calendar> dateColumn;
     private Text selectMessage;
     
     // Declaration of all the nodes in the right part.
@@ -137,16 +138,17 @@ public class ClaimSearchView {
         insuranceIdField = new TextField();
 
         // Initialization of all the nodes in the center part.
-        formButton = new Button("Skademeldingsskjema");
-        imageButton = new Button("Bilder");
+        formButton = new Button("Vis skademeldingsskjema");
+        imageButton = new Button("Vis bilder");
         selectButton = new Button("Velg skademelding");
         claimsTable = new TableView();
         claimsTable.setPrefWidth(400);
         claimTypeColumn = new TableColumn<>("Skademelding");
-        claimIdColumn = new TableColumn<>("Skademelding ID");
+        claimIdColumn = new TableColumn<>("Skademeld. ID");
         customerIdColumn = new TableColumn<>("Kunde ID");
+        dateColumn = new TableColumn<>("Skadedato");
         claimsTable.getColumns().addAll(claimTypeColumn, 
-                claimIdColumn, customerIdColumn);
+                claimIdColumn, customerIdColumn, dateColumn);
         claimsTable.setColumnResizePolicy(
                 TableView.CONSTRAINED_RESIZE_POLICY);
         selectMessage = new Text("");
@@ -198,12 +200,12 @@ public class ClaimSearchView {
         leftPane.add(idMessage, 0, 11, 2, 1);
         
         // Adds the nodes to the center part.
-        centerPane.add(claimsTitle, 0, 0, 2, 1);
-        centerPane.add(claimsTable, 0, 1, 2, 1);
-        centerPane.add(formButton, 0, 2);
-        centerPane.add(imageButton, 1, 2);
-        centerPane.add(selectButton, 0, 3, 2, 1);
-        centerPane.add(selectMessage, 0, 4, 2, 1);
+        centerPane.add(claimsTitle, 0, 0, 3, 1);
+        centerPane.add(claimsTable, 0, 1, 3, 1);
+        centerPane.add(selectButton, 0, 2);
+        centerPane.add(formButton, 1, 2);
+        centerPane.add(imageButton, 2, 2);
+        centerPane.add(selectMessage, 0, 3, 3, 1);
         
         // Adds the nodes to the right part.
         rightPane.add(claimTitle, 0, 0, 2, 1);

@@ -71,6 +71,8 @@ public class CustomerSearchView {
     private Text selectMessage;
     
     // Declaration of all the nodes in the right part.
+    private Button deactivateButton;
+    private Text deactivateMessage;
     private TextArea customerArea;
     
     /**
@@ -131,6 +133,8 @@ public class CustomerSearchView {
         selectMessage = new Text("");
 
         // Initialization of all the nodes in the right part.
+        deactivateButton = new Button("Gjør forsikringen aktiv/inaktiv");
+        deactivateMessage = new Text("");
         customerArea = new TextArea();
         customerArea.setPrefHeight(400);
         
@@ -178,6 +182,8 @@ public class CustomerSearchView {
         // Adds the nodes to the right part.
         rightPane.add(customerTitle, 0, 0);
         rightPane.add(customerArea, 0, 1);
+        rightPane.add(deactivateButton, 0, 2);
+        rightPane.add(deactivateMessage, 0, 3);
     }
     
     /** Sets the content of the ComboBox activeCombo. */

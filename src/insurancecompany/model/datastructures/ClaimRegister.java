@@ -5,6 +5,7 @@
  */
 package insurancecompany.model.datastructures;
 
+import insurancecompany.misc.coverages.Damage;
 import insurancecompany.model.claims.Claim;
 import java.io.*;
 import java.util.ArrayList;
@@ -81,6 +82,23 @@ public class ClaimRegister {
             }
         }
         return null;
+    }
+    
+    public List<Claim> getClaims(int customerId, String type, Damage damage, 
+            int insuranceId, Calendar fromDate, Calendar toDate) {
+        List<Claim> result = new ArrayList<>();
+        for (Claim claim : claims) {
+            if ((customerId == 0 || customerId == claim.getCustomerId())
+                    && (type == null || type.equals(claim.getName()))
+                    && (damage == null || claim.getDamages().contains(damage))
+                    && (fromDate == null ||
+                            fromDate.compareTo(claim.getDateHappened()) <= 0)
+                    && (toDate == null || 
+                            toDate.compareTo(claim.getDateHappened()) >= 0)) {
+                                result.add(claim);
+            }
+        }
+        return result;
     }
     
     /**

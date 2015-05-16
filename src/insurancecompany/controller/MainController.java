@@ -269,9 +269,9 @@ public class MainController {
         registerTravelInsurance.setSearchCustomerIdButtonEventHandler(this::travelInsuranceSearchCustomerIdButtonEventHandler);
         registerTravelInsurance.setSearchPersonalNumberButtonEventHandler(this::travelInsuranceSearchPersonalNumberButtonEventHandler);
         
-        searchInsurances.setSearchEventHandler(this::insuranceSearchViewSearchEventHandler);
-        searchInsurances.setSelectEventHandler(this::insuranceSearchViewSelectEventHandler);
-        searchInsurances.setDeactivateEventHandler(this::insuranceSearchViewDeactivateEventHandler);
+        searchInsurances.setSearchEventHandler(this::searchInsuranceSearchEventHandler);
+        searchInsurances.setSelectEventHandler(this::searchInsuranceSelectEventHandler);
+        searchInsurances.setDeactivateEventHandler(this::searchInsuranceDeactivateEventHandler);
     } // end of class initializeRegisterInsuranceEventHandlers
  
     private void initializeRegisterClaimEventHandlers() {
@@ -321,7 +321,7 @@ public class MainController {
         registerTravelClaim.setSelectInsuranceButtonEventHandler(this::travelClaimSelectInsuranceButtonEventHandler);
         registerTravelClaim.setAddItemButtonEventHandler(this::travelClaimAddItemButtonEventHandler);
         
-        searchClaims.setClaimTypeEventHandler(this::searchClaimTypeEventHandler);
+        searchClaims.setClaimTypeEventHandler(this::searchClaimsTypeEventHandler);
         
     } // end of class initializeRegisterClaimEventHandlers
     
@@ -3518,7 +3518,7 @@ public class MainController {
     
     // INSURANCE SEARCH EVENT HANDLERS
     
-    private void insuranceSearchViewSearchEventHandler(ActionEvent event) {
+    private void searchInsuranceSearchEventHandler(ActionEvent event) {
         // Clears all messages:
         searchInsurances.clearMessages();
         
@@ -3529,7 +3529,7 @@ public class MainController {
         // Collects information about the search terms:
         String insuranceIdString = searchInsurances.getInsuranceId();
         String number = searchInsurances.getNumber();
-        String type = searchInsurances.getInsuranceType().toString();
+        String type = searchInsurances.getInsuranceType();
         boolean active = searchInsurances.getActive();
         Calendar fromDate = searchInsurances.getFromDate();
         Calendar toDate = searchInsurances.getToDate();
@@ -3570,71 +3570,95 @@ public class MainController {
         searchInsurances.populateInsurancesTable(insuranceList);
     }
     
-    private void insuranceSearchViewSelectEventHandler(ActionEvent event) {
-        
+    private void searchInsuranceSelectEventHandler(ActionEvent event) {
+        // Clears all messages:
         searchInsurances.clearMessages();
         
-       Insurance insurance = searchInsurances.getInsurancesTableValue();
-       
-       if (insurance == null) {
-           searchInsurances.setSelectMessage(NO_INSURANCE_MESSAGE);
-           return;
-       }
-       
-       searchInsurances.setInsuranceArea(insurance.toString());
-       
-       if (insurance instanceof BoatInsurance) {
-           searchInsurances.setAttachmentArea("Båt:", ((BoatInsurance)insurance).getBoat().toString());
-       } else if (insurance instanceof CarInsurance) {
-           searchInsurances.setAttachmentArea("Bil:", ((CarInsurance) insurance).getCar().toString());
-       } else if (insurance instanceof HolidayHomeInsurance) {
-           searchInsurances.setAttachmentArea("Eiendom:", ((HolidayHomeInsurance) insurance).getProperty().toString());
-       } else if (insurance instanceof HolidayHomeContentInsurance) {
-           searchInsurances.setAttachmentArea("Eiendom:", ((HolidayHomeContentInsurance) insurance).getProperty().toString());
-       } else if (insurance instanceof HomeInsurance) {
-           searchInsurances.setAttachmentArea("Eiendom:", ((HomeInsurance) insurance).getProperty().toString());
-       } else if (insurance instanceof HomeContentInsurance) {
-           searchInsurances.setAttachmentArea("Eiendom:", ((HomeContentInsurance) insurance).getProperty().toString());
-       } else if (insurance instanceof TravelInsurance) {
-           searchInsurances.removeAttachmentArea();
-       }
+        // Gets the selected insurance:
+        Insurance insurance = searchInsurances.getInsurancesTableValue();
+        
+        // Gives the user a message if no insurance is selected:
+        if (insurance == null) {
+            searchInsurances.setSelectMessage(NO_INSURANCE_MESSAGE);
+            return;
+        }
+        
+        // Displays information about the insurance:
+        searchInsurances.setInsuranceArea(insurance.toString());
+        
+        // Displays information about the attachment:
+        if (insurance instanceof BoatInsurance) {
+            searchInsurances.setAttachmentArea("Båt:", 
+                    ((BoatInsurance)insurance).getBoat().toString());
+        } else if (insurance instanceof CarInsurance) {
+            searchInsurances.setAttachmentArea("Bil:", 
+                    ((CarInsurance) insurance).getCar().toString());
+        } else if (insurance instanceof HolidayHomeInsurance) {
+            searchInsurances.setAttachmentArea("Eiendom:", 
+                    ((HolidayHomeInsurance) insurance).getProperty()
+                            .toString());
+        } else if (insurance instanceof HolidayHomeContentInsurance) {
+            searchInsurances.setAttachmentArea("Eiendom:", 
+                    ((HolidayHomeContentInsurance) insurance).getProperty()
+                            .toString());
+        } else if (insurance instanceof HomeInsurance) {
+            searchInsurances.setAttachmentArea("Eiendom:", 
+                    ((HomeInsurance) insurance).getProperty().toString());
+        } else if (insurance instanceof HomeContentInsurance) {
+            searchInsurances.setAttachmentArea("Eiendom:", 
+                    ((HomeContentInsurance) insurance).getProperty()
+                            .toString());
+        } else if (insurance instanceof TravelInsurance) {
+            searchInsurances.removeAttachmentArea();
+        }
     }
     
-    private void insuranceSearchViewDeactivateEventHandler(ActionEvent event) {
+    private void searchInsuranceDeactivateEventHandler(ActionEvent event) {
+        // Clears all messages:
+        searchInsurances.clearMessages();
         
-       searchInsurances.clearMessages();
+        // Gets the selected insurance:
+        Insurance insurance = searchInsurances.getInsurancesTableValue();
         
-       Insurance insurance = searchInsurances.getInsurancesTableValue();
-       
-       if (insurance == null) {
-           searchInsurances.setDeactivateMessage(NO_INSURANCE_MESSAGE);
-       } else {
-           insurance.setActive(!insurance.getActive());
-           searchInsurances.clearView();
-       }
+        // Gives the user a message if no insurance is selected:
+        if (insurance == null) {
+            searchInsurances.setDeactivateMessage(NO_INSURANCE_MESSAGE);
+            return;
+        }
+        
+        // Deactivates the insurance and clears the view:
+        insurance.setActive(!insurance.getActive());
+        searchInsurances.clearView();
     }
     
-    private void searchClaimTypeEventHandler(ActionEvent event) {
-        ClaimType type = searchClaims.getClaimType();
+    private void searchClaimsTypeEventHandler(ActionEvent event) {
+        String type = searchClaims.getClaimType();
         if (type == null) {
             searchClaims.populateDamageCombo(null);
-        } else {
-            switch (type) {
-                case BOAT_CLAIM: searchClaims.populateDamageCombo(BoatInsuranceCoverage.BOAT_PLUS.damages());
-                    break;
-                case CAR_CLAIM: searchClaims.populateDamageCombo(CarInsuranceCoverage.CASCO.damages());
-                    break;
-                case HOLIDAY_HOME_CLAIM: searchClaims.populateDamageCombo(HolidayHomeInsuranceCoverage.PLUS.damages());
-                    break;
-                case HOLIDAY_HOME_CONTENT_CLAIM: searchClaims.populateDamageCombo(HolidayHomeContentInsuranceCoverage.PLUS.damages());
-                    break;
-                case HOME_CLAIM: searchClaims.populateDamageCombo(HomeInsuranceCoverage.PLUS.damages());
-                    break;
-                case HOME_CONTENT_CLAIM: searchClaims.populateDamageCombo(HomeContentInsuranceCoverage.PLUS.damages());
-                    break;
-                case TRAVEL_CLAIM: searchClaims.populateDamageCombo(TravelInsuranceCoverage.STANDARD.damages());
-                    break;
-            }
+            return;
+        } 
+        if (ClaimType.BOAT_CLAIM.toString().equals(type)) {
+            searchClaims.populateDamageCombo(
+                    BoatInsuranceCoverage.BOAT_PLUS.damages());
+        } else if (ClaimType.CAR_CLAIM.toString().equals(type)) {
+            searchClaims.populateDamageCombo(
+                    CarInsuranceCoverage.CASCO.damages());
+        } else if (ClaimType.HOLIDAY_HOME_CLAIM.toString().equals(type)) {
+            searchClaims.populateDamageCombo(
+                    HolidayHomeInsuranceCoverage.PLUS.damages());
+        } else if (ClaimType.HOLIDAY_HOME_CONTENT_CLAIM.toString()
+                .equals(type)) {
+            searchClaims.populateDamageCombo(
+                    HolidayHomeContentInsuranceCoverage.PLUS.damages());
+        } else if (ClaimType.HOME_CLAIM.toString().equals(type)) {
+            searchClaims.populateDamageCombo(
+                    HomeInsuranceCoverage.PLUS.damages());
+        } else if (ClaimType.HOME_CONTENT_CLAIM.toString().equals(type)) {
+            searchClaims.populateDamageCombo(
+                    HomeContentInsuranceCoverage.PLUS.damages());
+        } else if (ClaimType.TRAVEL_CLAIM.toString().equals(type)) {
+            searchClaims.populateDamageCombo(
+                    TravelInsuranceCoverage.STANDARD.damages());
         }
     }
     
@@ -3650,7 +3674,7 @@ public class MainController {
         // Collects information about the search terms:
         String claimIdString = searchClaims.getClaimId();
         String number = searchInsurances.getNumber();
-        String type = searchClaims.getClaimType().toString();
+        String type = searchClaims.getClaimType();
         Damage damage = searchClaims.getDamage();
         String insuranceIdString = searchInsurances.getInsuranceId();
         Calendar fromDate = searchInsurances.getFromDate();
@@ -3717,7 +3741,53 @@ public class MainController {
     }
     
     private void searchCustomersSearchEventHandler(ActionEvent event ) {
+        // Clears all messages:
+        searchCustomers.clearMessages();
         
+        // Declares variables to be converted to:
+        int customerId = 0;
+        
+        // Collects information about the search terms:
+        String number = searchCustomers.getNumber();
+        String firstName = searchCustomers.getFirstName();
+        String lastName = searchCustomers.getLastName();
+        boolean total = searchCustomers.getTotalCustomer();
+        boolean active = searchCustomers.getActive();
+        String insurance = searchCustomers.getInsuranceType();
+        
+        // Validates and converts input:
+        if(!number.equals("")) {
+            if(searchCustomers.isCustomerIdSelected()) {
+                try {
+                    customerId = Integer.parseInt(number);
+                } catch(NumberFormatException nfe) {
+                    searchCustomers.setIdMessage(CUSTOMERID_FORMAT_MESSAGE);
+                    return;
+                }
+            } else {
+                customerId = customers.findCustomerIdByPersonalNumber(number);
+            }
+        }
+        
+        // Searches through the register:
+        List<Customer> customerList;
+        if (customerId != 0) {
+            customerList = new ArrayList<>();
+            customerList.add(customers.findCustomerById(customerId));
+        } else {
+            // Finds all customer IDs of customers with the insurance type:
+            List<Object> c = insurances.getCustomerIds(insurance);
+            // Finds the customer objects for the IDs:
+            c.replaceAll(id -> customers.findCustomerById((Integer)id));
+            // Finds the customers who pass the other search terms:
+            customerList = customers.getCustomers(customerId, firstName, 
+                    lastName, total, active);
+            // Finds the customers who are in both lists.
+            customerList.retainAll(c);
+        }
+        
+        // Populates the table:
+        searchCustomers.populateCustomersTable(customerList);
     }
     
     private void searchCustomersSelectEventHandler(ActionEvent event ) {

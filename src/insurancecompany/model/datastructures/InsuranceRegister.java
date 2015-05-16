@@ -5,6 +5,7 @@
  */
 package insurancecompany.model.datastructures;
 
+import insurancecompany.misc.InsuranceType;
 import insurancecompany.model.insurances.CarInsurance;
 import insurancecompany.model.insurances.Insurance;
 import java.io.*;
@@ -90,42 +91,23 @@ public class InsuranceRegister {
         return result;
     }
     
-    public List<Insurance> getInsurancesByCustomerId(int customerId, 
-            Class<?> type, Calendar fromDate, Calendar toDate, boolean active) {
+    public List<Insurance> getInsurances(int customerId, String type, 
+            Calendar fromDate, Calendar toDate, boolean active) {
         List<Insurance> result = new ArrayList<>();
         for (Insurance insurance : insurances) {
-            if (insurance.getCustomerId() == customerId) {
-                if(type == null || type.isInstance(insurance)) {
-                    if(fromDate == null || fromDate.compareTo(insurance.getDate()) <= 0) {
-                        if(toDate == null || toDate.compareTo(insurance.getDate()) >= 0) {
-                            if(!active || insurance.getActive()) {
+            if ((customerId == 0 || customerId == insurance.getCustomerId())
+                    && (type == null || type.equals(insurance.getName()))
+                    && (fromDate == null ||
+                            fromDate.compareTo(insurance.getDate()) <= 0)
+                    && (toDate == null || 
+                            toDate.compareTo(insurance.getDate()) >= 0)
+                    && (!active || insurance.getActive())) {
                                 result.add(insurance);
-                            }
-                        }
-                    }
-                }
             }
         }
         return result;
     }
     
-    public List<Insurance> getInsurances(Class<?> type, Calendar fromDate, 
-            Calendar toDate, boolean active) {
-        List<Insurance> result = new ArrayList<>();
-        for (Insurance insurance : insurances) {
-            if(type == null || type.isInstance(insurance)) {
-                if(fromDate == null || fromDate.compareTo(insurance.getDate()) <= 0) {
-                    if(toDate == null || toDate.compareTo(insurance.getDate()) >= 0) {
-                        if(!active || insurance.getActive()) {
-                            result.add(insurance);
-                        }
-                    }
-                }
-            }
-        }
-        return result;
-    }
-      
     public List<Insurance> getAllInsurancesByCustomerId(int customerId) {
         List<Insurance> result = new ArrayList<Insurance>();
         for (Insurance insurance : insurances) {

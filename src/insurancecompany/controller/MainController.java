@@ -3734,7 +3734,27 @@ public class MainController {
     }
     
     private void searchClaimsSelectEventHandler(ActionEvent event ) {
+        // Clears all messages:
+        searchClaims.clearMessages();
         
+        // Gets the selected insurance:
+        Claim claim = searchClaims.getClaimsTableValue();
+        
+        // Gives the user a message if no insurance is selected:
+        if (claim == null) {
+            searchClaims.setSelectMessage(NO_INSURANCE_MESSAGE);
+            return;
+        }
+        
+        // Displays information about the insurance:
+        searchClaims.setClaimArea(claim.toString());
+        
+        // Displays information about the insurance:
+        int insuranceId = claim.getInsuranceId();
+        System.out.println("id: " + insuranceId);
+        Insurance insurance = insurances.getInsuranceById(insuranceId);
+        String text = insurance.toString();
+        searchClaims.setInsuranceArea(text);
     }
     
     private void searchClaimsFormEventHandler(ActionEvent event ) {

@@ -358,10 +358,10 @@ public class SearchClaims {
     }
     
     /** 
-     * @return The selected value of insurancesTable as an Insurance. Null if 
-     * no insurance is selected.
+     * @return The selected value of claimsTable as an Claim. Null if 
+     * no claim is selected.
      */
-    public Claim getInsurancesTableValue() {
+    public Claim getClaimsTableValue() {
         return claimsTable.getSelectionModel() == null ? null : 
                 claimsTable.getSelectionModel().getSelectedItem();
     }
@@ -402,14 +402,19 @@ public class SearchClaims {
         DateUtility.LocalDateToCalendar(toDatePicker.getValue()) : null;
     }
     
+    /** @param text The text to set in claimArea. */
+    public void setClaimArea(String text) {
+        claimArea.setText(text);
+    }
+    
     /** @param text The text to set in insuranceArea. */
     public void setInsuranceArea(String text) {
-        claimArea.setText(text);
+        insuranceArea.setText(text);
     }
     
     /** Clears the areas, the table and removes the selected table option. */
     public void clearView() {
-        setInsuranceArea("");
+        setClaimArea("");
         populateClaimsTable(new ArrayList<>());
         claimsTable.getSelectionModel().clearSelection();
     }

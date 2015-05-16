@@ -81,7 +81,8 @@ public class InsuranceRegister {
     }
     
     public Insurance getInsuranceById(int insuranceId) {
-        for (Insurance insurance : insurances) {
+        for (Iterator<Insurance> it = insurances.iterator(); it.hasNext();) {
+            Insurance insurance = it.next();
             if (insurance.getInsuranceId() == insuranceId) {
                 return insurance;
             }

@@ -262,7 +262,7 @@ public abstract class Claim implements Serializable {
         // Appends the fields with appropriate sentences.
         result.append("Kundenummer: ").append(customerId);
         result.append("\nForsikringspolise nummer: ").append(insuranceId);
-        result.append("\nDato registrert: ").append(DateUtility.NORWEGIAN_DATE_FORMAT.format(date));
+        result.append("\nDato registrert: ").append(DateUtility.NORWEGIAN_DATE_FORMAT.format(date.getTime()));
         result.append("\nSkademeldingsnummer: ").append(claimId);
         result.append("\nDato for skade/hendelse: ").append(dateHappened);
         result.append("\nBeskrivelse av skade:\n").append(description).append("\n");

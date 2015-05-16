@@ -10,6 +10,7 @@ import insurancecompany.model.people.Employee;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -114,7 +115,8 @@ public class EmployeeRegister {
     }
     
     public int findEmployeeIdByPersonalNumber(String personalNumber) {
-        for (Employee employee : employees) {
+        for (Iterator<Employee> it = employees.iterator(); it.hasNext();) {
+            Employee employee = it.next();
             if (employee.getPersonalNumber().equals(personalNumber)) {
                 return employee.getId();
             }

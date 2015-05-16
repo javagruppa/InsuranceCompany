@@ -5,8 +5,6 @@
  */
 package insurancecompany.view.process;
 
-import insurancecompany.view.statistics.*;
-import insurancecompany.view.search.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 

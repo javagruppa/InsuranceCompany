@@ -253,6 +253,7 @@ public class HolidayHomeContentClaimRegistration {
         valueField = new TextField();
         Label descriptionOfDocumentationLabel = new Label("Beskrivelse på hvordan gjenstanden kan dokumenteres:");
         descriptionOfDocumentationTextArea = new TextArea();
+        descriptionOfDocumentationTextArea.setPrefRowCount(4);
         descriptionOfDocumentationTextArea.setWrapText(true);
         addItemButton = new Button("Legg til gjenstand");
         addItemConfirmMessage = new Text();
@@ -289,27 +290,26 @@ public class HolidayHomeContentClaimRegistration {
         centerPane.add(selectImageLabel, 4, 14);
         centerPane.add(selectImageButton, 5, 14);
         centerPane.add(selectImageStatus, 6, 14, 2, 1);
-        centerPane.add(registerButton, 4, 16);
-        centerPane.add(registerButtonMessage, 5, 16, 3, 1); 
         
         // Nodes that are used for adding items:
-        rightPane.add(addItemsTitle, 8, 0, 2, 1);
-        rightPane.add(acquiredDateLabel, 8, 1, 2, 1);
-        rightPane.add(acquiredDatePicker, 10, 1);
-        rightPane.add(descriptionItemLabel, 8, 2, 3, 1);
-        rightPane.add(itemDescriptionTextArea, 8, 3, 3, 2);
-        rightPane.add(acquiredAreaLabel, 8, 6);
-        rightPane.add(acquiredAreaField, 9, 6, 2, 1);
-        rightPane.add(valueLabel, 8, 7);
-        rightPane.add(valueField, 9, 7, 2, 1);
-        rightPane.add(descriptionOfDocumentationLabel, 8, 8, 3, 1);
-        rightPane.add(descriptionOfDocumentationTextArea, 8, 9, 3, 3);
-        rightPane.add(addItemButton, 8, 12, 2, 1);
-        rightPane.add(addItemConfirmMessage, 10, 12, 3, 1);
-        rightPane.add(registerButton, 8, 13, 3, 1);     
+        rightPane.add(addItemsTitle, 0, 0, 2, 1);
+        rightPane.add(acquiredDateLabel, 0, 1, 2, 1);
+        rightPane.add(acquiredDatePicker, 2, 1);
+        rightPane.add(descriptionItemLabel, 0, 2, 3, 1);
+        rightPane.add(itemDescriptionTextArea, 0, 3, 3, 2);
+        rightPane.add(acquiredAreaLabel, 0, 6);
+        rightPane.add(acquiredAreaField, 1, 6, 2, 1);
+        rightPane.add(valueLabel, 0, 7);
+        rightPane.add(valueField, 1, 7, 2, 1);
+        rightPane.add(descriptionOfDocumentationLabel, 0, 8, 3, 1);
+        rightPane.add(descriptionOfDocumentationTextArea, 0, 9, 3, 3);
+        rightPane.add(addItemButton, 0, 12, 2, 1);
+        rightPane.add(addItemConfirmMessage, 2, 12, 3, 1);
+        rightPane.add(registerButton, 0, 13, 3, 1);   
+        rightPane.add(registerButtonMessage, 0, 14, 3, 1); 
         
         mainPane.add(centerPane, 0, 0);
-        mainPane.add(rightPane, 1, 0);
+        mainPane.add(rightPane, 2, 0);
         
     } // end of sole Constructor
     

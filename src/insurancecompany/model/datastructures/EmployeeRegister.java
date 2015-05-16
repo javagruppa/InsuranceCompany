@@ -10,6 +10,7 @@ import insurancecompany.model.people.Employee;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -95,4 +96,20 @@ public class EmployeeRegister {
         return employees;
     }
     
+    public List<Employee> getEmployees(int employeeId, String firstName, 
+            String lastName, String type, boolean active) {
+        List<Employee> result = new ArrayList<>();
+        for (Employee employee : employees) {
+            if ((employeeId == 0 || employeeId == employee.getEmployeeId())
+                    && (firstName.equals("") || 
+                            firstName.equals(employee.getFirstName()))
+                    && (lastName.equals("") || 
+                            lastName.equals(employee.getLastName()))
+                    && (type == null || type.equals(employee.getType()))
+                    && (!active || employee.isActive())) {
+                result.add(employee);
+            }
+        }
+        return result;
+    }
 }

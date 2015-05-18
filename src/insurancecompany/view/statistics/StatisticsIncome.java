@@ -2,6 +2,7 @@ package insurancecompany.view.statistics;
 
 import insurancecompany.misc.DateUtility;
 import insurancecompany.misc.InsuranceType;
+import insurancecompany.misc.MonthType;
 import insurancecompany.model.bills.Bill;
 import insurancecompany.model.insurances.Insurance;
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.chart.AreaChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
@@ -67,8 +69,18 @@ public class StatisticsIncome {
     private Button searchButton;
     private ComboBox<Object> insuranceTypeCombo;
     private ComboBox<String> numberSelectCombo;
-    private DatePicker fromDatePicker;
-    private DatePicker toDatePicker;
+    private ComboBox<String> fromYear;
+    private ComboBox<String> fromMonth;
+    private ComboBox<String> fromDay;
+    private ComboBox<String> toYear;
+    private ComboBox<String> toMonth;
+    private ComboBox<String> toDay;
+    private Text fromYearMessage;
+    private Text toYearMessage;
+    private Text fromMonthMessage;
+    private Text toMonthMessage;
+    private Text fromDayMessage;
+    private Text toDayMessage;
     private Text searchIdMessage;
     private Text searchMessage;
     private TextField numberField;
@@ -78,9 +90,9 @@ public class StatisticsIncome {
     private CategoryAxis xAxis;
     private NumberAxis yAxis;
     
-    private LineChart<String, Number> lineChart;
+    private AreaChart<String, Number> lineChart;
     
-    private XYChart.Series seriesAll;
+    private XYChart.Series series;
     
     private static final int maxXAxis = 12;
 
@@ -116,26 +128,33 @@ public class StatisticsIncome {
         populateInsuranceTypeCombo();
         numberSelectCombo = new ComboBox<>();
         populateNumberSelectCombo();
-        fromDatePicker = new DatePicker();
-        fromDatePicker.setPrefWidth(150);
-        DateUtility.restrictDatePickerToOlder(fromDatePicker);
-        toDatePicker = new DatePicker();
-        toDatePicker.setPrefWidth(150);
-        DateUtility.restrictDatePickerToOlder(toDatePicker);
         searchIdMessage = new Text("");
         searchMessage = new Text("");
         numberField = new TextField();
         insuranceIdField = new TextField();
+        
+        fromYear = new ComboBox();
+        populateYearCombo(fromYear);
+        fromMonth = new ComboBox();
+        populateMonthCombo(fromMonth);
+        fromDay = new ComboBox();
+        populateDayCombo(fromDay);
+        
+        toYear = new ComboBox();
+        populateYearCombo(toYear);
+        toMonth = new ComboBox();
+        populateMonthCombo(toMonth);
+        toDay = new ComboBox();
+        populateDayCombo(toDay);
 
         // Initialization of all the nodes in the center part.
         final CategoryAxis xAxis = new CategoryAxis();
         final NumberAxis yAxis = new NumberAxis();
         xAxis.setLabel("Dato");
-        lineChart = new LineChart<String,Number>(xAxis,yAxis);
+        lineChart = new AreaChart<String,Number>(xAxis,yAxis);
         lineChart.setTitle("Inntekter");
         
-        seriesAll = new XYChart.Series();
-        seriesAll.setName("Alle forsikringer");
+        series = new XYChart.Series();
         
         
         // Declaration and initialization of the texts and labels which are 
@@ -146,8 +165,23 @@ public class StatisticsIncome {
         searchTermsTitle.setId("textTitle");
         Label insuranceIdLabel = new Label("Forsikringsnummer:");
         Label insuranceTypeLabel = new Label("Type forsikring:");
-        Label fromDateLabel = new Label("Fra dato:");
-        Label toDateLabel = new Label("Til dato:");
+        
+        Label fromYearLabel = new Label("Fra år:");
+        Label fromMonthLabel = new Label("Fra måned:");
+        Label fromDayLabel = new Label("Fra dag:");
+        
+        Label toYearLabel = new Label("Til år:");
+        Label toMonthLabel = new Label("Til måned:");
+        Label toDayLabel = new Label("Til dag:");
+        
+        fromYearMessage = new Text();
+        toYearMessage = new Text();
+        fromMonthMessage = new Text();
+        toMonthMessage = new Text();
+        fromDayMessage = new Text();
+        toDayMessage = new Text();
+        searchIdMessage = new Text();
+        searchMessage = new Text();
         
         // Adds the nodes to the left part.
         firstPane.add(insuranceIdTitle, 0, 0, 2, 1);
@@ -160,24 +194,66 @@ public class StatisticsIncome {
         firstPane.add(numberField, 1, 5);
         firstPane.add(insuranceTypeLabel, 0, 6);
         firstPane.add(insuranceTypeCombo, 1, 6);
-        firstPane.add(fromDateLabel, 0, 8);
-        firstPane.add(fromDatePicker, 1, 8);
-        firstPane.add(toDateLabel, 0, 9);
-        firstPane.add(toDatePicker, 1, 9);
-        firstPane.add(searchButton, 1, 10);
-        firstPane.add(searchMessage, 0, 11, 2, 1);
+        firstPane.add(fromYearLabel, 0, 7);
+        firstPane.add(fromYear, 1, 7);
+        firstPane.add(fromYearMessage, 2, 7);
+        firstPane.add(toYearLabel, 0, 8);
+        firstPane.add(toYear, 1, 8);
+        firstPane.add(toYearMessage, 2, 8);
+        firstPane.add(fromMonthLabel, 0, 9);
+        firstPane.add(fromMonth, 1, 9);
+        firstPane.add(fromMonthMessage, 2, 9);
+        firstPane.add(toMonthLabel, 0, 10);
+        firstPane.add(toMonth, 1, 10);
+        firstPane.add(toMonthMessage, 2, 10);
+        firstPane.add(fromDayLabel, 0, 11);
+        firstPane.add(fromDay, 1, 11);
+        firstPane.add(fromDayMessage, 2, 11);
+        firstPane.add(toDayLabel, 0, 12);
+        firstPane.add(toDay, 1, 12);
+        firstPane.add(toDayMessage, 2, 12);
+        firstPane.add(searchButton, 1, 13);
+        firstPane.add(searchMessage, 0, 14, 2, 1);
         
         // Adds the nodes to the center part.
         secondPane.add(lineChart, 0, 0);
+        populateLineChartAll(200, 1000, "2011", "2012", "Alle");
         
  
     }
     
-    public void populateLineChartAll(List<Bill> bills) {
-        for (int i = 0; i < bills.size(); i++) {
-            
+    public void populateLineChartAll(int sumFrom, int sumTo, String dateFrom, String dateTo, String type) {
+        series.setName(type);
+        series.getData().add(new XYChart.Data(dateFrom, sumFrom));
+        series.getData().add(new XYChart.Data(dateTo, sumTo));
+        lineChart.getData().setAll(series);
+    }
+    
+    private void populateYearCombo(ComboBox cb) {
+        int yearNow = Calendar.getInstance().get(Calendar.YEAR);
+        cb.getItems().add("");
+        final int amountOfYears = 20;
+        for (int i = yearNow; i > yearNow-amountOfYears; i--) {
+            cb.getItems().add(i + "");
         }
-        seriesAll.getData().add(new XYChart.Data("Jan", 23));
+        cb.setPrefWidth(100);
+    }
+    
+    private void populateMonthCombo(ComboBox cb) {
+        ObservableList<MonthType> obList;
+        obList = FXCollections.observableArrayList(MonthType.values());
+        cb.getItems().add("");
+        cb.getItems().addAll(obList);
+        cb.setPrefWidth(100);
+    }
+    
+    private void populateDayCombo(ComboBox cb) {
+        int numberOfDays = 31;
+        cb.getItems().add("");
+        for (int i = 1; i <= numberOfDays; i++) {
+            cb.getItems().add(i + "");
+        }
+        cb.setPrefWidth(100);
     }
     
     /** Sets the content of the ComboBox insuranceTypeCombo. */
@@ -247,28 +323,7 @@ public class StatisticsIncome {
         return (InsuranceType.class.isInstance(insuranceTypeCombo.getValue())) ?
             ((InsuranceType)insuranceTypeCombo.getValue()).toString() : null;
     }
-    
-    /**
-     * @return The from date of this class as a Calendar. Null if no from date
-     * is selected.
-     */
-    public Calendar getFromDate() {
-        return fromDatePicker.getValue() != null ? 
-        DateUtility.LocalDateToCalendar(fromDatePicker.getValue()) : null;
-    }
-    
-    /**
-     * @return The to date of this class as a Calendar. Null if no to date
-     * is selected.
-     */
-    public Calendar getToDate() {
-        return toDatePicker.getValue() != null ? 
-        DateUtility.LocalDateToCalendar(toDatePicker.getValue()) : null;
-    }
-    
-    
-    
-    
+     
     
     /** @param message The message to set. */
     public void setSearchIdMessage(String message) {

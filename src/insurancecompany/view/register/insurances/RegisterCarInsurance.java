@@ -391,31 +391,57 @@ public class RegisterCarInsurance {
         });   
     }
     
-    // SET COMBOLISTENER METHODS:
-    
+    /**
+     * Sets the change listener for the brandCombo.
+     * 
+     * @param listener The change listener to set.
+     */
     public void setBrandComboListener(ChangeListener listener) {
         brandCombo.valueProperty().addListener(listener);
     }
     
+    /**
+     * Sets the change listener for the yearCombo.
+     * 
+     * @param listener The change listener to set.
+     */
     public void setYearComboListener(ChangeListener listener) {
         yearCombo.valueProperty().addListener(listener);
     }
     
-    // SET EVENTHANDLER METHODS:
-
-    public void setCalculateButtonEventHandler(EventHandler<ActionEvent> value) {
+    /**
+     * Sets the event handler for the calculateButton.
+     * 
+     * @param value The event handler to set.
+     */
+    public void setCalculateEventHandler(EventHandler<ActionEvent> value) {
         calculateButton.setOnAction(value);
     }
 
-    public void setRegisterButtonEventHandler(EventHandler<ActionEvent> value) {
+    /**
+     * Sets the event handler for the registerButton.
+     * 
+     * @param value The event handler to set.
+     */
+    public void setRegisterEventHandler(EventHandler<ActionEvent> value) {
         registerButton.setOnAction(value);
     }
     
-    public void setSearchCustomerIdButtonEventHandler(EventHandler<ActionEvent> value) {
+    /**
+     * Sets the event handler for the searchCustomerIdButton.
+     * 
+     * @param value The event handler to set.
+     */
+    public void setSearchCustomerIdEventHandler(EventHandler<ActionEvent> value) {
         searchCustomerIdButton.setOnAction(value);
     }
 
-    public void setSearchPersonalNumberButtonEventHandler(EventHandler<ActionEvent> value) {
+    /**
+     * Sets the event handler for the searchPersonalNumberButton.
+     * 
+     * @param value The event handler to set.
+     */
+    public void setSearchPersonalNumberEventHandler(EventHandler<ActionEvent> value) {
         searchPersonalNumberButton.setOnAction(value);
     }
     

@@ -386,7 +386,6 @@ public class MainController {
     private void registerCustomerButtonEventHandler(ActionEvent event) {
         boolean ok = true;
         
-        int zipCode = 0;
         String personalNumber = registerCustomer.getPersonalNumber();
         String firstName = registerCustomer.getFirstName();
         String lastName = registerCustomer.getLastName();
@@ -400,90 +399,13 @@ public class MainController {
             String message = "Fyll inn dette feltet.";
             registerCustomer.setPersonalNumberMessage(message);
             ok = false;
-        } else if (!personalNumber.matches("\\d{11}")) {
-            String message = "Fyll inn 11 siffer.";
-            registerCustomer.setPersonalNumberMessage(message);
-            ok = false;
-        }
-        
-        if (firstName.equals("")) {
-            String message = "Fyll inn dette feltet.";
-            registerCustomer.setFirstNameMessage(message);
-            ok = false;
-        } else if (!firstName.matches("^[ÆØÅæøåA-Za-z]{2-30}")) {
-            String message = "Fyll inn korrekt navn, kun bokstaver tillatt";
-            registerCustomer.setFirstNameMessage(message);
-            ok = false;
-        }
-        
-        if (lastName.equals("")) {
-            String message = "Fyll inn dette feltet.";
-            registerCustomer.setLastNameMessage(message);
-            ok = false;
-        } else if (!lastName.matches("^[ÆØÅæøåA-Za-z]{2-30}")) {
-            String message = "Fyll inn korrekt navn, kun bokstaver tillatt";
-            registerCustomer.setLastNameMessage(message);
-            ok = false;
-        }
-        
-        if (street.equals("")) {
-            String message = "Fyll inn dette feltet.";
-            registerCustomer.setStreetMessage(message);
-            ok = false;
-        } else if (!street.matches("[ÆØÅæøåa-zA-Z0-9]{2-30}")) {
-            String message = "Fyll inn korrekt gateadresse, kun bokstaver og"
-                    + " tall tillatt";
-            registerCustomer.setStreetMessage(message);
-            ok = false;
-        }
-        
-        if (city.equals("")) {
-            String message = "Fyll inn dette feltet.";
-            registerCustomer.setCityMessage(message);
-            ok = false;
-        } else if (!city.matches("^[æøåÆØÅa-zA-Z]{2-30}")) {
-            String message = "Fyll inn korrekt poststed, kun bokstaver tillatt";
-            registerCustomer.setCityMessage(message);
-            ok = false;
-        }
-        
-        if (email.equals("")) {
-            String message = "Fyll inn dette feltet.";
-            registerCustomer.setEmailMessage(message);
-            ok = false;
-        } else if (!email.matches("^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+(?:\\.[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+)*@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$")) {
-            String message = "Fyll inn korrekt email adresse.";
-            registerCustomer.setEmailMessage(message);
-            ok = false;
-        }
-        
-        if (phone.equals("")) {
-            String message = "Fyll inn dette feltet.";
-            registerCustomer.setPhoneMessage(message);
-            ok = false;
-        } else if (!phone.matches("\\d{8-13}")) {
-            String message = "Fyll inn korrekt telefonnummer.";
-            registerCustomer.setPhoneMessage(message);
-            ok = false;
-        }
-        
-        
-        if (zipCodeS.equals("")) {
-            String message = "Fyll inn dette feltet.";
-            registerCustomer.setZipCodeMessage(message);
-            ok = false;
-        } else if (!zipCodeS.matches("\\d{4}")) {
-            String message = "Fyll inn korrekt postnummer, 4 siffer.";
-            registerCustomer.setZipCodeMessage(message);
-            ok = false;
-        } else {
+        } 
             
-            try {
-                zipCode = Integer.parseInt(zipCodeS);
-            } catch (NumberFormatException nfe) {
-                    ok = false;
-                    logs.add(nfe.getStackTrace(), nfe.getMessage(), user);
-            }
+        int zipCode = 0;
+        try {
+            zipCode = Integer.parseInt(zipCodeS);
+        } catch (NumberFormatException nfe) {
+            
         }
         
         

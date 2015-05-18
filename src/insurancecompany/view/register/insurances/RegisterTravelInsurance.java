@@ -248,11 +248,6 @@ public class RegisterTravelInsurance {
 
     // CLEAR MESSAGES METHOD
     
-    public void clearMessages() {
-        coverageMessage.setText("");
-        excessMessage.setText("");
-        registerButtonMessage.setText("");
-    }
     
     // GET METHODS:
     
@@ -327,4 +322,12 @@ public class RegisterTravelInsurance {
     public void setRegisterButtonMessage(String registerButtonMessage) {
         this.registerButtonMessage.setText(registerButtonMessage);
     }
+    
+    
+    public void clearMessages() {
+        coverageMessage.setText("");
+        excessMessage.setText("");
+        registerButtonMessage.setText("");
+    }
+    
 }

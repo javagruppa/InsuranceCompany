@@ -248,32 +248,32 @@ public class MainController {
         registerBoatInsurance.setSearchCustomerIdEventHandler(this::boatInsuranceSearchCustomerIdButtonEventHandler);
         registerBoatInsurance.setSearchPersonalNumberEventHandler(this::boatInsuranceSearchPersonalNumberButtonEventHandler);
         
-        registerCarInsurance.setSearchCustomerIdButtonEventHandler(this::carInsuranceSearchCustomerIdButtonEventHandler);
-        registerCarInsurance.setSearchPersonalNumberButtonEventHandler(this::carInsuranceSearchPersonalNumberButtonEventHandler);
+        registerCarInsurance.setSearchCustomerIdEventHandler(this::carInsuranceSearchCustomerIdButtonEventHandler);
+        registerCarInsurance.setSearchPersonalNumberEventHandler(this::carInsuranceSearchPersonalNumberButtonEventHandler);
         registerCarInsurance.setBrandComboListener(this::brandComboListener);
         registerCarInsurance.setYearComboListener(this::yearComboListener);
-        registerCarInsurance.setCalculateButtonEventHandler(null);
-        registerCarInsurance.setRegisterButtonEventHandler(this::carInsuranceRegisterButtonEventHandler);
+        registerCarInsurance.setCalculateEventHandler(null);
+        registerCarInsurance.setRegisterEventHandler(this::carInsuranceRegisterButtonEventHandler);
         
-        registerHomeInsurance.setRegisterButtonEventHandler(this::homeInsuranceRegisterButtonEventHandler);
-        registerHomeInsurance.setSearchCustomerIdButtonEventHandler(this::homeInsuranceSearchCustomerIdButtonEventHandler);
-        registerHomeInsurance.setSearchPersonalNumberButtonEventHandler(this::homeInsuranceSearchPersonalNumberButtonEventHandler);
+        registerHomeInsurance.setRegisterEventHandler(this::homeInsuranceRegisterButtonEventHandler);
+        registerHomeInsurance.setSearchCustomerIdEventHandler(this::homeInsuranceSearchCustomerIdButtonEventHandler);
+        registerHomeInsurance.setSearchPersonalNumberEventHandler(this::homeInsuranceSearchPersonalNumberButtonEventHandler);
         
-        registerHomeContentInsurance.setRegisterButtonEventHandler(this::homeContentInsuranceRegisterButtonEventHandler);
-        registerHomeContentInsurance.setSearchCustomerIdButtonEventHandler(this::homeContentInsuranceSearchCustomerIdButtonEventHandler);
-        registerHomeContentInsurance.setSearchPersonalNumberButtonEventHandler(this::homeContentInsuranceSearchPersonalNumberButtonEventHandler);
+        registerHomeContentInsurance.setRegisterEventHandler(this::homeContentInsuranceRegisterButtonEventHandler);
+        registerHomeContentInsurance.setSearchCustomerIdEventHandler(this::homeContentInsuranceSearchCustomerIdButtonEventHandler);
+        registerHomeContentInsurance.setSearchPersonalNumberEventHandler(this::homeContentInsuranceSearchPersonalNumberButtonEventHandler);
         
-        registerHolidayHomeInsurance.setRegisterButtonEventHandler(this::holidayHomeInsuranceRegisterButtonEventHandler);
-        registerHolidayHomeInsurance.setSearchCustomerIdButtonEventHandler(this::holidayHomeInsuranceSearchCustomerIdButtonEventHandler);
-        registerHolidayHomeInsurance.setSearchPersonalNumberButtonEventHandler(this::holidayHomeInsuranceSearchPersonalNumberButtonEventHandler);
+        registerHolidayHomeInsurance.setRegisterEventHandler(this::holidayHomeInsuranceRegisterButtonEventHandler);
+        registerHolidayHomeInsurance.setSearchCustomerIdEventHandler(this::holidayHomeInsuranceSearchCustomerIdButtonEventHandler);
+        registerHolidayHomeInsurance.setSearchPersonalNumberEventHandler(this::holidayHomeInsuranceSearchPersonalNumberButtonEventHandler);
         
-        registerHolidayHomeContentInsurance.setRegisterButtonEventHandler(this::holidayHomeContentInsuranceRegisterButtonEventHandler);
-        registerHolidayHomeContentInsurance.setSearchCustomerIdButtonEventHandler(this::holidayHomeContentInsuranceSearchCustomerIdButtonEventHandler);
-        registerHolidayHomeContentInsurance.setSearchPersonalNumberButtonEventHandler(this::holidayHomeContentInsuranceSearchPersonalNumberButtonEventHandler);
+        registerHolidayHomeContentInsurance.setRegisterEventHandler(this::holidayHomeContentInsuranceRegisterButtonEventHandler);
+        registerHolidayHomeContentInsurance.setSearchCustomerIdEventHandler(this::holidayHomeContentInsuranceSearchCustomerIdButtonEventHandler);
+        registerHolidayHomeContentInsurance.setSearchPersonalNumberEventHandler(this::holidayHomeContentInsuranceSearchPersonalNumberButtonEventHandler);
         
-        registerTravelInsurance.setRegisterButtonEventHandler(this::travelInsuranceRegisterButtonEventHandler);
-        registerTravelInsurance.setSearchCustomerIdButtonEventHandler(this::travelInsuranceSearchCustomerIdButtonEventHandler);
-        registerTravelInsurance.setSearchPersonalNumberButtonEventHandler(this::travelInsuranceSearchPersonalNumberButtonEventHandler);
+        registerTravelInsurance.setRegisterEventHandler(this::travelInsuranceRegisterButtonEventHandler);
+        registerTravelInsurance.setSearchCustomerIdEventHandler(this::travelInsuranceSearchCustomerIdButtonEventHandler);
+        registerTravelInsurance.setSearchPersonalNumberEventHandler(this::travelInsuranceSearchPersonalNumberButtonEventHandler);
     } // end of class initializeRegisterInsuranceEventHandlers
  
     private void initializeRegisterClaimEventHandlers() {

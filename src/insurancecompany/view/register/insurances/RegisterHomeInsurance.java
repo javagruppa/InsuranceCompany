@@ -346,19 +346,6 @@ public class RegisterHomeInsurance {
 
     // CLEAR MESSAGES METHOD
     
-    public void clearMessages() {
-        areaMessage.setText("");
-        cityMessage.setText("");
-        coverageMessage.setText("");
-        excessMessage.setText("");
-        materialMessage.setText("");
-        rentalMessage.setText("");
-        streetMessage.setText("");
-        typeMessage.setText("");
-        yearMessage.setText("");
-        zipCodeMessage.setText("");
-        registerButtonMessage.setText("");
-    }
     
     // GET METHODS:
     
@@ -530,5 +517,19 @@ public class RegisterHomeInsurance {
      */
     public void setRegisterButtonMessage(String registerButtonMessage) {
         this.registerButtonMessage.setText(registerButtonMessage);
+    }
+    
+    public void clearMessages() {
+        areaMessage.setText("");
+        cityMessage.setText("");
+        coverageMessage.setText("");
+        excessMessage.setText("");
+        materialMessage.setText("");
+        rentalMessage.setText("");
+        streetMessage.setText("");
+        typeMessage.setText("");
+        yearMessage.setText("");
+        zipCodeMessage.setText("");
+        registerButtonMessage.setText("");
     }
 }

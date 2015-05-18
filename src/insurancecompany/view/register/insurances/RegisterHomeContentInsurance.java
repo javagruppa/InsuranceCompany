@@ -335,24 +335,6 @@ public class RegisterHomeContentInsurance {
         searchPersonalNumberButton.setOnAction(value);
     }
 
-    // CLEAR MESSAGES METHOD
-    
-    public void clearMessages() {
-        amountMessage.setText("");
-        areaMessage.setText("");
-        cityMessage.setText("");
-        coverageMessage.setText("");
-        excessMessage.setText("");
-        materialMessage.setText("");
-        streetMessage.setText("");
-        typeMessage.setText("");
-        yearMessage.setText("");
-        zipCodeMessage.setText("");
-        registerButtonMessage.setText("");
-    }
-    
-    // GET METHODS:
-    
     /** @return The main pane of this class. */
     public GridPane getMainPane() {
         return mainPane;
@@ -438,8 +420,6 @@ public class RegisterHomeContentInsurance {
         return zipCodeField.getText();
     }
     
-    // SET METHODS:
-
     /** @param message The message to set. */
     public void setAreaMessage(String message) {
         this.areaMessage.setFill(Color.FIREBRICK);
@@ -516,10 +496,24 @@ public class RegisterHomeContentInsurance {
         this.zipCodeMessage.setText(message);
     }
 
-    /**
-     * @param registerButtonMessage the registerButtonMessage to set
-     */
-    public void setRegisterButtonMessage(String registerButtonMessage) {
-        this.registerButtonMessage.setText(registerButtonMessage);
+    /** @param message The message to set. */
+    public void setRegisterButtonMessage(String message) {
+        this.registerButtonMessage.setText(message);
+    }
+    
+    /** Clears all messages. */
+    public void clearMessages() {
+        amountMessage.setText("");
+        areaMessage.setText("");
+        cityMessage.setText("");
+        coverageMessage.setText("");
+        customerSelectedMessage.setText("");
+        excessMessage.setText("");
+        materialMessage.setText("");
+        streetMessage.setText("");
+        typeMessage.setText("");
+        yearMessage.setText("");
+        zipCodeMessage.setText("");
+        registerButtonMessage.setText("");
     }
 }

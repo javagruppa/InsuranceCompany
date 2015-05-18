@@ -239,7 +239,7 @@ public class MainController {
         
         
         registerCustomer.setRegisterEventHandler(this::registerCustomerButtonEventHandler);
-        registerEmployee.setRegisterButtonEventHandler(this::registerEmployeeButtonEventHandler);
+        registerEmployee.setRegisterEventHandler(this::registerEmployeeButtonEventHandler);
 
     }
     
@@ -429,15 +429,15 @@ public class MainController {
     // TODO: Trenger regex og validering
     private void registerEmployeeButtonEventHandler(ActionEvent event) {
         
-        EmployeeType position = registerEmployee.getPositionComboValue();
-        String personalNumber = registerEmployee.getPersonalNumberField();
-        String firstName = registerEmployee.getFirstNameField();
-        String lastName = registerEmployee.getLastNameField();
-        String street = registerEmployee.getStreetField();
-        String zipCodeS = registerEmployee.getZipCodeField();
-        String city = registerEmployee.getCityField();
-        String email = registerEmployee.getEmailField();
-        String phone = registerEmployee.getPhoneField();
+        EmployeeType position = registerEmployee.getPosition();
+        String personalNumber = registerEmployee.getPersonalNumber();
+        String firstName = registerEmployee.getFirstName();
+        String lastName = registerEmployee.getLastName();
+        String street = registerEmployee.getStreet();
+        String zipCodeS = registerEmployee.getZipCode();
+        String city = registerEmployee.getCity();
+        String email = registerEmployee.getEmail();
+        String phone = registerEmployee.getPhone();
 
         System.out.println(position.toString());
         if (personalNumber.equals("")) {
@@ -471,7 +471,7 @@ public class MainController {
             result = "Ansatt kunne ikke registreres. Ansatt med likt personnummer eksisterer allerede.";
         }
         
-        registerEmployee.setResultText(result);
+        registerEmployee.setResultMessage(result);
     }
     
     private void setBrandComboBox() {

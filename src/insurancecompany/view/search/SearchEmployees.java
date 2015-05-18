@@ -1,9 +1,8 @@
 package insurancecompany.view.search;
 
 import insurancecompany.misc.EmployeeType;
-import insurancecompany.misc.InsuranceType;
-import insurancecompany.model.people.Customer;
 import insurancecompany.model.people.Employee;
+import java.util.ArrayList;
 import java.util.List;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -59,7 +58,7 @@ public class SearchEmployees {
     private ComboBox<Object> employeeTypeCombo;
     private ComboBox<String> numberSelectCombo;
     private Text searchIdMessage;
-    private Text idMessage;
+    private Text searchMessage;
     private TextField firstNameField;
     private TextField lastNameField;
     private TextField numberField;
@@ -74,7 +73,7 @@ public class SearchEmployees {
     private TableColumn<Employee, String> employeeTypeColumn;
     
     // Declaration of all the nodes in the right part.
-    private TextArea customerArea;
+    private TextArea employeeArea;
     private Text deactivateMessage;
     private Text selectMessage;
     
@@ -116,7 +115,7 @@ public class SearchEmployees {
         numberSelectCombo = new ComboBox<>();
         populateNumberSelectCombo();
         searchIdMessage = new Text("");
-        idMessage = new Text("");
+        searchMessage = new Text("");
         firstNameField = new TextField();
         lastNameField = new TextField();
         numberField = new TextField();
@@ -127,7 +126,7 @@ public class SearchEmployees {
         employeesTable.setPrefWidth(400);
         firstNameColumn = new TableColumn<>("Fornavn");
         lastNameColumn = new TableColumn<>("Etternavn");
-        employeeIdColumn = new TableColumn<>("Kunde ID");
+        employeeIdColumn = new TableColumn<>("Ansatt ID");
         employeeTypeColumn = new TableColumn<>("Jobbtittel");
         employeesTable.getColumns().addAll(firstNameColumn, 
                 lastNameColumn, employeeIdColumn, employeeTypeColumn);
@@ -138,8 +137,8 @@ public class SearchEmployees {
         // Initialization of all the nodes in the right part.
         deactivateButton = new Button("Gjør forsikringen aktiv/inaktiv");
         deactivateMessage = new Text("");
-        customerArea = new TextArea();
-        customerArea.setPrefHeight(400);
+        employeeArea = new TextArea();
+        employeeArea.setPrefHeight(400);
         
         // Initialization of all the texts and labels which are used in the 
         // view. Many of them aren't fields.
@@ -172,7 +171,7 @@ public class SearchEmployees {
         leftPane.add(activeLabel, 0, 8);
         leftPane.add(activeCombo, 1, 8);
         leftPane.add(searchButton, 1, 9);
-        leftPane.add(idMessage, 0, 10, 2, 1);
+        leftPane.add(searchMessage, 0, 10, 2, 1);
         
         // Adds the nodes to the center part.
         centerPane.add(employeesTitle, 0, 0);
@@ -182,7 +181,7 @@ public class SearchEmployees {
         
         // Adds the nodes to the right part.
         rightPane.add(employeeTitle, 0, 0);
-        rightPane.add(customerArea, 0, 1);
+        rightPane.add(employeeArea, 0, 1);
         rightPane.add(deactivateButton, 0, 2);
         rightPane.add(deactivateMessage, 0, 3);
     }
@@ -244,7 +243,7 @@ public class SearchEmployees {
                 return new SimpleObjectProperty<>(cellData.getValue()
                         .getLastName());
             } else {
-                return new SimpleObjectProperty(0);
+                return new SimpleObjectProperty("<no name>");
             }
         });
         // Places a SimpleStringProperty version of the employee ID in the 
@@ -265,6 +264,15 @@ public class SearchEmployees {
                 return new SimpleStringProperty("<no name>");
             }
         });
+    }
+    
+    /**
+     * Sets the event handler for the deactivateButton.
+     * 
+     * @param value The event handler to set.
+     */
+    public void setDeactivateEventHandler(EventHandler<ActionEvent> value) {
+        deactivateButton.setOnAction(value);
     }
     
     /**
@@ -342,15 +350,28 @@ public class SearchEmployees {
             ((EmployeeType)employeeTypeCombo.getValue()).toString() : null;
     }
     
-    /** @param text The text to set in insuranceArea. */
-    public void setInsuranceArea(String text) {
-        customerArea.setText(text);
+    /** @param text The text to set in employeeArea. */
+    public void setEmployeeArea(String text) {
+        employeeArea.setText(text);
+    }
+    
+    /** Clears the area, the table and removes the selected table option. */
+    public void clearView() {
+        setEmployeeArea("");
+        populateEmployeesTable(new ArrayList<>());
+        employeesTable.getSelectionModel().clearSelection();
     }
     
     /** @param message The message to set. */
-    public void setIdMessage(String message) {
-        this.idMessage.setFill(Color.FIREBRICK);
-        this.idMessage.setText(message);
+    public void setSearchIdMessage(String message) {
+        this.searchIdMessage.setFill(Color.FIREBRICK);
+        this.searchIdMessage.setText(message);
+    }
+    
+    /** @param message The message to set. */
+    public void setSearchMessage(String message) {
+        this.searchMessage.setFill(Color.FIREBRICK);
+        this.searchMessage.setText(message);
     }
     
     /** @param message The message to set. */
@@ -361,7 +382,8 @@ public class SearchEmployees {
     
     /** Clears all messages. */
     public void clearMessages() {
-        this.idMessage.setText("");
+        this.searchIdMessage.setText("");
+        this.searchMessage.setText("");
         this.selectMessage.setText("");
     }
 }

@@ -4026,7 +4026,7 @@ public class MainController {
                     return;
                 }
             } else {
-                employeeId = employees.findEmployeeIdByPersonalNumber(number);
+                employeeId = employees.getEmployeeIdByPersonalNumber(number);
             }
         }
         

@@ -97,13 +97,12 @@ public class EmployeeRegister {
         return employees;
     }
     
-    public List<Employee> getEmployees(int employeeId, String firstName, 
-            String lastName, String type, boolean active) {
+    public List<Employee> getEmployees(String firstName, String lastName, 
+            String type, boolean active) {
         List<Employee> result = new ArrayList<>();
         for (Employee employee : employees) {
-            if ((employeeId == 0 || employeeId == employee.getEmployeeId())
-                    && (firstName.equals("") || 
-                            firstName.equals(employee.getFirstName()))
+            if ((firstName.equals("") || 
+                    firstName.equals(employee.getFirstName()))
                     && (lastName.equals("") || 
                             lastName.equals(employee.getLastName()))
                     && (type == null || type.equals(employee.getType()))

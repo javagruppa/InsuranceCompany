@@ -115,13 +115,12 @@ public class CustomerRegister {
         return -1;
     }
     
-    public List<Customer> getCustomers(int customerId, String firstName, 
-            String lastName, boolean total, boolean active) {
+    public List<Customer> getCustomers(String firstName, String lastName, 
+            boolean total, boolean active) {
         List<Customer> result = new ArrayList<>();
         for (Customer customer : customers) {
-            if ((customerId == 0 || customerId == customer.getId())
-                    && (firstName.equals("") || 
-                            firstName.equals(customer.getFirstName()))
+            if ((firstName.equals("") || 
+                    firstName.equals(customer.getFirstName()))
                     && ((lastName.equals("")) ||
                             lastName.equals(customer.getLastName()))
                     && (!total || customer.isTotalCustomer())

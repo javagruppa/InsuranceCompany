@@ -105,18 +105,21 @@ public class MainController {
     // Creates strings to be used in messages to the user:
     private static final String REGISTER_SUCCESS = "Registrering vellykket.";
     private static final String REGISTER_NO_SUCCESS = "Registrering ikke vellykket.";
+    private static final String NO_CLAIM_MESSAGE = "Du har ikke valgt noen skademelding.";
     private static final String NO_CUSTOMER_MESSAGE = "Du har ikke valgt noen kunde.";
+    private static final String NO_EMPLOYEE_MESSAGE = "Du har ikke valgt noen ansatt.";
+    private static final String NO_INSURANCE_MESSAGE = "Du har ikke valgt noen forsikring.";
     private static final String FORMAT_MESSAGE = "Dette feltet kan kun bestå av tall.";
     private static final String EMPTY_MESSAGE = "Dette feltet må fylles ut.";
     private static final String CLAIMID_FORMAT_MESSAGE = "Skademeldingsnummeret kan kun bestå av tall.";
     private static final String CUSTOMERID_FORMAT_MESSAGE = "Kundenummeret kan kun bestå av tall.";
     private static final String CUSTOMERID_EMPTY_MESSAGE = "Du må skrive inn et kundenummer.";
     private static final String CUSTOMERID_NOT_FOUND_MESSAGE = "Fant ingen kunde med kundenummer: ";
+    private static final String EMPLOYEEID_FORMAT_MESSAGE = "Ansattnummeret kan kun bestå av tall.";
     private static final String INSURANCEID_FORMAT_MESSAGE = "Forsikringsnummeret kan kun bestå av tall.";
     private static final String PERSONALNUMBER_EMPTY_MESSAGE = "Du må skrive inn et personnummer.";
     private static final String PERSONALNUMBER_INCORRECT_MESSAGE = "Et personnummer må bestå av 11 siffer.";
     private static final String PERSONALNUMBER_NOT_FOUND_MESSAGE = "Fant ingen kunde med personnummer: ";
-    private static final String NO_INSURANCE_MESSAGE = "Du har ikke valgt noen forsikring.";
     private static final String NO_DATE_MESSAGE = "Du har ikke valgt noen dato.";
     private static final String DESCRIPTION_EMPTY_MESSAGE = "Du må skrive inn en beskrivelse.";
     
@@ -227,6 +230,7 @@ public class MainController {
     private void initializeEventHandlers() {
         initializeRegisterInsuranceEventHandlers();
         initializeRegisterClaimEventHandlers();
+        initializeSearchEventHandlers();
         mainView.setSaveDataButtonEventHandler(this::adminViewSaveDataButtonEventHandler);
         mainView.setExitButtonEventHandler(this::adminViewExitButtonEventHandler);
         
@@ -267,23 +271,6 @@ public class MainController {
         registerTravelInsurance.setRegisterButtonEventHandler(this::travelInsuranceRegisterButtonEventHandler);
         registerTravelInsurance.setSearchCustomerIdButtonEventHandler(this::travelInsuranceSearchCustomerIdButtonEventHandler);
         registerTravelInsurance.setSearchPersonalNumberButtonEventHandler(this::travelInsuranceSearchPersonalNumberButtonEventHandler);
-        
-        searchClaims.setClaimTypeEventHandler(this::searchClaimsTypeEventHandler);
-        searchClaims.setSearchIdEventHandler(this::searchClaimsSearchIdEventHandler);
-        searchClaims.setSearchEventHandler(this::searchClaimsSearchEventHandler);
-        searchClaims.setSelectEventHandler(this::searchClaimsSelectEventHandler);
-        
-        searchCustomers.setDeactivateEventHandler(this::searchCustomersDeactivateEventHandler);
-        searchCustomers.setSearchEventHandler(this::searchCustomersSearchEventHandler);
-        searchCustomers.setSelectEventHandler(this::searchCustomersSelectEventHandler);
-        
-        searchEmployees.setSearchEventHandler(this::searchEmployeesSearchEventHandler);
-        searchEmployees.setSelectEventHandler(this::searchEmployeesSelectEventHandler);
-        
-        searchInsurances.setDeactivateEventHandler(this::searchInsuranceDeactivateEventHandler);
-        searchInsurances.setSearchIdEventHandler(this::searchInsuranceSearchIdEventHandler);
-        searchInsurances.setSearchEventHandler(this::searchInsuranceSearchEventHandler);
-        searchInsurances.setSelectEventHandler(this::searchInsuranceSelectEventHandler);
     } // end of class initializeRegisterInsuranceEventHandlers
  
     private void initializeRegisterClaimEventHandlers() {
@@ -334,6 +321,31 @@ public class MainController {
         registerTravelClaim.setAddItemButtonEventHandler(this::travelClaimAddItemButtonEventHandler);
         
     } // end of class initializeRegisterClaimEventHandlers
+        
+    private void initializeSearchEventHandlers() {
+        searchClaims.setClaimTypeEventHandler(this::searchClaimsTypeEventHandler);
+        searchClaims.setDisbursementEventHandler(this::searchClaimsDisbursementEventHandler);
+        searchClaims.setFormEventHandler(this::searchClaimsFormEventHandler);
+        searchClaims.setImageEventHandler(this::searchClaimsImageEventHandler);
+        searchClaims.setSearchEventHandler(this::searchClaimsSearchEventHandler);
+        searchClaims.setSearchIdEventHandler(this::searchClaimsSearchIdEventHandler);
+        searchClaims.setSelectEventHandler(this::searchClaimsSelectEventHandler);
+        
+        searchCustomers.setDeactivateEventHandler(this::searchCustomersDeactivateEventHandler);
+        searchCustomers.setSearchEventHandler(this::searchCustomersSearchEventHandler);
+        searchCustomers.setSearchIdEventHandler(this::searchCustomersSearchIdEventHandler);
+        searchCustomers.setSelectEventHandler(this::searchCustomersSelectEventHandler);
+        
+        searchEmployees.setDeactivateEventHandler(this::searchEmployeesDeactivateEventHandler);
+        searchEmployees.setSearchEventHandler(this::searchEmployeesSearchEventHandler);
+        searchEmployees.setSearchIdEventHandler(this::searchEmployeesSearchIdEventHandler);
+        searchEmployees.setSelectEventHandler(this::searchEmployeesSelectEventHandler);
+        
+        searchInsurances.setDeactivateEventHandler(this::searchInsuranceDeactivateEventHandler);
+        searchInsurances.setSearchEventHandler(this::searchInsuranceSearchEventHandler);
+        searchInsurances.setSearchIdEventHandler(this::searchInsuranceSearchIdEventHandler);
+        searchInsurances.setSelectEventHandler(this::searchInsuranceSelectEventHandler);
+    } // end of class initializeSearchEventHandlers
     
     private void adminViewSaveDataButtonEventHandler(ActionEvent event) {
         writeBillsToFile();
@@ -3780,21 +3792,20 @@ public class MainController {
         // Clears all messages:
         searchClaims.clearMessages();
         
-        // Gets the selected insurance:
+        // Gets the selected claim:
         Claim claim = searchClaims.getClaimsTableValue();
         
-        // Gives the user a message if no insurance is selected:
+        // Gives the user a message if no claim is selected:
         if (claim == null) {
-            searchClaims.setSelectMessage(NO_INSURANCE_MESSAGE);
+            searchClaims.setSelectMessage(NO_CLAIM_MESSAGE);
             return;
         }
         
-        // Displays information about the insurance:
+        // Displays information about the claim:
         searchClaims.setClaimArea(claim.toString());
         
         // Displays information about the insurance:
         int insuranceId = claim.getInsuranceId();
-        System.out.println("id: " + insuranceId);
         Insurance insurance = insurances.getInsuranceById(insuranceId);
         String text = insurance.toString();
         searchClaims.setInsuranceArea(text);
@@ -3804,28 +3815,24 @@ public class MainController {
         
     }
     
-    private void searchClaimsImagesEventHandler(ActionEvent event ) {
+    private void searchClaimsImageEventHandler(ActionEvent event ) {
         
     }
     
-    private void searchClaimsCompensationEventHandler(ActionEvent event ) {
+    private void searchClaimsDisbursementEventHandler(ActionEvent event ) {
         
     }
     
-    private void searchCustomersSearchEventHandler(ActionEvent event ) {
-        // Clears all messages:
+    private void searchCustomersSearchIdEventHandler(ActionEvent event) {
+        // Clears all messages ans the view:
         searchCustomers.clearMessages();
+        searchCustomers.clearView();
         
         // Declares variables to be converted to:
         int customerId = 0;
         
         // Collects information about the search terms:
         String number = searchCustomers.getNumber();
-        String firstName = searchCustomers.getFirstName();
-        String lastName = searchCustomers.getLastName();
-        boolean total = searchCustomers.getTotalCustomer();
-        boolean active = searchCustomers.getActive();
-        String insurance = searchCustomers.getInsuranceType();
         
         // Validates and converts input:
         if(!number.equals("")) {
@@ -3843,21 +3850,40 @@ public class MainController {
         
         // Searches through the register:
         List<Customer> customerList;
-        if (customerId != 0) {
-            customerList = new ArrayList<>();
-            customerList.add(customers.findCustomerById(customerId));
-        } else {
-            // Finds the customers who pass the other search terms:
-            customerList = customers.getCustomers(customerId, firstName, 
-                    lastName, total, active);
-            if (insurance != null) {
-                // Finds all customer IDs of customers with the insurance type:
-                List<Object> c = insurances.getCustomerIds(insurance);
-                // Finds the customer objects for the IDs:
-                c.replaceAll(id -> customers.findCustomerById((Integer)id));
-                // Finds the customers who are in both lists.
-                customerList.retainAll(c);
-            }
+        customerList = new ArrayList<>();
+        Customer customer = customers.findCustomerById(customerId);
+        if (customer != null) {
+            customerList.add(customer);
+        }
+        
+        // Populates the table:
+        searchCustomers.populateCustomersTable(customerList);
+    }
+    
+    private void searchCustomersSearchEventHandler(ActionEvent event ) {
+        // Clears all messages ans the view:
+        searchCustomers.clearMessages();
+        searchCustomers.clearView();
+        
+        // Collects information about the search terms:
+        String firstName = searchCustomers.getFirstName();
+        String lastName = searchCustomers.getLastName();
+        boolean total = searchCustomers.getTotalCustomer();
+        boolean active = searchCustomers.getActive();
+        String insurance = searchCustomers.getInsuranceType();
+        
+        // Searches through the register:
+        List<Customer> customerList;
+        // Finds the customers who pass the other search terms:
+        customerList = customers.getCustomers(firstName, lastName, total, 
+                active);
+        if (insurance != null) {
+            // Finds all customer IDs of customers with the insurance type:
+            List<Object> c = insurances.getCustomerIds(insurance);
+            // Finds the customer objects for the IDs:
+            c.replaceAll(id -> customers.findCustomerById((Integer)id));
+            // Finds the customers who are in both lists.
+            customerList.retainAll(c);
         }
         
         // Populates the table:
@@ -3865,26 +3891,56 @@ public class MainController {
     }
     
     private void searchCustomersSelectEventHandler(ActionEvent event ) {
+        // Clears all messages:
+        searchCustomers.clearMessages();
         
+        // Gets the selected customer:
+        Customer customer = searchCustomers.getCustomersTableValue();
+        
+        // Gives the user a message if no customer is selected:
+        if (customer == null) {
+            searchCustomers.setSelectMessage(NO_CUSTOMER_MESSAGE);
+            return;
+        }
+        
+        // Displays information about the customer:
+        searchCustomers.setCustomerArea(customer.toString());
     }
     
     private void searchCustomersDeactivateEventHandler(ActionEvent event ) {
+        // Clears all messages:
+        searchCustomers.clearMessages();
         
+        // Gets the selected customer:
+        Customer customer = searchCustomers.getCustomersTableValue();
+        
+        // Gives the user a message if no customer is selected:
+        if (customer == null) {
+            searchCustomers.setDeactivateMessage(NO_CUSTOMER_MESSAGE);
+            return;
+        }
+        
+        // Deactivates the customer and clears the view:
+        customer.setActive(!customer.isActive());
+        searchCustomers.clearView();
+        
+        // Deactivates all insurances to the customer if the customer is set to
+        // inactive.
+        if(!customer.isActive()) {
+            insurances.setAllInsurancesInactive(customer.getId());
+        }
     }
     
-    private void searchEmployeesSearchEventHandler(ActionEvent event ) {
+    private void searchEmployeesSearchIdEventHandler(ActionEvent event) {
         // Clears all messages:
         searchEmployees.clearMessages();
+        searchEmployees.clearView();
         
         // Declares variables to be converted to:
         int employeeId = 0;
         
         // Collects information about the search terms:
         String number = searchEmployees.getNumber();
-        String firstName = searchEmployees.getFirstName();
-        String lastName = searchEmployees.getLastName();
-        String type = searchEmployees.getEmployeeType();
-        boolean active = searchEmployees.getActive();
         
         // Validates and converts input:
         if(!number.equals("")) {
@@ -3892,7 +3948,7 @@ public class MainController {
                 try {
                     employeeId = Integer.parseInt(number);
                 } catch(NumberFormatException nfe) {
-                    searchEmployees.setSearchMessage(CUSTOMERID_FORMAT_MESSAGE);
+                    searchEmployees.setSearchMessage(EMPLOYEEID_FORMAT_MESSAGE);
                     return;
                 }
             } else {
@@ -3902,25 +3958,70 @@ public class MainController {
         
         // Searches through the register:
         List<Employee> employeeList;
-        if (employeeId != 0) {
-            employeeList = new ArrayList<>();
-            employeeList.add(employees.getEmployeeById(employeeId));
-        } else {
-            // Finds the customers who pass the other search terms:
-            employeeList = employees.getEmployees(employeeId, firstName, 
-                    lastName, type, active);
+        employeeList = new ArrayList<>();
+        Employee employee = employees.getEmployeeById(employeeId);
+        if (employee != null) {
+            employeeList.add(employee);
         }
         
         // Populates the table:
         searchEmployees.populateEmployeesTable(employeeList);
     }
     
-    private void searchEmployeesSelectEventHandler(ActionEvent event ) {
+    private void searchEmployeesSearchEventHandler(ActionEvent event ) {
+        // Clears all messages:
+        searchEmployees.clearMessages();
+        searchEmployees.clearView();
         
+        // Collects information about the search terms:
+        String firstName = searchEmployees.getFirstName();
+        String lastName = searchEmployees.getLastName();
+        String type = searchEmployees.getEmployeeType();
+        boolean active = searchEmployees.getActive();
+        
+        
+        // Searches through the register:
+        List<Employee> employeeList;
+        employeeList = employees.getEmployees(firstName, lastName, type, 
+                active);
+        
+        // Populates the table:
+        searchEmployees.populateEmployeesTable(employeeList);
+    }
+    
+    private void searchEmployeesSelectEventHandler(ActionEvent event ) {
+        // Clears all messages:
+        searchEmployees.clearMessages();
+        
+        // Gets the selected employee:
+        Employee employee = searchEmployees.getEmployeesTableValue();
+        
+        // Gives the user a message if no employee is selected:
+        if (employee == null) {
+            searchEmployees.setSelectMessage(NO_EMPLOYEE_MESSAGE);
+            return;
+        }
+        
+        // Displays information about the employee:
+        searchEmployees.setEmployeeArea(employee.toString());
     }
     
     private void searchEmployeesDeactivateEventHandler(ActionEvent event ) {
+        // Clears all messages:
+        searchEmployees.clearMessages();
         
+        // Gets the selected employee:
+        Employee employee = searchEmployees.getEmployeesTableValue();
+        
+        // Gives the user a message if no employee is selected:
+        if (employee == null) {
+            searchEmployees.setDeactivateMessage(NO_EMPLOYEE_MESSAGE);
+            return;
+        }
+        
+        // Deactivates the customer and clears the view:
+        employee.setActive(!employee.isActive());
+        searchEmployees.clearView();
     }
     
     // READ AND WRITE IDS FROM/TO FILE:

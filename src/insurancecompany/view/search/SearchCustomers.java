@@ -400,10 +400,17 @@ public class SearchCustomers {
         this.selectMessage.setText(message);
     }
     
+    /** @param message The message to set. */
+    public void setDeactivateMessage(String message) {
+        this.deactivateMessage.setFill(Color.FIREBRICK);
+        this.deactivateMessage.setText(message);
+    }
+    
     /** Clears all messages. */
     public void clearMessages() {
         this.searchIdMessage.setText("");
         this.searchMessage.setText("");
         this.selectMessage.setText("");
+        this.deactivateMessage.setText("");
     }
 }

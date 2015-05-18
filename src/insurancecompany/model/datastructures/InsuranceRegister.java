@@ -295,4 +295,12 @@ public class InsuranceRegister {
     public Set<Insurance> getInsurances() {
         return insurances;
     }
+    
+    public void setAllInsurancesInactive(int customerId) {
+        for (Insurance insurance : insurances) {
+            if(insurance.getCustomerId() == customerId) {
+                insurance.setActive(false);
+            }
+        }
+    }
 }

@@ -23,7 +23,19 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 /**
- *
+ * This class creates the graphical user interface (GUI) for registration of 
+ * car insurances. It creates a pane which is sent to the controller and 
+ * thereafter displayed.
+ * 
+ * <p> The pane consists of two parts; one to the left and one to the right.
+ * 
+ * <p> On the left the user chooses the customer. It also shows information
+ * about the customer and its existing insurances.
+ * 
+ * <p> On the right the user inputs the information about the insurance. These 
+ * are sent through get methods to the controller, which validates them and 
+ * executes the registration.
+ * 
  * @author André
  * @author Sindre
  */
@@ -32,30 +44,25 @@ public class RegisterCarInsurance {
     /** String value of the ComboCox option for unlimited max length. */
     public static final String MAX_LENGTH_UNLIMITED = "Ubegrenset";
     
-    /** The main pane of this class.*/
+    // Declaration of the main pane which is sent to the controller.
     private GridPane mainPane;
     
-    // SEARCH FOR CUSTOMER NODES:
-    
-    // Input nodes, TextFields:
+    // Declaration of all the nodes in the left part.
+    private Button searchCustomerIdButton;
+    private Button searchPersonalNumberButton;
+    private Text customerSelectedMessage;
+    private TextArea customerArea;
     private TextField customerIdField;
     private TextField personalNumberField;
-    // Output nodes, TextArea, TableView and Text:
-    private TextArea customerArea;
     private TableView<Insurance> insurancesTable;
     private TableColumn<Insurance, String> insuranceTypeColumn;
     private TableColumn<Insurance, String> insuranceCoverageColum;
     private TableColumn<Insurance, Integer> insuranceIdColumn;
-    private Text customerSelectedMessage;
-    // Buttons:
-    private Button searchCustomerIdButton;
-    private Button searchPersonalNumberButton;
-    // The customerId used in the insurance registration:
     private int selectedCustomerId;
     
-    // REGISTER INSURANCE NODES:
-    
-    // Input nodes, ComboBoxes and TextFields:
+    // Declaration of all the nodes in the right part.
+    private Button calculateButton;
+    private Button registerButton;
     private ComboBox<String> alarmCombo;
     private ComboBox<String> brandCombo;
     private ComboBox<CarInsuranceCoverage> coverageCombo;
@@ -66,10 +73,6 @@ public class RegisterCarInsurance {
     private ComboBox<String> parkingConditionCombo;
     private ComboBox<String> yearCombo;
     private ComboBox<String> youngestDriverCombo;
-    private TextField ownerPersonalNumberField;
-    private TextField premiumField;
-    private TextField registrationNumberField;
-    // Output nodes, Text messages:
     private Text alarmMessage;
     private Text brandMessage;
     private Text coverageMessage;
@@ -83,17 +86,19 @@ public class RegisterCarInsurance {
     private Text yearMessage;
     private Text youngestDriverMessage;
     private Text registerButtonMessage;
-    // Buttons:
-    private Button calculateButton;
-    private Button registerButton;
+    private TextField ownerPersonalNumberField;
+    private TextField premiumField;
+    private TextField registrationNumberField;
     
     public RegisterCarInsurance() {
         
-        // Sets up the mainPane:
+        // Initialization of the pane.
         mainPane = new GridPane();
-        // Sets CSS ID:
+        
+        // Sets the CSS ID to the pane.
         mainPane.setId("innerPane");
-        // Sets up column constraints. Width in pixels:
+        
+        // Sets up column constraints. The width is in pixels.
         ColumnConstraints col1 = new ColumnConstraints(120);
         ColumnConstraints col2 = new ColumnConstraints(100);
         ColumnConstraints col3 = new ColumnConstraints(40);
@@ -101,15 +106,11 @@ public class RegisterCarInsurance {
         ColumnConstraints col5 = new ColumnConstraints(150);
         ColumnConstraints col6 = new ColumnConstraints(150);
         ColumnConstraints col7 = new ColumnConstraints(150);
-        // Adds these constraints:
         mainPane.getColumnConstraints().addAll(col1, col2, col3, col4, col5, col6, col7);
         
-        // SEARCH FOR CUSTOMER NODES:
-        
-        // Initializes Input:
+        // Initialization of all the nodes in the left part.
         customerIdField = new TextField();
         personalNumberField = new TextField();
-        // Initializes Output:
         customerArea = new TextArea();
         customerArea.setEditable(false);
         customerArea.setPrefColumnCount(2);
@@ -121,22 +122,11 @@ public class RegisterCarInsurance {
         insuranceIdColumn = new TableColumn<>("Forsikringsid");
         insurancesTable.getColumns().addAll(insuranceTypeColumn, insuranceCoverageColum, insuranceIdColumn);
         insurancesTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-        // Initializes Buttons:
         searchCustomerIdButton = new Button("Søk");
         searchPersonalNumberButton = new Button("Søk");
-        // Declares and initializes Texts and Labels:
-        Label customerIdLabel = new Label("Kundenummer:");
-        Label personalNumberLabel = new Label("Personnummer:");
-        Text insurancesTitle = new Text("Eksisterende forsikringer til denne kunden:");
-        insurancesTitle.setId("textTitle");
-        Text resultTitle = new Text("Valgt kunde:");
-        resultTitle.setId("textTitle");
-        Text selectCustomerTitle = new Text("Velg først en kunde i registeret:");
-        selectCustomerTitle.setId("textTitle");
+        customerSelectedMessage = new Text();
         
-        // REGISTER INSURANCE NODES:
-        
-        // Initializes Input:
+        // Initialization of all the nodes in the right part.
         alarmCombo = new ComboBox();
         populateAlarmCombo();
         brandCombo = new ComboBox();
@@ -161,7 +151,6 @@ public class RegisterCarInsurance {
         premiumField = new TextField();
         premiumField.setEditable(false);
         registrationNumberField = new TextField();
-        // Initializes Output:
         alarmMessage = new Text();
         brandMessage = new Text(); 
         coverageMessage = new Text();
@@ -175,15 +164,23 @@ public class RegisterCarInsurance {
         yearMessage = new Text();
         youngestDriverMessage = new Text();
         registerButtonMessage = new Text();
-        // Initializes Buttons:
         calculateButton = new Button("Regn ut");
         registerButton = new Button("Registrer");
-        // Declares and initializes Texts and Labels:
-        customerSelectedMessage = new Text();
+        
+        // Declaration and initialization of the texts and labels which are 
+        // used in the view and are not fields.
+        Text insurancesTitle = new Text("Eksisterende forsikringer til denne kunden:");
+        insurancesTitle.setId("textTitle");
+        Text resultTitle = new Text("Valgt kunde:");
+        resultTitle.setId("textTitle");
+        Text selectCustomerTitle = new Text("Velg først en kunde i registeret:");
+        selectCustomerTitle.setId("textTitle");
         Text insuranceOptionsTitle = new Text("Betingelser:");
         insuranceOptionsTitle.setId("textTitle");
         Text carTitle = new Text("Bil:");
         carTitle.setId("textTitle");
+        Label customerIdLabel = new Label("Kundenummer:");
+        Label personalNumberLabel = new Label("Personnummer:");
         Label alarmLabel = new Label("FG-godkjent alarm:");
         Label brandLabel = new Label("Merke:");
         Label coverageLabel = new Label("Dekning:");
@@ -198,23 +195,21 @@ public class RegisterCarInsurance {
         Label yearLabel = new Label("År:");     
         Label youngestDriverLabel = new Label("Yngste fører:");
         
-        
-        // Adds nodes to mainPane:
+        // Adds the nodes to the left part.
         mainPane.add(selectCustomerTitle, 0, 0);
         mainPane.add(customerIdLabel, 0, 1);
         mainPane.add(customerIdField, 1, 1);
         mainPane.add(searchCustomerIdButton, 2, 1);
-        
         mainPane.add(personalNumberLabel, 0, 2);
         mainPane.add(personalNumberField, 1, 2);
         mainPane.add(searchPersonalNumberButton, 2, 2);
-        
         mainPane.add(resultTitle, 0, 3);
         mainPane.add(customerArea, 0, 4, 3, 5);
         mainPane.add(customerSelectedMessage, 0, 9);
         mainPane.add(insurancesTitle, 0, 10);
         mainPane.add(insurancesTable, 0, 11, 3, 5);
         
+        // Adds the nodes to the right part.
         mainPane.add(insuranceOptionsTitle, 4, 0);
         mainPane.add(existingBonusLabel, 4, 1);
         mainPane.add(existingBonusCombo, 5, 1);
@@ -234,7 +229,6 @@ public class RegisterCarInsurance {
         mainPane.add(parkingConditionLabel, 4, 6);
         mainPane.add(parkingConditionCombo, 5, 6);
         mainPane.add(parkingConditionMessage, 6, 6);
-
         mainPane.add(carTitle, 4, 7);
         mainPane.add(personalNumberOwnerLabel, 4, 8);
         mainPane.add(ownerPersonalNumberField, 5, 8);
@@ -259,7 +253,6 @@ public class RegisterCarInsurance {
         mainPane.add(calculateButton, 6, 14);
         mainPane.add(registerButton, 5, 15);
         mainPane.add(registerButtonMessage, 5, 16);
-      
     }
     
     // POPULATE METHODS:

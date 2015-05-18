@@ -929,7 +929,7 @@ public class MainController {
                 // Exit the method, as we don't need to check for anything else:
                 return;
             } else {
-                insuranceId = insurance.getCustomerId();
+                insuranceId = insurance.getInsuranceId();
             }
             Calendar dateHappened = registerBoatClaim.getDateHappenedPickerValue();
             if (dateHappened == null) {
@@ -1124,7 +1124,7 @@ public class MainController {
                 // Exit the method, as we don't need to check for anything else:
                 return;
             } else {
-                insuranceId = insurance.getCustomerId();
+                insuranceId = insurance.getInsuranceId();
             }
             Calendar dateHappened = registerHomeClaim.getDateHappenedPickerValue();
             if (dateHappened == null) {
@@ -1319,7 +1319,7 @@ public class MainController {
                 // Exit the method, as we don't need to check for anything else:
                 return;
             } else {
-                insuranceId = insurance.getCustomerId();
+                insuranceId = insurance.getInsuranceId();
             }
             Calendar dateHappened = registerHomeContentClaim.getDateHappenedPickerValue();
             if (dateHappened == null) {
@@ -1558,7 +1558,7 @@ public class MainController {
                 // Exit the method, as we don't need to check for anything else:
                 return;
             } else {
-                insuranceId = insurance.getCustomerId();
+                insuranceId = insurance.getInsuranceId();
             }
             Calendar dateHappened = registerHolidayHomeClaim.getDateHappenedPickerValue();
             if (dateHappened == null) {
@@ -1755,7 +1755,7 @@ public class MainController {
                 // Exit the method, as we don't need to check for anything else:
                 return;
             } else {
-                insuranceId = insurance.getCustomerId();
+                insuranceId = insurance.getInsuranceId();
             }
             Calendar dateHappened = registerHolidayHomeContentClaim.getDateHappenedPickerValue();
             if (dateHappened == null) {
@@ -1994,7 +1994,7 @@ public class MainController {
                 // Exit the method, as we don't need to check for anything else:
                 return;
             } else {
-                insuranceId = insurance.getCustomerId();
+                insuranceId = insurance.getInsuranceId();
             }
             Calendar dateHappened = registerTravelClaim.getDateHappenedPickerValue();
             if (dateHappened == null) {

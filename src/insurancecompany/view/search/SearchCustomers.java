@@ -57,6 +57,7 @@ public class SearchCustomers {
     private ComboBox<Object> insuranceTypeCombo;
     private ComboBox<String> numberSelectCombo;
     private ComboBox<String> totalCustomerCombo;
+    private Text searchIdMessage;
     private Text idMessage;
     private TextField firstNameField;
     private TextField lastNameField;
@@ -115,6 +116,7 @@ public class SearchCustomers {
         populateNumberSelectCombo();
         totalCustomerCombo = new ComboBox<>();
         populateTotalCustomerCombo();
+        searchIdMessage = new Text("");
         idMessage = new Text("");
         firstNameField = new TextField();
         lastNameField = new TextField();
@@ -161,7 +163,7 @@ public class SearchCustomers {
         leftPane.add(numberSelectCombo, 0, 1);
         leftPane.add(numberField, 1, 1);
         leftPane.add(searchIdButton, 1, 2);
-        leftPane.add(new Text(""), 0, 3); // Creates a blank row.
+        leftPane.add(searchIdMessage, 0, 3);
         leftPane.add(searchTermsTitle, 0, 4, 2, 1);
         leftPane.add(firstNameLabel, 0, 5);
         leftPane.add(firstNameField, 1, 5);

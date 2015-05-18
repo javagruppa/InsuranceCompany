@@ -69,6 +69,7 @@ public class SearchClaims {
     private ComboBox<String> numberSelectCombo;
     private DatePicker fromDatePicker;
     private DatePicker toDatePicker;
+    private Text searchIdMessage;
     private Text idMessage;
     private TextField claimIdField;
     private TextField numberField;
@@ -134,6 +135,7 @@ public class SearchClaims {
         toDatePicker = new DatePicker();
         toDatePicker.setPrefWidth(150);
         DateUtility.restrictDatePickerToOlder(toDatePicker);
+        searchIdMessage = new Text("");
         idMessage = new Text("");
         claimIdField = new TextField();
         numberField = new TextField();
@@ -185,7 +187,7 @@ public class SearchClaims {
         leftPane.add(claimIdLabel, 0, 1);
         leftPane.add(claimIdField, 1, 1);
         leftPane.add(searchIdButton, 1, 2);
-        leftPane.add(new Text(""), 0, 3); // Creates a blank row.
+        leftPane.add(searchIdMessage, 0, 3);
         leftPane.add(searchTermsTitle, 0, 4, 2, 1);
         leftPane.add(numberSelectCombo, 0, 5);
         leftPane.add(numberField, 1, 5);

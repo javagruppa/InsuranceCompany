@@ -58,6 +58,7 @@ public class SearchEmployees {
     private ComboBox<String> activeCombo;
     private ComboBox<Object> employeeTypeCombo;
     private ComboBox<String> numberSelectCombo;
+    private Text searchIdMessage;
     private Text idMessage;
     private TextField firstNameField;
     private TextField lastNameField;
@@ -114,6 +115,7 @@ public class SearchEmployees {
         populateEmployeeTypeCombo();
         numberSelectCombo = new ComboBox<>();
         populateNumberSelectCombo();
+        searchIdMessage = new Text("");
         idMessage = new Text("");
         firstNameField = new TextField();
         lastNameField = new TextField();
@@ -159,7 +161,7 @@ public class SearchEmployees {
         leftPane.add(numberSelectCombo, 0, 1);
         leftPane.add(numberField, 1, 1);
         leftPane.add(searchIdButton, 1, 2);
-        leftPane.add(new Text(""), 0, 3); // Creates a blank row.
+        leftPane.add(searchIdMessage, 0, 3);
         leftPane.add(searchTermsTitle, 0, 4, 2, 1);
         leftPane.add(firstNameLabel, 0, 5);
         leftPane.add(firstNameField, 1, 5);

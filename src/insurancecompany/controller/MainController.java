@@ -219,9 +219,9 @@ public class MainController {
         modelController.updatePayments();
         // Update dunning on all unpaid bills:
         modelController.updateUnpaidBills();
-        // Automatically pay all bills that are at due date or older:
-        // modelController.autoPayAllBills(); // automaticall pay all unpaid bills:
-        modelController.autoPayAllBillsDue();
+        
+        modelController.autoPayAllBills(); // automaticall pay all unpaid bills:
+        // modelController.autoPayAllBillsDue(); // Automatically pay all bills that are at due date or older:
 
     }
     

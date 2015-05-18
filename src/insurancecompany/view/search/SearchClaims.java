@@ -161,8 +161,8 @@ public class SearchClaims {
         insuranceArea = new TextArea();
         disbursementField = new TextField();
         
-        // Initialization of all the texts and labels which are used in the 
-        // view. Many of them aren't fields.
+        // Declaration and initialization of the texts and labels which are 
+        // used in the view and are not fields.
         Text claimIdTitle = new Text("Velg en skademelding i registeret:");
         claimIdTitle.setId("textTitle");
         Text searchTermsTitle = new Text("Eller bruk søkebetingelser:");

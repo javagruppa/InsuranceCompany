@@ -156,8 +156,8 @@ public class SearchInsurances {
         insuranceArea = new TextArea();
         attachmentArea = new TextArea();
         
-        // Initialization of all the texts and labels which are used in the 
-        // view. Many of them aren't fields.
+        // Declaration and initialization of the texts and labels which are 
+        // used in the view and are not fields.
         Text insuranceIdTitle = new Text("Velg en forsikring i registeret:");
         insuranceIdTitle.setId("textTitle");
         Text searchTermsTitle = new Text("Eller bruk søkebetingelser:");

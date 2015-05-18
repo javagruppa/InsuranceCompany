@@ -244,9 +244,9 @@ public class MainController {
     }
     
     private void initializeRegisterInsuranceEventHandlers() {
-        registerBoatInsurance.setRegisterButtonEventHandler(this::boatInsuranceRegisterButtonEventHandler);
-        registerBoatInsurance.setSearchCustomerIdButtonEventHandler(this::boatInsuranceSearchCustomerIdButtonEventHandler);
-        registerBoatInsurance.setSearchPersonalNumberButtonEventHandler(this::boatInsuranceSearchPersonalNumberButtonEventHandler);
+        registerBoatInsurance.setRegisterEventHandler(this::boatInsuranceRegisterButtonEventHandler);
+        registerBoatInsurance.setSearchCustomerIdEventHandler(this::boatInsuranceSearchCustomerIdButtonEventHandler);
+        registerBoatInsurance.setSearchPersonalNumberEventHandler(this::boatInsuranceSearchPersonalNumberButtonEventHandler);
         
         registerCarInsurance.setSearchCustomerIdButtonEventHandler(this::carInsuranceSearchCustomerIdButtonEventHandler);
         registerCarInsurance.setSearchPersonalNumberButtonEventHandler(this::carInsuranceSearchPersonalNumberButtonEventHandler);

@@ -143,8 +143,8 @@ public class SearchCustomers {
         customerArea = new TextArea();
         customerArea.setPrefHeight(400);
         
-        // Initialization of all the texts and labels which are used in the 
-        // view. Many of them aren't fields.
+        // Declaration and initialization of the texts and labels which are 
+        // used in the view and are not fields.
         Text customerIdTitle = new Text("Velg en kunde i registeret:");
         customerIdTitle.setId("textTitle");
         Text searchTermsTitle = new Text("Eller bruk søkebetingelser:");

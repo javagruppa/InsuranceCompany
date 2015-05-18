@@ -140,8 +140,8 @@ public class SearchEmployees {
         employeeArea = new TextArea();
         employeeArea.setPrefHeight(400);
         
-        // Initialization of all the texts and labels which are used in the 
-        // view. Many of them aren't fields.
+        // Declaration and initialization of the texts and labels which are 
+        // used in the view and are not fields.
         Text employeeIdTitle = new Text("Velg en ansatt i registeret:");
         employeeIdTitle.setId("textTitle");
         Text searchTermsTitle = new Text("Eller bruk søkebetingelser:");

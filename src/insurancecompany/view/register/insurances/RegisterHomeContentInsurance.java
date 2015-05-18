@@ -24,47 +24,46 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 /**
- *
+ * This class creates the graphical user interface (GUI) for registration of 
+ * home content insurances. It creates a pane which is sent to the controller 
+ * and thereafter displayed.
+ * 
+ * <p> The pane consists of two parts; one to the left and one to the right.
+ * 
+ * <p> On the left the user chooses the customer. It also shows information
+ * about the customer and its existing insurances.
+ * 
+ * <p> On the right the user inputs the information about the insurance. These 
+ * are sent through get methods to the controller, which validates them and 
+ * executes the registration.
+ * 
  * @author Sindre
  */
 public class RegisterHomeContentInsurance {
     
-    /** The main pane of this class. */
+    // Declaration of the main pane which is sent to the controller.
     private GridPane mainPane;
     
-    // SEARCH FOR CUSTOMER NODES:
-    
-    // Input nodes, TextFields:
+    // Declaration of all the nodes in the left part.
+    private Button searchCustomerIdButton;
+    private Button searchPersonalNumberButton;
+    private Text customerSelectedMessage;
+    private TextArea customerArea;
     private TextField customerIdField;
     private TextField personalNumberField;
-    // Output nodes, TextArea, TableView and Text:
-    private TextArea customerArea;
     private TableView<Insurance> insurancesTable;
     private TableColumn<Insurance, String> insuranceTypeColumn;
     private TableColumn<Insurance, String> insuranceCoverageColum;
     private TableColumn<Insurance, Integer> insuranceIdColumn;
-    private Text customerSelectedMessage;
-    // Buttons:
-    private Button searchCustomerIdButton;
-    private Button searchPersonalNumberButton;
-    // The customerId used in the insurance registration:
     private int selectedCustomerId;
     
-    // REGISTER INSURANCE NODES:
-    
-    // Input nodes, ComboBoxes and TextFields:
+    // Declaration of all the nodes in the right part.
+    private Button calculateButton;
+    private Button registerButton;
     private ComboBox<HomeContentInsuranceCoverage> coverageCombo;
     private ComboBox<String> excessCombo;
     private ComboBox<PropertyMaterial> materialCombo;
     private ComboBox<HomeType> typeCombo;
-    private TextField amountField;
-    private TextField areaField;
-    private TextField cityField;
-    private TextField premiumField;
-    private TextField streetField;
-    private TextField yearField;
-    private TextField zipCodeField;
-    // Output nodes, Text messages:
     private Text amountMessage;
     private Text areaMessage;
     private Text cityMessage;
@@ -76,17 +75,23 @@ public class RegisterHomeContentInsurance {
     private Text yearMessage;
     private Text zipCodeMessage;
     private Text registerButtonMessage;
-    // Buttons:
-    private Button calculateButton;
-    private Button registerButton;
+    private TextField amountField;
+    private TextField areaField;
+    private TextField cityField;
+    private TextField premiumField;
+    private TextField streetField;
+    private TextField yearField;
+    private TextField zipCodeField;
     
     public RegisterHomeContentInsurance() {
         
-        // Sets up the mainPane:
+        // Initialization of the pane.
         mainPane = new GridPane();
-        // Sets CSS ID:
+        
+        // Sets the CSS ID to the pane.
         mainPane.setId("innerPane");
-        // Sets up column constraints. Width in pixels:
+        
+        // Sets up column constraints. The width is in pixels.
         ColumnConstraints col1 = new ColumnConstraints(120);
         ColumnConstraints col2 = new ColumnConstraints(100);
         ColumnConstraints col3 = new ColumnConstraints(40);
@@ -94,15 +99,11 @@ public class RegisterHomeContentInsurance {
         ColumnConstraints col5 = new ColumnConstraints(150);
         ColumnConstraints col6 = new ColumnConstraints(150);
         ColumnConstraints col7 = new ColumnConstraints(150);
-        // Adds these constraints:
         mainPane.getColumnConstraints().addAll(col1, col2, col3, col4, col5, col6, col7);
         
-        // SEARCH FOR CUSTOMER NODES:
-        
-        // Initializes Input:
+        // Initialization of all the nodes in the left part.
         customerIdField = new TextField();
         personalNumberField = new TextField();
-        // Initializes Output:
         customerArea = new TextArea();
         customerArea.setEditable(false);
         customerArea.setPrefColumnCount(2);
@@ -114,22 +115,11 @@ public class RegisterHomeContentInsurance {
         insuranceIdColumn = new TableColumn<>("Forsikringsid");
         insurancesTable.getColumns().addAll(insuranceTypeColumn, insuranceCoverageColum, insuranceIdColumn);
         insurancesTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-        // Initializes Buttons:
         searchCustomerIdButton = new Button("Søk");
         searchPersonalNumberButton = new Button("Søk");
-        // Declares and initializes Texts and Labels:
-        Label customerIdLabel = new Label("Kundenummer:");
-        Label personalNumberLabel = new Label("Personnummer:");
-        Text insurancesTitle = new Text("Eksisterende forsikringer til denne kunden:");
-        insurancesTitle.setId("textTitle");
-        Text resultTitle = new Text("Valgt kunde:");
-        resultTitle.setId("textTitle");
-        Text selectCustomerTitle = new Text("Velg først en kunde i registeret:");
-        selectCustomerTitle.setId("textTitle");
+        customerSelectedMessage = new Text();
         
-        // REGISTER INSURANCE NODES:
-        
-        // Initializes Input:
+        // Initialization of all the nodes in the right part.
         coverageCombo = new ComboBox<>();
         populateCoverageCombo();
         excessCombo = new ComboBox<>();
@@ -145,7 +135,6 @@ public class RegisterHomeContentInsurance {
         streetField = new TextField();
         yearField = new TextField();
         zipCodeField = new TextField();
-        // Initializes Output:
         amountMessage = new Text();
         areaMessage = new Text();
         cityMessage = new Text();
@@ -157,17 +146,25 @@ public class RegisterHomeContentInsurance {
         yearMessage = new Text();
         zipCodeMessage = new Text();
         registerButtonMessage = new Text();
-        // Initializes Buttons:
         calculateButton = new Button("Regn ut");
         registerButton = new Button("Registrer");
-        // Declares and initializes Texts and Labels:
-        customerSelectedMessage = new Text();
+        
+        // Declaration and initialization of the texts and labels which are 
+        // used in the view and are not fields.
+        Text insurancesTitle = new Text("Eksisterende forsikringer til denne kunden:");
+        insurancesTitle.setId("textTitle");
+        Text resultTitle = new Text("Valgt kunde:");
+        resultTitle.setId("textTitle");
+        Text selectCustomerTitle = new Text("Velg først en kunde i registeret:");
+        selectCustomerTitle.setId("textTitle");
         Text insuranceOptionsTitle = new Text("Betingelser:");
         insuranceOptionsTitle.setId("textTitle");
         Text houseTitle = new Text("Hus:");
         houseTitle.setId("textTitle");
         Text addressTitle = new Text("Adresse:");
         addressTitle.setId("textTitle");
+        Label customerIdLabel = new Label("Kundenummer:");
+        Label personalNumberLabel = new Label("Personnummer:");
         Label amountLabel = new Label("Forsikringsbeløp:");
         Label areaLabel = new Label("Areal:");
         Label cityLabel = new Label("By:");
@@ -180,22 +177,21 @@ public class RegisterHomeContentInsurance {
         Label yearLabel = new Label("Byggeår:");
         Label zipCodeLabel = new Label("Postboks:");
         
-        // Adds nodes to mainPane:
+        // Adds the nodes to the left part.
         mainPane.add(selectCustomerTitle, 0, 0);
         mainPane.add(customerIdLabel, 0, 1);
         mainPane.add(customerIdField, 1, 1);
         mainPane.add(searchCustomerIdButton, 2, 1);
-        
         mainPane.add(personalNumberLabel, 0, 2);
         mainPane.add(personalNumberField, 1, 2);
         mainPane.add(searchPersonalNumberButton, 2, 2);
-        
         mainPane.add(resultTitle, 0, 3);
         mainPane.add(customerArea, 0, 4, 3, 5);
         mainPane.add(customerSelectedMessage, 0, 9);
         mainPane.add(insurancesTitle, 0, 10);
         mainPane.add(insurancesTable, 0, 11, 3, 5);
         
+        // Adds the nodes to the right part.
         mainPane.add(insuranceOptionsTitle, 4, 0);
         mainPane.add(coverageLabel, 4, 1);
         mainPane.add(coverageCombo, 5, 1);
@@ -206,7 +202,6 @@ public class RegisterHomeContentInsurance {
         mainPane.add(amountLabel, 4, 3);
         mainPane.add(amountField, 5, 3);
         mainPane.add(amountMessage, 6, 3);
-        
         mainPane.add(houseTitle, 4, 4);
         mainPane.add(areaLabel, 4, 5);
         mainPane.add(areaField, 5, 5);
@@ -220,7 +215,6 @@ public class RegisterHomeContentInsurance {
         mainPane.add(typeLabel, 4, 8);
         mainPane.add(typeCombo, 5, 8);
         mainPane.add(typeMessage, 6, 8);
-        
         mainPane.add(addressTitle, 4, 9);
         mainPane.add(streetLabel, 4, 10);
         mainPane.add(streetField, 5, 10);
@@ -238,8 +232,7 @@ public class RegisterHomeContentInsurance {
         mainPane.add(registerButtonMessage, 5, 15);
     }
     
-    // POPULATE METHODS:
-    
+    /** Sets the content of the ComboBox coverageCombo. */
     private void populateCoverageCombo() {
         ObservableList<HomeContentInsuranceCoverage> obList;
         obList = FXCollections.observableArrayList(HomeContentInsuranceCoverage.values()); 
@@ -247,6 +240,7 @@ public class RegisterHomeContentInsurance {
         coverageCombo.setPrefWidth(150);
     }
     
+    /** Sets the content of the ComboBox excessCombo. */
     private void populateExcessCombo() {
         ObservableList<String> excess = FXCollections.observableArrayList();
         excess.addAll("4000", "6000", "8000", "10000", "15000", "14000", 
@@ -255,6 +249,7 @@ public class RegisterHomeContentInsurance {
         excessCombo.setPrefWidth(150);
     }
     
+    /** Sets the content of the ComboBox materialCombo. */
     private void populateMaterialCombo() {
         ObservableList<PropertyMaterial> obList;
         obList = FXCollections.observableArrayList(PropertyMaterial.values()); 
@@ -262,6 +257,7 @@ public class RegisterHomeContentInsurance {
         materialCombo.setPrefWidth(150);
     }
     
+    /** Sets the content of the ComboBox typeCombo. */
     private void populateTypeCombo() {
         ObservableList<HomeType> obList;
         obList = FXCollections.observableArrayList(HomeType.values()); 
@@ -270,8 +266,11 @@ public class RegisterHomeContentInsurance {
     }
     
     /**
+     * Sets the content of the TableView insurancesTable. The table will 
+     * consist of the insurances in the parameter list.
      * 
-     * @param insurances 
+     * @param insurances The list of insurances which will be displayed in the 
+     * table.
      */
     public void populateInsurancesTable(List<Insurance> insurances) {
         ObservableList<Insurance> obList = FXCollections.observableArrayList(insurances);

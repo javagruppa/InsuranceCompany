@@ -41,7 +41,7 @@ public class ClaimRegister {
     }
     
     /**
-     * Finds and returns a claim based on claim id.
+     * Finds and returns a claim based on claim ID.
      * 
      * @param claimId Claim ID of the claim that the method looks for.
      * @return The claim if it is found. Null otherwise.

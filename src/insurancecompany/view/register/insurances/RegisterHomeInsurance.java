@@ -244,8 +244,8 @@ public class RegisterHomeInsurance {
     /** Sets the content of the ComboBox excessCombo. */
     private void populateExcessCombo() {
         ObservableList<String> excess = FXCollections.observableArrayList();
-        excess.addAll("4000", "6000", "8000", "10000", "15000", "14000", 
-                "16000", "18000", "20000", "25000", "30000");
+        excess.addAll("0", "2000", "4000", "6000", "8000", "10000", 
+                "12000", "14000", "16000", "18000", "20000");
         excessCombo.getItems().setAll(excess);
         excessCombo.setPrefWidth(150);
     }

@@ -170,8 +170,8 @@ public class RegisterTravelInsurance {
     /** Sets the content of the ComboBox excessCombo. */
     private void populateExcessCombo() {
         ObservableList<String> excess = FXCollections.observableArrayList();
-        excess.addAll("4000", "6000", "8000", "10000", "15000", "14000", 
-                "16000", "18000", "20000", "25000", "30000");
+        excess.addAll("0", "500", "1000", "1500", "2000", "2500", 
+                "3000", "3500", "4000", "4500", "5000");
         excessCombo.getItems().setAll(excess);
         excessCombo.setPrefWidth(150);
     }

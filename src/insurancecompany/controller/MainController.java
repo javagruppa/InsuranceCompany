@@ -651,7 +651,7 @@ public class MainController {
                 // Exit the method, as we don't need to check for anything else:
                 return;
             } else {
-                insuranceId = insurance.getCustomerId();
+                insuranceId = insurance.getInsuranceId();
             }
             Calendar dateHappened = registerCarClaim.getDateHappenedPickerValue();
             if (dateHappened == null) {

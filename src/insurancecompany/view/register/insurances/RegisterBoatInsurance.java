@@ -56,7 +56,6 @@ public class RegisterBoatInsurance {
     private int selectedCustomerId;
     
     // Declaration of all the nodes in the right part.
-    private Button calculateButton;
     private Button registerButton;
     private ComboBox<String> alarmCombo;
     private ComboBox<BoatInsuranceCoverage> coverageCombo;
@@ -80,11 +79,13 @@ public class RegisterBoatInsurance {
     private TextField lengthField;
     private TextField modelField;
     private TextField ownerPersonalNumberField;
-    private TextField premiumField;
     private TextField registrationNumberField;
     private TextField registrationYearField;
     private TextField valueField;
     
+    /**
+     * Default constructor. Initializes all field and sets up the view.
+     */
     public RegisterBoatInsurance() {
         
         // Initialization of the pane.
@@ -134,8 +135,6 @@ public class RegisterBoatInsurance {
         lengthField = new TextField();
         modelField = new TextField();
         ownerPersonalNumberField = new TextField();
-        premiumField = new TextField();
-        premiumField.setEditable(false);
         registrationNumberField = new TextField();
         registrationYearField = new TextField();
         valueField = new TextField();
@@ -151,7 +150,6 @@ public class RegisterBoatInsurance {
         registrationNumberMessage = new Text();
         registrationYearMessage = new Text();
         valueMessage = new Text();
-        calculateButton = new Button("Regn ut");
         registerButton = new Button("Registrer");
         registerButtonMessage = new Text();
         
@@ -178,7 +176,6 @@ public class RegisterBoatInsurance {
         Label lengthLabel = new Label("Lengde i fot:");
         Label modelLabel = new Label("Modell:");
         Label ownerPersonalNumberLabel = new Label("Eierens personnummer:");
-        Label premiumLabel = new Label("Beregnet forsikringspremie:");
         Label registrationNumberLabel = new Label("Registreringsnummer:");
         Label registrationYearLabel = new Label("År:");
         Label valueLabel = new Label("Verdi:");
@@ -236,11 +233,8 @@ public class RegisterBoatInsurance {
         mainPane.add(valueLabel, 4, 13);
         mainPane.add(valueField, 5, 13);
         mainPane.add(valueMessage, 6, 13);
-        mainPane.add(premiumLabel, 4, 14);
-        mainPane.add(premiumField, 5, 14);
-        mainPane.add(calculateButton, 6, 14);
-        mainPane.add(registerButton, 5, 15);
-        mainPane.add(registerButtonMessage, 5, 16);
+        mainPane.add(registerButton, 5, 14);
+        mainPane.add(registerButtonMessage, 5, 15);
     }
     
     /** Sets the content of the ComboBox alarmCombo. */
@@ -262,8 +256,8 @@ public class RegisterBoatInsurance {
     /** Sets the content of the ComboBox excessCombo. */
     private void populateExcessCombo() {
         ObservableList<String> excess = FXCollections.observableArrayList();
-        excess.addAll("4000", "6000", "8000", "10000", "15000", "14000", 
-                "16000", "18000", "20000", "25000", "30000");
+        excess.addAll("0", "1000", "2000", "3000", "4000", "5000", 
+                "6000", "7000", "8000", "9000", "10000");
         excessCombo.getItems().setAll(excess);
         excessCombo.setPrefWidth(150);
     }
@@ -300,15 +294,6 @@ public class RegisterBoatInsurance {
                     return new SimpleObjectProperty(0);
                 }
         });   
-    }
-    
-    /**
-     * Sets the event handler for the calculateButton.
-     * 
-     * @param value The event handler to set.
-     */
-    public void setCalculateEventHandler(EventHandler<ActionEvent> value) {
-        calculateButton.setOnAction(value);
     }
     
     /**

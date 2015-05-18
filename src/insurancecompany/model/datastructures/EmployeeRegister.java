@@ -102,9 +102,9 @@ public class EmployeeRegister {
         List<Employee> result = new ArrayList<>();
         for (Employee employee : employees) {
             if ((firstName.equals("") || 
-                    firstName.equals(employee.getFirstName()))
+                    firstName.equalsIgnoreCase(employee.getFirstName()))
                     && (lastName.equals("") || 
-                            lastName.equals(employee.getLastName()))
+                            lastName.equalsIgnoreCase(employee.getLastName()))
                     && (type == null || type.equals(employee.getType()))
                     && (!active || employee.isActive())) {
                 result.add(employee);

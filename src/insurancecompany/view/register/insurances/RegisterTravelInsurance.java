@@ -56,15 +56,16 @@ public class RegisterTravelInsurance {
     private int selectedCustomerId;
     
     // Declaration of all the nodes in the right part.
-    private Button calculateButton;
     private Button registerButton;
     private ComboBox<TravelInsuranceCoverage> coverageCombo;
     private ComboBox<String> excessCombo;
     private Text coverageMessage;
     private Text excessMessage;
     private Text registerButtonMessage;
-    private TextField premiumField;
     
+    /**
+     * Default constructor. Initializes all field and sets up the view.
+     */
     public RegisterTravelInsurance() {
         
         // Initialization of the pane.
@@ -106,12 +107,9 @@ public class RegisterTravelInsurance {
         populateCoverageCombo();
         excessCombo = new ComboBox<>();
         populateExcessCombo();
-        premiumField = new TextField();
-        premiumField.setEditable(false);
         coverageMessage = new Text();
         excessMessage = new Text();
         registerButtonMessage = new Text();
-        calculateButton = new Button("Regn ut");
         registerButton = new Button("Registrer");
         
         // Declaration and initialization of the texts and labels which are 
@@ -128,7 +126,6 @@ public class RegisterTravelInsurance {
         Label personalNumberLabel = new Label("Personnummer:");
         Label coverageLabel = new Label("Dekning:");
         Label excessLabel = new Label("Egenandel:");
-        Label premiumLabel = new Label("Beregnet forsikringspremie:");
         
         // Adds the nodes to the left part.
         mainPane.add(selectCustomerTitle, 0, 0);
@@ -152,9 +149,6 @@ public class RegisterTravelInsurance {
         mainPane.add(excessLabel, 4, 2);
         mainPane.add(excessCombo, 5, 2);
         mainPane.add(excessMessage, 6, 2);
-        mainPane.add(premiumLabel, 4, 3);
-        mainPane.add(premiumField, 5, 3);
-        mainPane.add(calculateButton, 6, 3);
         mainPane.add(registerButton, 5, 4);
         mainPane.add(registerButtonMessage, 5, 5);
     }
@@ -170,8 +164,8 @@ public class RegisterTravelInsurance {
     /** Sets the content of the ComboBox excessCombo. */
     private void populateExcessCombo() {
         ObservableList<String> excess = FXCollections.observableArrayList();
-        excess.addAll("4000", "6000", "8000", "10000", "15000", "14000", 
-                "16000", "18000", "20000", "25000", "30000");
+        excess.addAll("0", "500", "1000", "1500", "2000", "2500", 
+                "3000", "3500", "4000", "4500", "5000");
         excessCombo.getItems().setAll(excess);
         excessCombo.setPrefWidth(150);
     }
@@ -210,15 +204,6 @@ public class RegisterTravelInsurance {
         });   
     }
     
-    /**
-     * Sets the event handler for the calculateButton.
-     * 
-     * @param value The event handler to set.
-     */
-    public void setCalculateEventHandler(EventHandler<ActionEvent> value) {
-        calculateButton.setOnAction(value);
-    }
-
     /**
      * Sets the event handler for the registerButton.
      * 

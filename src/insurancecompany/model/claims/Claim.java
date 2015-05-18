@@ -286,7 +286,7 @@ public abstract class Claim implements Serializable {
         result.append("\nForsikringspolise nummer: ").append(insuranceId);
         result.append("\nDato registrert: ").append(DateUtility.NORWEGIAN_DATE_FORMAT.format(date.getTime()));
         result.append("\nSkademeldingsnummer: ").append(claimId);
-        result.append("\nDato for skade/hendelse: ").append(dateHappened);
+        result.append("\nDato for skade/hendelse: ").append(DateUtility.NORWEGIAN_DATE_FORMAT.format(dateHappened.getTime()));
         result.append("\nBeskrivelse av skade:\n").append(description).append("\n");
         result.append("\nTakseringsbeløp: ").append(appraisal);
         result.append("\nUtbetalt erstatningsbeløp: ").append(disbursement);

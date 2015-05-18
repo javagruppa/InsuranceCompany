@@ -58,7 +58,6 @@ public class RegisterHomeContentInsurance {
     private int selectedCustomerId;
     
     // Declaration of all the nodes in the right part.
-    private Button calculateButton;
     private Button registerButton;
     private ComboBox<HomeContentInsuranceCoverage> coverageCombo;
     private ComboBox<String> excessCombo;
@@ -78,11 +77,13 @@ public class RegisterHomeContentInsurance {
     private TextField amountField;
     private TextField areaField;
     private TextField cityField;
-    private TextField premiumField;
     private TextField streetField;
     private TextField yearField;
     private TextField zipCodeField;
     
+    /**
+     * Default constructor. Initializes all field and sets up the view.
+     */
     public RegisterHomeContentInsurance() {
         
         // Initialization of the pane.
@@ -131,7 +132,6 @@ public class RegisterHomeContentInsurance {
         amountField = new TextField();
         areaField = new TextField();
         cityField = new TextField();
-        premiumField = new TextField();
         streetField = new TextField();
         yearField = new TextField();
         zipCodeField = new TextField();
@@ -146,7 +146,6 @@ public class RegisterHomeContentInsurance {
         yearMessage = new Text();
         zipCodeMessage = new Text();
         registerButtonMessage = new Text();
-        calculateButton = new Button("Regn ut");
         registerButton = new Button("Registrer");
         
         // Declaration and initialization of the texts and labels which are 
@@ -171,7 +170,6 @@ public class RegisterHomeContentInsurance {
         Label coverageLabel = new Label("Dekning:");
         Label excessLabel = new Label("Egenandel:");
         Label materialLabel = new Label("Materiale:");
-        Label premiumLabel = new Label("Beregnet forsikringspremie:");
         Label streetLabel = new Label("Gate:");
         Label typeLabel = new Label("Type:");
         Label yearLabel = new Label("Byggeår:");
@@ -225,11 +223,8 @@ public class RegisterHomeContentInsurance {
         mainPane.add(cityLabel, 4, 12);
         mainPane.add(cityField, 5, 12);
         mainPane.add(cityMessage, 6, 12);
-        mainPane.add(premiumLabel, 4, 13);
-        mainPane.add(premiumField, 5, 13);
-        mainPane.add(calculateButton, 6, 13);
-        mainPane.add(registerButton, 5, 14);
-        mainPane.add(registerButtonMessage, 5, 15);
+        mainPane.add(registerButton, 5, 13);
+        mainPane.add(registerButtonMessage, 5, 14);
     }
     
     /** Sets the content of the ComboBox coverageCombo. */
@@ -243,8 +238,8 @@ public class RegisterHomeContentInsurance {
     /** Sets the content of the ComboBox excessCombo. */
     private void populateExcessCombo() {
         ObservableList<String> excess = FXCollections.observableArrayList();
-        excess.addAll("4000", "6000", "8000", "10000", "15000", "14000", 
-                "16000", "18000", "20000", "25000", "30000");
+        excess.addAll("0", "2000", "4000", "6000", "8000", "10000", 
+                "12000", "14000", "16000", "18000", "20000");
         excessCombo.getItems().setAll(excess);
         excessCombo.setPrefWidth(150);
     }
@@ -299,15 +294,6 @@ public class RegisterHomeContentInsurance {
         });   
     }
     
-    /**
-     * Sets the event handler for the calculateButton.
-     * 
-     * @param value The event handler to set.
-     */
-    public void setCalculateEventHandler(EventHandler<ActionEvent> value) {
-        calculateButton.setOnAction(value);
-    }
-
     /**
      * Sets the event handler for the registerButton.
      * 

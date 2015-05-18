@@ -234,12 +234,12 @@ public class MainController {
         initializeRegisterInsuranceEventHandlers();
         initializeRegisterClaimEventHandlers();
         initializeSearchEventHandlers();
-        mainView.setSaveDataButtonEventHandler(this::adminViewSaveDataButtonEventHandler);
-        mainView.setExitButtonEventHandler(this::adminViewExitButtonEventHandler);
+        mainView.setSaveDataButtonEventHandler(this::mainViewSaveDataButtonEventHandler);
+        mainView.setExitButtonEventHandler(this::mainViewExitButtonEventHandler);
         
         
-        registerCustomer.setRegisterButtonEventHandler(this::registerCustomerButtonEventHandler);
-        registerEmployee.setRegisterButtonEventHandler(this::registerEmployeeButtonEventHandler);
+        registerCustomer.setRegisterEventHandler(this::registerCustomerButtonEventHandler);
+        registerEmployee.setRegisterEventHandler(this::registerEmployeeButtonEventHandler);
 
     }
     
@@ -252,7 +252,6 @@ public class MainController {
         registerCarInsurance.setSearchPersonalNumberEventHandler(this::carInsuranceSearchPersonalNumberButtonEventHandler);
         registerCarInsurance.setBrandComboListener(this::brandComboListener);
         registerCarInsurance.setYearComboListener(this::yearComboListener);
-        registerCarInsurance.setCalculateEventHandler(null);
         registerCarInsurance.setRegisterEventHandler(this::carInsuranceRegisterButtonEventHandler);
         
         registerHomeInsurance.setRegisterEventHandler(this::homeInsuranceRegisterButtonEventHandler);
@@ -350,7 +349,7 @@ public class MainController {
         searchInsurances.setSelectEventHandler(this::searchInsuranceSelectEventHandler);
     } // end of class initializeSearchEventHandlers
     
-    private void adminViewSaveDataButtonEventHandler(ActionEvent event) {
+    private void mainViewSaveDataButtonEventHandler(ActionEvent event) {
         writeBillsToFile();
         writeClaimsToFile();
         writeCustomersToFile();
@@ -379,7 +378,7 @@ public class MainController {
         readInsurancesFromFile();  
     }
     
-    private void adminViewExitButtonEventHandler(ActionEvent event) {
+    private void mainViewExitButtonEventHandler(ActionEvent event) {
         Platform.exit();
     }    
     
@@ -387,14 +386,14 @@ public class MainController {
     private void registerCustomerButtonEventHandler(ActionEvent event) {
         boolean ok = true;
         
-        String personalNumber = registerCustomer.getPersonalNumberField();
-        String firstName = registerCustomer.getFirstNameField();
-        String lastName = registerCustomer.getLastNameField();
-        String street = registerCustomer.getStreetField();
-        String zipCodeS = registerCustomer.getZipCodeField();
-        String city = registerCustomer.getCityField();
-        String email = registerCustomer.getEmailField();
-        String phone = registerCustomer.getPhoneField();
+        String personalNumber = registerCustomer.getPersonalNumber();
+        String firstName = registerCustomer.getFirstName();
+        String lastName = registerCustomer.getLastName();
+        String street = registerCustomer.getStreet();
+        String zipCodeS = registerCustomer.getZipCode();
+        String city = registerCustomer.getCity();
+        String email = registerCustomer.getEmail();
+        String phone = registerCustomer.getPhone();
         
         if (personalNumber.equals("")) {
             String message = "Fyll inn dette feltet.";
@@ -423,22 +422,22 @@ public class MainController {
             } else {
                 result = "Kunden kunne ikke registreres. Kunde med likt personnummer eksisterer allerede.";
             }
-            registerCustomer.setResultText(result);
+            registerCustomer.setResultMessage(result);
         }
     }
     
     // TODO: Trenger regex og validering
     private void registerEmployeeButtonEventHandler(ActionEvent event) {
         
-        EmployeeType position = registerEmployee.getPositionComboValue();
-        String personalNumber = registerEmployee.getPersonalNumberField();
-        String firstName = registerEmployee.getFirstNameField();
-        String lastName = registerEmployee.getLastNameField();
-        String street = registerEmployee.getStreetField();
-        String zipCodeS = registerEmployee.getZipCodeField();
-        String city = registerEmployee.getCityField();
-        String email = registerEmployee.getEmailField();
-        String phone = registerEmployee.getPhoneField();
+        EmployeeType position = registerEmployee.getPosition();
+        String personalNumber = registerEmployee.getPersonalNumber();
+        String firstName = registerEmployee.getFirstName();
+        String lastName = registerEmployee.getLastName();
+        String street = registerEmployee.getStreet();
+        String zipCodeS = registerEmployee.getZipCode();
+        String city = registerEmployee.getCity();
+        String email = registerEmployee.getEmail();
+        String phone = registerEmployee.getPhone();
 
         System.out.println(position.toString());
         if (personalNumber.equals("")) {
@@ -472,7 +471,7 @@ public class MainController {
             result = "Ansatt kunne ikke registreres. Ansatt med likt personnummer eksisterer allerede.";
         }
         
-        registerEmployee.setResultText(result);
+        registerEmployee.setResultMessage(result);
     }
     
     private void setBrandComboBox() {
@@ -930,7 +929,7 @@ public class MainController {
                 // Exit the method, as we don't need to check for anything else:
                 return;
             } else {
-                insuranceId = insurance.getCustomerId();
+                insuranceId = insurance.getInsuranceId();
             }
             Calendar dateHappened = registerBoatClaim.getDateHappenedPickerValue();
             if (dateHappened == null) {
@@ -1125,7 +1124,7 @@ public class MainController {
                 // Exit the method, as we don't need to check for anything else:
                 return;
             } else {
-                insuranceId = insurance.getCustomerId();
+                insuranceId = insurance.getInsuranceId();
             }
             Calendar dateHappened = registerHomeClaim.getDateHappenedPickerValue();
             if (dateHappened == null) {
@@ -1320,7 +1319,7 @@ public class MainController {
                 // Exit the method, as we don't need to check for anything else:
                 return;
             } else {
-                insuranceId = insurance.getCustomerId();
+                insuranceId = insurance.getInsuranceId();
             }
             Calendar dateHappened = registerHomeContentClaim.getDateHappenedPickerValue();
             if (dateHappened == null) {
@@ -1559,7 +1558,7 @@ public class MainController {
                 // Exit the method, as we don't need to check for anything else:
                 return;
             } else {
-                insuranceId = insurance.getCustomerId();
+                insuranceId = insurance.getInsuranceId();
             }
             Calendar dateHappened = registerHolidayHomeClaim.getDateHappenedPickerValue();
             if (dateHappened == null) {
@@ -1756,7 +1755,7 @@ public class MainController {
                 // Exit the method, as we don't need to check for anything else:
                 return;
             } else {
-                insuranceId = insurance.getCustomerId();
+                insuranceId = insurance.getInsuranceId();
             }
             Calendar dateHappened = registerHolidayHomeContentClaim.getDateHappenedPickerValue();
             if (dateHappened == null) {
@@ -1995,7 +1994,7 @@ public class MainController {
                 // Exit the method, as we don't need to check for anything else:
                 return;
             } else {
-                insuranceId = insurance.getCustomerId();
+                insuranceId = insurance.getInsuranceId();
             }
             Calendar dateHappened = registerTravelClaim.getDateHappenedPickerValue();
             if (dateHappened == null) {
@@ -2352,7 +2351,7 @@ public class MainController {
         
         // Adds insurance to Register:
         if (insurances.addInsurance(insurance)) {
-            registerBoatInsurance.setRegisterButtonMessage(REGISTER_SUCCESS);
+            registerBoatInsurance.setRegisterButtonMessage(REGISTER_SUCCESS + "\nForsikringspremie: " + insurance.getPremium() + ",-");
         } else {
             registerBoatInsurance.setRegisterButtonMessage(REGISTER_NO_SUCCESS);
         }
@@ -2568,7 +2567,7 @@ public class MainController {
         
         // Adds insurance to Register:
         if (insurances.addInsurance(insurance)) {
-            registerCarInsurance.setRegisterButtonMessage(REGISTER_SUCCESS);
+            registerCarInsurance.setRegisterButtonMessage(REGISTER_SUCCESS + "\nForsikringspremie: " + insurance.getPremium() + ",-");
         } else {
             registerCarInsurance.setRegisterButtonMessage(REGISTER_NO_SUCCESS);
         }
@@ -2761,7 +2760,7 @@ public class MainController {
         
         // Adds insurance to Register:
         if (insurances.addInsurance(insurance)) {
-            registerHolidayHomeInsurance.setRegisterButtonMessage(REGISTER_SUCCESS);
+            registerHolidayHomeInsurance.setRegisterButtonMessage(REGISTER_SUCCESS + "\nForsikringspremie: " + insurance.getPremium() + ",-");
         } else {
             registerHolidayHomeInsurance.setRegisterButtonMessage(REGISTER_NO_SUCCESS);
         }
@@ -2959,7 +2958,7 @@ public class MainController {
         
         // Adds insurance to Register:
         if (insurances.addInsurance(insurance)) {
-            registerHolidayHomeContentInsurance.setRegisterButtonMessage(REGISTER_SUCCESS);
+            registerHolidayHomeContentInsurance.setRegisterButtonMessage(REGISTER_SUCCESS + "\nForsikringspremie: " + insurance.getPremium() + ",-");
         } else {
             registerHolidayHomeContentInsurance.setRegisterButtonMessage(REGISTER_NO_SUCCESS);
         }
@@ -3153,7 +3152,7 @@ public class MainController {
         
         // Adds insurance to Register:
         if (insurances.addInsurance(insurance)) {
-            registerHomeInsurance.setRegisterButtonMessage(REGISTER_SUCCESS);
+            registerHomeInsurance.setRegisterButtonMessage(REGISTER_SUCCESS + "\nForsikringspremie: " + insurance.getPremium() + ",-");
         } else {
             registerHomeInsurance.setRegisterButtonMessage(REGISTER_NO_SUCCESS);
         }
@@ -3351,7 +3350,7 @@ public class MainController {
         
         // Adds insurance to Register:
         if (insurances.addInsurance(insurance)) {
-            registerHomeContentInsurance.setRegisterButtonMessage(REGISTER_SUCCESS);
+            registerHomeContentInsurance.setRegisterButtonMessage(REGISTER_SUCCESS + "\nForsikringspremie: " + insurance.getPremium() + ",-");
         } else {
             registerHomeContentInsurance.setRegisterButtonMessage(REGISTER_NO_SUCCESS);
         }
@@ -3470,7 +3469,7 @@ public class MainController {
         
         // Adds insurance to Register:
         if (insurances.addInsurance(insurance)) {
-            registerTravelInsurance.setRegisterButtonMessage(REGISTER_SUCCESS);
+            registerTravelInsurance.setRegisterButtonMessage(REGISTER_SUCCESS + "\nForsikringspremie: " + insurance.getPremium() + ",-");
         } else {
             registerTravelInsurance.setRegisterButtonMessage(REGISTER_NO_SUCCESS);
         }

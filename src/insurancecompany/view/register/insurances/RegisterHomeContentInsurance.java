@@ -232,8 +232,7 @@ public class RegisterHomeContentInsurance {
         mainPane.add(registerButtonMessage, 5, 15);
     }
     
-    // POPULATE METHODS:
-    
+    /** Sets the content of the ComboBox coverageCombo. */
     private void populateCoverageCombo() {
         ObservableList<HomeContentInsuranceCoverage> obList;
         obList = FXCollections.observableArrayList(HomeContentInsuranceCoverage.values()); 
@@ -241,6 +240,7 @@ public class RegisterHomeContentInsurance {
         coverageCombo.setPrefWidth(150);
     }
     
+    /** Sets the content of the ComboBox excessCombo. */
     private void populateExcessCombo() {
         ObservableList<String> excess = FXCollections.observableArrayList();
         excess.addAll("4000", "6000", "8000", "10000", "15000", "14000", 
@@ -249,6 +249,7 @@ public class RegisterHomeContentInsurance {
         excessCombo.setPrefWidth(150);
     }
     
+    /** Sets the content of the ComboBox materialCombo. */
     private void populateMaterialCombo() {
         ObservableList<PropertyMaterial> obList;
         obList = FXCollections.observableArrayList(PropertyMaterial.values()); 
@@ -256,6 +257,7 @@ public class RegisterHomeContentInsurance {
         materialCombo.setPrefWidth(150);
     }
     
+    /** Sets the content of the ComboBox typeCombo. */
     private void populateTypeCombo() {
         ObservableList<HomeType> obList;
         obList = FXCollections.observableArrayList(HomeType.values()); 
@@ -264,8 +266,11 @@ public class RegisterHomeContentInsurance {
     }
     
     /**
+     * Sets the content of the TableView insurancesTable. The table will 
+     * consist of the insurances in the parameter list.
      * 
-     * @param insurances 
+     * @param insurances The list of insurances which will be displayed in the 
+     * table.
      */
     public void populateInsurancesTable(List<Insurance> insurances) {
         ObservableList<Insurance> obList = FXCollections.observableArrayList(insurances);

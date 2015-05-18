@@ -255,8 +255,7 @@ public class RegisterCarInsurance {
         mainPane.add(registerButtonMessage, 5, 16);
     }
     
-    // POPULATE METHODS:
-    
+    /** Sets the content of the ComboBox alarmCombo. */
     private void populateAlarmCombo() {
         ObservableList<String> alarm = FXCollections.observableArrayList();  
         alarm.addAll("Ja", "Nei");
@@ -264,6 +263,12 @@ public class RegisterCarInsurance {
         alarmCombo.setPrefWidth(150);
     }
     
+    /** 
+     * Sets the content of the ComboBox brandCombo. 
+     * 
+     * @param cars The list of cars which will be displayed in the brand
+     * combo box.
+     */
     public void populateBrandCombo(List cars) {
         ObservableList obList = FXCollections.observableList(cars);
         // Reset the previous value(shown value)
@@ -272,6 +277,7 @@ public class RegisterCarInsurance {
         brandCombo.setPrefWidth(150);
     }
     
+    /** Sets the content of the ComboBox coverageCombo. */
     private void populateCoverageCombo() {
         ObservableList<CarInsuranceCoverage> obList;
         obList = FXCollections.observableArrayList(CarInsuranceCoverage.values()); 
@@ -279,6 +285,7 @@ public class RegisterCarInsurance {
         coverageCombo.setPrefWidth(150);
     }
     
+    /** Sets the content of the ComboBox drivingLengthCombo. */
     private void populateDrivingLengthCombo() {
         ObservableList<String> drivingLength = FXCollections.observableArrayList();
         drivingLength.addAll("6000", "8000", "10000", "15000", "14000", 
@@ -288,6 +295,7 @@ public class RegisterCarInsurance {
         drivingLengthCombo.setPrefWidth(150);
     }
     
+    /** Sets the content of the ComboBox excessCombo. */
     private void populateExcessCombo() {
         ObservableList<String> excess = FXCollections.observableArrayList();
         excess.addAll("4000", "6000", "8000", "10000", "15000", "14000", 
@@ -296,6 +304,7 @@ public class RegisterCarInsurance {
         excessCombo.setPrefWidth(150);
     }
     
+    /** Sets the content of the ComboBox existingBonusCombo. */
     private void populateExistingBonusCombo() {
         ObservableList<String> bonuses = FXCollections.observableArrayList();
         bonuses.addAll("-30", "-20", "-10", "0", "10", "20", "30", "40", 
@@ -304,6 +313,12 @@ public class RegisterCarInsurance {
         existingBonusCombo.setPrefWidth(150);
     }
     
+    /** 
+     * Sets the content of the ComboBox modelCombo. 
+     * 
+     * @param models The list of models which will be displayed in the model
+     * combo box.
+     */
     public void populateModelCombo(List models) {
         ObservableList obList = FXCollections.observableList(models);
         // Reset the previous value(shown value)
@@ -312,6 +327,7 @@ public class RegisterCarInsurance {
         modelCombo.setPrefWidth(150);
     }
     
+    /** Sets the content of the ComboBox parkingConditionCombo. */
     private void populateParkingConditionCombo() {
         ObservableList<String> parkingCondition = FXCollections.observableArrayList(); 
         parkingCondition.addAll("Har garasje", "Har ikke garasje");
@@ -319,6 +335,12 @@ public class RegisterCarInsurance {
         parkingConditionCombo.setPrefWidth(150);
     }
     
+    /** 
+     * Sets the content of the ComboBox yearCombo. 
+     * 
+     * @param years The list of years which will be displayed in the year
+     * combo box.
+     */
     public void populateYearCombo(List years) {
         ObservableList obList = FXCollections.observableList(years);
         // Reset the previous value(shown value)
@@ -327,6 +349,7 @@ public class RegisterCarInsurance {
         yearCombo.setPrefWidth(150);
     }
     
+    /** Sets the content of the ComboBox youngestDriverCombo. */
     private void populateYoungestDriverCombo() {
         ObservableList<String> youngestDriver = FXCollections.observableArrayList(); 
         youngestDriver.addAll("Under 25", "Over 25");
@@ -335,8 +358,11 @@ public class RegisterCarInsurance {
     }
 
     /**
+     * Sets the content of the TableView insurancesTable. The table will 
+     * consist of the insurances in the parameter list.
      * 
-     * @param insurances 
+     * @param insurances The list of insurances which will be displayed in the 
+     * table.
      */
     public void populateInsurancesTable(List<Insurance> insurances) {
         ObservableList<Insurance> obList = FXCollections.observableArrayList(insurances);

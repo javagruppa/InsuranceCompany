@@ -243,8 +243,7 @@ public class RegisterBoatInsurance {
         mainPane.add(registerButtonMessage, 5, 16);
     }
     
-    // POPULATE METHODS:
-    
+    /** Sets the content of the ComboBox alarmCombo. */
     private void populateAlarmCombo() {
         ObservableList<String> alarm = FXCollections.observableArrayList();  
         alarm.addAll("Ja", "Nei");
@@ -252,6 +251,7 @@ public class RegisterBoatInsurance {
         alarmCombo.setPrefWidth(150);
     }
     
+    /** Sets the content of the ComboBox coverageCombo. */
     private void populateCoverageCombo() {
         ObservableList<BoatInsuranceCoverage> obList;
         obList = FXCollections.observableArrayList(BoatInsuranceCoverage.values()); 
@@ -259,6 +259,7 @@ public class RegisterBoatInsurance {
         coverageCombo.setPrefWidth(150);
     }
     
+    /** Sets the content of the ComboBox excessCombo. */
     private void populateExcessCombo() {
         ObservableList<String> excess = FXCollections.observableArrayList();
         excess.addAll("4000", "6000", "8000", "10000", "15000", "14000", 
@@ -268,8 +269,11 @@ public class RegisterBoatInsurance {
     }
     
     /**
+     * Sets the content of the TableView insurancesTable. The table will 
+     * consist of the insurances in the parameter list.
      * 
-     * @param insurances 
+     * @param insurances The list of insurances which will be displayed in the 
+     * table.
      */
     public void populateInsurancesTable(List<Insurance> insurances) {
         ObservableList<Insurance> obList = FXCollections.observableArrayList(insurances);
@@ -298,21 +302,39 @@ public class RegisterBoatInsurance {
         });   
     }
     
-    // SET EVENTHANDLER METHODS:
-    
-    public void setCalculateButtonEventHandler(EventHandler<ActionEvent> value) {
+    /**
+     * Sets the event handler for the calculateButton.
+     * 
+     * @param value The event handler to set.
+     */
+    public void setCalculateEventHandler(EventHandler<ActionEvent> value) {
         calculateButton.setOnAction(value);
     }
-
-    public void setRegisterButtonEventHandler(EventHandler<ActionEvent> value) {
+    
+    /**
+     * Sets the event handler for the registerButton.
+     * 
+     * @param value The event handler to set.
+     */
+    public void setRegisterEventHandler(EventHandler<ActionEvent> value) {
         registerButton.setOnAction(value);
     }
     
-    public void setSearchCustomerIdButtonEventHandler(EventHandler<ActionEvent> value) {
+    /**
+     * Sets the event handler for the searchCustomerIdButton.
+     * 
+     * @param value The event handler to set.
+     */
+    public void setSearchCustomerIdEventHandler(EventHandler<ActionEvent> value) {
         searchCustomerIdButton.setOnAction(value);
     }
-
-    public void setSearchPersonalNumberButtonEventHandler(EventHandler<ActionEvent> value) {
+    
+    /**
+     * Sets the event handler for the searchPersonalNumberButton.
+     * 
+     * @param value The event handler to set.
+     */
+    public void setSearchPersonalNumberEventHandler(EventHandler<ActionEvent> value) {
         searchPersonalNumberButton.setOnAction(value);
     }
 

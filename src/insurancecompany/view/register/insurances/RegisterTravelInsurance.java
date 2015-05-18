@@ -159,8 +159,7 @@ public class RegisterTravelInsurance {
         mainPane.add(registerButtonMessage, 5, 5);
     }
     
-    // POPULATE METHODS:
-    
+    /** Sets the content of the ComboBox coverageCombo. */
     private void populateCoverageCombo() {
         ObservableList<TravelInsuranceCoverage> obList;
         obList = FXCollections.observableArrayList(TravelInsuranceCoverage.values()); 
@@ -168,6 +167,7 @@ public class RegisterTravelInsurance {
         coverageCombo.setPrefWidth(150);
     }
     
+    /** Sets the content of the ComboBox excessCombo. */
     private void populateExcessCombo() {
         ObservableList<String> excess = FXCollections.observableArrayList();
         excess.addAll("4000", "6000", "8000", "10000", "15000", "14000", 
@@ -177,8 +177,11 @@ public class RegisterTravelInsurance {
     }
     
     /**
+     * Sets the content of the TableView insurancesTable. The table will 
+     * consist of the insurances in the parameter list.
      * 
-     * @param insurances 
+     * @param insurances The list of insurances which will be displayed in the 
+     * table.
      */
     public void populateInsurancesTable(List<Insurance> insurances) {
         ObservableList<Insurance> obList = FXCollections.observableArrayList(insurances);

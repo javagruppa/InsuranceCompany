@@ -445,28 +445,6 @@ public class RegisterCarInsurance {
         searchPersonalNumberButton.setOnAction(value);
     }
     
-    // CLEAR MESSAGES METHOD:
-    /**
-     * Clears the messages used to display invalid input.
-     */
-    public void clearMessages() {
-        alarmMessage.setText("");
-        brandMessage.setText("");
-        coverageMessage.setText("");
-        drivingLengthMessage.setText("");
-        excessMessage.setText("");
-        existingBonusMessage.setText("");
-        modelMessage.setText("");
-        parkingConditionMessage.setText("");
-        ownerPersonalNumberMessage.setText("");
-        registrationNumberMessage.setText("");
-        yearMessage.setText("");
-        youngestDriverMessage.setText("");
-        registerButtonMessage.setText("");
-    }
-    
-    // GET METHODS:
-    
     /** @return The main pane of this class. */
     public GridPane getMainPane() {
         return mainPane;
@@ -479,7 +457,7 @@ public class RegisterCarInsurance {
 
     /** @return The value of brandCombo. */
     public String getBrand() {
-        return brandCombo.getValue() == null ? "" : brandCombo.getValue().toString();
+        return brandCombo.getValue() == null ? "" : brandCombo.getValue();
     }
 
     /** @return The value of coverageCombo. */
@@ -556,8 +534,11 @@ public class RegisterCarInsurance {
     public Object getBrandComboValue() {
         return brandCombo.getValue();
     }
-    
-    // SET METHODS
+
+    /** @param selectedCustomerId The selectedCustomerId to set. */
+    public void setSelectedCustomerId(int selectedCustomerId) {
+        this.selectedCustomerId = selectedCustomerId;
+    }
     
     /** @param message The message to set. */
     public void setAlarmMessage(String message) {
@@ -630,11 +611,6 @@ public class RegisterCarInsurance {
         this.registrationNumberMessage.setText(message);
     }
 
-    /** @param selectedCustomerId The selectedCustomerId to set. */
-    public void setSelectedCustomerId(int selectedCustomerId) {
-        this.selectedCustomerId = selectedCustomerId;
-    }
-
     /** @param message The message to set. */
     public void setYearMessage(String message) {
         this.yearMessage.setFill(Color.FIREBRICK);
@@ -647,10 +623,26 @@ public class RegisterCarInsurance {
         this.youngestDriverMessage.setText(message);
     }
 
-    /**
-     * @param registerButtonMessage the registerButtonMessage to set
-     */
-    public void setRegisterButtonMessage(String registerButtonMessage) {
-        this.registerButtonMessage.setText(registerButtonMessage);
+    /** @param message The message to set. */
+    public void setRegisterButtonMessage(String message) {
+        this.registerButtonMessage.setText(message);
+    }
+    
+    /** Clears all messages. */
+    public void clearMessages() {
+        alarmMessage.setText("");
+        brandMessage.setText("");
+        coverageMessage.setText("");
+        customerSelectedMessage.setText("");
+        drivingLengthMessage.setText("");
+        excessMessage.setText("");
+        existingBonusMessage.setText("");
+        modelMessage.setText("");
+        parkingConditionMessage.setText("");
+        ownerPersonalNumberMessage.setText("");
+        registerButtonMessage.setText("");
+        registrationNumberMessage.setText("");
+        yearMessage.setText("");
+        youngestDriverMessage.setText("");
     }
 }

@@ -513,7 +513,6 @@ public class RegisterBoatInsurance {
 
     /** @param message The message to set. */
     public void setRegisterButtonMessage(String message) {
-        this.registerButtonMessage.setFill(Color.FIREBRICK);
         this.registerButtonMessage.setText(message);
     }
     

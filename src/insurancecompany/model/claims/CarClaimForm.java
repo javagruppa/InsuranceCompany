@@ -4,9 +4,13 @@ import insurancecompany.misc.DateUtility;
 import insurancecompany.model.people.Customer;
 import insurancecompany.model.people.VehicleOwner;
 import insurancecompany.model.vehicles.Car;
+import java.awt.image.BufferedImage;
+import java.io.*;
 import java.io.Serializable;
 import java.util.Calendar;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
+import javax.imageio.ImageIO;
 
 /**
  * Class CarClaimForm. A form to be included with all car claim, giving
@@ -31,9 +35,7 @@ public class CarClaimForm implements Serializable {
     /** The location of the accident */
     private String location;
     /** A user drawn image of the accident. */
-    private Image drawnImage;
-    /** A snapshot of the car claim form. */
-    private Image carClaimFormSnapshot;
+    private transient Image snapshot;
     /** The date of the accident */
     private Calendar date;
     /** The Id for the insurance covering this damage */
@@ -55,10 +57,11 @@ public class CarClaimForm implements Serializable {
      * @param insuranceId the Id of the insurance covering this damage
      * @param witnesses the witnesses for the accident, if any
      * @param drawnImage
+     * @param carClaimFormSnapshot
      */
     public CarClaimForm(Car car, Customer owner, VehicleOwner otherPerson,
             Car otherCar, String insuranceComp, String location,
-            int insuranceId, String witnesses, Image drawnImage){
+            int insuranceId, String witnesses, Image snapshot){
         this.car = car;
         this.owner = owner;
         this.otherPerson = otherPerson;
@@ -67,7 +70,7 @@ public class CarClaimForm implements Serializable {
         this.location = location;
         this.insuranceId = insuranceId;
         this.witnesses = witnesses;
-        this.drawnImage = drawnImage;
+        this.snapshot = snapshot;
         date = Calendar.getInstance();
     }
     
@@ -81,15 +84,35 @@ public class CarClaimForm implements Serializable {
      * @param location where the accident happened
      * @param insuranceId the Id of the insurance covering this damage
      * @param drawnImage
+     * @param carClaimFormSnapshot
      */
     public CarClaimForm(Car car, Customer owner, String location, 
-            int insuranceId, Image drawnImage){
+            int insuranceId, Image snapshot){
         this.car = car;
         this.owner = owner;
         this.location = location;
         this.insuranceId = insuranceId;
-        this.drawnImage = drawnImage;
+        this.snapshot = snapshot;
         date = Calendar.getInstance();
+    }
+    
+    private void writeObject(ObjectOutputStream out) throws IOException {
+        out.defaultWriteObject();
+        if (snapshot != null) {
+            out.writeBoolean(true);
+            BufferedImage bufferedImage = SwingFXUtils.fromFXImage(snapshot, null);
+            ImageIO.write(bufferedImage, "png", out); // png is lossless
+        } else {
+            out.writeBoolean(false);
+        }
+    }
+
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+        in.defaultReadObject();
+        if (in.readBoolean() == true) {
+            BufferedImage bufferedImage = ImageIO.read(in);
+            snapshot = SwingFXUtils.toFXImage(bufferedImage, null);
+        }
     }
     
     /**
@@ -188,27 +211,11 @@ public class CarClaimForm implements Serializable {
     }    
 
     /**
-     * Returns the user drawn image of the accident.
-     * @return the drawnImage
+     * Returns a snapshot of the claim form.
+     * @return the snapshot
      */
-    public Image getDrawnImage() {
-        return drawnImage;
-    }
-
-    /**
-     * Sets a snapshot of the complete car claim form.
-     * @param carClaimFormSnapshot the carClaimFormSnapshot to set
-     */
-    public void setCarClaimFormSnapshot(Image carClaimFormSnapshot) {
-        this.carClaimFormSnapshot = carClaimFormSnapshot;
-    }
-
-    /**
-     * Returns a snapshot of the complete car claim form.
-     * @return the carClaimFormSnapshot
-     */
-    public Image getCarClaimFormSnapshot() {
-        return carClaimFormSnapshot;
+    public Image getSnapshot() {
+        return snapshot;
     }
     
 }

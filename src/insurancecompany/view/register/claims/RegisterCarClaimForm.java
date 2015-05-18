@@ -5,6 +5,7 @@
 package insurancecompany.view.register.claims;
 
 import insurancecompany.misc.DateUtility;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
@@ -37,8 +38,9 @@ import javafx.util.Callback;
  * from the car insurance owner.
  * @author André
  */
-public class RegisterCarClaimForm {
-    
+public class RegisterCarClaimForm implements Serializable {
+      /** SerialVersionUID used to identify this class for object IO */
+    private static final long serialVersionUID = 1L;  
     // Scroll pane used to show the whole car claim form.
     private ScrollPane scrollPane;
     // Stack pane used to stack input nodes on top of the car claim form image.
@@ -96,16 +98,17 @@ public class RegisterCarClaimForm {
     // The name of the insurance company of the other part involved 
     private TextField insuranceCompanyB;
     
-    // TODO: Remember to onAction close window when button is clicked. 
-    // If not all fields are filled in correctly, show a dialog window:
     private Button registerButton;
     private Button clearCanvasButton;
     
     // Reference to the car claim view that owns this class.
     private RegisterCarClaim carClaimRegistration;
+    
+    private Image snapshot;
 
     /**
      * Sole constructor. Receives a reference to its car claim.
+     * @param carClaimRegistration
      */
     public RegisterCarClaimForm(RegisterCarClaim carClaimRegistration) {
         this.carClaimRegistration = carClaimRegistration;
@@ -319,16 +322,8 @@ public class RegisterCarClaimForm {
      * form.
      * @return 
      */
-    public WritableImage getSnapshotOfCarLcaimForm() {
-        return stackPane.snapshot(new SnapshotParameters(), null);
-    }
-    
-    /**
-     * Returns a WriteableImage of the drawn image in the car claim form.
-     * @return 
-     */
-    public WritableImage getDrawnImage() {
-        return canvas.snapshot(null, null);
+    public WritableImage getSnapshotOfCarClaimForm() {
+        return scene.snapshot(null);
     }
     
     /**
@@ -504,6 +499,7 @@ public class RegisterCarClaimForm {
         registerButton.setOnAction((event) -> {
             carClaimRegistration.setCarClaimFormView(this);
             carClaimRegistration.setClaimFormMessage("Skademeldingsskjema er fyllt inn.");
+            snapshot = stackPane.snapshot(new SnapshotParameters(), null);
             // Hide the stage:
             stage.hide(); 
         });
@@ -591,5 +587,12 @@ public class RegisterCarClaimForm {
      */
     public String getBrandA() {
         return brandA.getText();
+    }
+
+    /**
+     * @return the snapshot
+     */
+    public Image getSnapshot() {
+        return snapshot;
     }
 }

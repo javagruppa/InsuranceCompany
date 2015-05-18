@@ -738,8 +738,7 @@ public class MainController {
                     String location = formView.getLocation();
                     Calendar date = formView.getDate();
                     String witnesses = formView.getWitnesses();
-                    Image drawnImage = formView.getDrawnImage();
-                    Image snapshot = formView.getSnapshotOfCarLcaimForm();
+                    Image snapshot = formView.getSnapshot();
                     // If none of the fields for Person B are filled in, 
                     // create a car claim form consisting only of person B/the customer
                     if (brandB.equals("") && regB.equals("") &&
@@ -754,9 +753,7 @@ public class MainController {
                             phoneB.equals("") &&
                             insuranceCompanyB.equals("")) {
                         // Create a new car claim form:
-                        CarClaimForm carClaimForm = new CarClaimForm(carA, personA, location, insuranceId, drawnImage);
-                        // Set a snapshot:
-                        carClaimForm.setCarClaimFormSnapshot(snapshot);
+                        CarClaimForm carClaimForm = new CarClaimForm(carA, personA, location, insuranceId, snapshot);
                         // Create a new car claim with this claim form:
                         CarClaim claim = new CarClaim(customerId, insuranceId, description, dateHappened, damages, appraisal, carClaimForm);
                         // Add this car claim to the claim register:
@@ -774,9 +771,7 @@ public class MainController {
                         // Create a new car claim form with customer and person B
                         CarClaimForm carClaimForm = new CarClaimForm(carA, personA, 
                                 personB, carB, insuranceCompanyB, location, insuranceId, 
-                                witnesses, drawnImage);
-                        // Set a snapshot to this claim form:
-                        carClaimForm.setCarClaimFormSnapshot(snapshot);
+                                witnesses, snapshot);
                         // Create a new car claim with these data:
                         CarClaim claim = new CarClaim(customerId, insuranceId, description, dateHappened, damages, appraisal, carClaimForm);
                         // Add this car claim to the claim register:

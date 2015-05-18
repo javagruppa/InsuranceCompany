@@ -2,10 +2,13 @@ package insurancecompany.model.claims;
 
 import insurancecompany.misc.DateUtility;
 import insurancecompany.misc.coverages.Damage;
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.Calendar;
 import java.util.Set;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
+import javax.imageio.ImageIO;
 
 /**
  *
@@ -33,7 +36,7 @@ public abstract class Claim implements Serializable {
     /** Set of damages belonging to the claim.*/
     private Set<Damage> damages;
     /** Image description of this claim. */
-    private Image image;
+    private transient Image image;
     /** Appraisal sum set to this claim. */
     private int appraisal; // NOR : takseringsbeløp av skaden
     /** Disbursement set to this claim. */
@@ -86,6 +89,25 @@ public abstract class Claim implements Serializable {
         date = Calendar.getInstance();
         // Set unique claim id, aswell as uppdating next claim id:
         claimId = nextClaimId++;
+    }
+    
+    private void writeObject(ObjectOutputStream out) throws IOException {
+        out.defaultWriteObject();
+        if (image != null) {
+            out.writeBoolean(true);
+            BufferedImage bufferedImage = SwingFXUtils.fromFXImage(image, null);
+            ImageIO.write(bufferedImage, "png", out); // png is lossless
+        } else {
+            out.writeBoolean(false);
+        }
+    }
+
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+        in.defaultReadObject();
+        if (in.readBoolean() == true) {
+            BufferedImage bufferedImage = ImageIO.read(in);
+            image = SwingFXUtils.toFXImage(bufferedImage, null);
+        }
     }
     
     /**

@@ -120,9 +120,9 @@ public class CustomerRegister {
         List<Customer> result = new ArrayList<>();
         for (Customer customer : customers) {
             if ((firstName.equals("") || 
-                    firstName.equals(customer.getFirstName()))
+                    firstName.equalsIgnoreCase(customer.getFirstName()))
                     && ((lastName.equals("")) ||
-                            lastName.equals(customer.getLastName()))
+                            lastName.equalsIgnoreCase(customer.getLastName()))
                     && (!total || customer.isTotalCustomer())
                     && (!active || customer.isActive())) {
                 result.add(customer);

@@ -98,7 +98,7 @@ public class RegisterEmployee {
         Label street = new Label("Gate:");
         streetField = new TextField();
         streetMessage = new Text();
-        Label zipCode = new Label("Postboks:");
+        Label zipCode = new Label("Postnummer:");
         zipCodeField = new TextField();
         zipCodeMessage = new Text();
         Label city = new Label("By:");

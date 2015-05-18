@@ -2,10 +2,8 @@ package insurancecompany.view.search;
 
 import insurancecompany.misc.ClaimType;
 import insurancecompany.misc.DateUtility;
-import insurancecompany.misc.InsuranceType;
 import insurancecompany.misc.coverages.Damage;
 import insurancecompany.model.claims.Claim;
-import insurancecompany.model.insurances.Insurance;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -70,7 +68,7 @@ public class SearchClaims {
     private DatePicker fromDatePicker;
     private DatePicker toDatePicker;
     private Text searchIdMessage;
-    private Text idMessage;
+    private Text searchMessage;
     private TextField claimIdField;
     private TextField numberField;
     private TextField insuranceIdField;
@@ -136,7 +134,7 @@ public class SearchClaims {
         toDatePicker.setPrefWidth(150);
         DateUtility.restrictDatePickerToOlder(toDatePicker);
         searchIdMessage = new Text("");
-        idMessage = new Text("");
+        searchMessage = new Text("");
         claimIdField = new TextField();
         numberField = new TextField();
         insuranceIdField = new TextField();
@@ -202,7 +200,7 @@ public class SearchClaims {
         leftPane.add(toDateLabel, 0, 10);
         leftPane.add(toDatePicker, 1, 10);
         leftPane.add(searchButton, 1, 11);
-        leftPane.add(idMessage, 0, 12, 2, 1);
+        leftPane.add(searchMessage, 0, 12, 2, 1);
         
         // Adds the nodes to the center part.
         centerPane.add(claimsTitle, 0, 0, 3, 1);
@@ -230,7 +228,12 @@ public class SearchClaims {
         claimTypeCombo.setPrefWidth(150);
     }
     
-    /** Sets the content of the ComboBox damageCombo. */
+    /** 
+     * Sets the content of the ComboBox damageCombo. 
+     * 
+     * @param damages The list of damages which will be displayed in the damage
+     * combo box. Decided by the content of the claim type combo box.
+     */
     public void populateDamageCombo(Damage[] damages) {
         damageCombo.setValue("");
         damageCombo.setPrefWidth(150);
@@ -254,7 +257,7 @@ public class SearchClaims {
     }
     
     /**
-     * Sets the content of the TableView claimssTable. The table will 
+     * Sets the content of the TableView claimsTable. The table will 
      * consist of the claims in the parameter list.
      * 
      * @param claims The list of claims which will be displayed in the 
@@ -309,7 +312,7 @@ public class SearchClaims {
     }
     
     /**
-     * Sets the event handler for the damageCombo.
+     * Sets the event handler for the claimTypeCombo.
      * 
      * @param value The event handler to set.
      */
@@ -343,6 +346,33 @@ public class SearchClaims {
     public void setSelectEventHandler(EventHandler<ActionEvent> value) {
         selectButton.setOnAction(value);
     }
+
+    /**
+     * Sets the event handler for the formButton.
+     * 
+     * @param value The event handler to set.
+     */
+    public void setFormEventHandler(EventHandler<ActionEvent> value) {
+        formButton.setOnAction(value);
+    }
+
+    /**
+     * Sets the event handler for the imageButton.
+     * 
+     * @param value The event handler to set.
+     */
+    public void setImageEventHandler(EventHandler<ActionEvent> value) {
+        imageButton.setOnAction(value);
+    }
+
+    /**
+     * Sets the event handler for the disbursementButton.
+     * 
+     * @param value The event handler to set.
+     */
+    public void setDisbursementEventHandler(EventHandler<ActionEvent> value) {
+        disbursementButton.setOnAction(value);
+    }
     
     /** @return The main pane of this class as a GridPane. */
     public GridPane getMainPane() {
@@ -370,8 +400,8 @@ public class SearchClaims {
     }
     
     /** 
-     * @return The selected value of claimsTable as an Claim. Null if 
-     * no claim is selected.
+     * @return The selected value of claimsTable as a Claim. Null if no claim 
+     * is selected.
      */
     public Claim getClaimsTableValue() {
         return claimsTable.getSelectionModel() == null ? null : 
@@ -379,8 +409,8 @@ public class SearchClaims {
     }
     
     /** 
-     * @return The claim type of this class as a String. Null if
-     * no claim type is selected.
+     * @return The claim type of this class as a String. Null if no claim type 
+     * is selected.
      */
     public String getClaimType() {
         return (ClaimType.class.isInstance(claimTypeCombo.getValue())) ?
@@ -388,12 +418,12 @@ public class SearchClaims {
     }
     
     /** 
-     * @return The damage of this class as a Damage. Null if
-     * no damage is selected.
+     * @return The damage of this class as a Damage. Null if no damage is 
+     * selected.
      */
     public Damage getDamage() {
-        return String.class.isInstance(damageCombo.getValue()) ?
-                null : (Damage) damageCombo.getValue();
+        return (Damage.class.isInstance(damageCombo.getValue())) ?
+                (Damage)damageCombo.getValue() : null;
     }
     
     /**
@@ -427,14 +457,21 @@ public class SearchClaims {
     /** Clears the areas, the table and removes the selected table option. */
     public void clearView() {
         setClaimArea("");
+        setInsuranceArea("");
         populateClaimsTable(new ArrayList<>());
         claimsTable.getSelectionModel().clearSelection();
     }
     
     /** @param message The message to set. */
-    public void setIdMessage(String message) {
-        this.idMessage.setFill(Color.FIREBRICK);
-        this.idMessage.setText(message);
+    public void setSearchIdMessage(String message) {
+        this.searchIdMessage.setFill(Color.FIREBRICK);
+        this.searchIdMessage.setText(message);
+    }
+    
+    /** @param message The message to set. */
+    public void setSearchMessage(String message) {
+        this.searchMessage.setFill(Color.FIREBRICK);
+        this.searchMessage.setText(message);
     }
     
     /** @param message The message to set. */
@@ -445,7 +482,8 @@ public class SearchClaims {
     
     /** Clears all messages. */
     public void clearMessages() {
-        this.idMessage.setText("");
+        this.searchIdMessage.setText("");
+        this.searchMessage.setText("");
         this.selectMessage.setText("");
     }
 }

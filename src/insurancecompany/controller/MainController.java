@@ -270,6 +270,7 @@ public class MainController {
         registerTravelInsurance.setSearchPersonalNumberButtonEventHandler(this::travelInsuranceSearchPersonalNumberButtonEventHandler);
         
         searchClaims.setClaimTypeEventHandler(this::searchClaimsTypeEventHandler);
+        searchClaims.setSearchIdEventHandler(this::searchInsuranceSearchIdEventHandler);
         searchClaims.setSearchEventHandler(this::searchClaimsSearchEventHandler);
         searchClaims.setSelectEventHandler(this::searchClaimsSelectEventHandler);
         
@@ -3527,22 +3528,16 @@ public class MainController {
     
     // INSURANCE SEARCH EVENT HANDLERS
     
-    private void searchInsuranceSearchEventHandler(ActionEvent event) {
-        // Clears all messages:
+    private void searchInsuranceSearchIdEventHandler(ActionEvent event) {
+        // Clears all messages ans the view:
         searchInsurances.clearMessages();
         searchInsurances.clearView();
         
         // Declares variables to be converted to:
-        int customerId = 0;
         int insuranceId = 0;
         
         // Collects information about the search terms:
         String insuranceIdString = searchInsurances.getInsuranceId();
-        String number = searchInsurances.getNumber();
-        String type = searchInsurances.getInsuranceType();
-        boolean active = searchInsurances.getActive();
-        Calendar fromDate = searchInsurances.getFromDate();
-        Calendar toDate = searchInsurances.getToDate();
         
         // Validates and converts input:
         if (!insuranceIdString.equals("")) {
@@ -3553,6 +3548,35 @@ public class MainController {
                 return;
             }
         }
+        
+        // Searches through the register:
+        List<Insurance> insuranceList;
+        insuranceList = new ArrayList<>();
+        Insurance insurance = insurances.getInsuranceById(insuranceId);
+        if(insurance != null) {
+            insuranceList.add(insurance);
+        }
+        
+        // Populates the table:
+        searchInsurances.populateInsurancesTable(insuranceList);
+    }
+    
+    private void searchInsuranceSearchEventHandler(ActionEvent event) {
+        // Clears all messages ans the view:
+        searchInsurances.clearMessages();
+        searchInsurances.clearView();
+        
+        // Declares variables to be converted to:
+        int customerId = 0;
+        
+        // Collects information about the search terms:
+        String number = searchInsurances.getNumber();
+        String type = searchInsurances.getInsuranceType();
+        boolean active = searchInsurances.getActive();
+        Calendar fromDate = searchInsurances.getFromDate();
+        Calendar toDate = searchInsurances.getToDate();
+        
+        // Validates and converts input:
         if(!number.equals("")) {
             if(searchInsurances.isCustomerIdSelected()) {
                 try {
@@ -3568,16 +3592,8 @@ public class MainController {
         
         // Searches through the register:
         List<Insurance> insuranceList;
-        if (insuranceId != 0) {
-            insuranceList = new ArrayList<>();
-            Insurance insurance = insurances.getInsuranceById(insuranceId);
-            if(insurance != null) {
-                insuranceList.add(insurance);
-            }
-        } else {
-            insuranceList = insurances.getInsurances(customerId, type, fromDate, 
-                    toDate, active);
-        }
+        insuranceList = insurances.getInsurances(customerId, type, fromDate, 
+                toDate, active);
         
         // Populates the table:
         searchInsurances.populateInsurancesTable(insuranceList);
@@ -3681,8 +3697,9 @@ public class MainController {
     }
     
     private void searchClaimsSearchEventHandler(ActionEvent event ) {
-        // Clears all messages:
+        // Clears all messages ans the view:
         searchClaims.clearMessages();
+        searchClaims.clearView();
         
         // Declares variables to be converted to:
         int claimId = 0;

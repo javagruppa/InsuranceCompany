@@ -95,7 +95,7 @@ public class ClaimRegister {
                             fromDate.compareTo(claim.getDateHappened()) <= 0)
                     && (toDate == null || 
                             toDate.compareTo(claim.getDateHappened()) >= 0)) {
-                                result.add(claim);
+                result.add(claim);
             }
         }
         return result;

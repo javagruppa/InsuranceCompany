@@ -112,7 +112,7 @@ public class CustomerRegister {
                 return customer.getId();
             }
         }
-        return 0;
+        return -1;
     }
     
     public List<Customer> getCustomers(int customerId, String firstName, 

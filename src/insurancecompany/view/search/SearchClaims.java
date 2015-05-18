@@ -270,12 +270,12 @@ public class SearchClaims {
                 return new SimpleStringProperty("<no name>");
             }
         });
-        // Places a SimpleStringProperty version of the insurance ID in the 
+        // Places a SimpleStringProperty version of the claim ID in the 
         // second column.
         claimIdColumn.setCellValueFactory(cellData -> {
             if ( cellData.getValue() != null) {
                 return new SimpleObjectProperty<>(cellData.getValue()
-                        .getInsuranceId());
+                        .getClaimId());
             } else {
                 return new SimpleObjectProperty(0);
             }

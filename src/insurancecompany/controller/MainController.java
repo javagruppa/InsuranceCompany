@@ -3530,6 +3530,7 @@ public class MainController {
     private void searchInsuranceSearchEventHandler(ActionEvent event) {
         // Clears all messages:
         searchInsurances.clearMessages();
+        searchInsurances.clearView();
         
         // Declares variables to be converted to:
         int customerId = 0;
@@ -3569,7 +3570,10 @@ public class MainController {
         List<Insurance> insuranceList;
         if (insuranceId != 0) {
             insuranceList = new ArrayList<>();
-            insuranceList.add(insurances.getInsuranceById(insuranceId));
+            Insurance insurance = insurances.getInsuranceById(insuranceId);
+            if(insurance != null) {
+                insuranceList.add(insurance);
+            }
         } else {
             insuranceList = insurances.getInsurances(customerId, type, fromDate, 
                     toDate, active);
@@ -3641,11 +3645,16 @@ public class MainController {
     }
     
     private void searchClaimsTypeEventHandler(ActionEvent event) {
+        // Gets the selected claim type:
         String type = searchClaims.getClaimType();
+        
+        // Clears the ComboBox if no claim type is selected:
         if (type == null) {
             searchClaims.populateDamageCombo(null);
             return;
         } 
+        
+        // Populates the ComboBox with the damages for the selected claim type:
         if (ClaimType.BOAT_CLAIM.toString().equals(type)) {
             searchClaims.populateDamageCombo(
                     BoatInsuranceCoverage.BOAT_PLUS.damages());
@@ -3682,12 +3691,12 @@ public class MainController {
         
         // Collects information about the search terms:
         String claimIdString = searchClaims.getClaimId();
-        String number = searchInsurances.getNumber();
+        String number = searchClaims.getNumber();
         String type = searchClaims.getClaimType();
         Damage damage = searchClaims.getDamage();
-        String insuranceIdString = searchInsurances.getInsuranceId();
-        Calendar fromDate = searchInsurances.getFromDate();
-        Calendar toDate = searchInsurances.getToDate();
+        String insuranceIdString = searchClaims.getInsuranceId();
+        Calendar fromDate = searchClaims.getFromDate();
+        Calendar toDate = searchClaims.getToDate();
         
         // Validates and converts input:
         if (!claimIdString.equals("")) {
@@ -3723,7 +3732,10 @@ public class MainController {
         List<Claim> claimList;
         if (claimId != 0) {
             claimList = new ArrayList<>();
-            claimList.add(claims.getClaimById(claimId));
+            Claim claim = claims.getClaimById(claimId);
+            if(claim != null) {
+                claimList.add(claim);
+            }
         } else {
             claimList = claims.getClaims(customerId, type, damage, insuranceId, 
                     fromDate, toDate);

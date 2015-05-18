@@ -501,6 +501,7 @@ public class RegisterHolidayHomeContentInsurance {
         this.registerButtonMessage.setText(message);
     }
     
+    /** Clears all messages. */
     public void clearMessages() {
         amountMessage.setText("");
         areaMessage.setText("");

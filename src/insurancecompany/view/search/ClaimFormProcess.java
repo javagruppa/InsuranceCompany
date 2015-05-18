@@ -79,7 +79,7 @@ public class ClaimFormProcess {
     }
     
     private void setNotGuiltyButtonEventHandler() {
-        guiltyButton.setOnAction((event) -> {
+        notGuiltyButton.setOnAction((event) -> {
             // just close:
             stage.close();
         });

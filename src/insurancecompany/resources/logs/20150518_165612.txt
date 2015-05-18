@@ -1,0 +1,31 @@
+Logs:Time: Mon May 18 16:55:17 CEST 2015
+Logged in user: Admin
+User id: 1000000
+Stack Trace: java.io.FileInputStream.open(Native Method)
+java.io.FileInputStream.<init>(FileInputStream.java:138)
+java.io.FileInputStream.<init>(FileInputStream.java:93)
+insurancecompany.model.datastructures.ClaimRegister.readClaimsFromFile(ClaimRegister.java:179)
+insurancecompany.controller.MainController.readClaimsFromFile(MainController.java:4195)
+insurancecompany.controller.MainController.readAllDataFromFile(MainController.java:370)
+insurancecompany.controller.MainController.<init>(MainController.java:207)
+insurancecompany.main.Main.start(Main.java:32)
+com.sun.javafx.application.LauncherImpl.lambda$launchApplication1$153(LauncherImpl.java:821)
+com.sun.javafx.application.LauncherImpl$$Lambda$51/1293898605.run(Unknown Source)
+com.sun.javafx.application.PlatformImpl.lambda$runAndWait$166(PlatformImpl.java:323)
+com.sun.javafx.application.PlatformImpl$$Lambda$44/1051754451.run(Unknown Source)
+com.sun.javafx.application.PlatformImpl.lambda$null$164(PlatformImpl.java:292)
+com.sun.javafx.application.PlatformImpl$$Lambda$47/9238389.run(Unknown Source)
+java.security.AccessController.doPrivileged(Native Method)
+com.sun.javafx.application.PlatformImpl.lambda$runLater$165(PlatformImpl.java:291)
+com.sun.javafx.application.PlatformImpl$$Lambda$46/1775282465.run(Unknown Source)
+com.sun.glass.ui.InvokeLaterDispatcher$Future.run(InvokeLaterDispatcher.java:95)
+com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+com.sun.glass.ui.win.WinApplication.lambda$null$141(WinApplication.java:102)
+com.sun.glass.ui.win.WinApplication$$Lambda$37/1109371569.run(Unknown Source)
+java.lang.Thread.run(Thread.java:745)
+
+Description: src\insurancecompany\resources\datastructures\claimSet.dta (The system cannot find the file specified)
+Time: Mon May 18 16:56:05 CEST 2015
+Logged in user: Admin
+User id: 1000000
+Description: Problem med parsing av zipcode til ClarClaimFormView i CarClaimRegistration

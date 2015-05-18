@@ -181,13 +181,13 @@ public class CarInsurance extends Insurance implements Serializable {
      */
     public void dropBonus() {
         // Bonus drops to a minimum of -180 points.
-        if (bonus >= -180 || bonus <= -150) {
+        if (bonus >= -180 && bonus <= -150) {
             bonus = -180;
         // When at 0 or below, bonus drops by 40 points.
-        } else if (bonus >= -140 || bonus <= 0) {
+        } else if (bonus >= -140 && bonus <= 0) {
             bonus -= 40;
         // When between 10 and 70, bonus drops by 30 points.
-        } else if (bonus >= 10 || bonus <= 70) {
+        } else if (bonus >= 10 && bonus <= 70) {
             bonus -= 30;
         // When reaching 75, bonus only drops by 15 points the 5 first years.
         } else if (bonus == 75 && yearsOnSeventyFive <= 5) {

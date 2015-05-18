@@ -34,7 +34,10 @@ import javafx.application.Platform;
 import javafx.beans.value.ObservableValue;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
+import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javax.imageio.ImageIO;
@@ -708,7 +711,8 @@ public class MainController {
                 RegisterCarClaimForm formView = registerCarClaim.getCarClaimFormView();
                 if (formView == null) {
                     // Send carclaimform as null if no carclaimformview has been opened.
-                    CarClaim claim = new CarClaim(customerId, insuranceId, description, dateHappened, damages, appraisal, null);
+                    CarClaim claim = new CarClaim(customerId, insuranceId, description, 
+                            dateHappened, damages, appraisal, image, null);
                     // Add this car claim to the claim register:
                     if (claims.addClaim(claim)) {
                             registerCarClaim.setRegisterButtonMessage(REGISTER_SUCCESS);
@@ -755,7 +759,8 @@ public class MainController {
                         // Create a new car claim form:
                         CarClaimForm carClaimForm = new CarClaimForm(carA, personA, location, insuranceId, snapshot);
                         // Create a new car claim with this claim form:
-                        CarClaim claim = new CarClaim(customerId, insuranceId, description, dateHappened, damages, appraisal, carClaimForm);
+                        CarClaim claim = new CarClaim(customerId, insuranceId, description, 
+                                dateHappened, damages, appraisal, image, carClaimForm);
                         // Add this car claim to the claim register:
                         if (claims.addClaim(claim)) {
                             registerCarClaim.setRegisterButtonMessage(REGISTER_SUCCESS);
@@ -3807,10 +3812,61 @@ public class MainController {
     }
     
     private void searchClaimsFormEventHandler(ActionEvent event ) {
-        
+        // Get the selected claim:
+        Claim claim = searchClaims.getClaimsTableValue();
+        CarClaim carClaim = null;
+        // Only proceed if its a car claim:
+        if (claim instanceof CarClaim) {
+            // Cast to car claim:
+            carClaim = (CarClaim) claim;
+            // Get the claimform to the car claim:
+            CarClaimForm claimForm = carClaim.getClaimForm();
+            // Only proceed if the claim form is not null:
+            if (claimForm != null) {
+                // Get the snapshot of that claimform:
+                Image formImage = claimForm.getSnapshot();
+                // Find the insurance to the car claim:
+                int insuranceId = carClaim.getInsuranceId();
+                Insurance insurance = insurances.getInsuranceById(insuranceId);
+                CarInsurance carInsurance = null;
+                if (insurance instanceof CarInsurance) {
+                    // Cast this insurance to a car insurance:
+                    carInsurance = (CarInsurance) insurance;
+                    // Create a new ClaimFormProcess view, and send the form image and car insurance
+                    // as paramater:
+                    ClaimFormProcess form = new ClaimFormProcess(formImage, carInsurance);
+                    // Create a new stage to be used for the car claim form window:
+                    Stage formStage = new Stage();
+                    // Show the claim form:
+                    form.show(formStage);
+                }
+            }
+        }    
     }
     
     private void searchClaimsImageEventHandler(ActionEvent event ) {
+        // Get the selected claim:
+        Claim claim = searchClaims.getClaimsTableValue();
+        if (claim != null) {
+            // Get the image to that claim:
+            Image image = claim.getImage();
+            // Only proceed if that imag exists:
+            if (image != null) {
+                // Add the image to an image view:
+                final ImageView imv = new ImageView();
+                imv.setImage(image);
+                // Add the imageview to stackpane:
+                StackPane sp = new StackPane();
+                sp.getChildren().add(imv);
+                // Add that stackpane to a new scene:
+                Scene scene = new Scene(sp);
+                // Create a new stage to be used for displaying the image:
+                // Create a new stage and show the scene:
+                Stage imageStage = new Stage();
+                imageStage.setScene(scene);
+                imageStage.show();
+            }
+        }
         
     }
     

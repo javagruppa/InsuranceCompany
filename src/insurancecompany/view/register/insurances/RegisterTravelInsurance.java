@@ -246,11 +246,6 @@ public class RegisterTravelInsurance {
         searchPersonalNumberButton.setOnAction(value);
     }
 
-    // CLEAR MESSAGES METHOD
-    
-    
-    // GET METHODS:
-    
     /** @return The main pane of this class. */
     public GridPane getMainPane() {
         return mainPane;
@@ -286,8 +281,11 @@ public class RegisterTravelInsurance {
         return selectedCustomerId;
     }
     
-    // SET METHODS:
-
+    /** @param selectedCustomerId The selectedCustomerId to set. */
+    public void setSelectedCustomerId(int selectedCustomerId) {
+        this.selectedCustomerId = selectedCustomerId;
+    }
+    
     /** @param message The message to set. */
     public void setCoverageMessage(String message) {
         this.coverageMessage.setFill(Color.FIREBRICK);
@@ -310,24 +308,17 @@ public class RegisterTravelInsurance {
         this.excessMessage.setFill(Color.FIREBRICK);
         this.excessMessage.setText(message);
     }
-    
-    /** @param selectedCustomerId The selectedCustomerId to set. */
-    public void setSelectedCustomerId(int selectedCustomerId) {
-        this.selectedCustomerId = selectedCustomerId;
-    }
 
-    /**
-     * @param registerButtonMessage the registerButtonMessage to set
-     */
-    public void setRegisterButtonMessage(String registerButtonMessage) {
-        this.registerButtonMessage.setText(registerButtonMessage);
+    /** @param message The message to set. */
+    public void setRegisterButtonMessage(String message) {
+        this.registerButtonMessage.setText(message);
     }
     
-    
+    /** Clears all messages. */
     public void clearMessages() {
         coverageMessage.setText("");
+        customerSelectedMessage.setText("");
         excessMessage.setText("");
         registerButtonMessage.setText("");
     }
-    
 }

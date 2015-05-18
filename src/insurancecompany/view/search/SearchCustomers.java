@@ -2,6 +2,7 @@ package insurancecompany.view.search;
 
 import insurancecompany.misc.InsuranceType;
 import insurancecompany.model.people.Customer;
+import java.util.ArrayList;
 import java.util.List;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -58,7 +59,7 @@ public class SearchCustomers {
     private ComboBox<String> numberSelectCombo;
     private ComboBox<String> totalCustomerCombo;
     private Text searchIdMessage;
-    private Text idMessage;
+    private Text searchMessage;
     private TextField firstNameField;
     private TextField lastNameField;
     private TextField numberField;
@@ -117,7 +118,7 @@ public class SearchCustomers {
         totalCustomerCombo = new ComboBox<>();
         populateTotalCustomerCombo();
         searchIdMessage = new Text("");
-        idMessage = new Text("");
+        searchMessage = new Text("");
         firstNameField = new TextField();
         lastNameField = new TextField();
         numberField = new TextField();
@@ -176,7 +177,7 @@ public class SearchCustomers {
         leftPane.add(insuranceTypeLabel, 0, 9);
         leftPane.add(insuranceTypeCombo, 1, 9);
         leftPane.add(searchButton, 1, 10);
-        leftPane.add(idMessage, 0, 11, 2, 1);
+        leftPane.add(searchMessage, 0, 11, 2, 1);
         
         // Adds the nodes to the center part.
         centerPane.add(customersTitle, 0, 0);
@@ -257,7 +258,7 @@ public class SearchCustomers {
                 return new SimpleObjectProperty<>(cellData.getValue()
                         .getLastName());
             } else {
-                return new SimpleObjectProperty(0);
+                return new SimpleObjectProperty("<no name>");
             }
         });
         // Places a SimpleStringProperty version of the customer ID in the 
@@ -356,8 +357,8 @@ public class SearchCustomers {
     }
     
     /** 
-     * @return The insurance type of this class as a String. Null if
-     * no insurance type is selected.
+     * @return The insurance type of this class as a String. Null if no 
+     * insurance type is selected.
      */
     public String getInsuranceType() {
         return (InsuranceType.class.isInstance(insuranceTypeCombo.getValue())) ?
@@ -374,10 +375,23 @@ public class SearchCustomers {
         customerArea.setText(text);
     }
     
+    /** Clears the area, the table and removes the selected table option. */
+    public void clearView() {
+        setCustomerArea("");
+        populateCustomersTable(new ArrayList<>());
+        customersTable.getSelectionModel().clearSelection();
+    }
+    
     /** @param message The message to set. */
-    public void setIdMessage(String message) {
-        this.idMessage.setFill(Color.FIREBRICK);
-        this.idMessage.setText(message);
+    public void setSearchIdMessage(String message) {
+        this.searchIdMessage.setFill(Color.FIREBRICK);
+        this.searchIdMessage.setText(message);
+    }
+    
+    /** @param message The message to set. */
+    public void setSearchMessage(String message) {
+        this.searchMessage.setFill(Color.FIREBRICK);
+        this.searchMessage.setText(message);
     }
     
     /** @param message The message to set. */
@@ -388,7 +402,8 @@ public class SearchCustomers {
     
     /** Clears all messages. */
     public void clearMessages() {
-        this.idMessage.setText("");
+        this.searchIdMessage.setText("");
+        this.searchMessage.setText("");
         this.selectMessage.setText("");
     }
 }

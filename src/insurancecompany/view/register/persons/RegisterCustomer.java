@@ -3,17 +3,14 @@ package insurancecompany.view.register.persons;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
 /**
  * This class creates the graphical user interface (GUI) for registration of 
@@ -53,7 +50,9 @@ public class RegisterCustomer {
     private TextField emailField;
     private TextField phoneField;
     
-    // TODO: Set fixed size for Text message fields:(or one of them)
+    /**
+     * Default constructor. Initializes all field and sets up the view.
+     */
     public RegisterCustomer() {
         
         // Initialization of the pane.

@@ -61,3 +61,27 @@ and open the template in the editor.
 #custom1.button:hover {
     -fx-background-color: #99ff99;
 }
+
+#guilty.button {
+    -fx-border-color: #000000;
+    -fx-border-width: 2px;
+    -fx-background-color: #ff0000;
+    -fx-font-size: 30pt;
+    -fx-padding: 30;
+}
+
+guilty.button:hover {
+    -fx-background-color: #FF5E5E;
+}
+
+#notGuilty.button {
+    -fx-border-color: #000000;
+    -fx-border-width: 2px;
+    -fx-background-color: #66ff66;
+    -fx-font-size: 30pt;
+    -fx-padding: 30;
+}
+
+notGuilty.button:hover {
+    -fx-background-color: #C8FFC8;
+}

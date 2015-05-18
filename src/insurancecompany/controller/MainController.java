@@ -8,7 +8,6 @@ package insurancecompany.controller;
 import insurancecompany.view.MainView;
 import insurancecompany.misc.ClaimType;
 import insurancecompany.misc.EmployeeType;
-import insurancecompany.misc.InsuranceType;
 import insurancecompany.misc.coverages.*;
 import insurancecompany.misc.hometypes.*;
 import insurancecompany.model.bills.*;
@@ -270,7 +269,7 @@ public class MainController {
         registerTravelInsurance.setSearchPersonalNumberButtonEventHandler(this::travelInsuranceSearchPersonalNumberButtonEventHandler);
         
         searchClaims.setClaimTypeEventHandler(this::searchClaimsTypeEventHandler);
-        searchClaims.setSearchIdEventHandler(this::searchInsuranceSearchIdEventHandler);
+        searchClaims.setSearchIdEventHandler(this::searchClaimsSearchIdEventHandler);
         searchClaims.setSearchEventHandler(this::searchClaimsSearchEventHandler);
         searchClaims.setSelectEventHandler(this::searchClaimsSelectEventHandler);
         
@@ -282,6 +281,7 @@ public class MainController {
         searchEmployees.setSelectEventHandler(this::searchEmployeesSelectEventHandler);
         
         searchInsurances.setDeactivateEventHandler(this::searchInsuranceDeactivateEventHandler);
+        searchInsurances.setSearchIdEventHandler(this::searchInsuranceSearchIdEventHandler);
         searchInsurances.setSearchEventHandler(this::searchInsuranceSearchEventHandler);
         searchInsurances.setSelectEventHandler(this::searchInsuranceSelectEventHandler);
     } // end of class initializeRegisterInsuranceEventHandlers
@@ -3696,24 +3696,16 @@ public class MainController {
         }
     }
     
-    private void searchClaimsSearchEventHandler(ActionEvent event ) {
+    private void searchClaimsSearchIdEventHandler(ActionEvent event) {
         // Clears all messages ans the view:
         searchClaims.clearMessages();
         searchClaims.clearView();
         
         // Declares variables to be converted to:
         int claimId = 0;
-        int customerId = 0;
-        int insuranceId = 0;
         
         // Collects information about the search terms:
         String claimIdString = searchClaims.getClaimId();
-        String number = searchClaims.getNumber();
-        String type = searchClaims.getClaimType();
-        Damage damage = searchClaims.getDamage();
-        String insuranceIdString = searchClaims.getInsuranceId();
-        Calendar fromDate = searchClaims.getFromDate();
-        Calendar toDate = searchClaims.getToDate();
         
         // Validates and converts input:
         if (!claimIdString.equals("")) {
@@ -3724,6 +3716,36 @@ public class MainController {
                 return;
             }
         }
+        
+        // Searches through the register:
+        List<Claim> claimList;
+        claimList = new ArrayList<>();
+        Claim claim = claims.getClaimById(claimId);
+        if(claim != null) {
+            claimList.add(claim);
+        }
+        
+        // Populates the table:
+        searchClaims.populateClaimsTable(claimList);
+    }
+    
+    private void searchClaimsSearchEventHandler(ActionEvent event ) {
+        // Clears all messages ans the view:
+        searchClaims.clearMessages();
+        searchClaims.clearView();
+        
+        // Declares variables to be converted to:
+        int customerId = 0;
+        int insuranceId = 0;
+        
+        // Collects information about the search terms:
+        String number = searchClaims.getNumber();
+        String type = searchClaims.getClaimType();
+        Damage damage = searchClaims.getDamage();
+        String insuranceIdString = searchClaims.getInsuranceId();
+        Calendar fromDate = searchClaims.getFromDate();
+        Calendar toDate = searchClaims.getToDate();
+        
         if(!number.equals("")) {
             if(searchClaims.isCustomerIdSelected()) {
                 try {
@@ -3747,16 +3769,8 @@ public class MainController {
         
         // Searches through the register:
         List<Claim> claimList;
-        if (claimId != 0) {
-            claimList = new ArrayList<>();
-            Claim claim = claims.getClaimById(claimId);
-            if(claim != null) {
-                claimList.add(claim);
-            }
-        } else {
-            claimList = claims.getClaims(customerId, type, damage, insuranceId, 
-                    fromDate, toDate);
-        }
+        claimList = claims.getClaims(customerId, type, damage, insuranceId,
+                fromDate, toDate);
         
         // Populates the table:
         searchClaims.populateClaimsTable(claimList);

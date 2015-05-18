@@ -252,7 +252,6 @@ public class MainController {
         registerCarInsurance.setSearchPersonalNumberEventHandler(this::carInsuranceSearchPersonalNumberButtonEventHandler);
         registerCarInsurance.setBrandComboListener(this::brandComboListener);
         registerCarInsurance.setYearComboListener(this::yearComboListener);
-        registerCarInsurance.setCalculateEventHandler(null);
         registerCarInsurance.setRegisterEventHandler(this::carInsuranceRegisterButtonEventHandler);
         
         registerHomeInsurance.setRegisterEventHandler(this::homeInsuranceRegisterButtonEventHandler);

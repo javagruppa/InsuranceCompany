@@ -61,7 +61,6 @@ public class RegisterCarInsurance {
     private int selectedCustomerId;
     
     // Declaration of all the nodes in the right part.
-    private Button calculateButton;
     private Button registerButton;
     private ComboBox<String> alarmCombo;
     private ComboBox<String> brandCombo;
@@ -87,7 +86,6 @@ public class RegisterCarInsurance {
     private Text youngestDriverMessage;
     private Text registerButtonMessage;
     private TextField ownerPersonalNumberField;
-    private TextField premiumField;
     private TextField registrationNumberField;
     
     public RegisterCarInsurance() {
@@ -148,8 +146,6 @@ public class RegisterCarInsurance {
         youngestDriverCombo = new ComboBox();
         populateYoungestDriverCombo();
         ownerPersonalNumberField = new TextField();
-        premiumField = new TextField();
-        premiumField.setEditable(false);
         registrationNumberField = new TextField();
         alarmMessage = new Text();
         brandMessage = new Text(); 
@@ -164,7 +160,6 @@ public class RegisterCarInsurance {
         yearMessage = new Text();
         youngestDriverMessage = new Text();
         registerButtonMessage = new Text();
-        calculateButton = new Button("Regn ut");
         registerButton = new Button("Registrer");
         
         // Declaration and initialization of the texts and labels which are 
@@ -190,7 +185,6 @@ public class RegisterCarInsurance {
         Label modelLabel = new Label("Modell:");
         Label parkingConditionLabel = new Label("Parkeringsforhold:");
         Label personalNumberOwnerLabel = new Label("Eierens personnummer:");
-        Label premiumLabel = new Label("Beregnet forsikringspremie:");
         Label registrationNumberLabel = new Label("Registreringsnummer:");
         Label yearLabel = new Label("År:");     
         Label youngestDriverLabel = new Label("Yngste fører:");
@@ -248,11 +242,8 @@ public class RegisterCarInsurance {
         mainPane.add(alarmLabel, 4, 13);
         mainPane.add(alarmCombo, 5, 13);
         mainPane.add(alarmMessage, 6, 13);
-        mainPane.add(premiumLabel, 4, 14);
-        mainPane.add(premiumField, 5, 14);
-        mainPane.add(calculateButton, 6, 14);
-        mainPane.add(registerButton, 5, 15);
-        mainPane.add(registerButtonMessage, 5, 16);
+        mainPane.add(registerButton, 5, 14);
+        mainPane.add(registerButtonMessage, 5, 15);
     }
     
     /** Sets the content of the ComboBox alarmCombo. */
@@ -409,15 +400,6 @@ public class RegisterCarInsurance {
         yearCombo.valueProperty().addListener(listener);
     }
     
-    /**
-     * Sets the event handler for the calculateButton.
-     * 
-     * @param value The event handler to set.
-     */
-    public void setCalculateEventHandler(EventHandler<ActionEvent> value) {
-        calculateButton.setOnAction(value);
-    }
-
     /**
      * Sets the event handler for the registerButton.
      * 

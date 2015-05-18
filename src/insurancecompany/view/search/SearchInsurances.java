@@ -67,7 +67,7 @@ public class SearchInsurances {
     private DatePicker fromDatePicker;
     private DatePicker toDatePicker;
     private Text searchIdMessage;
-    private Text idMessage;
+    private Text searchMessage;
     private TextField numberField;
     private TextField insuranceIdField;
     
@@ -131,7 +131,7 @@ public class SearchInsurances {
         toDatePicker.setPrefWidth(150);
         DateUtility.restrictDatePickerToOlder(toDatePicker);
         searchIdMessage = new Text("");
-        idMessage = new Text("");
+        searchMessage = new Text("");
         numberField = new TextField();
         insuranceIdField = new TextField();
 
@@ -191,7 +191,7 @@ public class SearchInsurances {
         leftPane.add(toDateLabel, 0, 9);
         leftPane.add(toDatePicker, 1, 9);
         leftPane.add(searchButton, 1, 10);
-        leftPane.add(idMessage, 0, 11, 2, 1);
+        leftPane.add(searchMessage, 0, 11, 2, 1);
         
         // Adds the nodes to the center part.
         centerPane.add(insurancesTitle, 0, 0);
@@ -421,9 +421,15 @@ public class SearchInsurances {
     }
     
     /** @param message The message to set. */
-    public void setIdMessage(String message) {
-        this.idMessage.setFill(Color.FIREBRICK);
-        this.idMessage.setText(message);
+    public void setSearchIdMessage(String message) {
+        this.searchIdMessage.setFill(Color.FIREBRICK);
+        this.searchIdMessage.setText(message);
+    }
+    
+    /** @param message The message to set. */
+    public void setSearchMessage(String message) {
+        this.searchMessage.setFill(Color.FIREBRICK);
+        this.searchMessage.setText(message);
     }
     
     /** @param message The message to set. */
@@ -440,7 +446,8 @@ public class SearchInsurances {
     
     /** Clears all messages. */
     public void clearMessages() {
-        this.idMessage.setText("");
+        this.searchIdMessage.setText("");
+        this.searchMessage.setText("");
         this.selectMessage.setText("");
         this.deactivateMessage.setText("");
     }

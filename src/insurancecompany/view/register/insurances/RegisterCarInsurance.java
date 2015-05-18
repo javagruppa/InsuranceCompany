@@ -391,55 +391,59 @@ public class RegisterCarInsurance {
         });   
     }
     
-    // SET COMBOLISTENER METHODS:
-    
+    /**
+     * Sets the change listener for the brandCombo.
+     * 
+     * @param listener The change listener to set.
+     */
     public void setBrandComboListener(ChangeListener listener) {
         brandCombo.valueProperty().addListener(listener);
     }
     
+    /**
+     * Sets the change listener for the yearCombo.
+     * 
+     * @param listener The change listener to set.
+     */
     public void setYearComboListener(ChangeListener listener) {
         yearCombo.valueProperty().addListener(listener);
     }
     
-    // SET EVENTHANDLER METHODS:
-
-    public void setCalculateButtonEventHandler(EventHandler<ActionEvent> value) {
+    /**
+     * Sets the event handler for the calculateButton.
+     * 
+     * @param value The event handler to set.
+     */
+    public void setCalculateEventHandler(EventHandler<ActionEvent> value) {
         calculateButton.setOnAction(value);
     }
 
-    public void setRegisterButtonEventHandler(EventHandler<ActionEvent> value) {
+    /**
+     * Sets the event handler for the registerButton.
+     * 
+     * @param value The event handler to set.
+     */
+    public void setRegisterEventHandler(EventHandler<ActionEvent> value) {
         registerButton.setOnAction(value);
     }
     
-    public void setSearchCustomerIdButtonEventHandler(EventHandler<ActionEvent> value) {
+    /**
+     * Sets the event handler for the searchCustomerIdButton.
+     * 
+     * @param value The event handler to set.
+     */
+    public void setSearchCustomerIdEventHandler(EventHandler<ActionEvent> value) {
         searchCustomerIdButton.setOnAction(value);
     }
 
-    public void setSearchPersonalNumberButtonEventHandler(EventHandler<ActionEvent> value) {
+    /**
+     * Sets the event handler for the searchPersonalNumberButton.
+     * 
+     * @param value The event handler to set.
+     */
+    public void setSearchPersonalNumberEventHandler(EventHandler<ActionEvent> value) {
         searchPersonalNumberButton.setOnAction(value);
     }
-    
-    // CLEAR MESSAGES METHOD:
-    /**
-     * Clears the messages used to display invalid input.
-     */
-    public void clearMessages() {
-        alarmMessage.setText("");
-        brandMessage.setText("");
-        coverageMessage.setText("");
-        drivingLengthMessage.setText("");
-        excessMessage.setText("");
-        existingBonusMessage.setText("");
-        modelMessage.setText("");
-        parkingConditionMessage.setText("");
-        ownerPersonalNumberMessage.setText("");
-        registrationNumberMessage.setText("");
-        yearMessage.setText("");
-        youngestDriverMessage.setText("");
-        registerButtonMessage.setText("");
-    }
-    
-    // GET METHODS:
     
     /** @return The main pane of this class. */
     public GridPane getMainPane() {
@@ -453,7 +457,7 @@ public class RegisterCarInsurance {
 
     /** @return The value of brandCombo. */
     public String getBrand() {
-        return brandCombo.getValue() == null ? "" : brandCombo.getValue().toString();
+        return brandCombo.getValue() == null ? "" : brandCombo.getValue();
     }
 
     /** @return The value of coverageCombo. */
@@ -530,8 +534,11 @@ public class RegisterCarInsurance {
     public Object getBrandComboValue() {
         return brandCombo.getValue();
     }
-    
-    // SET METHODS
+
+    /** @param selectedCustomerId The selectedCustomerId to set. */
+    public void setSelectedCustomerId(int selectedCustomerId) {
+        this.selectedCustomerId = selectedCustomerId;
+    }
     
     /** @param message The message to set. */
     public void setAlarmMessage(String message) {
@@ -604,11 +611,6 @@ public class RegisterCarInsurance {
         this.registrationNumberMessage.setText(message);
     }
 
-    /** @param selectedCustomerId The selectedCustomerId to set. */
-    public void setSelectedCustomerId(int selectedCustomerId) {
-        this.selectedCustomerId = selectedCustomerId;
-    }
-
     /** @param message The message to set. */
     public void setYearMessage(String message) {
         this.yearMessage.setFill(Color.FIREBRICK);
@@ -621,10 +623,26 @@ public class RegisterCarInsurance {
         this.youngestDriverMessage.setText(message);
     }
 
-    /**
-     * @param registerButtonMessage the registerButtonMessage to set
-     */
-    public void setRegisterButtonMessage(String registerButtonMessage) {
-        this.registerButtonMessage.setText(registerButtonMessage);
+    /** @param message The message to set. */
+    public void setRegisterButtonMessage(String message) {
+        this.registerButtonMessage.setText(message);
+    }
+    
+    /** Clears all messages. */
+    public void clearMessages() {
+        alarmMessage.setText("");
+        brandMessage.setText("");
+        coverageMessage.setText("");
+        customerSelectedMessage.setText("");
+        drivingLengthMessage.setText("");
+        excessMessage.setText("");
+        existingBonusMessage.setText("");
+        modelMessage.setText("");
+        parkingConditionMessage.setText("");
+        ownerPersonalNumberMessage.setText("");
+        registerButtonMessage.setText("");
+        registrationNumberMessage.setText("");
+        yearMessage.setText("");
+        youngestDriverMessage.setText("");
     }
 }

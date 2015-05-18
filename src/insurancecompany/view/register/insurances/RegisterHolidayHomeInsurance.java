@@ -308,42 +308,42 @@ public class RegisterHolidayHomeInsurance {
         });   
     }
     
-    // SET EVENTHANDLER METHODS:
-
-    public void setCalculateButtonEventHandler(EventHandler<ActionEvent> value) {
+    /**
+     * Sets the event handler for the calculateButton.
+     * 
+     * @param value The event handler to set.
+     */
+    public void setCalculateEventHandler(EventHandler<ActionEvent> value) {
         calculateButton.setOnAction(value);
     }
 
-    public void setRegisterButtonEventHandler(EventHandler<ActionEvent> value) {
+    /**
+     * Sets the event handler for the registerButton.
+     * 
+     * @param value The event handler to set.
+     */
+    public void setRegisterEventHandler(EventHandler<ActionEvent> value) {
         registerButton.setOnAction(value);
     }
     
-    public void setSearchCustomerIdButtonEventHandler(EventHandler<ActionEvent> value) {
+    /**
+     * Sets the event handler for the searchCustomerIdButton.
+     * 
+     * @param value The event handler to set.
+     */
+    public void setSearchCustomerIdEventHandler(EventHandler<ActionEvent> value) {
         searchCustomerIdButton.setOnAction(value);
     }
 
-    public void setSearchPersonalNumberButtonEventHandler(EventHandler<ActionEvent> value) {
+    /**
+     * Sets the event handler for the searchPersonalNumberButton.
+     * 
+     * @param value The event handler to set.
+     */
+    public void setSearchPersonalNumberEventHandler(EventHandler<ActionEvent> value) {
         searchPersonalNumberButton.setOnAction(value);
     }
 
-    // CLEAR MESSAGES METHOD
-    
-    public void clearMessages() {
-        areaMessage.setText("");
-        cityMessage.setText("");
-        coverageMessage.setText("");
-        excessMessage.setText("");
-        materialMessage.setText("");
-        rentalMessage.setText("");
-        streetMessage.setText("");
-        typeMessage.setText("");
-        yearMessage.setText("");
-        zipCodeMessage.setText("");
-        registerButtonMessage.setText("");
-    }
-    
-    // GET METHODS:
-    
     /** @return The main pane of this class. */
     public GridPane getMainPane() {
         return mainPane;
@@ -429,8 +429,6 @@ public class RegisterHolidayHomeInsurance {
         return zipCodeField.getText();
     }
     
-    // SET METHODS:
-
     /** @param message The message to set. */
     public void setAreaMessage(String message) {
         this.areaMessage.setFill(Color.FIREBRICK);
@@ -507,10 +505,24 @@ public class RegisterHolidayHomeInsurance {
         this.zipCodeMessage.setText(message);
     }
 
-    /**
-     * @param registerButtonMessage the registerButtonMessage to set
-     */
-    public void setRegisterButtonMessage(String registerButtonMessage) {
-        this.registerButtonMessage.setText(registerButtonMessage);
+    /** @param message The message to set. */
+    public void setRegisterButtonMessage(String message) {
+        this.registerButtonMessage.setText(message);
+    }
+    
+    /** Clears all messages. */
+    public void clearMessages() {
+        areaMessage.setText("");
+        cityMessage.setText("");
+        coverageMessage.setText("");
+        customerSelectedMessage.setText("");
+        excessMessage.setText("");
+        materialMessage.setText("");
+        registerButtonMessage.setText("");
+        rentalMessage.setText("");
+        streetMessage.setText("");
+        typeMessage.setText("");
+        yearMessage.setText("");
+        zipCodeMessage.setText("");
     }
 }

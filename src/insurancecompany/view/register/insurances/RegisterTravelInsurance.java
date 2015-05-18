@@ -210,34 +210,42 @@ public class RegisterTravelInsurance {
         });   
     }
     
-    // SET EVENTHANDLER METHODS:
-    
-    public void setCalculateButtonEventHandler(EventHandler<ActionEvent> value) {
+    /**
+     * Sets the event handler for the calculateButton.
+     * 
+     * @param value The event handler to set.
+     */
+    public void setCalculateEventHandler(EventHandler<ActionEvent> value) {
         calculateButton.setOnAction(value);
     }
 
-    public void setRegisterButtonEventHandler(EventHandler<ActionEvent> value) {
+    /**
+     * Sets the event handler for the registerButton.
+     * 
+     * @param value The event handler to set.
+     */
+    public void setRegisterEventHandler(EventHandler<ActionEvent> value) {
         registerButton.setOnAction(value);
     }
     
-    public void setSearchCustomerIdButtonEventHandler(EventHandler<ActionEvent> value) {
+    /**
+     * Sets the event handler for the searchCustomerIdButton.
+     * 
+     * @param value The event handler to set.
+     */
+    public void setSearchCustomerIdEventHandler(EventHandler<ActionEvent> value) {
         searchCustomerIdButton.setOnAction(value);
     }
 
-    public void setSearchPersonalNumberButtonEventHandler(EventHandler<ActionEvent> value) {
+    /**
+     * Sets the event handler for the searchPersonalNumberButton.
+     * 
+     * @param value The event handler to set.
+     */
+    public void setSearchPersonalNumberEventHandler(EventHandler<ActionEvent> value) {
         searchPersonalNumberButton.setOnAction(value);
     }
 
-    // CLEAR MESSAGES METHOD
-    
-    public void clearMessages() {
-        coverageMessage.setText("");
-        excessMessage.setText("");
-        registerButtonMessage.setText("");
-    }
-    
-    // GET METHODS:
-    
     /** @return The main pane of this class. */
     public GridPane getMainPane() {
         return mainPane;
@@ -273,8 +281,11 @@ public class RegisterTravelInsurance {
         return selectedCustomerId;
     }
     
-    // SET METHODS:
-
+    /** @param selectedCustomerId The selectedCustomerId to set. */
+    public void setSelectedCustomerId(int selectedCustomerId) {
+        this.selectedCustomerId = selectedCustomerId;
+    }
+    
     /** @param message The message to set. */
     public void setCoverageMessage(String message) {
         this.coverageMessage.setFill(Color.FIREBRICK);
@@ -297,16 +308,17 @@ public class RegisterTravelInsurance {
         this.excessMessage.setFill(Color.FIREBRICK);
         this.excessMessage.setText(message);
     }
-    
-    /** @param selectedCustomerId The selectedCustomerId to set. */
-    public void setSelectedCustomerId(int selectedCustomerId) {
-        this.selectedCustomerId = selectedCustomerId;
-    }
 
-    /**
-     * @param registerButtonMessage the registerButtonMessage to set
-     */
-    public void setRegisterButtonMessage(String registerButtonMessage) {
-        this.registerButtonMessage.setText(registerButtonMessage);
+    /** @param message The message to set. */
+    public void setRegisterButtonMessage(String message) {
+        this.registerButtonMessage.setText(message);
+    }
+    
+    /** Clears all messages. */
+    public void clearMessages() {
+        coverageMessage.setText("");
+        customerSelectedMessage.setText("");
+        excessMessage.setText("");
+        registerButtonMessage.setText("");
     }
 }

@@ -86,6 +86,7 @@ public class SearchClaims {
     
     // Declaration of all the nodes in the right part.
     private Button disbursementButton;
+    private Text disbursementMessage;
     private TextArea claimArea;
     private TextArea insuranceArea;
     private TextField disbursementField;
@@ -157,6 +158,7 @@ public class SearchClaims {
 
         // Initialization of all the nodes in the right part.
         disbursementButton = new Button("Sett erstatningsbeløp");
+        disbursementMessage = new Text("");
         claimArea = new TextArea();
         insuranceArea = new TextArea();
         disbursementField = new TextField();
@@ -217,6 +219,7 @@ public class SearchClaims {
         rightPane.add(insuranceArea, 0, 3, 2, 1);
         rightPane.add(disbursementField, 0, 4);
         rightPane.add(disbursementButton, 1, 4);
+        rightPane.add(disbursementMessage, 0, 5, 2, 1);
     }
     
     /** Sets the content of the ComboBox claimTypeCombo. */
@@ -384,6 +387,11 @@ public class SearchClaims {
         return claimIdField.getText();
     }
     
+    /** @return The disbursement of this class as a String. */
+    public String getDisbursement() {
+        return disbursementField.getText();
+    }
+    
     /** @return The number of this class as a String. */
     public String getNumber() {
         return numberField.getText();
@@ -463,6 +471,12 @@ public class SearchClaims {
     }
     
     /** @param message The message to set. */
+    public void setDisbursementMessage(String message) {
+        this.disbursementMessage.setFill(Color.FIREBRICK);
+        this.disbursementMessage.setText(message);
+    }
+    
+    /** @param message The message to set. */
     public void setSearchIdMessage(String message) {
         this.searchIdMessage.setFill(Color.FIREBRICK);
         this.searchIdMessage.setText(message);
@@ -482,6 +496,7 @@ public class SearchClaims {
     
     /** Clears all messages. */
     public void clearMessages() {
+        this.disbursementMessage.setText("");
         this.searchIdMessage.setText("");
         this.searchMessage.setText("");
         this.selectMessage.setText("");

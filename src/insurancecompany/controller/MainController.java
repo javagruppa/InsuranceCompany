@@ -234,8 +234,8 @@ public class MainController {
         initializeRegisterInsuranceEventHandlers();
         initializeRegisterClaimEventHandlers();
         initializeSearchEventHandlers();
-        mainView.setSaveDataButtonEventHandler(this::adminViewSaveDataButtonEventHandler);
-        mainView.setExitButtonEventHandler(this::adminViewExitButtonEventHandler);
+        mainView.setSaveDataButtonEventHandler(this::mainViewSaveDataButtonEventHandler);
+        mainView.setExitButtonEventHandler(this::mainViewExitButtonEventHandler);
         
         
         registerCustomer.setRegisterButtonEventHandler(this::registerCustomerButtonEventHandler);
@@ -349,7 +349,7 @@ public class MainController {
         searchInsurances.setSelectEventHandler(this::searchInsuranceSelectEventHandler);
     } // end of class initializeSearchEventHandlers
     
-    private void adminViewSaveDataButtonEventHandler(ActionEvent event) {
+    private void mainViewSaveDataButtonEventHandler(ActionEvent event) {
         writeBillsToFile();
         writeClaimsToFile();
         writeCustomersToFile();
@@ -378,7 +378,7 @@ public class MainController {
         readInsurancesFromFile();  
     }
     
-    private void adminViewExitButtonEventHandler(ActionEvent event) {
+    private void mainViewExitButtonEventHandler(ActionEvent event) {
         Platform.exit();
     }    
     

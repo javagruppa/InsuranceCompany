@@ -1,11 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package insurancecompany.model.datastructures;
 
-import insurancecompany.misc.InsuranceType;
 import insurancecompany.model.insurances.CarInsurance;
 import insurancecompany.model.insurances.Insurance;
 import java.io.*;
@@ -17,49 +11,42 @@ import java.util.List;
 import java.util.Set;
 
 /**
- *
+ * This class creates the register for insurances. It consists of a HashSet with
+ * all the claims as well as several methods to manipulate and get information 
+ * from the register.
+ * 
+ * @author André
  * @author Sindre
  */
 public class InsuranceRegister {
-    
+    /** The file path of the file where the insurances are saved. */
     private static String insurancesFilePath = "src/insurancecompany/resources/datastructures/insuranceSet.dta";
-    
-    /** The list of this insurance register. */
+    /** The set of insurances. */
     private Set<Insurance> insurances;
     
     /**
-     * Constructs a new InsuranceRegister with an empty list.
+     * Default constructor. Initializes the set.
      */
     public InsuranceRegister() {
         insurances = new HashSet<>();
     }
     
     /**
-     * Adds an insurance to the list insurances.
+     * Adds a new insurance to this register if it does not already exist.
      * 
-     * @param insurance insurance to be appended to this list
-     * @return true if this list changed as a result of the call
+     * @param insurance Insurance to be added to the register.
+     * @return True if this list changed as a result of the call.
      */
     public boolean addInsurance(Insurance insurance) {
         return insurances.add(insurance);
     }
     
     /**
-     * Deletes an insurance from the list insurances.
-     * 
-     * @param insurance insurance to be removed from this list
-     * @return true if this list changed as a result of the call
-     */
-    public boolean deleteInsurance(Insurance insurance) {
-        return insurances.removeIf(i -> i.equals(insurance));
-    }
-    
-    /**
      * Returns an ArrayList of customer ids belonging to customers who has an 
-     * insurances of the specified type.
+     * insurance of the specified type.
      * 
-     * @param insuranceName the specified type of insurance
-     * @return an ArrayList of customer ids
+     * @param insuranceName The specified type of insurance.
+     * @return An ArrayList of customer IDs.
      */
     public List<Object> getCustomerIds(String insuranceName) {
         // Creates an ArrayList which will be returned at the end of the 
@@ -70,7 +57,7 @@ public class InsuranceRegister {
         // Runs through the whole list.
         while(iterator.hasNext()) {
             Insurance insurance = iterator.next();
-            // Appends the customer id of the insurance to the list if the 
+            // Appends the customer ID of the insurance to the list if the 
             // insurance is of the specified type.
             if(insurance.getName().equals(insuranceName)) {
                 result.add(insurance.getCustomerId());
@@ -80,6 +67,13 @@ public class InsuranceRegister {
         return result;
     }
     
+    /**
+     * Finds and returns an insurance based on insurance ID.
+     * 
+     * @param insuranceId Insurance ID of the insurance that the method looks 
+     * for.
+     * @return The insurance if it is found. Null otherwise.
+     */
     public Insurance getInsuranceById(int insuranceId) {
         for (Insurance insurance : insurances) {
             if (insurance.getInsuranceId() == insuranceId) {
@@ -89,6 +83,20 @@ public class InsuranceRegister {
         return null;
     }
     
+    /**
+     * Finds and returns a list of insurances based on the parameters.
+     * 
+     * @param customerId The customer ID of the insurances that the method looks 
+     * for. It's 0 if it's not part of the criteria.
+     * @param type The insurance type of the insurances that the method looks 
+     * for. It's null if it's not part of the criteria.
+     * @param fromDate The earliest date the insurance was signed. It's null if 
+     * it's not part of the criteria.
+     * @param toDate The latest date the insurance was signed. It's null if it's
+     * not part of the criteria.
+     * @param active True if the method is only looking for active insurances.
+     * @return A list of all the insurances that match the criteria.
+     */
     public List<Insurance> getInsurances(int customerId, String type, 
             Calendar fromDate, Calendar toDate, boolean active) {
         List<Insurance> result = new ArrayList<>();
@@ -104,10 +112,23 @@ public class InsuranceRegister {
             }
         }
         return result;
+    } 
+
+    /** @return A set of all the insurances in the register. */
+    public Set<Insurance> getInsurances() {
+        return insurances;
     }
     
+    /**
+     * Finds and returns all the insurances to a customer with the specified
+     * customer ID.
+     * 
+     * @param customerId The customer ID of the customer who owns the 
+     * insurances.
+     * @return A list of insurances.
+     */
     public List<Insurance> getAllInsurancesByCustomerId(int customerId) {
-        List<Insurance> result = new ArrayList<Insurance>();
+        List<Insurance> result = new ArrayList<>();
         for (Insurance insurance : insurances) {
             if (insurance.getCustomerId() == customerId) {
                 result.add(insurance);
@@ -116,6 +137,14 @@ public class InsuranceRegister {
         return result;
     }
     
+    /**
+     * Finds and returns all active insurances to a customer with the specified
+     * customer ID.
+     * 
+     * @param customerId The customer ID of the customer who owns the 
+     * insurances.
+     * @return A list of insurances.
+     */
     public List<Insurance> getAllActiveInsurancesByCustomerId(int customerId) {
         List<Insurance> result = new ArrayList<Insurance>();
         for (Insurance insurance : insurances) {
@@ -127,11 +156,13 @@ public class InsuranceRegister {
     }
     
     /**
-     * Returns a List of all active insurances of a specified class type to a 
-     * customer by its customer id.
-     * @param customerId
-     * @param type
-     * @return 
+     * Finds and returns all active insurances of a specified type to a 
+     * customer with the specified customer ID.
+     * 
+     * @param customerId The customer ID of the customer who owns the 
+     * insurances.
+     * @param type The insurance type of the insurances.
+     * @return A list of insurances.
      */
     public List<Insurance> getAllActiveTypeInsurancesByCustomerId(int customerId, Class<?> type) {
         List<Insurance> result = new ArrayList<Insurance>();
@@ -143,7 +174,14 @@ public class InsuranceRegister {
         return result;
     }
     
-    
+    /**
+     * Finds and returns the number of active insurances to a customer with the
+     * specified customer ID.
+     * 
+     * @param customerId The customer ID of the customer who owns the 
+     * insurances.
+     * @return The number of insurances as an int.
+     */
     public int getNumberOfActiveInsurances(int customerId) {
         int result = 0;
         // Goes through all insurances
@@ -158,102 +196,21 @@ public class InsuranceRegister {
     }
     
     /**
-     * Returns the number of insurances of the specified type.
+     * Sets all the insurances of the customer with the specified customer ID
+     * inactive.
      * 
-     * @param type the specified type of insurance
-     * @return the number of insurances of the specified type
-     */
-    public int getNumberOfInsuranceByType(Class<?> type) {
-        // Creates an integer which will be returned at the end of the method.
-        int result = 0;
-        // Creates an iterator for the list.
-        Iterator<Insurance> iterator = insurances.iterator();
-        // Runs through the whole list.
-        while(iterator.hasNext()) {
-            Insurance insurance = iterator.next();
-            // Increases the result by one if the insurance is of the specified 
-            // type.
-            if(type.isInstance(insurance)) {
-                result++;
-            }
-        }
-        // Returns the result.
-        return result;
-    }
-    
-    /**
-     * Returns the yearly insurance premium of a customer with the specified 
-     * customer id.
-     * 
-     * @param customerId the specified customer id
-     * @return the yearly insurance premium of a customer
-     */
-    public int getTotalPremium(int customerId) {
-        // Creates an integer which will be returned at the end of the method.
-        int result = 0;
-        // Creates an iterator for the list.
-        Iterator<Insurance> iterator = insurances.iterator();
-        // Runs through the whole list.
-        while(iterator.hasNext()) {
-            Insurance insurance = iterator.next();
-            // Appends the yearly insurance premium of the insurance to the 
-            // result if the insurance belongs to the customer with the 
-            // specified customer id.
-            if(insurance.getCustomerId() == customerId) {
-                result += insurance.getPremium();
-            }
-        }
-        // Returns the result.
-        return result;
-    }
-    
-    /**
-     * Returns the total yearly insurance premium of all customers.
-     * 
-     * @return the total yearly insurance premium
-     */
-    public int getTotalPremiumOfAll() {
-        // Creates an integer which will be returned at the end of the method.
-        int result = 0;
-        // Creates an iterator for the list.
-        Iterator<Insurance> iterator = insurances.iterator();
-        // Runs through the whole list.
-        while(iterator.hasNext()) {
-            // Appends the yearly insurance premium of the insurance to the 
-            // result.
-            Insurance insurance = iterator.next();
-            result += insurance.getPremium();
-        }
-        // Returns the result.
-        return result;
-    }
-    
-    /**
-     * Returns the total yearly insurance premium of the specified type of 
+     * @param customerId The customer ID of the customer who owns the 
      * insurances.
-     * 
-     * @param type the specified type of insurances
-     * @return the total yearly insurance premium of the type
      */
-    public int getTotalPremiumOfAllByType(Class<?> type) {
-        // Creates an integer which will be returned at the end of the method.
-        int result = 0;
-        // Creates an iterator for the list.
-        Iterator<Insurance> iterator = insurances.iterator();
-        // Runs through the whole list.
-        while(iterator.hasNext()) {
-            // Appends the yearly insurance premium of the insurance to the 
-            // result if the insurance is of the specified type.
-            Insurance insurance = iterator.next();
-            if(type.isInstance(insurance)) {
-                result += insurance.getPremium();
+    public void setAllInsurancesInactive(int customerId) {
+        for (Insurance insurance : insurances) {
+            if(insurance.getCustomerId() == customerId) {
+                insurance.setActive(false);
             }
         }
-        // Returns the result.
-        return result;
     }
     
-    /***
+    /**
      * Updates all car insurance bonuses, where a year or more has gone since
      * last update or damage.
      */
@@ -267,8 +224,10 @@ public class InsuranceRegister {
             }
         }
     }
+    
     /**
      * Writes this registers set of insurances to file.
+     * 
      * @throws IOException 
      */
     public void writeInsurancesToFile() throws IOException{
@@ -277,8 +236,11 @@ public class InsuranceRegister {
             oos.writeObject(insurances);
         }
     }
+    
     /**
-     * Reads a set of insurances from file and stores them in the set in this register.
+     * Reads a set of insurances from file and stores them in the set in this 
+     * register.
+     * 
      * @throws IOException
      * @throws ClassNotFoundException 
      */
@@ -286,21 +248,6 @@ public class InsuranceRegister {
         try (ObjectInputStream ois = new ObjectInputStream(
                 new FileInputStream(insurancesFilePath))) {
             insurances = (HashSet<Insurance>) ois.readObject();        
-        }
-    }    
-
-    /**
-     * @return the insurances
-     */
-    public Set<Insurance> getInsurances() {
-        return insurances;
-    }
-    
-    public void setAllInsurancesInactive(int customerId) {
-        for (Insurance insurance : insurances) {
-            if(insurance.getCustomerId() == customerId) {
-                insurance.setActive(false);
-            }
         }
     }
 }

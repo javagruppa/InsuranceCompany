@@ -59,6 +59,7 @@ public class SearchInsurances {
     private GridPane rightPane;
     
     // Declaration of all the nodes in the left part.
+    private Button searchIdButton;
     private Button searchButton;
     private ComboBox<String> activeCombo;
     private ComboBox<Object> insuranceTypeCombo;
@@ -114,6 +115,7 @@ public class SearchInsurances {
         mainPane.getColumnConstraints().addAll(col1, col2, col3);
         
         // Initialization of all the nodes in the left part.
+        searchIdButton = new Button("Søk");
         searchButton = new Button("Søk");
         activeCombo = new ComboBox<>();
         populateActiveCombo();
@@ -173,20 +175,21 @@ public class SearchInsurances {
         leftPane.add(insuranceIdTitle, 0, 0, 2, 1);
         leftPane.add(insuranceIdLabel, 0, 1);
         leftPane.add(insuranceIdField, 1, 1);
-        leftPane.add(new Text(""), 0, 2); // Creates a blank row.
-        leftPane.add(searchTermsTitle, 0, 3, 2, 1);
-        leftPane.add(numberSelectCombo, 0, 4);
-        leftPane.add(numberField, 1, 4);
-        leftPane.add(insuranceTypeLabel, 0, 5);
-        leftPane.add(insuranceTypeCombo, 1, 5);
-        leftPane.add(activeLabel, 0, 6);
-        leftPane.add(activeCombo, 1, 6);
-        leftPane.add(fromDateLabel, 0, 7);
-        leftPane.add(fromDatePicker, 1, 7);
-        leftPane.add(toDateLabel, 0, 8);
-        leftPane.add(toDatePicker, 1, 8);
-        leftPane.add(searchButton, 1, 9);
-        leftPane.add(idMessage, 0, 10, 2, 1);
+        leftPane.add(searchIdButton, 1, 2);
+        leftPane.add(new Text(""), 0, 3); // Creates a blank row.
+        leftPane.add(searchTermsTitle, 0, 4, 2, 1);
+        leftPane.add(numberSelectCombo, 0, 5);
+        leftPane.add(numberField, 1, 5);
+        leftPane.add(insuranceTypeLabel, 0, 6);
+        leftPane.add(insuranceTypeCombo, 1, 6);
+        leftPane.add(activeLabel, 0, 7);
+        leftPane.add(activeCombo, 1, 7);
+        leftPane.add(fromDateLabel, 0, 8);
+        leftPane.add(fromDatePicker, 1, 8);
+        leftPane.add(toDateLabel, 0, 9);
+        leftPane.add(toDatePicker, 1, 9);
+        leftPane.add(searchButton, 1, 10);
+        leftPane.add(idMessage, 0, 11, 2, 1);
         
         // Adds the nodes to the center part.
         centerPane.add(insurancesTitle, 0, 0);
@@ -291,6 +294,15 @@ public class SearchInsurances {
      */
     public void setDeactivateEventHandler(EventHandler<ActionEvent> value) {
         deactivateButton.setOnAction(value);
+    }
+    
+    /**
+     * Sets the event handler for the searchIdButton.
+     * 
+     * @param value The event handler to set.
+     */
+    public void setSearchIdEventHandler(EventHandler<ActionEvent> value) {
+        searchIdButton.setOnAction(value);
     }
     
     /**

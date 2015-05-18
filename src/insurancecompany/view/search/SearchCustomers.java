@@ -51,6 +51,7 @@ public class SearchCustomers {
     private GridPane rightPane;
     
     // Declaration of all the nodes in the left part.
+    private Button searchIdButton;
     private Button searchButton;
     private ComboBox<String> activeCombo;
     private ComboBox<Object> insuranceTypeCombo;
@@ -104,6 +105,7 @@ public class SearchCustomers {
         mainPane.getColumnConstraints().addAll(col1, col2, col3);
         
         // Initialization of all the nodes in the left part.
+        searchIdButton = new Button("Søk");
         searchButton = new Button("Søk");
         activeCombo = new ComboBox<>();
         populateActiveCombo();
@@ -158,20 +160,21 @@ public class SearchCustomers {
         leftPane.add(customerIdTitle, 0, 0, 2, 1);
         leftPane.add(numberSelectCombo, 0, 1);
         leftPane.add(numberField, 1, 1);
-        leftPane.add(new Text(""), 0, 2); // Creates a blank row.
-        leftPane.add(searchTermsTitle, 0, 3, 2, 1);
-        leftPane.add(firstNameLabel, 0, 4);
-        leftPane.add(firstNameField, 1, 4);
-        leftPane.add(lastNameLabel, 0, 5);
-        leftPane.add(lastNameField, 1, 5);
-        leftPane.add(totalCustomerLabel, 0, 6);
-        leftPane.add(totalCustomerCombo, 1, 6);
-        leftPane.add(activeField, 0, 7);
-        leftPane.add(activeCombo, 1, 7);
-        leftPane.add(insuranceTypeLabel, 0, 8);
-        leftPane.add(insuranceTypeCombo, 1, 8);
-        leftPane.add(searchButton, 1, 9);
-        leftPane.add(idMessage, 0, 10, 2, 1);
+        leftPane.add(searchIdButton, 1, 2);
+        leftPane.add(new Text(""), 0, 3); // Creates a blank row.
+        leftPane.add(searchTermsTitle, 0, 4, 2, 1);
+        leftPane.add(firstNameLabel, 0, 5);
+        leftPane.add(firstNameField, 1, 5);
+        leftPane.add(lastNameLabel, 0, 6);
+        leftPane.add(lastNameField, 1, 6);
+        leftPane.add(totalCustomerLabel, 0, 7);
+        leftPane.add(totalCustomerCombo, 1, 7);
+        leftPane.add(activeField, 0, 8);
+        leftPane.add(activeCombo, 1, 8);
+        leftPane.add(insuranceTypeLabel, 0, 9);
+        leftPane.add(insuranceTypeCombo, 1, 9);
+        leftPane.add(searchButton, 1, 10);
+        leftPane.add(idMessage, 0, 11, 2, 1);
         
         // Adds the nodes to the center part.
         centerPane.add(customersTitle, 0, 0);
@@ -282,6 +285,15 @@ public class SearchCustomers {
      */
     public void setDeactivateEventHandler(EventHandler<ActionEvent> value) {
         deactivateButton.setOnAction(value);
+    }
+    
+    /**
+     * Sets the event handler for the searchIdButton.
+     * 
+     * @param value The event handler to set.
+     */
+    public void setSearchIdEventHandler(EventHandler<ActionEvent> value) {
+        searchIdButton.setOnAction(value);
     }
     
     /**

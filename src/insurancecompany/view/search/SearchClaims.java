@@ -62,6 +62,7 @@ public class SearchClaims {
     private GridPane rightPane;
     
     // Declaration of all the nodes in the left part.
+    private Button searchIdButton;
     private Button searchButton;
     private ComboBox<Object> claimTypeCombo;
     private ComboBox<Object> damageCombo;
@@ -119,6 +120,7 @@ public class SearchClaims {
         mainPane.getColumnConstraints().addAll(col1, col2, col3);
         
         // Initialization of all the nodes in the left part.
+        searchIdButton = new Button("Søk");
         searchButton = new Button("Søk");
         claimTypeCombo = new ComboBox<>();
         populateClaimTypeCombo();
@@ -182,22 +184,23 @@ public class SearchClaims {
         leftPane.add(claimIdTitle, 0, 0, 2, 1);
         leftPane.add(claimIdLabel, 0, 1);
         leftPane.add(claimIdField, 1, 1);
-        leftPane.add(new Text(""), 0, 2); // Creates a blank row.
-        leftPane.add(searchTermsTitle, 0, 3, 2, 1);
-        leftPane.add(numberSelectCombo, 0, 4);
-        leftPane.add(numberField, 1, 4);
-        leftPane.add(claimTypeLabel, 0, 5);
-        leftPane.add(claimTypeCombo, 1, 5);
-        leftPane.add(damageLabel, 0, 6);
-        leftPane.add(damageCombo, 1, 6);
-        leftPane.add(insuranceIdLabel, 0, 7);
-        leftPane.add(insuranceIdField, 1, 7);
-        leftPane.add(fromDateLabel, 0, 8);
-        leftPane.add(fromDatePicker, 1, 8);
-        leftPane.add(toDateLabel, 0, 9);
-        leftPane.add(toDatePicker, 1, 9);
-        leftPane.add(searchButton, 1, 10);
-        leftPane.add(idMessage, 0, 11, 2, 1);
+        leftPane.add(searchIdButton, 1, 2);
+        leftPane.add(new Text(""), 0, 3); // Creates a blank row.
+        leftPane.add(searchTermsTitle, 0, 4, 2, 1);
+        leftPane.add(numberSelectCombo, 0, 5);
+        leftPane.add(numberField, 1, 5);
+        leftPane.add(claimTypeLabel, 0, 6);
+        leftPane.add(claimTypeCombo, 1, 6);
+        leftPane.add(damageLabel, 0, 7);
+        leftPane.add(damageCombo, 1, 7);
+        leftPane.add(insuranceIdLabel, 0, 8);
+        leftPane.add(insuranceIdField, 1, 8);
+        leftPane.add(fromDateLabel, 0, 9);
+        leftPane.add(fromDatePicker, 1, 9);
+        leftPane.add(toDateLabel, 0, 10);
+        leftPane.add(toDatePicker, 1, 10);
+        leftPane.add(searchButton, 1, 11);
+        leftPane.add(idMessage, 0, 12, 2, 1);
         
         // Adds the nodes to the center part.
         centerPane.add(claimsTitle, 0, 0, 3, 1);
@@ -303,7 +306,6 @@ public class SearchClaims {
         });
     }
     
-    
     /**
      * Sets the event handler for the damageCombo.
      * 
@@ -313,6 +315,14 @@ public class SearchClaims {
         claimTypeCombo.setOnAction(value);
     }
     
+    /**
+     * Sets the event handler for the searchIdButton.
+     * 
+     * @param value The event handler to set.
+     */
+    public void setSearchIdEventHandler(EventHandler<ActionEvent> value) {
+        searchIdButton.setOnAction(value);
+    }
     
     /**
      * Sets the event handler for the searchButton.

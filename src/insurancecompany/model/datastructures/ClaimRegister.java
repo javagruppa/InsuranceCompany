@@ -72,11 +72,7 @@ public class ClaimRegister {
      * @return 
      */
     public Claim getClaimById(int claimId) {
-        // Creates an iterator for the list:
-        Iterator<Claim> iterator = claims.iterator();
-        // Runs through the whole list:
-        while(iterator.hasNext()) {
-            Claim claim = iterator.next();
+        for (Claim claim : claims) {
             if (claim.getClaimId() == claimId) {
                 return claim;
             }

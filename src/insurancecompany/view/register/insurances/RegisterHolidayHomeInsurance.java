@@ -81,6 +81,9 @@ public class RegisterHolidayHomeInsurance {
     private TextField yearField;
     private TextField zipCodeField;
     
+    /**
+     * Default constructor. Initializes all field and sets up the view.
+     */
     public RegisterHolidayHomeInsurance() {
         
         // Initialization of the pane.

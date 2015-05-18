@@ -88,6 +88,9 @@ public class RegisterCarInsurance {
     private TextField ownerPersonalNumberField;
     private TextField registrationNumberField;
     
+    /**
+     * Default constructor. Initializes all field and sets up the view.
+     */
     public RegisterCarInsurance() {
         
         // Initialization of the pane.

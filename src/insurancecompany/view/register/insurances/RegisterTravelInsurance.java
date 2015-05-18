@@ -63,6 +63,9 @@ public class RegisterTravelInsurance {
     private Text excessMessage;
     private Text registerButtonMessage;
     
+    /**
+     * Default constructor. Initializes all field and sets up the view.
+     */
     public RegisterTravelInsurance() {
         
         // Initialization of the pane.

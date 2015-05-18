@@ -83,6 +83,9 @@ public class RegisterBoatInsurance {
     private TextField registrationYearField;
     private TextField valueField;
     
+    /**
+     * Default constructor. Initializes all field and sets up the view.
+     */
     public RegisterBoatInsurance() {
         
         // Initialization of the pane.

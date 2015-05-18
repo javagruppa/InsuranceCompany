@@ -1,89 +1,99 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package insurancecompany.view;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.stage.Stage;
 
 
 /**
- *
+ * This class creates the graphical user interface (GUI) for statistics. It 
+ * creates a pane which is sent to the controller and thereafter displayed.
+ * 
+ * It consists of a toolbar and a center part where another pane is placed.
+ * 
  * @author André
+ * @author Sindre
  */
 public class StatisticsView {
     
-    private Scene scene;
+    // Declaration of the main pane which is sent to the controller.
     private BorderPane mainPane;
     
-    private ToggleButton claimsButton;
-    private ToggleButton disbursementsButton;
+    // Declaration of all the nodes in the toolbar.
     private ToggleButton incomeButton;
+    private ToggleButton disbursementsButton;
+    private ToggleButton claimsButton;
     private ToggleGroup toggleGroup;
             
-    public void show(Stage stage) {
-        stage.setTitle("Kunderegistrering");
-        stage.setScene(scene);
-        stage.show();
-    }
-    
+    /**
+     * Default constructor. Initializes all field and sets up the view.
+     */
     public StatisticsView() {
+        
+        // Initialization of the pane.
         mainPane = new BorderPane();
+        
+        // Creates and adds the toolbar.
         mainPane.setTop(createToolBar());
-        scene = new Scene(mainPane, 800, 600);
-             
     }
 
+    /** Creates the toolbar. */
     private HBox createToolBar() {
         HBox hbox = new HBox();
         hbox.getStyleClass().add("insurancecompany/resources/css/stylesheet.css");
         hbox.setStyle("-fx-background-color: #6577A1;");
         hbox.setPrefSize(640, 20);
-        claimsButton = new ToggleButton("Skademeldinger");
-        claimsButton.setId("subToolbarButton");
-        disbursementsButton = new ToggleButton("Utbetalinger");
-        disbursementsButton.setId("subToolbarButton");
         incomeButton = new ToggleButton("Inntekter");
         incomeButton.setId("subToolbarButton");
+        disbursementsButton = new ToggleButton("Utbetalinger");
+        disbursementsButton.setId("subToolbarButton");
+        claimsButton = new ToggleButton("Skademeldinger");
+        claimsButton.setId("subToolbarButton");
         toggleGroup = new ToggleGroup();
-        claimsButton.setToggleGroup(toggleGroup);
-        disbursementsButton.setToggleGroup(toggleGroup);
         incomeButton.setToggleGroup(toggleGroup);
+        disbursementsButton.setToggleGroup(toggleGroup);
+        claimsButton.setToggleGroup(toggleGroup);
         ObservableList<ToggleButton> buttons = FXCollections.observableArrayList ();
-        buttons.addAll(claimsButton, disbursementsButton, incomeButton);        
+        buttons.addAll(incomeButton, disbursementsButton, claimsButton);        
         hbox.getChildren().addAll(buttons);
        
         return hbox;
     }
     
-    // GET MAIN PANE
-    
+    /** @return The main pane of this class. */
     public BorderPane getMainPane() {
         return mainPane;
     }
     
-    // SET EVENT HANDLERS
-    
-    public void setClaimsButtonEventHandler(EventHandler<ActionEvent> value) {
-        claimsButton.setOnAction(value);
+    /**
+     * Sets the event handler for the incomeButton.
+     * 
+     * @param value The event handler to set.
+     */
+    public void setIncomeButtonEventHandler(EventHandler<ActionEvent> value) {
+        incomeButton.setOnAction(value);
     }
     
+    /**
+     * Sets the event handler for the disbursementsButton.
+     * 
+     * @param value The event handler to set.
+     */
     public void setDisbursementsButtonEventHandler(EventHandler<ActionEvent> value) {
         disbursementsButton.setOnAction(value);
     }
     
-    public void setIncomeButtonEventHandler(EventHandler<ActionEvent> value) {
-        incomeButton.setOnAction(value);
+    /**
+     * Sets the event handler for the claimsButton.
+     * 
+     * @param value The event handler to set.
+     */
+    public void setClaimsButtonEventHandler(EventHandler<ActionEvent> value) {
+        claimsButton.setOnAction(value);
     }
 }

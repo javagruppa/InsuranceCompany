@@ -52,7 +52,7 @@ public class RegisterClaims {
         mainPane.setLeft(sideToolBarPane);  
     }
     
-    /* Creates the side toolbar. */
+    /** Creates the side toolbar. */
     private VBox createSideToolBar() {
         VBox vbox = new VBox();
         vbox.setPrefWidth(160);

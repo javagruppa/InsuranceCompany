@@ -1,11 +1,9 @@
 package insurancecompany.view.register;
 
-import insurancecompany.view.register.persons.RegisterCustomer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
@@ -14,7 +12,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
 /**
  * This class creates the graphical user interface (GUI) for registration of 
@@ -50,7 +47,7 @@ public class RegisterPersons {
         mainPane.setLeft(sideToolBarPane);
     }
     
-    /* Creates the side toolbar. */
+    /** Creates the side toolbar. */
     private VBox createSideToolBar() {
         VBox vbox = new VBox();
         vbox.setPrefWidth(160);

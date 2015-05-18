@@ -1,4 +1,3 @@
-
 package insurancecompany.view.register;
 
 import javafx.collections.FXCollections;
@@ -53,7 +52,7 @@ public class RegisterInsurances {
         mainPane.setLeft(sideToolBarPane);  
     }
     
-    /* Creates the side toolbar. */
+    /** Creates the side toolbar. */
     private VBox createSideToolBar() {
         VBox vbox = new VBox();
         vbox.setPrefWidth(160);

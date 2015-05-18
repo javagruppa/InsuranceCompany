@@ -1,50 +1,48 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package insurancecompany.view;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Scene;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.stage.Stage;
 
 
 /**
- *
+ * This class creates the graphical user interface (GUI) for registration. It 
+ * creates a pane which is sent to the controller and thereafter displayed.
+ * 
+ * It consists of a toolbar and a center part where another pane is placed.
+ * 
  * @author André
  * @author Sindre
  */
 public class RegisterView {
     
-    private Scene scene;
+    // Declaration of the main pane which is sent to the controller.
     private BorderPane mainPane;
     
+    // Declaration of all the nodes in the toolbar.
     private ToggleButton personsButton;
     private ToggleButton insurancesButton;
     private ToggleButton claimsButton;
     private ToggleGroup toggleGroup;
             
-    public void show(Stage stage) {
-        stage.setTitle("Kunderegistrering");
-        stage.setScene(scene);
-        stage.show();
-    }
-    
+    /**
+     * Default constructor. Initializes all field and sets up the view.
+     */
     public RegisterView() {
+        
+        // Initialization of the pane.
         mainPane = new BorderPane();
+        
+        // Creates and adds the toolbar.
         mainPane.setTop(createToolBar());
-        scene = new Scene(mainPane);
-             
     }
     
+    /** Creates the toolbar. */
     private HBox createToolBar() {
         HBox hbox = new HBox();
         hbox.getStyleClass().add("insurancecompany/resources/css/stylesheet.css");
@@ -67,22 +65,34 @@ public class RegisterView {
         return hbox;
     }
     
-    // GET MAIN PANE
-    
+    /** @return The main pane of this class. */
     public BorderPane getMainPane() {
         return mainPane;
     }
     
-    // SET EVENT HANDLERS
-    
+    /**
+     * Sets the event handler for the personsButton.
+     * 
+     * @param value The event handler to set.
+     */
     public void setPersonsButtonEventHandler(EventHandler<ActionEvent> value) {
         personsButton.setOnAction(value);
     }
 
+    /**
+     * Sets the event handler for the insurancesButton.
+     * 
+     * @param value The event handler to set.
+     */
     public void setInsurancesButtonEventHandler(EventHandler<ActionEvent> value) {
         insurancesButton.setOnAction(value);
     }
     
+    /**
+     * Sets the event handler for the claimsButton.
+     * 
+     * @param value The event handler to set.
+     */
     public void setClaimsButtonEventHandler(EventHandler<ActionEvent> value) {
         claimsButton.setOnAction(value);
     }

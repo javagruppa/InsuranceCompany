@@ -338,26 +338,6 @@ public class RegisterBoatInsurance {
         searchPersonalNumberButton.setOnAction(value);
     }
 
-    // CLEAR MESSAGES METHOD:
-    
-    public void clearMessages() {
-        alarmMessage.setText("");
-        brandMessage.setText("");
-        coverageMessage.setText("");
-        engineEffectMessage.setText("");
-        engineTypeMessage.setText("");
-        excessMessage.setText("");
-        lengthMessage.setText("");
-        modelMessage.setText("");
-        ownerPersonalNumberMessage.setText("");
-        registrationNumberMessage.setText("");
-        registrationYearMessage.setText("");
-        valueMessage.setText("");
-        registerButtonMessage.setText("");
-    }
-    
-    // GET METHODS:
-
     /** @return The main pane of this class. */
     public GridPane getMainPane() {
         return mainPane;
@@ -443,8 +423,11 @@ public class RegisterBoatInsurance {
         return valueField.getText();
     }
     
-    // SET METHODS:
-
+    /** @param selectedCustomerId The selectedCustomerId to set. */
+    public void setSelectedCustomerId(int selectedCustomerId) {
+        this.selectedCustomerId = selectedCustomerId;
+    }
+    
     /** @param message The message to set. */
     public void setAlarmMessage(String message) {
         this.alarmMessage.setFill(Color.FIREBRICK);
@@ -521,11 +504,6 @@ public class RegisterBoatInsurance {
         this.registrationYearMessage.setFill(Color.FIREBRICK);
         this.registrationYearMessage.setText(message);
     }
-    
-    /** @param selectedCustomerId The selectedCustomerId to set. */
-    public void setSelectedCustomerId(int selectedCustomerId) {
-        this.selectedCustomerId = selectedCustomerId;
-    }
 
     /** @param message The message to set. */
     public void setValueMessage(String message) {
@@ -533,10 +511,27 @@ public class RegisterBoatInsurance {
         this.valueMessage.setText(message);
     }
 
-    /**
-     * @param registerButtonMessage the registerButtonMessage to set
-     */
-    public void setRegisterButtonMessage(String registerButtonMessage) {
-        this.registerButtonMessage.setText(registerButtonMessage);
+    /** @param message The message to set. */
+    public void setRegisterButtonMessage(String message) {
+        this.registerButtonMessage.setFill(Color.FIREBRICK);
+        this.registerButtonMessage.setText(message);
+    }
+    
+    /** Clears all messages. */
+    public void clearMessages() {
+        alarmMessage.setText("");
+        brandMessage.setText("");
+        coverageMessage.setText("");
+        customerSelectedMessage.setText("");
+        engineEffectMessage.setText("");
+        engineTypeMessage.setText("");
+        excessMessage.setText("");
+        lengthMessage.setText("");
+        modelMessage.setText("");
+        ownerPersonalNumberMessage.setText("");
+        registerButtonMessage.setText("");
+        registrationNumberMessage.setText("");
+        registrationYearMessage.setText("");
+        valueMessage.setText("");
     }
 }

@@ -3544,7 +3544,7 @@ public class MainController {
             try {
                 insuranceId = Integer.parseInt(insuranceIdString);
             } catch(NumberFormatException nfe) {
-                searchInsurances.setIdMessage(INSURANCEID_FORMAT_MESSAGE);
+                searchInsurances.setSearchMessage(INSURANCEID_FORMAT_MESSAGE);
                 return;
             }
         }
@@ -3582,7 +3582,7 @@ public class MainController {
                 try {
                     customerId = Integer.parseInt(number);
                 } catch(NumberFormatException nfe) {
-                    searchInsurances.setIdMessage(CUSTOMERID_FORMAT_MESSAGE);
+                    searchInsurances.setSearchMessage(CUSTOMERID_FORMAT_MESSAGE);
                     return;
                 }
             } else {
@@ -3720,7 +3720,7 @@ public class MainController {
             try {
                 claimId = Integer.parseInt(claimIdString);
             } catch(NumberFormatException nfe) {
-                searchClaims.setIdMessage(CLAIMID_FORMAT_MESSAGE);
+                searchClaims.setSearchMessage(CLAIMID_FORMAT_MESSAGE);
                 return;
             }
         }
@@ -3729,7 +3729,7 @@ public class MainController {
                 try {
                     customerId = Integer.parseInt(number);
                 } catch(NumberFormatException nfe) {
-                    searchClaims.setIdMessage(CUSTOMERID_FORMAT_MESSAGE);
+                    searchClaims.setSearchMessage(CUSTOMERID_FORMAT_MESSAGE);
                     return;
                 }
             } else {
@@ -3740,7 +3740,7 @@ public class MainController {
             try {
                 insuranceId = Integer.parseInt(insuranceIdString);
             } catch(NumberFormatException nfe) {
-                searchClaims.setIdMessage(INSURANCEID_FORMAT_MESSAGE);
+                searchClaims.setSearchMessage(INSURANCEID_FORMAT_MESSAGE);
                 return;
             }
         }
@@ -3819,7 +3819,7 @@ public class MainController {
                 try {
                     customerId = Integer.parseInt(number);
                 } catch(NumberFormatException nfe) {
-                    searchCustomers.setIdMessage(CUSTOMERID_FORMAT_MESSAGE);
+                    searchCustomers.setSearchMessage(CUSTOMERID_FORMAT_MESSAGE);
                     return;
                 }
             } else {
@@ -3878,7 +3878,7 @@ public class MainController {
                 try {
                     employeeId = Integer.parseInt(number);
                 } catch(NumberFormatException nfe) {
-                    searchEmployees.setIdMessage(CUSTOMERID_FORMAT_MESSAGE);
+                    searchEmployees.setSearchMessage(CUSTOMERID_FORMAT_MESSAGE);
                     return;
                 }
             } else {

@@ -238,7 +238,7 @@ public class MainController {
         mainView.setExitButtonEventHandler(this::mainViewExitButtonEventHandler);
         
         
-        registerCustomer.setRegisterButtonEventHandler(this::registerCustomerButtonEventHandler);
+        registerCustomer.setRegisterEventHandler(this::registerCustomerButtonEventHandler);
         registerEmployee.setRegisterButtonEventHandler(this::registerEmployeeButtonEventHandler);
 
     }
@@ -386,14 +386,14 @@ public class MainController {
     private void registerCustomerButtonEventHandler(ActionEvent event) {
         boolean ok = true;
         
-        String personalNumber = registerCustomer.getPersonalNumberField();
-        String firstName = registerCustomer.getFirstNameField();
-        String lastName = registerCustomer.getLastNameField();
-        String street = registerCustomer.getStreetField();
-        String zipCodeS = registerCustomer.getZipCodeField();
-        String city = registerCustomer.getCityField();
-        String email = registerCustomer.getEmailField();
-        String phone = registerCustomer.getPhoneField();
+        String personalNumber = registerCustomer.getPersonalNumber();
+        String firstName = registerCustomer.getFirstName();
+        String lastName = registerCustomer.getLastName();
+        String street = registerCustomer.getStreet();
+        String zipCodeS = registerCustomer.getZipCode();
+        String city = registerCustomer.getCity();
+        String email = registerCustomer.getEmail();
+        String phone = registerCustomer.getPhone();
         
         if (personalNumber.equals("")) {
             String message = "Fyll inn dette feltet.";
@@ -422,7 +422,7 @@ public class MainController {
             } else {
                 result = "Kunden kunne ikke registreres. Kunde med likt personnummer eksisterer allerede.";
             }
-            registerCustomer.setResultText(result);
+            registerCustomer.setResultMessage(result);
         }
     }
     

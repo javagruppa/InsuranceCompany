@@ -3871,7 +3871,30 @@ public class MainController {
     }
     
     private void searchClaimsDisbursementEventHandler(ActionEvent event ) {
+        // Clears all messages ans the view:
+        searchClaims.clearMessages();
         
+        // Collect information about the claim and the disbursement:
+        Claim claim = searchClaims.getClaimsTableValue();
+        String disbursementString = searchClaims.getDisbursement();
+        int disbursement;
+        
+        // Gives the user a message if the field is empty:
+        if (disbursementString.equals("")) {
+            searchClaims.setDisbursementMessage(EMPTY_MESSAGE);
+        }
+        
+        // Converts the disbursement:
+        try {
+            disbursement = Integer.parseInt(disbursementString);
+        } catch (NumberFormatException nfe) {
+            searchClaims.setDisbursementMessage(FORMAT_MESSAGE);
+            return;
+        }
+        
+        // Sets the disbursement and clears the view:
+        claim.setDisbursement(disbursement);
+        searchClaims.clearView();
     }
     
     private void searchCustomersSearchIdEventHandler(ActionEvent event) {

@@ -75,6 +75,7 @@ public enum BoatInsuranceCoverage {
         switch(this) {
             case CASCO: return 3000;
             case PARTLY_CASCO: return 1500;
+            case BOAT_PLUS: return 4000;
             default: throw new IllegalArgumentException();
         }
     }

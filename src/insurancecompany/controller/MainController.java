@@ -138,6 +138,9 @@ public class MainController {
         this.insurances = new InsuranceRegister();
         this.logs = new LogRegister();
         
+        // Update models with stored data:
+        readAllDataFromFile();
+        
         // Modules:
         this.mainView = new MainView();
     
@@ -201,13 +204,14 @@ public class MainController {
         views.add(20, statisticsClaims);
         views.add(21, statisticsDisbursements);
         views.add(22, statisticsIncome);
-                
+
+        
         // Controllers:
         this.modelController = new ModelController(bills, claims, customers, 
                 employees, insurances, logs);
         this.viewController = new ViewController(mainView, views);
         
-        readAllDataFromFile();
+        
         setBrandComboBox();
         initializeEventHandlers();
         
@@ -218,7 +222,7 @@ public class MainController {
         // Update all insurance payments:
         modelController.updatePayments();
         // Update dunning on all unpaid bills:
-        modelController.updateUnpaidBills();
+        //modelController.updateUnpaidBills();
         
         modelController.autoPayAllBills(); // automaticall pay all unpaid bills:
         // modelController.autoPayAllBillsDue(); // Automatically pay all bills that are at due date or older:
@@ -234,6 +238,7 @@ public class MainController {
         initializeRegisterInsuranceEventHandlers();
         initializeRegisterClaimEventHandlers();
         initializeSearchEventHandlers();
+        initializeStatisticsEventHandlers();
         mainView.setSaveDataButtonEventHandler(this::mainViewSaveDataButtonEventHandler);
         mainView.setExitButtonEventHandler(this::mainViewExitButtonEventHandler);
         
@@ -348,6 +353,12 @@ public class MainController {
         searchInsurances.setSearchIdEventHandler(this::searchInsuranceSearchIdEventHandler);
         searchInsurances.setSelectEventHandler(this::searchInsuranceSelectEventHandler);
     } // end of class initializeSearchEventHandlers
+    
+    private void initializeStatisticsEventHandlers() {
+        statisticsIncome.setSearchEventHandler(this::statisticsIncomeSearchButtonEventHandler);
+        statisticsIncome.setFromYearComboEventHandler(this::statisticsIncomeFromYearComboEventHandler);
+        statisticsIncome.setFromMonthComboEventHandler(this::statisticsIncomeFromMonthComboEventHandler);
+    }
     
     private void mainViewSaveDataButtonEventHandler(ActionEvent event) {
         writeBillsToFile();
@@ -475,120 +486,192 @@ public class MainController {
         registerEmployee.setResultMessage(result);
     }
     
-    private void setBrandComboBox() {
-        List cars = modelController.getCarInfos();
-        registerCarInsurance.populateBrandCombo(cars);
-    }
+    // STATISTICS INCOME EVENT HANDLERS
     
-    private void setYearComboBox() {
-        int since = 1970;
-        int to = Calendar.getInstance().get(Calendar.YEAR);
-        List<String> years = new LinkedList();
-        for (int i = since; i <= to; i++) {
-            years.add(i + "");
+    private void statisticsIncomeFromYearComboEventHandler(ActionEvent event) {
+        if (statisticsIncome.getFromYearComboValue().equals("")) {
+            // Disable month and day comboboxes:
+            statisticsIncome.setFromMonthComboDisable(true);
+            statisticsIncome.setToMonthComboDisable(true);
+            statisticsIncome.setFromDayComboDisable(true);
+            statisticsIncome.setToDayComboDisable(true);
+        } else {
+            // Enable month comboboxes:
+            statisticsIncome.setFromMonthComboDisable(false);
+            statisticsIncome.setToMonthComboDisable(false);
         }
-        
-        registerCarInsurance.populateYearCombo(years);
     }
     
-    // BUG: method gets called twice for every change, but this is resolved by an if statement at the end of the method:
-    private void brandComboListener(ObservableValue observable, Object oldValue, Object newValue) {
-        Object value = newValue;
-        CarInfo car;
-        int since = Integer.MAX_VALUE;
-        int to = Integer.MIN_VALUE;
-        if (value instanceof CarInfo) {
-            car = (CarInfo) value;
-            List<ModelInfo> models = car.getModelRegister().getModels();
-            
-            for (ModelInfo model : models) {
-                if (model != null) {
-                    // some car models have a since value equal to a model e.g since 9000, hence the extra check
-                    if (model.getSince() < since && model.getSince() > 1900 && model.getSince() < Calendar.getInstance().get(Calendar.YEAR)) { 
-                        since = model.getSince();
-                    }
-                    
-                    if (model.getTo() > to) {
-                        to = model.getTo();
-                    }
-                    if (model.getTo() == 0) {
-                        to = Integer.MAX_VALUE;
-                    }
+    private void statisticsIncomeFromMonthComboEventHandler(ActionEvent event) {
+        if (statisticsIncome.getFromMonthComboValue().equals("")) {
+            // Disable day comboboxes:
+            statisticsIncome.setFromDayComboDisable(true);
+            statisticsIncome.setToDayComboDisable(true);
+        } else {
+            // Enable day comboboxes:
+            statisticsIncome.setFromDayComboDisable(false);
+            statisticsIncome.setToDayComboDisable(false);
+        }
+    }
+    
+    private void statisticsIncomeSearchButtonEventHandler(ActionEvent event) {
+        statisticsIncome.clearMessages();
+        String type = statisticsIncome.getInsuranceType();
+        String title = type;
+        if (type == null) {
+            title = "Alle forsikringer";
+        }
+        int customerId = 0;
+        String personalNumber;
+        if (!statisticsIncome.getNumber().equals("")) {
+            if (statisticsIncome.isCustomerIdSelected()) {
+                try {
+                    customerId = Integer.parseInt(statisticsIncome.getNumber());
+                } catch (NumberFormatException nfe) {
+                    statisticsIncome.setSearchMessage(CUSTOMERID_FORMAT_MESSAGE);
+                }
+
+            } else {
+                personalNumber = statisticsIncome.getNumber();
+                customerId = customers.findCustomerIdByPersonalNumber(personalNumber);
+                if (customerId == -1) {
+                    statisticsIncome.setSearchMessage(CUSTOMERID_NOT_FOUND_MESSAGE);
                 }
             }
-        } else if (value instanceof String){
-            // do nothing.
         }
-        if (to == Integer.MAX_VALUE) {
-            to = Calendar.getInstance().get(Calendar.YEAR);
-        }
-            
-        if (since < 1930 || since > Calendar.getInstance().get(Calendar.YEAR)) {
-            since = 1930;
-        }        
-        List<String> years = new LinkedList();
-        // Populates the list with the years ranging between oldest and newest models in reverse order.
-        // Newer years come first, older years come last.
-        for (int i = to; i >= since; i--) {
-                years.add(i + "");
-        }
+        String fromDate = "";
+        String toDate = "";
         
-        // Whenever a change in the combox is done, this method gets called twice, hence this check to
-        // avoid creating a complete list, for so to replace it with an empty list.
-        if (!years.isEmpty()) {
-            registerCarInsurance.populateYearCombo(years);
+        String fromYearString = statisticsIncome.getFromYearComboValue();
+        String fromMonthString = statisticsIncome.getFromMonthComboValue();
+        String fromDayString = statisticsIncome.getFromDayComboValue();
+        int fromYear = 0;
+        int fromMonth = 0;
+        int fromDay = 0;
+        if (!fromYearString.equals("")) {
+            fromYear = Integer.parseInt(fromYearString);
         }
-        
-    }
-    
-    private void yearComboListener(ObservableValue observable, Object oldValue, Object newValue) {
-        Object value = newValue;
-        String yearString;
-        int year;
-        CarInfo car = new CarInfo(); // new initialization will be set in one of the 2 next if statements
-        String brandName;
-        Object brandValue = registerCarInsurance.getBrandComboValue();
-        if (brandValue instanceof CarInfo) {
-            car = (CarInfo) brandValue;
-        } else if (brandValue instanceof String) { // Custom/user defined car brand entered:
-           brandName = (String) brandValue;
-           car = modelController.findCarInfo(brandName);
-           if (brandName == null) { // Custom/user defined brand does not match any cars in the info register.
-               return;
-           }
-        }
-        
-        if (value instanceof String) {
-            yearString = (String) value;
-            try {
-                year = Integer.parseInt(yearString);
-                
-                List<ModelInfo> models = car.getModelRegister().getModels();
-                List<String> modelsResult = new LinkedList();
-                for (ModelInfo model : models) {
-                    if (model != null) {
-                        int to = model.getTo();
-                        int since = model.getSince();
-                        if (since < 1945 || since > Calendar.getInstance().get(Calendar.YEAR)) {
-                            since = Integer.MAX_VALUE;
-                        }
-                        if (model.getTo() == 0) {
-                            to = Calendar.getInstance().get(Calendar.YEAR);
-                        }
-                        if (year >= since && year <= to) {
-                            modelsResult.add(model.getName());
-                        }
-                    }
-                }
-                registerCarInsurance.populateModelCombo(modelsResult);
-  
-            } catch (NumberFormatException nfe) {
-                //setSomeMessage
-                return;
+        if (!fromMonthString.equals("")) {
+            switch (fromMonthString) {
+                case "Januar": fromMonth = 1;
+                    break;
+                case "Februar": fromMonth = 2;
+                    break;
+                case "Mars": fromMonth = 3;
+                    break;
+                case "April": fromMonth = 4;
+                    break;
+                case "Mai": fromMonth = 5;
+                    break;
+                case "Juni": fromMonth = 6;
+                    break;
+                case "Juli": fromMonth = 7;
+                    break;
+                case "August": fromMonth = 8;
+                    break;
+                case "September": fromMonth = 9;
+                    break;
+                case "Oktober": fromMonth = 10;
+                    break;
+                case "November": fromMonth = 11;
+                    break;
+                case "Desember": fromMonth = 12;
+                    break;
+                default: fromMonth = 0;
+                    break;
             }
         }
+        if (!fromDayString.equals("")) {
+            fromDay = Integer.parseInt(fromDayString);
+        }
+        
+        String toYearString = statisticsIncome.getToYearComboValue();
+        String toMonthString = statisticsIncome.getToMonthComboValue();
+        String toDayString = statisticsIncome.getToDayComboValue();
+        int toYear = 0;
+        int toMonth = 0;
+        int toDay = 0;
+                if (!toYearString.equals("")) {
+            toYear = Integer.parseInt(toYearString);
+        }
+        if (!toMonthString.equals("")) {
+            switch (toMonthString) {
+                case "Januar": toMonth = 1;
+                    break;
+                case "Februar": toMonth = 2;
+                    break;
+                case "Mars": toMonth = 3;
+                    break;
+                case "April": toMonth = 4;
+                    break;
+                case "Mai": toMonth = 5;
+                    break;
+                case "Juni": toMonth = 6;
+                    break;
+                case "Juli": toMonth = 7;
+                    break;
+                case "August": toMonth = 8;
+                    break;
+                case "September": toMonth = 9;
+                    break;
+                case "Oktober": toMonth = 10;
+                    break;
+                case "November": toMonth = 11;
+                    break;
+                case "Desember": toMonth = 12;
+                    break;
+                default: toMonth = 0;
+                    break;
+            }
+        }
+        if (!toDayString.equals("")) {
+            toDay = Integer.parseInt(toDayString);
+        }
+        
+        int sumFrom = 0;
+        int sumTo = 0;
+        
+        if (fromYearString.equals("") && toYearString.equals("")) {
+            
+            Calendar fromCal = modelController.getOldestPayDate(type, customerId, 0);
+            Calendar toCal = modelController.getNewestPayDate(type, customerId, 0);
+            
+            if (fromCal != null && toCal != null) {
+                fromYear = fromCal.get(Calendar.YEAR);
+                fromMonth = fromCal.get(Calendar.MONTH);
+                fromDay = fromCal.get(Calendar.DAY_OF_MONTH);
+
+                toYear = toCal.get(Calendar.YEAR);
+                toMonth = toCal.get(Calendar.MONTH);
+                toDay = toCal.get(Calendar.DAY_OF_MONTH);
+
+            } 
+        }
+        
+        sumFrom = (int) modelController.getIncomeAtDate(fromYear, fromMonth, fromDay, type, customerId, 0);
+        if (fromDay != 0) {
+            fromDate = fromDay + ".";
+        }
+        if (fromMonth != 0) {
+            fromDate += fromMonth + ".";
+        }
+        if (fromYear != 0) {
+            fromDate += fromYear;
+        }
+
+        sumTo = (int) modelController.getIncomeAtDate(toYear, toMonth, toDay, type, customerId, 0);
+        if (toDay != 0) {
+            toDate = toDay + ".";
+        }
+        if (toMonth != 0) {
+            toDate += toMonth + ".";
+        }
+        if (toYear != 0) {
+            toDate += toYear;
+        }
+        statisticsIncome.populateLineChartAll(sumFrom, sumTo, fromDate, toDate, title); 
     }
-    
+     
     // CAR CLAIM REGISTRATION EVENT HANDLERS
     
     private void carClaimOpenClaimFormButtonEventHandler(ActionEvent event) {
@@ -2568,6 +2651,119 @@ public class MainController {
             registerCarInsurance.clearView();
         } else {
             registerCarInsurance.setRegisterButtonMessage(REGISTER_NO_SUCCESS);
+        }
+    }
+    
+    private void setBrandComboBox() {
+        List cars = modelController.getCarInfos();
+        registerCarInsurance.populateBrandCombo(cars);
+    }
+    
+    private void setYearComboBox() {
+        int since = 1970;
+        int to = Calendar.getInstance().get(Calendar.YEAR);
+        List<String> years = new LinkedList();
+        for (int i = since; i <= to; i++) {
+            years.add(i + "");
+        }
+        
+        registerCarInsurance.populateYearCombo(years);
+    }
+    
+    private void brandComboListener(ObservableValue observable, Object oldValue, Object newValue) {
+        Object value = newValue;
+        CarInfo car;
+        int since = Integer.MAX_VALUE;
+        int to = Integer.MIN_VALUE;
+        if (value instanceof CarInfo) {
+            car = (CarInfo) value;
+            List<ModelInfo> models = car.getModelRegister().getModels();
+            
+            for (ModelInfo model : models) {
+                if (model != null) {
+                    // some car models have a since value equal to a model e.g since 9000, hence the extra check
+                    if (model.getSince() < since && model.getSince() > 1900 && model.getSince() < Calendar.getInstance().get(Calendar.YEAR)) { 
+                        since = model.getSince();
+                    }
+                    
+                    if (model.getTo() > to) {
+                        to = model.getTo();
+                    }
+                    if (model.getTo() == 0) {
+                        to = Integer.MAX_VALUE;
+                    }
+                }
+            }
+        } else if (value instanceof String){
+            // do nothing.
+        }
+        if (to == Integer.MAX_VALUE) {
+            to = Calendar.getInstance().get(Calendar.YEAR);
+        }
+            
+        if (since < 1930 || since > Calendar.getInstance().get(Calendar.YEAR)) {
+            since = 1930;
+        }        
+        List<String> years = new LinkedList();
+        // Populates the list with the years ranging between oldest and newest models in reverse order.
+        // Newer years come first, older years come last.
+        for (int i = to; i >= since; i--) {
+                years.add(i + "");
+        }
+        
+        // Whenever a change in the combox is done, this method gets called twice, hence this check to
+        // avoid creating a complete list, for so to replace it with an empty list.
+        if (!years.isEmpty()) {
+            registerCarInsurance.populateYearCombo(years);
+        }
+        
+    }
+    
+    private void yearComboListener(ObservableValue observable, Object oldValue, Object newValue) {
+        Object value = newValue;
+        String yearString;
+        int year;
+        CarInfo car = new CarInfo(); // new initialization will be set in one of the 2 next if statements
+        String brandName;
+        Object brandValue = registerCarInsurance.getBrandComboValue();
+        if (brandValue instanceof CarInfo) {
+            car = (CarInfo) brandValue;
+        } else if (brandValue instanceof String) { // Custom/user defined car brand entered:
+           brandName = (String) brandValue;
+           car = modelController.findCarInfo(brandName);
+           if (brandName == null) { // Custom/user defined brand does not match any cars in the info register.
+               return;
+           }
+        }
+        
+        if (value instanceof String) {
+            yearString = (String) value;
+            try {
+                year = Integer.parseInt(yearString);
+                
+                List<ModelInfo> models = car.getModelRegister().getModels();
+                List<String> modelsResult = new LinkedList();
+                for (ModelInfo model : models) {
+                    if (model != null) {
+                        int to = model.getTo();
+                        int since = model.getSince();
+                        if (since < 1945 || since > Calendar.getInstance().get(Calendar.YEAR)) {
+                            since = Integer.MAX_VALUE;
+                        }
+                        if (model.getTo() == 0) {
+                            to = Calendar.getInstance().get(Calendar.YEAR);
+                        }
+                        if (year >= since && year <= to) {
+                            modelsResult.add(model.getName());
+                        }
+                    }
+                }
+                registerCarInsurance.populateModelCombo(modelsResult);
+  
+            } catch (NumberFormatException nfe) {
+                //setSomeMessage
+                return;
+            }
         }
     }
     

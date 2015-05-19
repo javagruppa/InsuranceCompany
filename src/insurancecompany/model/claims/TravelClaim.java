@@ -93,9 +93,10 @@ public class TravelClaim extends Claim implements Serializable {
         if (items.size() > 0) {
             sb.append("\n\nGjenstander mistet/skadet:\n");
         }
-        for (ClaimItem claimItem : items) {
+        // Add all items toString:
+        items.stream().filter((claimItem) -> (claimItem != null)).forEach((claimItem) -> {
             sb.append(claimItem.toString()).append("\n");
-        }
+        });
         return sb.toString();
     }
 

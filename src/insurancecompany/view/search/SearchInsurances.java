@@ -79,6 +79,7 @@ public class SearchInsurances {
     private TableColumn<Insurance, Integer> customerIdColumn;
     private TableColumn<Insurance, String> activeColumn;
     private Text selectMessage;
+    private Text numberOfResults;
     
     // Declaration of all the nodes in the right part.
     private Button deactivateButton;
@@ -147,6 +148,7 @@ public class SearchInsurances {
                 insuranceIdColumn, customerIdColumn, activeColumn);
         insurancesTable.setColumnResizePolicy(
                 TableView.CONSTRAINED_RESIZE_POLICY);
+        numberOfResults = new Text ("Ingen resultater.");
         selectMessage = new Text("");
 
         // Initialization of all the nodes in the right part.
@@ -196,8 +198,9 @@ public class SearchInsurances {
         // Adds the nodes to the center part.
         centerPane.add(insurancesTitle, 0, 0);
         centerPane.add(insurancesTable, 0, 1);
-        centerPane.add(selectButton, 0, 2);
-        centerPane.add(selectMessage, 0, 3);
+        centerPane.add(numberOfResults, 0, 2);
+        centerPane.add(selectButton, 0, 3);
+        centerPane.add(selectMessage, 0, 4);
         
         // Adds the nodes to the right part.
         rightPane.add(insuranceTitle, 0, 0);
@@ -391,6 +394,17 @@ public class SearchInsurances {
         insuranceArea.setText(text);
     }
     
+    /** @param number The number of results. */
+    public void setNumberOfResults(int number) {
+        if (number == 0) {
+            numberOfResults.setText("Ingen resultater.");
+        } else if (number == 1) {
+            numberOfResults.setText("1 resultat.");
+        } else {
+            numberOfResults.setText(number + " resultater.");
+        }
+    }
+    
     /**
      * Sets the attachment title and area visible and sets the parameters 
      * as their text.
@@ -414,6 +428,7 @@ public class SearchInsurances {
     
     /** Clears the areas, the table and removes the selected table option. */
     public void clearView() {
+        setNumberOfResults(0);
         setInsuranceArea("");
         setAttachmentArea("Vedlegg:", "");
         populateInsurancesTable(new ArrayList<>());

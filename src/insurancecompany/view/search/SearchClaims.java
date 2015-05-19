@@ -82,6 +82,7 @@ public class SearchClaims {
     private TableColumn<Claim, Integer> claimIdColumn;
     private TableColumn<Claim, Integer> customerIdColumn;
     private TableColumn<Claim, String> dateColumn;
+    private Text numberOfResults;
     private Text selectMessage;
     
     // Declaration of all the nodes in the right part.
@@ -154,6 +155,7 @@ public class SearchClaims {
                 claimIdColumn, customerIdColumn, dateColumn);
         claimsTable.setColumnResizePolicy(
                 TableView.CONSTRAINED_RESIZE_POLICY);
+        numberOfResults = new Text ("Ingen resultater.");
         selectMessage = new Text("");
 
         // Initialization of all the nodes in the right part.
@@ -207,10 +209,11 @@ public class SearchClaims {
         // Adds the nodes to the center part.
         centerPane.add(claimsTitle, 0, 0, 3, 1);
         centerPane.add(claimsTable, 0, 1, 3, 1);
-        centerPane.add(selectButton, 0, 2);
-        centerPane.add(formButton, 1, 2);
-        centerPane.add(imageButton, 2, 2);
-        centerPane.add(selectMessage, 0, 3, 3, 1);
+        centerPane.add(numberOfResults, 0, 2, 3, 1);
+        centerPane.add(selectButton, 0, 3);
+        centerPane.add(formButton, 1, 3);
+        centerPane.add(imageButton, 2, 3);
+        centerPane.add(selectMessage, 0, 4, 3, 1);
         
         // Adds the nodes to the right part.
         rightPane.add(claimTitle, 0, 0, 2, 1);
@@ -452,6 +455,17 @@ public class SearchClaims {
         DateUtility.LocalDateToCalendar(toDatePicker.getValue()) : null;
     }
     
+    /** @param number The number of results. */
+    public void setNumberOfResults(int number) {
+        if (number == 0) {
+            numberOfResults.setText("Ingen resultater.");
+        } else if (number == 1) {
+            numberOfResults.setText("1 resultat.");
+        } else {
+            numberOfResults.setText(number + " resultater.");
+        }
+    }
+    
     /** @param text The text to set in claimArea. */
     public void setClaimArea(String text) {
         claimArea.setText(text);
@@ -464,6 +478,7 @@ public class SearchClaims {
     
     /** Clears the areas, the table and removes the selected table option. */
     public void clearView() {
+        setNumberOfResults(0);
         setClaimArea("");
         setInsuranceArea("");
         populateClaimsTable(new ArrayList<>());

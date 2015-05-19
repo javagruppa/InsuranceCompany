@@ -2224,6 +2224,7 @@ public class MainController {
                 if (claims.addClaim(claim)) {
                     // Clear uploads(image):
                     registerHolidayHomeContentClaim.clearUploads();
+                    registerHolidayHomeContentClaim.clearView();
                     registerHolidayHomeContentClaim.setRegisterButtonMessage(REGISTER_SUCCESS);
                 } else {
                     registerHolidayHomeContentClaim.setRegisterButtonMessage(REGISTER_NO_SUCCESS);

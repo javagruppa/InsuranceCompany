@@ -1123,7 +1123,9 @@ public class MainController {
                             dateHappened, damages, appraisal, image, null);
                     // Add this car claim to the claim register:
                     if (claims.addClaim(claim)) {
-                            registerCarClaim.setRegisterButtonMessage(REGISTER_SUCCESS);
+                        registerCarClaim.clearUploads();    
+                        registerCarClaim.setRegisterButtonMessage(REGISTER_SUCCESS);
+                            
                     } else {
                         registerCarClaim.setRegisterButtonMessage(REGISTER_NO_SUCCESS);
                     }
@@ -1171,7 +1173,9 @@ public class MainController {
                                 dateHappened, damages, appraisal, image, carClaimForm);
                         // Add this car claim to the claim register:
                         if (claims.addClaim(claim)) {
+                            registerCarClaim.clearUploads();
                             registerCarClaim.setRegisterButtonMessage(REGISTER_SUCCESS);
+                            
                         }
                     } else { // If not we create a fuller car claim form:
                         // Creates a new car for person B with model as empty:

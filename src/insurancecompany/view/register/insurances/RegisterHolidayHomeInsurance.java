@@ -166,7 +166,7 @@ public class RegisterHolidayHomeInsurance {
         Label customerIdLabel = new Label("Kundenummer:");
         Label personalNumberLabel = new Label("Personnummer:");
         Label areaLabel = new Label("Areal:");
-        Label cityLabel = new Label("By:");
+        Label cityLabel = new Label("Poststed:");
         Label coverageLabel = new Label("Dekning:");
         Label excessLabel = new Label("Egenandel:");
         Label materialLabel = new Label("Materiale:");
@@ -174,7 +174,7 @@ public class RegisterHolidayHomeInsurance {
         Label streetLabel = new Label("Gate:");
         Label typeLabel = new Label("Type:");
         Label yearLabel = new Label("Byggeår:");
-        Label zipCodeLabel = new Label("Postboks:");
+        Label zipCodeLabel = new Label("Postnummer:");
         
         // Adds the nodes to the left part.
         mainPane.add(selectCustomerTitle, 0, 0);

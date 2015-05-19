@@ -97,7 +97,7 @@ public class RegisterEmployee {
         Label zipCode = new Label("Postnummer:");
         zipCodeField = new TextField();
         zipCodeMessage = new Text();
-        Label city = new Label("By:");
+        Label city = new Label("Poststed:");
         cityField = new TextField();
         cityMessage = new Text();
         Text contact = new Text("Kontakt");

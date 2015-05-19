@@ -73,9 +73,9 @@ public class Address implements Serializable {
     @Override
     public String toString(){
         StringBuilder result = new StringBuilder();
-        result.append("\nGate: ").append(street);
+        result.append("Gate: ").append(street);
         result.append("\nPostnummer: ").append(zipCode);
-        result.append("\nBy: ").append(city);
+        result.append("\nPoststed: ").append(city);
         return result.toString();
     }
 }

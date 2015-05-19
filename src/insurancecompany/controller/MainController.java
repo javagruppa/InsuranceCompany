@@ -458,7 +458,7 @@ public class MainController {
             String message = "Fyll inn dette feltet.";
             registerCustomer.setStreetMessage(message);
             ok = false;
-        } else if (!street.matches("[ÆØÅæøåa-zA-Z0-9]{2,30}")) {
+        } else if (!street.matches("[ÆØÅæøåa-zA-Z0-9 .-]{2,30}")) {
             String message = "Fyll inn korrekt gateadresse, kun bokstaver og"
                     + " tall tillatt.";
             registerCustomer.setStreetMessage(message);
@@ -469,7 +469,7 @@ public class MainController {
             String message = "Fyll inn dette feltet.";
             registerCustomer.setCityMessage(message);
             ok = false;
-        } else if (!city.matches("^[æøåÆØÅa-zA-Z]{2,30}")) {
+        } else if (!city.matches("^[æøåÆØÅa-zA-Z .-]{2,30}")) {
             String message = "Fyll inn korrekt poststed, kun bokstaver tillatt.";
             registerCustomer.setCityMessage(message);
             ok = false;
@@ -602,7 +602,7 @@ public class MainController {
             String message = "Fyll inn dette feltet.";
             registerEmployee.setStreetMessage(message);
             ok = false;
-        } else if (!street.matches("[ÆØÅæøåa-zA-Z0-9]{2,30}")) {
+        } else if (!street.matches("[ÆØÅæøåa-zA-Z0-9 .-]{2,30}")) {
             String message = "Fyll inn korrekt gateadresse, kun bokstaver og"
                     + " tall tillatt.";
             registerEmployee.setStreetMessage(message);
@@ -613,7 +613,7 @@ public class MainController {
             String message = "Fyll inn dette feltet.";
             registerEmployee.setCityMessage(message);
             ok = false;
-        } else if (!city.matches("^[æøåÆØÅa-zA-Z]{2,30}")) {
+        } else if (!city.matches("^[æøåÆØÅa-zA-Z .-]{2,30}")) {
             String message = "Fyll inn korrekt poststed, kun bokstaver tillatt.";
             registerEmployee.setCityMessage(message);
             ok = false;
@@ -3190,7 +3190,7 @@ public class MainController {
         if(city.equals("")) {
             registerHolidayHomeInsurance.setCityMessage(EMPTY_MESSAGE);
             abort = true;
-        } else if (!city.matches("^[æøåÆØÅa-zA-Z]{1,30}")){
+        } else if (!city.matches("^[æøåÆØÅa-zA-Z .-]{1,30}")){
             String message = "Fyll inn korrekt poststed.";
             registerHolidayHomeInsurance.setCityMessage(message);
             abort = true;
@@ -3210,7 +3210,7 @@ public class MainController {
         if(street.equals("")) {
             registerHolidayHomeInsurance.setStreetMessage(EMPTY_MESSAGE);
             abort = true;
-        } else if (!street.matches("^[æøåÆØÅa-zA-Z0-9]{2,45}")){
+        } else if (!street.matches("^[æøåÆØÅa-zA-Z0-9 .-]{2,45}")){
             String message = "Fyll inn korrekt gateadresse.";
             registerHolidayHomeInsurance.setStreetMessage(message);
             abort = true;
@@ -3404,7 +3404,7 @@ public class MainController {
         if(city.equals("")) {
             registerHolidayHomeContentInsurance.setCityMessage(EMPTY_MESSAGE);
             abort = true;
-        } else if (!city.matches("^[æøåÆØÅa-zA-Z]{1,30}")){
+        } else if (!city.matches("^[æøåÆØÅa-zA-Z .-]{1,30}")){
             String message = "Fyll inn korrekt poststed.";
             registerHolidayHomeContentInsurance.setCityMessage(message);
             abort = true;
@@ -3424,7 +3424,7 @@ public class MainController {
         if(street.equals("")) {
             registerHolidayHomeContentInsurance.setStreetMessage(EMPTY_MESSAGE);
             abort = true;
-        } else if (!street.matches("[æøåÆØÅa-zA-Z0-9]{2,40}")) {
+        } else if (!street.matches("[æøåÆØÅa-zA-Z0-9 .-]{2,40}")) {
             String message = "Fyll inn korrekt gateadresse.";
             registerHolidayHomeContentInsurance.setStreetMessage(message);
             abort = true;
@@ -3627,7 +3627,7 @@ public class MainController {
         if(city.equals("")) {
             registerHomeInsurance.setCityMessage(EMPTY_MESSAGE);
             abort = true;
-        } else if(!city.matches("^[æøåÆØÅa-zA-Z]{2,30}")){
+        } else if(!city.matches("^[æøåÆØÅa-zA-Z .-]{2,30}")){
             String message = "Fyll inn korrekt poststed.";
             registerHomeInsurance.setCityMessage(message);
             abort = true;
@@ -3647,7 +3647,7 @@ public class MainController {
         if(street.equals("")) {
             registerHomeInsurance.setStreetMessage(EMPTY_MESSAGE);
             abort = true;
-        } else if (!street.matches("[æøåÆØÅa-zA-Z0-9]{2,45}")){
+        } else if (!street.matches("[æøåÆØÅa-zA-Z0-9 .-]{2,45}")){
             String message = "Fyll inn korrekt gateadresse.";
             registerHomeInsurance.setStreetMessage(message);
             abort = true;
@@ -3842,7 +3842,7 @@ public class MainController {
         if(city.equals("")) {
             registerHomeContentInsurance.setCityMessage(EMPTY_MESSAGE);
             abort = true;
-        } else if (!city.matches("^[æøåÆØÅa-zA-Z]{2,35}")) {
+        } else if (!city.matches("^[æøåÆØÅa-zA-Z .-]{2,35}")) {
             String message = "Fyll inn korrekt poststed.";
             registerHomeContentInsurance.setCityMessage(message);
             abort = true;
@@ -3862,7 +3862,7 @@ public class MainController {
         if(street.equals("")) {
             registerHomeContentInsurance.setStreetMessage(EMPTY_MESSAGE);
             abort = true;
-        } else if (!street.matches("[æøåÆØÅa-zA-Z0-9]{2,45}")){
+        } else if (!street.matches("[æøåÆØÅa-zA-Z0-9 .-]{2,45}")){
             String message = "Fyll inn korrekt gateadresse.";
             registerHomeContentInsurance.setStreetMessage(message);
             abort = true;

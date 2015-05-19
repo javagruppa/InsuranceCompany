@@ -12,6 +12,7 @@ import javafx.scene.image.Image;
  * registered as carclaims.
  * 
  * @author André
+ * @author Carl
  */
 public class CarClaim extends Claim implements Serializable {
     /** SerialVersionUID used to identify this class for object IO */

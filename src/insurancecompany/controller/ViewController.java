@@ -67,7 +67,6 @@ public class ViewController {
     private SearchInsurances searchInsurances;
     
     // Statistics Views:
-    private StatisticsClaims statisticsClaims;
     private StatisticsIncome statisticsIncome;
     private StatisticsDisbursements statisticsDisbursements;
     
@@ -118,9 +117,8 @@ public class ViewController {
         this.searchInsurances = (SearchInsurances) views.get(19);
 
         // Statistics Views:
-        this.statisticsClaims = (StatisticsClaims) views.get(20);
-        this.statisticsDisbursements = (StatisticsDisbursements) views.get(21);
-        this.statisticsIncome = (StatisticsIncome) views.get(22);
+        this.statisticsDisbursements = (StatisticsDisbursements) views.get(20);
+        this.statisticsIncome = (StatisticsIncome) views.get(21);
         
         initializeEventHandlers();
     } // end of sole constructor
@@ -166,7 +164,6 @@ public class ViewController {
         searchView.setInsurancesButtonEventHandler(this::searchViewInsurancesButtonEventHandler);
         
         // STATISTCS SUB TAB EVENT HANDLERS:
-        statisticsView.setClaimsButtonEventHandler(this::statisticsViewClaimsButtonEventHandler);
         statisticsView.setDisbursementsButtonEventHandler(this::statisticsViewDisbursementsButtonEventHandler);
         statisticsView.setIncomeButtonEventHandler(this::statisticsViewIncomeButtonEventHandler);
         
@@ -341,11 +338,6 @@ public class ViewController {
     /** EventHandler for employeesButton in SearchView. */
     private void searchViewEmployeesButtonEventHandler(ActionEvent event) {
         searchView.getMainPane().setCenter(searchEmployees.getMainPane());
-    }
-    
-    /** EventHandler for claimsButton in StatisticsView. */
-    private void statisticsViewClaimsButtonEventHandler(ActionEvent event) {
-        statisticsView.getMainPane().setCenter(statisticsClaims.getMainPane());
     }
     
     /** EventHandler for disbursementsButton in StatisticsView. */

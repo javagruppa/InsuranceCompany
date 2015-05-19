@@ -102,7 +102,6 @@ public class MainController {
     private SearchInsurances searchInsurances;
     
     // Statistics Views:
-    private StatisticsClaims statisticsClaims;
     private StatisticsIncome statisticsIncome;
     private StatisticsDisbursements statisticsDisbursements;
     
@@ -179,7 +178,6 @@ public class MainController {
         this.searchInsurances = new SearchInsurances();
 
         // Statistics Views:
-        this.statisticsClaims = new StatisticsClaims();
         this.statisticsIncome = new StatisticsIncome();
         this.statisticsDisbursements = new StatisticsDisbursements();
         
@@ -207,9 +205,8 @@ public class MainController {
         views.add(17, searchCustomers);
         views.add(18, searchEmployees);
         views.add(19, searchInsurances);
-        views.add(20, statisticsClaims);
-        views.add(21, statisticsDisbursements);
-        views.add(22, statisticsIncome);
+        views.add(20, statisticsDisbursements);
+        views.add(21, statisticsIncome);
 
         
         // Controllers:

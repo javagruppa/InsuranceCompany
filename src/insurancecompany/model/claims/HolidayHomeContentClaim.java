@@ -15,6 +15,7 @@ import javafx.scene.image.Image;
  * Holiday Home content insurances are registered as HolidayHome content claims.
  * 
  * @author André
+ * @author Carl
  */
 public class HolidayHomeContentClaim extends Claim implements Serializable {
     /** SerialVersionUID used to identify this class for object IO. */

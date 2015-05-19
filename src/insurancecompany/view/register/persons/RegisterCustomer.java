@@ -243,4 +243,16 @@ public class RegisterCustomer {
     public void setResultMessage(String message) {
         this.resultMessage.setText(message);
     }
+    
+    /** Clears all text fields. */
+    public void clearView() {
+        personalNumberField.setText("");
+        firstNameField.setText("");
+        lastNameField.setText("");
+        streetField.setText("");
+        zipCodeField.setText("");
+        cityField.setText("");
+        emailField.setText("");
+        phoneField.setText("");
+    }
 }

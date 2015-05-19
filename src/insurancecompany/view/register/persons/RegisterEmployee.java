@@ -265,4 +265,17 @@ public class RegisterEmployee {
     public void setResultMessage(String message) {
         this.resultMessage.setText(message);
     }
+    
+    /** Clears all text fields and combo boxes. */
+    public void clearView() {
+        positionCombo.setValue(null);
+        personalNumberField.setText("");
+        firstNameField.setText("");
+        lastNameField.setText("");
+        streetField.setText("");
+        zipCodeField.setText("");
+        cityField.setText("");
+        emailField.setText("");
+        phoneField.setText("");
+    }
 }

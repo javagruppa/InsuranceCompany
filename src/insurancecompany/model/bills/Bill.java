@@ -9,7 +9,13 @@ import java.io.*;
 import java.util.Calendar;
 
 /**
- *
+ * This class represents a bill. Bills are issued for every premium payment
+ * of an insurance. 
+ * 
+ * <p> Each bill has an initial fee and a due date. If the due date is reached
+ * without the bill being paid, an additional dunning charge will be added and 
+ * a new dunning date will be set.
+ * 
  * @author André
  */
 public class Bill implements Serializable {

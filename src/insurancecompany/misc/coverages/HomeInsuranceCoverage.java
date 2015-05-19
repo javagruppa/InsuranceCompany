@@ -6,7 +6,8 @@
 package insurancecompany.misc.coverages;
 
 /**
- *
+ * This enum represents the different coverages of a home insurance.
+ * 
  * @author André
  * @author Carl
  */

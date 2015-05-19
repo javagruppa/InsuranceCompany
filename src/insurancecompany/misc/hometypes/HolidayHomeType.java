@@ -7,7 +7,8 @@
 package insurancecompany.misc.hometypes;
 
 /**
- *
+ * This enum represents the different types a holiday home can be of.
+ * 
  * @author Carl
  */
 public enum HolidayHomeType {

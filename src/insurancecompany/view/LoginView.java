@@ -16,6 +16,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -27,7 +29,7 @@ import javafx.stage.Stage;
  * @author André
  */
 public class LoginView {
-
+    
     private Scene scene;
     private TextField userTextField;
     private PasswordField pwField;
@@ -39,51 +41,56 @@ public class LoginView {
     
     public LoginView() {
         
-        GridPane mainPane = new GridPane();
-        mainPane.setId("loginPane");
-
+        
+        GridPane gridPane = new GridPane();
+        gridPane.setId("loginPane");
         
         ColumnConstraints col1 = new ColumnConstraints(100);
         ColumnConstraints col2 = new ColumnConstraints(100);
         ColumnConstraints col3 = new ColumnConstraints(20);
         ColumnConstraints col4 = new ColumnConstraints(80);
-        mainPane.getColumnConstraints().addAll(col1, col2, col3, col4);
+        gridPane.getColumnConstraints().addAll(col1, col2, col3, col4);
+        
+        /*
+        Image ifLogo = new Image("insurancecompany/resources/images/asiflogostor.png");
+        gridPane.add(new ImageView(ifLogo), 0, 1); // add via stackPane maybe?
+        */
         
         Label userName = new Label("Ansattnummer:");
-        mainPane.add(userName, 0, 1);
+        gridPane.add(userName, 0, 2);
         
         userTextField = new TextField();
         userTextField.setText("1000001");
         userTextField.setTooltip(new Tooltip("Eksisterende bruker med nummer: 1000001"));
-        mainPane.add(userTextField, 1, 1, 2, 1);
+        gridPane.add(userTextField, 1, 2, 2, 1);
         
         userTextFieldMessage = new Text();
-        mainPane.add(userTextFieldMessage, 3, 1);
+        gridPane.add(userTextFieldMessage, 3, 2);
         
         Label passwordL = new Label("Passord");
-        mainPane.add(passwordL, 0, 2);
+        gridPane.add(passwordL, 0, 3);
         
         pwField = new PasswordField();
         pwField.setDisable(true);
-        mainPane.add(pwField, 1, 2, 2, 1);
+        gridPane.add(pwField, 1, 3, 2, 1);
         
         pwMessage = new Text();
-        mainPane.add(pwMessage, 3, 2);
+        gridPane.add(pwMessage, 3, 2);
         
         loginButton = new Button("Logg inn");
-        mainPane.add(loginButton, 1, 3);
+        gridPane.add(loginButton, 1, 4);
         
         Label fulllScreenLabel = new Label("Start i fullskjerm");
         fullScreenCheckBox = new CheckBox();
         fullScreenCheckBox.setSelected(true);
         
-        mainPane.add(fulllScreenLabel, 1, 4);
-        mainPane.add(fullScreenCheckBox, 2, 4);
+        gridPane.add(fulllScreenLabel, 1, 5);
+        gridPane.add(fullScreenCheckBox, 2, 5);
         
         inputMessage = new Text();
-        mainPane.add(inputMessage, 1, 5);
+        gridPane.add(inputMessage, 1, 6);
 
-        scene = new Scene(mainPane, 400, 275);
+        scene = new Scene(gridPane, 400, 275);
         scene.getStylesheets().add("insurancecompany/resources/css/stylesheet.css");  
         
     }

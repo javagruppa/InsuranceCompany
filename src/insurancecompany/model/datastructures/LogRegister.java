@@ -17,7 +17,10 @@ import java.util.Calendar;
 import java.util.List;
 
 /**
- *
+ * This class creates the register for logs. It consists of a List with
+ * all the logs registered since last login as well as several methods 
+ * to manipulate and get information from the register.
+ * 
  * @author André
  */
 public class LogRegister {

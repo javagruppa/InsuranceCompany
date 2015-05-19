@@ -5,7 +5,8 @@
 package insurancecompany.misc.coverages;
 
 /**
- *
+ * This enum represents the different damages an insurance coverage can cover.
+ * 
  * @author André
  */
 public enum Damage {

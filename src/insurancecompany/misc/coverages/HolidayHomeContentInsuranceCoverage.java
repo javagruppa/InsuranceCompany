@@ -6,7 +6,9 @@
 package insurancecompany.misc.coverages;
 
 /**
- *
+ * This enum represents the different coverages of a holiday home content
+ * insurance.
+ * 
  * @author André
  * @author Carl
  */

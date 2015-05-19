@@ -24,6 +24,7 @@ import javafx.scene.text.Text;
  * 
  * @author André
  * @author Sindre
+ * @author Carl
  */
 public class RegisterCustomer {
     

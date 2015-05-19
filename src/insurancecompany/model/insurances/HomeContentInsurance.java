@@ -7,7 +7,10 @@ import insurancecompany.model.properties.Property;
 import java.io.Serializable;
 
 /**
- *
+ * This class represents a home content insurance object. It contains 
+ * information about the insurance and methods to manipulate and get the 
+ * information.
+ * 
  * @author Sindre
  * @author Carl
  */
@@ -48,8 +51,6 @@ public class HomeContentInsurance extends Insurance
         calculatePremium();
     }
     
-    // GET METHODS
-    
     /** @return The coverage of this insurance. */
     @Override
     public HomeContentInsuranceCoverage getCoverage() {
@@ -58,7 +59,7 @@ public class HomeContentInsurance extends Insurance
     
     /** @return The type of insurance in form of a String. */
     @Override
-    public String getName() {
+    public String getType() {
         return InsuranceType.HOME_CONTENT_INSURANCE.toString();
     }
     
@@ -67,11 +68,10 @@ public class HomeContentInsurance extends Insurance
         return property;
     }
     
-    // CALCULATE PREMIUM METHODS
-
     /**
      * Calculates the premium of this insurance, and then sets the premium.
      */
+    @Override
     public void calculatePremium() {
 	int newPremium = coverage.getPricing() + (int)amountCost() - 
                 excessDrop();
@@ -128,8 +128,6 @@ public class HomeContentInsurance extends Insurance
 	}
 	return drop;
     }
-    
-    // TO STRING METHOD
     
     /**
      * Returns a string representation of this insurance. The string

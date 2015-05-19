@@ -8,7 +8,9 @@ import java.io.Serializable;
 import java.util.Calendar;
 
 /**
- *
+ * This class represents a home insurance object. It contains information about
+ * the insurance and methods to manipulate and get the information.
+ * 
  * @author Sindre
  * @author Carl
  */
@@ -47,8 +49,6 @@ public class HomeInsurance extends Insurance implements Serializable {
         calculatePremium();
     }
     
-    // GET METHODS
-    
     /** @return The coverage of this insurance. */
     @Override
     public HomeInsuranceCoverage getCoverage() {
@@ -57,7 +57,7 @@ public class HomeInsurance extends Insurance implements Serializable {
     
     /** @return The type of insurance in form of a String. */
     @Override
-    public String getName() {
+    public String getType() {
         return InsuranceType.HOME_INSURANCE.toString();
     }
     
@@ -66,13 +66,12 @@ public class HomeInsurance extends Insurance implements Serializable {
         return property;
     }
     
-    // CALCULATE PREMIUM METHODS
-    
     /**
      * Calculates and sets the premium for this insurance based on if the house 
      * is to be rented out, the type of the insured property, the building 
      * material of the property and the year the property was built.
      */
+    @Override
     public void calculatePremium(){
         double rentalExtra = rental ? 1.15 : 1;
         // Multiplicator for the homes building material
@@ -141,8 +140,6 @@ public class HomeInsurance extends Insurance implements Serializable {
         }
         return result;
     }
-    
-    // TO STRING METHOD
     
     /**
      * Returns a string representation of this insurance. The string

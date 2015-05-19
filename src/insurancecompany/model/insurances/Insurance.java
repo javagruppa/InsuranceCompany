@@ -12,7 +12,10 @@ import java.io.Serializable;
 import java.util.Calendar;
 
 /**
- *
+ * This class is an abstract class. It the super class for the other insurances. 
+ * It contains information about the insurance and methods to manipulate and get 
+ * the information.
+ * 
  * @author Sindre
  */
 public abstract class Insurance implements Serializable {
@@ -67,13 +70,11 @@ public abstract class Insurance implements Serializable {
         monthlyPremium = premium / 12;
     }
     
-    // GET METHODS
-    
     /** @return The coverage of this insurance. */
     public abstract Object getCoverage();
     
     /** @return The type of insurance in form of a String. */
-    public abstract String getName();
+    public abstract String getType();
     
     /** @return Whether this insurance is active or not. */
     public boolean getActive() {
@@ -105,8 +106,6 @@ public abstract class Insurance implements Serializable {
         return premium;
     }
     
-    // SET METHODS
-    
     /**
      * Sets an activity status to this insurance.
      * 
@@ -124,8 +123,6 @@ public abstract class Insurance implements Serializable {
     public void setPremium(int premium) {
         this.premium = premium;
     }
-    
-    // EQUALS AND HASHCODE METHODS
     
     /**
      * Indicates whether some other insurance is equal to this one. The result 
@@ -159,8 +156,11 @@ public abstract class Insurance implements Serializable {
         return result;
     }
     
-    // SAVE AND READ METHODS
-
+    /**
+     * Saves the insurance to file.
+     * 
+     * @throws IOException 
+     */
     public static void saveNextIdToFile() throws IOException {
         try (DataOutputStream dos = new DataOutputStream(
                 new BufferedOutputStream(
@@ -169,6 +169,11 @@ public abstract class Insurance implements Serializable {
         }
     }
     
+    /**
+     * Reads the insurance from file.
+     * 
+     * @throws IOException 
+     */
     public static void readNextIdFromFile() throws IOException {
         try (DataInputStream dis = new DataInputStream(
                 new BufferedInputStream(
@@ -176,8 +181,6 @@ public abstract class Insurance implements Serializable {
             nextInsuranceId = dis.readInt();
         }
     }
-    
-    // TO STRING METHOD
     
     /**
      * Returns a string representation of this insurance. The string

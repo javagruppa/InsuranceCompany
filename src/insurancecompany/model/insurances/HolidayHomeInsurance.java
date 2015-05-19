@@ -8,7 +8,9 @@ import java.io.Serializable;
 import java.util.Calendar;
 
 /**
- * Class HolidayHomeInsurance. This is the insurance for holiday homes.
+ * This class represents a holiday home insurance object. It contains 
+ * information about the insurance and methods to manipulate and get the 
+ * information.
  * 
  * @author Sindre
  * @author Carl
@@ -50,8 +52,6 @@ public class HolidayHomeInsurance extends Insurance
         calculatePremium();
     }
     
-    // GET METHODS
-    
     /** @return The coverage of this insurance. */
     @Override
     public HolidayHomeInsuranceCoverage getCoverage() {
@@ -60,7 +60,7 @@ public class HolidayHomeInsurance extends Insurance
     
     /** @return The type of insurance in form of a String. */
     @Override
-    public String getName() {
+    public String getType() {
         return InsuranceType.HOLIDAY_HOME_INSURANCE.toString();
     }
     
@@ -69,13 +69,12 @@ public class HolidayHomeInsurance extends Insurance
         return property;
     }
     
-    // CALCULATE PREMIUM METHODS
-    
     /**
      * Calculates and sets the premium for this insurance based on if the house 
      * is to be rented out, the type of the insured home, the building material 
      * of the home and the year the home was built.
      */
+    @Override
     public void calculatePremium() {
         double rentalExtra = rental ? 1.15 : 1;
         // Multiplicator for the homes building material
@@ -144,8 +143,6 @@ public class HolidayHomeInsurance extends Insurance
         }
         return result;
     }
-    
-    // TO STRING METHOD
     
     /**
      * Returns a string representation of this insurance. The string

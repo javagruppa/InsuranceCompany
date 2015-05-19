@@ -149,6 +149,7 @@ public class StatisticsIncome {
 
         // Initialization of all the nodes in the center part.
         final CategoryAxis xAxis = new CategoryAxis();
+        
         final NumberAxis yAxis = new NumberAxis();
         xAxis.setLabel("Dato");
         lineChart = new AreaChart<String,Number>(xAxis,yAxis);

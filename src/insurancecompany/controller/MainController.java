@@ -479,12 +479,13 @@ public class MainController {
             String message = "Fyll inn dette feltet.";
             registerCustomer.setEmailMessage(message);
             ok = false;
-        } else if (!email.matches("^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+(?:\\.[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+)*@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$")) {
-            String message = "Fyll inn korrekt email adresse.";
+        } else if (!email.matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+		+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")) {
+            String message = "Fyll inn korrekt epost adresse.";
             registerCustomer.setEmailMessage(message);
             ok = false;
         }
-        
+    
         if (phone.equals("")) {
             String message = "Fyll inn dette feltet.";
             registerCustomer.setPhoneMessage(message);
@@ -527,15 +528,25 @@ public class MainController {
             } else {
                 result = "Kunden kunne ikke registreres. Kunde med likt personnummer eksisterer allerede.";
             }
+            // Gives feedback on the result of the attempted registration
             registerCustomer.setResultMessage(result);
         }
     }
     
-    // TODO: Trenger regex og validering
+
+    /**
+     * Registers a new Employee, based on the information put into the required
+     * text fields in the GUI Window.
+     * @param event The ActionEvent of this event button
+     */
     private void registerEmployeeButtonEventHandler(ActionEvent event) {
+        // Boolean ok. Set to false if the fields are filled in wrong, to
+        // prevent registration with false information.
         boolean ok = true;
+        // Zip code. Initialized at 0. Set later.
         int zipCode = 0;
         
+        // Fetches information from the input fields.
         EmployeeType position = registerEmployee.getPosition();
         String personalNumber = registerEmployee.getPersonalNumber();
         String firstName = registerEmployee.getFirstName();
@@ -546,8 +557,11 @@ public class MainController {
         String email = registerEmployee.getEmail();
         String phone = registerEmployee.getPhone();
         
+        // Clears all error messages
         registerEmployee.clearMessages();
         
+        // Checks whether the required fields are correctly filled in.
+        // Sets ok to false if any field is filled in incorrectly.
         if (position == null) {
             String message = "Velg stilling.";
             registerEmployee.setPositionMessage(message);
@@ -609,7 +623,8 @@ public class MainController {
             String message = "Fyll inn dette feltet.";
             registerEmployee.setEmailMessage(message);
             ok = false;
-        } else if (!email.matches("^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+(?:\\.[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+)*@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$")) {
+        } else if (!email.matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+		+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")) {
             String message = "Fyll inn korrekt email adresse.";
             registerEmployee.setEmailMessage(message);
             ok = false;
@@ -649,7 +664,7 @@ public class MainController {
         Address adress = new Address(street, zipCode, city);
         // Creates a new customer:
         Employee employee;
-        boolean addok = false;
+        
         switch (position) {
             case SERVICE_WORKER : employee = new ServiceWorker(firstName, lastName, personalNumber, email, adress, phone);
             case CASE_WORKER : employee = new CaseWorker(firstName, lastName, personalNumber, email, adress, phone);
@@ -657,14 +672,14 @@ public class MainController {
             default: employee = new ServiceWorker(firstName, lastName, personalNumber, email, adress, phone);
         }
         // Adds the new customer to the datastructure:
-        addok = employees.addEmployee(employee);
+        boolean addok = employees.addEmployee(employee);
         String result;
         if (addok) {
             result = "Ansatt registrert. Ansattnummer: " + employee.getId();
         } else {
             result = "Ansatt kunne ikke registreres. Ansatt med likt personnummer eksisterer allerede.";
         }
-        
+        // Gives feedback on the result of the attempted registration
         registerEmployee.setResultMessage(result);
     }
     }
@@ -1290,6 +1305,10 @@ public class MainController {
                 // If so send a message to the user:
                 registerBoatClaim.setRegisterButtonMessage(DESCRIPTION_EMPTY_MESSAGE);
                 return; // leave method
+            } else if (!description.matches("^[æøåÆØÅa-zA-Z0-9]{1-5000}")) {
+                String message = "Max 5000 tegn mulig.";
+                registerBoatClaim.setRegisterButtonMessage(message);
+                ok = false;
             }
             // Get the selected damages:
             Set<Damage> damages = registerBoatClaim.getSelectedDamages();
@@ -2595,6 +2614,10 @@ public class MainController {
         if(brand.equals("")) {
             registerBoatInsurance.setBrandMessage(EMPTY_MESSAGE);
             abort = true;
+        } else if (!brand.matches("[ÆØÅæøåa-zA-Z0-9]{1,40}")) {
+            String message = "Vennligst bruk kun tall og bokstaver.";
+            registerBoatInsurance.setBrandMessage(message);
+            abort = true;
         }
         if(coverage == null) {
             registerBoatInsurance.setCoverageMessage(EMPTY_MESSAGE);
@@ -2605,18 +2628,33 @@ public class MainController {
             abort = true;
         }
         if(engineType.equals("")) {
-            registerBoatInsurance.setEngineTypeMessage(EMPTY_MESSAGE);
+            // This is legal, so that the field can be left blank.
+        } else if (!engineType.matches("(^$inboard|outboard|ingen)")) {
+            String message = "Velg enten 'inboard', 'outboard' eller la feltet stå blankt.";
+            registerBoatInsurance.setEngineTypeMessage(message);
             abort = true;
         }
         if(model.equals("")) {
             registerBoatInsurance.setModelMessage(EMPTY_MESSAGE);
             abort = true;
+        } else if (!model.matches("[ÆØÅæøåa-zA-Z0-9]{2,30}")) {
+            String message = "Fyll inn modell korrekt. Kun tall og bokstaver.";
+            registerBoatInsurance.setModelMessage(message);
+            abort = true;
         }
         if(ownerPersonalNumber.equals("")) {
             registerBoatInsurance.setOwnerPersonalNumberMessage(EMPTY_MESSAGE);
+        } else if (!ownerPersonalNumber.matches("\\d{11}")) {
+            String message = "Fyll inn korrekt fødselsnummer. 11 siffer.";
+            registerBoatInsurance.setOwnerPersonalNumberMessage(message);
+            abort = true;
         }
         if(registrationNumber.equals("")) {
             registerBoatInsurance.setRegistrationNumberMessage(EMPTY_MESSAGE);
+        } else if (!registrationNumber.matches("^[ÆØÅæøåa-zA-Z0-9]{6,7}")) {
+            String message = "Skriv inn korrekt reg.nr.";
+            registerBoatInsurance.setRegistrationNumberMessage(message);
+            abort = true;
         }
         
         // Evaluates and converts Input:
@@ -2628,6 +2666,10 @@ public class MainController {
         }
         if(engineEffectString.equals("")) {
             registerBoatInsurance.setEngineEffectMessage(EMPTY_MESSAGE);
+            abort = true;
+        } else if (!engineEffectString.matches ("\\d{1,4}")) {
+            String message = "Fyll inn korrekt motoreffekt. 1-4 siffer.";
+            registerBoatInsurance.setEngineEffectMessage(message);
             abort = true;
         } else {
             try {
@@ -2651,6 +2693,10 @@ public class MainController {
         if(lengthString.equals("")) {
             registerBoatInsurance.setLengthMessage(EMPTY_MESSAGE);
             abort = true;
+        } else if (!lengthString.matches("\\d{1,3}")){
+            String message = "Fyll inn korrekt lengde i fot. 1-3 siffer.";
+            registerBoatInsurance.setLengthMessage(message);
+            abort = true;
         } else {
             try {
                 length = Integer.parseInt(lengthString);
@@ -2662,7 +2708,11 @@ public class MainController {
         if(registrationYearString.equals("")) {
             registerBoatInsurance.setRegistrationYearMessage(EMPTY_MESSAGE);
             abort = true;
-        } else {
+        } else if (!registrationYearString.matches("\\d{4}")) {
+            String message = "Fyll inn korrekt årstall. 4 siffer.";
+            registerBoatInsurance.setRegistrationYearMessage(message);
+            abort = true;
+        }else {
             try {
                 registrationYear = Integer.parseInt(registrationYearString);
             } catch(NumberFormatException nfe) {
@@ -2673,7 +2723,11 @@ public class MainController {
         if(valueString.equals("")) {
             registerBoatInsurance.setValueMessage(EMPTY_MESSAGE);
             abort = true;
-        } else {
+        } else if (!valueString.matches("\\d{1,9}")) {
+            String message = "Fyll inn korrekt verdi. Kun tall.";
+            registerBoatInsurance.setValueMessage(message);
+            abort = true;
+        }else {
             try {
                 value = Integer.parseInt(valueString);
             } catch(NumberFormatException nfe) {
@@ -2822,9 +2876,17 @@ public class MainController {
         }
         if(ownerPersonalNumber.equals("")) {
             registerCarInsurance.setOwnerPersonalNumberMessage(EMPTY_MESSAGE);
+        } else if (!ownerPersonalNumber.matches("\\d{11}")) {
+            String message = "Fyll inn 11 siffer.";
+            registerCarInsurance.setOwnerPersonalNumberMessage(message);
+            abort = true;
         }
         if(registrationNumber.equals("")) {
             registerCarInsurance.setRegistrationNumberMessage(EMPTY_MESSAGE);
+        } else if (!registrationNumber.matches("^[a-zA-Z]{1,3}[ -]{0,1}[0-9]{1,5}")) {
+            String message = "Fyll inn korrekt reg.nr.";
+            registerCarInsurance.setRegistrationNumberMessage(message);
+            abort = true;
         }
         
         // Evaluates and converts Input:

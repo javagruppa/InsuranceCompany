@@ -1,14 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package insurancecompany.model.properties;
 
 import java.io.Serializable;
 
 /**
- *
+ * This class represents a property object. It contains information about
+ * the property and methods to manipulate and get the information.
+ * 
  * @author Sindre
  */
 public class Property implements Serializable {
@@ -18,45 +15,49 @@ public class Property implements Serializable {
     private Address address;
     /** The floor area of this property. */
     private int area;
-    /** The construction year of this property. */
-    private int year;
     /** The building material of this property. */
     private PropertyMaterial material;
-    /** Whether this property is to be rented out. */
+    /** The construction year of this property. */
+    private int year;
         
     /**
-     * Constructs a new property with the specified address. Area and year are 
-     * set to 0. Material is set to null, rental is set to false.
+     * Constructs a new property with the specified parameters.
      * 
-     * @param address the address of this property
+     * @param address The address of this property.
+     * @param area The floor area of this property.
+     * @param material The building material of this property.
+     * @param year The building material of this property.
      */
     public Property(Address address, PropertyMaterial material, int area,
             int year) {
         this.address = address;
         this.area = area;
-        this.year = year;
         this.material = material;
+        this.year = year;
                 
     }
     
+    /** @return The material mulitplicator used to calculate premium. */
     public double getMaterialMultiplicator(){
         return material.getMultiplicator();
     }
+
+    /** @return The address of this property. */
+    public Address getAddress() {
+        return address;
+    }
+
+    /** @return The building material of this property. */
+    public int getYear() {
+        return year;
+    }
     
-    /**
-     * Sets an area to this property.
-     * 
-     * @param area the floor area of this property
-     */
+    /** @param area The floor area of this property. */
     public void setArea(int area) {
         this.area = area;
     }
     
-    /**
-     * Sets a construction year to this property.
-     * 
-     * @param year the construction year of this property
-     */
+    /** @param year The construction year of this property. */
     public void setYear(int year) {
         this.year = year;
     }
@@ -66,7 +67,7 @@ public class Property implements Serializable {
      * representation consists of each field with a short description separated
      * by a new line.
      * 
-     * @return a string representation of this property
+     * @return A string representation of this property.
      */
     @Override
     public String toString() {
@@ -75,40 +76,10 @@ public class Property implements Serializable {
         StringBuilder result = new StringBuilder();
         // Appends the fields with appropriate sentences.
         result.append("Adresse: ").append(getAddress().toString());
-        result.append("\nAntall kvadratmeter: ").append(getArea());
-        result.append("\nByggeår: ").append(getYear());
-        result.append("\nByggemateriale: ").append(getMaterial());
+        result.append("\nAntall kvadratmeter: ").append(area);
+        result.append("\nByggeår: ").append(year);
+        result.append("\nByggemateriale: ").append(material.toString());
         // Returns the string.
         return result.toString();
-    }
-
-    /**
-     * @return the address
-     */
-    public Address getAddress() {
-        return address;
-    }
-
-    /**
-     * @return the area
-     */
-    public int getArea() {
-        return area;
-    }
-
-    /**
-     * @return the year
-     */
-    public int getYear() {
-        return year;
-    }
-
-    
-    /**
-     * 
-     * @return the building material
-     */
-    public String getMaterial() {
-        return material.toString();
     }
 }

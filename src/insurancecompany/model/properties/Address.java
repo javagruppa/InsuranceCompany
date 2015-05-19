@@ -1,24 +1,31 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package insurancecompany.model.properties;
 
 import java.io.Serializable;
 
 /**
- *
+ * This class represents an address object. It contains information about
+ * the address and methods to get the information.
+ * 
  * @author Carl
  */
 public class Address implements Serializable {
     private static final long serialVersionUID = 1L;
     
-    private String street; // Includes street name, number and letter.
+    /** The street of the address. Includes street name, number and letter. */
+    private String street;
+    /** The zip code of the address. */
     private int zipCode;
+    /** The city of the address. */
     private String city;
     
+    /**
+     * Creates an address with the specified parameters.
+     * 
+     * @param street The street of the address. Includes street name, number 
+     * and letter.
+     * @param zipCode The zip code of the address.
+     * @param city The city of the address.
+     */
     public Address(String street, int zipCode, String city) {
         this.street = street;
         this.zipCode = zipCode;
@@ -28,41 +35,47 @@ public class Address implements Serializable {
     /**
      * Optional constructor which leaves out the city field. Is used in
      * CarClaimFormView.
-     * @param street
-     * @param zipCode 
+     * 
+     * @param street The street of the address. Includes street name, number 
+     * and letter.
+     * @param zipCode The zip code of the address.
      */
     public Address(String street, int zipCode) {
         this.street = street;
         this.zipCode = zipCode;
     }
 
-    
+    /** 
+     * @return The street of the address. Includes street name, number and
+     * letter.
+     */
     public String getStreet() {
         return street;
     }
     
+    /** @return The zip code of the address. */
     public int getZipCode() {
         return zipCode;
     }
     
+    /** @return The city of the address. */
     public String getCity() {
         return city;
     }
     
+    /**
+     * Returns a string representation of this address. The string
+     * representation consists of each field with a short description separated
+     * by a new line.
+     * 
+     * @return A string representation of this property.
+     */
     @Override
     public String toString(){
-        StringBuilder sb = new StringBuilder();
-        sb.append("Adresse:\n");
-        if (street != null) {
-            sb.append("Gate: ").append(street).append("\n");
-        }
-        if (zipCode != 0) {
-            sb.append("Postnummer: ").append(zipCode).append("\n");
-        }
-        if (city != null) {
-            sb.append("By: ").append(city).append("\n");
-        }
-        return sb.toString();
+        StringBuilder result = new StringBuilder();
+        result.append("\nGate: ").append(street);
+        result.append("\nPostnummer: ").append(zipCode);
+        result.append("\nBy: ").append(city);
+        return result.toString();
     }
-    
 }

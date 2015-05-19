@@ -63,6 +63,7 @@ import javafx.util.Callback;
  * <p>This class has a method the returns the GridPane. This method is used to
  * connect the content of this class to another view.
  * 
+ * @author Carl
  * @author André
  */
 public class RegisterCarClaim {

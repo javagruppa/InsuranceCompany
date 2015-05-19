@@ -13,6 +13,7 @@ import javafx.scene.image.Image;
  * insurances are registered as HolidayHome claims.
  * 
  * @author André
+ * @author Carl
  */
 public class HolidayHomeClaim extends Claim implements Serializable {
     /** SerialVersionUID used to identify this class for object IO */

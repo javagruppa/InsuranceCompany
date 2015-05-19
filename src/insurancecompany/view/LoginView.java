@@ -6,14 +6,20 @@
 package insurancecompany.view;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /**
@@ -26,37 +32,59 @@ public class LoginView {
     private TextField userTextField;
     private PasswordField pwField;
     private Button loginButton;
+    private CheckBox fullScreenCheckBox;
+    private Text userTextFieldMessage;
+    private Text pwMessage;
+    private Text inputMessage;
     
     public LoginView() {
         
-        GridPane grid = new GridPane();
-        grid.setAlignment(Pos.CENTER);
-        grid.setHgap(10);
-        grid.setVgap(10);
+        GridPane mainPane = new GridPane();
+        mainPane.setId("loginPane");
+
         
-        Label userName = new Label("Brukernavn:");
-        grid.add(userName, 0, 1);
+        ColumnConstraints col1 = new ColumnConstraints(100);
+        ColumnConstraints col2 = new ColumnConstraints(100);
+        ColumnConstraints col3 = new ColumnConstraints(20);
+        ColumnConstraints col4 = new ColumnConstraints(80);
+        mainPane.getColumnConstraints().addAll(col1, col2, col3, col4);
+        
+        Label userName = new Label("Ansattnummer:");
+        mainPane.add(userName, 0, 1);
         
         userTextField = new TextField();
-        grid.add(userTextField, 1, 1);
+        userTextField.setText("1000000");
+        userTextField.setTooltip(new Tooltip("Eksisterende bruker med nummer: 1000000"));
+        mainPane.add(userTextField, 1, 1, 2, 1);
+        
+        userTextFieldMessage = new Text();
+        mainPane.add(userTextFieldMessage, 3, 1);
         
         Label passwordL = new Label("Passord");
-        grid.add(passwordL, 0, 2);
+        mainPane.add(passwordL, 0, 2);
         
         pwField = new PasswordField();
-        grid.add(pwField, 1, 2);
+        pwField.setDisable(true);
+        mainPane.add(pwField, 1, 2, 2, 1);
+        
+        pwMessage = new Text();
+        mainPane.add(pwMessage, 3, 2);
         
         loginButton = new Button("Logg inn");
-        grid.add(loginButton, 1, 3);
+        mainPane.add(loginButton, 1, 3);
         
-        GridPane pane = new GridPane();
-        Label label1 = new Label("Test");
-        pane.add(label1, 0, 0);
-        grid.add(pane, 1, 4);
+        Label fulllScreenLabel = new Label("Start i fullskjerm");
+        fullScreenCheckBox = new CheckBox();
+        fullScreenCheckBox.setSelected(true);
         
+        mainPane.add(fulllScreenLabel, 1, 4);
+        mainPane.add(fullScreenCheckBox, 2, 4);
         
-        
-        scene = new Scene(grid, 300, 275);
+        inputMessage = new Text();
+        mainPane.add(inputMessage, 1, 5);
+
+        scene = new Scene(mainPane, 400, 275);
+        scene.getStylesheets().add("insurancecompany/resources/css/stylesheet.css");  
         
     }
     
@@ -70,12 +98,45 @@ public class LoginView {
         return loginButton;
     }
     
-    public TextField getUserTextField() {
-        return userTextField;
+    public String getUserTextField() {
+        return userTextField.getText();
     }
     
-    public PasswordField getPwField() {
-        return pwField;
+    public String getPwField() {
+        return pwField.getText();
+    }
+    
+    public boolean getFullScreenCheckBoxValue() {
+        return fullScreenCheckBox.isSelected();
+    }
+
+    /**
+     * 
+     * @param event 
+     */
+    public void setLoginButtonEventHandler(EventHandler<ActionEvent> event) {
+        this.loginButton.setOnAction(event);
+    }
+
+    /**
+     * @param inputMessage the inputMessage to set
+     */
+    public void setInputMessage(String inputMessage) {
+        this.inputMessage.setText(inputMessage);
+    }
+
+    /**
+     * @param userTextFieldMessage the userTextFieldMessage to set
+     */
+    public void setUserTextFieldMessage(String userTextFieldMessage) {
+        this.userTextFieldMessage.setText(userTextFieldMessage);
+    }
+
+    /**
+     * @param pwMessage the pwMessage to set
+     */
+    public void setPwMessage(String pwMessage) {
+        this.pwMessage.setText(pwMessage);
     }
     
 }

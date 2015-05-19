@@ -19,6 +19,7 @@ import insurancecompany.model.insurances.*;
 import insurancecompany.model.people.*;
 import insurancecompany.model.properties.*;
 import insurancecompany.model.vehicles.*;
+import insurancecompany.view.LoginView;
 import insurancecompany.view.register.claims.*;
 import insurancecompany.view.register.insurances.*;
 import insurancecompany.view.register.persons.*;
@@ -41,6 +42,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javax.imageio.ImageIO;
 
 /**
@@ -57,6 +59,7 @@ public class MainController {
     
     /** Primary Stage. */
     private Stage primaryStage;
+    private Stage loginStage;
     
     // Models:
     private BillRegister bills;
@@ -68,6 +71,7 @@ public class MainController {
     
     // Modules:
     private MainView mainView;
+    private LoginView loginView;
     
     // Claim Registration Views:
     private RegisterBoatClaim registerBoatClaim;
@@ -144,6 +148,7 @@ public class MainController {
         
         // Modules:
         this.mainView = new MainView();
+        this.loginView = new LoginView();
     
         // Claim Registration Views:
         this.registerBoatClaim = new RegisterBoatClaim();
@@ -210,7 +215,7 @@ public class MainController {
         // Controllers:
         this.modelController = new ModelController(bills, claims, customers, 
                 employees, insurances, logs);
-        this.viewController = new ViewController(mainView, views);
+        this.viewController = new ViewController(mainView, loginView, views);
         
         
         setBrandComboBox();
@@ -232,7 +237,13 @@ public class MainController {
     
     public void show(Stage stage) {
         this.primaryStage = stage;
-        viewController.show(stage);
+        primaryStage.initStyle(StageStyle.UNDECORATED);
+        viewController.setStage(this.primaryStage);
+        loginStage = new Stage();
+        loginView.show(loginStage);
+        //CarClaimFormView car = new CarClaimFormView();
+        //car.setStage(stage);
+        //mainView.setStage(primaryStage);
     }
     
     private void initializeEventHandlers() {
@@ -241,7 +252,10 @@ public class MainController {
         initializeSearchEventHandlers();
         initializeStatisticsEventHandlers();
         mainView.setSaveDataButtonEventHandler(this::mainViewSaveDataButtonEventHandler);
+        mainView.setLogOutButtonEventHandler(this::mainViewLogOutButtonEventHandler);
         mainView.setExitButtonEventHandler(this::mainViewExitButtonEventHandler);
+        
+        loginView.setLoginButtonEventHandler(this::loginViewLoginButtonEventHandler);
         
         
         registerCustomer.setRegisterEventHandler(this::registerCustomerButtonEventHandler);
@@ -381,6 +395,36 @@ public class MainController {
         writeLogsToFile();
     }
     
+    private void mainViewLogOutButtonEventHandler(ActionEvent event) {
+        primaryStage.close();
+        loginStage.show();
+    }
+    
+    private void mainViewExitButtonEventHandler(ActionEvent event) {
+        Platform.exit();
+    }    
+    
+    private void loginViewLoginButtonEventHandler(ActionEvent event) {
+        String employeeIdString = loginView.getUserTextField();
+        int employeeId = 0;
+        boolean isFullScreen = loginView.getFullScreenCheckBoxValue();
+        //String password = loginView.getPwField(); // Not currently in use.
+        
+        
+        if (employeeIdString.equals("")) {
+            //loginView.setUserTextFieldMessage("Fyll inn");
+        } else {
+            try {
+                employeeId = Integer.parseInt(employeeIdString);
+            } catch (NumberFormatException nfe) {
+                loginView.setUserTextFieldMessage("Kun tall");
+            }
+        }
+        loginStage.close();
+        primaryStage.setFullScreen(isFullScreen);
+        mainView.show(primaryStage);
+    }
+    
     public void readAllDataFromFile() {
         readBillIdFromFile();
         readBillsFromFile();
@@ -393,10 +437,6 @@ public class MainController {
         readInsuranceIdFromFile();
         readInsurancesFromFile();  
     }
-    
-    private void mainViewExitButtonEventHandler(ActionEvent event) {
-        Platform.exit();
-    }    
     
     /**
      * Registers a new Customer, based on the information put into the required
@@ -4383,7 +4423,7 @@ public class MainController {
                 // Add that stackpane to a new scene:
                 Scene scene = new Scene(sp);
                 // Create a new stage to be used for displaying the image:
-                // Create a new stage and show the scene:
+                // Create a new stage and setStage the scene:
                 Stage imageStage = new Stage();
                 imageStage.setScene(scene);
                 imageStage.show();

@@ -960,6 +960,6 @@ public class MainController {
     }
     
     public void show(Stage stage) {
-        viewController.show(stage);
+        viewController.setStage(stage);
     }
 }

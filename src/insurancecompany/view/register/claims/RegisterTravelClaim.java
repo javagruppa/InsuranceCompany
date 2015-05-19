@@ -600,6 +600,31 @@ public class RegisterTravelClaim {
         selectImageStatus.setText("");
         addItemConfirmMessage.setText("");
     }
+    
+    public void clearView(){
+        dateHappenedPicker.setValue(LocalDate.now());
+        descriptionTextArea.setText("");
+        appraisalField.setText("");
+        itemDescriptionTextArea.setText("");
+        acquiredAreaField.setText("");
+        acquiredDatePicker.setValue(null);
+        valueField.setText("");
+        descriptionOfDocumentationTextArea.setText("");
+        creditCardBrandField.setText("");
+        countryField.setText("");
+        clearDamages();
+        clearMessages();
+    }
+    
+    /**
+     * Clears the selected boxes for damages
+     */
+    public void clearDamages(){
+        for (int i = 0; i < damageCheckBoxes.size(); i++) {
+            // For each checkbox that is selected:
+            damageCheckBoxes.get(i).setSelected(false);
+        }
+    }
 
     /**
      * Get the image of the damage from this view.

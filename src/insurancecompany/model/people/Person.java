@@ -99,7 +99,6 @@ public abstract class Person implements Serializable {
         // Appends the fields with appropriate sentences.
         result.append("Navn: ").append(firstName).append(" ").append(lastName);
         result.append("\nPersonnummer: ").append(personalNumber);
-        result.append("\nAdresse: ").append(address.toString());
         if (email != null) {
             result.append("\nE-post adresse: ").append(email);
         }
@@ -107,6 +106,7 @@ public abstract class Person implements Serializable {
         result.append("\nRegistrert dato: ").append(DateUtility
                 .NORWEGIAN_DATE_FORMAT.format(registeredDate.getTime()));
         result.append("\nAktiv: ").append(active ? "Ja" : "Nei");
+        result.append("\n\n").append(address.toString());
         // Returns the string.
         return result.toString();
     }

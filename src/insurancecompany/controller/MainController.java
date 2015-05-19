@@ -2020,6 +2020,7 @@ public class MainController {
                 if (claims.addClaim(claim)) {
                     // Clear uploads(image):
                     registerHolidayHomeClaim.clearUploads();
+                    registerHolidayHomeClaim.clearView();
                     registerHolidayHomeClaim.setRegisterButtonMessage(REGISTER_SUCCESS);
                 } else {
                     registerHolidayHomeClaim.setRegisterButtonMessage(REGISTER_NO_SUCCESS);

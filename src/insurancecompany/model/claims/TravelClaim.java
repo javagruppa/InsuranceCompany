@@ -13,6 +13,7 @@ import javafx.scene.image.Image;
  * Insurances are registered as Travel claims.
  * 
  * @author André
+ * @author Carl
  */
 public class TravelClaim extends Claim implements Serializable {
     /** SerialVersionUID used to identify this class for object IO. */

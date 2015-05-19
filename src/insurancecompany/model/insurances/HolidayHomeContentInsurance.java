@@ -72,7 +72,7 @@ public class HolidayHomeContentInsurance extends Insurance
      * Calculates the premium of this insurance, and then sets the premium.
      */
     @Override
-    public void calculatePremium() {
+    public final void calculatePremium() {
 	int newPremium = coverage.getPricing() + (int)amountCost() - 
                 excessDrop();
 	setPremium(newPremium);
@@ -80,7 +80,7 @@ public class HolidayHomeContentInsurance extends Insurance
     }
     
     /**
-     * Calculates and returns the camount cost of this insurance, based on the 
+     * Calculates and returns the amount cost of this insurance, based on the 
      * insurance amount.
      * 
      * @return The content price of this insurance.

@@ -75,7 +75,7 @@ public class HolidayHomeInsurance extends Insurance
      * of the home and the year the home was built.
      */
     @Override
-    public void calculatePremium() {
+    public final void calculatePremium() {
         double rentalExtra = rental ? 1.15 : 1;
         // Multiplicator for the homes building material
 	double MaterialMultiplicator = property.getMaterialMultiplicator();

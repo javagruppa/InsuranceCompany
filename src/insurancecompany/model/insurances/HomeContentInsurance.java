@@ -72,7 +72,7 @@ public class HomeContentInsurance extends Insurance
      * Calculates the premium of this insurance, and then sets the premium.
      */
     @Override
-    public void calculatePremium() {
+    public final void calculatePremium() {
 	int newPremium = coverage.getPricing() + (int)amountCost() - 
                 excessDrop();
 	setPremium(newPremium);

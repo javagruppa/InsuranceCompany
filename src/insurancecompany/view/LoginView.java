@@ -53,8 +53,8 @@ public class LoginView {
         mainPane.add(userName, 0, 1);
         
         userTextField = new TextField();
-        userTextField.setText("1000000");
-        userTextField.setTooltip(new Tooltip("Eksisterende bruker med nummer: 1000000"));
+        userTextField.setText("1000001");
+        userTextField.setTooltip(new Tooltip("Eksisterende bruker med nummer: 1000001"));
         mainPane.add(userTextField, 1, 1, 2, 1);
         
         userTextFieldMessage = new Text();

@@ -72,7 +72,7 @@ public class HomeInsurance extends Insurance implements Serializable {
      * material of the property and the year the property was built.
      */
     @Override
-    public void calculatePremium(){
+    public final void calculatePremium(){
         double rentalExtra = rental ? 1.15 : 1;
         // Multiplicator for the homes building material
 	double MaterialMultiplicator = property.getMaterialMultiplicator();

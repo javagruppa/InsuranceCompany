@@ -1585,6 +1585,7 @@ public class MainController {
                 if (claims.addClaim(claim)) {
                     // Clear uploads(image):
                     registerHomeClaim.clearUploads();
+                    registerHomeClaim.clearView();
                     registerHomeClaim.setRegisterButtonMessage(REGISTER_SUCCESS);
                 } else {
                     registerHomeClaim.setRegisterButtonMessage(REGISTER_NO_SUCCESS);

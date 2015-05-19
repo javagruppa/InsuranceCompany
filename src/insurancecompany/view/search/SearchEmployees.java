@@ -135,7 +135,7 @@ public class SearchEmployees {
         selectMessage = new Text("");
 
         // Initialization of all the nodes in the right part.
-        deactivateButton = new Button("Gjør forsikringen aktiv/inaktiv");
+        deactivateButton = new Button("Gjør den ansatte aktiv/inaktiv");
         deactivateMessage = new Text("");
         employeeArea = new TextArea();
         employeeArea.setPrefHeight(400);

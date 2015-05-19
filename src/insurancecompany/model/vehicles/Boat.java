@@ -79,7 +79,7 @@ public class Boat extends Vehicle implements Serializable {
         // method.
         StringBuilder result = new StringBuilder();
         // Appends the fields with appropriate sentences.
-        result.append("super.toString()");
+        result.append(super.toString());
         result.append("\nHestekrefter: ").append(engineEffect);
         result.append("\nMotortype: ").append(engineType);
         result.append("\nVerdi: ").append(value);

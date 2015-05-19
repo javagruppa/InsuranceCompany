@@ -1123,7 +1123,9 @@ public class MainController {
                             dateHappened, damages, appraisal, image, null);
                     // Add this car claim to the claim register:
                     if (claims.addClaim(claim)) {
-                            registerCarClaim.setRegisterButtonMessage(REGISTER_SUCCESS);
+                        registerCarClaim.clearUploads();    
+                        registerCarClaim.setRegisterButtonMessage(REGISTER_SUCCESS);
+                            
                     } else {
                         registerCarClaim.setRegisterButtonMessage(REGISTER_NO_SUCCESS);
                     }
@@ -1171,7 +1173,9 @@ public class MainController {
                                 dateHappened, damages, appraisal, image, carClaimForm);
                         // Add this car claim to the claim register:
                         if (claims.addClaim(claim)) {
+                            registerCarClaim.clearUploads();
                             registerCarClaim.setRegisterButtonMessage(REGISTER_SUCCESS);
+                            
                         }
                     } else { // If not we create a fuller car claim form:
                         // Creates a new car for person B with model as empty:
@@ -1353,7 +1357,7 @@ public class MainController {
                 // If so send a message to the user:
                 registerBoatClaim.setRegisterButtonMessage(DESCRIPTION_EMPTY_MESSAGE);
                 return; // leave method
-            } else if (!description.matches("^[æøåÆØÅa-zA-Z0-9]{1-5000}")) {
+            } else if (!description.matches("^[æøåÆØÅa-zA-Z0-9]{1,5000}")) {
                 String message = "Max 5000 tegn mulig.";
                 registerBoatClaim.setRegisterButtonMessage(message);
                 ok = false;
@@ -1390,6 +1394,7 @@ public class MainController {
                 if (claims.addClaim(claim)) {
                     // Clear uploads(image):
                     registerBoatClaim.clearUploads();
+                    registerBoatClaim.clearView();
                     registerBoatClaim.setRegisterButtonMessage(REGISTER_SUCCESS);
                 } else {
                     registerBoatClaim.setRegisterButtonMessage(REGISTER_NO_SUCCESS);
@@ -1785,6 +1790,7 @@ public class MainController {
                 if (claims.addClaim(claim)) {
                     // Clear uploads(image):
                     registerHomeContentClaim.clearUploads();
+                    registerHomeContentClaim.clearView();
                     registerHomeContentClaim.setRegisterButtonMessage(REGISTER_SUCCESS);
                 } else {
                     registerHomeContentClaim.setRegisterButtonMessage(REGISTER_NO_SUCCESS);
@@ -2222,6 +2228,7 @@ public class MainController {
                 if (claims.addClaim(claim)) {
                     // Clear uploads(image):
                     registerHolidayHomeContentClaim.clearUploads();
+                    registerHolidayHomeContentClaim.clearView();
                     registerHolidayHomeContentClaim.setRegisterButtonMessage(REGISTER_SUCCESS);
                 } else {
                     registerHolidayHomeContentClaim.setRegisterButtonMessage(REGISTER_NO_SUCCESS);
@@ -2463,6 +2470,7 @@ public class MainController {
                 if (claims.addClaim(claim)) {
                     // Clear uploads(image):
                     registerTravelClaim.clearUploads();
+                    registerTravelClaim.clearView();
                     registerTravelClaim.setRegisterButtonMessage(REGISTER_SUCCESS);
                 } else {
                     registerTravelClaim.setRegisterButtonMessage(REGISTER_NO_SUCCESS);
@@ -2679,7 +2687,7 @@ public class MainController {
         }
         if(engineType.equals("")) {
             // This is legal, so that the field can be left blank.
-        } else if (!engineType.matches("(^$inboard|outboard|ingen)")) {
+        } else if (!engineType.matches("(^$|inboard|outboard|ingen)")) {
             String message = "Velg enten 'inboard', 'outboard' eller la feltet stå blankt.";
             registerBoatInsurance.setEngineTypeMessage(message);
             abort = true;

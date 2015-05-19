@@ -474,8 +474,8 @@ public class MainController {
             String message = "Fyll inn dette feltet.";
             registerCustomer.setEmailMessage(message);
             ok = false;
-        } else if (!email.matches("^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+(?:\\.[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+)*@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$")) {
-            String message = "Fyll inn korrekt email adresse.";
+        } else if (!email.matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+		+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
             registerCustomer.setEmailMessage(message);
             ok = false;
         }
@@ -604,7 +604,8 @@ public class MainController {
             String message = "Fyll inn dette feltet.";
             registerEmployee.setEmailMessage(message);
             ok = false;
-        } else if (!email.matches("^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+(?:\\.[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+)*@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$")) {
+        } else if (!email.matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+		+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")) {
             String message = "Fyll inn korrekt email adresse.";
             registerEmployee.setEmailMessage(message);
             ok = false;

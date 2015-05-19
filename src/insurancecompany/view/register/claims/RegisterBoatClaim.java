@@ -503,6 +503,9 @@ public class RegisterBoatClaim {
         selectImageStatus.setText("");
     }
     
+    /**
+     * Clears all input fields
+     */
     public void clearView() {
         dateHappenedPicker.setValue(LocalDate.now());
         descriptionTextArea.setText("");

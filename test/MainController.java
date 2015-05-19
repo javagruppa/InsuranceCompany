@@ -56,7 +56,7 @@ public class MainController {
     private ClaimsProcessView claimsProcessView;
     private SubscriptionsProcessView subscriptionsProcessView;
     
-    // Claim Registration Views:
+     // Claim Registration Views:
     private BoatClaimRegistration boatClaimRegistration;
     private CarClaimRegistration carClaimRegistration;
     private HolidayHomeClaimRegistration holidayHomeClaimRegistration;

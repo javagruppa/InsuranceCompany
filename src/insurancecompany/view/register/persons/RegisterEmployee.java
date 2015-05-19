@@ -13,6 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 /**
@@ -218,46 +219,55 @@ public class RegisterEmployee {
 
     /** @param message The message to set. */
     public void setPositionMessage(String message) {
+        this.positionMessage.setFill(Color.FIREBRICK);
         this.positionMessage.setText(message);
     }
     
     /** @param message The message to set. */
     public void setPersonalNumberMessage(String message) {
+        this.personalNumberMessage.setFill(Color.FIREBRICK);
         this.personalNumberMessage.setText(message);
     }
 
     /** @param message The message to set. */
     public void setFirstNameMessage(String message) {
+        this.firstNameMessage.setFill(Color.FIREBRICK);
         this.firstNameMessage.setText(message);
     }
 
     /** @param message The message to set. */
     public void setLastNameMessage(String message) {
+        this.lastNameMessage.setFill(Color.FIREBRICK);
         this.lastNameMessage.setText(message);
     }
 
     /** @param message The message to set. */
     public void setStreetMessage(String message) {
+        this.streetMessage.setFill(Color.FIREBRICK);
         this.streetMessage.setText(message);
     }
 
     /** @param message The message to set. */
     public void setZipCodeMessage(String message) {
+        this.zipCodeMessage.setFill(Color.FIREBRICK);
         this.zipCodeMessage.setText(message);
     }
 
     /** @param message The message to set. */
     public void setCityMessage(String message) {
+        this.cityMessage.setFill(Color.FIREBRICK);
         this.cityMessage.setText(message);
     }
 
     /** @param message The message to set. */
     public void setEmailMessage(String message) {
+        this.emailMessage.setFill(Color.FIREBRICK);
         this.emailMessage.setText(message);
     }
 
     /** @param message The message to set. */
     public void setPhoneMessage(String message) {
+        this.phoneMessage.setFill(Color.FIREBRICK);
         this.phoneMessage.setText(message);
     }
     

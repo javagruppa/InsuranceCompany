@@ -455,9 +455,9 @@ public class MainController {
         }
         
         if (street.equals("")) {
-            String message = "Fyll inn dette feltet.";
-            registerCustomer.setStreetMessage(message);
-            ok = false;
+            // This is allowed, to make sure address field CAN be empty.
+            // The else if underneath makes sure that IF an address is filled in
+            // it has to be the correct format.
         } else if (!street.matches("[ÆØÅæøåa-zA-Z0-9 .-]{2,30}")) {
             String message = "Fyll inn korrekt gateadresse, kun bokstaver og"
                     + " tall tillatt.";

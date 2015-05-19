@@ -583,7 +583,7 @@ public class RegisterHomeContentClaim {
         appraisalField.setText("");
         itemDescriptionTextArea.setText("");
         acquiredAreaField.setText("");
-        acquiredDatePicker.setValue(LocalDate.now());
+        acquiredDatePicker.setValue(null);
         valueField.setText("");
         descriptionOfDocumentationTextArea.setText("");
         clearDamages();

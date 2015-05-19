@@ -1220,7 +1220,7 @@ public class MainController {
                 // If so send a message to the user:
                 registerBoatClaim.setRegisterButtonMessage(DESCRIPTION_EMPTY_MESSAGE);
                 return; // leave method
-            } else if (!description.equals("^[æøåÆØÅa-zA-Z0-9]{1-5000}")) {
+            } else if (!description.matches("^[æøåÆØÅa-zA-Z0-9]{1-5000}")) {
                 String message = "Max 5000 tegn mulig.";
                 registerBoatClaim.setRegisterButtonMessage(message);
                 ok = false;
@@ -2529,7 +2529,7 @@ public class MainController {
         if(brand.equals("")) {
             registerBoatInsurance.setBrandMessage(EMPTY_MESSAGE);
             abort = true;
-        } else if (!brand.equals("[ÆØÅæøåa-zA-Z0-9]{1,40}")) {
+        } else if (!brand.matches("[ÆØÅæøåa-zA-Z0-9]{1,40}")) {
             String message = "Vennligst bruk kun tall og bokstaver.";
             registerBoatInsurance.setBrandMessage(message);
             abort = true;
@@ -2543,31 +2543,30 @@ public class MainController {
             abort = true;
         }
         if(engineType.equals("")) {
-            registerBoatInsurance.setEngineTypeMessage(EMPTY_MESSAGE);
-            abort = true;
-        } else if (!engineType.equals("(inboard|outboard)")) {
-            String message = "Velg enten 'inboard' eller 'outboard'.";
+            // This is legal, so that the field can be left blank.
+        } else if (!engineType.matches("(^$inboard|outboard|ingen)")) {
+            String message = "Velg enten 'inboard', 'outboard' eller la feltet stå blankt.";
             registerBoatInsurance.setEngineTypeMessage(message);
             abort = true;
         }
         if(model.equals("")) {
             registerBoatInsurance.setModelMessage(EMPTY_MESSAGE);
             abort = true;
-        } else if (!model.equals("[ÆØÅæøåa-zA-Z0-9]{2,30}")) {
+        } else if (!model.matches("[ÆØÅæøåa-zA-Z0-9]{2,30}")) {
             String message = "Fyll inn modell korrekt. Kun tall og bokstaver.";
             registerBoatInsurance.setModelMessage(message);
             abort = true;
         }
         if(ownerPersonalNumber.equals("")) {
             registerBoatInsurance.setOwnerPersonalNumberMessage(EMPTY_MESSAGE);
-        } else if (!ownerPersonalNumber.equals("\\d{11}")) {
+        } else if (!ownerPersonalNumber.matches("\\d{11}")) {
             String message = "Fyll inn korrekt fødselsnummer. 11 siffer.";
             registerBoatInsurance.setOwnerPersonalNumberMessage(message);
             abort = true;
         }
         if(registrationNumber.equals("")) {
             registerBoatInsurance.setRegistrationNumberMessage(EMPTY_MESSAGE);
-        } else if (!registrationNumber.equals("^[ÆØÅæøåa-zA-Z0-9]{6,7}")) {
+        } else if (!registrationNumber.matches("^[ÆØÅæøåa-zA-Z0-9]{6,7}")) {
             String message = "Skriv inn korrekt reg.nr.";
             registerBoatInsurance.setRegistrationNumberMessage(message);
             abort = true;
@@ -2583,7 +2582,7 @@ public class MainController {
         if(engineEffectString.equals("")) {
             registerBoatInsurance.setEngineEffectMessage(EMPTY_MESSAGE);
             abort = true;
-        } else if (!engineEffectString.equals ("\\d{1,4}")) {
+        } else if (!engineEffectString.matches ("\\d{1,4}")) {
             String message = "Fyll inn korrekt motoreffekt. 1-4 siffer.";
             registerBoatInsurance.setEngineEffectMessage(message);
             abort = true;
@@ -2609,7 +2608,7 @@ public class MainController {
         if(lengthString.equals("")) {
             registerBoatInsurance.setLengthMessage(EMPTY_MESSAGE);
             abort = true;
-        } else if (!lengthString.equals("\\d{1,3}")){
+        } else if (!lengthString.matches("\\d{1,3}")){
             String message = "Fyll inn korrekt lengde i fot. 1-3 siffer.";
             registerBoatInsurance.setLengthMessage(message);
             abort = true;
@@ -2624,7 +2623,7 @@ public class MainController {
         if(registrationYearString.equals("")) {
             registerBoatInsurance.setRegistrationYearMessage(EMPTY_MESSAGE);
             abort = true;
-        } else if (!registrationYearString.equals("\\d{4}")) {
+        } else if (!registrationYearString.matches("\\d{4}")) {
             String message = "Fyll inn korrekt årstall. 4 siffer.";
             registerBoatInsurance.setRegistrationYearMessage(message);
             abort = true;
@@ -2639,7 +2638,7 @@ public class MainController {
         if(valueString.equals("")) {
             registerBoatInsurance.setValueMessage(EMPTY_MESSAGE);
             abort = true;
-        } else if (!valueString.equals("\\d{1,9}")) {
+        } else if (!valueString.matches("\\d{1,9}")) {
             String message = "Fyll inn korrekt verdi. Kun tall.";
             registerBoatInsurance.setValueMessage(message);
             abort = true;
@@ -2792,9 +2791,17 @@ public class MainController {
         }
         if(ownerPersonalNumber.equals("")) {
             registerCarInsurance.setOwnerPersonalNumberMessage(EMPTY_MESSAGE);
+        } else if (!ownerPersonalNumber.matches("\\d{11}")) {
+            String message = "Fyll inn 11 siffer.";
+            registerCarInsurance.setOwnerPersonalNumberMessage(message);
+            abort = true;
         }
         if(registrationNumber.equals("")) {
             registerCarInsurance.setRegistrationNumberMessage(EMPTY_MESSAGE);
+        } else if (!registrationNumber.matches("^[a-zA-Z]{1,3}[ -]{0,1}[0-9]{1,5}")) {
+            String message = "Fyll inn korrekt reg.nr.";
+            registerCarInsurance.setRegistrationNumberMessage(message);
+            abort = true;
         }
         
         // Evaluates and converts Input:

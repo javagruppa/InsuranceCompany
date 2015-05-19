@@ -35,6 +35,7 @@ import javafx.scene.text.Text;
  * are sent through get methods to the controller, which validates them and 
  * executes the registration.
  *
+ * @author Carl
  * @author Sindre
  */
 public class RegisterBoatInsurance {

@@ -9,6 +9,7 @@ package insurancecompany.misc.coverages;
 /**
  *
  * @author André
+ * @author Carl
  */
 public enum HomeContentInsuranceCoverage {
     BASIC {

@@ -410,12 +410,19 @@ public class MainController {
         boolean isFullScreen = loginView.getFullScreenCheckBoxValue();
         //String password = loginView.getPwField(); // Not currently in use.
         
+        Employee employee = null;
         
         if (employeeIdString.equals("")) {
             //loginView.setUserTextFieldMessage("Fyll inn");
         } else {
             try {
                 employeeId = Integer.parseInt(employeeIdString);
+                employee = employees.getEmployeeById(employeeId);
+                if (employee != null) {
+                    user = employee;
+                    mainView.setUserStatusText("Logget inn som: " 
+                            + user.getName() + "\tKundenummer: " + user.getId());
+                }
             } catch (NumberFormatException nfe) {
                 loginView.setUserTextFieldMessage("Kun tall");
             }
@@ -425,7 +432,7 @@ public class MainController {
         mainView.show(primaryStage);
     }
     
-    public void readAllDataFromFile() {
+    private void readAllDataFromFile() {
         readBillIdFromFile();
         readBillsFromFile();
         readClaimIdFromFile();
@@ -703,13 +710,17 @@ public class MainController {
         // Creates an adress object for the customer:
         Address adress = new Address(street, zipCode, city);
         // Creates a new customer:
-        Employee employee;
-        
+        Employee employee = null;
+        boolean addOk = true;
         switch (position) {
             case SERVICE_WORKER : employee = new ServiceWorker(firstName, lastName, personalNumber, email, adress, phone);
+                break;
             case CASE_WORKER : employee = new CaseWorker(firstName, lastName, personalNumber, email, adress, phone);
+                break;
             case ADMIN : employee = new Admin(firstName, lastName, personalNumber, email, adress, phone);
-            default: employee = new ServiceWorker(firstName, lastName, personalNumber, email, adress, phone);
+                break;
+            default: addOk = false;
+                break;
         }
         // Adds the new customer to the datastructure:
         boolean addok = employees.addEmployee(employee);

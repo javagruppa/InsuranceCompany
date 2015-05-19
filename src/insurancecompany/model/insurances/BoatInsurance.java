@@ -62,7 +62,7 @@ public class BoatInsurance extends Insurance implements Serializable {
      * has an alarm.
      */
     @Override
-    public void calculatePremium() {
+    public final void calculatePremium() {
 	// Calculates the total price for this insurance:
 	double totalPrice = valueCost() + effectCost() - excessDrop() 
                 + coverage.getPricing();

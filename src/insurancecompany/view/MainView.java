@@ -24,7 +24,6 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 /**
  *
@@ -122,7 +121,7 @@ public class MainView extends Application {
         hbox.setPadding(new Insets(5, 0, 5, 0));
         hbox.setStyle("-fx-background-color: #E7E7FF;");
         
-        userStatusText = new Text("Logget inn som Admin. Ansattnr: 10000000");
+        userStatusText = new Text();
         hbox.getChildren().add(userStatusText);
         return hbox;
     }
@@ -197,5 +196,12 @@ public class MainView extends Application {
      */
     public void setyOffset(double yOffset) {
         this.yOffset = yOffset;
+    }
+
+    /**
+     * @param userStatusText the userStatusText to set
+     */
+    public void setUserStatusText(String userStatusText) {
+        this.userStatusText.setText(userStatusText);
     }
 }

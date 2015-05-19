@@ -88,7 +88,7 @@ public class CarInsurance extends Insurance implements Serializable {
      * youngdriver, garage, alarm.
      */
     @Override
-    public void calculatePremium() {
+    public final void calculatePremium() {
 	double youngDriverMultiplicator = 1.0;
 	double garageMultiplicator = 1.0;
 	double alarmMultiplicator = 1.0;

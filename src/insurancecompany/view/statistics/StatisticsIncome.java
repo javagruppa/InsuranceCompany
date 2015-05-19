@@ -133,6 +133,7 @@ public class StatisticsIncome {
         
         final NumberAxis yAxis = new NumberAxis();
         xAxis.setLabel("Dato");
+        yAxis.setLabel("Kroner");
         lineChart = new LineChart<String,Number>(xAxis,yAxis);
         lineChart.setTitle("Inntekter");
         series = new XYChart.Series();

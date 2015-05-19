@@ -2466,6 +2466,7 @@ public class MainController {
                 if (claims.addClaim(claim)) {
                     // Clear uploads(image):
                     registerTravelClaim.clearUploads();
+                    registerTravelClaim.clearView();
                     registerTravelClaim.setRegisterButtonMessage(REGISTER_SUCCESS);
                 } else {
                     registerTravelClaim.setRegisterButtonMessage(REGISTER_NO_SUCCESS);

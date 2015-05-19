@@ -94,6 +94,59 @@ public class ClaimRegister {
         return claims;
     }
     
+    public double getDisbursementAtDate(int year, int month, int day, String type, 
+            int customerId, int insuranceId) {
+        double result = 0;
+        for (Claim claim : claims) {
+            int insId = claim.getInsuranceId();
+            if ((claim.getDate().get(Calendar.YEAR) == year) 
+                    && (month == 0 || claim.getDate().get(Calendar.MONTH) == month)
+                    && (day == 0 || claim.getDate().get(Calendar.DAY_OF_MONTH) == day)
+                    && (type == null || type.equals(claim.getName()))
+                    && (customerId == 0 || claim.getCustomerId() == customerId)
+                    && (insuranceId == 0 || claim.getInsuranceId() == insuranceId)) {
+                result += claim.getDisbursement();
+            }
+        }
+        return result;
+    }
+    
+    public Calendar getOldestDisbursementDate(String type, int customerId, int insuranceId) {
+        Calendar oldest = null;
+        for (Claim claim : claims) {
+            if ((type == null || type.equals(claim.getName()))
+                    && (customerId == 0 || claim.getCustomerId() == customerId)
+                    && (insuranceId == 0 || claim.getInsuranceId() == insuranceId)
+                    && (claim.getDisbursement() != 0)) {
+                if (oldest == null) {
+                    oldest = (Calendar) claim.getDate().clone();
+                }
+                if (claim.getDate().before(oldest) || claim.getDate().equals(oldest)) {
+                    oldest = (Calendar) claim.getDate().clone();
+                }
+            }
+        }
+        return oldest;
+    }
+    
+    public Calendar getNewestDisbursementDate(String type, int customerId, int insuranceId) {
+        Calendar newest = null;
+        for (Claim claim : claims) {
+            if ((type == null || type.equals(claim.getName()))
+                    && (customerId == 0 || claim.getCustomerId() == customerId)
+                    && (insuranceId == 0 || claim.getInsuranceId() == insuranceId)) {            
+            
+                if (newest == null) {
+                    newest = (Calendar) claim.getDate().clone();
+                }
+                if (claim.getDate().after(newest) || claim.getDate().equals(newest)) {
+                    newest = (Calendar) claim.getDate().clone();
+                }
+            }
+        }
+        return newest;
+    }
+    
     /**
      * Writes this registers set of claims to file.
      * 

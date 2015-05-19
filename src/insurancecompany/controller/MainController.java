@@ -7,6 +7,7 @@ package insurancecompany.controller;
 
 import insurancecompany.view.MainView;
 import insurancecompany.misc.ClaimType;
+import insurancecompany.misc.DateUtility;
 import insurancecompany.misc.EmployeeType;
 import insurancecompany.misc.coverages.*;
 import insurancecompany.misc.hometypes.*;
@@ -358,6 +359,10 @@ public class MainController {
         statisticsIncome.setSearchEventHandler(this::statisticsIncomeSearchButtonEventHandler);
         statisticsIncome.setFromYearComboEventHandler(this::statisticsIncomeFromYearComboEventHandler);
         statisticsIncome.setFromMonthComboEventHandler(this::statisticsIncomeFromMonthComboEventHandler);
+        
+        statisticsDisbursements.setSearchEventHandler(this::statisticsDisbursementSearchButtonEventHandler);
+        statisticsDisbursements.setFromYearComboEventHandler(this::statisticsDisbursementFromYearComboEventHandler);
+        statisticsDisbursements.setFromMonthComboEventHandler(this::statisticsDisbursementFromMonthComboEventHandler);
     }
     
     private void mainViewSaveDataButtonEventHandler(ActionEvent event) {
@@ -678,6 +683,139 @@ public class MainController {
         registerEmployee.setResultMessage(result);
     }
     }
+    
+    // STATISTICS DISBURSEMENT EVENT HANDLERS
+    
+    private void statisticsDisbursementFromYearComboEventHandler(ActionEvent event) {
+        if (statisticsDisbursements.getFromYearComboValue().equals("")) {
+            // Disable month and day comboboxes:
+            statisticsDisbursements.setFromMonthComboDisable(true);
+            statisticsDisbursements.setToMonthComboDisable(true);
+            statisticsDisbursements.setFromDayComboDisable(true);
+            statisticsDisbursements.setToDayComboDisable(true);
+        } else {
+            // Enable month comboboxes:
+            statisticsDisbursements.setFromMonthComboDisable(false);
+            statisticsDisbursements.setToMonthComboDisable(false);
+        }
+    }
+    
+    private void statisticsDisbursementFromMonthComboEventHandler(ActionEvent event) {
+        if (statisticsDisbursements.getFromMonthComboValue().equals("")) {
+            // Disable day comboboxes:
+            statisticsDisbursements.setFromDayComboDisable(true);
+            statisticsDisbursements.setToDayComboDisable(true);
+        } else {
+            // Enable day comboboxes:
+            statisticsDisbursements.setFromDayComboDisable(false);
+            statisticsDisbursements.setToDayComboDisable(false);
+        }
+    }
+    
+    private void statisticsDisbursementSearchButtonEventHandler(ActionEvent event) {
+        statisticsDisbursements.clearMessages();
+        String type = statisticsDisbursements.getClaimType();
+        String title = type;
+        if (type == null) {
+            title = "Alle forsikringer";
+        }
+        int customerId = 0;
+        String personalNumber;
+        if (!statisticsDisbursements.getNumber().equals("")) {
+            if (statisticsDisbursements.isCustomerIdSelected()) {
+                try {
+                    customerId = Integer.parseInt(statisticsDisbursements.getNumber());
+                } catch (NumberFormatException nfe) {
+                    statisticsDisbursements.setSearchMessage(CUSTOMERID_FORMAT_MESSAGE);
+                }
+
+            } else {
+                personalNumber = statisticsDisbursements.getNumber();
+                customerId = customers.findCustomerIdByPersonalNumber(personalNumber);
+                if (customerId == -1) {
+                    statisticsDisbursements.setSearchMessage(CUSTOMERID_NOT_FOUND_MESSAGE);
+                }
+            }
+        }
+        String fromDate = "";
+        String toDate = "";
+        
+        String fromYearString = statisticsDisbursements.getFromYearComboValue();
+        String fromMonthString = statisticsDisbursements.getFromMonthComboValue();
+        String fromDayString = statisticsDisbursements.getFromDayComboValue();
+        int fromYear = 0;
+        int fromMonth = 0;
+        int fromDay = 0;
+        if (!fromYearString.equals("")) {
+            fromYear = Integer.parseInt(fromYearString);
+        }
+        if (!fromMonthString.equals("")) {
+            fromMonth = DateUtility.getMonthNumber(fromMonthString);
+        }
+        if (!fromDayString.equals("")) {
+            fromDay = Integer.parseInt(fromDayString);
+        }
+        
+        String toYearString = statisticsDisbursements.getToYearComboValue();
+        String toMonthString = statisticsDisbursements.getToMonthComboValue();
+        String toDayString = statisticsDisbursements.getToDayComboValue();
+        int toYear = 0;
+        int toMonth = 0;
+        int toDay = 0;
+                if (!toYearString.equals("")) {
+            toYear = Integer.parseInt(toYearString);
+        }
+        if (!toMonthString.equals("")) {
+            toMonth = DateUtility.getMonthNumber(toMonthString);
+        }
+        if (!toDayString.equals("")) {
+            toDay = Integer.parseInt(toDayString);
+        }
+        
+        int sumFrom = 0;
+        int sumTo = 0;
+        
+        if (fromYearString.equals("") && toYearString.equals("")) {
+            
+            Calendar fromCal = claims.getOldestDisbursementDate(type, customerId, 0);
+            Calendar toCal = claims.getNewestDisbursementDate(type, customerId, 0);
+            
+            if (fromCal != null && toCal != null) {
+                fromYear = fromCal.get(Calendar.YEAR);
+                fromMonth = fromCal.get(Calendar.MONTH);
+                fromDay = fromCal.get(Calendar.DAY_OF_MONTH);
+
+                toYear = toCal.get(Calendar.YEAR);
+                toMonth = toCal.get(Calendar.MONTH);
+                toDay = toCal.get(Calendar.DAY_OF_MONTH);
+
+            } 
+        }
+        
+        sumFrom = (int) claims.getDisbursementAtDate(fromYear, fromMonth, fromDay, type, customerId, 0);
+        if (fromDay != 0) {
+            fromDate = fromDay + ".";
+        }
+        if (fromMonth != 0) {
+            fromDate += fromMonth + ".";
+        }
+        if (fromYear != 0) {
+            fromDate += fromYear;
+        }
+
+        sumTo = (int) claims.getDisbursementAtDate(toYear, toMonth, toDay, type, customerId, 0);
+        if (toDay != 0) {
+            toDate = toDay + ".";
+        }
+        if (toMonth != 0) {
+            toDate += toMonth + ".";
+        }
+        if (toYear != 0) {
+            toDate += toYear;
+        }
+        statisticsDisbursements.populateLineChartAll(sumFrom, sumTo, fromDate, toDate, title); 
+    }
+    
     // STATISTICS INCOME EVENT HANDLERS
     
     private void statisticsIncomeFromYearComboEventHandler(ActionEvent event) {
@@ -744,34 +882,7 @@ public class MainController {
             fromYear = Integer.parseInt(fromYearString);
         }
         if (!fromMonthString.equals("")) {
-            switch (fromMonthString) {
-                case "Januar": fromMonth = 1;
-                    break;
-                case "Februar": fromMonth = 2;
-                    break;
-                case "Mars": fromMonth = 3;
-                    break;
-                case "April": fromMonth = 4;
-                    break;
-                case "Mai": fromMonth = 5;
-                    break;
-                case "Juni": fromMonth = 6;
-                    break;
-                case "Juli": fromMonth = 7;
-                    break;
-                case "August": fromMonth = 8;
-                    break;
-                case "September": fromMonth = 9;
-                    break;
-                case "Oktober": fromMonth = 10;
-                    break;
-                case "November": fromMonth = 11;
-                    break;
-                case "Desember": fromMonth = 12;
-                    break;
-                default: fromMonth = 0;
-                    break;
-            }
+            fromMonth = DateUtility.getMonthNumber(fromMonthString);
         }
         if (!fromDayString.equals("")) {
             fromDay = Integer.parseInt(fromDayString);
@@ -787,34 +898,7 @@ public class MainController {
             toYear = Integer.parseInt(toYearString);
         }
         if (!toMonthString.equals("")) {
-            switch (toMonthString) {
-                case "Januar": toMonth = 1;
-                    break;
-                case "Februar": toMonth = 2;
-                    break;
-                case "Mars": toMonth = 3;
-                    break;
-                case "April": toMonth = 4;
-                    break;
-                case "Mai": toMonth = 5;
-                    break;
-                case "Juni": toMonth = 6;
-                    break;
-                case "Juli": toMonth = 7;
-                    break;
-                case "August": toMonth = 8;
-                    break;
-                case "September": toMonth = 9;
-                    break;
-                case "Oktober": toMonth = 10;
-                    break;
-                case "November": toMonth = 11;
-                    break;
-                case "Desember": toMonth = 12;
-                    break;
-                default: toMonth = 0;
-                    break;
-            }
+            toMonth = DateUtility.getMonthNumber(toMonthString);
         }
         if (!toDayString.equals("")) {
             toDay = Integer.parseInt(toDayString);
@@ -864,6 +948,7 @@ public class MainController {
         statisticsIncome.populateLineChartAll(sumFrom, sumTo, fromDate, toDate, title); 
     }
      
+    
     // CAR CLAIM REGISTRATION EVENT HANDLERS
     
     private void carClaimOpenClaimFormButtonEventHandler(ActionEvent event) {

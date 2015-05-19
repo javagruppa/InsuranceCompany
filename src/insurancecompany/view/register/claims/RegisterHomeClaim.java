@@ -63,6 +63,7 @@ import javafx.util.Callback;
  * connect the content of this class to another view.
  * 
  * @author André
+ * @author Carl
  */
 public class RegisterHomeClaim {
     

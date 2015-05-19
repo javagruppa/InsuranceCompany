@@ -399,14 +399,15 @@ public class MainController {
             String message = "Fyll inn dette feltet.";
             registerCustomer.setPersonalNumberMessage(message);
             ok = false;
-        }
-        
+        } 
+            
         int zipCode = 0;
         try {
             zipCode = Integer.parseInt(zipCodeS);
         } catch (NumberFormatException nfe) {
-            ok = false;
+            
         }
+        
         
         // If all fields are filled in correctly proceed to creating and adding customer:
         if (ok) {
@@ -4025,7 +4026,7 @@ public class MainController {
                     return;
                 }
             } else {
-                employeeId = employees.findEmployeeIdByPersonalNumber(number);
+                employeeId = employees.getEmployeeIdByPersonalNumber(number);
             }
         }
         

@@ -1,47 +1,48 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package insurancecompany.model.datastructures;
 
 import insurancecompany.model.people.Customer;
-import insurancecompany.model.properties.Address;
 import java.io.*;
-
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
 /**
- *
+ * This class creates the register for customers. It consists of a HashSet with 
+ * all the customers as well as several methods to manipulate and get 
+ * information from the register.
+ * 
  * @author André
+ * @author Sindre
  */
 public class CustomerRegister {
-    
+    /** The file path of the file where the customers are saved. */
     private static String customersFilePath = "src/insurancecompany/resources/datastructures/customerSet.dta";
-    
+    /** The set of customers. */
     private Set<Customer> customers;
     
+    /**
+     * Default constructor. Initializes the set.
+     */
     public CustomerRegister() {
-        customers = new HashSet<Customer>();
+        customers = new HashSet<>();
     }
     
     /**
      * Adds a new customer to this register if it does not already exist.
-     * @param customer
-     * @return 
+     * 
+     * @param customer Customer to be added to the register.
+     * @return True if this list changed as a result of the call.
      */
     public boolean addCustomer(Customer customer) {
         return customers.add(customer);
     }
     
     /**
-     * Returns a customer matching the customer id.
-     * @param customerId
-     * @return 
+     * Finds and returns a customer based on customer ID.
+     * 
+     * @param customerId Customer ID of the customer that the method looks for.
+     * @return The customer if it is found. Null otherwise.
      */
     public Customer findCustomerById(int customerId) {
         for (Customer customer : customers) {
@@ -53,23 +54,11 @@ public class CustomerRegister {
     }
     
     /**
-     * Returns the first customer matching the given name.
-     * @param name
-     * @return 
-     */
-    public Customer findCustomerByName(String name) {
-        for (Customer customer : customers) {
-            if (customer.getName().equals(name)) {
-                return customer;
-            }
-        }
-        return null;
-    }
-    
-    /**
-     * Returns the first customer matching the given personal number.
-     * @param personalNumber
-     * @return 
+     * Finds and returns a customer based on personal number.
+     * 
+     * @param personalNumber Personal number of the customer that the method 
+     * looks for.
+     * @return The customer if it is found. Null otherwise.
      */
     public Customer findCustomerByPersonalNumber(String personalNumber) {
         for (Customer customer : customers) {
@@ -81,30 +70,11 @@ public class CustomerRegister {
     }
     
     /**
-     * Returns an ArrayList containing customers living at given address.
-     * @param address
-     * @return 
-     */
-    public ArrayList<Customer> findCustomersByAdress(Address address) {
-        ArrayList<Customer> result = new ArrayList<Customer>();
-        for (Customer customer : customers) {
-            if (customer.getAddress().equals(address)) {
-                result.add(customer);
-            }
-        }
-        // Returns null if no matches are found:
-        if (result.isEmpty()) {
-            return null;
-        } else {
-            // Returns the newly created list otherwise:
-            return result;
-        }
-    }
-    
-    /**
-     * Returns the first customer id matching the given personal number.
-     * @param personalNumber
-     * @return 
+     * Finds and returns a customer ID based on personal number.
+     * 
+     * @param personalNumber Personal number of the customer ID that the method 
+     * looks for.
+     * @return The customer ID as an int if it is found. -1 otherwise.
      */
     public int findCustomerIdByPersonalNumber(String personalNumber) {
         for (Customer customer : customers) {
@@ -115,6 +85,17 @@ public class CustomerRegister {
         return -1;
     }
     
+    /**
+     * Finds and returns a list of customers based on the parameters.
+     * 
+     * @param firstName The first name of the customers that the method looks
+     * for. It's "" if it's not part of the criteria.
+     * @param lastName The last name of the customers that the method looks
+     * for. It's "" if it's not part of the criteria.
+     * @param total True if the method is only looking for total customers.
+     * @param active True if the method is only looking for active customers.
+     * @return A list of all the customers that match the criteria.
+     */
     public List<Customer> getCustomers(String firstName, String lastName, 
             boolean total, boolean active) {
         List<Customer> result = new ArrayList<>();
@@ -129,10 +110,16 @@ public class CustomerRegister {
             }
         }
         return result;
+    }  
+
+    /** @return A set of all the customers in the register. */
+    public Set<Customer> getCustomers() {
+        return customers;
     }
     
     /**
      * Writes this registers set of customers to file.
+     * 
      * @throws IOException 
      */
     public void writeCustomersToFile() throws IOException{
@@ -142,7 +129,9 @@ public class CustomerRegister {
         }
     }
     /**
-     * Reads a set of customers from file and stores them in the set in this register.
+     * Reads a set of customers from file and stores them in the set in this 
+     * register.
+     * 
      * @throws IOException
      * @throws ClassNotFoundException 
      */
@@ -151,12 +140,5 @@ public class CustomerRegister {
                 new FileInputStream(customersFilePath))) {
             customers = (HashSet<Customer>) ois.readObject();        
         }
-    }    
-
-    /**
-     * @return the customers
-     */
-    public Set<Customer> getCustomers() {
-        return customers;
     }
 }

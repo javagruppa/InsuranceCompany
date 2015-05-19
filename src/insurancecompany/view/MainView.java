@@ -111,7 +111,7 @@ public class MainView extends Application {
         hbox1.setAlignment(Pos.CENTER_RIGHT);
         HBox.setHgrow(hbox1, Priority.ALWAYS);
         
-        Image ifLogo = new Image("insurancecompany/resources/images/if.png");
+        Image ifLogo = new Image("insurancecompany/resources/images/asiflogo.png");
         hbox.getChildren().addAll(new ImageView(ifLogo), registerTabButton, 
                 searchTabButton, statisticsTabButton);
         hbox.getChildren().add(hbox1);

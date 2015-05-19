@@ -1,15 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package insurancecompany.view.register;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
@@ -18,19 +12,24 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
 /**
- *
+ * This class creates the graphical user interface (GUI) for registration of 
+ * claims. It creates a pane which is sent to the controller and 
+ * thereafter displayed.
+ * 
+ * It consists of a side toolbar and a center part where another pane is placed.
+ * 
  * @author André
+ * @author Sindre
  */
 public class RegisterClaims {
     
-    private Scene scene;
+    // Declaration of the main pane which is sent to the controller.
     private BorderPane mainPane;
     
+    // Declaration of all the nodes in the side toolbar.
     private Pane sideToolBarPane;
-    
     private ToggleButton carClaimButton;
     private ToggleButton boatClaimButton;
     private ToggleButton homeClaimButton;
@@ -40,25 +39,20 @@ public class RegisterClaims {
     private ToggleButton travelClaimButton;
     private ToggleGroup toggleGroup;
             
-    
-    public void start(Stage stage) throws Exception {
-        show(stage);
-    }
-    
-    public void show(Stage stage) {
-        stage.setTitle("Kunderegistrering");
-        stage.setScene(scene);
-        stage.show();
-    }
-    
+    /**
+     * Default constructor. Initializes all field and sets up the view.
+     */
     public RegisterClaims() {
+        
+        // Initialization of the pane.
         mainPane = new BorderPane();
+        
+        // Creates and adds the side toolbar.
         sideToolBarPane = createSideToolBar();
-        mainPane.setLeft(sideToolBarPane);
-        scene = new Scene(mainPane, 800, 600);   
+        mainPane.setLeft(sideToolBarPane);  
     }
     
-    
+    /** Creates the side toolbar. */
     private VBox createSideToolBar() {
         VBox vbox = new VBox();
         vbox.setPrefWidth(160);
@@ -69,7 +63,6 @@ public class RegisterClaims {
         carClaimButton.setId("sideToolbarButton");
         Image carImage = new Image("insurancecompany/resources/images/car.png");
         carClaimButton.setGraphic(new ImageView(carImage));
-        //carInsuranceButton.setContentDisplay(ContentDisplay.LEFT);
         
         boatClaimButton = new ToggleButton("Båtskade");
         boatClaimButton.setId("sideToolbarButton");
@@ -98,7 +91,8 @@ public class RegisterClaims {
         travelClaimButton.setId("sideToolbarButton");
         Image airplaneImage = new Image("insurancecompany/resources/images/airplane.png");
         travelClaimButton.setGraphic(new ImageView(airplaneImage));
-        // Set up togglegroup and connect it to all togglebuttons:
+        
+        // Sets up the ToggleGroup and connects all ToggleButtons.
         toggleGroup = new ToggleGroup();
         carClaimButton.setToggleGroup(toggleGroup);
         boatClaimButton.setToggleGroup(toggleGroup);
@@ -116,42 +110,75 @@ public class RegisterClaims {
             b.setMaxWidth(Double.MAX_VALUE);
         });
         
-                
         vbox.getChildren().addAll(buttons);
        
         return vbox;
     }
     
+    /** @return The main pane of this class. */
     public BorderPane getMainPane() {
         return mainPane;
     }
     
-    // SET EVENT HANDLERS
-
+    /**
+     * Sets the event handler for the boatClaimButton.
+     * 
+     * @param value The event handler to set.
+     */
     public void setBoatClaimButtonEventHandler(EventHandler<ActionEvent> value) {
         boatClaimButton.setOnAction(value);
     }
 
+    /**
+     * Sets the event handler for the carClaimButton.
+     * 
+     * @param value The event handler to set.
+     */
     public void setCarClaimButtonEventHandler(EventHandler<ActionEvent> value) {
         carClaimButton.setOnAction(value);
     }
 
+    /**
+     * Sets the event handler for the homeClaimButton.
+     * 
+     * @param value The event handler to set.
+     */
     public void setHomeClaimButtonEventHandler(EventHandler<ActionEvent> value) {
         homeClaimButton.setOnAction(value);
     }
     
+    /**
+     * Sets the event handler for the homeContentClaimButton.
+     * 
+     * @param value The event handler to set.
+     */
     public void setHomeContentClaimButtonEventHandler(EventHandler<ActionEvent> value) {
         homeContentClaimButton.setOnAction(value);
     }
 
+    /**
+     * Sets the event handler for the holidayHomeClaimButton.
+     * 
+     * @param value The event handler to set.
+     */
     public void setHolidayHomeClaimButtonEventHandler(EventHandler<ActionEvent> value) {
         holidayHomeClaimButton.setOnAction(value);
     }
     
+    /**
+     * Sets the event handler for the holidayHomeContentClaimButton.
+     * 
+     * @param value The event handler to set.
+     */
     public void setHolidayHomeContentClaimButtonEventHandler(EventHandler<ActionEvent> value) {
         holidayHomeContentClaimButton.setOnAction(value);
     }
 
+    /**
+     * Sets the event handler for the travelClaimButton.
+     * 
+     * @param value The event handler to set.
+     */
     public void setTravelClaimButtonEventHandler(EventHandler<ActionEvent> value) {
         travelClaimButton.setOnAction(value);
     }

@@ -75,10 +75,10 @@ public class Property implements Serializable {
         // method.
         StringBuilder result = new StringBuilder();
         // Appends the fields with appropriate sentences.
-        result.append("Adresse: ").append(getAddress().toString());
-        result.append("\nAntall kvadratmeter: ").append(area);
+        result.append("Antall kvadratmeter: ").append(area);
         result.append("\nByggeår: ").append(year);
         result.append("\nByggemateriale: ").append(material.toString());
+        result.append("\n").append(getAddress().toString());
         // Returns the string.
         return result.toString();
     }

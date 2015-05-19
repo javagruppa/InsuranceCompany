@@ -306,4 +306,10 @@ public class RegisterTravelInsurance {
         excessMessage.setText("");
         registerButtonMessage.setText("");
     }
+    
+    /** Clears all text fields and combo boxes. */
+    public void clearView() {
+        coverageCombo.setValue(null);
+        excessCombo.setValue("");
+    }
 }

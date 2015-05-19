@@ -630,4 +630,20 @@ public class RegisterCarInsurance {
         yearMessage.setText("");
         youngestDriverMessage.setText("");
     }
+    
+    /** Clears all text fields and combo boxes. */
+    public void clearView() {
+        alarmCombo.setValue("");
+        coverageCombo.setValue(null);
+        excessCombo.setValue("");
+        existingBonusCombo.setValue("");
+        drivingLengthCombo.setValue("");
+        youngestDriverCombo.setValue("");
+        parkingConditionCombo.setValue("");
+        brandCombo.setValue("");
+        yearCombo.setValue("");
+        modelCombo.setValue("");
+        ownerPersonalNumberField.setText("");
+        registrationNumberField.setText("");
+    }
 }

@@ -502,4 +502,18 @@ public class RegisterHomeContentInsurance {
         zipCodeMessage.setText("");
         registerButtonMessage.setText("");
     }
+    
+    /** Clears all text fields and combo boxes. */
+    public void clearView() {
+        coverageCombo.setValue(null);
+        excessCombo.setValue("");
+        amountField.setText("");
+        areaField.setText("");
+        yearField.setText("");
+        materialCombo.setValue(null);
+        typeCombo.setValue(null);
+        streetField.setText("");
+        zipCodeField.setText("");
+        cityField.setText("");
+    }
 }

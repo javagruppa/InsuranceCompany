@@ -2353,6 +2353,7 @@ public class MainController {
         // Adds insurance to Register:
         if (insurances.addInsurance(insurance)) {
             registerBoatInsurance.setRegisterButtonMessage(REGISTER_SUCCESS + "\nForsikringspremie: " + insurance.getPremium() + ",-");
+            registerBoatInsurance.clearView();
         } else {
             registerBoatInsurance.setRegisterButtonMessage(REGISTER_NO_SUCCESS);
         }
@@ -2421,11 +2422,6 @@ public class MainController {
     }
     
     // CAR INSURANCE REGISTRATION EVENT HANDLERS
-    
-    //TODO:
-    private void carInsuranceCalculateButtonEventHander(ActionEvent event) {
-        
-    }
     
     private void carInsuranceRegisterButtonEventHandler(ActionEvent event) {
         
@@ -2569,6 +2565,7 @@ public class MainController {
         // Adds insurance to Register:
         if (insurances.addInsurance(insurance)) {
             registerCarInsurance.setRegisterButtonMessage(REGISTER_SUCCESS + "\nForsikringspremie: " + insurance.getPremium() + ",-");
+            registerCarInsurance.clearView();
         } else {
             registerCarInsurance.setRegisterButtonMessage(REGISTER_NO_SUCCESS);
         }
@@ -2762,6 +2759,7 @@ public class MainController {
         // Adds insurance to Register:
         if (insurances.addInsurance(insurance)) {
             registerHolidayHomeInsurance.setRegisterButtonMessage(REGISTER_SUCCESS + "\nForsikringspremie: " + insurance.getPremium() + ",-");
+            registerHolidayHomeInsurance.setRegisterButtonMessage("");
         } else {
             registerHolidayHomeInsurance.setRegisterButtonMessage(REGISTER_NO_SUCCESS);
         }
@@ -2960,6 +2958,7 @@ public class MainController {
         // Adds insurance to Register:
         if (insurances.addInsurance(insurance)) {
             registerHolidayHomeContentInsurance.setRegisterButtonMessage(REGISTER_SUCCESS + "\nForsikringspremie: " + insurance.getPremium() + ",-");
+            registerHolidayHomeContentInsurance.clearView();
         } else {
             registerHolidayHomeContentInsurance.setRegisterButtonMessage(REGISTER_NO_SUCCESS);
         }
@@ -3154,6 +3153,7 @@ public class MainController {
         // Adds insurance to Register:
         if (insurances.addInsurance(insurance)) {
             registerHomeInsurance.setRegisterButtonMessage(REGISTER_SUCCESS + "\nForsikringspremie: " + insurance.getPremium() + ",-");
+            registerHomeInsurance.clearView();
         } else {
             registerHomeInsurance.setRegisterButtonMessage(REGISTER_NO_SUCCESS);
         }
@@ -3352,6 +3352,7 @@ public class MainController {
         // Adds insurance to Register:
         if (insurances.addInsurance(insurance)) {
             registerHomeContentInsurance.setRegisterButtonMessage(REGISTER_SUCCESS + "\nForsikringspremie: " + insurance.getPremium() + ",-");
+            registerHomeContentInsurance.clearView();
         } else {
             registerHomeContentInsurance.setRegisterButtonMessage(REGISTER_NO_SUCCESS);
         }
@@ -3471,6 +3472,7 @@ public class MainController {
         // Adds insurance to Register:
         if (insurances.addInsurance(insurance)) {
             registerTravelInsurance.setRegisterButtonMessage(REGISTER_SUCCESS + "\nForsikringspremie: " + insurance.getPremium() + ",-");
+            registerTravelInsurance.clearView();
         } else {
             registerTravelInsurance.setRegisterButtonMessage(REGISTER_NO_SUCCESS);
         }

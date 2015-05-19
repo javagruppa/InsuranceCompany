@@ -518,4 +518,20 @@ public class RegisterBoatInsurance {
         registrationYearMessage.setText("");
         valueMessage.setText("");
     }
+    
+    /** Clears all text fields and combo boxes. */
+    public void clearView() {
+        alarmCombo.setValue("");
+        coverageCombo.setValue(null);
+        excessCombo.setValue("");
+        ownerPersonalNumberField.setText("");
+        registrationNumberField.setText("");
+        brandField.setText("");
+        modelField.setText("");
+        registrationYearField.setText("");
+        engineEffectField.setText("");
+        engineTypeField.setText("");
+        lengthField.setText("");
+        valueField.setText("");
+    }
 }

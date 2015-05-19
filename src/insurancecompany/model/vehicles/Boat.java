@@ -17,7 +17,7 @@ public class Boat extends Vehicle implements Serializable {
     private String engineType;
     /** The length of this boat in feet. */
     private int length;
-    /** The value of this boat */
+    /** The value of this boat. */
     private int value;
     
     /**
@@ -48,45 +48,42 @@ public class Boat extends Vehicle implements Serializable {
         this.value = value;
     }
     
-    /**
-     * Returns the value of this boat
-     * @return the value
-     */
+    /** @return The value of tis boat. */
     public int getValue(){
         return value;
     }
     
-    /**
-     * Returns the length of this boat
-     * @return the length
-     */
+    /** @return The length of this boat. */
     public int getLength() {
         return length;
     }
     
-    /**
-     * Returns the engine effect of this boat
-     * @return the engineEffect
-     */
+    /** @return The engine effect of this boat. */
     public int getEngineEffect() {
         return engineEffect;
     }
     
-    /**
-     * Returns the engine type of this boat
-     * @return the engine type
-     */
+    /** @return The engine type of this boat. */
     public String getEngineType() {
         return engineType;
     }
     
     /**
-     * Returns a string representation of this boat
-     * @return a string representation of this boat
+     * Creates and returns a string representation of this vehicle
+     * 
+     * @return A string representation of this vehicle.
      */
     @Override
     public String toString() {
-        return "Båt:\n" + super.toString();
+        // Creates a StringBuilder which will be returned at the end of the 
+        // method.
+        StringBuilder result = new StringBuilder();
+        // Appends the fields with appropriate sentences.
+        result.append("super.toString()");
+        result.append("\nHestekrefter: ").append(engineEffect);
+        result.append("\nMotortype: ").append(engineType);
+        result.append("\nVerdi: ").append(value);
+        // Returns the string.
+        return result.toString();
     }
-            
 }

@@ -34,8 +34,9 @@ public class Car extends Vehicle implements Serializable {
     }
 
     /**
-     * Constructs a new vehicle of the specified brand and model and registration 
-     * number. The owner of this vehicle has the specified personal number.
+     * Constructs a new vehicle of the specified brand and model and 
+     * registration number. The owner of this vehicle has the specified 
+     * personal number.
      * 
      * @param brand the brand of this vehicle
      * @param model the model of this vehicle
@@ -48,12 +49,12 @@ public class Car extends Vehicle implements Serializable {
     }
     
     /**
-     * Returns a string representation of this car
-     * @return a string representation of this car
+     * Creates and returns a string representation of this vehicle
+     * 
+     * @return A string representation of this vehicle.
      */
     @Override
     public String toString() {
         return "Bil:\n" + super.toString();
     }
-
 }

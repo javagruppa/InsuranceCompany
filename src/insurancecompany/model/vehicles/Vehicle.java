@@ -3,8 +3,8 @@ package insurancecompany.model.vehicles;
 import java.io.Serializable;
 
 /**
- * Abstract Vehicle class. This is a super class to boat and car, and represents a
- * vehicle that is either insured or a part of an accident.
+ * Abstract Vehicle class. This is a super class to boat and car, and represents 
+ * a vehicle that is either insured or a part of an accident.
  * 
  * @author André
  * @author Sindre
@@ -49,8 +49,9 @@ public abstract class Vehicle implements Serializable {
     }
     
      /**
-     * Constructs a new vehicle of the specified brand and model and registration 
-     * number. The owner of this vehicle has the specified personal number.
+     * Constructs a new vehicle of the specified brand and model and 
+     * registration number. The owner of this vehicle has the specified 
+     * personal number.
      * 
      * @param brand the brand of this vehicle
      * @param model the model of this vehicle
@@ -65,106 +66,54 @@ public abstract class Vehicle implements Serializable {
         this.registrationNumber = registrationNumber;
     }
 
-    /**
-     * returns the personal number of the vehicles owner
-     * @return the personalNumber
-     */
+    /** @return The personal number of the owner of this vehicle. */
     public String getPersonalNumber() {
         return personalNumber;
     }
 
-    /**
-     * returns the registration number of this vehicle
-     * @return the registrationNumber
-     */
+    /** @return The registration number of this vehicle. */
     public String getRegistrationNumber() {
         return registrationNumber;
     }
     
-    /**
-     * returns whether or not this vehicle has an alarm
-     * @return the alarm status
-     */
+    /** @return True if the vehicle has an alarm. */
     public boolean getAlarm() {
         return alarm;
     }
 
-    /**
-     * Sets new alarm status
-     * @param alarm the alarm to set
-     */
-    public void setAlarm(boolean alarm) {
-        this.alarm = alarm;
+    /** @return The brand of this vehicle. */
+    public String getBrand() {
+        return brand;
     }
 
-    /**
-     * sets personal number of new owner
-     * @param personalNumber the personalNumber to set
-     */
-    public void setPersonalNumber(String personalNumber) {
-        this.personalNumber = personalNumber;
+    /** @return The model of this vehicle. */
+    public String getModel() {
+        return model;
     }
 
-    /**
-     * Sets new registration number
-     * @param registrationNumber the registrationNumber to set
-     */
-    public void setRegistrationNumber(String registrationNumber) {
-        this.registrationNumber = registrationNumber;
+    /** @return The registration year of this vehicle. */
+    public int getRegistrationYear() {
+        return registrationYear;
     }
 
-    /**
-     * Sets new registration year
-     * @param registrationYear the registrationYear to set
-     */
-    public void setRegistrationYear(int registrationYear) {
-        this.registrationYear = registrationYear;
-    }
-    
     /**
      * Creates and returns a string representation of this vehicle
-     * @return a string representation of this vehicle
+     * 
+     * @return A string representation of this vehicle.
      */
+    @Override
     public String toString() {
         // Creates a StringBuilder which will be returned at the end of the 
         // method.
         StringBuilder result = new StringBuilder();
         // Appends the fields with appropriate sentences.
         result.append("Registreringsnummer: ").append(registrationNumber);
-        result.append("\nBilmerke: ").append(brand);
+        result.append("\nMerke: ").append(brand);
         result.append("\nModell: ").append(model);
         result.append("\nRegistreringsår: ").append(registrationYear);
         result.append("\nAlarm: ").append(alarm ? "Ja" : "Nei");
-        result.append("\nPersonnummer eier: ").append(personalNumber);
+        result.append("\nPersonnummer til eier: ").append(personalNumber);
         // Returns the string.
         return result.toString();
-    }
-
-    /**
-     * @return the alarm
-     */
-    public boolean isAlarm() {
-        return alarm;
-    }
-
-    /**
-     * @return the brand
-     */
-    public String getBrand() {
-        return brand;
-    }
-
-    /**
-     * @return the model
-     */
-    public String getModel() {
-        return model;
-    }
-
-    /**
-     * @return the registrationYear
-     */
-    public int getRegistrationYear() {
-        return registrationYear;
     }
 }

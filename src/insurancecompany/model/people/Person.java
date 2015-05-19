@@ -1,108 +1,86 @@
 package insurancecompany.model.people;
+
 import insurancecompany.misc.DateUtility;
 import insurancecompany.model.properties.Address;
 import java.io.Serializable;
 import java.util.Calendar;
-import java.util.Date;
-import java.text.SimpleDateFormat;
+
 /**
- * Abstract class Person. This is the super class of all person objects
- * registered in this program.
+ * Abstract class Person. This is the super class of all the person objects.
  * 
- * 
- *@author Carl
+ * @author Carl
  */
 public abstract class Person implements Serializable {
-    /** SerialVersionUID used to identify this class for object IO */
-    private static final long serialVersionUID = 1L;
     
-    /**the personal number of the person*/
+    /** SerialVersionUID used to identify this class for object IO. */
+    private static final long serialVersionUID = 1L;
+    /** The personal number of the person. */
     private String personalNumber;
-    /**the first name of the person*/
+    /** The first name of the person. */
     private String firstName;
-    /**the last name of the person*/
+    /** The last name of the person. */
     private String lastName;
-    /**an object containing the persons address*/
+    /** An object containing the persons address. */
     private Address address;
-    /**the e-mail address for the person*/
+    /** The e-mail address for the person. */
     private String email;
-    /**the phone number of the person*/
+    /** The phone number of the person. */
     private String phone;
-    /**The date this person is registered.*/
+    /** The date this person is registered. */
     private Calendar registeredDate;
-    /** Wheter this person is active. */
+    /** Whether this person is active. */
     private boolean active;
     
-    
     /**
-     * Constructs a person-object with specified parameters
-     * @param firstName the first name of the person
-     * @param lastName the last name of the person
-     * @param personalNumber the persons personal number
-     * @param email the email address of the person
-     * @param address the address of the person, as an object
-     * @param phone the phone number of the person
+     * Constructs a person object with specified parameters.
+     * 
+     * @param firstName The first name of the person.
+     * @param lastName The last name of the person.
+     * @param personalNumber The persons personal number.
+     * @param email The email address of the person.
+     * @param address The address of the person, as an object.
+     * @param phone The phone number of the person.
      */
-    public Person(String firstName, String lastName, String personalNumber, String email, Address address, String phone) {
+    public Person(String firstName, String lastName, String personalNumber, 
+            String email, Address address, String phone) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.personalNumber = personalNumber;
         this.email = email;
         this.address = address;
         this.phone = phone;
+        this.active = true;
         registeredDate = Calendar.getInstance();
-        active = true;
     }
     
-    /**
-     * Returns the Id of the person object
-     * @return the persons Id
-     */
+    /** @return The persons customer ID. */
     public abstract int getId();
     
-    /**
-     * Returns the full name of this person
-     * @return the first name and the last name
-     */
+    /** @return The first name and the last name seperated with a space. */
     public String getName(){
         return firstName + " " + lastName;
     }
     
-    /**
-     * Returns the persons first name
-     * @return the first name as a string
-     */
+    /** @return The first name as a string. */
     public String getFirstName(){
         return firstName;
     }
-    /**
-     * Returns the persons last name
-     * @return the last name as a string
-     */
+    /** @return The last name as a string. */
     public String getLastName(){
         return lastName;
     }
     
-    /**
-     * Returns the personal number of the person.
-     * @return the personal number as an integer
-     */
+    /** @return The personal number as an integer. */
     public String getPersonalNumber(){
         return personalNumber;
     }
     
-    /**
-     * Returns the persons email address
-     * @return the email address as a string
-     */
+    /** @return The email address as a string. */
     public String getEmail(){
         return email;
     }
     
-    /**
-     * Return the toString of the address object for this person
-     * @return the address-objects toString for the specific person
-     */
+    /** @return The toString of the address of the person. */
     public String getAddressString(){
         return getAddress().toString();
     }
@@ -111,7 +89,7 @@ public abstract class Person implements Serializable {
      * Returns a string representation of the person.
      * All fields included, as well as the toString from the per address object.
      * 
-     * @return a string representation of this person
+     * @return A string representation of this person.
      */
     @Override
     public String toString() {
@@ -126,24 +104,19 @@ public abstract class Person implements Serializable {
             result.append("\nE-post adresse: ").append(email);
         }
         result.append("\nTelefonnummer: ").append(phone);
-        result.append("\nRegistrert dato: ").append(DateUtility.NORWEGIAN_DATE_FORMAT.format(registeredDate.getTime()));
+        result.append("\nRegistrert dato: ").append(DateUtility
+                .NORWEGIAN_DATE_FORMAT.format(registeredDate.getTime()));
         result.append("\nAktiv: ").append(active ? "Ja" : "Nei");
         // Returns the string.
         return result.toString();
     }
 
-    /**
-     * returns the adress object of this person
-     * @return the address
-     */
+    /** @return The address of the person. */
     public Address getAddress() {
         return address;
     }
 
-    /**
-     * returns te phone number of this person
-     * @return the phone
-     */
+    /** @return The phone number of the person. */
     public String getPhone() {
         return phone;
     }
@@ -154,7 +127,8 @@ public abstract class Person implements Serializable {
      * object that contains the same personal number as this object.
      * 
      * @param obj the object to compare with
-     * @return true if the objects are the same; false otherwise
+     * 
+     * @return True if the objects are the same; false otherwise.
      */
     @Override
     public boolean equals(Object obj) {
@@ -169,7 +143,8 @@ public abstract class Person implements Serializable {
     /**
      * Returns a hash code value for this customer. This method is supported for 
      * the benefit of hash tables such as those provided by HashMap.
-     * @return the hash code
+     * 
+     * @return The hash code.
      */
     @Override 
     public int hashCode() {
@@ -179,27 +154,17 @@ public abstract class Person implements Serializable {
         return result;
     }
 
-    /**
-     * @return the registeredDate
-     */
+    /** @return The date the person was registrated. */
     public Calendar getRegisteredDate() {
         return registeredDate;
     }
 
-    /**
-     * Returns whether or not the person is active
-     * 
-     * @return the boolean active
-     */
+    /** @return True if the person is active. */
     public boolean isActive() {
         return active;
     }
 
-    /**
-     * Sets whether or not this person is active
-     * 
-     * @param active the active to set
-     */
+    /** @param active True if the person is to be set as active. */
     public void setActive(boolean active) {
         this.active = active;
     }

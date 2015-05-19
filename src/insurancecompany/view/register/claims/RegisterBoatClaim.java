@@ -249,7 +249,7 @@ public class RegisterBoatClaim {
     public void populateDamagesPane(ArrayList<Damage> damages) {
         damageCheckBoxes = new ArrayList<>();
         // Decides number of columns of damages:
-        int columns = 3 ;
+        int columns = 2;
         // Start at first column:
         int column = 0;
         // Start at first row:

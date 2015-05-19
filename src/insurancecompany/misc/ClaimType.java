@@ -4,6 +4,7 @@ package insurancecompany.misc;
  * This enum represents the types of claims that can be registered.
  * 
  * @author André
+ * @author Carl
  */
 public enum ClaimType {
     BOAT_CLAIM, CAR_CLAIM, HOME_CLAIM, HOME_CONTENT_CLAIM, 

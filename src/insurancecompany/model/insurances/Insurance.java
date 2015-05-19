@@ -17,6 +17,7 @@ import java.util.Calendar;
  * the information.
  * 
  * @author Sindre
+ * @author Carl
  */
 public abstract class Insurance implements Serializable {
     

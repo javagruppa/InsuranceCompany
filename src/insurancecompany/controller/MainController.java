@@ -948,7 +948,7 @@ public class MainController {
         if (insurance instanceof CarInsurance) {
             CarInsuranceCoverage coverage = (CarInsuranceCoverage) insurance.getCoverage();
             registerCarClaim.setDamages(coverage.damages());
-            message = insurance.getName() + " " + coverage.toString() + " er valgt.";
+            message = insurance.getType() + " " + coverage.toString() + " er valgt.";
             registerCarClaim.setSelectInsuranceMessage(message);
         } else {
             message = "Ingen forsikring valgt,";
@@ -1143,7 +1143,7 @@ public class MainController {
         if (insurance instanceof BoatInsurance) {
             BoatInsuranceCoverage coverage = (BoatInsuranceCoverage) insurance.getCoverage();
             registerBoatClaim.setDamages(coverage.damages());
-            message = insurance.getName() + " " + coverage.toString() + " er valgt.";
+            message = insurance.getType() + " " + coverage.toString() + " er valgt.";
             registerBoatClaim.setSelectInsuranceMessage(message);
         } else {
             message = "Ingen forsikring valgt,";
@@ -1338,7 +1338,7 @@ public class MainController {
         if (insurance instanceof HomeInsurance) {
             HomeInsuranceCoverage coverage = (HomeInsuranceCoverage) insurance.getCoverage();
             registerHomeClaim.setDamages(coverage.damages());
-            message = insurance.getName() + " " + coverage.toString() + " er valgt.";
+            message = insurance.getType() + " " + coverage.toString() + " er valgt.";
             registerHomeClaim.setSelectInsuranceMessage(message);
         } else {
             message = "Ingen forsikring valgt,";
@@ -1577,7 +1577,7 @@ public class MainController {
         if (insurance instanceof HomeContentInsurance) {
             HomeContentInsuranceCoverage coverage = (HomeContentInsuranceCoverage) insurance.getCoverage();
             registerHomeContentClaim.setDamages(coverage.damages());
-            message = insurance.getName() + " " + coverage.toString() + " er valgt.";
+            message = insurance.getType() + " " + coverage.toString() + " er valgt.";
             registerHomeContentClaim.setSelectInsuranceMessage(message);
         } else {
             message = "Ingen forsikring valgt,";
@@ -1774,7 +1774,7 @@ public class MainController {
         if (insurance instanceof HolidayHomeInsurance) {
             HolidayHomeInsuranceCoverage coverage = (HolidayHomeInsuranceCoverage) insurance.getCoverage();
             registerHolidayHomeClaim.setDamages(coverage.damages());
-            message = insurance.getName() + " " + coverage.toString() + " er valgt.";
+            message = insurance.getType() + " " + coverage.toString() + " er valgt.";
             registerHolidayHomeClaim.setSelectInsuranceMessage(message);
         } else {
             message = "Ingen forsikring valgt,";
@@ -2013,7 +2013,7 @@ public class MainController {
         if (insurance instanceof HolidayHomeContentInsurance) {
             HolidayHomeContentInsuranceCoverage coverage = (HolidayHomeContentInsuranceCoverage) insurance.getCoverage();
             registerHolidayHomeContentClaim.setDamages(coverage.damages());
-            message = insurance.getName() + " " + coverage.toString() + " er valgt.";
+            message = insurance.getType() + " " + coverage.toString() + " er valgt.";
             registerHolidayHomeContentClaim.setSelectInsuranceMessage(message);
         } else {
             message = "Ingen forsikring valgt,";
@@ -2254,7 +2254,7 @@ public class MainController {
         if (insurance instanceof TravelInsurance) {
             TravelInsuranceCoverage coverage = (TravelInsuranceCoverage) insurance.getCoverage();
             registerTravelClaim.setDamages(coverage.damages());
-            message = insurance.getName() + " " + coverage.toString() + " er valgt.";
+            message = insurance.getType() + " " + coverage.toString() + " er valgt.";
             registerTravelClaim.setSelectInsuranceMessage(message);
         } else {
             message = "Ingen forsikring valgt,";

@@ -59,7 +59,7 @@ public class InsuranceRegister {
             Insurance insurance = iterator.next();
             // Appends the customer ID of the insurance to the list if the 
             // insurance is of the specified type.
-            if(insurance.getName().equals(insuranceName)) {
+            if(insurance.getType().equals(insuranceName)) {
                 result.add(insurance.getCustomerId());
             }
         }
@@ -102,7 +102,7 @@ public class InsuranceRegister {
         List<Insurance> result = new ArrayList<>();
         for (Insurance insurance : insurances) {
             if ((customerId == 0 || customerId == insurance.getCustomerId())
-                    && (type == null || type.equals(insurance.getName()))
+                    && (type == null || type.equals(insurance.getType()))
                     && (fromDate == null ||
                             fromDate.compareTo(insurance.getDate()) <= 0)
                     && (toDate == null || 

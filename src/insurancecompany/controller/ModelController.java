@@ -302,7 +302,7 @@ public class ModelController {
         for (Bill bill : bills) {
             int insId = bill.getInsuranceId();
             Insurance insurance = insuranceRegister.getInsuranceById(insId);
-            String typeInsurance = insurance.getName();
+            String typeInsurance = insurance.getType();
             if ((bill.getPayedDate().get(Calendar.YEAR) == year) 
                     && (month == 0 || bill.getPayedDate().get(Calendar.MONTH) == month)
                     && (day == 0 || bill.getPayedDate().get(Calendar.DAY_OF_MONTH) == day)
@@ -320,7 +320,7 @@ public class ModelController {
         for (Bill bill : bills) {
             int insId = bill.getInsuranceId();
             Insurance insurance = insuranceRegister.getInsuranceById(insId);
-            String typeInsurance = insurance.getName();
+            String typeInsurance = insurance.getType();
             if ((type == null || type.equals(typeInsurance))
                     && (customerId == 0 || bill.getCustomerId() == customerId)
                     && (insuranceId == 0 || bill.getInsuranceId() == insuranceId)) {
@@ -340,7 +340,7 @@ public class ModelController {
         for (Bill bill : bills) {
             int insId = bill.getInsuranceId();
             Insurance insurance = insuranceRegister.getInsuranceById(insId);
-            String typeInsurance = insurance.getName();
+            String typeInsurance = insurance.getType();
             if ((type == null || type.equals(typeInsurance))
                     && (customerId == 0 || bill.getCustomerId() == customerId)
                     && (insuranceId == 0 || bill.getInsuranceId() == insuranceId)) {            

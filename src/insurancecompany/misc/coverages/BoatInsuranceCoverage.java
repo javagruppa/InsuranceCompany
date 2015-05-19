@@ -9,6 +9,7 @@ package insurancecompany.misc.coverages;
  * The coverage of a boat insurance
  * 
  * @author André
+ * @author Carl
  */
 public enum BoatInsuranceCoverage {
     CASCO {

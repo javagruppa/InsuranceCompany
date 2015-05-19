@@ -3299,6 +3299,10 @@ public class MainController {
         if(city.equals("")) {
             registerHolidayHomeContentInsurance.setCityMessage(EMPTY_MESSAGE);
             abort = true;
+        } else if (!city.matches("^[æøåÆØÅa-zA-Z]{1,30}")){
+            String message = "Fyll inn korrekt poststed.";
+            registerHolidayHomeContentInsurance.setCityMessage(message);
+            abort = true;
         }
         if(coverage == null) {
             registerHolidayHomeContentInsurance.setCoverageMessage(EMPTY_MESSAGE);
@@ -3315,6 +3319,10 @@ public class MainController {
         if(street.equals("")) {
             registerHolidayHomeContentInsurance.setStreetMessage(EMPTY_MESSAGE);
             abort = true;
+        } else if (!street.matches("[æøåÆØÅa-zA-Z0-9]{2,40}")) {
+            String message = "Fyll inn korrekt gateadresse.";
+            registerHolidayHomeContentInsurance.setStreetMessage(message);
+            abort = true;
         }
         if(type == null) {
             registerHolidayHomeContentInsurance.setTypeMessage(EMPTY_MESSAGE);
@@ -3325,6 +3333,10 @@ public class MainController {
         if(areaString.equals("")) {
             registerHolidayHomeContentInsurance.setAreaMessage(EMPTY_MESSAGE);
             abort = true;
+        } else if (!areaString.matches("[0-9]{1,4}")){
+            String message = "Fyll inn korrekt areal. Kun tall.";
+            registerHolidayHomeContentInsurance.setAreaMessage(message);
+            abort = true;
         } else {
             try {
                 area = Integer.parseInt(areaString);
@@ -3334,13 +3346,17 @@ public class MainController {
             }
         }
         if(amountString.equals("")) {
-            registerHomeContentInsurance.setAmountMessage(EMPTY_MESSAGE);
+            registerHolidayHomeContentInsurance.setAmountMessage(EMPTY_MESSAGE);
+            abort = true;
+        } else if (!amountString.matches("[0-9]{1,8}")){
+            String message = "Fyll inn korrekt beløp.";
+            registerHolidayHomeContentInsurance.setAmountMessage(message);
             abort = true;
         } else {
             try {
                 amount = Integer.parseInt(amountString);
             } catch(NumberFormatException nfe) {
-                registerHomeContentInsurance.setAmountMessage(FORMAT_MESSAGE);
+                registerHolidayHomeContentInsurance.setAmountMessage(FORMAT_MESSAGE);
                 abort = true;
             }
         }
@@ -3358,7 +3374,11 @@ public class MainController {
         if(yearString.equals("")) {
             registerHolidayHomeContentInsurance.setYearMessage(EMPTY_MESSAGE);
             abort = true;
-        } else {
+        } else if (!yearString.matches("\\d{4}")){
+            String message = "Fyll inn korrekt årstall. 4 siffer.";
+            registerHolidayHomeContentInsurance.setYearMessage(message);
+            abort = true;
+        }else {
             try {
                 year = Integer.parseInt(yearString);
             } catch(NumberFormatException nfe) {
@@ -3369,7 +3389,11 @@ public class MainController {
         if(zipCodeString.equals("")) {
             registerHolidayHomeContentInsurance.setZipCodeMessage(EMPTY_MESSAGE);
             abort = true;
-        } else {
+        } else if(!zipCodeString.matches("\\d{4}")){
+            String message = "Fyll inn korrekt postnummer. 4 siffer.";
+            registerHolidayHomeContentInsurance.setZipCodeMessage(message);
+            abort = true;
+        }else {
             try {
                 zipCode = Integer.parseInt(zipCodeString);
             } catch(NumberFormatException nfe) {

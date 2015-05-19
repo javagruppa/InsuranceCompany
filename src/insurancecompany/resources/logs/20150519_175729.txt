@@ -1,0 +1,52 @@
+Logs:Time: Tue May 19 17:48:25 CEST 2015
+Logged in user: Admin
+User id: 1000000
+Stack Trace: java.io.ObjectInputStream.readStreamHeader(ObjectInputStream.java:806)
+java.io.ObjectInputStream.<init>(ObjectInputStream.java:299)
+insurancecompany.model.datastructures.BillRegister.readBillsFromFile(BillRegister.java:186)
+insurancecompany.controller.MainController.readBillsFromFile(MainController.java:5029)
+insurancecompany.controller.MainController.readAllDataFromFile(MainController.java:434)
+insurancecompany.controller.MainController.<init>(MainController.java:146)
+insurancecompany.main.Main.start(Main.java:32)
+com.sun.javafx.application.LauncherImpl.lambda$launchApplication1$153(LauncherImpl.java:821)
+com.sun.javafx.application.LauncherImpl$$Lambda$51/1040631420.run(Unknown Source)
+com.sun.javafx.application.PlatformImpl.lambda$runAndWait$166(PlatformImpl.java:323)
+com.sun.javafx.application.PlatformImpl$$Lambda$45/1051754451.run(Unknown Source)
+com.sun.javafx.application.PlatformImpl.lambda$null$164(PlatformImpl.java:292)
+com.sun.javafx.application.PlatformImpl$$Lambda$47/1655523674.run(Unknown Source)
+java.security.AccessController.doPrivileged(Native Method)
+com.sun.javafx.application.PlatformImpl.lambda$runLater$165(PlatformImpl.java:291)
+com.sun.javafx.application.PlatformImpl$$Lambda$46/1775282465.run(Unknown Source)
+com.sun.glass.ui.InvokeLaterDispatcher$Future.run(InvokeLaterDispatcher.java:95)
+com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+com.sun.glass.ui.win.WinApplication.lambda$null$141(WinApplication.java:102)
+com.sun.glass.ui.win.WinApplication$$Lambda$37/1109371569.run(Unknown Source)
+java.lang.Thread.run(Thread.java:745)
+
+Description: invalid stream header: EFBFBDEF
+Time: Tue May 19 17:48:25 CEST 2015
+Logged in user: Admin
+User id: 1000000
+Stack Trace: java.io.ObjectInputStream.readStreamHeader(ObjectInputStream.java:806)
+java.io.ObjectInputStream.<init>(ObjectInputStream.java:299)
+insurancecompany.model.datastructures.CustomerRegister.readCustomersFromFile(CustomerRegister.java:139)
+insurancecompany.controller.MainController.readCustomersFromFile(MainController.java:4948)
+insurancecompany.controller.MainController.readAllDataFromFile(MainController.java:438)
+insurancecompany.controller.MainController.<init>(MainController.java:146)
+insurancecompany.main.Main.start(Main.java:32)
+com.sun.javafx.application.LauncherImpl.lambda$launchApplication1$153(LauncherImpl.java:821)
+com.sun.javafx.application.LauncherImpl$$Lambda$51/1040631420.run(Unknown Source)
+com.sun.javafx.application.PlatformImpl.lambda$runAndWait$166(PlatformImpl.java:323)
+com.sun.javafx.application.PlatformImpl$$Lambda$45/1051754451.run(Unknown Source)
+com.sun.javafx.application.PlatformImpl.lambda$null$164(PlatformImpl.java:292)
+com.sun.javafx.application.PlatformImpl$$Lambda$47/1655523674.run(Unknown Source)
+java.security.AccessController.doPrivileged(Native Method)
+com.sun.javafx.application.PlatformImpl.lambda$runLater$165(PlatformImpl.java:291)
+com.sun.javafx.application.PlatformImpl$$Lambda$46/1775282465.run(Unknown Source)
+com.sun.glass.ui.InvokeLaterDispatcher$Future.run(InvokeLaterDispatcher.java:95)
+com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+com.sun.glass.ui.win.WinApplication.lambda$null$141(WinApplication.java:102)
+com.sun.glass.ui.win.WinApplication$$Lambda$37/1109371569.run(Unknown Source)
+java.lang.Thread.run(Thread.java:745)
+
+Description: invalid stream header: EFBFBDEF

@@ -128,7 +128,7 @@ public class ViewController {
         // empty
     }
     
-    public void initializeEventHandlers() {
+    private void initializeEventHandlers() {
         mainView.setRegisterButtonEventHandler(this::mainViewRegisterTabButtonEventHandler);
         mainView.setSearchButtonEventHandler(this::mainViewSearchTabButtonEventHandler);
         mainView.setStatisticsButtonEventHandler(this::adminViewStatisticsTabButtonEventHandler);

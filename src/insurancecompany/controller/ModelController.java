@@ -143,33 +143,34 @@ public class ModelController {
      */
     public void updatePayments() {
         for (Insurance insurance : insurances) {
-            
             if (insurance != null) {
                 // Get the next pay date for each insurance:
                 Calendar nextPayDate = insurance.getNextPayDate();
                 if (nextPayDate != null) {
-                // If Current date has reached or passed the next payed date:
-                if (nextPayDate.before(Calendar.getInstance()) || nextPayDate.equals(Calendar.getInstance())) {
-                    
-                    int customerId = insurance.getCustomerId();
-                    int insuranceId = insurance.getInsuranceId();
-                    double fee = insurance.getMonthlyPremium();
-                    // Find the customer for the insurance:
-                    Customer c = customerRegister.findCustomerById(customerId);
-                    // Check if that customer is a totalCustomer:
-                    boolean totalCustomer = c.isTotalCustomer();
-                    if (totalCustomer) {
-                        // If so, adjust fee accordingly:
-                        fee = fee * (1 - Customer.TOTAL_CUSTOMER_DISCOUNT);
+                    // If Current date has reached or passed the next payed date:
+                    if (nextPayDate.before(Calendar.getInstance()) || nextPayDate.equals(Calendar.getInstance())) {
+
+                        int customerId = insurance.getCustomerId();
+                        int insuranceId = insurance.getInsuranceId();
+                        double fee = insurance.getMonthlyPremium();
+                        // Find the customer for the insurance:
+                        Customer c = customerRegister.findCustomerById(customerId);
+                        if (c != null) {
+                            // Check if that customer is a totalCustomer:
+                            boolean totalCustomer = c.isTotalCustomer();
+                            if (totalCustomer) {
+                                // If so, adjust fee accordingly:
+                                fee = fee * (1 - Customer.TOTAL_CUSTOMER_DISCOUNT);
+                            }
+                            // Create a new bill assigned to the customer and insurance:
+                            Bill bill = new Bill(fee, customerId, insuranceId);
+                            // Add this bill to the bill register:
+                            billRegister.addBill(bill);
+                            // Update next pay date to 1 month forward:
+                            nextPayDate.add(Calendar.MONTH, 1);
+                            insurance.setNextPayDate(nextPayDate); // redundant
+                        }
                     }
-                    // Create a new bill assigned to the customer and insurance:
-                    Bill bill = new Bill(fee, customerId, insuranceId);
-                    // Add this bill to the bill register:
-                    billRegister.addBill(bill);
-                    // Update next pay date to 1 month forward:
-                    nextPayDate.add(Calendar.MONTH, 1);
-                    insurance.setNextPayDate(nextPayDate); // redundant
-                }
                 }
             }
         }

@@ -19,6 +19,7 @@ import insurancecompany.model.insurances.*;
 import insurancecompany.model.people.*;
 import insurancecompany.model.properties.*;
 import insurancecompany.model.vehicles.*;
+import insurancecompany.view.LoginView;
 import insurancecompany.view.register.claims.*;
 import insurancecompany.view.register.insurances.*;
 import insurancecompany.view.register.persons.*;
@@ -41,6 +42,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javax.imageio.ImageIO;
 
 /**
@@ -57,6 +59,7 @@ public class MainController {
     
     /** Primary Stage. */
     private Stage primaryStage;
+    private Stage loginStage;
     
     // Models:
     private BillRegister bills;
@@ -68,6 +71,7 @@ public class MainController {
     
     // Modules:
     private MainView mainView;
+    private LoginView loginView;
     
     // Claim Registration Views:
     private RegisterBoatClaim registerBoatClaim;
@@ -144,6 +148,7 @@ public class MainController {
         
         // Modules:
         this.mainView = new MainView();
+        this.loginView = new LoginView();
     
         // Claim Registration Views:
         this.registerBoatClaim = new RegisterBoatClaim();
@@ -210,7 +215,7 @@ public class MainController {
         // Controllers:
         this.modelController = new ModelController(bills, claims, customers, 
                 employees, insurances, logs);
-        this.viewController = new ViewController(mainView, views);
+        this.viewController = new ViewController(mainView, loginView, views);
         
         
         setBrandComboBox();
@@ -232,7 +237,13 @@ public class MainController {
     
     public void show(Stage stage) {
         this.primaryStage = stage;
-        viewController.show(stage);
+        primaryStage.initStyle(StageStyle.UNDECORATED);
+        viewController.setStage(this.primaryStage);
+        loginStage = new Stage();
+        loginView.show(loginStage);
+        //CarClaimFormView car = new CarClaimFormView();
+        //car.setStage(stage);
+        //mainView.setStage(primaryStage);
     }
     
     private void initializeEventHandlers() {
@@ -241,7 +252,10 @@ public class MainController {
         initializeSearchEventHandlers();
         initializeStatisticsEventHandlers();
         mainView.setSaveDataButtonEventHandler(this::mainViewSaveDataButtonEventHandler);
+        mainView.setLogOutButtonEventHandler(this::mainViewLogOutButtonEventHandler);
         mainView.setExitButtonEventHandler(this::mainViewExitButtonEventHandler);
+        
+        loginView.setLoginButtonEventHandler(this::loginViewLoginButtonEventHandler);
         
         
         registerCustomer.setRegisterEventHandler(this::registerCustomerButtonEventHandler);
@@ -381,6 +395,36 @@ public class MainController {
         writeLogsToFile();
     }
     
+    private void mainViewLogOutButtonEventHandler(ActionEvent event) {
+        primaryStage.close();
+        loginStage.show();
+    }
+    
+    private void mainViewExitButtonEventHandler(ActionEvent event) {
+        Platform.exit();
+    }    
+    
+    private void loginViewLoginButtonEventHandler(ActionEvent event) {
+        String employeeIdString = loginView.getUserTextField();
+        int employeeId = 0;
+        boolean isFullScreen = loginView.getFullScreenCheckBoxValue();
+        //String password = loginView.getPwField(); // Not currently in use.
+        
+        
+        if (employeeIdString.equals("")) {
+            //loginView.setUserTextFieldMessage("Fyll inn");
+        } else {
+            try {
+                employeeId = Integer.parseInt(employeeIdString);
+            } catch (NumberFormatException nfe) {
+                loginView.setUserTextFieldMessage("Kun tall");
+            }
+        }
+        loginStage.close();
+        primaryStage.setFullScreen(isFullScreen);
+        mainView.show(primaryStage);
+    }
+    
     public void readAllDataFromFile() {
         readBillIdFromFile();
         readBillsFromFile();
@@ -393,10 +437,6 @@ public class MainController {
         readInsuranceIdFromFile();
         readInsurancesFromFile();  
     }
-    
-    private void mainViewExitButtonEventHandler(ActionEvent event) {
-        Platform.exit();
-    }    
     
     /**
      * Registers a new Customer, based on the information put into the required
@@ -455,10 +495,10 @@ public class MainController {
         }
         
         if (street.equals("")) {
-            String message = "Fyll inn dette feltet.";
-            registerCustomer.setStreetMessage(message);
-            ok = false;
-        } else if (!street.matches("[ÆØÅæøåa-zA-Z0-9]{2,30}")) {
+            // This is allowed, to make sure address field CAN be empty.
+            // The else if underneath makes sure that IF an address is filled in
+            // it has to be the correct format.
+        } else if (!street.matches("[ÆØÅæøåa-zA-Z0-9 .-]{2,30}")) {
             String message = "Fyll inn korrekt gateadresse, kun bokstaver og"
                     + " tall tillatt.";
             registerCustomer.setStreetMessage(message);
@@ -469,7 +509,7 @@ public class MainController {
             String message = "Fyll inn dette feltet.";
             registerCustomer.setCityMessage(message);
             ok = false;
-        } else if (!city.matches("^[æøåÆØÅa-zA-Z]{2,30}")) {
+        } else if (!city.matches("^[æøåÆØÅa-zA-Z .-]{2,30}")) {
             String message = "Fyll inn korrekt poststed, kun bokstaver tillatt.";
             registerCustomer.setCityMessage(message);
             ok = false;
@@ -599,10 +639,10 @@ public class MainController {
         }
         
         if (street.equals("")) {
-            String message = "Fyll inn dette feltet.";
-            registerEmployee.setStreetMessage(message);
-            ok = false;
-        } else if (!street.matches("[ÆØÅæøåa-zA-Z0-9]{2,30}")) {
+            // This is allowed, to make sure address field CAN be empty.
+            // The else if underneath makes sure that IF an address is filled in
+            // it has to be the correct format.
+        } else if (!street.matches("[ÆØÅæøåa-zA-Z0-9 .-]{2,30}")) {
             String message = "Fyll inn korrekt gateadresse, kun bokstaver og"
                     + " tall tillatt.";
             registerEmployee.setStreetMessage(message);
@@ -613,7 +653,7 @@ public class MainController {
             String message = "Fyll inn dette feltet.";
             registerEmployee.setCityMessage(message);
             ok = false;
-        } else if (!city.matches("^[æøåÆØÅa-zA-Z]{2,30}")) {
+        } else if (!city.matches("^[æøåÆØÅa-zA-Z .-]{2,30}")) {
             String message = "Fyll inn korrekt poststed, kun bokstaver tillatt.";
             registerEmployee.setCityMessage(message);
             ok = false;
@@ -3190,6 +3230,10 @@ public class MainController {
         if(city.equals("")) {
             registerHolidayHomeInsurance.setCityMessage(EMPTY_MESSAGE);
             abort = true;
+        } else if (!city.matches("^[æøåÆØÅa-zA-Z .-]{1,30}")){
+            String message = "Fyll inn korrekt poststed.";
+            registerHolidayHomeInsurance.setCityMessage(message);
+            abort = true;
         }
         if(coverage == null) {
             registerHolidayHomeInsurance.setCoverageMessage(EMPTY_MESSAGE);
@@ -3204,7 +3248,12 @@ public class MainController {
             abort = true;
         }
         if(street.equals("")) {
-            registerHolidayHomeInsurance.setStreetMessage(EMPTY_MESSAGE);
+            // This is allowed, to make sure address field CAN be empty.
+            // The else if underneath makes sure that IF an address is filled in
+            // it has to be the correct format.
+        } else if (!street.matches("^[æøåÆØÅa-zA-Z0-9 .-]{2,45}")){
+            String message = "Fyll inn korrekt gateadresse.";
+            registerHolidayHomeInsurance.setStreetMessage(message);
             abort = true;
         }
         if(type == null) {
@@ -3216,7 +3265,11 @@ public class MainController {
         if(areaString.equals("")) {
             registerHolidayHomeInsurance.setAreaMessage(EMPTY_MESSAGE);
             abort = true;
-        } else {
+        } else if (!areaString.matches("[0-9]{1,4}")){
+            String message = "Fyll inn korrekt areal. Kun tall.";
+            registerHolidayHomeInsurance.setAreaMessage(message);
+            abort = true;
+        }else {
             try {
                 area = Integer.parseInt(areaString);
             } catch(NumberFormatException nfe) {
@@ -3244,7 +3297,11 @@ public class MainController {
         if(yearString.equals("")) {
             registerHolidayHomeInsurance.setYearMessage(EMPTY_MESSAGE);
             abort = true;
-        } else {
+        } else if (!yearString.matches("\\d{4}")){
+            String message = "Fyll inn korrekt årstall. 4 siffer.";
+            registerHolidayHomeInsurance.setYearMessage(message);
+            abort = true;
+        }else {
             try {
                 year = Integer.parseInt(yearString);
             } catch(NumberFormatException nfe) {
@@ -3255,7 +3312,11 @@ public class MainController {
         if(zipCodeString.equals("")) {
             registerHolidayHomeInsurance.setZipCodeMessage(EMPTY_MESSAGE);
             abort = true;
-        } else {
+        } else if (!zipCodeString.matches("\\d{4}")){
+            String message = "Fyll inn korrekt postnummer. 4 siffer.";
+            registerHolidayHomeInsurance.setZipCodeMessage(message);
+            abort = true;
+        }else {
             try {
                 zipCode = Integer.parseInt(zipCodeString);
             } catch(NumberFormatException nfe) {
@@ -3384,7 +3445,7 @@ public class MainController {
         if(city.equals("")) {
             registerHolidayHomeContentInsurance.setCityMessage(EMPTY_MESSAGE);
             abort = true;
-        } else if (!city.matches("^[æøåÆØÅa-zA-Z]{1,30}")){
+        } else if (!city.matches("^[æøåÆØÅa-zA-Z .-]{1,30}")){
             String message = "Fyll inn korrekt poststed.";
             registerHolidayHomeContentInsurance.setCityMessage(message);
             abort = true;
@@ -3402,9 +3463,10 @@ public class MainController {
             abort = true;
         }
         if(street.equals("")) {
-            registerHolidayHomeContentInsurance.setStreetMessage(EMPTY_MESSAGE);
-            abort = true;
-        } else if (!street.matches("[æøåÆØÅa-zA-Z0-9]{2,40}")) {
+            // This is allowed, to make sure address field CAN be empty.
+            // The else if underneath makes sure that IF an address is filled in
+            // it has to be the correct format.
+        } else if (!street.matches("[æøåÆØÅa-zA-Z0-9 .-]{2,40}")) {
             String message = "Fyll inn korrekt gateadresse.";
             registerHolidayHomeContentInsurance.setStreetMessage(message);
             abort = true;
@@ -3607,6 +3669,10 @@ public class MainController {
         if(city.equals("")) {
             registerHomeInsurance.setCityMessage(EMPTY_MESSAGE);
             abort = true;
+        } else if(!city.matches("^[æøåÆØÅa-zA-Z .-]{2,30}")){
+            String message = "Fyll inn korrekt poststed.";
+            registerHomeInsurance.setCityMessage(message);
+            abort = true;
         }
         if(coverage == null) {
             registerHomeInsurance.setCoverageMessage(EMPTY_MESSAGE);
@@ -3621,7 +3687,12 @@ public class MainController {
             abort = true;
         }
         if(street.equals("")) {
-            registerHomeInsurance.setStreetMessage(EMPTY_MESSAGE);
+            // This is allowed, to make sure address field CAN be empty.
+            // The else if underneath makes sure that IF an address is filled in
+            // it has to be the correct format.
+        } else if (!street.matches("[æøåÆØÅa-zA-Z0-9 .-]{2,45}")){
+            String message = "Fyll inn korrekt gateadresse.";
+            registerHomeInsurance.setStreetMessage(message);
             abort = true;
         }
         if(type == null) {
@@ -3633,7 +3704,11 @@ public class MainController {
         if(areaString.equals("")) {
             registerHomeInsurance.setAreaMessage(EMPTY_MESSAGE);
             abort = true;
-        } else {
+        } else if(!areaString.matches("\\d{1,4}")){
+            String message = "Fyll inn korrekt areal. Kun tall.";
+            registerHomeInsurance.setAreaMessage(message);
+            abort = true;
+        }else {
             try {
                 area = Integer.parseInt(areaString);
             } catch(NumberFormatException nfe) {
@@ -3662,7 +3737,11 @@ public class MainController {
         if(yearString.equals("")) {
             registerHomeInsurance.setYearMessage(EMPTY_MESSAGE);
             abort = true;
-        } else {
+        } else if (!yearString.matches("\\d{4}")){
+            String message = "Fyll inn korrekt årstall. 4 siffer.";
+            registerHomeInsurance.setYearMessage(message);
+            abort = true;
+        }else {
             try {
                 year = Integer.parseInt(yearString);
             } catch(NumberFormatException nfe) {
@@ -3673,7 +3752,11 @@ public class MainController {
         if(zipCodeString.equals("")) {
             registerHomeInsurance.setZipCodeMessage(EMPTY_MESSAGE);
             abort = true;
-        } else {
+        } else if (!zipCodeString.matches("\\d{4}")){
+            String message = "Fyll inn korrekt postkode. 4 siffer.";
+            registerHomeInsurance.setZipCodeMessage(message);
+            abort = true;
+        }else {
             try {
                 zipCode = Integer.parseInt(zipCodeString);
             } catch(NumberFormatException nfe) {
@@ -3802,6 +3885,10 @@ public class MainController {
         if(city.equals("")) {
             registerHomeContentInsurance.setCityMessage(EMPTY_MESSAGE);
             abort = true;
+        } else if (!city.matches("^[æøåÆØÅa-zA-Z .-]{2,35}")) {
+            String message = "Fyll inn korrekt poststed.";
+            registerHomeContentInsurance.setCityMessage(message);
+            abort = true;
         }
         if(coverage == null) {
             registerHomeContentInsurance.setCoverageMessage(EMPTY_MESSAGE);
@@ -3816,7 +3903,12 @@ public class MainController {
             abort = true;
         }
         if(street.equals("")) {
-            registerHomeContentInsurance.setStreetMessage(EMPTY_MESSAGE);
+            // This is allowed, to make sure address field CAN be empty.
+            // The else if underneath makes sure that IF an address is filled in
+            // it has to be the correct format.
+        } else if (!street.matches("[æøåÆØÅa-zA-Z0-9 .-]{2,45}")){
+            String message = "Fyll inn korrekt gateadresse.";
+            registerHomeContentInsurance.setStreetMessage(message);
             abort = true;
         }
         if(type == null) {
@@ -3828,7 +3920,11 @@ public class MainController {
         if(areaString.equals("")) {
             registerHomeContentInsurance.setAreaMessage(EMPTY_MESSAGE);
             abort = true;
-        } else {
+        } else if (!areaString.matches("\\d{1,4}")){
+            String message = "Fyll inn korrekt areal. Kun tall.";
+            registerHomeContentInsurance.setAreaMessage(message);
+            abort = true;
+        }else {
             try {
                 area = Integer.parseInt(areaString);
             } catch(NumberFormatException nfe) {
@@ -3839,7 +3935,11 @@ public class MainController {
         if(amountString.equals("")) {
             registerHomeContentInsurance.setAmountMessage(EMPTY_MESSAGE);
             abort = true;
-        } else {
+        } else if (!amountString.matches("\\d{5,8}")){
+            String message = "Fyll inn et tallbeløp høyere enn 10.000";
+            registerHomeContentInsurance.setAmountMessage(message);
+            abort = true;
+        }else {
             try {
                 amount = Integer.parseInt(amountString);
             } catch(NumberFormatException nfe) {
@@ -3861,7 +3961,11 @@ public class MainController {
         if(yearString.equals("")) {
             registerHomeContentInsurance.setYearMessage(EMPTY_MESSAGE);
             abort = true;
-        } else {
+        } else if (!yearString.matches("\\d{4}")){
+            String message = "Fyll inn korrekt årstall. 4 siffer.";
+            registerHomeContentInsurance.setYearMessage(message);
+            abort = true;
+        }else {
             try {
                 year = Integer.parseInt(yearString);
             } catch(NumberFormatException nfe) {
@@ -3872,7 +3976,11 @@ public class MainController {
         if(zipCodeString.equals("")) {
             registerHomeContentInsurance.setZipCodeMessage(EMPTY_MESSAGE);
             abort = true;
-        } else {
+        } else if (!zipCodeString.matches("\\d{4}")){
+            String message = "Fyll inn korrekt postnummer. 4 siffer.";
+            registerHomeContentInsurance.setZipCodeMessage(message);
+            abort = true;
+        }else {
             try {
                 zipCode = Integer.parseInt(zipCodeString);
             } catch(NumberFormatException nfe) {
@@ -4407,7 +4515,7 @@ public class MainController {
                 // Add that stackpane to a new scene:
                 Scene scene = new Scene(sp);
                 // Create a new stage to be used for displaying the image:
-                // Create a new stage and show the scene:
+                // Create a new stage and setStage the scene:
                 Stage imageStage = new Stage();
                 imageStage.setScene(scene);
                 imageStage.show();

@@ -69,8 +69,6 @@ public class MainView extends Application {
     
     public void show(Stage stage) {
         primaryStage = stage;
-        //primaryStage.setFullScreen(true);
-        primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.setTitle("Kunderegistrering");
         primaryStage.setScene(scene);
         primaryStage.show();

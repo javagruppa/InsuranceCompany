@@ -73,11 +73,11 @@ public class ViewController {
     
     
     // Constructor
-    public ViewController(MainView mainView, ArrayList<Object> views) {
+    public ViewController(MainView mainView, LoginView loginView, ArrayList<Object> views) {
         
         // Initializes Module Views
         this.mainView = mainView;
-        this.loginView = new LoginView();
+        this.loginView = loginView;
         
         // Initializes Tab Views
         this.registerView = new RegisterView();
@@ -125,12 +125,9 @@ public class ViewController {
         initializeEventHandlers();
     } // end of sole constructor
     
-    public void show(Stage stage) {
+    public void setStage(Stage stage) {
         this.primaryStage = stage;
-        //login.show(stage);
-        //CarClaimFormView car = new CarClaimFormView();
-        //car.show(stage);
-        mainView.show(primaryStage);
+        // empty
     }
     
     public void initializeEventHandlers() {

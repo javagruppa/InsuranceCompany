@@ -149,8 +149,8 @@ public class RegisterTravelInsurance {
         mainPane.add(excessLabel, 4, 2);
         mainPane.add(excessCombo, 5, 2);
         mainPane.add(excessMessage, 6, 2);
-        mainPane.add(registerButton, 5, 4);
-        mainPane.add(registerButtonMessage, 5, 5);
+        mainPane.add(registerButton, 5, 3);
+        mainPane.add(registerButtonMessage, 5, 4);
     }
     
     /** Sets the content of the ComboBox coverageCombo. */

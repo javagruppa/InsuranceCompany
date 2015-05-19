@@ -138,7 +138,6 @@ public class BillRegister {
         return result;
     }
     
-    // TODO: In Model Controller, use setDunningDate & setDunningCharge on this Set
     public List<Bill> billsDue() {
         List<Bill> result = new ArrayList<Bill>();
         // Checks for every bill in this register:
@@ -167,7 +166,7 @@ public class BillRegister {
         }
         return result;
     }
-    
+     
     /**
      * Writes this registers set of bills to file.
      * @throws IOException 

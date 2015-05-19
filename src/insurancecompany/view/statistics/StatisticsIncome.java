@@ -1,15 +1,8 @@
 package insurancecompany.view.statistics;
 
-import insurancecompany.misc.DateUtility;
 import insurancecompany.misc.InsuranceType;
 import insurancecompany.misc.MonthType;
-import insurancecompany.model.bills.Bill;
-import insurancecompany.model.insurances.Insurance;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -21,11 +14,7 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
@@ -33,27 +22,19 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 /**
- * This class creates the graphical user interface (GUI) for searching after 
- * insurances. It creates a pane which is sent to the controller and thereafter
- * displayed.
+ * This class creates the graphical user interface (GUI) for showing income 
+ * statistics.
  * 
- * <p> The pane consists of three parts; one to the left, one in the center and
- * one to the right.
+ * <p> The pane consists of 2 parts.
  * 
  * <p> On the left the user inputs the search terms or criteria. These are
  * sent through get methods to the controller, which validates them and 
  * executes the search.
  * 
- * <p> In the center a table with the result is shown. The user can select one 
- * of these insurances for further examination.
+ * <p> On the right side a line chart displays values for up to two of the 
+ * chosen dates.
  * 
- * <p> On the right the insurance selected in the table is shown. It consists of
- * two parts. The upper part shows the information about the insurance itself, 
- * while the bottom part shows information about the car, boat or property
- * attached. For travel insurances, which has nothing attached, this bottom
- * part is hidden as it has no use.
- * 
- * @author Sindre
+ * @author André
  */
 public class StatisticsIncome {
     
@@ -65,32 +46,29 @@ public class StatisticsIncome {
     private GridPane secondPane;
     
     // Declaration of all the nodes in the left part.
-    private Button searchIdButton;
     private Button searchButton;
     private ComboBox<Object> insuranceTypeCombo;
     private ComboBox<String> numberSelectCombo;
-    private ComboBox<String> fromYear;
-    private ComboBox<String> fromMonth;
-    private ComboBox<String> fromDay;
-    private ComboBox<String> toYear;
-    private ComboBox<String> toMonth;
-    private ComboBox<String> toDay;
+    private ComboBox<String> fromYearCombo;
+    private ComboBox<String> fromMonthCombo;
+    private ComboBox<String> fromDayCombo;
+    private ComboBox<String> toYearCombo;
+    private ComboBox<String> toMonthCombo;
+    private ComboBox<String> toDayCombo;
     private Text fromYearMessage;
     private Text toYearMessage;
     private Text fromMonthMessage;
     private Text toMonthMessage;
     private Text fromDayMessage;
     private Text toDayMessage;
-    private Text searchIdMessage;
     private Text searchMessage;
     private TextField numberField;
-    private TextField insuranceIdField;
     
     // Declaration of nodes in second pane:
     private CategoryAxis xAxis;
     private NumberAxis yAxis;
     
-    private AreaChart<String, Number> lineChart;
+    private LineChart<String, Number> lineChart;
     
     private XYChart.Series series;
     
@@ -122,49 +100,49 @@ public class StatisticsIncome {
         mainPane.getColumnConstraints().addAll(col1, col2);
         
         // Initialization of all the nodes in the left part.
-        searchIdButton = new Button("Søk");
         searchButton = new Button("Søk");
         insuranceTypeCombo = new ComboBox<>();
         populateInsuranceTypeCombo();
         numberSelectCombo = new ComboBox<>();
         populateNumberSelectCombo();
-        searchIdMessage = new Text("");
         searchMessage = new Text("");
         numberField = new TextField();
-        insuranceIdField = new TextField();
         
-        fromYear = new ComboBox();
-        populateYearCombo(fromYear);
-        fromMonth = new ComboBox();
-        populateMonthCombo(fromMonth);
-        fromDay = new ComboBox();
-        populateDayCombo(fromDay);
+        fromYearCombo = new ComboBox();
+        populateYearCombo(fromYearCombo);
+        fromMonthCombo = new ComboBox();
+        populateMonthCombo(fromMonthCombo);
+        fromDayCombo = new ComboBox();
+        populateDayCombo(fromDayCombo);
         
-        toYear = new ComboBox();
-        populateYearCombo(toYear);
-        toMonth = new ComboBox();
-        populateMonthCombo(toMonth);
-        toDay = new ComboBox();
-        populateDayCombo(toDay);
+        toYearCombo = new ComboBox();
+        populateYearCombo(toYearCombo);
+        toMonthCombo = new ComboBox();
+        populateMonthCombo(toMonthCombo);
+        toDayCombo = new ComboBox();
+        populateDayCombo(toDayCombo);
+        
+        // Temporarily disable the month and day boxes:
+        fromMonthCombo.setDisable(true);
+        toMonthCombo.setDisable(true);
+        fromDayCombo.setDisable(true);
+        toDayCombo.setDisable(true);
 
         // Initialization of all the nodes in the center part.
         final CategoryAxis xAxis = new CategoryAxis();
         
         final NumberAxis yAxis = new NumberAxis();
         xAxis.setLabel("Dato");
-        lineChart = new AreaChart<String,Number>(xAxis,yAxis);
+        lineChart = new LineChart<String,Number>(xAxis,yAxis);
         lineChart.setTitle("Inntekter");
-        
         series = new XYChart.Series();
+        lineChart.getData().setAll(series);
         
         
         // Declaration and initialization of the texts and labels which are 
         // used in the view and are not fields.
-        Text insuranceIdTitle = new Text("Velg en forsikring i registeret:");
-        insuranceIdTitle.setId("textTitle");
-        Text searchTermsTitle = new Text("Eller bruk søkebetingelser:");
+        Text searchTermsTitle = new Text("Bruk søkebetingelser:");
         searchTermsTitle.setId("textTitle");
-        Label insuranceIdLabel = new Label("Forsikringsnummer:");
         Label insuranceTypeLabel = new Label("Type forsikring:");
         
         Label fromYearLabel = new Label("Fra år:");
@@ -181,53 +159,50 @@ public class StatisticsIncome {
         toMonthMessage = new Text();
         fromDayMessage = new Text();
         toDayMessage = new Text();
-        searchIdMessage = new Text();
         searchMessage = new Text();
         
         // Adds the nodes to the left part.
-        firstPane.add(insuranceIdTitle, 0, 0, 2, 1);
-        firstPane.add(insuranceIdLabel, 0, 1);
-        firstPane.add(insuranceIdField, 1, 1);
-        firstPane.add(searchIdButton, 1, 2);
-        firstPane.add(searchIdMessage, 0, 3);
         firstPane.add(searchTermsTitle, 0, 4, 2, 1);
         firstPane.add(numberSelectCombo, 0, 5);
         firstPane.add(numberField, 1, 5);
         firstPane.add(insuranceTypeLabel, 0, 6);
         firstPane.add(insuranceTypeCombo, 1, 6);
         firstPane.add(fromYearLabel, 0, 7);
-        firstPane.add(fromYear, 1, 7);
+        firstPane.add(fromYearCombo, 1, 7);
         firstPane.add(fromYearMessage, 2, 7);
         firstPane.add(toYearLabel, 0, 8);
-        firstPane.add(toYear, 1, 8);
+        firstPane.add(toYearCombo, 1, 8);
         firstPane.add(toYearMessage, 2, 8);
         firstPane.add(fromMonthLabel, 0, 9);
-        firstPane.add(fromMonth, 1, 9);
+        firstPane.add(fromMonthCombo, 1, 9);
         firstPane.add(fromMonthMessage, 2, 9);
         firstPane.add(toMonthLabel, 0, 10);
-        firstPane.add(toMonth, 1, 10);
+        firstPane.add(toMonthCombo, 1, 10);
         firstPane.add(toMonthMessage, 2, 10);
         firstPane.add(fromDayLabel, 0, 11);
-        firstPane.add(fromDay, 1, 11);
+        firstPane.add(fromDayCombo, 1, 11);
         firstPane.add(fromDayMessage, 2, 11);
         firstPane.add(toDayLabel, 0, 12);
-        firstPane.add(toDay, 1, 12);
+        firstPane.add(toDayCombo, 1, 12);
         firstPane.add(toDayMessage, 2, 12);
         firstPane.add(searchButton, 1, 13);
         firstPane.add(searchMessage, 0, 14, 2, 1);
         
         // Adds the nodes to the center part.
         secondPane.add(lineChart, 0, 0);
-        populateLineChartAll(200, 1000, "2011", "2012", "Alle");
+        //populateLineChartAll(200, 1000, "2011", "2012", "Alle");
         
  
     }
     
     public void populateLineChartAll(int sumFrom, int sumTo, String dateFrom, String dateTo, String type) {
         series.setName(type);
-        series.getData().add(new XYChart.Data(dateFrom, sumFrom));
-        series.getData().add(new XYChart.Data(dateTo, sumTo));
-        lineChart.getData().setAll(series);
+        XYChart.Data<String, Number> data1 = new XYChart.Data(dateFrom, sumFrom);
+        XYChart.Data<String, Number> data2 = new XYChart.Data(dateTo, sumTo);
+        data1.setNode(new Label(String.valueOf(data1.getYValue())));
+        data2.setNode(new Label(String.valueOf(data2.getYValue())));
+        series.getData().setAll(data1, data2);
+        //lineChart.getData().setAll(series);
     }
     
     private void populateYearCombo(ComboBox cb) {
@@ -241,10 +216,8 @@ public class StatisticsIncome {
     }
     
     private void populateMonthCombo(ComboBox cb) {
-        ObservableList<MonthType> obList;
-        obList = FXCollections.observableArrayList(MonthType.values());
-        cb.getItems().add("");
-        cb.getItems().addAll(obList);
+        cb.getItems().addAll("", "Januar", "Februar", "Mars", "April", "Mai", 
+                "Juni", "Juli", "August", "September", "Oktober", "November", "Desember");
         cb.setPrefWidth(100);
     }
     
@@ -277,15 +250,6 @@ public class StatisticsIncome {
     
     
     /**
-     * Sets the event handler for the searchIdButton.
-     * 
-     * @param value The event handler to set.
-     */
-    public void setSearchIdEventHandler(EventHandler<ActionEvent> value) {
-        searchIdButton.setOnAction(value);
-    }
-    
-    /**
      * Sets the event handler for the searchButton.
      * 
      * @param value The event handler to set.
@@ -310,12 +274,6 @@ public class StatisticsIncome {
         return numberSelectCombo.getValue().equals("Kundenummer");
     }
     
-    /** @return The insurance ID of this class as a String. */
-    public String getInsuranceId() {
-        return insuranceIdField.getText();
-    }
-    
-    
     /** 
      * @return The insurance type of this class as a String. Null if
      * no insurance type is selected.
@@ -327,12 +285,6 @@ public class StatisticsIncome {
      
     
     /** @param message The message to set. */
-    public void setSearchIdMessage(String message) {
-        this.searchIdMessage.setFill(Color.FIREBRICK);
-        this.searchIdMessage.setText(message);
-    }
-    
-    /** @param message The message to set. */
     public void setSearchMessage(String message) {
         this.searchMessage.setFill(Color.FIREBRICK);
         this.searchMessage.setText(message);
@@ -341,7 +293,133 @@ public class StatisticsIncome {
     
     /** Clears all messages. */
     public void clearMessages() {
-        this.searchIdMessage.setText("");
         this.searchMessage.setText("");
     }
+
+    /**
+     * @return the fromYearCombo
+     */
+    public String getFromYearComboValue() {
+        return fromYearCombo.getValue() == null ? "" : fromYearCombo.getValue();
+    }
+
+    /**
+     * @return the fromMonthCombo
+     */
+    public String getFromMonthComboValue() {
+        return fromMonthCombo.getValue() == null ? "" : fromMonthCombo.getValue();
+    }
+
+    /**
+     * @return the fromDayCombo
+     */
+    public String getFromDayComboValue() {
+        return fromDayCombo.getValue() == null ? "" : fromDayCombo.getValue();
+    }
+
+    /**
+     * @return the toYearCombo
+     */
+    public String getToYearComboValue() {
+        return toYearCombo.getValue() == null ? "" : toYearCombo.getValue();
+    }
+
+    /**
+     * @return the toMonthCombo
+     */
+    public String getToMonthComboValue() {
+        return toMonthCombo.getValue() == null ? "" : toMonthCombo.getValue();
+    }
+
+    /**
+     * @return the toDayCombo
+     */
+    public String getToDayComboValue() {
+        return toDayCombo.getValue() == null ? "" : toDayCombo.getValue();
+    }
+
+    /**
+     * @param fromYearMessage the fromYearMessage to set
+     */
+    public void setFromYearMessage(String fromYearMessage) {
+        this.fromYearMessage.setText(fromYearMessage);
+    }
+
+    /**
+     * @param toYearMessage the toYearMessage to set
+     */
+    public void setToYearMessage(String toYearMessage) {
+        this.toYearMessage.setText(toYearMessage);
+    }
+
+    /**
+     * @param fromMonthMessage the fromMonthMessage to set
+     */
+    public void setFromMonthMessage(String fromMonthMessage) {
+        this.fromMonthMessage.setText(fromMonthMessage);
+    }
+
+    /**
+     * @param toMonthMessage the toMonthMessage to set
+     */
+    public void setToMonthMessage(String toMonthMessage) {
+        this.toMonthMessage.setText(toMonthMessage);
+    }
+
+    /**
+     * @param fromDayMessage the fromDayMessage to set
+     */
+    public void setFromDayMessage(String fromDayMessage) {
+        this.fromDayMessage.setText(fromDayMessage);
+    }
+
+    /**
+     * @param toDayMessage the toDayMessage to set
+     */
+    public void setToDayMessage(String toDayMessage) {
+        this.toDayMessage.setText(toDayMessage);
+    }
+
+    /**
+     * @param fromMonthCombo the fromMonthCombo to set
+     */
+    public void setFromMonthComboDisable(boolean disable) {
+        this.fromMonthCombo.setDisable(disable);
+    }
+
+    /**
+     * @param fromDayCombo the fromDayCombo to set
+     */
+    public void setFromDayComboDisable(boolean disable) {
+        this.fromDayCombo.setDisable(disable);
+    }
+
+    /**
+     * @param toMonthCombo the toMonthCombo to set
+     */
+    public void setToMonthComboDisable(boolean disable) {
+        this.toMonthCombo.setDisable(disable);
+    }
+
+    /**
+     * @param toDayCombo the toDayCombo to set
+     */
+    public void setToDayComboDisable(boolean disable) {
+        this.toDayCombo.setDisable(disable);
+    }
+
+    /**
+     * @param event
+     */
+    public void setFromYearComboEventHandler(EventHandler<ActionEvent> event) {
+        this.fromYearCombo.setOnAction(event);
+    }
+
+    /**
+     * @param event
+     */
+    public void setFromMonthComboEventHandler(EventHandler<ActionEvent> event) {
+        this.fromMonthCombo.setOnAction(event);
+    }
+    
 }

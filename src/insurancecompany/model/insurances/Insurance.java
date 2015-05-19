@@ -52,10 +52,11 @@ public abstract class Insurance implements Serializable {
         this.active = true;
         this.customerId = customerId;
         this.date = Calendar.getInstance();
+        //date.add(Calendar.MONTH, -2); for testing
         this.insuranceId = nextInsuranceId++;
         this.excess = excess;
-        nextPayDate = date;
-        nextPayDate.add(Calendar.MONTH, 1);
+        nextPayDate = (Calendar) date.clone();
+        //nextPayDate.add(Calendar.MONTH, 1);
     }
     
     /** Calculate the premium. */

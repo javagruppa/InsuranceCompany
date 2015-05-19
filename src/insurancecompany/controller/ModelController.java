@@ -55,25 +55,25 @@ public class ModelController {
      * Constructor that initializes all models, which are specified as 
      * parameters.
      * 
-     * @param bills
-     * @param claims
-     * @param customers
-     * @param employees
-     * @param insurances
+     * @param billRegister
+     * @param claimRegister
+     * @param customerRegister
+     * @param employeeRegister
+     * @param insuranceRegister
      * @param logRegister 
      */
-    public ModelController(BillRegister bills, ClaimRegister claims, 
-            CustomerRegister customers, EmployeeRegister employees, 
-            InsuranceRegister insurances, LogRegister logRegister) {
+    public ModelController(BillRegister billRegister, ClaimRegister claimRegister, 
+            CustomerRegister customerRegister, EmployeeRegister employeeRegister, 
+            InsuranceRegister insuranceRegister, LogRegister logRegister) {
         // Initializes models:
-        this.billRegister = bills;
-        this.claimRegister = claims;
-        this.customerRegister = customers;
-        this.employeeRegister = employees;
-        this.insuranceRegister = insurances;
+        this.billRegister = billRegister;
+        this.claimRegister = claimRegister;
+        this.customerRegister = customerRegister;
+        this.employeeRegister = employeeRegister;
+        this.insuranceRegister = insuranceRegister;
         this.logRegister = logRegister;
         
-        //this.employees;
+        //this.employeeRegister;
         this.customers = customerRegister.getCustomers();
         this.insurances = insuranceRegister.getInsurances();
         this.claims = claimRegister.getClaims();
@@ -143,11 +143,14 @@ public class ModelController {
      */
     public void updatePayments() {
         for (Insurance insurance : insurances) {
+            
             if (insurance != null) {
                 // Get the next pay date for each insurance:
                 Calendar nextPayDate = insurance.getNextPayDate();
+                if (nextPayDate != null) {
                 // If Current date has reached or passed the next payed date:
-                if (nextPayDate.before(Calendar.getInstance())) {
+                if (nextPayDate.before(Calendar.getInstance()) || nextPayDate.equals(Calendar.getInstance())) {
+                    
                     int customerId = insurance.getCustomerId();
                     int insuranceId = insurance.getInsuranceId();
                     double fee = insurance.getMonthlyPremium();
@@ -166,6 +169,7 @@ public class ModelController {
                     // Update next pay date to 1 month forward:
                     nextPayDate.add(Calendar.MONTH, 1);
                     insurance.setNextPayDate(nextPayDate); // redundant
+                }
                 }
             }
         }
@@ -241,8 +245,12 @@ public class ModelController {
     public void autoPayAllBills() {
         for (Bill bill : bills) {
             if (bills != null) {
-                if (!bill.isPaid())
+                if (!bill.isPaid()) {
                     bill.setPaid(true);
+                    Calendar date = Calendar.getInstance();
+                    //date.add(Calendar.DAY_OF_MONTH, -10); // Used for testing
+                    bill.setPayedDate(date);
+                }
             }
         }
     }
@@ -270,6 +278,7 @@ public class ModelController {
                         if (dayOfYearNow >= dayOfYearDunning) {
                             // Set bill to paid:
                             bill.setPaid(true);
+                            bill.setPayedDate(Calendar.getInstance());
                         }
                     } else {
                         // If not, then due date is the one with prominence(is set by default)
@@ -278,6 +287,7 @@ public class ModelController {
                         if (dayOfYearNow >= dayOfYearDue) {
                             // Set bill to paid:
                             bill.setPaid(true);
+                            bill.setPayedDate(Calendar.getInstance());
                         }
                     }
                 }
@@ -285,6 +295,66 @@ public class ModelController {
         }
     }
     
+  
+    public double getIncomeAtDate(int year, int month, int day, String type, 
+            int customerId, int insuranceId) {
+        double result = 0;
+        for (Bill bill : bills) {
+            int insId = bill.getInsuranceId();
+            Insurance insurance = insuranceRegister.getInsuranceById(insId);
+            String typeInsurance = insurance.getName();
+            if ((bill.getPayedDate().get(Calendar.YEAR) == year) 
+                    && (month == 0 || bill.getPayedDate().get(Calendar.MONTH) == month)
+                    && (day == 0 || bill.getPayedDate().get(Calendar.DAY_OF_MONTH) == day)
+                    && (type == null || type.equals(typeInsurance))
+                    && (customerId == 0 || bill.getCustomerId() == customerId)
+                    && (insuranceId == 0 || bill.getInsuranceId() == insuranceId)) {
+                result += bill.getFee() + bill.getDunningCharge();
+            }
+        }
+        return result;
+    }
+    
+    public Calendar getOldestPayDate(String type, int customerId, int insuranceId) {
+        Calendar oldest = null;
+        for (Bill bill : bills) {
+            int insId = bill.getInsuranceId();
+            Insurance insurance = insuranceRegister.getInsuranceById(insId);
+            String typeInsurance = insurance.getName();
+            if ((type == null || type.equals(typeInsurance))
+                    && (customerId == 0 || bill.getCustomerId() == customerId)
+                    && (insuranceId == 0 || bill.getInsuranceId() == insuranceId)) {
+                if (oldest == null) {
+                    oldest = (Calendar) bill.getPayedDate().clone();
+                }
+                if (bill.getPayedDate().before(oldest) || bill.getPayedDate().equals(oldest)) {
+                    oldest = (Calendar) bill.getPayedDate().clone();
+                }
+            }
+        }
+        return oldest;
+    }
+    
+    public Calendar getNewestPayDate(String type, int customerId, int insuranceId) {
+        Calendar newest = null;
+        for (Bill bill : bills) {
+            int insId = bill.getInsuranceId();
+            Insurance insurance = insuranceRegister.getInsuranceById(insId);
+            String typeInsurance = insurance.getName();
+            if ((type == null || type.equals(typeInsurance))
+                    && (customerId == 0 || bill.getCustomerId() == customerId)
+                    && (insuranceId == 0 || bill.getInsuranceId() == insuranceId)) {            
+            
+                if (newest == null) {
+                    newest = (Calendar) bill.getPayedDate().clone();
+                }
+                if (bill.getPayedDate().after(newest) || bill.getPayedDate().equals(newest)) {
+                    newest = (Calendar) bill.getPayedDate().clone();
+                }
+            }
+        }
+        return newest;
+    }    
     // CAR INFO METHODS
     
     public final void unmarshalCarInfoRegister() {        

@@ -475,11 +475,12 @@ public class MainController {
             registerCustomer.setEmailMessage(message);
             ok = false;
         } else if (!email.matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-		+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+		+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")) {
+            String message = "Fyll inn korrekt epost adresse.";
             registerCustomer.setEmailMessage(message);
             ok = false;
         }
-        
+    
         if (phone.equals("")) {
             String message = "Fyll inn dette feltet.";
             registerCustomer.setPhoneMessage(message);
@@ -522,15 +523,25 @@ public class MainController {
             } else {
                 result = "Kunden kunne ikke registreres. Kunde med likt personnummer eksisterer allerede.";
             }
+            // Gives feedback on the result of the attempted registration
             registerCustomer.setResultMessage(result);
         }
     }
     
-    // TODO: Trenger regex og validering
+
+    /**
+     * Registers a new Employee, based on the information put into the required
+     * text fields in the GUI Window.
+     * @param event The ActionEvent of this event button
+     */
     private void registerEmployeeButtonEventHandler(ActionEvent event) {
+        // Boolean ok. Set to false if the fields are filled in wrong, to
+        // prevent registration with false information.
         boolean ok = true;
+        // Zip code. Initialized at 0. Set later.
         int zipCode = 0;
         
+        // Fetches information from the input fields.
         EmployeeType position = registerEmployee.getPosition();
         String personalNumber = registerEmployee.getPersonalNumber();
         String firstName = registerEmployee.getFirstName();
@@ -541,8 +552,11 @@ public class MainController {
         String email = registerEmployee.getEmail();
         String phone = registerEmployee.getPhone();
         
+        // Clears all error messages
         registerEmployee.clearMessages();
         
+        // Checks whether the required fields are correctly filled in.
+        // Sets ok to false if any field is filled in incorrectly.
         if (position == null) {
             String message = "Velg stilling.";
             registerEmployee.setPositionMessage(message);
@@ -645,7 +659,7 @@ public class MainController {
         Address adress = new Address(street, zipCode, city);
         // Creates a new customer:
         Employee employee;
-        boolean addok = false;
+        
         switch (position) {
             case SERVICE_WORKER : employee = new ServiceWorker(firstName, lastName, personalNumber, email, adress, phone);
             case CASE_WORKER : employee = new CaseWorker(firstName, lastName, personalNumber, email, adress, phone);
@@ -653,14 +667,14 @@ public class MainController {
             default: employee = new ServiceWorker(firstName, lastName, personalNumber, email, adress, phone);
         }
         // Adds the new customer to the datastructure:
-        addok = employees.addEmployee(employee);
+        boolean addok = employees.addEmployee(employee);
         String result;
         if (addok) {
             result = "Ansatt registrert. Ansattnummer: " + employee.getId();
         } else {
             result = "Ansatt kunne ikke registreres. Ansatt med likt personnummer eksisterer allerede.";
         }
-        
+        // Gives feedback on the result of the attempted registration
         registerEmployee.setResultMessage(result);
     }
     }

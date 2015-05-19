@@ -47,14 +47,4 @@ public class Car extends Vehicle implements Serializable {
             String personalNumber, String registrationNumber) {
         super(brand, model, personalNumber, registrationNumber);
     }
-    
-    /**
-     * Creates and returns a string representation of this vehicle
-     * 
-     * @return A string representation of this vehicle.
-     */
-    @Override
-    public String toString() {
-        return "Bil:\n" + super.toString();
-    }
 }

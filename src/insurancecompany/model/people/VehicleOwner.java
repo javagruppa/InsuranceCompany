@@ -9,6 +9,7 @@ import java.io.Serializable;
  * customer in claims.
  * 
  * @author Sindre
+ * @author Carl
  */
 public class VehicleOwner extends Person implements Serializable {
     /** SerialVersionUID used to identify this class for object IO */

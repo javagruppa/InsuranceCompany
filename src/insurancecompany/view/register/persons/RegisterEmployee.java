@@ -266,6 +266,19 @@ public class RegisterEmployee {
         this.resultMessage.setText(message);
     }
     
+    /** Clears all messages. */
+    public void clearMessages() {
+        positionMessage.setText("");
+        personalNumberMessage.setText("");
+        firstNameMessage.setText("");
+        lastNameMessage.setText("");
+        streetMessage.setText("");
+        zipCodeMessage.setText("");
+        cityMessage.setText("");
+        emailMessage.setText("");
+        phoneMessage.setText("");
+    }
+    
     /** Clears all text fields and combo boxes. */
     public void clearView() {
         positionCombo.setValue(null);

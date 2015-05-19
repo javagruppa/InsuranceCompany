@@ -71,6 +71,7 @@ public class SearchEmployees {
     private TableColumn<Employee, String> lastNameColumn;
     private TableColumn<Employee, Integer> employeeIdColumn;
     private TableColumn<Employee, String> employeeTypeColumn;
+    private Text numberOfResults;
     
     // Declaration of all the nodes in the right part.
     private TextArea employeeArea;
@@ -132,6 +133,7 @@ public class SearchEmployees {
                 lastNameColumn, employeeIdColumn, employeeTypeColumn);
         employeesTable.setColumnResizePolicy(
                 TableView.CONSTRAINED_RESIZE_POLICY);
+        numberOfResults = new Text ("Ingen resultater.");
         selectMessage = new Text("");
 
         // Initialization of all the nodes in the right part.
@@ -176,8 +178,9 @@ public class SearchEmployees {
         // Adds the nodes to the center part.
         centerPane.add(employeesTitle, 0, 0);
         centerPane.add(employeesTable, 0, 1);
-        centerPane.add(selectButton, 0, 2);
-        centerPane.add(selectMessage, 0, 3);
+        centerPane.add(numberOfResults, 0, 2);
+        centerPane.add(selectButton, 0, 3);
+        centerPane.add(selectMessage, 0, 4);
         
         // Adds the nodes to the right part.
         rightPane.add(employeeTitle, 0, 0);
@@ -355,8 +358,20 @@ public class SearchEmployees {
         employeeArea.setText(text);
     }
     
+    /** @param number The number of results. */
+    public void setNumberOfResults(int number) {
+        if (number == 0) {
+            numberOfResults.setText("Ingen resultater.");
+        } else if (number == 1) {
+            numberOfResults.setText("1 resultat.");
+        } else {
+            numberOfResults.setText(number + " resultater.");
+        }
+    }
+    
     /** Clears the area, the table and removes the selected table option. */
     public void clearView() {
+        setNumberOfResults(0);
         setEmployeeArea("");
         populateEmployeesTable(new ArrayList<>());
         employeesTable.getSelectionModel().clearSelection();

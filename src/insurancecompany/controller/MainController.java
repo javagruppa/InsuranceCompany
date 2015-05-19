@@ -4232,6 +4232,7 @@ public class MainController {
         }
         
         // Populates the table:
+        searchInsurances.setNumberOfResults(insuranceList.size());
         searchInsurances.populateInsurancesTable(insuranceList);
     }
     
@@ -4270,6 +4271,7 @@ public class MainController {
                 toDate, active);
         
         // Populates the table:
+        searchInsurances.setNumberOfResults(insuranceList.size());
         searchInsurances.populateInsurancesTable(insuranceList);
     }
     
@@ -4400,6 +4402,7 @@ public class MainController {
         }
         
         // Populates the table:
+        searchClaims.setNumberOfResults(claimList.size());
         searchClaims.populateClaimsTable(claimList);
     }
     
@@ -4447,6 +4450,7 @@ public class MainController {
                 fromDate, toDate);
         
         // Populates the table:
+        searchClaims.setNumberOfResults(claimList.size());
         searchClaims.populateClaimsTable(claimList);
     }
     
@@ -4593,6 +4597,7 @@ public class MainController {
         }
         
         // Populates the table:
+        searchCustomers.setNumberOfResults(customerList.size());
         searchCustomers.populateCustomersTable(customerList);
     }
     
@@ -4623,6 +4628,7 @@ public class MainController {
         }
         
         // Populates the table:
+        searchCustomers.setNumberOfResults(customerList.size());
         searchCustomers.populateCustomersTable(customerList);
     }
     
@@ -4701,6 +4707,7 @@ public class MainController {
         }
         
         // Populates the table:
+        searchEmployees.setNumberOfResults(employeeList.size());
         searchEmployees.populateEmployeesTable(employeeList);
     }
     
@@ -4722,6 +4729,7 @@ public class MainController {
                 active);
         
         // Populates the table:
+        searchEmployees.setNumberOfResults(employeeList.size());
         searchEmployees.populateEmployeesTable(employeeList);
     }
     

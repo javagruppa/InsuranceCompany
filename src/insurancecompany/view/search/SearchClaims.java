@@ -143,7 +143,7 @@ public class SearchClaims {
 
         // Initialization of all the nodes in the center part.
         formButton = new Button("Vis skademeldingsskjema");
-        imageButton = new Button("Vis bilder");
+        imageButton = new Button("Vis bilde");
         selectButton = new Button("Velg skademelding");
         claimsTable = new TableView();
         claimsTable.setPrefWidth(400);

@@ -11,6 +11,7 @@ import javafx.scene.image.Image;
  * Boat claim class. Sub class to claim. All claims regarding boats are
  * registered as boat claims
  * @author André
+ * @author Carl
  */
 public class BoatClaim extends Claim implements Serializable {
     /** SerialVersionUID used to identify this class for object IO */

@@ -503,6 +503,26 @@ public class RegisterHolidayHomeClaim {
         // Clear the status messages:
         selectImageStatus.setText("");
     }
+    
+    /**
+     * Clears all input fields
+     */
+    public void clearView() {
+        dateHappenedPicker.setValue(LocalDate.now());
+        descriptionTextArea.setText("");
+        appraisalField.setText("");
+        clearDamages();
+    }
+    
+    /**
+     * Clears the selected boxes for damages
+     */
+    public void clearDamages(){
+        for (int i = 0; i < damageCheckBoxes.size(); i++) {
+            // For each checkbox that is selected:
+            damageCheckBoxes.get(i).setSelected(false);
+        }
+    }
 
     /**
      * Get the image of the damage from this view.

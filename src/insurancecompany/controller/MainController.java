@@ -393,10 +393,19 @@ public class MainController {
         Platform.exit();
     }    
     
-    // TODO: Trenger regex og validering
+    /**
+     * Registers a new Customer, based on the information put into the required
+     * text fields in the GUI Window.
+     * @param event The ActionEvent of this event button
+     */
     private void registerCustomerButtonEventHandler(ActionEvent event) {
+        /* Boolean ok, must be ok to register new Customer. Set to false if
+         the required fields are filled in wrong */
         boolean ok = true;
+        // zipCode initialized at 0 
+        int zipCode = 0;
         
+        // Fetches information from the required input fields 
         String personalNumber = registerCustomer.getPersonalNumber();
         String firstName = registerCustomer.getFirstName();
         String lastName = registerCustomer.getLastName();
@@ -406,19 +415,98 @@ public class MainController {
         String email = registerCustomer.getEmail();
         String phone = registerCustomer.getPhone();
         
+        // Clears all feedback messages 
+        registerCustomer.clearMessages();
+        
+        // Checks whether the fields are filled in correctly 
         if (personalNumber.equals("")) {
             String message = "Fyll inn dette feltet.";
             registerCustomer.setPersonalNumberMessage(message);
             ok = false;
-        } 
-            
-        int zipCode = 0;
-        try {
-            zipCode = Integer.parseInt(zipCodeS);
-        } catch (NumberFormatException nfe) {
-            
+        } else if (!personalNumber.matches("\\d{11}")) {
+            String message = "Fyll inn 11 siffer.";
+            registerCustomer.setPersonalNumberMessage(message);
+            ok = false;
         }
         
+        if (firstName.equals("")) {
+            String message = "Fyll inn dette feltet.";
+            registerCustomer.setFirstNameMessage(message);
+            ok = false;
+        } else if (!firstName.matches("[ÆØÅæøåA-Za-z]{2,30}")) {
+            String message = "Fyll inn korrekt navn, kun bokstaver tillatt.";
+            registerCustomer.setFirstNameMessage(message);
+            ok = false;
+        }
+        
+        if (lastName.equals("")) {
+            String message = "Fyll inn dette feltet.";
+            registerCustomer.setLastNameMessage(message);
+            ok = false;
+        } else if (!lastName.matches("^[ÆØÅæøåA-Za-z]{2,30}")) {
+            String message = "Fyll inn korrekt navn, kun bokstaver tillatt.";
+            registerCustomer.setLastNameMessage(message);
+            ok = false;
+        }
+        
+        if (street.equals("")) {
+            String message = "Fyll inn dette feltet.";
+            registerCustomer.setStreetMessage(message);
+            ok = false;
+        } else if (!street.matches("[ÆØÅæøåa-zA-Z0-9]{2,30}")) {
+            String message = "Fyll inn korrekt gateadresse, kun bokstaver og"
+                    + " tall tillatt.";
+            registerCustomer.setStreetMessage(message);
+            ok = false;
+        }
+        
+        if (city.equals("")) {
+            String message = "Fyll inn dette feltet.";
+            registerCustomer.setCityMessage(message);
+            ok = false;
+        } else if (!city.matches("^[æøåÆØÅa-zA-Z]{2,30}")) {
+            String message = "Fyll inn korrekt poststed, kun bokstaver tillatt.";
+            registerCustomer.setCityMessage(message);
+            ok = false;
+        }
+        
+        if (email.equals("")) {
+            String message = "Fyll inn dette feltet.";
+            registerCustomer.setEmailMessage(message);
+            ok = false;
+        } else if (!email.matches("^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+(?:\\.[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+)*@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$")) {
+            String message = "Fyll inn korrekt email adresse.";
+            registerCustomer.setEmailMessage(message);
+            ok = false;
+        }
+        
+        if (phone.equals("")) {
+            String message = "Fyll inn dette feltet.";
+            registerCustomer.setPhoneMessage(message);
+            ok = false;
+        } else if (!phone.matches("\\d{8,13}")) {
+            String message = "Fyll inn korrekt telefonnummer.";
+            registerCustomer.setPhoneMessage(message);
+            ok = false;
+        }
+        
+        if (zipCodeS.equals("")) {
+            String message = "Fyll inn dette feltet.";
+            registerCustomer.setZipCodeMessage(message);
+            ok = false;
+        } else if (!zipCodeS.matches("\\d{4}")) {
+            String message = "Fyll inn korrekt postnummer, 4 siffer.";
+            registerCustomer.setZipCodeMessage(message);
+            ok = false;
+        } else {
+            
+            try {
+                zipCode = Integer.parseInt(zipCodeS);
+            } catch (NumberFormatException nfe) {
+                    ok = false;
+                    logs.add(nfe.getStackTrace(), nfe.getMessage(), user);
+            }
+        }
         
         // If all fields are filled in correctly proceed to creating and adding customer:
         if (ok) {
@@ -440,6 +528,8 @@ public class MainController {
     
     // TODO: Trenger regex og validering
     private void registerEmployeeButtonEventHandler(ActionEvent event) {
+        boolean ok = true;
+        int zipCode = 0;
         
         EmployeeType position = registerEmployee.getPosition();
         String personalNumber = registerEmployee.getPersonalNumber();
@@ -450,24 +540,111 @@ public class MainController {
         String city = registerEmployee.getCity();
         String email = registerEmployee.getEmail();
         String phone = registerEmployee.getPhone();
-
-        System.out.println(position.toString());
+        
+        registerEmployee.clearMessages();
+        
+        if (position == null) {
+            String message = "Velg stilling.";
+            registerEmployee.setPositionMessage(message);
+            ok = false;
+        }
+        
         if (personalNumber.equals("")) {
             String message = "Fyll inn dette feltet.";
             registerEmployee.setPersonalNumberMessage(message);
-        } 
- 
-        int zipCode = 0;
-        try {
-            zipCode = Integer.parseInt(zipCodeS);
-        } catch (NumberFormatException nfe) {
-            
+            ok = false;
+        } else if (!personalNumber.matches("\\d{11}")) {
+            String message = "Fyll inn 11 siffer.";
+            registerEmployee.setPersonalNumberMessage(message);
+            ok = false;
         }
+        
+        if (firstName.equals("")) {
+            String message = "Fyll inn dette feltet.";
+            registerEmployee.setFirstNameMessage(message);
+            ok = false;
+        } else if (!firstName.matches("[ÆØÅæøåA-Za-z]{2,30}")) {
+            String message = "Fyll inn korrekt navn, kun bokstaver tillatt.";
+            registerEmployee.setFirstNameMessage(message);
+            ok = false;
+        }
+        
+        if (lastName.equals("")) {
+            String message = "Fyll inn dette feltet.";
+            registerEmployee.setLastNameMessage(message);
+            ok = false;
+        } else if (!lastName.matches("^[ÆØÅæøåA-Za-z]{2,30}")) {
+            String message = "Fyll inn korrekt navn, kun bokstaver tillatt.";
+            registerEmployee.setLastNameMessage(message);
+            ok = false;
+        }
+        
+        if (street.equals("")) {
+            String message = "Fyll inn dette feltet.";
+            registerEmployee.setStreetMessage(message);
+            ok = false;
+        } else if (!street.matches("[ÆØÅæøåa-zA-Z0-9]{2,30}")) {
+            String message = "Fyll inn korrekt gateadresse, kun bokstaver og"
+                    + " tall tillatt.";
+            registerEmployee.setStreetMessage(message);
+            ok = false;
+        }
+        
+        if (city.equals("")) {
+            String message = "Fyll inn dette feltet.";
+            registerEmployee.setCityMessage(message);
+            ok = false;
+        } else if (!city.matches("^[æøåÆØÅa-zA-Z]{2,30}")) {
+            String message = "Fyll inn korrekt poststed, kun bokstaver tillatt.";
+            registerEmployee.setCityMessage(message);
+            ok = false;
+        }
+        
+        if (email.equals("")) {
+            String message = "Fyll inn dette feltet.";
+            registerEmployee.setEmailMessage(message);
+            ok = false;
+        } else if (!email.matches("^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+(?:\\.[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+)*@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$")) {
+            String message = "Fyll inn korrekt email adresse.";
+            registerEmployee.setEmailMessage(message);
+            ok = false;
+        }
+        
+        if (phone.equals("")) {
+            String message = "Fyll inn dette feltet.";
+            registerEmployee.setPhoneMessage(message);
+            ok = false;
+        } else if (!phone.matches("\\d{8,13}")) {
+            String message = "Fyll inn korrekt telefonnummer.";
+            registerEmployee.setPhoneMessage(message);
+            ok = false;
+        }
+        
+        if (zipCodeS.equals("")) {
+            String message = "Fyll inn dette feltet.";
+            registerEmployee.setZipCodeMessage(message);
+            ok = false;
+        } else if (!zipCodeS.matches("\\d{4}")) {
+            String message = "Fyll inn korrekt postnummer, 4 siffer.";
+            registerEmployee.setZipCodeMessage(message);
+            ok = false;
+        } else {
+            
+            try {
+                zipCode = Integer.parseInt(zipCodeS);
+            } catch (NumberFormatException nfe) {
+                    ok = false;
+                    logs.add(nfe.getStackTrace(), nfe.getMessage(), user);
+            }
+        }
+        
+        
+        if(ok){
         // Creates an adress object for the customer:
         Address adress = new Address(street, zipCode, city);
         // Creates a new customer:
         Employee employee;
-        boolean ok = false;
+        boolean addok = false;
         switch (position) {
             case SERVICE_WORKER : employee = new ServiceWorker(firstName, lastName, personalNumber, email, adress, phone);
             case CASE_WORKER : employee = new CaseWorker(firstName, lastName, personalNumber, email, adress, phone);
@@ -475,17 +652,17 @@ public class MainController {
             default: employee = new ServiceWorker(firstName, lastName, personalNumber, email, adress, phone);
         }
         // Adds the new customer to the datastructure:
-        ok = employees.addEmployee(employee);
+        addok = employees.addEmployee(employee);
         String result;
-        if (ok) {
-            result = "Ansatt registrert. Ansattnuummer: " + employee.getId();
+        if (addok) {
+            result = "Ansatt registrert. Ansattnummer: " + employee.getId();
         } else {
             result = "Ansatt kunne ikke registreres. Ansatt med likt personnummer eksisterer allerede.";
         }
         
         registerEmployee.setResultMessage(result);
     }
-    
+    }
     // STATISTICS INCOME EVENT HANDLERS
     
     private void statisticsIncomeFromYearComboEventHandler(ActionEvent event) {

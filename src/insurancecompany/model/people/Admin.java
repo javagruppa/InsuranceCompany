@@ -10,6 +10,7 @@ import java.io.Serializable;
  * caseworker and the serviceworker.
  * 
  * @author Carl
+ * @author Sindre
  */
 public class Admin extends Employee implements Serializable {
     /** SerialVersionUID used to identify this class for object IO */

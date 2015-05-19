@@ -1,13 +1,11 @@
 package insurancecompany.view.statistics;
 
 import insurancecompany.misc.InsuranceType;
-import insurancecompany.misc.MonthType;
 import java.util.Calendar;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.chart.AreaChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;

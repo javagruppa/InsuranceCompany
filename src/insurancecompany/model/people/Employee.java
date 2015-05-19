@@ -9,6 +9,7 @@ import java.io.*;
  * either of these.
  * 
  * @author Carl
+ * @author Sindre
  */
 public abstract class Employee extends Person implements Serializable {
     

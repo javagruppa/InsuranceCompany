@@ -9,6 +9,7 @@ import java.util.Calendar;
  * Abstract class Person. This is the super class of all the person objects.
  * 
  * @author Carl
+ * @author Sindre
  */
 public abstract class Person implements Serializable {
     

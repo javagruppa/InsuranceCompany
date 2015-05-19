@@ -47,7 +47,10 @@ import javax.imageio.ImageIO;
 
 /**
  * Main controller. This class acts as a communication between the model and the view.
+ * 
  * @author André
+ * @author Sindre
+ * @author Carl
  */
 public class MainController {
     

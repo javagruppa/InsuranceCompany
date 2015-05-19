@@ -96,4 +96,22 @@ public class DateUtility {
         // Set prompt text:
         datePicker.setPromptText("dd/MM/yyyy");
     } // end of method restrictDatePickerToOlder
+    
+    public static int getMonthNumber(String monthName) {
+        switch (monthName) {
+            case "Januar": return 1;
+            case "Februar": return 2;
+            case "Mars": return 3;
+            case "April": return 4;
+            case "Mai": return 5;
+            case "Juni": return 6;
+            case "Juli": return 7;
+            case "August": return 8;
+            case "September": return 9;
+            case "Oktober": return 10;
+            case "November": return 11;
+            case "Desember": return 12;
+            default: return 0;
+        }
+    }
 }

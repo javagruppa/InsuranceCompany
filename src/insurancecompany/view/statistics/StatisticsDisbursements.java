@@ -418,15 +418,6 @@ public class StatisticsDisbursements {
         this.fromMonthCombo.setOnAction(event);
     }
     
-    /**
-     * Sets the event handler for the claimTypeCombo.
-     * 
-     * @param value The event handler to set.
-     */
-    public void setClaimTypeEventHandler(EventHandler<ActionEvent> value) {
-        claimTypeCombo.setOnAction(value);
-    }
-    
     /** 
      * @return The claim type of this class as a String. Null if no claim type 
      * is selected.

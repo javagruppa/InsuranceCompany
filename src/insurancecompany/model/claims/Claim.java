@@ -316,4 +316,11 @@ public abstract class Claim implements Serializable {
     public int getInsuranceId() {
         return insuranceId;
     }
+
+    /**
+     * @return the date
+     */
+    public Calendar getDate() {
+        return date;
+    }
 }

@@ -7,6 +7,7 @@ package insurancecompany.controller;
 
 import insurancecompany.view.MainView;
 import insurancecompany.misc.ClaimType;
+import insurancecompany.misc.DateUtility;
 import insurancecompany.misc.EmployeeType;
 import insurancecompany.misc.coverages.*;
 import insurancecompany.misc.hometypes.*;
@@ -358,6 +359,10 @@ public class MainController {
         statisticsIncome.setSearchEventHandler(this::statisticsIncomeSearchButtonEventHandler);
         statisticsIncome.setFromYearComboEventHandler(this::statisticsIncomeFromYearComboEventHandler);
         statisticsIncome.setFromMonthComboEventHandler(this::statisticsIncomeFromMonthComboEventHandler);
+        
+        statisticsDisbursements.setSearchEventHandler(this::statisticsDisbursementSearchButtonEventHandler);
+        statisticsDisbursements.setFromYearComboEventHandler(this::statisticsDisbursementFromYearComboEventHandler);
+        statisticsDisbursements.setFromMonthComboEventHandler(this::statisticsDisbursementFromMonthComboEventHandler);
     }
     
     private void mainViewSaveDataButtonEventHandler(ActionEvent event) {
@@ -678,6 +683,139 @@ public class MainController {
         registerEmployee.setResultMessage(result);
     }
     }
+    
+    // STATISTICS DISBURSEMENT EVENT HANDLERS
+    
+    private void statisticsDisbursementFromYearComboEventHandler(ActionEvent event) {
+        if (statisticsDisbursements.getFromYearComboValue().equals("")) {
+            // Disable month and day comboboxes:
+            statisticsDisbursements.setFromMonthComboDisable(true);
+            statisticsDisbursements.setToMonthComboDisable(true);
+            statisticsDisbursements.setFromDayComboDisable(true);
+            statisticsDisbursements.setToDayComboDisable(true);
+        } else {
+            // Enable month comboboxes:
+            statisticsDisbursements.setFromMonthComboDisable(false);
+            statisticsDisbursements.setToMonthComboDisable(false);
+        }
+    }
+    
+    private void statisticsDisbursementFromMonthComboEventHandler(ActionEvent event) {
+        if (statisticsDisbursements.getFromMonthComboValue().equals("")) {
+            // Disable day comboboxes:
+            statisticsDisbursements.setFromDayComboDisable(true);
+            statisticsDisbursements.setToDayComboDisable(true);
+        } else {
+            // Enable day comboboxes:
+            statisticsDisbursements.setFromDayComboDisable(false);
+            statisticsDisbursements.setToDayComboDisable(false);
+        }
+    }
+    
+    private void statisticsDisbursementSearchButtonEventHandler(ActionEvent event) {
+        statisticsDisbursements.clearMessages();
+        String type = statisticsDisbursements.getClaimType();
+        String title = type;
+        if (type == null) {
+            title = "Alle forsikringer";
+        }
+        int customerId = 0;
+        String personalNumber;
+        if (!statisticsDisbursements.getNumber().equals("")) {
+            if (statisticsDisbursements.isCustomerIdSelected()) {
+                try {
+                    customerId = Integer.parseInt(statisticsDisbursements.getNumber());
+                } catch (NumberFormatException nfe) {
+                    statisticsDisbursements.setSearchMessage(CUSTOMERID_FORMAT_MESSAGE);
+                }
+
+            } else {
+                personalNumber = statisticsDisbursements.getNumber();
+                customerId = customers.findCustomerIdByPersonalNumber(personalNumber);
+                if (customerId == -1) {
+                    statisticsDisbursements.setSearchMessage(CUSTOMERID_NOT_FOUND_MESSAGE);
+                }
+            }
+        }
+        String fromDate = "";
+        String toDate = "";
+        
+        String fromYearString = statisticsDisbursements.getFromYearComboValue();
+        String fromMonthString = statisticsDisbursements.getFromMonthComboValue();
+        String fromDayString = statisticsDisbursements.getFromDayComboValue();
+        int fromYear = 0;
+        int fromMonth = 0;
+        int fromDay = 0;
+        if (!fromYearString.equals("")) {
+            fromYear = Integer.parseInt(fromYearString);
+        }
+        if (!fromMonthString.equals("")) {
+            fromMonth = DateUtility.getMonthNumber(fromMonthString);
+        }
+        if (!fromDayString.equals("")) {
+            fromDay = Integer.parseInt(fromDayString);
+        }
+        
+        String toYearString = statisticsDisbursements.getToYearComboValue();
+        String toMonthString = statisticsDisbursements.getToMonthComboValue();
+        String toDayString = statisticsDisbursements.getToDayComboValue();
+        int toYear = 0;
+        int toMonth = 0;
+        int toDay = 0;
+                if (!toYearString.equals("")) {
+            toYear = Integer.parseInt(toYearString);
+        }
+        if (!toMonthString.equals("")) {
+            toMonth = DateUtility.getMonthNumber(toMonthString);
+        }
+        if (!toDayString.equals("")) {
+            toDay = Integer.parseInt(toDayString);
+        }
+        
+        int sumFrom = 0;
+        int sumTo = 0;
+        
+        if (fromYearString.equals("") && toYearString.equals("")) {
+            
+            Calendar fromCal = claims.getOldestDisbursementDate(type, customerId, 0);
+            Calendar toCal = claims.getNewestDisbursementDate(type, customerId, 0);
+            
+            if (fromCal != null && toCal != null) {
+                fromYear = fromCal.get(Calendar.YEAR);
+                fromMonth = fromCal.get(Calendar.MONTH);
+                fromDay = fromCal.get(Calendar.DAY_OF_MONTH);
+
+                toYear = toCal.get(Calendar.YEAR);
+                toMonth = toCal.get(Calendar.MONTH);
+                toDay = toCal.get(Calendar.DAY_OF_MONTH);
+
+            } 
+        }
+        
+        sumFrom = (int) claims.getDisbursementAtDate(fromYear, fromMonth, fromDay, type, customerId, 0);
+        if (fromDay != 0) {
+            fromDate = fromDay + ".";
+        }
+        if (fromMonth != 0) {
+            fromDate += fromMonth + ".";
+        }
+        if (fromYear != 0) {
+            fromDate += fromYear;
+        }
+
+        sumTo = (int) claims.getDisbursementAtDate(toYear, toMonth, toDay, type, customerId, 0);
+        if (toDay != 0) {
+            toDate = toDay + ".";
+        }
+        if (toMonth != 0) {
+            toDate += toMonth + ".";
+        }
+        if (toYear != 0) {
+            toDate += toYear;
+        }
+        statisticsDisbursements.populateLineChartAll(sumFrom, sumTo, fromDate, toDate, title); 
+    }
+    
     // STATISTICS INCOME EVENT HANDLERS
     
     private void statisticsIncomeFromYearComboEventHandler(ActionEvent event) {
@@ -744,34 +882,7 @@ public class MainController {
             fromYear = Integer.parseInt(fromYearString);
         }
         if (!fromMonthString.equals("")) {
-            switch (fromMonthString) {
-                case "Januar": fromMonth = 1;
-                    break;
-                case "Februar": fromMonth = 2;
-                    break;
-                case "Mars": fromMonth = 3;
-                    break;
-                case "April": fromMonth = 4;
-                    break;
-                case "Mai": fromMonth = 5;
-                    break;
-                case "Juni": fromMonth = 6;
-                    break;
-                case "Juli": fromMonth = 7;
-                    break;
-                case "August": fromMonth = 8;
-                    break;
-                case "September": fromMonth = 9;
-                    break;
-                case "Oktober": fromMonth = 10;
-                    break;
-                case "November": fromMonth = 11;
-                    break;
-                case "Desember": fromMonth = 12;
-                    break;
-                default: fromMonth = 0;
-                    break;
-            }
+            fromMonth = DateUtility.getMonthNumber(fromMonthString);
         }
         if (!fromDayString.equals("")) {
             fromDay = Integer.parseInt(fromDayString);
@@ -787,34 +898,7 @@ public class MainController {
             toYear = Integer.parseInt(toYearString);
         }
         if (!toMonthString.equals("")) {
-            switch (toMonthString) {
-                case "Januar": toMonth = 1;
-                    break;
-                case "Februar": toMonth = 2;
-                    break;
-                case "Mars": toMonth = 3;
-                    break;
-                case "April": toMonth = 4;
-                    break;
-                case "Mai": toMonth = 5;
-                    break;
-                case "Juni": toMonth = 6;
-                    break;
-                case "Juli": toMonth = 7;
-                    break;
-                case "August": toMonth = 8;
-                    break;
-                case "September": toMonth = 9;
-                    break;
-                case "Oktober": toMonth = 10;
-                    break;
-                case "November": toMonth = 11;
-                    break;
-                case "Desember": toMonth = 12;
-                    break;
-                default: toMonth = 0;
-                    break;
-            }
+            toMonth = DateUtility.getMonthNumber(toMonthString);
         }
         if (!toDayString.equals("")) {
             toDay = Integer.parseInt(toDayString);
@@ -864,6 +948,7 @@ public class MainController {
         statisticsIncome.populateLineChartAll(sumFrom, sumTo, fromDate, toDate, title); 
     }
      
+    
     // CAR CLAIM REGISTRATION EVENT HANDLERS
     
     private void carClaimOpenClaimFormButtonEventHandler(ActionEvent event) {
@@ -1220,7 +1305,7 @@ public class MainController {
                 // If so send a message to the user:
                 registerBoatClaim.setRegisterButtonMessage(DESCRIPTION_EMPTY_MESSAGE);
                 return; // leave method
-            } else if (!description.equals("^[æøåÆØÅa-zA-Z0-9]{1-5000}")) {
+            } else if (!description.matches("^[æøåÆØÅa-zA-Z0-9]{1-5000}")) {
                 String message = "Max 5000 tegn mulig.";
                 registerBoatClaim.setRegisterButtonMessage(message);
                 ok = false;
@@ -2529,7 +2614,7 @@ public class MainController {
         if(brand.equals("")) {
             registerBoatInsurance.setBrandMessage(EMPTY_MESSAGE);
             abort = true;
-        } else if (!brand.equals("[ÆØÅæøåa-zA-Z0-9]{1,40}")) {
+        } else if (!brand.matches("[ÆØÅæøåa-zA-Z0-9]{1,40}")) {
             String message = "Vennligst bruk kun tall og bokstaver.";
             registerBoatInsurance.setBrandMessage(message);
             abort = true;
@@ -2543,31 +2628,30 @@ public class MainController {
             abort = true;
         }
         if(engineType.equals("")) {
-            registerBoatInsurance.setEngineTypeMessage(EMPTY_MESSAGE);
-            abort = true;
-        } else if (!engineType.equals("(inboard|outboard)")) {
-            String message = "Velg enten 'inboard' eller 'outboard'.";
+            // This is legal, so that the field can be left blank.
+        } else if (!engineType.matches("(^$inboard|outboard|ingen)")) {
+            String message = "Velg enten 'inboard', 'outboard' eller la feltet stå blankt.";
             registerBoatInsurance.setEngineTypeMessage(message);
             abort = true;
         }
         if(model.equals("")) {
             registerBoatInsurance.setModelMessage(EMPTY_MESSAGE);
             abort = true;
-        } else if (!model.equals("[ÆØÅæøåa-zA-Z0-9]{2,30}")) {
+        } else if (!model.matches("[ÆØÅæøåa-zA-Z0-9]{2,30}")) {
             String message = "Fyll inn modell korrekt. Kun tall og bokstaver.";
             registerBoatInsurance.setModelMessage(message);
             abort = true;
         }
         if(ownerPersonalNumber.equals("")) {
             registerBoatInsurance.setOwnerPersonalNumberMessage(EMPTY_MESSAGE);
-        } else if (!ownerPersonalNumber.equals("\\d{11}")) {
+        } else if (!ownerPersonalNumber.matches("\\d{11}")) {
             String message = "Fyll inn korrekt fødselsnummer. 11 siffer.";
             registerBoatInsurance.setOwnerPersonalNumberMessage(message);
             abort = true;
         }
         if(registrationNumber.equals("")) {
             registerBoatInsurance.setRegistrationNumberMessage(EMPTY_MESSAGE);
-        } else if (!registrationNumber.equals("^[ÆØÅæøåa-zA-Z0-9]{6,7}")) {
+        } else if (!registrationNumber.matches("^[ÆØÅæøåa-zA-Z0-9]{6,7}")) {
             String message = "Skriv inn korrekt reg.nr.";
             registerBoatInsurance.setRegistrationNumberMessage(message);
             abort = true;
@@ -2583,7 +2667,7 @@ public class MainController {
         if(engineEffectString.equals("")) {
             registerBoatInsurance.setEngineEffectMessage(EMPTY_MESSAGE);
             abort = true;
-        } else if (!engineEffectString.equals ("\\d{1,4}")) {
+        } else if (!engineEffectString.matches ("\\d{1,4}")) {
             String message = "Fyll inn korrekt motoreffekt. 1-4 siffer.";
             registerBoatInsurance.setEngineEffectMessage(message);
             abort = true;
@@ -2609,7 +2693,7 @@ public class MainController {
         if(lengthString.equals("")) {
             registerBoatInsurance.setLengthMessage(EMPTY_MESSAGE);
             abort = true;
-        } else if (!lengthString.equals("\\d{1,3}")){
+        } else if (!lengthString.matches("\\d{1,3}")){
             String message = "Fyll inn korrekt lengde i fot. 1-3 siffer.";
             registerBoatInsurance.setLengthMessage(message);
             abort = true;
@@ -2624,7 +2708,7 @@ public class MainController {
         if(registrationYearString.equals("")) {
             registerBoatInsurance.setRegistrationYearMessage(EMPTY_MESSAGE);
             abort = true;
-        } else if (!registrationYearString.equals("\\d{4}")) {
+        } else if (!registrationYearString.matches("\\d{4}")) {
             String message = "Fyll inn korrekt årstall. 4 siffer.";
             registerBoatInsurance.setRegistrationYearMessage(message);
             abort = true;
@@ -2639,7 +2723,7 @@ public class MainController {
         if(valueString.equals("")) {
             registerBoatInsurance.setValueMessage(EMPTY_MESSAGE);
             abort = true;
-        } else if (!valueString.equals("\\d{1,9}")) {
+        } else if (!valueString.matches("\\d{1,9}")) {
             String message = "Fyll inn korrekt verdi. Kun tall.";
             registerBoatInsurance.setValueMessage(message);
             abort = true;
@@ -2792,9 +2876,17 @@ public class MainController {
         }
         if(ownerPersonalNumber.equals("")) {
             registerCarInsurance.setOwnerPersonalNumberMessage(EMPTY_MESSAGE);
+        } else if (!ownerPersonalNumber.matches("\\d{11}")) {
+            String message = "Fyll inn 11 siffer.";
+            registerCarInsurance.setOwnerPersonalNumberMessage(message);
+            abort = true;
         }
         if(registrationNumber.equals("")) {
             registerCarInsurance.setRegistrationNumberMessage(EMPTY_MESSAGE);
+        } else if (!registrationNumber.matches("^[a-zA-Z]{1,3}[ -]{0,1}[0-9]{1,5}")) {
+            String message = "Fyll inn korrekt reg.nr.";
+            registerCarInsurance.setRegistrationNumberMessage(message);
+            abort = true;
         }
         
         // Evaluates and converts Input:
@@ -3292,6 +3384,10 @@ public class MainController {
         if(city.equals("")) {
             registerHolidayHomeContentInsurance.setCityMessage(EMPTY_MESSAGE);
             abort = true;
+        } else if (!city.matches("^[æøåÆØÅa-zA-Z]{1,30}")){
+            String message = "Fyll inn korrekt poststed.";
+            registerHolidayHomeContentInsurance.setCityMessage(message);
+            abort = true;
         }
         if(coverage == null) {
             registerHolidayHomeContentInsurance.setCoverageMessage(EMPTY_MESSAGE);
@@ -3308,6 +3404,10 @@ public class MainController {
         if(street.equals("")) {
             registerHolidayHomeContentInsurance.setStreetMessage(EMPTY_MESSAGE);
             abort = true;
+        } else if (!street.matches("[æøåÆØÅa-zA-Z0-9]{2,40}")) {
+            String message = "Fyll inn korrekt gateadresse.";
+            registerHolidayHomeContentInsurance.setStreetMessage(message);
+            abort = true;
         }
         if(type == null) {
             registerHolidayHomeContentInsurance.setTypeMessage(EMPTY_MESSAGE);
@@ -3318,6 +3418,10 @@ public class MainController {
         if(areaString.equals("")) {
             registerHolidayHomeContentInsurance.setAreaMessage(EMPTY_MESSAGE);
             abort = true;
+        } else if (!areaString.matches("[0-9]{1,4}")){
+            String message = "Fyll inn korrekt areal. Kun tall.";
+            registerHolidayHomeContentInsurance.setAreaMessage(message);
+            abort = true;
         } else {
             try {
                 area = Integer.parseInt(areaString);
@@ -3327,13 +3431,17 @@ public class MainController {
             }
         }
         if(amountString.equals("")) {
-            registerHomeContentInsurance.setAmountMessage(EMPTY_MESSAGE);
+            registerHolidayHomeContentInsurance.setAmountMessage(EMPTY_MESSAGE);
+            abort = true;
+        } else if (!amountString.matches("[0-9]{1,8}")){
+            String message = "Fyll inn korrekt beløp.";
+            registerHolidayHomeContentInsurance.setAmountMessage(message);
             abort = true;
         } else {
             try {
                 amount = Integer.parseInt(amountString);
             } catch(NumberFormatException nfe) {
-                registerHomeContentInsurance.setAmountMessage(FORMAT_MESSAGE);
+                registerHolidayHomeContentInsurance.setAmountMessage(FORMAT_MESSAGE);
                 abort = true;
             }
         }
@@ -3351,7 +3459,11 @@ public class MainController {
         if(yearString.equals("")) {
             registerHolidayHomeContentInsurance.setYearMessage(EMPTY_MESSAGE);
             abort = true;
-        } else {
+        } else if (!yearString.matches("\\d{4}")){
+            String message = "Fyll inn korrekt årstall. 4 siffer.";
+            registerHolidayHomeContentInsurance.setYearMessage(message);
+            abort = true;
+        }else {
             try {
                 year = Integer.parseInt(yearString);
             } catch(NumberFormatException nfe) {
@@ -3362,7 +3474,11 @@ public class MainController {
         if(zipCodeString.equals("")) {
             registerHolidayHomeContentInsurance.setZipCodeMessage(EMPTY_MESSAGE);
             abort = true;
-        } else {
+        } else if(!zipCodeString.matches("\\d{4}")){
+            String message = "Fyll inn korrekt postnummer. 4 siffer.";
+            registerHolidayHomeContentInsurance.setZipCodeMessage(message);
+            abort = true;
+        }else {
             try {
                 zipCode = Integer.parseInt(zipCodeString);
             } catch(NumberFormatException nfe) {

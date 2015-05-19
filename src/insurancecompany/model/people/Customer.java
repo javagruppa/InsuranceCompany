@@ -7,6 +7,7 @@ import java.io.*;
  * This is an insurance customer of the company.
  * 
  * @author Carl
+ * @author Sindre
  */
 public class Customer extends Person implements Serializable {
     /** SerialVersionUID used to identify this class for object IO */

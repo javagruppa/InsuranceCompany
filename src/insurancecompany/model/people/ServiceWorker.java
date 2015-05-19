@@ -9,6 +9,7 @@ import java.io.Serializable;
  * The service worker registers and views customers, insurances and claims.
  * 
  * @author Carl
+ * @author Sindre
  */
 public class ServiceWorker extends Employee implements Serializable {
     private static final long serialVersionUID = 1L;

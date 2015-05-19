@@ -9,6 +9,7 @@ import java.io.Serializable;
  * The case worker processes claims and decides the outcome of these.
  * 
  * @author Carl
+ * @author Sindre
  */
 public class CaseWorker extends Employee implements Serializable {
     /** SerialVersionUID used to identify this class for object IO */

@@ -22,6 +22,7 @@ import javafx.scene.layout.VBox;
  * 
  * @author André
  * @author Sindre
+ * @author Carl
  */
 public class RegisterClaims {
     

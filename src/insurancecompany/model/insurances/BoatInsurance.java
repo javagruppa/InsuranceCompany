@@ -6,7 +6,8 @@ import insurancecompany.model.vehicles.Boat;
 import java.io.Serializable;
 
 /**
- * Class BoatInsurance. This is the insurance for boats.
+ * This class represents a boat insurance object. It contains information about
+ * the insurance and methods to manipulate and get the information.
  * 
  * @author Sindre
  * @author Carl
@@ -38,8 +39,6 @@ public class BoatInsurance extends Insurance implements Serializable {
         calculatePremium();
     }
     
-    // GET METHODS
-    
     /** @return The coverage of this insurance. */
     @Override
     public BoatInsuranceCoverage getCoverage() {
@@ -48,7 +47,7 @@ public class BoatInsurance extends Insurance implements Serializable {
     
     /** @return The type of insurance in form of a String. */
     @Override
-    public String getName() {
+    public String getType() {
         return InsuranceType.BOAT_INSURANCE.toString();
     }
     
@@ -57,13 +56,12 @@ public class BoatInsurance extends Insurance implements Serializable {
         return boat;
     }
     
-    // CALCULATE PREMIUM METHODS
-
     /**
      * Calculates and sets the total premium of this insurance, based on the 
      * value, coverage, excess, engine effect and whether the boat insured
      * has an alarm.
      */
+    @Override
     public void calculatePremium() {
 	// Calculates the total price for this insurance:
 	double totalPrice = valueCost() + effectCost() - excessDrop() 
@@ -135,7 +133,7 @@ public class BoatInsurance extends Insurance implements Serializable {
 	}
         // Returns the engine effect cost of this insurace:
         return result;
-}
+    }
 
     /**
      * Calculates and returns the drop in price for this insurance based on how
@@ -162,8 +160,6 @@ public class BoatInsurance extends Insurance implements Serializable {
         // Returns the price drop:
         return result;
     }
-    
-    // TO STRING METHOD
     
     /**
      * Returns a string representation of this insurance. The string

@@ -6,7 +6,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -14,9 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
 /**
  * This class creates the graphical user interface (GUI) for registration of 
@@ -145,6 +142,7 @@ public class RegisterEmployee {
         mainPane.add(email, 0, 11);
         mainPane.add(emailField, 1, 11);
         mainPane.add(emailMessage, 2, 11);
+        mainPane.add(phone, 0, 12);
         mainPane.add(phoneField, 1, 12);
         mainPane.add(phoneMessage, 2, 12);
         mainPane.add(hbBtn, 1, 13);
@@ -266,5 +264,31 @@ public class RegisterEmployee {
     /** @param message The message to set. */
     public void setResultMessage(String message) {
         this.resultMessage.setText(message);
+    }
+    
+    /** Clears all messages. */
+    public void clearMessages() {
+        positionMessage.setText("");
+        personalNumberMessage.setText("");
+        firstNameMessage.setText("");
+        lastNameMessage.setText("");
+        streetMessage.setText("");
+        zipCodeMessage.setText("");
+        cityMessage.setText("");
+        emailMessage.setText("");
+        phoneMessage.setText("");
+    }
+    
+    /** Clears all text fields and combo boxes. */
+    public void clearView() {
+        positionCombo.setValue(null);
+        personalNumberField.setText("");
+        firstNameField.setText("");
+        lastNameField.setText("");
+        streetField.setText("");
+        zipCodeField.setText("");
+        cityField.setText("");
+        emailField.setText("");
+        phoneField.setText("");
     }
 }

@@ -273,7 +273,7 @@ public class RegisterHolidayHomeContentInsurance {
         
         insuranceTypeColumn.setCellValueFactory((cellData) -> {
                 if ( cellData.getValue() != null) {
-                    return new SimpleStringProperty(cellData.getValue().getName());
+                    return new SimpleStringProperty(cellData.getValue().getType());
                 } else {
                     return new SimpleStringProperty("<no name>");
                 }
@@ -501,5 +501,19 @@ public class RegisterHolidayHomeContentInsurance {
         typeMessage.setText("");
         yearMessage.setText("");
         zipCodeMessage.setText("");
+    }
+    
+    /** Clears all text fields and combo boxes. */
+    public void clearView() {
+        coverageCombo.setValue(null);
+        excessCombo.setValue("");
+        amountField.setText("");
+        areaField.setText("");
+        yearField.setText("");
+        materialCombo.setValue(null);
+        typeCombo.setValue(null);
+        streetField.setText("");
+        zipCodeField.setText("");
+        cityField.setText("");
     }
 }

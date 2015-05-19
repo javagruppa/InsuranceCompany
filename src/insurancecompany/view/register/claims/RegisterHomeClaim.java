@@ -341,7 +341,7 @@ public class RegisterHomeClaim {
                 if ( cellData.getValue() != null) {
                     // Places a SimpleStringProperty version of the insurance name in
                     // the first column:
-                    return new SimpleStringProperty(cellData.getValue().getName());
+                    return new SimpleStringProperty(cellData.getValue().getType());
                 } else {
                     return new SimpleStringProperty("<no name>");
                 }

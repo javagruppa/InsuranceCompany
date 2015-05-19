@@ -183,7 +183,7 @@ public class RegisterTravelInsurance {
         
         insuranceTypeColumn.setCellValueFactory((cellData) -> {
                 if ( cellData.getValue() != null) {
-                    return new SimpleStringProperty(cellData.getValue().getName());
+                    return new SimpleStringProperty(cellData.getValue().getType());
                 } else {
                     return new SimpleStringProperty("<no name>");
                 }
@@ -305,5 +305,11 @@ public class RegisterTravelInsurance {
         customerSelectedMessage.setText("");
         excessMessage.setText("");
         registerButtonMessage.setText("");
+    }
+    
+    /** Clears all text fields and combo boxes. */
+    public void clearView() {
+        coverageCombo.setValue(null);
+        excessCombo.setValue("");
     }
 }

@@ -7,8 +7,9 @@ import insurancecompany.model.properties.Property;
 import java.io.Serializable;
 
 /**
- * Class HolidayHomeContentInsurance. This is the content insurance for holiday 
- * homes.
+ * This class represents a holiday home content insurance object. It contains 
+ * information about the insurance and methods to manipulate and get the 
+ * information.
  * 
  * @author Sindre
  * @author Carl
@@ -50,8 +51,6 @@ public class HolidayHomeContentInsurance extends Insurance
         calculatePremium();
     }
     
-    // GET METHODS
-    
     /** @return The coverage of this insurance. */
     @Override
     public HolidayHomeContentInsuranceCoverage getCoverage() {
@@ -60,7 +59,7 @@ public class HolidayHomeContentInsurance extends Insurance
     
     /** @return The type of insurance in form of a String. */
     @Override
-    public String getName() {
+    public String getType() {
         return InsuranceType.HOLIDAY_HOME_CONTENT_INSURANCE.toString();
     }
     
@@ -69,11 +68,10 @@ public class HolidayHomeContentInsurance extends Insurance
         return property;
     }
     
-    // CALCULATE PREMIUM METHODS
-
     /**
      * Calculates the premium of this insurance, and then sets the premium.
      */
+    @Override
     public void calculatePremium() {
 	int newPremium = coverage.getPricing() + (int)amountCost() - 
                 excessDrop();
@@ -130,8 +128,6 @@ public class HolidayHomeContentInsurance extends Insurance
 	}
 	return result;
     }
-    
-    // TO STRING METHOD
     
     /**
      * Returns a string representation of this insurance. The string

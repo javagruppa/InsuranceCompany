@@ -243,4 +243,28 @@ public class RegisterCustomer {
     public void setResultMessage(String message) {
         this.resultMessage.setText(message);
     }
+    
+    /** Clears all messages. */
+    public void clearMessages() {
+        personalNumberMessage.setText("");
+        firstNameMessage.setText("");
+        lastNameMessage.setText("");
+        streetMessage.setText("");
+        zipCodeMessage.setText("");
+        cityMessage.setText("");
+        emailMessage.setText("");
+        phoneMessage.setText("");
+    }
+    
+    /** Clears all text fields. */
+    public void clearView() {
+        personalNumberField.setText("");
+        firstNameField.setText("");
+        lastNameField.setText("");
+        streetField.setText("");
+        zipCodeField.setText("");
+        cityField.setText("");
+        emailField.setText("");
+        phoneField.setText("");
+    }
 }

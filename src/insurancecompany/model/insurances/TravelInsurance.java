@@ -5,7 +5,9 @@ import insurancecompany.misc.coverages.TravelInsuranceCoverage;
 import java.io.Serializable;
 
 /**
- *
+ * This class represents a travel insurance object. It contains information 
+ * about the insurance and methods to manipulate and get the information.
+ * 
  * @author Sindre
  * @author Carl
  */
@@ -32,8 +34,6 @@ public class TravelInsurance extends Insurance implements Serializable {
         calculatePremium();
     }
     
-    // GET METHODS
-    
     /** @return The coverage of this insurance. */
     @Override
     public TravelInsuranceCoverage getCoverage() {
@@ -42,16 +42,15 @@ public class TravelInsurance extends Insurance implements Serializable {
     
     /** @return The type of insurance in form of a String. */
     @Override
-    public String getName() {
+    public String getType() {
         return InsuranceType.TRAVEL_INSURANCE.toString();
     }
     
-    // CALCULATE PREMIUM METHODS
-
     /**
      * Calculates and sets the premium of this insurance, based on the basic 
      * price and the excess drop.
      */
+    @Override
     public void calculatePremium(){
 	int newPremium = coverage.getPricing() - excessDrop();
 	setPremium(newPremium);
@@ -80,8 +79,6 @@ public class TravelInsurance extends Insurance implements Serializable {
 	}
 	return result;
     }
-    
-    // TO STRING METHOD
     
     /**
      * Returns a string representation of this insurance. The string

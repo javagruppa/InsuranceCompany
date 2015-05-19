@@ -8,7 +8,8 @@ import java.util.Calendar;
 import java.io.Serializable;
 
 /**
- * Class CarInsurance. This is the insurance for cars.
+ * This class represents a car insurance object. It contains information about
+ * the insurance and methods to manipulate and get the information.
  * 
  * @author Sindre
  * @author Carl
@@ -69,8 +70,6 @@ public class CarInsurance extends Insurance implements Serializable {
         calculatePremium();
     }
     
-    // GET METHODS
-    
     /** @return The coverage of this insurance. */
     @Override
     public CarInsuranceCoverage getCoverage() {
@@ -79,17 +78,16 @@ public class CarInsurance extends Insurance implements Serializable {
     
     /** @return The type of insurance in form of a String. */
     @Override
-    public String getName() {
+    public String getType() {
         return InsuranceType.CAR_INSURANCE.toString();
     }
     
-    // CALCULATE PREMIUM METHODS
-
     /**
      * Calculates and sets the total premium of this insurance, using different
      * parameters including whether the customer fulfills certain aspects:
      * youngdriver, garage, alarm.
      */
+    @Override
     public void calculatePremium() {
 	double youngDriverMultiplicator = 1.0;
 	double garageMultiplicator = 1.0;
@@ -174,8 +172,6 @@ public class CarInsurance extends Insurance implements Serializable {
         return excessSaving;
     }
     
-    // BONUS METHODS
-    
     /**
      * Drops the bonus in case of an accident.
      */
@@ -200,7 +196,9 @@ public class CarInsurance extends Insurance implements Serializable {
         lastBonusUpdate = Calendar.getInstance();
     }
     
-    // Increases the bonus from one damage free year to the next.
+    /** 
+     * Increases the bonus from one damage free year to the next.
+     */
     private void yearlyBonusIncrease() {
         // Increases the bonus by 10 points a year up to a maximum of 70 points.
         if (bonus <= 60 ) {
@@ -226,6 +224,8 @@ public class CarInsurance extends Insurance implements Serializable {
     /**
      * Increases the bonus depending on how many years has past since the
      * last bonus increase.
+     * 
+     * @return boolean If the bonus changes as a result of this method.
      */
     public boolean increaseBonus() {
         // Find number of years since last bonus update:
@@ -243,8 +243,6 @@ public class CarInsurance extends Insurance implements Serializable {
             return true;    
         }
     }
-    
-    // TO STRING METHOD
     
     /**
      * Returns a string representation of this insurance. The string

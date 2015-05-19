@@ -36,6 +36,7 @@ import javafx.util.Callback;
 /**
  * Only the fields related to person B will be registered. The other fields are pulled
  * from the car insurance owner.
+ * @author Carl
  * @author André
  */
 public class RegisterCarClaimForm implements Serializable {

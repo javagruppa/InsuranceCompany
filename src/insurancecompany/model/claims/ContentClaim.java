@@ -88,9 +88,16 @@ public class ContentClaim extends Claim implements Serializable {
      */
     @Override
     public String toString() {
-        String text = "Skademelding innbo\n";
-        text += super.toString();
-        return text;
+        StringBuilder sb = new StringBuilder();
+        sb.append("Skademelding innbo\n");
+        sb.append(super.toString());
+        if (items.size() > 0) {
+            sb.append("\n\nGjenstander mistet/skadet:\n");
+        }
+        for (ClaimItem claimItem : items) {
+            sb.append(claimItem.toString()).append("\n");
+        }
+        return sb.toString();
     }
 
     

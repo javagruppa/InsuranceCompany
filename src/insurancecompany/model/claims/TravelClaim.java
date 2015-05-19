@@ -85,9 +85,18 @@ public class TravelClaim extends Claim implements Serializable {
      */
     @Override
     public String toString() {
-        String text = "Skademelding reiseforsikring\n";
-        text += super.toString();
-        return text;
+        StringBuilder sb = new StringBuilder();
+        sb.append("Skademelding reiseforsikring\n");
+        sb.append(super.toString());
+        sb.append("\nKredittkortmerke: ").append(creditCardBrand);
+        sb.append("\nLand hvor skaden inntraff: ").append(country);
+        if (items.size() > 0) {
+            sb.append("\n\nGjenstander mistet/skadet:\n");
+        }
+        for (ClaimItem claimItem : items) {
+            sb.append(claimItem.toString()).append("\n");
+        }
+        return sb.toString();
     }
 
     /**

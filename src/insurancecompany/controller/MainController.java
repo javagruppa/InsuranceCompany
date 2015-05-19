@@ -1353,7 +1353,7 @@ public class MainController {
                 // If so send a message to the user:
                 registerBoatClaim.setRegisterButtonMessage(DESCRIPTION_EMPTY_MESSAGE);
                 return; // leave method
-            } else if (!description.matches("^[æøåÆØÅa-zA-Z0-9]{1-5000}")) {
+            } else if (!description.matches("^[æøåÆØÅa-zA-Z0-9]{1,5000}")) {
                 String message = "Max 5000 tegn mulig.";
                 registerBoatClaim.setRegisterButtonMessage(message);
                 ok = false;
@@ -1390,6 +1390,7 @@ public class MainController {
                 if (claims.addClaim(claim)) {
                     // Clear uploads(image):
                     registerBoatClaim.clearUploads();
+                    registerBoatClaim.clearView();
                     registerBoatClaim.setRegisterButtonMessage(REGISTER_SUCCESS);
                 } else {
                     registerBoatClaim.setRegisterButtonMessage(REGISTER_NO_SUCCESS);
@@ -2679,7 +2680,7 @@ public class MainController {
         }
         if(engineType.equals("")) {
             // This is legal, so that the field can be left blank.
-        } else if (!engineType.matches("(^$inboard|outboard|ingen)")) {
+        } else if (!engineType.matches("(^$|inboard|outboard|ingen)")) {
             String message = "Velg enten 'inboard', 'outboard' eller la feltet stå blankt.";
             registerBoatInsurance.setEngineTypeMessage(message);
             abort = true;

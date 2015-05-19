@@ -502,7 +502,26 @@ public class RegisterBoatClaim {
         // Clear the status messages:
         selectImageStatus.setText("");
     }
+    
+    public void clearView() {
+        dateHappenedPicker.setValue(LocalDate.now());
+        descriptionTextArea.setText("");
+        appraisalField.setText("");
+        clearDamages();
+        appraisalFieldMessage.setText("");
+    }
 
+    /**
+     * Clears the selected boxes for damages
+     */
+    public void clearDamages(){
+        for (int i = 0; i < damageCheckBoxes.size(); i++) {
+            // For each checkbox that is selected:
+            damageCheckBoxes.get(i).setSelected(false);
+        }
+    }
+    
+    
     /**
      * Get the image of the damage from this view.
      * @return the image

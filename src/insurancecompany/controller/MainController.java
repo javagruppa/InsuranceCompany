@@ -3190,6 +3190,10 @@ public class MainController {
         if(city.equals("")) {
             registerHolidayHomeInsurance.setCityMessage(EMPTY_MESSAGE);
             abort = true;
+        } else if (!city.matches("^[æøåÆØÅa-zA-Z]{1,30}")){
+            String message = "Fyll inn korrekt poststed.";
+            registerHolidayHomeInsurance.setCityMessage(message);
+            abort = true;
         }
         if(coverage == null) {
             registerHolidayHomeInsurance.setCoverageMessage(EMPTY_MESSAGE);
@@ -3206,6 +3210,10 @@ public class MainController {
         if(street.equals("")) {
             registerHolidayHomeInsurance.setStreetMessage(EMPTY_MESSAGE);
             abort = true;
+        } else if (!street.matches("^[æøåÆØÅa-zA-Z0-9]{2,45}")){
+            String message = "Fyll inn korrekt gateadresse.";
+            registerHolidayHomeInsurance.setStreetMessage(message);
+            abort = true;
         }
         if(type == null) {
             registerHolidayHomeInsurance.setTypeMessage(EMPTY_MESSAGE);
@@ -3216,7 +3224,11 @@ public class MainController {
         if(areaString.equals("")) {
             registerHolidayHomeInsurance.setAreaMessage(EMPTY_MESSAGE);
             abort = true;
-        } else {
+        } else if (!areaString.matches("[0-9]{1,4}")){
+            String message = "Fyll inn korrekt areal. Kun tall.";
+            registerHolidayHomeInsurance.setAreaMessage(message);
+            abort = true;
+        }else {
             try {
                 area = Integer.parseInt(areaString);
             } catch(NumberFormatException nfe) {
@@ -3244,7 +3256,11 @@ public class MainController {
         if(yearString.equals("")) {
             registerHolidayHomeInsurance.setYearMessage(EMPTY_MESSAGE);
             abort = true;
-        } else {
+        } else if (!yearString.matches("\\d{4}")){
+            String message = "Fyll inn korrekt årstall. 4 siffer.";
+            registerHolidayHomeInsurance.setYearMessage(message);
+            abort = true;
+        }else {
             try {
                 year = Integer.parseInt(yearString);
             } catch(NumberFormatException nfe) {
@@ -3255,7 +3271,11 @@ public class MainController {
         if(zipCodeString.equals("")) {
             registerHolidayHomeInsurance.setZipCodeMessage(EMPTY_MESSAGE);
             abort = true;
-        } else {
+        } else if (!zipCodeString.matches("\\d{4}")){
+            String message = "Fyll inn korrekt postnummer. 4 siffer.";
+            registerHolidayHomeInsurance.setZipCodeMessage(message);
+            abort = true;
+        }else {
             try {
                 zipCode = Integer.parseInt(zipCodeString);
             } catch(NumberFormatException nfe) {

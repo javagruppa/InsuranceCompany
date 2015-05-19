@@ -1961,7 +1961,7 @@ public class MainController {
         }
         HolidayHomeInsurance insurance;
         // Get the Insurance selected from the table:
-        if (registerHomeClaim.getInsuranceTableValue() instanceof HolidayHomeInsurance) {
+        if (registerHolidayHomeClaim.getInsuranceTableValue() instanceof HolidayHomeInsurance) {
             insurance = (HolidayHomeInsurance) registerHolidayHomeClaim.getInsuranceTableValue();
             // Checks if this value is null:
             if (insurance == null) {
@@ -3348,7 +3348,7 @@ public class MainController {
         // Adds insurance to Register:
         if (insurances.addInsurance(insurance)) {
             registerHolidayHomeInsurance.setRegisterButtonMessage(REGISTER_SUCCESS + "\nForsikringspremie: " + insurance.getPremium() + ",-");
-            registerHolidayHomeInsurance.setRegisterButtonMessage("");
+            registerHolidayHomeInsurance.clearView();
         } else {
             registerHolidayHomeInsurance.setRegisterButtonMessage(REGISTER_NO_SUCCESS);
         }

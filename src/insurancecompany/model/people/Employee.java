@@ -11,31 +11,31 @@ import java.io.*;
  * @author Carl
  */
 public abstract class Employee extends Person implements Serializable {
-    /** SerialVersionUID used to identify this class for object IO */
+    
+    /** SerialVersionUID used to identify this class for object IO. */
     private static final long serialVersionUID = 1L;
-    /** The next employee ID */
+    /** The next employee ID. */
     private static int nextEmployeeId = 1000000;
-    /** The file path of the file the customer IDs are saved to */
+    /** The file path of the file the customer IDs are saved to. */
     private static String employeeIdFileName = "src/insurancecompany/resources/nextidnumbers/employeeId.dta";
-    
-    /** passwords */
-    private String passwordSalt; // to be used in future upgrades
-    private String passwordHash; // to be used in future upgrades
-    
-    /** The employee ID */
+    /** Can be used for passwords in future upgrades. */
+    private String passwordSalt;
+    private String passwordHash;
+    /** The employee ID. */
     private final int employeeId;
     
+    /** @return The type of employee in form of a String. */
     public abstract String getType();
     
     /**
-     * Constructs an employee with the specified parameters
+     * Constructs an employee with the specified parameters.
      * 
-     * @param firstname the first name of this employee
-     * @param lastname the last name of this employee
-     * @param personalNumber the personal number of this employee
-     * @param email the email address of this employee
-     * @param address the address of this employee
-     * @param phone the phone number of this employee
+     * @param firstname The first name of this employee.
+     * @param lastname The last name of this employee.
+     * @param personalNumber The personal number of this employee.
+     * @param email The email address of this employee.
+     * @param address The address of this employee.
+     * @param phone The phone number of this employee.
      */
     public Employee(String firstname, String lastname, String personalNumber,
             String email, Address address, String phone) {
@@ -44,12 +44,12 @@ public abstract class Employee extends Person implements Serializable {
         employeeId = nextEmployeeId++;
     }
     
-       /**
+    /**
      * Returns a string representation of this insurance. The string
      * representation consists of each field with a short description separated
      * by a new line.
      * 
-     * @return a string representation of this insurance
+     * @return A string representation of this insurance.
      */
     @Override
     public String toString() {
@@ -57,14 +57,14 @@ public abstract class Employee extends Person implements Serializable {
         // method.
         StringBuilder result = new StringBuilder();
         // Appends the fields with appropriate sentences.
-        result.append(getEmployeeId());
+        result.append(employeeId);
         result.append("\n").append(super.toString());
         // Returns the string.
         return result.toString();
     }
     
     /**
-     * Saves next ID to file
+     * Saves next ID to file.
      * 
      * @throws IOException 
      */
@@ -77,7 +77,7 @@ public abstract class Employee extends Person implements Serializable {
     }
     
     /**
-     * Reads the next ID from file
+     * Reads the next ID from file.
      * 
      * @throws IOException 
      */
@@ -89,22 +89,9 @@ public abstract class Employee extends Person implements Serializable {
         }
     }
     
-    /**
-     * Returns the ID of this employee
-     * @return the ID
-     */
+    /** @return The employee ID of the employee. */
     @Override
     public int getId() {
-        return getEmployeeId();
-    }
-
-    /**
-     * Returns the employeeId of this employee
-     * 
-     * @return the employeeId
-     */
-    public int getEmployeeId() {
         return employeeId;
     }
-    
 }

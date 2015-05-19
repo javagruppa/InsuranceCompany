@@ -27,7 +27,6 @@ public class StatisticsView {
     // Declaration of all the nodes in the toolbar.
     private ToggleButton incomeButton;
     private ToggleButton disbursementsButton;
-    private ToggleButton claimsButton;
     private ToggleGroup toggleGroup;
             
     /**
@@ -52,14 +51,11 @@ public class StatisticsView {
         incomeButton.setId("subToolbarButton");
         disbursementsButton = new ToggleButton("Utbetalinger");
         disbursementsButton.setId("subToolbarButton");
-        claimsButton = new ToggleButton("Skademeldinger");
-        claimsButton.setId("subToolbarButton");
         toggleGroup = new ToggleGroup();
         incomeButton.setToggleGroup(toggleGroup);
         disbursementsButton.setToggleGroup(toggleGroup);
-        claimsButton.setToggleGroup(toggleGroup);
         ObservableList<ToggleButton> buttons = FXCollections.observableArrayList ();
-        buttons.addAll(incomeButton, disbursementsButton, claimsButton);        
+        buttons.addAll(incomeButton, disbursementsButton);        
         hbox.getChildren().addAll(buttons);
        
         return hbox;
@@ -86,14 +82,5 @@ public class StatisticsView {
      */
     public void setDisbursementsButtonEventHandler(EventHandler<ActionEvent> value) {
         disbursementsButton.setOnAction(value);
-    }
-    
-    /**
-     * Sets the event handler for the claimsButton.
-     * 
-     * @param value The event handler to set.
-     */
-    public void setClaimsButtonEventHandler(EventHandler<ActionEvent> value) {
-        claimsButton.setOnAction(value);
     }
 }

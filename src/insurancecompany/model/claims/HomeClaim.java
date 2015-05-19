@@ -14,6 +14,7 @@ import javafx.scene.image.Image;
  * HomeClaim class. Sub class to claim. All claims regarding Home
  * insurances are registered as Home claims.
  * 
+ * @author Carl
  * @author André
  */
 public class HomeClaim extends Claim implements Serializable {

@@ -599,9 +599,9 @@ public class MainController {
         }
         
         if (street.equals("")) {
-            String message = "Fyll inn dette feltet.";
-            registerEmployee.setStreetMessage(message);
-            ok = false;
+            // This is allowed, to make sure address field CAN be empty.
+            // The else if underneath makes sure that IF an address is filled in
+            // it has to be the correct format.
         } else if (!street.matches("[ÆØÅæøåa-zA-Z0-9 .-]{2,30}")) {
             String message = "Fyll inn korrekt gateadresse, kun bokstaver og"
                     + " tall tillatt.";
@@ -3208,8 +3208,9 @@ public class MainController {
             abort = true;
         }
         if(street.equals("")) {
-            registerHolidayHomeInsurance.setStreetMessage(EMPTY_MESSAGE);
-            abort = true;
+            // This is allowed, to make sure address field CAN be empty.
+            // The else if underneath makes sure that IF an address is filled in
+            // it has to be the correct format.
         } else if (!street.matches("^[æøåÆØÅa-zA-Z0-9 .-]{2,45}")){
             String message = "Fyll inn korrekt gateadresse.";
             registerHolidayHomeInsurance.setStreetMessage(message);
@@ -3422,8 +3423,9 @@ public class MainController {
             abort = true;
         }
         if(street.equals("")) {
-            registerHolidayHomeContentInsurance.setStreetMessage(EMPTY_MESSAGE);
-            abort = true;
+            // This is allowed, to make sure address field CAN be empty.
+            // The else if underneath makes sure that IF an address is filled in
+            // it has to be the correct format.
         } else if (!street.matches("[æøåÆØÅa-zA-Z0-9 .-]{2,40}")) {
             String message = "Fyll inn korrekt gateadresse.";
             registerHolidayHomeContentInsurance.setStreetMessage(message);
@@ -3645,8 +3647,9 @@ public class MainController {
             abort = true;
         }
         if(street.equals("")) {
-            registerHomeInsurance.setStreetMessage(EMPTY_MESSAGE);
-            abort = true;
+            // This is allowed, to make sure address field CAN be empty.
+            // The else if underneath makes sure that IF an address is filled in
+            // it has to be the correct format.
         } else if (!street.matches("[æøåÆØÅa-zA-Z0-9 .-]{2,45}")){
             String message = "Fyll inn korrekt gateadresse.";
             registerHomeInsurance.setStreetMessage(message);
@@ -3860,8 +3863,9 @@ public class MainController {
             abort = true;
         }
         if(street.equals("")) {
-            registerHomeContentInsurance.setStreetMessage(EMPTY_MESSAGE);
-            abort = true;
+            // This is allowed, to make sure address field CAN be empty.
+            // The else if underneath makes sure that IF an address is filled in
+            // it has to be the correct format.
         } else if (!street.matches("[æøåÆØÅa-zA-Z0-9 .-]{2,45}")){
             String message = "Fyll inn korrekt gateadresse.";
             registerHomeContentInsurance.setStreetMessage(message);

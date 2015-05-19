@@ -121,4 +121,12 @@ public class TravelClaim extends Claim implements Serializable {
     public void setCountry(String country) {
         this.country = country;
     }
+    
+    /**
+     * Returns the list of item concerned in this claim
+     * @return the items
+     */
+    public List<ClaimItem> getItems() {
+        return items;
+    }
 }

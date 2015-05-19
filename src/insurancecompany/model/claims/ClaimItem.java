@@ -131,7 +131,7 @@ public class ClaimItem implements Serializable {
         // Appends the fields with appropriate sentences.
         result.append("Beskrivelse av objektet: ").append(description);
         result.append("\nSted for anskaffelse: ").append(aqquiredArea);
-        result.append("\nDato for anskaffelse: ").append(DateUtility.NORWEGIAN_DATE_FORMAT.format(aqquiredDate));
+        result.append("\nDato for anskaffelse: ").append(DateUtility.NORWEGIAN_DATE_FORMAT.format(aqquiredDate.getTime()));
         result.append("\nVerdi: ").append(value);
         result.append("\nHvordan kan objektet dokumenteres: ").append(descriptionOfDocumentation);
         // Returns the string.

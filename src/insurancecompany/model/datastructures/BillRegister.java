@@ -63,6 +63,11 @@ public class BillRegister {
         }
     }
     
+    /**
+     * Finds bills in list by insuranceId
+     * @param insuranceId the insuranceId to be used in search
+     * @return the bills linked to the specified insuranceId
+     */
     public List<Bill> findBillsByInsuranceId(int insuranceId) {
         // Creates an ArrayList which will be returned at the end of the method.
         List<Bill> result = new ArrayList<>();
@@ -91,7 +96,7 @@ public class BillRegister {
                 return bill;
             }
         }
-        return null;
+        return null; // If no bill is found
     }
     
     /**
@@ -124,6 +129,12 @@ public class BillRegister {
         return result;
     }
     
+    /**
+     * Returns a list of bills that are due in a certain period of time
+     * @param from start of time period
+     * @param to end of time period
+     * @return a list of bills
+     */
     public List<Bill> billsDueBetweenDates(Calendar from, Calendar to) {
         List<Bill> result = new ArrayList<>();
         // Checks for every bill in this register:
@@ -140,6 +151,10 @@ public class BillRegister {
         return result;
     }
     
+    /**
+     * Returns all bills that are due to be paid
+     * @return a list of bills
+     */
     public List<Bill> billsDue() {
         List<Bill> result = new ArrayList<Bill>();
         // Checks for every bill in this register:
@@ -158,7 +173,10 @@ public class BillRegister {
         return result;
     }
     
-    
+    /**
+     * Returns the total amount of payed income
+     * @return the total paid amount
+     */
     public double getTotalPayed() {
         double result = 0.0;
         for (Bill bill : bills) {

@@ -6,7 +6,9 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- *
+ * This class acts as a receiver for unmarshalling our Car_makes_and_models.xml
+ * One field for the brand name and one for containing a modelRegister.
+ * 
  * @author André
  * @since 19.05.2015
  */

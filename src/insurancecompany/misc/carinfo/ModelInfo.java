@@ -9,7 +9,9 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- *
+ * This class acts as a receiver for unmarshalling our Car_makes_and_models.xml
+ * One field for the model name, one for to-year and one for from-year.
+ * 
  * @author André
  * @since 19.05.2015
  */

@@ -16,8 +16,13 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+
 /** The login view of the application.
  *
+=======
+/**
+ * This class represents a login window.
+>>>>>>> origin/master
  * @author André
  * 
  * @since 19.05.2015

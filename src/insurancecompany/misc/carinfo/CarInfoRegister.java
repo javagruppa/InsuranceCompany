@@ -11,7 +11,8 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- *
+ * This class acts as a receiver for unmarshalling our Car_makes_and_models.xml
+ * This class contains a list of CarInfo objects.
  * @author André
  * @since 19.05.2015
  */
@@ -27,7 +28,10 @@ public class CarInfoRegister {
         return cars;
     }
 
-    
+    /**
+     * 
+     * @param cars to set
+     */
     @XmlElement(name="item")
     public void setCars(List<CarInfo> cars) {
         this.cars = cars;
@@ -48,6 +52,10 @@ public class CarInfoRegister {
         return null;
     }
     
+    /**
+     * 
+     * @param carInfo carInfo to be added to the register
+     */
     public void add(CarInfo carInfo) {
          if( this.cars == null )
         {

@@ -24,6 +24,10 @@ public enum HomeType {
         }
     }
     
+    /**
+     * 
+     * @return the pricing of the home type
+     */
     public int getPricing() {
         switch(this) {
             case APARTMENT: return 4000;

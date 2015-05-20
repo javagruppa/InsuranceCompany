@@ -17,7 +17,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /**
- *
+ * This class represents a login window.
  * @author André
  * 
  * @since 19.05.2015

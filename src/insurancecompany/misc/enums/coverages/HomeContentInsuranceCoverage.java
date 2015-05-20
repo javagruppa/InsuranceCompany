@@ -48,6 +48,7 @@ public enum HomeContentInsuranceCoverage {
         }
     };
     
+    /** @return damages covered */
     public abstract Damage[] damages();
     
     @Override
@@ -59,6 +60,7 @@ public enum HomeContentInsuranceCoverage {
         }
     }
     
+    /** @return the pricing of the coverage */
     public int getPricing() {
         switch(this) {
             case PLUS: return 1000;

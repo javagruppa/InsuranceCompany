@@ -24,6 +24,10 @@ public enum HolidayHomeType {
         }
     }
     
+    /**
+     * 
+     * @return the pricing of the holiday home type
+     */
     public int getPricing() {
         switch(this) {
             case APARTMENT: return 4000;

@@ -57,7 +57,8 @@ public enum BoatInsuranceCoverage {
             return damages;
         }
     };
-
+    
+    /** @return damages covered */
     public abstract Damage[] damages();
     
     @Override
@@ -70,6 +71,7 @@ public enum BoatInsuranceCoverage {
         }
     }
     
+    /** @return the pricing of the coverage */
     public int getPricing() {
         switch(this) {
             case CASCO: return 3000;

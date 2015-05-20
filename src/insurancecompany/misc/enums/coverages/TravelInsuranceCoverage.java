@@ -25,6 +25,7 @@ public enum TravelInsuranceCoverage {
         }
     };
     
+    /** @return damages covered */
     public abstract Damage[] damages();
     
     @Override
@@ -35,6 +36,7 @@ public enum TravelInsuranceCoverage {
         }
     }
     
+    /** @return the pricing of the coverage */
     public int getPricing() {
         switch(this) {
             case STANDARD: return 2000;

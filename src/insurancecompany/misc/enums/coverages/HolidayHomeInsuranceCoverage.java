@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package insurancecompany.misc.coverages;
+package insurancecompany.misc.enums.coverages;
 
 /**
  * This enum represents the different coverages of a holiday home insurance.

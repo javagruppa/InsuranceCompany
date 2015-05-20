@@ -1,6 +1,6 @@
 package insurancecompany.model.people;
 
-import insurancecompany.misc.EmployeeType;
+import insurancecompany.misc.enums.EmployeeType;
 import insurancecompany.model.properties.Address;
 import java.io.Serializable;
 

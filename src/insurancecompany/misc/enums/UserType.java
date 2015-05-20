@@ -1,20 +1,21 @@
-package insurancecompany.misc;
+package insurancecompany.misc.enums;
 
 /**
- * This enum represents the types of employees that can be registered.
+ * This enum represents the types of users that can log in to the program.
  * 
  * @author André
  */
-public enum EmployeeType {
-    ADMIN, CASE_WORKER, SERVICE_WORKER;
+public enum UserType {
+    CUSTOMER, ADMIN, CASE_WORKER, SERVICE_WORKER;
     
     /**
-     * Returns a string representation of the type of employee
-     * @return a string representation of the type of employee
+     * Returns a string representation of the user type of a person
+     * @return a string representation of the user type of a person
      */
     @Override
     public String toString() {
         switch(this) {
+            case CUSTOMER: return "Kunde";
             case ADMIN: return "Administrator";
             case CASE_WORKER: return "Saksbehandler";
             case SERVICE_WORKER: return "Kundebehandler";

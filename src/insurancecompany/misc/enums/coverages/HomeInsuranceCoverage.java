@@ -3,28 +3,28 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package insurancecompany.misc.coverages;
+package insurancecompany.misc.enums.coverages;
 
 /**
- * This enum represents the different coverages of a holiday home content
- * insurance.
+ * This enum represents the different coverages of a home insurance.
  * 
  * @author André
  * @author Carl
  */
-public enum HolidayHomeContentInsuranceCoverage {
+public enum HomeInsuranceCoverage {
     BASIC {
         @Override
         public Damage[] damages() {
             Damage[] damages = {
-                Damage.FIRE_DAMAGE,
-                Damage.WATER_DAMAGE,
-                Damage.THEFT,
-                Damage.NATURAL_DISASTER,
-                Damage.BAG_SNATCHING,
-                Damage.ROBBERY_AND_ASSAULT,
+                Damage.FULL_VALUE_GUARANTEE,
+                Damage.BUILDING_DAMAGE,
+                Damage.TOTAL_REENTRY_OVER_SEVENTYFIVE,
+                Damage.GARDEN_ARTICLES,
+                Damage.REBUILDING_FOR_WHEELCHAIR_USER,
+                Damage.LOSS_OF_RENT,
                 Damage.LEGAL_LIABILITIES,
-                Damage.LEGAL_AID
+                Damage.LEGAL_AID,
+                Damage.RODENT_DAMAGE
             };
             return damages;
         }
@@ -32,15 +32,19 @@ public enum HolidayHomeContentInsuranceCoverage {
         @Override
         public Damage[] damages() {
             Damage[] damages = {
-                Damage.FIRE_DAMAGE,
-                Damage.WATER_DAMAGE,
-                Damage.THEFT,
-                Damage.NATURAL_DISASTER,
-                Damage.BAG_SNATCHING,
-                Damage.ROBBERY_AND_ASSAULT,
+                Damage.FULL_VALUE_GUARANTEE,
+                Damage.BUILDING_DAMAGE,
+                Damage.TOTAL_REENTRY_OVER_SEVENTYFIVE,
+                Damage.GARDEN_ARTICLES,
+                Damage.REBUILDING_FOR_WHEELCHAIR_USER,
+                Damage.LOSS_OF_RENT,
                 Damage.LEGAL_LIABILITIES,
                 Damage.LEGAL_AID,
-                Damage.ACCIDENTAL_INJURY
+                Damage.RODENT_DAMAGE,
+                Damage.FUNGUS_AND_ROT_DAMAGE,
+                Damage.PEST_CONTROL,
+                Damage.CONSEQUENTIAL_DAMAGE_AFTER_LEAK,
+                Damage.CONSEQUENTIAL_DAMAGE_AFTER_CRAFTS_ERROR
             };
             return damages;
         }
@@ -59,7 +63,7 @@ public enum HolidayHomeContentInsuranceCoverage {
     
     public int getPricing() {
         switch(this) {
-            case PLUS: return 1200;
+            case PLUS: return 1500;
             case BASIC: return 0;
             default: throw new IllegalArgumentException();
         }

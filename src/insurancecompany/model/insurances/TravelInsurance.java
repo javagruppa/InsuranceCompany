@@ -1,7 +1,7 @@
 package insurancecompany.model.insurances;
 
-import insurancecompany.misc.InsuranceType;
-import insurancecompany.misc.coverages.TravelInsuranceCoverage;
+import insurancecompany.misc.enums.InsuranceType;
+import insurancecompany.misc.enums.coverages.TravelInsuranceCoverage;
 import java.io.Serializable;
 
 /**

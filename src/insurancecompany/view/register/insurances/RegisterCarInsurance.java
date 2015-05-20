@@ -1,6 +1,6 @@
 package insurancecompany.view.register.insurances;
 
-import insurancecompany.misc.coverages.CarInsuranceCoverage;
+import insurancecompany.misc.enums.coverages.CarInsuranceCoverage;
 import insurancecompany.model.insurances.Insurance;
 import java.util.List;
 import javafx.beans.property.SimpleObjectProperty;

@@ -2,8 +2,8 @@ package insurancecompany.model.insurances;
 
 import insurancecompany.model.vehicles.Car;
 import insurancecompany.misc.DateUtility;
-import insurancecompany.misc.InsuranceType;
-import insurancecompany.misc.coverages.CarInsuranceCoverage;
+import insurancecompany.misc.enums.InsuranceType;
+import insurancecompany.misc.enums.coverages.CarInsuranceCoverage;
 import java.util.Calendar;
 import java.io.Serializable;
 

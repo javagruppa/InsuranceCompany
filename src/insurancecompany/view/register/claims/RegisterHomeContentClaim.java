@@ -6,7 +6,7 @@
 package insurancecompany.view.register.claims;
 
 import insurancecompany.misc.DateUtility;
-import insurancecompany.misc.coverages.Damage;
+import insurancecompany.misc.enums.coverages.Damage;
 import insurancecompany.model.claims.ClaimItem;
 import insurancecompany.model.insurances.Insurance;
 import java.time.LocalDate;

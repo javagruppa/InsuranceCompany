@@ -1,6 +1,6 @@
 package insurancecompany.view.register.persons;
 
-import insurancecompany.misc.EmployeeType;
+import insurancecompany.misc.enums.EmployeeType;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

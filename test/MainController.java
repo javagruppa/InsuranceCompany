@@ -5,12 +5,13 @@
  */
 package insurancecompany.controller;
 
-import insurancecompany.misc.EmployeeType;
-import insurancecompany.misc.coverages.CarInsuranceCoverage;
+import insurancecompany.misc.carinfo.ModelInfo;
+import insurancecompany.misc.carinfo.CarInfo;
+import insurancecompany.misc.enums.EmployeeType;
+import insurancecompany.misc.enums.coverages.CarInsuranceCoverage;
 import insurancecompany.model.bills.*;
 import insurancecompany.model.claims.*;
 import insurancecompany.model.datastructures.*;
-import insurancecompany.model.datastructures.carinfo.*;
 import insurancecompany.model.insurances.*;
 import insurancecompany.model.people.*;
 import insurancecompany.model.properties.*;

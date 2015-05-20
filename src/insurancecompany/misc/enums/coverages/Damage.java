@@ -2,7 +2,7 @@
  * Here comes the text of your license
  * Each line should be prefixed with  * 
  */
-package insurancecompany.misc.coverages;
+package insurancecompany.misc.enums.coverages;
 
 /**
  * This enum represents the different damages an insurance coverage can cover.

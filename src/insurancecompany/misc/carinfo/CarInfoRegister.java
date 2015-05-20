@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package insurancecompany.model.datastructures.carinfo;
+package insurancecompany.misc.carinfo;
 
 import java.util.ArrayList;
 import java.util.List;

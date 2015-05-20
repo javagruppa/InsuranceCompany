@@ -1,8 +1,8 @@
 package insurancecompany.model.insurances;
 
-import insurancecompany.misc.InsuranceType;
-import insurancecompany.misc.coverages.HolidayHomeInsuranceCoverage;
-import insurancecompany.misc.hometypes.HolidayHomeType;
+import insurancecompany.misc.enums.InsuranceType;
+import insurancecompany.misc.enums.coverages.HolidayHomeInsuranceCoverage;
+import insurancecompany.misc.enums.hometypes.HolidayHomeType;
 import insurancecompany.model.properties.Property;
 import java.io.Serializable;
 import java.util.Calendar;

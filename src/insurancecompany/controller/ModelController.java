@@ -1,10 +1,11 @@
 package insurancecompany.controller;
 
+import insurancecompany.misc.carinfo.CarInfo;
+import insurancecompany.misc.carinfo.CarInfoRegister;
 import insurancecompany.misc.logs.Log;
 import insurancecompany.model.bills.Bill;
 import insurancecompany.model.claims.Claim;
 import insurancecompany.model.datastructures.*;
-import insurancecompany.model.datastructures.carinfo.*;
 import insurancecompany.model.insurances.Insurance;
 import insurancecompany.model.people.Customer;
 import insurancecompany.model.people.Employee;

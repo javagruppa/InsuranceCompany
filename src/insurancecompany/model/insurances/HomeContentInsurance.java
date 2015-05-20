@@ -1,8 +1,8 @@
 package insurancecompany.model.insurances;
 
-import insurancecompany.misc.InsuranceType;
-import insurancecompany.misc.coverages.HomeContentInsuranceCoverage;
-import insurancecompany.misc.hometypes.HomeType;
+import insurancecompany.misc.enums.InsuranceType;
+import insurancecompany.misc.enums.coverages.HomeContentInsuranceCoverage;
+import insurancecompany.misc.enums.hometypes.HomeType;
 import insurancecompany.model.properties.Property;
 import java.io.Serializable;
 

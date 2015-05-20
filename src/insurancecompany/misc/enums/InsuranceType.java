@@ -1,4 +1,4 @@
-package insurancecompany.misc;
+package insurancecompany.misc.enums;
 
 /**
  * This enum represents the types of insurances used by the company.

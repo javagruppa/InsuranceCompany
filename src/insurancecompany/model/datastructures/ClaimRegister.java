@@ -1,6 +1,6 @@
 package insurancecompany.model.datastructures;
 
-import insurancecompany.misc.coverages.Damage;
+import insurancecompany.misc.enums.coverages.Damage;
 import insurancecompany.model.claims.Claim;
 import java.io.*;
 import java.util.ArrayList;

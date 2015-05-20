@@ -3,28 +3,29 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package insurancecompany.misc.coverages;
+package insurancecompany.misc.enums.coverages;
+
 
 /**
- * This enum represents the different coverages of a home insurance.
+ * This enum represents the different coverages of a home content insurance.
  * 
  * @author André
  * @author Carl
  */
-public enum HomeInsuranceCoverage {
+public enum HomeContentInsuranceCoverage {
     BASIC {
         @Override
         public Damage[] damages() {
             Damage[] damages = {
-                Damage.FULL_VALUE_GUARANTEE,
-                Damage.BUILDING_DAMAGE,
-                Damage.TOTAL_REENTRY_OVER_SEVENTYFIVE,
-                Damage.GARDEN_ARTICLES,
-                Damage.REBUILDING_FOR_WHEELCHAIR_USER,
-                Damage.LOSS_OF_RENT,
+                Damage.FIRE_DAMAGE,
+                Damage.WATER_DAMAGE,
+                Damage.THEFT,
+                Damage.NATURAL_DISASTER,
+                Damage.BAG_SNATCHING,
+                Damage.ROBBERY_AND_ASSAULT,
+                Damage.SUBSISTENCE_EXPENSE,
                 Damage.LEGAL_LIABILITIES,
-                Damage.LEGAL_AID,
-                Damage.RODENT_DAMAGE
+                Damage.LEGAL_AID
             };
             return damages;
         }
@@ -32,19 +33,18 @@ public enum HomeInsuranceCoverage {
         @Override
         public Damage[] damages() {
             Damage[] damages = {
-                Damage.FULL_VALUE_GUARANTEE,
-                Damage.BUILDING_DAMAGE,
-                Damage.TOTAL_REENTRY_OVER_SEVENTYFIVE,
-                Damage.GARDEN_ARTICLES,
-                Damage.REBUILDING_FOR_WHEELCHAIR_USER,
-                Damage.LOSS_OF_RENT,
+                Damage.FIRE_DAMAGE,
+                Damage.WATER_DAMAGE,
+                Damage.THEFT,
+                Damage.NATURAL_DISASTER,
+                Damage.BAG_SNATCHING,
+                Damage.ROBBERY_AND_ASSAULT,
+                Damage.SUBSISTENCE_EXPENSE,
                 Damage.LEGAL_LIABILITIES,
                 Damage.LEGAL_AID,
-                Damage.RODENT_DAMAGE,
-                Damage.FUNGUS_AND_ROT_DAMAGE,
-                Damage.PEST_CONTROL,
-                Damage.CONSEQUENTIAL_DAMAGE_AFTER_LEAK,
-                Damage.CONSEQUENTIAL_DAMAGE_AFTER_CRAFTS_ERROR
+                Damage.ACCIDENTAL_INJURY,
+                Damage.MOVING_INSURANCE,
+                Damage.ID_ANTITHEFT
             };
             return damages;
         }
@@ -63,7 +63,7 @@ public enum HomeInsuranceCoverage {
     
     public int getPricing() {
         switch(this) {
-            case PLUS: return 1500;
+            case PLUS: return 1000;
             case BASIC: return 0;
             default: throw new IllegalArgumentException();
         }

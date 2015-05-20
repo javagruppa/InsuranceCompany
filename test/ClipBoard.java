@@ -1,9 +1,9 @@
 
-import insurancecompany.misc.coverages.BoatInsuranceCoverage;
-import insurancecompany.misc.coverages.HolidayHomeContentInsuranceCoverage;
-import insurancecompany.misc.coverages.HolidayHomeInsuranceCoverage;
-import insurancecompany.misc.coverages.HomeContentInsuranceCoverage;
-import insurancecompany.misc.coverages.HomeInsuranceCoverage;
+import insurancecompany.misc.enums.coverages.BoatInsuranceCoverage;
+import insurancecompany.misc.enums.coverages.HolidayHomeContentInsuranceCoverage;
+import insurancecompany.misc.enums.coverages.HolidayHomeInsuranceCoverage;
+import insurancecompany.misc.enums.coverages.HomeContentInsuranceCoverage;
+import insurancecompany.misc.enums.coverages.HomeInsuranceCoverage;
 import insurancecompany.model.insurances.BoatInsurance;
 import insurancecompany.model.insurances.HolidayHomeContentInsurance;
 import insurancecompany.model.insurances.HolidayHomeInsurance;

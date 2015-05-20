@@ -1,7 +1,7 @@
 package insurancecompany.view.search;
 
 import insurancecompany.misc.DateUtility;
-import insurancecompany.misc.InsuranceType;
+import insurancecompany.misc.enums.InsuranceType;
 import insurancecompany.model.insurances.Insurance;
 import java.util.ArrayList;
 import java.util.Calendar;

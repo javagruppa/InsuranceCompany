@@ -1,6 +1,6 @@
 package insurancecompany.view.search;
 
-import insurancecompany.misc.InsuranceType;
+import insurancecompany.misc.enums.InsuranceType;
 import insurancecompany.model.people.Customer;
 import java.util.ArrayList;
 import java.util.List;

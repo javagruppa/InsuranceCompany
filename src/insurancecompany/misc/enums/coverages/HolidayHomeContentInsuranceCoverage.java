@@ -3,16 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package insurancecompany.misc.coverages;
-
+package insurancecompany.misc.enums.coverages;
 
 /**
- * This enum represents the different coverages of a home content insurance.
+ * This enum represents the different coverages of a holiday home content
+ * insurance.
  * 
  * @author André
  * @author Carl
  */
-public enum HomeContentInsuranceCoverage {
+public enum HolidayHomeContentInsuranceCoverage {
     BASIC {
         @Override
         public Damage[] damages() {
@@ -23,7 +23,6 @@ public enum HomeContentInsuranceCoverage {
                 Damage.NATURAL_DISASTER,
                 Damage.BAG_SNATCHING,
                 Damage.ROBBERY_AND_ASSAULT,
-                Damage.SUBSISTENCE_EXPENSE,
                 Damage.LEGAL_LIABILITIES,
                 Damage.LEGAL_AID
             };
@@ -39,12 +38,9 @@ public enum HomeContentInsuranceCoverage {
                 Damage.NATURAL_DISASTER,
                 Damage.BAG_SNATCHING,
                 Damage.ROBBERY_AND_ASSAULT,
-                Damage.SUBSISTENCE_EXPENSE,
                 Damage.LEGAL_LIABILITIES,
                 Damage.LEGAL_AID,
-                Damage.ACCIDENTAL_INJURY,
-                Damage.MOVING_INSURANCE,
-                Damage.ID_ANTITHEFT
+                Damage.ACCIDENTAL_INJURY
             };
             return damages;
         }
@@ -63,7 +59,7 @@ public enum HomeContentInsuranceCoverage {
     
     public int getPricing() {
         switch(this) {
-            case PLUS: return 1000;
+            case PLUS: return 1200;
             case BASIC: return 0;
             default: throw new IllegalArgumentException();
         }

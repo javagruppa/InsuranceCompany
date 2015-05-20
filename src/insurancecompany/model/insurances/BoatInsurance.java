@@ -1,7 +1,7 @@
 package insurancecompany.model.insurances;
 
-import insurancecompany.misc.InsuranceType;
-import insurancecompany.misc.coverages.BoatInsuranceCoverage;
+import insurancecompany.misc.enums.InsuranceType;
+import insurancecompany.misc.enums.coverages.BoatInsuranceCoverage;
 import insurancecompany.model.vehicles.Boat;
 import java.io.Serializable;
 

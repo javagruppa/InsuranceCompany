@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package insurancecompany.misc.hometypes;
+package insurancecompany.misc.enums.hometypes;
 
 /**
  * This enum represents the different types a home can be of.

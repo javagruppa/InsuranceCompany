@@ -1,7 +1,7 @@
 package insurancecompany.model.claims;
 
-import insurancecompany.misc.ClaimType;
-import insurancecompany.misc.coverages.Damage;
+import insurancecompany.misc.enums.ClaimType;
+import insurancecompany.misc.enums.coverages.Damage;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Set;

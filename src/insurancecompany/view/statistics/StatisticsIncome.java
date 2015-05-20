@@ -1,6 +1,6 @@
 package insurancecompany.view.statistics;
 
-import insurancecompany.misc.InsuranceType;
+import insurancecompany.misc.enums.InsuranceType;
 import java.util.Calendar;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

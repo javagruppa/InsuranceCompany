@@ -1,4 +1,4 @@
-package insurancecompany.misc;
+package insurancecompany.misc.enums;
 
 /**
  * This enum represents the different months in a year

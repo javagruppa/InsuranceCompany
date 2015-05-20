@@ -1,7 +1,7 @@
 package insurancecompany.view.register.insurances;
 
-import insurancecompany.misc.coverages.HolidayHomeInsuranceCoverage;
-import insurancecompany.misc.hometypes.HolidayHomeType;
+import insurancecompany.misc.enums.coverages.HolidayHomeInsuranceCoverage;
+import insurancecompany.misc.enums.hometypes.HolidayHomeType;
 import insurancecompany.model.insurances.Insurance;
 import insurancecompany.model.properties.PropertyMaterial;
 import java.util.List;

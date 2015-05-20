@@ -1,8 +1,8 @@
 package insurancecompany.view.search;
 
-import insurancecompany.misc.ClaimType;
+import insurancecompany.misc.enums.ClaimType;
 import insurancecompany.misc.DateUtility;
-import insurancecompany.misc.coverages.Damage;
+import insurancecompany.misc.enums.coverages.Damage;
 import insurancecompany.model.claims.Claim;
 import java.util.ArrayList;
 import java.util.Calendar;

@@ -1,7 +1,7 @@
 package insurancecompany.model.claims;
 
 import insurancecompany.misc.DateUtility;
-import insurancecompany.misc.coverages.Damage;
+import insurancecompany.misc.enums.coverages.Damage;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.Calendar;

@@ -1,0 +1,4 @@
+Logs:Time: Wed May 20 13:44:57 CEST 2015
+Logged in user: Admin
+User id: 1000001
+Description: Problem med parsing av zipcode til ClarClaimFormView i CarClaimRegistration

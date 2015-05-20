@@ -56,7 +56,7 @@ public class DateUtility {
     /**
      * Returns a Date object from a LocalDate object.
      * @param localDate the LocalDate to be converted
-     * @return
+     * @return the date object
      */
     public static Date localDateToDate(LocalDate localDate) {
         return Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
@@ -64,8 +64,8 @@ public class DateUtility {
     
     /**
      * Returns a Calendar object from a LocalDate object.
-     * @param localDate
-     * @return 
+     * @param localDate the local date object to convert
+     * @return the converted date
      */
     public static Calendar LocalDateToCalendar(LocalDate localDate) {
         Date date = localDateToDate(localDate);
@@ -75,7 +75,7 @@ public class DateUtility {
      * Sets up date restrictions to a DatePicker so that only dates at or older
      * than the current date are pickable.
      * 
-     * @param datePicker 
+     * @param datePicker the datepicker to restrict
      */
     public static void restrictDatePickerToOlder(DatePicker datePicker) {
         // Sets up a restricton for choosable dates:

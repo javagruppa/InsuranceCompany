@@ -83,6 +83,7 @@ public class CarClaimForm implements Serializable {
      * @param owner the owner of the card this CarClaimForm covers
      * @param location where the accident happened
      * @param insuranceId the Id of the insurance covering this damage
+     * @param snapshot the snapshot to this carclaimform
      */
     public CarClaimForm(Car car, Customer owner, String location, 
             int insuranceId, Image snapshot){

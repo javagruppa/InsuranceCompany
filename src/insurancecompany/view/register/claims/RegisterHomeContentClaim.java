@@ -315,7 +315,7 @@ public class RegisterHomeContentClaim {
     /**
      * Places list of damages inside a list of combo boxes and places
      * each combo box inside the damage grid pane of this view.
-     * @param damages 
+     * @param damages the list of damages to be placed
      */
     public void populateDamagesPane(ArrayList<Damage> damages) {
         damageCheckBoxes = new ArrayList<>();
@@ -400,7 +400,7 @@ public class RegisterHomeContentClaim {
 
     /**
      * Populates the insurance table of this class with a list of insurances:
-     * @param insurances 
+     * @param insurances the list of insurances to populate with
      */
     public void populateInsurancesTable(List<Insurance> insurances) {
         // Create an observable list from the recieved insurance list:
@@ -440,7 +440,7 @@ public class RegisterHomeContentClaim {
     
     /**
      * Returns the Insurance object selected in the table.
-     * @return 
+     * @return the insurance object selected
      */
     public Insurance getInsuranceTableValue() {
         // If no row is selected in the table, retur null, otherwise return the selected insurance:
@@ -450,7 +450,7 @@ public class RegisterHomeContentClaim {
     /**
      * Takes an array of damages as a parameter and sets it to this views damages
      * list. Also forwards this list to the damages pane.
-     * @param damages 
+     * @param damages the list of damages to be set
      */
     public void setDamages(Damage[] damages) {
         // Create an ArrayList of the recieved damages array:
@@ -465,7 +465,7 @@ public class RegisterHomeContentClaim {
     //////////////////////////////////////////
     /**
      * Sets event handler for the search customer button of this view.
-     * @param value 
+     * @param value the value to be set
      */
     public void setSearchCustomerIdButtonEventHandler(EventHandler<ActionEvent> value) {
         searchCustomerIdButton.setOnAction(value);
@@ -473,7 +473,7 @@ public class RegisterHomeContentClaim {
 
     /**
      * Sets event handler for the search personal number button of this view.
-     * @param value 
+     * @param value the value to be set
      */
     public void setSearchPersonalNumberButtonEventHandler(EventHandler<ActionEvent> value) {
         searchPersonalNumberButton.setOnAction(value);
@@ -481,7 +481,7 @@ public class RegisterHomeContentClaim {
     
     /**
      * Sets event handler for the select insurance button of this view.
-     * @param value 
+     * @param value the value to be set
      */
     public void setSelectInsuranceButtonEventHandler(EventHandler<ActionEvent> value) {
         selectInsuranceButton.setOnAction(value);
@@ -489,7 +489,7 @@ public class RegisterHomeContentClaim {
     
     /**
      * Sets event handler for the select image button of this view.
-     * @param value 
+     * @param value the value to be set
      */
     public void setSelectImageButtonEventHandler(EventHandler<ActionEvent> value) {
         selectImageButton.setOnAction(value);
@@ -497,7 +497,7 @@ public class RegisterHomeContentClaim {
     
     /**
      * Sets event handler for the register button of this view.
-     * @param value 
+     * @param value the value to be set
      */
     public void setRegisterButtonEventHandler(EventHandler<ActionEvent> value) {
         registerButton.setOnAction(value);
@@ -505,7 +505,7 @@ public class RegisterHomeContentClaim {
     
     /**
      * Sets the event handler for the add item button of this view.
-     * @param event
+     * @param event the event to be set
      */
     public void setAddItemButtonEventHandler(EventHandler<ActionEvent> event) {
         addItemButton.setOnAction(event);
@@ -686,7 +686,7 @@ public class RegisterHomeContentClaim {
     
     /**
      * Adds a claim item to the claim items List of this view.
-     * @param claimItem 
+     * @param claimItem the claimItem to be added
      */
     public void addClaimItem(ClaimItem claimItem) {
         claimItems.add(claimItem);

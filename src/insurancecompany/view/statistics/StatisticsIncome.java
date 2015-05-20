@@ -382,42 +382,42 @@ public class StatisticsIncome {
     }
 
     /**
-     * @param fromMonthCombo the fromMonthCombo to set
+     * @param disavle the disable to set
      */
     public void setFromMonthComboDisable(boolean disable) {
         this.fromMonthCombo.setDisable(disable);
     }
 
     /**
-     * @param fromDayCombo the fromDayCombo to set
+     * @param disable the disable to set
      */
     public void setFromDayComboDisable(boolean disable) {
         this.fromDayCombo.setDisable(disable);
     }
 
     /**
-     * @param toMonthCombo the toMonthCombo to set
+     * @param disable the disable to set
      */
     public void setToMonthComboDisable(boolean disable) {
         this.toMonthCombo.setDisable(disable);
     }
 
     /**
-     * @param toDayCombo the toDayCombo to set
+     * @param disable the disable to set
      */
     public void setToDayComboDisable(boolean disable) {
         this.toDayCombo.setDisable(disable);
     }
 
-    /**
-     * @param event
+    /**Sets event handler
+     * @param event the event to set
      */
     public void setFromYearComboEventHandler(EventHandler<ActionEvent> event) {
         this.fromYearCombo.setOnAction(event);
     }
 
-    /**
-     * @param event
+    /**sets event handler
+     * @param event the event to set
      */
     public void setFromMonthComboEventHandler(EventHandler<ActionEvent> event) {
         this.fromMonthCombo.setOnAction(event);

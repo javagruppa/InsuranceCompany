@@ -40,8 +40,8 @@ public class CarInfoRegister {
     /**
      * Finds and returns the first instance of a CarInfo object with a name
      * that equals the parameter name.
-     * @param name
-     * @return 
+     * @param name the name to search by
+     * @return the name
      */
     public CarInfo findCarByName(String name) {
         for (CarInfo car : cars) {

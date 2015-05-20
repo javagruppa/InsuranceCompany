@@ -162,7 +162,7 @@ public abstract class Insurance implements Serializable {
     /**
      * Saves the insurance to file.
      * 
-     * @throws IOException 
+     * @throws IOException the exception to be thrown
      */
     public static void saveNextIdToFile() throws IOException {
         try (DataOutputStream dos = new DataOutputStream(
@@ -175,7 +175,7 @@ public abstract class Insurance implements Serializable {
     /**
      * Reads the insurance from file.
      * 
-     * @throws IOException 
+     * @throws IOException the exception to be thrown
      */
     public static void readNextIdFromFile() throws IOException {
         try (DataInputStream dis = new DataInputStream(

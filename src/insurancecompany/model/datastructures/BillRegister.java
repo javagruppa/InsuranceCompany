@@ -31,7 +31,7 @@ public class BillRegister {
     /**
      * Adds a new bill to this register if it does not already exist.
      * @param bill bill to be added to the register
-     * @return 
+     * @return the bill
      */
     public boolean addBill(Bill bill) {
         return bills.add(bill);
@@ -87,7 +87,7 @@ public class BillRegister {
     /**
      * Finds and returns a bill based on bill id.
      * @param billId bill id of a bill in the list
-     * @return 
+     * @return the bill
      */
     public Bill getBill(int billId) {
         // Runs through the whole list:
@@ -101,7 +101,7 @@ public class BillRegister {
     
     /**
      * Returns the number of bills in this register.
-     * @return 
+     * @return the size
      */
     public int size() {
         return bills.size();

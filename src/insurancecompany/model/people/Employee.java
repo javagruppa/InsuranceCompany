@@ -69,7 +69,7 @@ public abstract class Employee extends Person implements Serializable {
     /**
      * Saves next ID to file.
      * 
-     * @throws IOException 
+     * @throws IOException the exception to be thrown
      */
     public static void saveNextIdToFile() throws IOException {
         try (DataOutputStream dos = new DataOutputStream(
@@ -82,7 +82,7 @@ public abstract class Employee extends Person implements Serializable {
     /**
      * Reads the next ID from file.
      * 
-     * @throws IOException 
+     * @throws IOException IOException the exception to be thrown
      */
     public static void readNextIdFromFile() throws IOException {
         try (DataInputStream dis = new DataInputStream(

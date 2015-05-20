@@ -108,7 +108,7 @@ public class RegisterCarClaimForm implements Serializable {
 
     /**
      * Sole constructor. Receives a reference to its car claim.
-     * @param carClaimRegistration
+     * @param carClaimRegistration the carclaimregistration to be used
      */
     public RegisterCarClaimForm(RegisterCarClaim carClaimRegistration) {
         this.carClaimRegistration = carClaimRegistration;
@@ -320,7 +320,7 @@ public class RegisterCarClaimForm implements Serializable {
     /**
      * Returns a WriteableImage of a snapshot of the complete car claim
      * form.
-     * @return 
+     * @return a writeable image
      */
     public WritableImage getSnapshotOfCarClaimForm() {
         return scene.snapshot(null);

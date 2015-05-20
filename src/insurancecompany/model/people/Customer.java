@@ -85,7 +85,7 @@ public class Customer extends Person implements Serializable {
     /**
      * Reads next customer ID from file
      * 
-     * @throws IOException 
+     * @throws IOException IOException the exception to be thrown
      */
     public static void readNextIdFromFile() throws IOException {
         try (DataInputStream dis = new DataInputStream(

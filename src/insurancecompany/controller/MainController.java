@@ -2467,6 +2467,11 @@ public class MainController {
             // Get the credit card brand and country. TODO: validation
             String creditCardBrand = registerTravelClaim.getCreditCardBrandField();
             String country = registerTravelClaim.getCountryField();
+            if (country.equals("")){
+                String message = "Land må fylles inn.";
+                registerTravelClaim.setRegisterButtonMessage(message);
+                ok = false;
+            }
             // If all fields are filled in correctly according to what we need to create a
             // claim, we proceed:
             if (ok) {

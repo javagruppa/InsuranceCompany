@@ -14,6 +14,8 @@ import java.util.Set;
  * 
  * @author André
  * @author Sindre
+ * 
+ * @since 19.05.2015
  */
 public class EmployeeRegister {
     /** The file path of the file where the employees are saved. */

@@ -10,6 +10,8 @@ import java.io.Serializable;
  * 
  * @author Sindre
  * @author Carl
+ * 
+ * @since 17.05.2015
  */
 public class TravelInsurance extends Insurance implements Serializable {
     

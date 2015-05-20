@@ -8,6 +8,8 @@ import java.io.Serializable;
  * 
  * @author Carl
  * @author Sindre
+ * 
+ * @since 16.05.2015
  */
 public class Car extends Vehicle implements Serializable {
     

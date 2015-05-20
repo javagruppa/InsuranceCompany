@@ -1,7 +1,4 @@
-/*
- * Here comes the text of your license
- * Each line should be prefixed with  * 
- */
+
 package insurancecompany.view.register.claims;
 
 import insurancecompany.misc.DateUtility;
@@ -38,6 +35,8 @@ import javafx.util.Callback;
  * from the car insurance owner.
  * @author Carl
  * @author André
+ * 
+ * @since 19.05.2015
  */
 public class RegisterCarClaimForm implements Serializable {
       /** SerialVersionUID used to identify this class for object IO */

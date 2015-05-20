@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package insurancecompany.misc.logs;
 
 import insurancecompany.model.people.*;
@@ -11,6 +7,8 @@ import java.util.Calendar;
 /**
  *
  * @author André
+ * 
+ * @since 19.05.2015
  */
 public class Log {
     private Calendar date;

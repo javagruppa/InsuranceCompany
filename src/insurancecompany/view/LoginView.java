@@ -19,6 +19,8 @@ import javafx.stage.Stage;
 /**
  *
  * @author André
+ * 
+ * @since 19.05.2015
  */
 public class LoginView {
     

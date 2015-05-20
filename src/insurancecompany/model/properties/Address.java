@@ -7,6 +7,8 @@ import java.io.Serializable;
  * the address and methods to get the information.
  * 
  * @author Carl
+ * 
+ * @since 15.05.2015
  */
 public class Address implements Serializable {
     private static final long serialVersionUID = 1L;

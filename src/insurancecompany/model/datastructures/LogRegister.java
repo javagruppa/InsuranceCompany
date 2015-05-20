@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package insurancecompany.model.datastructures;
 
 import insurancecompany.misc.logs.Log;
@@ -22,6 +18,8 @@ import java.util.List;
  * to manipulate and get information from the register.
  * 
  * @author André
+ * 
+ * @since 19.05.2015
  */
 public class LogRegister {
     

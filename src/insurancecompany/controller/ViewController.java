@@ -19,6 +19,8 @@ import javafx.stage.Stage;
  * View Controller. This class connects all the views together.
  * @author André
  * @author Sindre
+ * 
+ * @since 19.05.2015
  */
 public class ViewController {
     

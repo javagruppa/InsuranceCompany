@@ -10,6 +10,8 @@ import java.util.Calendar;
  * 
  * @author Carl
  * @author Sindre
+ * 
+ * @since 15.05.2015
  */
 public abstract class Person implements Serializable {
     

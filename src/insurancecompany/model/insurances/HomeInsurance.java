@@ -13,6 +13,8 @@ import java.util.Calendar;
  * 
  * @author Sindre
  * @author Carl
+ * 
+ * @since 17.05.2015
  */
 public class HomeInsurance extends Insurance implements Serializable {
     

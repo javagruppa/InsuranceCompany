@@ -12,6 +12,8 @@ import javafx.scene.image.Image;
  * registered as boat claims
  * @author André
  * @author Carl
+ * 
+ * @since 19.05.2015
  */
 public class BoatClaim extends Claim implements Serializable {
     /** SerialVersionUID used to identify this class for object IO */

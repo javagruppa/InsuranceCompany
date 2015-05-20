@@ -16,6 +16,8 @@ import javafx.scene.image.Image;
  * 
  * @author Carl
  * @author André
+ * 
+ * @since 19.05.2015
  */
 public class HomeClaim extends Claim implements Serializable {
     /** SerialVersionUID used to identify this class for object IO */

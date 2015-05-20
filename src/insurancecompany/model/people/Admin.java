@@ -11,6 +11,8 @@ import java.io.Serializable;
  * 
  * @author Carl
  * @author Sindre
+ * 
+ * @since 15.05.2015
  */
 public class Admin extends Employee implements Serializable {
     /** SerialVersionUID used to identify this class for object IO */

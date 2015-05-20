@@ -17,6 +17,8 @@ import java.util.Set;
  * 
  * @author André
  * @author Sindre
+ * 
+ * @since 19.05.2015
  */
 public class InsuranceRegister {
     /** The file path of the file where the insurances are saved. */

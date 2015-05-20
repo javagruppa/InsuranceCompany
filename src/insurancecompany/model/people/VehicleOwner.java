@@ -10,6 +10,8 @@ import java.io.Serializable;
  * 
  * @author Sindre
  * @author Carl
+ * 
+ * @since 15.05.2015
  */
 public class VehicleOwner extends Person implements Serializable {
     /** SerialVersionUID used to identify this class for object IO */

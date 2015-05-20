@@ -47,6 +47,8 @@ import javafx.scene.text.Text;
  * part is hidden as it has no use.
  * 
  * @author Sindre
+ * 
+ * @since 19.05.2015
  */
 public class SearchInsurances {
     

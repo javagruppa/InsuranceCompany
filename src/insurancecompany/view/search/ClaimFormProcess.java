@@ -1,11 +1,5 @@
 package insurancecompany.view.search;
 
-/*
- * Here comes the text of your license
- * Each line should be prefixed with  * 
- */
-
-
 import insurancecompany.model.insurances.CarInsurance;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -17,9 +11,12 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-/**
- *
+/**the view of already registered CarClaimForms.
+ * For caseworkers.
+ * 
  * @author André
+ * 
+ * @since 19.05.2015
  */
 public class ClaimFormProcess {
     

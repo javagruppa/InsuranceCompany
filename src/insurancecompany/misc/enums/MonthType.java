@@ -4,6 +4,7 @@ package insurancecompany.misc.enums;
  * This enum represents the different months in a year
  * 
  * @author André
+ * @since 19.05.2015
  */
 public enum MonthType {
     JANUARY, 

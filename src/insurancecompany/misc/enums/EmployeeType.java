@@ -4,6 +4,7 @@ package insurancecompany.misc.enums;
  * This enum represents the types of employees that can be registered.
  * 
  * @author André
+ * @since 19.05.2015s
  */
 public enum EmployeeType {
     ADMIN, CASE_WORKER, SERVICE_WORKER;

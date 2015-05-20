@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package insurancecompany.misc.carinfo;
 
 import javax.xml.bind.annotation.XmlAttribute;
@@ -12,6 +8,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 /**
  *
  * @author André
+ * @since 19.05.2015
  */
 @XmlRootElement(name="item")
 public class CarInfo {

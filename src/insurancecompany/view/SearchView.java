@@ -18,6 +18,8 @@ import javafx.scene.layout.HBox;
  * 
  * @author André
  * @author Sindre
+ * 
+ * @since 19.05.2015
  */
 public class SearchView {
     

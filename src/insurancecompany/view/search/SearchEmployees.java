@@ -40,6 +40,8 @@ import javafx.scene.text.Text;
  * <p> On the right the employee selected in the table is shown.
  * 
  * @author Sindre
+ * 
+ * @since 19.05.2015
  */
 public class SearchEmployees {
     

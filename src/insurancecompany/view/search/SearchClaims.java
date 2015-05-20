@@ -48,6 +48,8 @@ import javafx.scene.text.Text;
  * claim.
  * 
  * @author Sindre
+ * 
+ * @since 19.05.2015
  */
 public class SearchClaims {
     

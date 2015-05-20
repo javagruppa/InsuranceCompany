@@ -14,6 +14,7 @@ import javafx.scene.image.Image;
  * 
  * @author André
  * @author Carl
+ * @since 19.05.2015
  */
 public class ContentClaim extends Claim implements Serializable {
     /** SerialVersionUID used to identify this class for object IO */

@@ -7,6 +7,8 @@ import java.io.Serializable;
  * the property and methods to manipulate and get the information.
  * 
  * @author Sindre
+ * 
+ * @since 15.05.2015
  */
 public class Property implements Serializable {
     private static final long serialVersionUID = 1L;

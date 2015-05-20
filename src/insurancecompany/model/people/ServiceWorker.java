@@ -10,6 +10,8 @@ import java.io.Serializable;
  * 
  * @author Carl
  * @author Sindre
+ * 
+ * @since 15.05.2015
  */
 public class ServiceWorker extends Employee implements Serializable {
     private static final long serialVersionUID = 1L;

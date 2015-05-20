@@ -95,6 +95,7 @@ public abstract class Claim implements Serializable {
         this.image = image;
         // Set the date to current date:
         date = Calendar.getInstance();
+        //date.add(Calendar.MONTH, -2); // Used for testing.
         // Set unique claim id, aswell as uppdating next claim id:
         claimId = nextClaimId++;
     }

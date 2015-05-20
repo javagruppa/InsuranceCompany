@@ -247,7 +247,7 @@ public class ModelController {
                 if (!bill.isPaid()) {
                     bill.setPaid(true);
                     Calendar date = Calendar.getInstance();
-                    //date.add(Calendar.DAY_OF_MONTH, -10); // Used for testing
+                    //date.add(Calendar.YEAR, -1); // Used for testing
                     bill.setPayedDate(date);
                 }
             }

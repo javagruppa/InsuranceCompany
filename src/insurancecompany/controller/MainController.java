@@ -239,6 +239,13 @@ public class MainController {
 
     }
     
+    /**
+     * Sets the primaryStage. Initializes the primary stages StageStyle.
+     * Initializes loginStage and shows this in the loginView.show()
+     * method.
+     * 
+     * @param stage sets the primaryStage
+     */
     public void show(Stage stage) {
         this.primaryStage = stage;
         primaryStage.initStyle(StageStyle.UNDECORATED);
@@ -250,23 +257,28 @@ public class MainController {
         //mainView.setStage(primaryStage);
     }
     
+    // Initializes all event handlers:
     private void initializeEventHandlers() {
+        initializeRegisterPersonsEventHandlers();
         initializeRegisterInsuranceEventHandlers();
         initializeRegisterClaimEventHandlers();
         initializeSearchEventHandlers();
         initializeStatisticsEventHandlers();
+        
         mainView.setSaveDataButtonEventHandler(this::mainViewSaveDataButtonEventHandler);
         mainView.setLogOutButtonEventHandler(this::mainViewLogOutButtonEventHandler);
         mainView.setExitButtonEventHandler(this::mainViewExitButtonEventHandler);
         
         loginView.setLoginButtonEventHandler(this::loginViewLoginButtonEventHandler);
-        
-        
-        registerCustomer.setRegisterEventHandler(this::registerCustomerButtonEventHandler);
-        registerEmployee.setRegisterEventHandler(this::registerEmployeeButtonEventHandler);
-
     }
     
+    // Initializes register person event handlers:
+    private void initializeRegisterPersonsEventHandlers() {
+        registerCustomer.setRegisterEventHandler(this::registerCustomerButtonEventHandler);
+        registerEmployee.setRegisterEventHandler(this::registerEmployeeButtonEventHandler);
+    }
+    
+    // Initializes register insurances event handlers:
     private void initializeRegisterInsuranceEventHandlers() {
         registerBoatInsurance.setRegisterEventHandler(this::boatInsuranceRegisterButtonEventHandler);
         registerBoatInsurance.setSearchCustomerIdEventHandler(this::boatInsuranceSearchCustomerIdButtonEventHandler);
@@ -298,7 +310,8 @@ public class MainController {
         registerTravelInsurance.setSearchCustomerIdEventHandler(this::travelInsuranceSearchCustomerIdButtonEventHandler);
         registerTravelInsurance.setSearchPersonalNumberEventHandler(this::travelInsuranceSearchPersonalNumberButtonEventHandler);
     } // end of class initializeRegisterInsuranceEventHandlers
- 
+    
+    // Initializes register claim event handlers:
     private void initializeRegisterClaimEventHandlers() {
         registerCarClaim.setRegisterButtonEventHandler(this::carClaimRegisterButtonEventHandler);
         registerCarClaim.setSearchCustomerIdButtonEventHandler(this::carClaimSearchCustomerIdButtonEventHandler);
@@ -347,7 +360,8 @@ public class MainController {
         registerTravelClaim.setAddItemButtonEventHandler(this::travelClaimAddItemButtonEventHandler);
         
     } // end of class initializeRegisterClaimEventHandlers
-        
+    
+    // Initializes search event handlers:
     private void initializeSearchEventHandlers() {
         searchClaims.setClaimTypeEventHandler(this::searchClaimsTypeEventHandler);
         searchClaims.setDisbursementEventHandler(this::searchClaimsDisbursementEventHandler);
@@ -373,6 +387,7 @@ public class MainController {
         searchInsurances.setSelectEventHandler(this::searchInsuranceSelectEventHandler);
     } // end of class initializeSearchEventHandlers
     
+    // Initializes statistics event handlers:
     private void initializeStatisticsEventHandlers() {
         statisticsIncome.setSearchEventHandler(this::statisticsIncomeSearchButtonEventHandler);
         statisticsIncome.setFromYearComboEventHandler(this::statisticsIncomeFromYearComboEventHandler);
@@ -383,6 +398,7 @@ public class MainController {
         statisticsDisbursements.setFromMonthComboEventHandler(this::statisticsDisbursementFromMonthComboEventHandler);
     }
     
+    // Saves all data to file
     private void mainViewSaveDataButtonEventHandler(ActionEvent event) {
         writeBillsToFile();
         writeClaimsToFile();
@@ -399,15 +415,18 @@ public class MainController {
         writeLogsToFile();
     }
     
+    // Logs the user out of the mainView and over to the loginView:
     private void mainViewLogOutButtonEventHandler(ActionEvent event) {
         primaryStage.close();
         loginStage.show();
     }
     
+    // Exits the program:
     private void mainViewExitButtonEventHandler(ActionEvent event) {
         Platform.exit();
     }    
     
+    // Validates the login info and logs the user in to the mainView:
     private void loginViewLoginButtonEventHandler(ActionEvent event) {
         String employeeIdString = loginView.getUserTextField();
         int employeeId = 0;
@@ -436,6 +455,7 @@ public class MainController {
         mainView.show(primaryStage);
     }
     
+    // Reads all data from file:
     private void readAllDataFromFile() {
         readBillIdFromFile();
         readBillsFromFile();
@@ -741,6 +761,7 @@ public class MainController {
     
     // STATISTICS DISBURSEMENT EVENT HANDLERS
     
+    // Disables or enables date comboboxes:
     private void statisticsDisbursementFromYearComboEventHandler(ActionEvent event) {
         if (statisticsDisbursements.getFromYearComboValue().equals("")) {
             // Disable month and day comboboxes:
@@ -755,6 +776,7 @@ public class MainController {
         }
     }
     
+    // Disables or enables date comboboxes:
     private void statisticsDisbursementFromMonthComboEventHandler(ActionEvent event) {
         if (statisticsDisbursements.getFromMonthComboValue().equals("")) {
             // Disable day comboboxes:
@@ -767,6 +789,7 @@ public class MainController {
         }
     }
     
+    // Populates the disbursement statistics chart:
     private void statisticsDisbursementSearchButtonEventHandler(ActionEvent event) {
         statisticsDisbursements.clearMessages();
         String type = statisticsDisbursements.getClaimType();
@@ -873,6 +896,7 @@ public class MainController {
     
     // STATISTICS INCOME EVENT HANDLERS
     
+    // Disables or enables date comboboxes:
     private void statisticsIncomeFromYearComboEventHandler(ActionEvent event) {
         if (statisticsIncome.getFromYearComboValue().equals("")) {
             // Disable month and day comboboxes:
@@ -887,6 +911,7 @@ public class MainController {
         }
     }
     
+    // Disables or enables date comboboxes:
     private void statisticsIncomeFromMonthComboEventHandler(ActionEvent event) {
         if (statisticsIncome.getFromMonthComboValue().equals("")) {
             // Disable day comboboxes:
@@ -899,6 +924,7 @@ public class MainController {
         }
     }
     
+    // Populates the income statistics chart:
     private void statisticsIncomeSearchButtonEventHandler(ActionEvent event) {
         statisticsIncome.clearMessages();
         String type = statisticsIncome.getInsuranceType();
@@ -1006,6 +1032,7 @@ public class MainController {
     
     // CAR CLAIM REGISTRATION EVENT HANDLERS
     
+    // Opens up a car claim form view:
     private void carClaimOpenClaimFormButtonEventHandler(ActionEvent event) {
         // Clear the previous claim form message:
         registerCarClaim.setClaimFormMessage("");
@@ -1057,6 +1084,7 @@ public class MainController {
         }
     }
     
+    // Validates and register a car claim:
     private void carClaimRegisterButtonEventHandler(ActionEvent event) {
         boolean ok = true;
         // Clears the previous status messages:
@@ -1210,6 +1238,7 @@ public class MainController {
         }   
     }
     
+    // Searches for customer id:
     private void carClaimSearchCustomerIdButtonEventHandler(ActionEvent event) {
         String customerIdString = registerCarClaim.getCustomerId();
         int customerId;
@@ -1247,6 +1276,7 @@ public class MainController {
         }
     }
     
+    // Searches for a personal number:
     private void carClaimSearchPersonalNumberButtonEventHandler(ActionEvent event) {
         String personalNumber = registerCarClaim.getPersonalNumber();
         if(personalNumber.equals("")) {
@@ -1277,6 +1307,7 @@ public class MainController {
         }
     }
     
+    // Selects an insurance:
     private void carClaimSelectInsuranceButtonEventHandler(ActionEvent event) {
         registerCarClaim.clearMessages();
         Insurance insurance = registerCarClaim.getInsuranceTableValue();
@@ -1292,6 +1323,7 @@ public class MainController {
         }
     }
     
+    // Selects an image:
     private void carClaimSelectImageButtonEventHandler(ActionEvent event) {
         // Initialize a file chooser:
         FileChooser fileChooser = new FileChooser();
@@ -1325,6 +1357,7 @@ public class MainController {
     
     // BOAT CLAIM REGISTRATION EVENT HANDLERS
     
+    // Validates and registers a boat claim:
     private void boatClaimRegisterButtonEventHandler(ActionEvent event) {
         boolean ok = true;
         // Clears the previous status messages:
@@ -1410,6 +1443,7 @@ public class MainController {
         }
     }
     
+    // 
     private void boatClaimSearchCustomerIdButtonEventHandler(ActionEvent event) {
         String customerIdString = registerBoatClaim.getCustomerId();
         int customerId;

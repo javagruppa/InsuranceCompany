@@ -81,7 +81,7 @@ public class ModelController {
     }
     
     /**
-     * Returns all ansurances based on the specified personal number of the 
+     * Returns all insurances based on the specified personal number of the 
      * desired customer.
      * 
      * @param personalNumber The specified personal number of the customer.

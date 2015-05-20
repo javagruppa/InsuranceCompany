@@ -122,7 +122,7 @@ public class CustomerRegister {
     /**
      * Writes this registers set of customers to file.
      * 
-     * @throws IOException 
+     * @throws IOException the exception to be thrown
      */
     public void writeCustomersToFile() throws IOException{
         try (ObjectOutputStream oos = new ObjectOutputStream(
@@ -134,8 +134,8 @@ public class CustomerRegister {
      * Reads a set of customers from file and stores them in the set in this 
      * register.
      * 
-     * @throws IOException
-     * @throws ClassNotFoundException 
+     * @throws IOException the exception to be thrown
+     * @throws ClassNotFoundException the exception to be thrown
      */
     public void readCustomersFromFile() throws IOException, ClassNotFoundException {
         try (ObjectInputStream ois = new ObjectInputStream(

@@ -184,7 +184,7 @@ public class ClaimRegister {
     /**
      * Writes this registers set of claims to file.
      * 
-     * @throws IOException 
+     * @throws IOException the exception to be thrown
      */
     public void writeClaimsToFile() throws IOException{
         try (ObjectOutputStream oos = new ObjectOutputStream(
@@ -197,8 +197,8 @@ public class ClaimRegister {
      * Reads a set of claims from file and stores them in the set in this 
      * register.
      * 
-     * @throws IOException
-     * @throws ClassNotFoundException 
+     * @throws IOException the exception to be thrown
+     * @throws ClassNotFoundException  the exception to be thrown
      */
     public void readClaimsFromFile() throws IOException, ClassNotFoundException {
         try (ObjectInputStream ois = new ObjectInputStream(

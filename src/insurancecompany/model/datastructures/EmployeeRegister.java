@@ -107,7 +107,7 @@ public class EmployeeRegister {
     /**
      * Writes this registers set of employees to file.
      * 
-     * @throws IOException 
+     * @throws IOException the exception to be thrown
      */
     public void writeEmployeesToFile() throws IOException{
         try (ObjectOutputStream oos = new ObjectOutputStream(
@@ -120,8 +120,8 @@ public class EmployeeRegister {
      * Reads a set of employees from file and stores them in the set in this 
      * register.
      * 
-     * @throws IOException
-     * @throws ClassNotFoundException 
+     * @throws IOException the exception to be thrown
+     * @throws ClassNotFoundException the exception to be thrown
      */
     public void readEmployeesFromFile() throws IOException, ClassNotFoundException {
         try (ObjectInputStream ois = new ObjectInputStream(

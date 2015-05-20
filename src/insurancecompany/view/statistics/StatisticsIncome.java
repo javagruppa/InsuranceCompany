@@ -382,7 +382,7 @@ public class StatisticsIncome {
     }
 
     /**
-     * @param disavle the disable to set
+     * @param disable the disable to set
      */
     public void setFromMonthComboDisable(boolean disable) {
         this.fromMonthCombo.setDisable(disable);

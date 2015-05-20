@@ -104,7 +104,7 @@ public abstract class Claim implements Serializable {
     /**
      * Saves the image of the claim to file.
      * @param out the out to be saved
-     * @throws IOException 
+     * @throws IOException  the exception to be thrown
      */
     private void writeObject(ObjectOutputStream out) throws IOException {
         out.defaultWriteObject();
@@ -120,8 +120,8 @@ public abstract class Claim implements Serializable {
     /** Reads object(s) from file.
      * 
      * @param in the object to be read
-     * @throws IOException
-     * @throws ClassNotFoundException 
+     * @throws IOException the exception to be thrown
+     * @throws ClassNotFoundException the exception to be thrown
      */
     private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
         in.defaultReadObject();

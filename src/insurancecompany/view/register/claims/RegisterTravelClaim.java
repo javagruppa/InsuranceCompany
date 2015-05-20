@@ -487,7 +487,7 @@ public class RegisterTravelClaim {
 
     /**
      * Sets event handler for the search personal number button of this view.
-     * @param value 
+     * @param value the value to be set
      */
     public void setSearchPersonalNumberButtonEventHandler(EventHandler<ActionEvent> value) {
         searchPersonalNumberButton.setOnAction(value);

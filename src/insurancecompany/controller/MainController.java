@@ -139,6 +139,9 @@ public class MainController {
     private static final String NO_DATE_MESSAGE = "Du har ikke valgt noen dato.";
     private static final String DESCRIPTION_EMPTY_MESSAGE = "Du må skrive inn en beskrivelse.";
     
+    /**
+     * Constructs the new maincontroller
+     */
     public MainController()  {
         
         user = new Admin("asd", "asd", "asd", "asd", null, "asd");

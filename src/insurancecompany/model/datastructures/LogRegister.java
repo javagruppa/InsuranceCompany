@@ -33,42 +33,61 @@ public class LogRegister {
         logs = new ArrayList<>();
     }
     
-    /** Adds a log */
+    /** Adds a log
+     * @param log the log to add
+     */
     public void add(Log log) {
         logs.add(log);
     }
     
-    /** Adds a log from string message */
+    /** Adds a log from string message
+     * @param message the message to add
+     */
     public void add(String message) {
         Log log = new Log(message);
         add(log);
     }
     
-    /** Adds a log from sting message and user */
+    /** Adds a log from sting message and user
+     * @param message the message to add
+     * @param user the user to add
+     */
     public void add(String message, Person user) {
         Log log = new Log(message, user);
         add(log);
     }
     
-    /** Adds a lot from stackTrace */
+    /** Adds a lot from stackTrace
+     * @param stackTrace the stacktrace to add
+     */
     public void add(StackTraceElement[] stackTrace) {
         Log log = new Log(stackTrace);
         add(log);
     }
     
-    /**Adds a log from StackTrace and user */
+    /**Adds a log from StackTrace and user
+     * @param stackTrace the stacktrace to add
+     * @param user the user to add
+     */ 
     public void add(StackTraceElement[] stackTrace, Person user) {
         Log log = new Log(stackTrace, user);
         add(log);
     }
     
-    /** Adds a log from stackTrace and string message */
+    /** Adds a log from stackTrace and string message
+     * @param stackTrace the stacktrace to add
+     * @param message the message to add
+     */
     public void add(StackTraceElement[] stackTrace, String message) {
         Log log = new Log(stackTrace, message);
         add(log);
     }
     
-    /** Adds a log from stackTrace, string message and user */
+    /** Adds a log from stackTrace, string message and user
+     * @param stackTrace the stacktrace to add
+     * @param message the message to add
+     * @param user the user to add
+     */
     public void add(StackTraceElement[] stackTrace, String message, Person user) {
         Log log = new Log(stackTrace, message, user);
         add(log);
@@ -90,7 +109,7 @@ public class LogRegister {
     
     /**
      * Writes data to file
-     * @throws IOException 
+     * @throws IOException the exception to be thrown
      */
     public void writeToFile() throws IOException {
         // Will only write to file if this log register is not empty:

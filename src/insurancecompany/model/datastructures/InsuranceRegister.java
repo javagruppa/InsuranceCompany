@@ -230,7 +230,7 @@ public class InsuranceRegister {
     /**
      * Writes this registers set of insurances to file.
      * 
-     * @throws IOException 
+     * @throws IOException the exception to be thrown
      */
     public void writeInsurancesToFile() throws IOException{
         try (ObjectOutputStream oos = new ObjectOutputStream(
@@ -243,8 +243,8 @@ public class InsuranceRegister {
      * Reads a set of insurances from file and stores them in the set in this 
      * register.
      * 
-     * @throws IOException
-     * @throws ClassNotFoundException 
+     * @throws IOException the exception to be thrown
+     * @throws ClassNotFoundException the exception to be thrown
      */
     public void readInsurancesFromFile() throws IOException, ClassNotFoundException {
         try (ObjectInputStream ois = new ObjectInputStream(

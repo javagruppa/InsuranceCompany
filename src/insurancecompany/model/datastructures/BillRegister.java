@@ -109,9 +109,9 @@ public class BillRegister {
     
     /**
      * Returns all the bills between the two dates in the parameter.
-     * @param from
-     * @param to
-     * @return 
+     * @param from start date
+     * @param to end date
+     * @return the list of bills
      */
     public List<Bill> billsIssuedBetweenDates(Calendar from, Calendar to) {
         List<Bill> result = new ArrayList<>();
@@ -189,7 +189,7 @@ public class BillRegister {
      
     /**
      * Writes this registers set of bills to file.
-     * @throws IOException 
+     * @throws IOException the exception to be thrown 
      */
     public void writeBillsToFile() throws IOException{
         try (ObjectOutputStream oos = new ObjectOutputStream(
@@ -199,8 +199,8 @@ public class BillRegister {
     }
     /**
      * Reads a set of bills from file and stores them in the set in this register.
-     * @throws IOException
-     * @throws ClassNotFoundException 
+     * @throws IOException the exception to be thrown
+     * @throws ClassNotFoundException  the exception to be thrown
      */
     public void readBillsFromFile() throws IOException, ClassNotFoundException {
         try (ObjectInputStream ois = new ObjectInputStream(

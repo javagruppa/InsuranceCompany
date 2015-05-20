@@ -404,7 +404,7 @@ public class StatisticsDisbursements {
     }
 
     /**Sets event handler
-     * @param eventthe event to be set
+     * @param event the event to be set
      */
     public void setFromYearComboEventHandler(EventHandler<ActionEvent> event) {
         this.fromYearCombo.setOnAction(event);

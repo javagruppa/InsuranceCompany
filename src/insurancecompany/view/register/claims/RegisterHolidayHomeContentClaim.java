@@ -506,7 +506,7 @@ public class RegisterHolidayHomeContentClaim {
     
     /**
      * Sets the event handler for the add item button of this view.
-     * @param eventthe value t be set
+     * @param event the value t be set
      */
     public void setAddItemButtonEventHandler(EventHandler<ActionEvent> event) {
         addItemButton.setOnAction(event);

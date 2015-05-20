@@ -64,7 +64,7 @@ public class MainView extends Application {
     /**
      * Shows the start stage
      * @param stage the stage to be set
-     * @throws Exception 
+     * @throws Exception exception that is thrown
      */
     @Override
     public void start(Stage stage) throws Exception {

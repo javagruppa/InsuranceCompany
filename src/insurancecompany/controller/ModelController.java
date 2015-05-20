@@ -53,12 +53,12 @@ public class ModelController {
      * Constructor that initializes all models, which are specified as 
      * parameters.
      * 
-     * @param billRegister
-     * @param claimRegister
-     * @param customerRegister
-     * @param employeeRegister
-     * @param insuranceRegister
-     * @param logRegister 
+     * @param billRegister to be initialized
+     * @param claimRegister to be initialized
+     * @param customerRegister to be initialized
+     * @param employeeRegister to be initialized
+     * @param insuranceRegister to be initialized
+     * @param logRegister  to be initialized
      */
     public ModelController(BillRegister billRegister, ClaimRegister claimRegister, 
             CustomerRegister customerRegister, EmployeeRegister employeeRegister, 

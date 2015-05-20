@@ -76,6 +76,7 @@ public abstract class Claim implements Serializable {
     
     /**
      * Constructs a claim with the specified parameters. Also includes image.
+     * @param customerId customer id of the customer
      * @param insuranceId the insurance Id of the insurance this claim is for
      * @param description description of the damage/claim
      * @param dateHappened the date the damage/accident happened
@@ -132,7 +133,7 @@ public abstract class Claim implements Serializable {
     
     /**
      * Sets owner to this claim.
-     * @param owner the owner of this claim
+     * @param customerId customerId of the owner
      */
     public void setOwner(int customerId) {
         this.customerId = customerId;
@@ -236,7 +237,7 @@ public abstract class Claim implements Serializable {
     
     /**
      * Saves the next id to file
-     * @throws IOException 
+     * @throws IOException exception that is thrown
      */
     public static void saveNextIdToFile() throws IOException {
         try (DataOutputStream dos = new DataOutputStream(
@@ -248,7 +249,7 @@ public abstract class Claim implements Serializable {
     
     /**
      * reads the next Id from file
-     * @throws IOException 
+     * @throws IOException exception that is thrown
      */
     public static void readNextIdFromFile() throws IOException {
         try (DataInputStream dis = new DataInputStream(
@@ -260,6 +261,7 @@ public abstract class Claim implements Serializable {
     
     /**
      * Uploads an image
+     * @param image to be uploaded
      */
     public void uploadImage(Image image) {
         this.image = image;

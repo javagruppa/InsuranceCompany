@@ -72,7 +72,7 @@ public class Customer extends Person implements Serializable {
     /**
      * Saves the new customer ID to file
      * 
-     * @throws IOException 
+     * @throws IOException exception that is thrown
      */
     public static void saveNextIdToFile() throws IOException {
         try (DataOutputStream dos = new DataOutputStream(

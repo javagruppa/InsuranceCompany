@@ -11,7 +11,9 @@ import javafx.scene.image.Image;
 import javax.imageio.ImageIO;
 
 /**
- *
+ * Abstract super class to all claims.
+ * This represents any claim registered in the application.
+ * 
  * @author André
  * @author Carl
  * 
@@ -69,6 +71,9 @@ public abstract class Claim implements Serializable {
         claimId = nextClaimId++;
     }
     
+    // There are 2 constructors of claims. This is done so a claim may be
+    // registered both with or without an image attached.
+    
     /**
      * Constructs a claim with the specified parameters. Also includes image.
      * @param insuranceId the insurance Id of the insurance this claim is for
@@ -94,6 +99,11 @@ public abstract class Claim implements Serializable {
         claimId = nextClaimId++;
     }
     
+    /**
+     * Saves the image of the claim to file.
+     * @param out the out to be saved
+     * @throws IOException 
+     */
     private void writeObject(ObjectOutputStream out) throws IOException {
         out.defaultWriteObject();
         if (image != null) {
@@ -105,6 +115,12 @@ public abstract class Claim implements Serializable {
         }
     }
 
+    /** Reads object(s) from file.
+     * 
+     * @param in the object to be read
+     * @throws IOException
+     * @throws ClassNotFoundException 
+     */
     private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
         in.defaultReadObject();
         if (in.readBoolean() == true) {
@@ -279,6 +295,10 @@ public abstract class Claim implements Serializable {
         return result;
     }
     
+    /**
+     * Creates a string representation of the claim.
+     * @return a string representation of the claim.
+     */
     @Override
     public String toString() {
         // Creates a StringBuilder which will be returned at the end of the 

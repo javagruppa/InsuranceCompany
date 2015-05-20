@@ -96,6 +96,19 @@ public class ClaimRegister {
         return claims;
     }
     
+    /**
+     * Gets all disbursements from a certain date.
+     * If any parameter is null, the method will return data using the
+     * information applicable.
+     * 
+     * @param year the year
+     * @param month the month
+     * @param day the date
+     * @param type the type
+     * @param customerId the customerId
+     * @param insuranceId the insuranceId
+     * @return all disbursements found
+     */
     public double getDisbursementAtDate(int year, int month, int day, String type, 
             int customerId, int insuranceId) {
         double result = 0;
@@ -113,6 +126,16 @@ public class ClaimRegister {
         return result;
     }
     
+    /**
+     * Gets the oldest disbursement date found with the given parameters.
+     * If any parameters are missing, the method will work with the information
+     * applicable
+     * 
+     * @param type the type
+     * @param customerId the customerId
+     * @param insuranceId the insuranceId
+     * @return the oldest disbursement date found
+     */
     public Calendar getOldestDisbursementDate(String type, int customerId, int insuranceId) {
         Calendar oldest = null;
         for (Claim claim : claims) {
@@ -131,6 +154,15 @@ public class ClaimRegister {
         return oldest;
     }
     
+    /** Gets the newest disbursement date found with the given parameters.
+     * If any parameters are missing, the method will work with the information
+     * applicable
+     * 
+     * @param type the type
+     * @param customerId the cutomerId
+     * @param insuranceId the insuranceId
+     * @return the newest disbursement date found.
+     */
     public Calendar getNewestDisbursementDate(String type, int customerId, int insuranceId) {
         Calendar newest = null;
         for (Claim claim : claims) {

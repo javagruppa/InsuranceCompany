@@ -28,44 +28,56 @@ public class LogRegister {
     /** List of logs from Exceptions etc. */
     private List<Log> logs;
     
+    /** New arraylist of logs */
     public LogRegister() {
         logs = new ArrayList<>();
     }
     
+    /** Adds a log */
     public void add(Log log) {
         logs.add(log);
     }
     
+    /** Adds a log from string message */
     public void add(String message) {
         Log log = new Log(message);
         add(log);
     }
     
+    /** Adds a log from sting message and user */
     public void add(String message, Person user) {
         Log log = new Log(message, user);
         add(log);
     }
     
+    /** Adds a lot from stackTrace */
     public void add(StackTraceElement[] stackTrace) {
         Log log = new Log(stackTrace);
         add(log);
     }
     
+    /**Adds a log from StackTrace and user */
     public void add(StackTraceElement[] stackTrace, Person user) {
         Log log = new Log(stackTrace, user);
         add(log);
     }
     
+    /** Adds a log from stackTrace and string message */
     public void add(StackTraceElement[] stackTrace, String message) {
         Log log = new Log(stackTrace, message);
         add(log);
     }
     
+    /** Adds a log from stackTrace, string message and user */
     public void add(StackTraceElement[] stackTrace, String message, Person user) {
         Log log = new Log(stackTrace, message, user);
         add(log);
     }
     
+    /**
+     * Returns a string representation for this set of logs.
+     * @return a string representation for this set of logs.
+     */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -76,6 +88,10 @@ public class LogRegister {
         return sb.toString();
     }
     
+    /**
+     * Writes data to file
+     * @throws IOException 
+     */
     public void writeToFile() throws IOException {
         // Will only write to file if this log register is not empty:
         if (!logs.isEmpty()) {

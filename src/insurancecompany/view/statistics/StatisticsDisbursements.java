@@ -134,6 +134,7 @@ public class StatisticsDisbursements {
         
         final NumberAxis yAxis = new NumberAxis();
         xAxis.setLabel("Dato");
+        yAxis.setLabel("Kroner");
         lineChart = new LineChart<String,Number>(xAxis,yAxis);
         lineChart.setTitle("Utbetalinger");
         series = new XYChart.Series();

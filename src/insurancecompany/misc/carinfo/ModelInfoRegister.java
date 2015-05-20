@@ -10,7 +10,9 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- *
+ * This class acts as a receiver for unmarshalling our Car_makes_and_models.xml
+ * This class contains a list of ModelInfo objects.
+ * 
  * @author André
  * @since 19.05.2015
  */

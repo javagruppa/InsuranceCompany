@@ -28,7 +28,10 @@ public class ModelInfoRegister {
         return models;
     }
 
-    
+    /**
+     * 
+     * @param models model to set
+     */
     @XmlElement(name="model")
     public void setModels(List<ModelInfo> models) {
         this.models = models;

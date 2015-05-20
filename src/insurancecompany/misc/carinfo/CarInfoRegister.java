@@ -28,7 +28,10 @@ public class CarInfoRegister {
         return cars;
     }
 
-    
+    /**
+     * 
+     * @param cars to set
+     */
     @XmlElement(name="item")
     public void setCars(List<CarInfo> cars) {
         this.cars = cars;
@@ -49,6 +52,10 @@ public class CarInfoRegister {
         return null;
     }
     
+    /**
+     * 
+     * @param carInfo carInfo to be added to the register
+     */
     public void add(CarInfo carInfo) {
          if( this.cars == null )
         {

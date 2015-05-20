@@ -5055,6 +5055,9 @@ public class MainController {
         }
     }
     
+    /**
+     * Writes logs to a text file.
+     */
     public void writeLogsToFile() {
         try {
             logs.writeToFile();

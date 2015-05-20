@@ -33,6 +33,7 @@ public class ServiceWorker extends Employee implements Serializable {
     }
     
     /** @return The type of employee in form of a String. */
+    @Override
     public String getType() {
         return EmployeeType.SERVICE_WORKER.toString();
     }  

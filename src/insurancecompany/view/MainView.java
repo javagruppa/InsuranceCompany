@@ -52,17 +52,29 @@ public class MainView extends Application {
     private Button exitButton;
     private Text userStatusText;
     
+    /**
+     * Construcs the main view
+     */
     public MainView() {
         initializeViews();
         scene = new Scene(mainPane, 1280, 700);
         scene.getStylesheets().add("insurancecompany/resources/css/stylesheet.css");       
     }
     
+    /**
+     * Shows the start stage
+     * @param stage the stage to be set
+     * @throws Exception 
+     */
     @Override
     public void start(Stage stage) throws Exception {
         show(stage);
     }
     
+    /**
+     * Shows the stage
+     * @param stage the stage to be shown
+     */
     public void show(Stage stage) {
         primaryStage = stage;
         primaryStage.setTitle("Kunderegistrering");
@@ -70,6 +82,9 @@ public class MainView extends Application {
         primaryStage.show();
     }
     
+    /**
+     * Initializes the views
+     */
     private void initializeViews() {
         mainPane = new BorderPane();
         VBox vbox = new VBox();
@@ -79,6 +94,10 @@ public class MainView extends Application {
         mainPane.setTop(vbox);
     }
     
+    /**
+     * Creates and returns the toolbar.
+     * @return the toolbar
+     */
     private HBox createToolBar() {
         HBox hbox = new HBox();
         hbox.setStyle("-fx-background-color: #6577A1;");
@@ -113,6 +132,10 @@ public class MainView extends Application {
         return hbox;
     }
     
+    /**
+     * Creates and returns the status bar
+     * @return the status bar
+     */
     private HBox createStatusBar() {
         HBox hbox = new HBox();
         hbox.setPadding(new Insets(5, 0, 5, 0));
@@ -124,45 +147,83 @@ public class MainView extends Application {
     }
     
     // GET MAIN PANE
-    
+    /**
+     * 
+     * @return the main pane
+     */
     public BorderPane getMainPane() {
         return mainPane;
     }
     
     // SET EVENT HANDLERS
-
+/**
+ * Sets event handler for register button
+ * @param value the value to be set
+ */
     public void setRegisterButtonEventHandler(EventHandler<ActionEvent> value) {
         registerTabButton.setOnAction(value);
     }
     
+    /**
+     * Sets event handler for search button
+     * @param value the value to be set
+     */
     public void setSearchButtonEventHandler(EventHandler<ActionEvent> value) {
         searchTabButton.setOnAction(value);
     }
 
+    /**
+     * Sets event handler for statistics button
+     * @param value the value to be set
+     */
     public void setStatisticsButtonEventHandler(EventHandler<ActionEvent> value) {
         statisticsTabButton.setOnAction(value);
     }
     
+    /**
+     * Sets event handler for save button
+     * @param value the value to be set
+     */
     public void setSaveDataButtonEventHandler(EventHandler<ActionEvent> value) {
         saveDataButton.setOnAction(value);
     }
 
+    /**
+     * Sets event handler for logout button.
+     * @param value the value to be set
+     */
     public void setLogOutButtonEventHandler(EventHandler<ActionEvent> value) {
         logOutButton.setOnAction(value);
     }
 
+    /**
+     * Sets event handler for exit button
+     * @param value the value to be set
+     */
     public void setExitButtonEventHandler(EventHandler<ActionEvent> value) {
         exitButton.setOnAction(value);
     }
     
+    /**
+     * Sets event handler for toolbar on mouse click
+     * @param value the value to be set
+     */
     public void setToolbarOnMouseClickedEventHandler(EventHandler<MouseEvent> value) {
         toolBarPane.setOnMouseClicked(value);
     }
     
+    /**
+     * Sets event handler for toolbar on mouse drag
+     * @param value the value to be set
+     */
     public void setToolbarOnMouseDraggedEventHandler(EventHandler<MouseEvent> value) {
         toolBarPane.setOnMouseDragged(value);
     }
     
+    /**
+     * Sets event handler for toolbar on mouse press
+     * @param value the value to be set
+     */
     public void setToolbarOnMousePressedEventHandler(EventHandler<MouseEvent> value) {
         toolBarPane.setOnMousePressed(value);
     }

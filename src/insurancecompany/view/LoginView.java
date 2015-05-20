@@ -16,8 +16,13 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+
+/** The login view of the application.
+ *
+=======
 /**
  * This class represents a login window.
+>>>>>>> origin/master
  * @author André
  * 
  * @since 19.05.2015
@@ -33,9 +38,11 @@ public class LoginView {
     private Text pwMessage;
     private Text inputMessage;
     
+    /**
+     * Constructs and sets up the login view.
+     */
     public LoginView() {
-        
-        
+               
         GridPane gridPane = new GridPane();
         gridPane.setId("loginPane");
         
@@ -89,31 +96,51 @@ public class LoginView {
         
     }
     
+    /**
+     * Shows the view.
+     * @param stage the stage to be set
+     */
     public void show(Stage stage) {
         stage.setTitle("Innlogging");
         stage.setScene(scene);
         stage.show();
     }
     
+    /**
+     * Returns the login button
+     * @return the login button
+     */
     public Button getLoginBtn() {
         return loginButton;
     }
     
+    /**
+     * 
+     * @return the text from the userTextField
+     */
     public String getUserTextField() {
         return userTextField.getText();
     }
     
+    /**
+     * 
+     * @return  the text from the passwordField
+     */
     public String getPwField() {
         return pwField.getText();
     }
     
+    /**
+     * 
+     * @return  whether or not the fullscreen-box is checked
+     */
     public boolean getFullScreenCheckBoxValue() {
         return fullScreenCheckBox.isSelected();
     }
 
-    /**
+    /**Ssets the eventhandler og the login button
      * 
-     * @param event 
+     * @param event the event to be set
      */
     public void setLoginButtonEventHandler(EventHandler<ActionEvent> event) {
         this.loginButton.setOnAction(event);

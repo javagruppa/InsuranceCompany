@@ -11,6 +11,7 @@ package insurancecompany.model.properties;
 public enum PropertyMaterial {
     WOOD, BRICK, WOOD_AND_BRICK;
     
+    @Override
     public String toString() {
         switch(this) {
             case WOOD: return "Tre";

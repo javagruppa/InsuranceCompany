@@ -405,6 +405,11 @@ public class MainController {
     
     // Saves all data to file
     private void mainViewSaveDataButtonEventHandler(ActionEvent event) {
+        saveAllDataToFile();
+    }
+    
+    // Saves all data to file
+    private void saveAllDataToFile() {
         writeBillsToFile();
         writeClaimsToFile();
         writeCustomersToFile();
@@ -428,6 +433,7 @@ public class MainController {
     
     // Exits the program:
     private void mainViewExitButtonEventHandler(ActionEvent event) {
+        saveAllDataToFile();
         Platform.exit();
     }    
     
@@ -514,7 +520,7 @@ public class MainController {
             String message = "Fyll inn dette feltet.";
             registerCustomer.setFirstNameMessage(message);
             ok = false;
-        } else if (!firstName.matches("[ÆØÅæøåA-Za-z]{2,30}")) {
+        } else if (!firstName.matches("[ÆØÅæøåA-Za-z .-]{2,30}")) {
             String message = "Fyll inn korrekt navn, kun bokstaver tillatt.";
             registerCustomer.setFirstNameMessage(message);
             ok = false;
@@ -524,7 +530,7 @@ public class MainController {
             String message = "Fyll inn dette feltet.";
             registerCustomer.setLastNameMessage(message);
             ok = false;
-        } else if (!lastName.matches("^[ÆØÅæøåA-Za-z]{2,30}")) {
+        } else if (!lastName.matches("^[ÆØÅæøåA-Za-z .-]{2,30}")) {
             String message = "Fyll inn korrekt navn, kun bokstaver tillatt.";
             registerCustomer.setLastNameMessage(message);
             ok = false;
@@ -658,7 +664,7 @@ public class MainController {
             String message = "Fyll inn dette feltet.";
             registerEmployee.setFirstNameMessage(message);
             ok = false;
-        } else if (!firstName.matches("[ÆØÅæøåA-Za-z]{2,30}")) {
+        } else if (!firstName.matches("[ÆØÅæøåA-Za-z .-]{2,30}")) {
             String message = "Fyll inn korrekt navn, kun bokstaver tillatt.";
             registerEmployee.setFirstNameMessage(message);
             ok = false;
@@ -668,7 +674,7 @@ public class MainController {
             String message = "Fyll inn dette feltet.";
             registerEmployee.setLastNameMessage(message);
             ok = false;
-        } else if (!lastName.matches("^[ÆØÅæøåA-Za-z]{2,30}")) {
+        } else if (!lastName.matches("^[ÆØÅæøåA-Za-z .-]{2,30}")) {
             String message = "Fyll inn korrekt navn, kun bokstaver tillatt.";
             registerEmployee.setLastNameMessage(message);
             ok = false;

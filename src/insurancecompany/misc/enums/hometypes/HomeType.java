@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 
 package insurancecompany.misc.enums.hometypes;
 
@@ -10,6 +6,8 @@ package insurancecompany.misc.enums.hometypes;
  * This enum represents the different types a home can be of.
  * 
  * @author Carl
+ * 
+ * @since 19.05.2015
  */
 public enum HomeType {
     APARTMENT, VILLA, LINKED_HOUSE, DETACHED_HOUSE, SEMI_DETACHED_HOUSE;

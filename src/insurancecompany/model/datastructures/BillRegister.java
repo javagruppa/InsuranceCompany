@@ -12,6 +12,8 @@ import java.util.Set;
 /**
  * Class BillRegister. Register of all bills and invoices towards the customers
  * @author André
+ * 
+ * @since 19.05.2015
  */
 public class BillRegister {
     /** the file path of the file where the bills are saved */

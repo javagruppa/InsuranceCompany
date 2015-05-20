@@ -7,6 +7,8 @@ import java.io.Serializable;
  * 
  * @author Carl
  * @author Sindre
+ * 
+ * @since 16.05.2015
  */
 public class Boat extends Vehicle implements Serializable {
     /** SerialVersionUID used to identify this class for object IO */

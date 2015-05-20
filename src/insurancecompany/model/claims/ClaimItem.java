@@ -9,6 +9,7 @@ import java.util.Calendar;
  * needs repaired/replaced
  * 
  * @author André
+ * @since 19.05.2015
  */
 public class ClaimItem implements Serializable {
     /** SerialVersionUID used to identify this class for object IO */

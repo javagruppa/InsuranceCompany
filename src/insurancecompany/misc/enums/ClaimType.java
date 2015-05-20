@@ -5,6 +5,8 @@ package insurancecompany.misc.enums;
  * 
  * @author André
  * @author Carl
+ * 
+ * @since 19.05.2015
  */
 public enum ClaimType {
     BOAT_CLAIM, CAR_CLAIM, HOME_CLAIM, HOME_CONTENT_CLAIM, 

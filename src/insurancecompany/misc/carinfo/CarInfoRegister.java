@@ -13,6 +13,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 /**
  *
  * @author André
+ * @since 19.05.2015
  */
 @XmlRootElement(name="items")
 public class CarInfoRegister {

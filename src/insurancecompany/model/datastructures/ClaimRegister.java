@@ -16,6 +16,8 @@ import java.util.Set;
  * 
  * @author André
  * @author Sindre
+ * 
+ * @since 19.05.2015
  */
 public class ClaimRegister {
     /** The file path of the file where the claims are saved. */

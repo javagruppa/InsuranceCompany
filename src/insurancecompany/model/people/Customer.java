@@ -8,6 +8,8 @@ import java.io.*;
  * 
  * @author Carl
  * @author Sindre
+ * 
+ * @since 15.05.2015
  */
 public class Customer extends Person implements Serializable {
     /** SerialVersionUID used to identify this class for object IO */

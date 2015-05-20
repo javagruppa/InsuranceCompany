@@ -13,6 +13,8 @@ import java.io.Serializable;
  * 
  * @author Sindre
  * @author Carl
+ * 
+ * @since 17.05.2015
  */
 public class HolidayHomeContentInsurance extends Insurance
         implements Serializable {

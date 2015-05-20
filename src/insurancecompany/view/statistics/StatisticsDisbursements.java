@@ -33,6 +33,8 @@ import javafx.scene.text.Text;
  * chosen dates.
  * 
  * @author André
+ * 
+ * @since 19.05.2015
  */
 public class StatisticsDisbursements {
     

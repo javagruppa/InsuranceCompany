@@ -24,6 +24,8 @@ import javafx.stage.Stage;
  *
  * @author André
  * @author Sindre
+ * 
+ * @since 19.05.2015
  */
 public class MainView extends Application {
     

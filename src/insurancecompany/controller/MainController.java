@@ -55,6 +55,8 @@ import javax.imageio.ImageIO;
  * @author André
  * @author Sindre
  * @author Carl
+ * 
+ * @since 19.05.2015
  */
 public class MainController {
     

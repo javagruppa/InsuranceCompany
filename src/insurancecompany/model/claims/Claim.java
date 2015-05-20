@@ -14,6 +14,8 @@ import javax.imageio.ImageIO;
  *
  * @author André
  * @author Carl
+ * 
+ * @since 19.05.2015
  */
 public abstract class Claim implements Serializable {
     /** SerialVersionUID used to identify this class for object IO */

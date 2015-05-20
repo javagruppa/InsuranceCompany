@@ -37,6 +37,8 @@ import javafx.scene.text.Text;
  * 
  * @author Carl
  * @author Sindre
+ * 
+ * @since 19.05.2015
  */
 public class RegisterTravelInsurance {
     

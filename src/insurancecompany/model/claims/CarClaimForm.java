@@ -18,6 +18,7 @@ import javax.imageio.ImageIO;
  * of events.
  * 
  * @author Carl
+ * @since 19.05.2015
  */
 public class CarClaimForm implements Serializable {
     /** SerialVersionUID used to identify this class for object IO */

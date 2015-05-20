@@ -4,6 +4,7 @@ package insurancecompany.misc.enums;
  * This enum represents the types of insurances used by the company.
  * 
  * @author André
+ * @since 19.05.2015
  */
 public enum InsuranceType {
     BOAT_INSURANCE, CAR_INSURANCE, HOME_INSURANCE, HOME_CONTENT_INSURANCE, 

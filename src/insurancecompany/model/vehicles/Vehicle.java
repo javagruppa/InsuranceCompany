@@ -9,6 +9,8 @@ import java.io.Serializable;
  * @author André
  * @author Sindre
  * @author Carl
+ * 
+ * @since 16.05.2015
  */
 public abstract class Vehicle implements Serializable {
     /** SerialVersionUID used to identify this class for object IO */

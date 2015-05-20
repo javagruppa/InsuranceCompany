@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package insurancecompany.main;
 
 import insurancecompany.controller.*;
@@ -10,9 +6,11 @@ import insurancecompany.controller.*;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
-/**
+/**Main class.
+ * Contains the applications main-method
  *
  * @author André
+ * @since 19.05.2015
  */
 public class Main extends Application {
     
@@ -26,7 +24,10 @@ public class Main extends Application {
         launch(args);
     }
     
-    
+    /**
+     * Opens a new MainController
+     * @param stage sets the stage
+     */
     @Override
     public void start(Stage stage) {
         controller = new MainController();

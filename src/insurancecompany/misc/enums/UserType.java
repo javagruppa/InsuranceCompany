@@ -4,6 +4,7 @@ package insurancecompany.misc.enums;
  * This enum represents the types of users that can log in to the program.
  * 
  * @author André
+ * @since 19.05.2015
  */
 public enum UserType {
     CUSTOMER, ADMIN, CASE_WORKER, SERVICE_WORKER;
